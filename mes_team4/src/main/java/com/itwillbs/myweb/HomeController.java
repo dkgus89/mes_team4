@@ -41,27 +41,7 @@ public class HomeController {
 		
 		// /WEB-INF/views/파일이름.jsp
 		// /WEB-INF/views/home.jsp
-		return "home";
+		return "main/home";
 	}
 	
-	//가상주소 http://localhost:8080/myweb/insert.me   
-	//       주소매핑 ->  insert.jsp 
-	@RequestMapping(value = "/insert.me", method = RequestMethod.GET)
-	public String insert() {
-		// 처리작업
-		
-		// /WEB-INF/views/insert.jsp
-		return "insert";
-	}
-	
-	//가상주소 http://localhost:8080/myweb/write
-	//       주소매핑 ->  write.jsp 
-	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String write() {
-		// 처리작업
-		
-		// /WEB-INF/views/write.jsp
-		return "write";
-	}
-	
-}
+}// class
