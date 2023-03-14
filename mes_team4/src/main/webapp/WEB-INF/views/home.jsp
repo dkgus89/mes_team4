@@ -4,15 +4,9 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
-	
-	<script type="text/javascript">
-	location.href="/mainPage.ma";
-	</script>
-	
+<title>Home</title>
 </head>
 <body>
-
 <h1>
 	Hello world!  
 </h1>

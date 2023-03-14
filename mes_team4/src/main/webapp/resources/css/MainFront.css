@@ -1,9 +1,20 @@
 @charset "UTF-8";
 
+	#topcontainer {
+		width : 1260px;
+		margin : 0px auto;
+		margin-top : 20px;
+	}
+	
 	#container {
 		width : 1260px;
-		margin : 20px auto;
-
+		margin: 0px auto;
+	}
+	
+	#botcontainer {
+		width : 1260px;
+		margin : 0px auto;
+		clear: both;
 	}
 	
 	#header {
@@ -34,7 +45,7 @@
 		padding : 20px;
 		width: 1260px; height : 100px;
 		background-color:#F6F6F6;
-		clear : left;
+		clear: both;
 	}
 	
 	.main {
@@ -168,7 +179,8 @@
 	table {
 	  border-collapse: separate;
 	  border-spacing: 0;
-	  width: 100%;
+	  width : 100%; 
+	  cellspacing : 0;
 	}
 	th,
 	td {

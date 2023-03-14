@@ -16,12 +16,10 @@ import com.itwillbs.service.MemberServiceImpl;
 @Controller
 public class MainController {
 	
-	@RequestMapping(value = "/main/home", method = RequestMethod.GET)
-	public String insert() {
-		// 처리작업
-		
-		// 가상주소에서 주소변경 없이 이동
-		return "redirect:/main/home";
+	@RequestMapping(value = "/Main", method = RequestMethod.GET)
+	public String main() {
+	
+		return "main/Main";
 	}
 	
 }//class
