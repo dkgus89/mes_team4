@@ -2,16 +2,24 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>main</title>
-<link href="${pageContext.request.contextPath}/resources/css/MainFront.css" rel="stylesheet" type="text/css">
+<!-- js파일 들어가는 곳 -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<!-- js파일 들어가는 곳 -->
+
+<!-- 본문적용 CSS들어가는 곳 -->
+<link href="${pageContext.request.contextPath}/resources/css/MainFront.css" rel="stylesheet" type="text/css">
+<!-- 본문적용 CSS들어가는 곳 -->
+
+<!-- 자바스크립트 입력 시작-->
 <script>
 </script>
-
+<!-- 자바스크립트 입력 끝-->
 </head>
 <body>
 
@@ -31,6 +39,3 @@
 		<h1 class="main">의약품 생산 MES프로그램 </h1>
 	</div>
 </div>
-
-</body>
-</html>
