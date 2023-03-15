@@ -20,6 +20,11 @@
 <script>
 </script>
 <!-- 자바스크립트 입력 끝-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
@@ -36,6 +41,7 @@
 	</div>
 
 	<div id="header">
-		<h1 class="main">의약품 생산 MES프로그램 </h1>
-	</div>
+		
+		<h1 class="main">의약품 생산 MES<img src="${pageContext.request.contextPath}/resources/image/robot.png"></h1>
+	</div> 
 </div>
