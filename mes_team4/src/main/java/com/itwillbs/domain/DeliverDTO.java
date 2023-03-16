@@ -1,6 +1,5 @@
 package com.itwillbs.domain;
 
-public class SystemDTO {
-	
+public class DeliverDTO {
 
 }
