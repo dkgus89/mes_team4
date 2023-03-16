@@ -35,4 +35,11 @@ public class MainController {
 		return "main/Main";
 	}
 	
+	@RequestMapping(value = "/main/home", method = RequestMethod.GET)
+	public String home() {
+		
+		// 가상주소 유지
+		return "main/homemain";
+	}
+	
 }//class
