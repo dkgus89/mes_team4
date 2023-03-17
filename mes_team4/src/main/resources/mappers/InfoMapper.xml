@@ -4,13 +4,17 @@
 
 <!-- 파일이름 대신 namespace 이름을 불러서 사용 -->
 
-<mapper namespace="com.itwillbs.mappers.memberMapper">
+<mapper namespace="com.itwillbs.mappers.InfoMapper">
 	
 	<!-- ?대신 memberDTO의 멤버변수명 사용 #{id}-->
 <!-- 	<insert id="insertMember"> -->
 <!-- 		insert into members(id,pass,name,date)  -->
 <!-- 		values(#{id},#{pass},#{name},#{date}) -->
 <!-- 	</insert> -->
+
+	<select id="getLineList" resultType="com.itwillbs.domain.LineDTO">
+    	select * from line 
+    </select>
 	
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
 <!-- 		select * from members  -->

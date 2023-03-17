@@ -39,7 +39,6 @@
 		<table id="vendortable" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>선택</th>
 					<th>라인코드</th>
 					<th>라인명</th>
 					<th>정렬순서</th>
@@ -49,32 +48,18 @@
 			</thead>
 			
 			<tbody>
-				<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test1-1"></td>
-					<td><input type="text" value="test1-2"></td>
-					<td><input type="text" value="test1-3"></td>
-					<td><input type="text" value="test1-4"></td>
-					<td><input type="text" value="test1-5"></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test2-1"></td>
-					<td><input type="text" value="test2-2"></td>
-					<td><input type="text" value="test2-3"></td>
-					<td><input type="text" value="test2-4"></td>
-					<td><input type="text" value="test2-5"></td>
-				</tr>	
-					<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test3-1"></td>
-					<td><input type="text" value="test3-2"></td>
-					<td><input type="text" value="test3-3"></td>
-					<td><input type="text" value="test3-4"></td>
-					<td><input type="text" value="test3-5"></td>
-				</tr>
+				<c:forEach var="LineDTO" items="${LineList }">
+
+				<tr><td>${LineDTO.line_cd}</td>
+    			<td>${LineDTO.line_name}</td>
+    			<td>${LineDTO.line_sequence}</td>
+    			<td>${LineDTO.line_status}</td>
+    			<td>${LineDTO.remarks}</td></tr>
+    
+				</c:forEach>
 			
 			</tbody>
+			
 		</table>
 		<button type="button" id="test">테스트</button>
 		
@@ -86,7 +71,6 @@
 	
 <!-- 본문HTML 입력 끝-->
 	</div>
-</div>
 
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="../main/Footer.jsp" />
