@@ -31,7 +31,7 @@ public class MemberController {
 	// private MemberService memberService;
 	
 	// 3)멤버변수 값 => 생성자 or set메서드 통해서 전달
-	// MemberController 생성자
+	// MemberController 생성자	
 	
 	//@Inject 
 	//public MemberController(MemberService memberService) {
