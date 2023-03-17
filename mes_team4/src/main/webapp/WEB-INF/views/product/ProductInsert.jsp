@@ -37,38 +37,41 @@
 		<table id="vendortable" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>선택</th>
 					<th>품번</th>
 					<th>품명</th>
+					<th>품목코드</th>
 					<th>자재유형</th>
 					<th>재고단위</th>
 					<th>규격</th>
+					<th>V</th>
+					<th>거래처명</th>
 					<th>비고</th>
 				</tr>
 			</thead>
 			
 			<tbody>
 				<tr>
-					<td><input type="checkbox" id="checkbox"></td>
 					<td><input type="text" value="test1-1"></td>
 					<td><input type="text" value="test1-2"></td>
 					<td><input type="text" value="test1-3"></td>
 					<td><input type="text" value="test1-4"></td>
+					<td><input type="text" value="test1-5"></td>
+					<td><input type="text" value="test1-5"></td>
+					<td><input type="checkbox" id="checkbox"></td>
+					<td><input type="text" value="test1-6"></td>
+					<td><input type="text" value="test1-7"></td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" id="checkbox"></td>
 					<td><input type="text" value="test2-1"></td>
 					<td><input type="text" value="test2-2"></td>
 					<td><input type="text" value="test2-3"></td>
 					<td><input type="text" value="test2-4"></td>
-				</tr>	
-					<tr>
+					<td><input type="text" value="test2-5"></td>
+					<td><input type="text" value="test2-5"></td>
 					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test3-1"></td>
-					<td><input type="text" value="test3-2"></td>
-					<td><input type="text" value="test3-3"></td>
-					<td><input type="text" value="test3-4"></td>
-				</tr>
+					<td><input type="text" value="test2-6"></td>
+					<td><input type="text" value="test2-7"></td>
+				</tr>	
 			
 			</tbody>
 		</table>
