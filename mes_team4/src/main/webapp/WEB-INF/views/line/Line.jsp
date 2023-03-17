@@ -50,11 +50,13 @@
 			<tbody>
 				<c:forEach var="LineDTO" items="${LineList }">
 
-				<tr><td>${LineDTO.line_cd}</td>
+				<tr>
+				<td>${LineDTO.line_cd}</td>
     			<td>${LineDTO.line_name}</td>
     			<td>${LineDTO.line_sequence}</td>
     			<td>${LineDTO.line_status}</td>
-    			<td>${LineDTO.remarks}</td></tr>
+    			<td>${LineDTO.remarks}</td>
+    			</tr>
     
 				</c:forEach>
 			
