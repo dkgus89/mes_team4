@@ -4,7 +4,7 @@
 <%@ page session="false" %>
 
 <!-- 헤더파일들어가는 곳 -->
-<jsp:include page="Header.jsp" />
+<jsp:include page="../main/Header.jsp" />
 <!-- 헤더파일들어가는 곳 -->
 
 <!-- 본문적용 CSS들어가는 곳 -->
@@ -13,48 +13,24 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
-	$(document).ready(function(){
-		$('#test').on('click', function() {
-			var checkbox = $('input[id=checkbox]:checked');
-			var tr = checkbox.parent().parent();
-			var td = tr.children();
-			var name = td.eq(1).children().val();
-			var type = td.eq(2).children().val();
-			var number = td.eq(3).children().val();
-			
-			var tdArray = [];
-			
-			checkbox.each(function(i){
-				tr = checkbox.parent().parent().eq(i);
-				
-				td = tr.children();
-				name = td.eq(1).children().val();
-				type = td.eq(2).children().val();
-				number = td.eq(3).children().val();
-				
-				tdArray.push(name);
-				tdArray.push(type);
-				tdArray.push(number);
-			});
-			
-			$('#array').html(tdArray);
-			console.log(tdArray[0]);
-			});
-});
+
 </script>
 <!-- 자바스크립트 입력 끝-->
 
 
+
+
+	
 	
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
 	<h2>값 입력할 페이지 </h2><br>
 	<div class="wrap2">
-	  <button class="button2">추가</button>
+	  <button class="button2">등록</button>
 	  <button class="button2">수정</button>
-	  <button class="button2">저장</button>
 	  <button class="button2">삭제</button>
+	  <button class="button2">조회</button>
 	  
 	 </div><br>
 	 <br>
@@ -67,20 +43,26 @@
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>선택</th>
-					<th>거래처명</th>
-					<th>거래처유형</th>
-					<th>사업자번호</th>
-					<th>비고</th>
+					<th>창고코드</th>
+					<th>창고명</th>
+					<th>창고구분</th>
+					<th>창고주소</th>
+					<th>창고연락처</th>
+					<th>창고관리자</th>
+					<th>창고사용여부</th>
 				</tr>
 			</thead>
 			
 			<tbody>
 				<tr>
 					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test1-1"></td>
-					<td><input type="text" value="test1-2"></td>
-					<td><input type="text" value="test1-3"></td>
-					<td><input type="text" value="test1-4"></td>
+					<td>${WHDTO.wh_cd}</td>
+					<td>${WHDTO.wh_name}</td>
+					<td>${WHDTO.wh_dv}</td>
+					<td>${WHDTO.wh_addr}</td>
+					<td>${WHDTO.wh_tel}</td>
+					<td>${WHDTO.emp_no}</td>
+					<td>${WHDTO.wh_use}</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" id="checkbox"></td>
@@ -88,14 +70,22 @@
 					<td><input type="text" value="test2-2"></td>
 					<td><input type="text" value="test2-3"></td>
 					<td><input type="text" value="test2-4"></td>
+					<td><input type="text" value="test2-5"></td>
+					<td><input type="text" value="test2-6"></td>
+					<td><input type="text" value="test2-7"></td>
 				</tr>	
-					<tr>
+				<tr>
 					<td><input type="checkbox" id="checkbox"></td>
 					<td><input type="text" value="test3-1"></td>
 					<td><input type="text" value="test3-2"></td>
 					<td><input type="text" value="test3-3"></td>
 					<td><input type="text" value="test3-4"></td>
+					<td><input type="text" value="test3-5"></td>
+					<td><input type="text" value="test3-6"></td>
+					<td><input type="text" value="test3-7"></td>
 				</tr>
+			
+				
 			
 			</tbody>
 		</table>
@@ -112,5 +102,5 @@
 </div>
 
 <!-- 푸터 들어가는 곳 -->
-<jsp:include page="Footer.jsp" />
+<jsp:include page="../main/Footer.jsp" />
 <!-- 푸터 들어가는 곳 -->
