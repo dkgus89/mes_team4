@@ -40,7 +40,7 @@
 					<th>공정</th>
 					<th>정렬순서</th>
 					<th>가동상태</th>
-					<th>비고</th>
+					<th>적요</th>
 				</tr>
 			</thead>
 			
