@@ -12,6 +12,11 @@
 <!-- 		values(#{id},#{pass},#{name},#{date}) -->
 <!-- 	</insert> -->
 
+	<insert id="insertLine">
+    	insert into line(line_cd, line_name, line_process, line_sequence, line_status, remarks)
+    	values(#{line_cd},#{line_name},#{line_process},#{line_sequence},#{line_status},#{remarks})
+    </insert>
+
 	<select id="getLineList" resultType="com.itwillbs.domain.LineDTO">
     	select * from line 
     </select>

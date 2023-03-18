@@ -3,7 +3,6 @@ package com.itwillbs.controller;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +21,7 @@ public class InfoController {
 		private InfoService InfoService;
 		
 		@RequestMapping(value = "/line/line", method = RequestMethod.GET)
-		public String list(Model model) {
+		public String Line(Model model) {
 			System.out.println("InfoController Line()");
 			
 			
@@ -35,5 +34,22 @@ public class InfoController {
 			// 주소변경 없이 이동
 			// /WEB-INF/views/line/Line.jsp
 			return "line/Line";
+		}
+		
+		@RequestMapping(value = "/line/lineinsert", method = RequestMethod.GET)
+		public String LineInsert() {
+			
+			// 주소변경 없이 이동
+			// /WEB-INF/views/line/LineInsert.jsp
+			return "line/LineInsert";
+		}
+		
+		@RequestMapping(value = "/line/lineinsertPro", method = RequestMethod.POST)
+		public String LineInsertPro(LineDTO lineDTO) {
+			System.out.println("InfoController LineInsertPro()");
+			//글쓰기 작업 메서드 호출
+			InfoService.insertLine(lineDTO);
+			// 주소변경 하면서 이동
+			return "redirect:/line/line";
 		}
 }

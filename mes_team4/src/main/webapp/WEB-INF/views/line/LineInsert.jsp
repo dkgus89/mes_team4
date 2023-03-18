@@ -22,18 +22,14 @@
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2> 설비관리 </h2><br>
+	<h2> 생산설비 추가 </h2><br>
 	<div class="wrap2">
-	  <button class="button2" onclick="location.href='${pageContext.request.contextPath}/line/lineinsert'">추가</button>
-	  <button class="button2">수정</button>
-	  <button class="button2">저장</button>
-	  <button class="button2">삭제</button>
 	  
 	 </div><br>
 	 <br>
 	 
 	 
-	<form method="post">
+	<form action="${pageContext.request.contextPath}/line/lineinsertPro" method="post">
 		<input type="hidden" value="">
 		
 		<table id="vendortable" class=" table table-striped">
@@ -49,27 +45,22 @@
 			</thead>
 			
 			<tbody>
-				<c:forEach var="LineDTO" items="${LineList }">
-
 				<tr>
-				<td>${LineDTO.line_cd}</td>
-    			<td>${LineDTO.line_name}</td>
-    			<td>${LineDTO.line_process}</td>
-    			<td>${LineDTO.line_sequence}</td>
-    			<td>${LineDTO.line_status}</td>
-    			<td>${LineDTO.remarks}</td>
-    			</tr>
-    
-				</c:forEach>
+					<td><input type="text" name="line_cd" value=""></td>
+					<td><input type="text" name="line_name" value=""></td>
+					<td><input type="text" name="line_process" value=""></td>
+					<td><input type="text" name="line_sequence" value=""></td>
+					<td><input type="text" name="line_status" value=""></td>
+					<td><input type="text" name="remarks" value=""></td>
+				</tr>
+				
 			
 			</tbody>
-			
 		</table>
-		<button type="button" id="test">테스트</button>
-		
+				
 		<div id="array"></div>
 	
-	
+	<input type="submit" class="button2" value="등록">
 	</form>
 	
 	
