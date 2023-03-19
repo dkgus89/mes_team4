@@ -30,4 +30,18 @@ public class InfoServiceImpl implements InfoService{
 			
 			InfoDAO.insertLine(lineDTO);			
 		}
+
+		@Override
+		public LineDTO getLine(String line_cd) {
+			System.out.println("InfoServiceImpl getLine()");
+			
+			return InfoDAO.getLine(line_cd);
+		}
+
+		@Override
+		public void updateLine(LineDTO lineDTO) {
+			System.out.println("InfoServiceImpl updateLine()");
+			
+			InfoDAO.updateLine(lineDTO);
+		}
 }

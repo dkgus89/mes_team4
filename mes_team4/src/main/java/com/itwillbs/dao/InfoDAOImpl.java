@@ -32,4 +32,18 @@ public class InfoDAOImpl implements InfoDAO {
 			
 			sqlSession.insert(namespace+".insertLine", lineDTO);			
 		}
+
+		@Override
+		public LineDTO getLine(String line_cd) {
+			System.out.println("InfoDAOImpl getLine()");
+			
+			return sqlSession.selectOne(namespace+".getLine", line_cd);
+		}
+
+		@Override
+		public void updateLine(LineDTO lineDTO) {
+			System.out.println("InfoDAOImpl updateLine()");
+			
+			sqlSession.update(namespace+".updateLine", lineDTO);
+		}
 }

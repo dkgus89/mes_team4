@@ -20,6 +20,17 @@
 	<select id="getLineList" resultType="com.itwillbs.domain.LineDTO">
     	select * from line 
     </select>
+
+	<select id="getLine" resultType="com.itwillbs.domain.LineDTO">
+        select * from line
+        where line_cd = #{line_cd}
+    </select>
+    
+    <update id="updateLine">
+    	update line
+    	set line_name = #{line_name}, line_process = #{line_process}, line_sequence = #{line_sequence}, line_status = #{line_status}, remarks = #{remarks}
+    	where line_cd = #{line_cd}
+    </update>
 	
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
 <!-- 		select * from members  -->

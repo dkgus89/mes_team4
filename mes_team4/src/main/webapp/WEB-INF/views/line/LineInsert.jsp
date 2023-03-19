@@ -29,7 +29,7 @@
 	 <br>
 	 
 	 
-	<form action="${pageContext.request.contextPath}/line/lineinsertPro" method="post">
+	<form action="${pageContext.request.contextPath}/line/lineinsertpro" method="post">
 		<input type="hidden" value="">
 		
 		<table id="vendortable" class=" table table-striped">
