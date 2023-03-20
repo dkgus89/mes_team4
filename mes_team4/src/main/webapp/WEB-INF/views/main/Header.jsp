@@ -67,7 +67,7 @@
 	          <li><a href="#">소요량관리</a></li>
 	          <li><a href="#">설비정보관리</a></li>
 	          <li><a href="#">거래처정보관리</a></li>
-	          <li><a href="#">창고관리</a></li>
+	          <li><a href="wh/whpage">창고관리</a></li>
 	        </ul>
 	      </li>
 	      <li>

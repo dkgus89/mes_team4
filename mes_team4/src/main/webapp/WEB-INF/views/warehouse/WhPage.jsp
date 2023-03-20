@@ -13,6 +13,11 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
+function showPopup(){
+    window.open("whinsert","팝업 테스트","width=1000, height=500, top=200, left=200");
+    opener.parent.location.reload();
+    window.close();
+}
 
 </script>
 <!-- 자바스크립트 입력 끝-->
@@ -27,7 +32,7 @@
 
 	<h2>값 입력할 페이지 </h2><br>
 	<div class="wrap2">
-	  <button class="button2">등록</button>
+	  <button class="button2" onclick="showPopup();">등록</button>
 	  <button class="button2">수정</button>
 	  <button class="button2">삭제</button>
 	  <button class="button2">조회</button>
@@ -46,10 +51,9 @@
 					<th>창고코드</th>
 					<th>창고명</th>
 					<th>창고구분</th>
-					<th>창고주소</th>
 					<th>창고연락처</th>
-					<th>창고관리자</th>
 					<th>창고사용여부</th>
+					<th>적요</th>
 				</tr>
 			</thead>
 			
@@ -59,41 +63,14 @@
 					<td>${WHDTO.wh_cd}</td>
 					<td>${WHDTO.wh_name}</td>
 					<td>${WHDTO.wh_dv}</td>
-					<td>${WHDTO.wh_addr}</td>
 					<td>${WHDTO.wh_tel}</td>
-					<td>${WHDTO.emp_no}</td>
 					<td>${WHDTO.wh_use}</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test2-1"></td>
-					<td><input type="text" value="test2-2"></td>
-					<td><input type="text" value="test2-3"></td>
-					<td><input type="text" value="test2-4"></td>
-					<td><input type="text" value="test2-5"></td>
-					<td><input type="text" value="test2-6"></td>
-					<td><input type="text" value="test2-7"></td>
-				</tr>	
-				<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test3-1"></td>
-					<td><input type="text" value="test3-2"></td>
-					<td><input type="text" value="test3-3"></td>
-					<td><input type="text" value="test3-4"></td>
-					<td><input type="text" value="test3-5"></td>
-					<td><input type="text" value="test3-6"></td>
-					<td><input type="text" value="test3-7"></td>
-				</tr>
-			
-				
-			
+					<td>${WHDTO.remarks}</td>
+				</tr>				
 			</tbody>
+			
 		</table>
-		<button type="button" id="test">테스트</button>
 		
-		<div id="array"></div>
-	
-	
 	</form>
 	
 	

@@ -2,48 +2,49 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 
-<!-- 헤더파일들어가는 곳 -->
-<jsp:include page="../main/Header.jsp" />
-<!-- 헤더파일들어가는 곳 -->
-
-<!-- 본문적용 CSS들어가는 곳 -->
-
-<!-- 본문적용 CSS들어가는 곳 -->
-
-<!-- 자바스크립트 입력 시작-->
-<script>
-
-</script>
-<!-- 자바스크립트 입력 끝-->
+<link href="${pageContext.request.contextPath}/resources/css/MainFront.css" rel="stylesheet" type="text/css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
 
+</head>
+<body>
 
-
-	
-	
 	<div id="contents">
-<!-- 본문HTML 입력 시작 -->
+<!-- 본문HTML 입력 시작-->
 
-    <form action="${pageContext.request.contextPath}/warehouse/insertPro" method="post">
-	 창고코드 : <input type="text" name="id"><br>
-	 창고명 : <input type="text" name="id"><br>
-	 창고구분 : <input type="text" name="id"><br>
-	 창고주소 : <input type="text" name="id"><br>
-	 창고연락처 : <input type="text" name="id"><br>
-	 창고관리자 : <input type="text" name="id"><br>
-	 창고사용여부 : <input type="text" name="id"><br>
-	 </form>
-	 <div class="wrap2">
-	 	<button class="button2">등록</button>
+	<h2 class="inserttitle">값 입력할 페이지 </h2><br>
+	
+	 <br>
+	 
+	 
+	<form action="${pageContext.request.contextPath}/wh/whinsertPro" method="post">
+	<div class="wrap2">
+	  <button class="button2">등록</button>
+	  <button class="button2">초기화</button>
+	  
 	 </div><br>
-
+	 창고코드 : <input type="text" name="wh_cd" ><br>
+	 창고명 : <input type="text" name="wh_name"><br>
+	 창고구분 : <label><input type="radio" name="wh_dv" value="0" checked="checked">완제품</label>
+	 		 <label><input type="radio" name="wh_dv" value="1">원자재</label><br>
+	 창고주소 : <input type="text" name="wh_addr"><br>
+	 창고연락처 : <input type="tel" name="wh_tel"><br>
+	 창고사용여부 : <label><input type="radio" name="wh_use" value="1" checked="checked">사용</label>
+	 		 <label><input type="radio" name="wh_use" value="0">미사용</label><br>
+	 적요 : <input type="text" name="remarks"><br>
+	 </form>
 	
 	
 <!-- 본문HTML 입력 끝-->
 	</div>
-</div>
-
-<!-- 푸터 들어가는 곳 -->
-<jsp:include page="../main/Footer.jsp" />
-<!-- 푸터 들어가는 곳 -->
+	
+</body>
+</html>

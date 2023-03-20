@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 파일이름 대신 namespace 이름을 불러서 사용 -->
+
+<mapper namespace="com.itwillbs.mappers.whMapper">
+	
+	<!-- ?대신 WHDTO의 멤버변수명 사용-->
+	<insert id="insertwh">
+		insert into warehouse(wh_cd, wh_name, wh_dv,wh_addr, wh_tel, wh_use, remarks) 
+		values(#{wh_cd},#{wh_name},#{wh_dv},#{wh_addr},#{wh_tel},#{wh_use},#{remarks})
+	</insert>
+	
+	<select id="getBoard" resultType="com.itwillbs.domain.WHDTO">
+        select * from board
+        where wh_cd = #{wh_cd}   	
+    </select>
+	
+<!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
+<!-- 		select * from members  -->
+<!-- 		where id = #{id} and pass = #{pass}  -->
+<!-- 	</select> -->
+
+<!-- 	<select id="selectBlog" parameterType="int" resultType="Blog">
+        select * from Blog where id = #{id}
+    </select>
+    
+    <insert id="">
+    </insert>
+    
+    <update id="">
+    </update>
+    
+    <delete id="">
+    </delete> -->
+    
+</mapper>
+
+
+

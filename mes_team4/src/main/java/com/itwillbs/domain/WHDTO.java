@@ -2,11 +2,9 @@ package com.itwillbs.domain;
 
 public class WHDTO {
 	private String wh_cd;
-	private String emp_no;
 	private String wh_name;
 	private String wh_dv;
 	private String wh_addr;
-	private String wh_addrdt;
 	private String wh_tel;
 	private String wh_use;
 	private String remarks;
@@ -16,12 +14,6 @@ public class WHDTO {
 	}
 	public void setWh_cd(String wh_cd) {
 		this.wh_cd = wh_cd;
-	}
-	public String getEmp_no() {
-		return emp_no;
-	}
-	public void setEmp_no(String emp_no) {
-		this.emp_no = emp_no;
 	}
 	public String getWh_name() {
 		return wh_name;
@@ -40,12 +32,6 @@ public class WHDTO {
 	}
 	public void setWh_addr(String wh_addr) {
 		this.wh_addr = wh_addr;
-	}
-	public String getWh_addrdt() {
-		return wh_addrdt;
-	}
-	public void setWh_addrdt(String wh_addrdt) {
-		this.wh_addrdt = wh_addrdt;
 	}
 	public String getWh_tel() {
 		return wh_tel;
