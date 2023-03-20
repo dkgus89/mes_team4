@@ -6,9 +6,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class ProductController {
-	@RequestMapping(value = "/product/product", method = RequestMethod.GET)
-	public String ProductInsert() {
-		
-		return "product/ProductInsert";
+	@RequestMapping(value = "/product/prodpage", method = RequestMethod.GET)
+	public String ProdPage() {
+		return "product/ProdPage";
 	}
+	
+	@RequestMapping(value = "/product/prodinsert", method = RequestMethod.GET)
+	public String ProdInsert() {
+		return "product/ProdInsert";
+	}
+	
 }

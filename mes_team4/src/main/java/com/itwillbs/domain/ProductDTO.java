@@ -1,14 +1,69 @@
 package com.itwillbs.domain;
 
 public class ProductDTO {
-	<th>품번</th>
-	<th>품명</th>
-	<th>품목코드</th>
-	<th>자재유형</th>
-	<th>재고단위</th>
-	<th>규격</th>
-	<th>사용</th>
-	<th>거래처코드</th>
-	<th>거래처명</th>
-	<th>비고</th>
+//	품목코드(hidden), 품목타입코드, 제품명, 제품코드, 제품구분, 거래처코드, 규격, 단위, 적요
+	private int product_cd;
+	private int product_type_cd;
+	private String product_dv;
+	private String product_name;
+	private String product_cd_name;
+	private String business_cd;
+	private String product_size;
+	private String product_unit;
+	private String remarks;
+	
+	public int getProduct_cd() {
+		return product_cd;
+	}
+	public void setProduct_cd(int product_cd) {
+		this.product_cd = product_cd;
+	}
+	public int getProduct_type_cd() {
+		return product_type_cd;
+	}
+	public void setProduct_type_cd(int product_type_cd) {
+		this.product_type_cd = product_type_cd;
+	}
+	public String getProduct_dv() {
+		return product_dv;
+	}
+	public void setProduct_dv(String product_dv) {
+		this.product_dv = product_dv;
+	}
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+	public String getProduct_cd_name() {
+		return product_cd_name;
+	}
+	public void setProduct_cd_name(String product_cd_name) {
+		this.product_cd_name = product_cd_name;
+	}
+	public String getBusiness_cd() {
+		return business_cd;
+	}
+	public void setBusiness_cd(String business_cd) {
+		this.business_cd = business_cd;
+	}
+	public String getProduct_size() {
+		return product_size;
+	}
+	public void setProduct_size(String product_size) {
+		this.product_size = product_size;
+	}
+	public String getProduct_unit() {
+		return product_unit;
+	}
+	public void setProduct_unit(String product_unit) {
+		this.product_unit = product_unit;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 }
