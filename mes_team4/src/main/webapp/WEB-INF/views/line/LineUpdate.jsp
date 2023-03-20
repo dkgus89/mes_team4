@@ -13,6 +13,14 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
+function fun1(){
+	document.LineUpdate.action="${pageContext.request.contextPath}/line/lineupdatePro";
+	document.LineUpdate.submit();
+	setTimeout(function() { 
+		opener.parent.location.reload();
+		window.close();
+		}, 100);
+	}
 
 </script>
 <!-- 자바스크립트 입력 끝-->
@@ -29,7 +37,7 @@
 	 <br>
 	 
 	 
-	<form action="${pageContext.request.contextPath}/line/lineupdatepro" method="post">
+	<form name="LineUpdate" method="post">
 		<input type="hidden" value="">
 		
 		<table id="vendortable" class=" table table-striped">
@@ -46,7 +54,7 @@
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="line_cd" value="${LineDTO.line_cd }" readonly></td>
+					<td><input type="text" name="line_cd" value="${LineDTO.line_cd }"></td>
 					<td><input type="text" name="line_name" value="${LineDTO.line_name }"></td>
 					<td><input type="text" name="line_process" value="${LineDTO.line_process }"></td>
 					<td><input type="text" name="line_sequence" value="${LineDTO.line_sequence }"></td>
@@ -60,7 +68,7 @@
 				
 		<div id="array"></div>
 	
-	<input type="submit" class="button2" value="적용">
+	<input type="submit" class="button2" onclick="fun1()" value="적용">
 	</form>
 	
 	

@@ -19,14 +19,14 @@ public class InfoController {
 	//멤버변수 부모 인터페이스 정의 => 자동으로 자식 클래스 객체생성
 		// 스프링 객체생성 방식 => 의존관계주입(DI : Dependency Injection)
 		@Inject
-		private InfoService InfoService;
+		private InfoService infoService;
 		
 		@RequestMapping(value = "/line/line", method = RequestMethod.GET)
-		public String Line(Model model) {
-			System.out.println("InfoController Line()");
+		public String line(Model model) {
+			System.out.println("InfoController line()");
 			
 			
-			List<LineDTO> LineList=InfoService.getLineList();
+			List<LineDTO> LineList=infoService.getLineList();
 			
 			
 			
@@ -38,41 +38,41 @@ public class InfoController {
 		}
 		
 		@RequestMapping(value = "/line/lineinsert", method = RequestMethod.GET)
-		public String LineInsert() {
+		public String lineInsert() {
 			
 			// 주소변경 없이 이동
 			// /WEB-INF/views/line/LineInsert.jsp
 			return "line/LineInsert";
 		}
 		
-		@RequestMapping(value = "/line/lineinsertpro", method = RequestMethod.POST)
-		public String LineInsertpro(LineDTO lineDTO) {
-			System.out.println("InfoController LineInsertPro()");
+		@RequestMapping(value = "/line/lineinsertPro", method = RequestMethod.POST)
+		public String lineInsertpro(LineDTO lineDTO) {
+			System.out.println("InfoController lineInsertPro()");
 			//글쓰기 작업 메서드 호출
-			InfoService.insertLine(lineDTO);
+			infoService.insertLine(lineDTO);
+			
 			// 주소변경 하면서 이동
-			return "redirect:/line/line";
+			return "redirect:/line/Line";
 		}
 		
 		@RequestMapping(value = "/line/lineupdate", method = RequestMethod.GET)
 		public String update(HttpServletRequest request, Model model) {
 			String line_cd=request.getParameter("line_cd");
+			LineDTO lineDTO=infoService.getLine(line_cd);
 			
-			LineDTO lineDTO=InfoService.getLine(line_cd);
-			
-			model.addAttribute("lineDTO", lineDTO);
+			model.addAttribute("LineDTO", lineDTO);
 			
 			// 주소변경 없이 이동
 			// /WEB-INF/views/line/LineUpdate.jsp
 			return "line/LineUpdate";
 		}
 		
-		@RequestMapping(value = "/line/lineupdatepro", method = RequestMethod.POST)
-		public String LineUpdatePro(LineDTO LineDTO) {
+		@RequestMapping(value = "/line/lineupdatePro", method = RequestMethod.POST)
+		public String lineUpdatePro(LineDTO lineDTO) {
 			
-			InfoService.updateLine(LineDTO);
+			infoService.updateLine(lineDTO);
 			
 			// 주소변경 하면서 이동
-			return "redirect:/line/line";
+			return "redirect:/line/Line";
 		}
 }

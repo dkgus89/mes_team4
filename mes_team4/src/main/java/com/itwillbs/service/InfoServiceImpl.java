@@ -14,34 +14,34 @@ public class InfoServiceImpl implements InfoService{
 
 	// 객체생성 부모 인터페이스 => 자동으로 자식 클래스 객체생성
 		@Inject
-		private InfoDAO InfoDAO;
+		private InfoDAO infoDAO;
 
 		@Override
 		public List<LineDTO> getLineList() {
 			System.out.println("InfoServiceImpl getLineList()");
 
 			
-			return InfoDAO.getLineList();
+			return infoDAO.getLineList();
 		}
 
 		@Override
 		public void insertLine(LineDTO lineDTO) {
 			System.out.println("InfoServiceImpl insertLine()");
 			
-			InfoDAO.insertLine(lineDTO);			
+			infoDAO.insertLine(lineDTO);			
 		}
 
 		@Override
 		public LineDTO getLine(String line_cd) {
 			System.out.println("InfoServiceImpl getLine()");
 			
-			return InfoDAO.getLine(line_cd);
+			return infoDAO.getLine(line_cd);
 		}
 
 		@Override
 		public void updateLine(LineDTO lineDTO) {
 			System.out.println("InfoServiceImpl updateLine()");
 			
-			InfoDAO.updateLine(lineDTO);
+			infoDAO.updateLine(lineDTO);
 		}
 }
