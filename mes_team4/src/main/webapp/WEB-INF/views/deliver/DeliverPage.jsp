@@ -14,6 +14,10 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 
+function showPopup(){
+    window.open("deliverpageinsert","팝업 테스트","width=1000, height=500, top=200, left=200");
+}
+
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -24,7 +28,7 @@
 
 	<h2>출하 관리 </h2><br>
 	<div class="wrap2">
-	  <button class="button2">추가</button>
+	  <button class="button2" onclick="showPopup();">추가</button>
 	  <button class="button2">수정</button>
 	  <button class="button2">저장</button>
 	  <button class="button2">삭제</button>
@@ -45,7 +49,7 @@
 					<th>납품예정일</th>
 					<th>품번</th>
 					<th>품명</th>
-					<th>수주량</th>
+					<th>수주량</th> <br>
 					<th>출하예정량</th>
 					<th>과부족</th>
 					<th>비고</th>

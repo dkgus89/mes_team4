@@ -19,5 +19,16 @@ public class DeliverController {
 		// 가상주소에서 주소변경 없이 이동
 		return "deliver/DeliverPage";
 	}
+	
+	
+	
+	@RequestMapping(value = "/deliver/insert", method = RequestMethod.GET)
+	public String insertPro() {
+		// 처리작업
+		
+		// 가상주소에서 주소변경 없이 이동
+		return "deliver/deliverpageinsert";
+	}
+	
 
 }
