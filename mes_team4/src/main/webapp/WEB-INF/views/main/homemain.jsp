@@ -13,8 +13,9 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
-	
-	
+function showPopup(){
+    window.open("test.html","팝업 테스트","width=800, height=500, top=200, left=200");
+}	
 </script>
 <!-- 자바스크립트 입력 끝-->
 

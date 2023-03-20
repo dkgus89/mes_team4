@@ -22,7 +22,7 @@
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>값 입력할 페이지 </h2><br>
+	<h2>거래처 수정</h2><br>
 	<div class="wrap2">
 	  <button class="button2">추가</button>
 	  <button class="button2">수정</button>

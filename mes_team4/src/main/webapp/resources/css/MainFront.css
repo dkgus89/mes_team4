@@ -41,7 +41,12 @@
 		float : left;
 		border-style : solid 0.5px;
 		border-color: #E4E4E4;
+		font-family: 'Gowun Dodum', sans-serif;
 		
+	}
+	
+	.inserttitle {
+		font: 'Gowun Dodum', sans-serif;
 	}
 	
 	#footer {
@@ -53,6 +58,7 @@
 		font-family: 'Gowun Dodum', sans-serif;
 		font-weight: bold;
 	}
+	
 	
 	.main {
 		margin : 70px auto;
@@ -67,7 +73,7 @@
 	}
 	
  	*{
- 		padding:0;margin:0
+ 	padding:0;margin:0
  	} 
  	
 	li{list-style:none}
@@ -122,8 +128,8 @@
 	.button {
 	  width: 120px;
 	  height: 45px;
- 	font-family: 'Gowun Dodum', sans-serif;
- 	font-weight: bolder;
+	 	font-family: 'Gowun Dodum', sans-serif;
+	 	font-weight: bolder;
 	  font-size: 15px;
 	  text-transform: uppercase;
 	  letter-spacing: 2.5px;
@@ -181,8 +187,8 @@
 	.button3 {
 	  width: 300px;
 	  height: 150px;
- 	 font-family: 'Gowun Dodum', sans-serif;
- 	font-weight: bolder; 
+ 	  font-family: 'Gowun Dodum', sans-serif;
+ 	  font-weight: bolder; 
 	  font-size: 22px;
 	  text-transform: uppercase;
 	  letter-spacing: 2.5px;
@@ -209,8 +215,8 @@
 	
 	
 	body {
-  color: #666;
-  font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+	  color: #666;
+	  font: 14px/24px 'Gowun Dodum', sans-serif;
 	}
 	table {
 	  border-collapse: separate;

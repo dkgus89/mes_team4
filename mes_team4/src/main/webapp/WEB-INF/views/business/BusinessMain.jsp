@@ -13,7 +13,9 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
-
+function showPopup(){
+    window.open("businessinsert","거래처팝업","width=1000, height=500, top=200, left=200");
+}
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -22,11 +24,11 @@
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>값 입력할 페이지 </h2><br>
+	<h2>거래처 관리</h2><br>
 	<div class="wrap2">
-	  <button class="button2">추가</button>
-	  <button class="button2">수정</button>
-	  <button class="button2">저장</button>
+	  <button class="button2" onclick="showPopup();">추가</button>
+<!-- 	   -->
+<!-- 	  <button class="button2">저장</button> -->
 	  <button class="button2">삭제</button>
 	  
 	 </div><br>
@@ -35,14 +37,17 @@
 	 
 	<form method="post">
 		<input type="hidden" value="">
-		
-		<table id="vendortable" class=" table table-striped">
+		<table id="vendortable" class=" table table-striped" style="width:1000px;">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>선택</th>
+					<th>코드</th>
+					<th>구분</th>
 					<th>거래처명</th>
-					<th>거래처유형</th>
-					<th>사업자번호</th>
+					<th>유형</th>
+					<th>전화번호</th>
+					<th>대표자</th>
+					<th>주소</th>
 					<th>비고</th>
 				</tr>
 			</thead>
@@ -50,29 +55,19 @@
 			<tbody>
 				<tr>
 					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test1-1"></td>
-					<td><input type="text" value="test1-2"></td>
-					<td><input type="text" value="test1-3"></td>
-					<td><input type="text" value="test1-4"></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test2-1"></td>
-					<td><input type="text" value="test2-2"></td>
-					<td><input type="text" value="test2-3"></td>
-					<td><input type="text" value="test2-4"></td>
-				</tr>	
-					<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test3-1"></td>
-					<td><input type="text" value="test3-2"></td>
-					<td><input type="text" value="test3-3"></td>
-					<td><input type="text" value="test3-4"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><button class="button2">수정</button></td>
 				</tr>
 			
 			</tbody>
 		</table>
-		<button type="button" id="test">테스트</button>
+<!-- 		<button type="button" id="test">테스트</button> -->
 		
 		<div id="array"></div>
 	
