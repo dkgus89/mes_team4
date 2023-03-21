@@ -13,4 +13,6 @@ public interface InfoDAO {
 	public LineDTO getLine(String line_cd);
 	
 	public void updateLine(LineDTO lineDTO);
+	
+	public void deleteLine(String line_cd);
 }

@@ -5,7 +5,6 @@ public class LineDTO {
 	private String line_cd;
 	private String line_name;
 	private String line_process;
-	private String line_sequence;
 	private String line_status;
 	private String remarks;
 	
@@ -26,12 +25,6 @@ public class LineDTO {
 	}
 	public void setLine_process(String line_process) {
 		this.line_process = line_process;
-	}
-	public String getLine_sequence() {
-		return line_sequence;
-	}
-	public void setLine_sequence(String line_sequence) {
-		this.line_sequence = line_sequence;
 	}
 	public String getLine_status() {
 		return line_status;

@@ -13,8 +13,8 @@
 <!-- 	</insert> -->
 
 	<insert id="insertLine">
-    	insert into line(line_cd, line_name, line_process, line_sequence, line_status, remarks)
-    	values(#{line_cd},#{line_name},#{line_process},#{line_sequence},#{line_status},#{remarks})
+    	insert into line(line_cd, line_name, line_process, line_status, remarks)
+    	values(#{line_cd},#{line_name},#{line_process},#{line_status},#{remarks})
     </insert>
 
 	<select id="getLineList" resultType="com.itwillbs.domain.LineDTO">
@@ -28,9 +28,14 @@
     
     <update id="updateLine">
     	update line
-    	set line_name = #{line_name}, line_process = #{line_process}, line_sequence = #{line_sequence}, line_status = #{line_status}, remarks = #{remarks}
+    	set line_name = #{line_name}, line_process = #{line_process}, line_status = #{line_status}, remarks = #{remarks}
     	where line_cd = #{line_cd}
     </update>
+    
+    <delete id="deleteLine">
+    	delete from line
+    	where line_cd = #{line_cd}
+    </delete>
 	
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
 <!-- 		select * from members  -->

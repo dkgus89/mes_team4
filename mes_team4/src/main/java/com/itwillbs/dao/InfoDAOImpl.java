@@ -46,4 +46,11 @@ public class InfoDAOImpl implements InfoDAO {
 			
 			sqlSession.update(namespace+".updateLine", lineDTO);
 		}
+
+		@Override
+		public void deleteLine(String line_cd) {
+			System.out.println("InfoDAOImpl deleteLine()");
+			
+			sqlSession.delete(namespace+".deleteLine", line_cd);
+		}
 }

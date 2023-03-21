@@ -27,9 +27,7 @@ public class InfoController {
 			
 			
 			List<LineDTO> LineList=infoService.getLineList();
-			
-			
-			
+						
 			model.addAttribute("LineList", LineList);
 			
 			// 주소변경 없이 이동
@@ -46,13 +44,14 @@ public class InfoController {
 		}
 		
 		@RequestMapping(value = "/line/lineinsertpro", method = RequestMethod.POST)
-		public String lineInsertpro(LineDTO lineDTO) {
-			System.out.println("InfoController lineInsertpro()");
+		public String lineInsertPro(HttpServletRequest request, LineDTO lineDTO) {
+			System.out.println("InfoController lineInsertPro()");
+			
 			//글쓰기 작업 메서드 호출
 			infoService.insertLine(lineDTO);
 			
 			// 주소변경 하면서 이동
-			return "redirect:/line/Line";
+			return "redirect:/line/line";
 		}
 		
 		@RequestMapping(value = "/line/lineupdate", method = RequestMethod.GET)
@@ -68,11 +67,27 @@ public class InfoController {
 		}
 		
 		@RequestMapping(value = "/line/lineupdatepro", method = RequestMethod.POST)
-		public String lineUpdatepro(LineDTO lineDTO) {
+		public String lineUpdatePro(LineDTO lineDTO) {
 			
 			infoService.updateLine(lineDTO);
 			
 			// 주소변경 하면서 이동
-			return "redirect:/line/Line";
+			return "redirect:/line/line";
+		}
+		
+		@RequestMapping(value = "/line/linedelete", method = RequestMethod.GET)
+		public String lineDelete(HttpServletRequest request) {
+			String chbox[]=request.getParameterValues("chbox");
+			String line_cd = null;
+			if(chbox!=null){
+				  for(int i=0;i<chbox.length;i++){
+			   
+					line_cd=chbox[i];
+					infoService.deleteLine(line_cd);
+				  }
+		       }			
+			
+			// 주소변경 하면서 이동
+			return "redirect:/line/line";
 		}
 }

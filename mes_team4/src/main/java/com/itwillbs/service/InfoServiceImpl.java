@@ -44,4 +44,11 @@ public class InfoServiceImpl implements InfoService{
 			
 			infoDAO.updateLine(lineDTO);
 		}
+
+		@Override
+		public void deleteLine(String line_cd) {
+			System.out.println("InfoServiceImpl deleteLine()");
+			
+			infoDAO.deleteLine(line_cd);
+		}
 }

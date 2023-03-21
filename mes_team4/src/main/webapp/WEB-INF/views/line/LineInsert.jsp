@@ -13,13 +13,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript">
-function fun1(){
+function sub(){
 document.LineInsert.action="${pageContext.request.contextPath}/line/lineinsertpro";
 document.LineInsert.submit();
 setTimeout(function() { 
 	opener.parent.location.reload();
 	window.close();
 	}, 100);
+}
+function rst(){
+document.LineInsert.reset();
 }
 
 </script>
@@ -33,8 +36,8 @@ setTimeout(function() {
 
 	<h2 class="inserttitle">생산설비 추가 </h2><br>
 	<div class="wrap2">
-<!-- 	  <button class="button2" onclick="submit()">등록</button> -->
-<!-- 	  <button class="button2" onclick="reset()">초기화</button> -->
+	<button class="button2" onclick="sub()">등록</button>
+	<button class="button2" onclick="rst()">초기화</button>
 	  
 	 </div><br>
 	 <br>
@@ -49,7 +52,6 @@ setTimeout(function() {
 					<th>라인코드</th>
 					<th>라인명</th>
 					<th>공정</th>
-					<th>정렬순서</th>
 					<th>가동상태</th>
 					<th>적요</th>
 				</tr>
@@ -60,15 +62,17 @@ setTimeout(function() {
 					<td><input type="text" name="line_cd" value=""></td>
 					<td><input type="text" name="line_name" value=""></td>
 					<td><input type="text" name="line_process" value=""></td>
-					<td><input type="text" name="line_sequence" value=""></td>
-					<td><input type="text" name="line_status" value=""></td>
+					<td><select name="line_status">
+							<option value="1">가동중</option>
+							<option value="2" selected>대기중</option>
+							<option value="3">고장</option>
+      					</select></td>
 					<td><input type="text" name="remarks" value=""></td>
 				</tr>
 
 			</tbody>
 		</table>
-	<input type="button" class="button2" onclick="fun1()" value="등록">
-	<input type="reset" class="button2" value="초기화">
+	
 	</form>
 	
 	
