@@ -39,6 +39,7 @@ public class DeliverController {
 	
 	
 	//가상주소???!!!????
+	//이동하는게 이상한데? 내가원하는것은 팝업창에서 입력하면 원래의 취합받은 리스트가 저장되는곳 그곳으로 이동이 되어야 하는데? 왜 이렇지?
 		@RequestMapping(value = "/deliver/insertPro", method = RequestMethod.POST)
 		public String insertPro(DeliverDTO deliverDTO) {
 			// 처리작업
