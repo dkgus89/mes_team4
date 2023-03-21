@@ -6,12 +6,6 @@
 
 <mapper namespace="com.itwillbs.mappers.InfoMapper">
 	
-	<!-- ?대신 memberDTO의 멤버변수명 사용 #{id}-->
-<!-- 	<insert id="insertMember"> -->
-<!-- 		insert into members(id,pass,name,date)  -->
-<!-- 		values(#{id},#{pass},#{name},#{date}) -->
-<!-- 	</insert> -->
-
 	<insert id="insertLine">
     	insert into line(line_cd, line_name, line_process, line_status, remarks)
     	values(#{line_cd},#{line_name},#{line_process},#{line_status},#{remarks})
@@ -36,25 +30,7 @@
     	delete from line
     	where line_cd = #{line_cd}
     </delete>
-	
-<!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
-<!-- 		select * from members  -->
-<!-- 		where id = #{id} and pass = #{pass}  -->
-<!-- 	</select> -->
-
-<!-- 	<select id="selectBlog" parameterType="int" resultType="Blog">
-        select * from Blog where id = #{id}
-    </select>
-    
-    <insert id="">
-    </insert>
-    
-    <update id="">
-    </update>
-    
-    <delete id="">
-    </delete> -->
-    
+	    
 </mapper>
 
 
