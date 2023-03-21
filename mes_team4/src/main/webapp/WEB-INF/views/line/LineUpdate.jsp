@@ -14,7 +14,7 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 function fun1(){
-	document.LineUpdate.action="${pageContext.request.contextPath}/line/lineupdatePro";
+	document.LineUpdate.action="${pageContext.request.contextPath}/line/lineupdatepro";
 	document.LineUpdate.submit();
 	setTimeout(function() { 
 		opener.parent.location.reload();

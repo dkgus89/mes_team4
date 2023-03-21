@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript">
 function fun1(){
-document.LineInsert.action="${pageContext.request.contextPath}/line/lineinsertPro";
+document.LineInsert.action="${pageContext.request.contextPath}/line/lineinsertpro";
 document.LineInsert.submit();
 setTimeout(function() { 
 	opener.parent.location.reload();

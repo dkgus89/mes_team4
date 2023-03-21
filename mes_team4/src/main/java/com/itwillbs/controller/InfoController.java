@@ -45,9 +45,9 @@ public class InfoController {
 			return "line/LineInsert";
 		}
 		
-		@RequestMapping(value = "/line/lineinsertPro", method = RequestMethod.POST)
+		@RequestMapping(value = "/line/lineinsertpro", method = RequestMethod.POST)
 		public String lineInsertpro(LineDTO lineDTO) {
-			System.out.println("InfoController lineInsertPro()");
+			System.out.println("InfoController lineInsertpro()");
 			//글쓰기 작업 메서드 호출
 			infoService.insertLine(lineDTO);
 			
@@ -67,8 +67,8 @@ public class InfoController {
 			return "line/LineUpdate";
 		}
 		
-		@RequestMapping(value = "/line/lineupdatePro", method = RequestMethod.POST)
-		public String lineUpdatePro(LineDTO lineDTO) {
+		@RequestMapping(value = "/line/lineupdatepro", method = RequestMethod.POST)
+		public String lineUpdatepro(LineDTO lineDTO) {
 			
 			infoService.updateLine(lineDTO);
 			
