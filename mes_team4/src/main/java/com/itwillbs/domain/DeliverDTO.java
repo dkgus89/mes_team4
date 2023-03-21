@@ -3,13 +3,13 @@ package com.itwillbs.domain;
 import com.google.protobuf.Timestamp;
 
 public class DeliverDTO {
-	private String deliver_cd;
-	private String business_cd;
-	private String order_cd;
-	private String product_cd;
-	private String product_cd2;
-	private Timestamp deliver_date;
-	private int deliver_count;
+	private String deliver_cd;  //출하코드
+	private String business_cd; //거래처코드
+	private String order_cd;	//수주코드
+	private String product_cd;  //품목코드
+	private String product_cd2; //품목코드2???
+	private Timestamp deliver_date; //출하일자
+	private int deliver_count;     //출하량
 	public String getDeliver_cd() {
 		return deliver_cd;
 	}
