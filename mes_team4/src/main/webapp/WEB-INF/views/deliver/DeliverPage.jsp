@@ -15,7 +15,7 @@
 <script>
 
 function DeliverInsert(){
-    window.open("${pageContext.request.contextPath}/deliver/insert","팝업 테스트","width=1000, height=600, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/deliver/insert","팝업 테스트","width=1200, height=300, top=200, left=200");
 }
 
 </script>

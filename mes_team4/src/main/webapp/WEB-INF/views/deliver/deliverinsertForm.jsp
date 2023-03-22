@@ -16,8 +16,10 @@
 <script type="text/javascript">
 	function fun1() {
 		document.fr.submit();
-		
-		
+		setTimeout(function() { 
+			opener.parent.location.reload();
+			window.close();
+			}, 100);
 	}
 
 </script>
