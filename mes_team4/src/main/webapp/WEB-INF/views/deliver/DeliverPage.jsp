@@ -49,7 +49,6 @@ function DeliverInsert(){
 					<th>거래처코드</th>
 					<th>수주코드</th>
 					<th>품목코드</th>
-					<th>품목코드2</th>
 					<th>출하일자</th>
 					<th>출하량</th>
 				</tr>
@@ -58,19 +57,31 @@ function DeliverInsert(){
 			<tbody>		
 				
 				
-				<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test1-1"></td>
-					<td><input type="text" value="test1-2"></td>
-					<td><input type="text" value="test1-3"></td>
-					<td><input type="text" value="test1-4"></td>
-					<td><input type="text" value="test1-5"></td>
-					<td><input type="text" value="test1-6"></td>
-					<td><input type="text" value="test1-7" size="3"></td>
+<!-- 				<tr> -->
+<!-- 					<td><input type="checkbox" id="checkbox"></td> -->
+<!-- 					<td><input type="text" value="test1-1"></td> -->
+<!-- 					<td><input type="text" value="test1-2"></td> -->
+<!-- 					<td><input type="text" value="test1-3"></td> -->
+<!-- 					<td><input type="text" value="test1-4"></td> -->
+<!-- 					<td><input type="text" value="test1-5"></td> -->
+<!-- 					<td><input type="text" value="test1-6"></td> -->
+<!-- 					<td><input type="text" value="test1-7" size="3"></td> -->
 					
-				</tr>
+<!-- 				</tr> -->
 				
-				
+				<c:forEach var="DeliverDTO" items="${DeliverList}">
+
+				<tr>
+				<td><input type="checkbox" id="checkbox"></td> 
+    			<td>${DeliverDTO.deliver_cd}</td>
+				<td>${DeliverDTO.business_cd}</td>
+    			<td>${DeliverDTO.order_cd}</td>
+    			<td>${DeliverDTO.product_cd}</td>
+    			<td>${DeliverDTO.deliver_date}</td>
+    			<td>${DeliverDTO.deliver_count}</td>
+    			
+   			 
+				</c:forEach>
 			
 			</tbody>
 		</table>

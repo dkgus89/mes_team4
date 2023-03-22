@@ -8,13 +8,16 @@
 	
 	<!-- ?대신 deliverDTO의 멤버변수명 사용 #{id}-->
 	<insert id="insertDeliver">
-		insert into deliver(deliver_cd,business_cd,order_cd,product_cd,
-							product_cd2, deliver_date,  deliver_count,
-							deliver_cd )
+		insert into shipment_management(deliver_cd, business_cd, product_cd, order_cd, deliver_date, deliver_count)
 							
-		values(#{deliver_cd},#{business_cd},#{order_cd},#{product_cd},
-			  #{product_cd2},#{deliver_date},#{deliver_count},#{deliver_cd})
+		values(#{deliver_cd},#{business_cd},#{product_cd}, #{order_cd},#{deliver_date},#{deliver_count})
 	</insert>
+	
+	
+	<select id="getDeliverList" resultType="com.itwillbs.domain.DeliverDTO">
+    	select * from shipment_management
+    </select>
+	
 	
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
 <!-- 		select * from members  -->

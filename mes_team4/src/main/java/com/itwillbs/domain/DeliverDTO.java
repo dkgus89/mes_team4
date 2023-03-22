@@ -1,5 +1,7 @@
 package com.itwillbs.domain;
 
+import java.sql.Date;
+
 import com.google.protobuf.Timestamp;
 
 public class DeliverDTO {
@@ -7,9 +9,9 @@ public class DeliverDTO {
 	private String business_cd; //거래처코드
 	private String order_cd;	//수주코드
 	private String product_cd;  //품목코드
-	private String product_cd2; //품목코드2???
-	private Timestamp deliver_date; //출하일자
+	private Date deliver_date; //출하일자
 	private int deliver_count;     //출하량
+	
 	public String getDeliver_cd() {
 		return deliver_cd;
 	}
@@ -34,16 +36,11 @@ public class DeliverDTO {
 	public void setProduct_cd(String product_cd) {
 		this.product_cd = product_cd;
 	}
-	public String getProduct_cd2() {
-		return product_cd2;
-	}
-	public void setProduct_cd2(String product_cd2) {
-		this.product_cd2 = product_cd2;
-	}
-	public Timestamp getDeliver_date() {
+
+	public Date getDeliver_date() {
 		return deliver_date;
 	}
-	public void setDeliver_date(Timestamp deliver_date) {
+	public void setDeliver_date(Date deliver_date) {
 		this.deliver_date = deliver_date;
 	}
 	public int getDeliver_count() {

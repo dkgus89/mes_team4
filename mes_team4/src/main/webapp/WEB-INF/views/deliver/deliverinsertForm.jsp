@@ -16,6 +16,8 @@
 <script type="text/javascript">
 	function fun1() {
 		document.fr.submit();
+		
+		
 	}
 
 </script>
@@ -41,32 +43,62 @@
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>선택</th>
 					<th>출하코드</th>
 					<th>거래처코드</th>
 					<th>수주코드</th>
 					<th>품목코드</th>
-					<th>품목코드2</th>
 					<th>출하일자</th>
 					<th>출하량</th>
+					
 					
 				</tr>
 			</thead>
 					
+					
+					
 			
 			<tbody>
 				<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" name="deliver_cd"></td>
-					<td><input type="text" ></td>
-					<td><input type="text" ></td>
-					<td><input type="text" ></td>
-					<td><input type="text" ></td>
-					<td><input type="text" ></td>
-					<td><input type="text" ></td>
+					<td><input type="text" name="deliver_cd" value=""></td>
+					<td><input type="text" name="business_cd" value=""></td>					
+					<td><input type="text" name="order_cd" value=""></td>
+					<td><input type="text" name="product_cd" value=""></td>
+					<td><input type="Date" name="deliver_date" value=""></td>
+					<td><input type="text" name="deliver_count" value=""></td>
 				</tr>
 
 			</tbody>
+			
+			
+			
+		</table>
+		
+		<br>
+		
+		
+<!-- 		<table id="vendortable" class="table table-striped"> -->
+<!-- 			<thead> -->
+<!-- 				<tr style="text-align: center; font-size: 0.9rem"> -->
+					
+<!-- 					<th>품목코드2</th> -->
+<!-- 					<th>출하일자</th> -->
+<!-- 					<th>출하량</th> -->
+					
+<!-- 				</tr> -->
+<!-- 			</thead> -->
+					
+					
+					
+			
+<!-- 			<tbody> -->
+<!-- 				<tr> -->
+					
+<!-- 					<td><input type="text" name="product_cd2"></td> -->
+<!-- 					<td><input type="date" name="deliver_date"></td> -->
+<!-- 					<td><input type="text" name="deliver_count"></td> -->
+<!-- 				</tr> -->
+
+<!-- 			</tbody> -->
 			
 			
 			
