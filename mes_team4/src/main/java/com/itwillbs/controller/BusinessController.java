@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.codehaus.jackson.type.*;
+import org.codehaus.jackson.map.*;
 
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.MemberDTO;
@@ -78,6 +80,21 @@ public class BusinessController {
 
 		businessService.insertBusiness(businessDTO);
 
+		return "redirect:/business/businessmain";
+	}
+	
+	@RequestMapping(value = "/business/delete")
+	public String delete(HttpServletRequest request) {
+		System.out.println("businessController delete()");
+		
+		
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+			businessService.deleteBusiness(ajaxMsg[i]);
+		}
+		
+		
 		return "redirect:/business/businessmain";
 	}
 	

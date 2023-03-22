@@ -67,4 +67,11 @@ public class BusinessServiceImpl implements BusinessService{
 		return businessDAO.getBusinessList(pageDTO);
 	}
 
+	@Override
+	public void deleteBusiness(String cd) {
+		
+		businessDAO.deleteBusiness(cd);
+		
+	}
+
 }

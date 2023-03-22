@@ -17,4 +17,6 @@ public interface BusinessDAO {
 	public int getBusinessCount();
 	
 	public  List<BusinessDTO> getBusinessList(PageDTO pageDTO);
+
+	public void deleteBusiness(String cd);
 }

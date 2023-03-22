@@ -13,5 +13,6 @@ public interface BusinessService {
 	
 	public  List<BusinessDTO> getBusinessList(PageDTO pageDTO);
 	
+	public void deleteBusiness(String cd);
 	
 }

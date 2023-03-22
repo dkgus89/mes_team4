@@ -56,4 +56,10 @@ public class BusinessDAOImpl implements BusinessDAO{
 		return sqlSession.selectList(namespace+".getBusinessList",pageDTO);
 	}
 
+	@Override
+	public void deleteBusiness(String cd) {
+		System.out.println("businessDAOImpl deleteBusiness()");
+		sqlSession.delete(namespace+".deleteBusiness",cd);
+	}
+
 }

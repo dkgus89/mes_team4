@@ -4,41 +4,68 @@
 <%@ page session="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
-
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="../main/Header.jsp" />
 <!-- 헤더파일들어가는 곳 -->
 
 <!-- 본문적용 CSS들어가는 곳 -->
-
 <!-- 본문적용 CSS들어가는 곳 -->
 
 <!-- 자바스크립트 입력 시작-->
 <script>
 window.name ='parentPage';
 
-function showPopup(){
-    window.open("businessinsert","거래처팝업","width=800, height=400, top=200, left=200");
-}
-function updatePopup(){
-    window.open("businessupdate","거래처수정팝업","width=800, height=400, top=200, left=200");
-}
-
-function allCheck(){
-	var ac = document.myform.allcheck;
-	var rc = document.myform.rowcheck;
-	
-	if(ac.checked == true){
-		for(i=0; i<rc.length; i++){
-			rc[i].checked=true;
-		}
-	}else {
-		for(i=0;i<rc.length;i++){
-			rc[i].checked=false;
-		}
-		
+	function showPopup(){
+	    window.open("businessinsert","거래처팝업","width=800, height=400, top=200, left=200");
 	}
-}
+	function updatePopup(){
+	    window.open("businessupdate","거래처수정팝업","width=800, height=400, top=200, left=200");
+	}
+	
+	function allCheck(){
+		var ac = document.myform.allcheck;
+		var rc = document.myform.rowcheck;
+		if(ac.checked == true){
+			for(i=0; i<rc.length; i++){
+				rc[i].checked=true;}
+		}else {
+			for(i=0;i<rc.length;i++){
+				rc[i].checked=false;}
+		} }
+	function deleteValue(){
+		alert("삭제하기시작");
+		
+		var url = "/business/delete"; // controller로 보내고자 하는 url
+		var valueArr = new Array();
+		var list = $("input[name='rowcheck']");
+		for(var i=0; i<list.length; i++){
+			if(list[i].checked){ //선택되어 있으면 배열에 값을 저장함 
+				valueArr.push(list[i].value);
+			}
+		}
+		if(valueArr.length==0){
+			alert("삭제할 글을 선택하여주세요");
+		} else {
+			var chk = confirm("정말 삭제하시겠습니까?");
+			alert(url);
+			$.ajax({
+				url : url, 		//전송url
+				type : 'POST',	// post방식
+				traditional : true,
+				data : {
+					valueArr : valueArr // 보내고자하는 data 변수설정	
+				},
+				success : function(jdata){
+					if(jdata = 1){
+						alert("삭제성공");
+						location.replace("business/businessmain")
+					} else {alert("삭제실패");}
+				}
+				
+			});
+		}
+	}
+
 
 </script>
 <!-- 자바스크립트 입력 끝-->
@@ -51,7 +78,7 @@ function allCheck(){
 	<h2>거래처 관리</h2><br>
 	<div class="wrap2">
 	  <button class="button2" onclick="showPopup();">추가</button>
-	  <button class="button2" onclick="">삭제</button>
+	  <button class="button2" onclick="deleteValue();">삭제</button>
 	 </div><br>
 	 <br>
  
@@ -75,7 +102,7 @@ function allCheck(){
 			<tbody>
 			<c:forEach var="businessDTO" items="${businessList}">
 			<tr>
-				<td><input type="checkbox" id="checkbox" name="rowcheck"></td>
+				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${businessDTO.business_cd}"></td>
 				<td>${businessDTO.business_cd}</td>
 				<td>${businessDTO.business_dv}</td>
 				<td>${businessDTO.business_type}</td>
