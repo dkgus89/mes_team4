@@ -5,6 +5,7 @@ package com.itwillbs.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -79,5 +80,27 @@ public class DeliverController {
 	
 	
 	
+		
+		
+/*		GET 방식은 클라이언트의 데이터를 URL 뒤 붙여 쿼리 스트링을 통해 전송, 전송하는 데이터 길이는 제한적
+	  	POST 방식은 데이터를 URL에 붙여 전송하지 않고 HTTP 몸체에 전송하며, 길이에 제한 없이 전송합니다.
+*/			
+		@RequestMapping(value = "/deliver/update", method = RequestMethod.GET)
+		public String update(HttpServletRequest request, Model model) {
+			String deliver_cd =  request.getParameter("deliver_cd");
+			
+			DeliverDTO deliverDTO=deliverService.getParameter("deliver_cd");
+			
+			DeliverDTO deliverDTO=deliverService.getParameter(deliver_cd);
+			model.addAttribute("DeliverList", DeliverList);
+			
+			
+			// 가상주소에서 주소변경 없이 이동
+			return "deliver/DeliverPage";
+		}
+		
+		
+		
+		
 	
 }// DeliverController
