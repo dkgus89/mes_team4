@@ -1,7 +1,7 @@
 package com.itwillbs.domain;
 
 public class ProductDTO {
-//	품목코드(hidden), 품목타입코드, 제품명, 제품코드, 제품구분, 거래처코드, 규격, 단위, 적요
+//	품목코드, 품목타입코드, 품목명, 제품코드, 제품구분, 거래처코드, 규격, 단위, 적요
 	private int product_cd;
 	private int product_type_cd;
 	private String product_dv;

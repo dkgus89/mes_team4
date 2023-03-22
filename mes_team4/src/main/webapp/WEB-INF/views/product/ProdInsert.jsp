@@ -22,20 +22,22 @@
 
 	<h2>품목정보관리 </h2><br>
 	<div class="wrap2">
-	  <button class="button2">추가</button>
 	  <button class="button2">수정</button>
 	  <button class="button2">저장</button>
 	  <button class="button2">삭제</button>
-	  
 	 </div><br>
 	 <br>
-	 
-		
+
 <form action="${pageContext.request.contextPath}/product/prodinsertPro" method="post">
-아이디 : <input type="text" name="id"><br>
-비밀번호 : <input type="password" name="pass"><br>
-이름 : <input type="text" name="name"><br>
-<input type="submit" value="회원가입">
+제품코드 : <input type="text" name="product_cd_name"><br>
+제품명 : <input type="text" name="product_name"><br>
+제품구분 : <label><input type="radio" name="product_dv" value="1" > 원자재</label>
+		 <label><input type="radio" name="product_dv" value="2"> 완제품<br></label>
+거래처코드 : <input type="text" name="business_cd"><br>
+규격 : <input type="text" name="product_size"><br>
+재고단위 : <input type="text" name="product_unit"><br>
+적요 : <input type="text" name="remarks"><br>
+<input type="submit" value="완료">
 </form>
 
 	

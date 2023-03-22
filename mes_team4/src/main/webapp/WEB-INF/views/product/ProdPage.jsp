@@ -13,7 +13,9 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
-
+function showPopup() {
+	window.open("prodinsert","팝업테스트","width=500,height=500,top=200,left=200");
+}
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -22,27 +24,24 @@
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>값 입력할 페이지 </h2><br>
+	<h2>품목정보관리</h2><br>
 	<div class="wrap2">
-	  <button class="button2">추가</button>
+	  <button class="button2" onclick="showPopup();">추가</button>
 	  <button class="button2">수정</button>
 	  <button class="button2">저장</button>
 	  <button class="button2">삭제</button>
-	  
 	 </div><br>
 	 <br>
 	 
 	 
 	<form method="post">
 		<input type="hidden" value="">
-		
 		<table id="vendortable" class=" table table-striped">
+		
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-<!-- 				품목코드(hidden), 품목타입코드(hidden), 제품명, 제품코드, 제품구분, 거래처코드, 규격, 단위, 적요 -->
-					<th>품목코드</th>
-					<th>제품명</th>
 					<th>제품코드</th>
+					<th>제품명</th>
 					<th>제품구분</th>
 					<th>거래처코드</th>
 					<th>규격</th>
@@ -53,19 +52,16 @@
 			
 			<tbody>
 				<tr>
-					<td><input type="text" value="1"></td>
-					<td><input type="text" value="test1-2"></td>
-					<td><input type="text" value="test1-2"></td>
-					<td><input type="text" value="test1-3"></td>
-					<td><input type="text" value="test1-3"></td>
-					<td><input type="text" value="test1-3"></td>
-					<td><input type="text" value="test1-3"></td>
-					<td><input type="text" value="test1-3"></td>
+					<td>${ProductDTO.product_cd }</td>
+					<td>${ProductDTO.product_name }</td>
+					<td>${ProductDTO.product_dv }</td>
+					<td>${ProductDTO.business_cd }</td>
+					<td>${ProductDTO.product_size }</td>
+					<td>${ProductDTO.product_unit }</td>
+					<td>${ProductDTO.product_remarks }</td>
 				</tr>
-
-
-			
 			</tbody>
+			
 		</table>
 
 	
