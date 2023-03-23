@@ -21,6 +21,15 @@ public class DeliverDAOImpl implements DeliverDAO  {
 	//sql구문 이름 정의
 	private static final String namespace="com.itwillbs.mappers.deliverMapper";
 
+	
+	@Override
+	public List<DeliverDTO> getDeliverList() {
+		System.out.println("DeliverDAOImpl getDeliverList()");
+		
+		
+		return sqlSession.selectList(namespace+".getDeliverList");
+	}
+	
 	@Override
 	public void insertDeliver(DeliverDTO deliverDTO) {
 		System.out.println("DeliverDAOImpl insertDeliver()");
@@ -29,11 +38,18 @@ public class DeliverDAOImpl implements DeliverDAO  {
 	}
 
 	@Override
-	public List<DeliverDTO> getDeliverList() {
-		System.out.println("DeliverDAOImpl getDeliverList()");
+	public DeliverDTO getDeliver(String deliver_cd) {
+		System.out.println("DeliverDAOImpl getDeliver()");
 		
+		return sqlSession.selectOne(namespace+".getDeliver", deliver_cd);
+	}
+
+	@Override
+	public void updateDeliver(DeliverDTO deliverDTO) {
+		System.out.println("DeliverDAOImpl updateDeliver()");
 		
-		return sqlSession.selectList(namespace+".getDeliverList");
+		sqlSession.update(namespace+".updateDeliver", deliverDTO);
+		
 	}
 	
 	

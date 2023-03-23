@@ -15,9 +15,12 @@
 <script>
 
 function DeliverInsert(){
-    window.open("${pageContext.request.contextPath}/deliver/insert","팝업 테스트","width=1200, height=300, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/deliver/insert","출하 등록","width=1200, height=300, top=200, left=200");
 }
 
+function DeliverUpdate(deliver_cd){
+    window.open("${pageContext.request.contextPath}/deliver/update?deliver_cd="+deliver_cd,"출하 수정","width=1200, height=300, top=200, left=200");
+}
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -29,7 +32,6 @@ function DeliverInsert(){
 	<h2>출하 관리 </h2><br>
 	<div class="wrap2">
 	  <button class="button2" onclick="DeliverInsert();">추가</button>
-	  <button class="button2">수정</button>
 	  <button class="button2">저장</button>
 	  <button class="button2">삭제</button>
 	  
@@ -37,7 +39,7 @@ function DeliverInsert(){
 	 <br>
 	 
 	 
-	<form method="post">
+	<form >
 		<input type="hidden" value="">
 		
 		<table id="vendortable" class=" table table-striped">
@@ -51,6 +53,7 @@ function DeliverInsert(){
 					<th>품목코드</th>
 					<th>출하일자</th>
 					<th>출하량</th>
+					<th>수정</th>
 				</tr>
 			</thead>
 			
@@ -79,6 +82,7 @@ function DeliverInsert(){
     			<td>${DeliverDTO.product_cd}</td>
     			<td>${DeliverDTO.deliver_date}</td>
     			<td>${DeliverDTO.deliver_count}</td>
+    			<td><button class="button2" onclick="DeliverUpdate('${DeliverDTO.deliver_cd}');">수정</button></td>
     			
    			 
 				</c:forEach>

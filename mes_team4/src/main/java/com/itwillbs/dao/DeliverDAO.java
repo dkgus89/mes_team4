@@ -11,4 +11,10 @@ public interface DeliverDAO {
 		
 		
 		public List<DeliverDTO> getDeliverList();
+		
+		public DeliverDTO getDeliver(String deliver_cd);
+		
+		public void updateDeliver(DeliverDTO deliverDTO);
+
+
 }

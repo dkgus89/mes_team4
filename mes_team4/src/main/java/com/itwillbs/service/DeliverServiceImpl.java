@@ -18,6 +18,14 @@ public class DeliverServiceImpl implements DeliverService{
 
 	
 	@Override
+	public List<DeliverDTO> getDeliverList() {
+		System.out.println("DeliverServiceImpl getDeliverList()");
+		
+		return deliverDAO.getDeliverList();
+	}
+	
+	
+	@Override
 	public void insertDeliver(DeliverDTO deliverDTO) {
 		System.out.println("DeliverServiceImpl insertDeliver()");
 		
@@ -26,11 +34,21 @@ public class DeliverServiceImpl implements DeliverService{
 	}
 
 
+
+
 	@Override
-	public List<DeliverDTO> getDeliverList() {
-		System.out.println("DeliverServiceImpl getDeliverList()");
+	public DeliverDTO getDeliver(String deliver_cd) {
+		System.out.println("DeliverServiceImpl getDeliver()");
 		
-		return deliverDAO.getDeliverList();
+		return deliverDAO.getDeliver(deliver_cd);
+	}
+
+
+	@Override
+	public void updateDeliver(DeliverDTO deliverDTO) {
+		System.out.println("DeliverServiceImpl updateDeliver()");
+		
+		deliverDAO.updateDeliver(deliverDTO);
 	}
 	
 	

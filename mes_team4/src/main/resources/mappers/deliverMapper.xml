@@ -17,7 +17,19 @@
 	<select id="getDeliverList" resultType="com.itwillbs.domain.DeliverDTO">
     	select * from shipment_management
     </select>
+    
+    <select id="getDeliver" resultType="com.itwillbs.domain.DeliverDTO">
+    select * from shipment_management
+    where deliver_cd = #{deliver_cd}
+    
+    </select>
 	
+    <update id="updateDeliver">
+    	update deliver
+    	set deliver_cd = #{deliver_cd}, business_cd = #{business_cd}, product_cd = #{product_cd}, 
+    	order_cd = #{order_cd}, deliver_date = #{deliver_date}, deliver_count = #{deliver_count}
+    	where deliver_cd = #{deliver_cd}
+    </update>
 	
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
 <!-- 		select * from members  -->
@@ -31,8 +43,6 @@
     <insert id="">
     </insert>
     
-    <update id="">
-    </update>
     
     <delete id="">
     </delete> -->

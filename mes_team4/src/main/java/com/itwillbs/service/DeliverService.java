@@ -12,6 +12,13 @@ public interface DeliverService {
 	
 	//추상메소드
 	public void insertDeliver(DeliverDTO deliverDTO);
+
+	public DeliverDTO getDeliver(String deliver_cd);
+
+	public void updateDeliver(DeliverDTO deliverDTO);
+
+	
+
 	
 	
 }
