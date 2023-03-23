@@ -59,6 +59,7 @@ public class BusinessDAOImpl implements BusinessDAO{
 	@Override
 	public void deleteBusiness(String cd) {
 		System.out.println("businessDAOImpl deleteBusiness()");
+		
 		sqlSession.delete(namespace+".deleteBusiness",cd);
 	}
 

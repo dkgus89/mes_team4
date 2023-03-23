@@ -74,11 +74,10 @@
     		}
     	}
     
-    function winclose(){
-   
-    	opener.name="parentPage";
-    	document.frmName.target=opener.name;
-    	document.insertform.action="${pageContext.request.contextPath}/business/businessinsertpro"
+    function goSubmit(){
+//     	window.opener.name="paretPage";
+    	document.insertform.target="parentPage";
+    	document.insertform.action="${pageContext.request.contextPath}/business/businessinsertpro";
     	document.insertform.submit();
     	self.close();
     }
@@ -93,10 +92,10 @@
 
 	<h2 class="inserttitle">거래처 등록</h2><br>
 	
-	<form action="${pageContext.request.contextPath}/business/businessinsertpro" name="insertform" method="post" >
+	<form  name="insertform" method="post" >
 	
 	<div class="wrap2">
-		<input type="submit" class="button2" value="등록" onClick="javascript:winclose()">
+		<input type="submit" class="button2" value="등록" onclick="goSubmit()">
 		<input type="reset" class="button2" value="초기화">
 	 </div><br>
 	 <br>

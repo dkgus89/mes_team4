@@ -98,6 +98,13 @@ public class BusinessController {
 		return "redirect:/business/businessmain";
 	}
 	
+	@RequestMapping(value = "/business/businessupdate", method = RequestMethod.GET)
+	public String businessupdate() {
+		
+		// 가상주소 유지
+		return "business/BusinessUpdate";
+	}
+	
 	
 
 	

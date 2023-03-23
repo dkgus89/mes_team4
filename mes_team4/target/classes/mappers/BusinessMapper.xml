@@ -29,7 +29,7 @@
 </select>
 
 <delete id="deleteBusiness">
-	delete from board
+	delete from business
 	where business_cd = #{cd}
 </delete>
 

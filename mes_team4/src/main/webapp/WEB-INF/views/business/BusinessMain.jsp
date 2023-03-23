@@ -13,13 +13,11 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
-window.name ='parentPage';
-
 	function showPopup(){
-	    window.open("businessinsert","거래처팝업","width=800, height=400, top=200, left=200");
+	    window.open("businessinsert","거래처팝업","width=900, height=400, top=200, left=200");
 	}
 	function updatePopup(){
-	    window.open("businessupdate","거래처수정팝업","width=800, height=400, top=200, left=200");
+	    window.open("businessupdate","거래처수정팝업","width=900, height=400, top=200, left=200");
 	}
 	
 	function allCheck(){
@@ -32,24 +30,23 @@ window.name ='parentPage';
 			for(i=0;i<rc.length;i++){
 				rc[i].checked=false;}
 		} }
+	
 	function deleteValue(){
-		alert("삭제하기시작");
-		
 		var url = "/business/delete"; // controller로 보내고자 하는 url
 		var valueArr = new Array();
-		var list = $("input[name='rowcheck']");
-		for(var i=0; i<list.length; i++){
-			if(list[i].checked){ //선택되어 있으면 배열에 값을 저장함 
-				valueArr.push(list[i].value);
+		var businessList = $("input[name='rowcheck']");
+		for(var i=0; i<businessList.length; i++){
+			if(businessList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
+				valueArr.push(businessList[i].value);
 			}
 		}
 		if(valueArr.length==0){
 			alert("삭제할 글을 선택하여주세요");
 		} else {
 			var chk = confirm("정말 삭제하시겠습니까?");
-			alert(url);
+			
 			$.ajax({
-				url : url, 		//전송url
+				url :'${pageContext.request.contextPath}/business/delete', 		//전송url
 				type : 'POST',	// post방식
 				traditional : true,
 				data : {
@@ -57,16 +54,13 @@ window.name ='parentPage';
 				},
 				success : function(jdata){
 					if(jdata = 1){
-						alert("삭제성공");
-						location.replace("business/businessmain")
+						alert("삭제하였습니다");
+						location.replace("${pageContext.request.contextPath}/business/businessmain")
 					} else {alert("삭제실패");}
 				}
-				
 			});
 		}
 	}
-
-
 </script>
 <!-- 자바스크립트 입력 끝-->
 
