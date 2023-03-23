@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 파일이름 대신 namespace 이름을 불러서 사용 -->
+
+<mapper namespace="com.itwillbs.mappers.StockMapper">
+	
+	<insert id="insertStock">
+    	insert into stock(stock_cd, wh_cd, rec_schedule_cd, product_cd, stock_count)
+    	values(#{stock_cd},#{wh_cd},#{rec_schedule_cd},#{product_cd},#{stock_count})
+    </insert>
+
+	<select id="getStockList" resultType="com.itwillbs.domain.StockDTO">
+    	select * from stock
+    	limit #{startRow} , #{pageSize}
+    </select>
+    
+    <select id="getStockCount" resultType="java.lang.Integer">
+        select count(*) from stock 
+    </select>
+
+	<select id="getStock" resultType="com.itwillbs.domain.StockDTO">
+        select * from stock
+        where stock_cd = #{stock_cd}
+    </select>
+    
+    <update id="updateStock">
+    	update stock
+    	set stock_count = #{stock_count}
+    	where stock_cd = #{stock_cd}
+    </update>
+    
+    <delete id="deleteStock">
+    	delete from stock
+    	where stock_cd = #{stock_cd}
+    </delete>
+	    
+</mapper>
+
+
+

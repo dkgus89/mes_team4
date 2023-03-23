@@ -45,8 +45,8 @@ function chdelete(){
 		
 		<table id="vendortable" class=" table table-striped">
 			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">
-					<th>선택</th>
+				<tr style="text-align: center; font-size: 0.9rem">					
+					<th>선택</th>	
 					<th>라인코드</th>
 					<th>라인명</th>
 					<th>공정</th>
@@ -59,7 +59,7 @@ function chdelete(){
 			<tbody>
 				<c:forEach var="LineDTO" items="${LineList }">
 
-				<tr>
+				<tr>				
 				<td><input type="checkbox" name="chbox" value="${LineDTO.line_cd}"></td>
 				<td>${LineDTO.line_cd}</td>
     			<td>${LineDTO.line_name}</td>

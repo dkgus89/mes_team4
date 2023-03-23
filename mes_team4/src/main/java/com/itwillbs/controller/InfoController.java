@@ -18,9 +18,9 @@ import com.itwillbs.service.InfoService;
 public class InfoController {
 	
 	//멤버변수 부모 인터페이스 정의 => 자동으로 자식 클래스 객체생성
-		// 스프링 객체생성 방식 => 의존관계주입(DI : Dependency Injection)
-		@Inject
-		private InfoService infoService;
+	// 스프링 객체생성 방식 => 의존관계주입(DI : Dependency Injection)
+	@Inject
+	private InfoService infoService;
 		
 		@RequestMapping(value = "/line/line", method = RequestMethod.GET)
 		public String line(HttpServletRequest request, Model model) {
@@ -88,7 +88,7 @@ public class InfoController {
 		}
 		
 		@RequestMapping(value = "/line/lineupdate", method = RequestMethod.GET)
-		public String update(HttpServletRequest request, Model model) {
+		public String lineupdate(HttpServletRequest request, Model model) {
 			String line_cd=request.getParameter("line_cd");
 			LineDTO lineDTO=infoService.getLine(line_cd);
 			

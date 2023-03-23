@@ -5,7 +5,6 @@ import java.util.List;
 import com.itwillbs.domain.LineDTO;
 import com.itwillbs.domain.PageDTO;
 
-
 public interface InfoService {
 
 	public List<LineDTO> getLineList(PageDTO pageDTO);
