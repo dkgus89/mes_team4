@@ -13,7 +13,16 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
-
+function showPopup(){
+    window.open("${pageContext.request.contextPath}/perform/performinsert","performinsert","width=1100, height=350, top=200, left=200");
+}
+function showPopup2(cd){
+    window.open("${pageContext.request.contextPath}/perform/performupdate?perform_cd="+cd,"performupdate","width=1100, height=350, top=200, left=200");
+}
+function chdelete(){
+	document.performlist.action="${pageContext.request.contextPath}/perform/performdelete";
+	document.performlist.submit();
+}
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -24,21 +33,21 @@
 
 	<h2> 생산실적 </h2><br>
 	<div class="wrap2">
-	  <button class="button2">추가</button>
-	  <button class="button2">삭제</button>
+	  <button class="button2" onclick="showPopup();">추가</button>
+	  <button class="button2" onclick="chdelete();">삭제</button>
 	  
 	 </div><br>
 	 <br>
 	 
 	 
-	<form method="post">
+	<form name="performlist">
 		<input type="hidden" value="">
 		
 		<table id="vendortable" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>선택</th>
-					<th>실적번호</th>
+					<th>실적코드</th>
 					<th>작업지시코드</th>
 					<th>라인코드</th>
 					<th>품목코드</th>
@@ -55,9 +64,9 @@
 			<tbody>
 				<c:forEach var="PerformDTO" items="${PerformList }">
 
-				<tr>
-				<td><input type="checkbox" name="chbox" value="${PerformDTO.perform_no}"></td>
-				<td>${PerformDTO.perform_no}</td>
+				<tr style="text-align: center; font-size: 0.9rem">
+				<td><input type="checkbox" name="chbox" value="${PerformDTO.perform_cd}"></td>
+				<td>${PerformDTO.perform_cd}</td>
     			<td>${PerformDTO.instruction_code}</td>
     			<td>${PerformDTO.line_cd}</td>
     			<td>${PerformDTO.product_cd}</td>
@@ -67,10 +76,12 @@
     			<td>${PerformDTO.defect_prod}</td>
     			<td>${PerformDTO.defect_remarks}</td>
     			<td>${PerformDTO.remarks}</td>
-    			<td><button class="button2" onclick="showPopup2('${PerformDTO.perform_no}');">수정</button></td>
+    			<td><button class="button2" onclick="showPopup2('${PerformDTO.perform_cd}');">수정</button></td>
     			</tr>
    			 
 				</c:forEach>
+				
+				
 			</tbody>
 		</table>
 		

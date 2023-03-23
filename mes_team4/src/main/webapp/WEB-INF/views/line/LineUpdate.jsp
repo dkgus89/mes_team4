@@ -19,7 +19,7 @@ function sub(){
 	setTimeout(function() { 
 		opener.parent.location.reload();
 		window.close();
-		}, 100);
+		}, 200);
 	}
 	function rst(){
 	document.LineUpdate.reset();
@@ -34,12 +34,11 @@ function sub(){
 <!-- 본문HTML 입력 시작-->
 
 	<h2 class="inserttitle">생산설비 수정 </h2><br>
-	<div class="wrap2">
+<!-- 	<div class="wrap2"> -->
 	<button class="button2" onclick="sub()">등록</button>
-	<button class="button2" onclick="rst()">초기화</button>
-	  
-	 </div><br>
-	 <br>
+	<button class="button2" onclick="rst()">초기화</button>	  
+<!-- 	 </div><br> -->
+	 <br><br>
 	 
 	 
 	<form name="LineUpdate" method="post">
@@ -57,9 +56,9 @@ function sub(){
 			</thead>
 			
 			<tbody>
-				<tr><td><input type="text" name="line_cd" value="${LineDTO.line_cd }"></td>
-					<td><input type="text" name="line_name" value="${LineDTO.line_name }"></td>
-					<td><input type="text" name="line_process" value="${LineDTO.line_process }"></td>
+				<tr><td><input type="text" name="line_cd" value="${LineDTO.line_cd}" readonly></td>
+					<td><input type="text" name="line_name" value="${LineDTO.line_name}"></td>
+					<td><input type="text" name="line_process" value="${LineDTO.line_process}"></td>
 						
 						<c:if test="${LineDTO.line_status==1}"><td><select name="line_status">
 							<option value="1" selected>가동중</option>
@@ -79,7 +78,7 @@ function sub(){
 							<option value="3" selected>고장</option>
       					</select></td>
       					</c:if>    					
-					<td><input type="text" name="remarks" value="${LineDTO.remarks }"></td>
+					<td><input type="text" name="remarks" value="${LineDTO.remarks}"></td>
 				</tr>
 
 			</tbody>

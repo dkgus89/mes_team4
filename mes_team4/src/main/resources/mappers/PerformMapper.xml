@@ -6,30 +6,30 @@
 
 <mapper namespace="com.itwillbs.mappers.PerformMapper">
 	
-<!-- 	<insert id="insertLine"> -->
-<!--     	insert into line(line_cd, line_name, line_process, line_status, remarks) -->
-<!--     	values(#{line_cd},#{line_name},#{line_process},#{line_status},#{remarks}) -->
-<!--     </insert> -->
+	<insert id="insertPerform">
+    	insert into performance
+    	values(#{perform_cd},#{instruction_code},#{line_cd},#{order_cd},#{product_cd},#{perform_date},#{fair_prod},#{defect_prod},#{defect_remarks},#{remarks})
+    </insert>
 
 	<select id="getPerformList" resultType="com.itwillbs.domain.PerformDTO">
     	select * from performance 
     </select>
 
-<!-- 	<select id="getLine" resultType="com.itwillbs.domain.LineDTO"> -->
-<!--         select * from line -->
-<!--         where line_cd = #{line_cd} -->
-<!--     </select> -->
+	<select id="getPerform" resultType="com.itwillbs.domain.PerformDTO">
+        select * from performance
+        where perform_cd = #{perform_cd}
+    </select>
     
-<!--     <update id="updateLine"> -->
-<!--     	update line -->
-<!--     	set line_name = #{line_name}, line_process = #{line_process}, line_status = #{line_status}, remarks = #{remarks} -->
-<!--     	where line_cd = #{line_cd} -->
-<!--     </update> -->
+    <update id="updatePerform">
+    	update performance
+    	set instruction_code = #{instruction_code}, line_cd = #{line_cd}, order_cd = #{order_cd}, product_cd = #{product_cd}, perform_date = #{perform_date}, fair_prod = #{fair_prod}, defect_prod = #{defect_prod}, defect_remarks = #{defect_remarks}, remarks = #{remarks}
+    	where perform_cd = #{perform_cd}
+    </update>
     
-<!--     <delete id="deleteLine"> -->
-<!--     	delete from line -->
-<!--     	where line_cd = #{line_cd} -->
-<!--     </delete> -->
+    <delete id="deletePerform">
+    	delete from performance
+    	where perform_cd = #{perform_cd}
+    </delete>
 	    
 </mapper>
 

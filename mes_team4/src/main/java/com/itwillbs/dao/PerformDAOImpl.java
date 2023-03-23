@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.LineDTO;
 import com.itwillbs.domain.PerformDTO;
 
 @Repository
@@ -24,5 +25,33 @@ public class PerformDAOImpl implements PerformDAO {
 			System.out.println("PerformDAOImpl getPerformList()");
 			
 			return sqlSession.selectList(namespace+".getPerformList");
+		}
+
+		@Override
+		public void insertPerform(PerformDTO performDTO) {
+			System.out.println("PerformDAOImpl insertPerform()");
+			
+			sqlSession.insert(namespace+".insertPerform", performDTO);
+		}
+
+		@Override
+		public PerformDTO getPerform(String perform_cd) {
+			System.out.println("PerformDAOImpl getPerform()");
+			
+			return sqlSession.selectOne(namespace+".getPerform", perform_cd);
+		}
+		
+		@Override
+		public void updatePerform(PerformDTO performDTO) {
+			System.out.println("InfoDAOImpl updatePerform()");
+			
+			sqlSession.update(namespace+".updatePerform", performDTO);
+		}
+
+		@Override
+		public void deletePerform(String perform_cd) {
+			System.out.println("InfoDAOImpl deletePerform()");
+			
+			sqlSession.delete(namespace+".deletePerform", perform_cd);
 		}
 }

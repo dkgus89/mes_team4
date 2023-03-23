@@ -14,12 +14,10 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 function showPopup(){
-    window.open("${pageContext.request.contextPath}/line/lineinsert","lineinsert","width=1000, height=500, top=200, left=200");
-
+    window.open("${pageContext.request.contextPath}/line/lineinsert","lineinsert","width=1000, height=250, top=200, left=200");
 }
 function showPopup2(cd){
-    window.open("${pageContext.request.contextPath}/line/lineupdate?line_cd="+cd,"lineupdate","width=1000, height=500, top=200, left=200");
-
+    window.open("${pageContext.request.contextPath}/line/lineupdate?line_cd="+cd,"lineupdate","width=1000, height=250, top=200, left=200");
 }
 function chdelete(){
 	document.linelist.action="${pageContext.request.contextPath}/line/linedelete";

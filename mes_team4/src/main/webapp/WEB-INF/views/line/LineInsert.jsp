@@ -19,7 +19,7 @@ document.LineInsert.submit();
 setTimeout(function() { 
 	opener.parent.location.reload();
 	window.close();
-	}, 100);
+	}, 200);
 }
 function rst(){
 document.LineInsert.reset();
@@ -35,12 +35,11 @@ document.LineInsert.reset();
 <!-- 본문HTML 입력 시작-->
 
 	<h2 class="inserttitle">생산설비 추가 </h2><br>
-	<div class="wrap2">
+<!-- 	<div class="wrap2"> -->
 	<button class="button2" onclick="sub()">등록</button>
-	<button class="button2" onclick="rst()">초기화</button>
-	  
-	 </div><br>
-	 <br>
+	<button class="button2" onclick="rst()">초기화</button>	  
+<!-- 	 </div><br> -->
+	 <br><br>
 	 
 	 
 	<form name="LineInsert" method="post">
