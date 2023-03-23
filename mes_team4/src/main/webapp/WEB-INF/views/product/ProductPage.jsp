@@ -14,7 +14,7 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 function showPopup() {
-	window.open("prodinsert","팝업테스트","width=500,height=500,top=200,left=200");
+	window.open("prodinsert","추가팝업","width=800,height=500,top=200,left=200");
 }
 </script>
 <!-- 자바스크립트 입력 끝-->
@@ -40,6 +40,7 @@ function showPopup() {
 		
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
+					<th><input type="checkbox" name="allcheck" ></th>
 					<th>제품코드</th>
 					<th>제품명</th>
 					<th>제품구분</th>
@@ -52,13 +53,14 @@ function showPopup() {
 			
 			<tbody>
 				<tr>
+				<td><input type="checkbox" id="checkbox"></td>
 					<td>${ProductDTO.product_cd }</td>
 					<td>${ProductDTO.product_name }</td>
 					<td>${ProductDTO.product_dv }</td>
 					<td>${ProductDTO.business_cd }</td>
 					<td>${ProductDTO.product_size }</td>
 					<td>${ProductDTO.product_unit }</td>
-					<td>${ProductDTO.product_remarks }</td>
+					<td>${ProductDTO.remarks }</td>
 				</tr>
 			</tbody>
 			

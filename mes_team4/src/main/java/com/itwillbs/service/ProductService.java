@@ -1,5 +1,11 @@
 package com.itwillbs.service;
 
-public interface ProductService {
+import org.springframework.stereotype.Service;
 
+import com.itwillbs.domain.ProductDTO;
+
+@Service
+public interface ProductService {
+	
+	public void insertProduct(ProductDTO productDTO);
 }
