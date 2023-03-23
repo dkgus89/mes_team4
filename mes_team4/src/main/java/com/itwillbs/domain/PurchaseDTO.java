@@ -7,7 +7,7 @@ public class PurchaseDTO {
 	private String purchase_cd;
 	private String business_cd;
 	private int emp_no;
-	private String rproduct_lot;
+	private String rproduct_cd_name;
 	private Date purchase_date;
 	private Date purchase_due;
 	private int purchase_count;
@@ -31,12 +31,7 @@ public class PurchaseDTO {
 	public void setEmp_no(int emp_no) {
 		this.emp_no = emp_no;
 	}
-	public String getRproduct_lot() {
-		return rproduct_lot;
-	}
-	public void setRproduct_lot(String rproduct_lot) {
-		this.rproduct_lot = rproduct_lot;
-	}
+	
 	public Date getPurchase_date() {
 		return purchase_date;
 	}

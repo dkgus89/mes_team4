@@ -64,7 +64,7 @@
 	        <a href="#">기준정보관리</a>
 	        <ul class="submenu">
 	          <li><a href="#">품목정보관리</a></li>
-	          <li><a href="#">소요량관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/consmpt/list">소요량관리</a></li>
 	          <li><a href="#">설비정보관리</a></li>
 	          <li><a href="#">거래처정보관리</a></li>
 	        </ul>
