@@ -64,12 +64,12 @@
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="deliver_cd" value="${DeliverDTO.deliver_cd }"></td>
-					<td><input type="text" name="business_cd" value="${DeliverDTO.business_cd }"></td>					
-					<td><input type="text" name="order_cd" value="${DeliverDTO.order_cd }"></td>
-					<td><input type="text" name="product_cd" value="${DeliverDTO.product_cd }"></td>
-					<td><input type="Date" name="deliver_date" value="${DeliverDTO.deliver_date }"></td>
-					<td><input type="text" name="deliver_count" value="${DeliverDTO.deliver_count }"></td>
+					<td><input type="text" name="deliver_cd" value="${deliverDTO.deliver_cd }"></td>
+					<td><input type="text" name="business_cd" value="${deliverDTO.business_cd }"></td>					
+					<td><input type="text" name="order_cd" value="${deliverDTO.order_cd }"></td>
+					<td><input type="text" name="product_cd" value="${deliverDTO.product_cd }"></td>
+					<td><input type="Date" name="deliver_date" value="${deliverDTO.deliver_date }"></td>
+					<td><input type="text" name="deliver_count" value="${deliverDTO.deliver_count }"></td>
 				</tr>
 
 			</tbody>

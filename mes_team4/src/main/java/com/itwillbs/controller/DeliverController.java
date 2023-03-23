@@ -91,7 +91,7 @@ public class DeliverController {
 			System.out.println(deliver_cd);
 			
 			DeliverDTO deliverDTO=deliverService.getDeliver(deliver_cd);
-			
+			System.out.println(deliverDTO.getDeliver_cd());
 			model.addAttribute("deliverDTO", deliverDTO);
 			
 			
