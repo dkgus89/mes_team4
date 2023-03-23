@@ -12,6 +12,15 @@
 		values(#{product_cd},#{product_name},#{product_dv},#{business_cd},#{product_size},#{product_unit},#{remarks})
 	</insert>
 	
+	<select id="getProductList" resultType="com.itwillbs.domain.ProductDTO">
+        select * from product
+        order by product_cd desc 
+        limit #{startRow}, #{pageSize}   	
+    </select>
+    
+    <select id="getProductCount" resultType="java.lang.Integer">
+        select count(*) from product 
+    </select>
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
 <!-- 		select * from members  -->
 <!-- 		where id = #{id} and pass = #{pass}  -->

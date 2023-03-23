@@ -14,7 +14,7 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 function showPopup() {
-	window.open("prodinsert","추가팝업","width=800,height=500,top=200,left=200");
+	window.open("prodinsert","추가팝업","width=1000,height=400,top=200,left=200");
 }
 </script>
 <!-- 자바스크립트 입력 끝-->
@@ -40,37 +40,47 @@ function showPopup() {
 		
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th><input type="checkbox" name="allcheck" ></th>
+					<th>선택</th>
+					<th>제품구분</th>
 					<th>제품코드</th>
 					<th>제품명</th>
-					<th>제품구분</th>
 					<th>거래처코드</th>
 					<th>규격</th>
 					<th>재고단위</th>
 					<th>적요</th>
 				</tr>
 			</thead>
-			
+
 			<tbody>
+					<c:forEach var="productDTO" items="${productList }">
 				<tr>
 				<td><input type="checkbox" id="checkbox"></td>
-					<td>${ProductDTO.product_cd }</td>
-					<td>${ProductDTO.product_name }</td>
-					<td>${ProductDTO.product_dv }</td>
-					<td>${ProductDTO.business_cd }</td>
-					<td>${ProductDTO.product_size }</td>
-					<td>${ProductDTO.product_unit }</td>
-					<td>${ProductDTO.remarks }</td>
+					<td>${productDTO.product_dv }</td>
+					<td>${productDTO.product_cd }</td>
+					<td>${productDTO.product_name }</td>
+					<td>${productDTO.business_cd }</td>
+					<td>${productDTO.product_size }</td>
+					<td>${productDTO.product_unit }</td>
+					<td>${productDTO.remarks }</td>
 				</tr>
+					</c:forEach>
 			</tbody>
-			
 		</table>
-
-	
 	
 	</form>
 	
-	
+<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+<a href="${pageContext.request.contextPath}/product/prodpage?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
+</c:if>
+
+<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+<a href="${pageContext.request.contextPath}/product/prodpage?pageNum=${i}">${i}</a> 
+</c:forEach>
+
+<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+<a href="${pageContext.request.contextPath}/product/prodpage?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
+</c:if>
+
 <!-- 본문HTML 입력 끝-->
 	</div>
 </div>
