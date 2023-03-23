@@ -13,27 +13,26 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
-function showPopup(){
-    window.open("whinsert","팝업 테스트","width=1000, height=500, top=200, left=200");
-    opener.parent.location.reload();
-    window.close();
-}
+
+	function insertPopup(){
+    	window.open("whinsert","창고등록팝업","width=1000, height=500, top=200, left=200");
+	}
+
+	function updatePopup(){
+    	window.open("whupdate","수정","width=1000, height=500, top=200, left=200");
+	}
 
 </script>
 <!-- 자바스크립트 입력 끝-->
 
 
-
-
-	
-	
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
-
-	<h2>값 입력할 페이지 </h2><br>
+	<h2>창고</h2><br>
+	
 	<div class="wrap2">
-	  <button class="button2" onclick="showPopup();">등록</button>
-	  <button class="button2">수정</button>
+	  <button class="button2" onclick="insertPopup();">등록</button>
+	  <button class="button2" onclick="updatePopup();">수정</button>
 	  <button class="button2">삭제</button>
 	  <button class="button2">조회</button>
 	  
@@ -58,21 +57,35 @@ function showPopup(){
 			</thead>
 			
 			<tbody>
+			<c:forEach var="whDTO" items="${whList }">
 				<tr>
 					<td><input type="checkbox" id="checkbox"></td>
-					<td>${WHDTO.wh_cd}</td>
-					<td>${WHDTO.wh_name}</td>
-					<td>${WHDTO.wh_dv}</td>
-					<td>${WHDTO.wh_tel}</td>
-					<td>${WHDTO.wh_use}</td>
-					<td>${WHDTO.remarks}</td>
-				</tr>				
+					<td>${whDTO.wh_cd}</td>
+					<td>${whDTO.wh_name}</td>
+					<td>${whDTO.wh_dv}</td>
+					<td>${whDTO.wh_tel}</td>
+					<td>${whDTO.wh_use}</td>
+					<td>${whDTO.remarks}</td>
+				</tr>
+			</c:forEach>			
 			</tbody>
-			
+
 		</table>
 		
 	</form>
-	
+
+
+<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+<a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
+</c:if>
+
+<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+<a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${i}">${i}</a> 
+</c:forEach>
+
+<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+<a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
+</c:if>
 	
 <!-- 본문HTML 입력 끝-->
 	</div>

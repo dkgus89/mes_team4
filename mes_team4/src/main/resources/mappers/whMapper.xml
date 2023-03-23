@@ -12,11 +12,26 @@
 		values(#{wh_cd},#{wh_name},#{wh_dv},#{wh_addr},#{wh_tel},#{wh_use},#{remarks})
 	</insert>
 	
-	<select id="getBoard" resultType="com.itwillbs.domain.WHDTO">
-        select * from board
-        where wh_cd = #{wh_cd}   	
+	<select id="getMaxNum" resultType="java.lang.Integer">
+        select max(wh_cd) from warehouse
     </select>
 	
+	<select id="getWhList" resultType="com.itwillbs.domain.WHDTO">
+        select * from warehouse
+        order by wh_cd desc 
+        limit #{startRow} , #{pageSize}    	
+    </select>
+	
+	<select id="getWhCount" resultType="java.lang.Integer">
+        select count(*) from warehouse 
+    </select>
+	
+	 <update id="updatewh">
+	 	update warehouse set wh_name = #{wh_name}, wh_dv = #{wh_dv}, wh_addr = #{wh_addr}, 
+	 	                     wh_tel = #{wh_tel}, wh_use = #{wh_use}, remarks = #{remarks} 
+	 	where wh_cd = #{wh_cd}                     
+    </update>
+    
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
 <!-- 		select * from members  -->
 <!-- 		where id = #{id} and pass = #{pass}  -->
@@ -29,8 +44,7 @@
     <insert id="">
     </insert>
     
-    <update id="">
-    </update>
+   
     
     <delete id="">
     </delete> -->
