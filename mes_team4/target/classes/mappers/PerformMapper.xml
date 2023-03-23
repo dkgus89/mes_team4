@@ -12,7 +12,12 @@
     </insert>
 
 	<select id="getPerformList" resultType="com.itwillbs.domain.PerformDTO">
-    	select * from performance 
+    	select * from performance
+    	limit #{startRow} , #{pageSize}
+    </select>
+    
+    <select id="getPerformCount" resultType="java.lang.Integer">
+        select count(*) from performance
     </select>
 
 	<select id="getPerform" resultType="com.itwillbs.domain.PerformDTO">

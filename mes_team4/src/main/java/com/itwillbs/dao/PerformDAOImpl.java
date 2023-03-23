@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.LineDTO;
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PerformDTO;
 
 @Repository
@@ -21,10 +22,20 @@ public class PerformDAOImpl implements PerformDAO {
 		private static final String namespace="com.itwillbs.mappers.PerformMapper";
 
 		@Override
-		public List<PerformDTO> getPerformList() {
+		public List<PerformDTO> getPerformList(PageDTO pageDTO) {
 			System.out.println("PerformDAOImpl getPerformList()");
+			// limit #{startRow -1} , #{pageSize} 
+			//        1-1, 10 => 1~10
+			pageDTO.setStartRow(pageDTO.getStartRow()-1);
 			
-			return sqlSession.selectList(namespace+".getPerformList");
+			return sqlSession.selectList(namespace+".getPerformList", pageDTO);
+		}
+		
+		@Override
+		public int getPerformCount() {
+			System.out.println("PerformDAOImpl getPerformCount()");
+			
+			return sqlSession.selectOne(namespace+".getPerformCount");
 		}
 
 		@Override
@@ -54,4 +65,5 @@ public class PerformDAOImpl implements PerformDAO {
 			
 			sqlSession.delete(namespace+".deletePerform", perform_cd);
 		}
+		
 }

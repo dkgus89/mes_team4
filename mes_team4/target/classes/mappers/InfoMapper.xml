@@ -12,7 +12,12 @@
     </insert>
 
 	<select id="getLineList" resultType="com.itwillbs.domain.LineDTO">
-    	select * from line 
+    	select * from line
+    	limit #{startRow} , #{pageSize}
+    </select>
+    
+    <select id="getLineCount" resultType="java.lang.Integer">
+        select count(*) from line 
     </select>
 
 	<select id="getLine" resultType="com.itwillbs.domain.LineDTO">

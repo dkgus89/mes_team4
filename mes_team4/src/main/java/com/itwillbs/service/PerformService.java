@@ -2,11 +2,14 @@ package com.itwillbs.service;
 
 import java.util.List;
 
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PerformDTO;
 
 public interface PerformService {
 
-	public List<PerformDTO> getPerformList();
+	public List<PerformDTO> getPerformList(PageDTO pageDTO);
+	
+	public int getPerformCount();
 	
 	public void insertPerform(PerformDTO performDTO);
 	

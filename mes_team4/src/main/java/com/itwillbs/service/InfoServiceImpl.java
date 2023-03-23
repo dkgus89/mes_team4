@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.InfoDAO;
 import com.itwillbs.domain.LineDTO;
+import com.itwillbs.domain.PageDTO;
 
 @Service
 public class InfoServiceImpl implements InfoService{
@@ -17,11 +18,23 @@ public class InfoServiceImpl implements InfoService{
 		private InfoDAO infoDAO;
 
 		@Override
-		public List<LineDTO> getLineList() {
+		public List<LineDTO> getLineList(PageDTO pageDTO) {
 			System.out.println("InfoServiceImpl getLineList()");
-
+			//시작하는 행번호 구하기
+			int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+			int endRow = startRow+pageDTO.getPageSize()-1;
 			
-			return infoDAO.getLineList();
+			pageDTO.setStartRow(startRow);
+			pageDTO.setEndRow(endRow);
+			
+			return infoDAO.getLineList(pageDTO);
+		}		
+
+		@Override
+		public int getLineCount() {
+			System.out.println("InfoServiceImpl getLineCount()");
+			
+			return infoDAO.getLineCount();
 		}
 
 		@Override
@@ -51,4 +64,5 @@ public class InfoServiceImpl implements InfoService{
 			
 			infoDAO.deleteLine(line_cd);
 		}
+
 }

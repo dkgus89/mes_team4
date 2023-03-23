@@ -3,10 +3,13 @@ package com.itwillbs.dao;
 import java.util.List;
 
 import com.itwillbs.domain.LineDTO;
+import com.itwillbs.domain.PageDTO;
 
 public interface InfoDAO {
 
-	public List<LineDTO> getLineList();
+	public List<LineDTO> getLineList(PageDTO pageDTO);
+	
+	public int getLineCount();
 	
 	public void insertLine(LineDTO lineDTO);
 	

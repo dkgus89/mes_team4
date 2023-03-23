@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.LineDTO;
+import com.itwillbs.domain.PageDTO;
 
 @Repository
 public class InfoDAOImpl implements InfoDAO {
@@ -20,10 +21,20 @@ public class InfoDAOImpl implements InfoDAO {
 		private static final String namespace="com.itwillbs.mappers.InfoMapper";
 
 		@Override
-		public List<LineDTO> getLineList() {
+		public List<LineDTO> getLineList(PageDTO pageDTO) {
 			System.out.println("InfoDAOImpl getLineList()");
+			// limit #{startRow -1} , #{pageSize} 
+			//        1-1, 10 => 1~10
+			pageDTO.setStartRow(pageDTO.getStartRow()-1);
 			
-			return sqlSession.selectList(namespace+".getLineList");
+			return sqlSession.selectList(namespace+".getLineList", pageDTO);
+		}		
+
+		@Override
+		public int getLineCount() {
+			System.out.println("InfoDAOImpl getLineCount()");
+			
+			return sqlSession.selectOne(namespace+".getLineCount");
 		}
 
 		@Override
@@ -53,4 +64,5 @@ public class InfoDAOImpl implements InfoDAO {
 			
 			sqlSession.delete(namespace+".deleteLine", line_cd);
 		}
+
 }

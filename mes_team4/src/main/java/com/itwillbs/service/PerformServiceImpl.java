@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.dao.PerformDAO;
 import com.itwillbs.domain.LineDTO;
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PerformDTO;
 
 @Service
@@ -20,10 +21,23 @@ public class PerformServiceImpl implements PerformService{
 			private PerformDAO performDAO;
 
 			@Override
-			public List<PerformDTO> getPerformList() {
+			public List<PerformDTO> getPerformList(PageDTO pageDTO) {
 				System.out.println("PerformServiceImpl getPerformList()");
-
-				return performDAO.getPerformList();
+				//시작하는 행번호 구하기
+				int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+				int endRow = startRow+pageDTO.getPageSize()-1;
+				
+				pageDTO.setStartRow(startRow);
+				pageDTO.setEndRow(endRow);
+				
+				return performDAO.getPerformList(pageDTO);
+			}
+			
+			@Override
+			public int getPerformCount() {
+				System.out.println("PerformServiceImpl getPerformCount()");
+				
+				return performDAO.getPerformCount();
 			}
 
 			@Override
@@ -53,5 +67,5 @@ public class PerformServiceImpl implements PerformService{
 				
 				performDAO.deletePerform(perform_cd);
 			}
-						
+									
 }

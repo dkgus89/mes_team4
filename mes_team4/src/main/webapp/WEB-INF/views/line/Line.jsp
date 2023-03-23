@@ -73,19 +73,25 @@ function chdelete(){
     			<td><button class="button2" onclick="showPopup2('${LineDTO.line_cd}');">수정</button></td>
     			</tr>
    			 
-				</c:forEach>
-			
-			</tbody>
-			
-		</table>
-		
-		
-		<div id="array"></div>
-	
-	
+				</c:forEach>			
+			</tbody>			
+		</table>		
+		<div id="array"></div>	
 	</form>
 	
-	
+<!-- 페이징 -->
+<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+<a href="${pageContext.request.contextPath}/line/line?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
+</c:if>
+
+<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+<a href="${pageContext.request.contextPath}/line/line?pageNum=${i}">${i}</a> 
+</c:forEach>
+
+<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+<a href="${pageContext.request.contextPath}/line/line?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
+</c:if>
+		
 <!-- 본문HTML 입력 끝-->
 	</div>
 </div>
