@@ -15,4 +15,6 @@ public interface ProductDAO {
 	
 	public Integer getMaxNum();
 
+	public void deleteProduct(String product_cd_name);
+
 }

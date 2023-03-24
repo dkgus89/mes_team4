@@ -15,4 +15,6 @@ public interface ProductService {
 	public List<ProductDTO> getProductList(PageDTO pageDTO);
 
 	public int getProductCount();
+
+	public void deleteProduct(String product_cd_name);
 }

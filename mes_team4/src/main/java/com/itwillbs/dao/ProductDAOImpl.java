@@ -26,6 +26,8 @@ public class ProductDAOImpl implements ProductDAO{
 
 	@Override
 	public List<ProductDTO> getProductList(PageDTO pageDTO) {
+		System.out.println("ProductDAOImpl getProductList()");
+		// startRow-1
 		pageDTO.setStartRow(pageDTO.getStartRow()-1);
 		return sqlSession.selectList(namespace+".getProductList", pageDTO);
 	}
@@ -39,6 +41,12 @@ public class ProductDAOImpl implements ProductDAO{
 	public Integer getMaxNum() {
 		System.out.println("ProductDAOImpl getMaxNum()");
 		return sqlSession.selectOne(namespace+".getMaxNum");
+	}
+
+	@Override
+	public void deleteProduct(String product_cd_name) {
+		System.out.println("ProductDAOImpl deleteProduct()");
+		sqlSession.delete(namespace+".deleteProduct", product_cd_name);
 	}
 
 }

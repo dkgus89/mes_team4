@@ -8,19 +8,25 @@
 	
 	<!-- ?대신 productDTO의 멤버변수명 사용 #{id}-->
 	<insert id="insertProduct">
-		insert into product(product_cd,product_name,product_dv,business_cd,product_size,product_unit,remarks) 
-		values(#{product_cd},#{product_name},#{product_dv},#{business_cd},#{product_size},#{product_unit},#{remarks})
+		insert into product(product_cd_name,product_name,product_dv,business_cd,product_size,product_unit,remarks) 
+		values(#{product_cd_name},#{product_name},#{product_dv},#{business_cd},#{product_size},#{product_unit},#{remarks})
 	</insert>
 	
 	<select id="getProductList" resultType="com.itwillbs.domain.ProductDTO">
         select * from product
-        order by product_cd desc 
+        order by product_cd_name desc 
         limit #{startRow}, #{pageSize}   	
     </select>
     
     <select id="getProductCount" resultType="java.lang.Integer">
         select count(*) from product 
     </select>
+    
+    <delete id="deleteProduct">
+    	delete from product
+    	where product_cd_name = #{product_cd_name}
+    </delete>
+    
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
 <!-- 		select * from members  -->
 <!-- 		where id = #{id} and pass = #{pass}  -->

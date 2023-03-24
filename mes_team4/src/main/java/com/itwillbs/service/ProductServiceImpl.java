@@ -41,5 +41,11 @@ public class ProductServiceImpl implements ProductService{
 
 		return productDAO.getProductCount();
 	}
+	@Override
+	public void deleteProduct(String product_cd_name) {
+		System.out.println("ProductServiceImpl deleteProduct()");
+		
+		productDAO.deleteProduct(product_cd_name);
+	}
 
 }

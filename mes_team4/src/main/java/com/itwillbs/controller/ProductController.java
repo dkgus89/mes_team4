@@ -24,7 +24,7 @@ public class ProductController {
 	public String prodpage(HttpServletRequest request, Model model) {
 		String pageNum=request.getParameter("pageNum");
 		// 한 화면에 보여질 글의 개수 설정
-		int pageSize=5;
+		int pageSize=10;
 		// 현재 페이지번호 가져오기
 		if(pageNum==null) {
 			// pageNum없으면 1페이지로 설정
@@ -55,7 +55,7 @@ public class ProductController {
 		pageDTO.setStartPage(startPage);
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
-		
+		System.out.println(productList.get(0).getProduct_cd_name());
 		model.addAttribute("productList",productList);
 		model.addAttribute("pageDTO",pageDTO);
 		
@@ -77,6 +77,22 @@ public class ProductController {
 		productService.insertProduct(productDTO);
 		
 //		주소줄 변경하면서 이동
+		return "redirect:/product/prodpage";
+	}
+	
+	@RequestMapping(value = "/product/productdelete", method = RequestMethod.GET)
+	public String productdelete(HttpServletRequest request) {
+		String chbox[]=request.getParameterValues("chbox");
+		String product_cd_name = null;
+		if(chbox!=null){
+			  for(int i=0;i<chbox.length;i++){
+		   
+				  product_cd_name=chbox[i];
+				productService.deleteProduct(product_cd_name);
+			  }
+	       }			
+		
+		// 주소변경 하면서 이동
 		return "redirect:/product/prodpage";
 	}
 	

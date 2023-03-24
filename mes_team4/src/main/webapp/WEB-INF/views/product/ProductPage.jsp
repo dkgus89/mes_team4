@@ -16,6 +16,10 @@
 function showPopup() {
 	window.open("prodinsert","추가팝업","width=1000,height=400,top=200,left=200");
 }
+function chdelete() {
+	document.productList.action="${pageContext.request.contextPath}/product/productdelete";
+	document.productList.submit();
+}
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -27,41 +31,41 @@ function showPopup() {
 	<h2>품목정보관리</h2><br>
 	<div class="wrap2">
 	  <button class="button2" onclick="showPopup();">추가</button>
-	  <button class="button2">수정</button>
-	  <button class="button2">저장</button>
-	  <button class="button2">삭제</button>
+	  <button class="button2" onclick="chdelete();">삭제</button>
 	 </div><br>
 	 <br>
 	 
 	 
-	<form method="post">
+	<form name="productList">
 		<input type="hidden" value="">
 		<table id="vendortable" class=" table table-striped">
 		
 			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">
-					<th>선택</th>
-					<th>제품구분</th>
-					<th>제품코드</th>
-					<th>제품명</th>
-					<th>거래처코드</th>
-					<th>규격</th>
-					<th>재고단위</th>
-					<th>적요</th>
+				<tr style="text-align:center; font-size: 0.9rem">
+					<th style="text-align:center">선택</th>
+					<th style="text-align:center">제품구분</th>
+					<th style="text-align:center">제품코드</th>
+					<th style="text-align:center">제품명</th>
+					<th style="text-align:center">거래처코드</th>
+					<th style="text-align:center">규격</th>
+					<th style="text-align:center">재고단위</th>
+					<th style="text-align:center">적요</th>
+					<th style="text-align:center">수정</th>
 				</tr>
 			</thead>
 
 			<tbody>
 					<c:forEach var="productDTO" items="${productList }">
-				<tr>
-				<td><input type="checkbox" id="checkbox"></td>
+				<tr style="text-align:center; font-size: 0.9rem">
+				<td><input type="checkbox" name="chbox" value="${productDTO.product_cd_name}"></td>
 					<td>${productDTO.product_dv }</td>
-					<td>${productDTO.product_cd }</td>
+					<td>${productDTO.product_cd_name }</td>
 					<td>${productDTO.product_name }</td>
 					<td>${productDTO.business_cd }</td>
 					<td>${productDTO.product_size }</td>
 					<td>${productDTO.product_unit }</td>
 					<td>${productDTO.remarks }</td>
+					<td><button class="button2" onclick="updatePopup();">수정</td>
 				</tr>
 					</c:forEach>
 			</tbody>
