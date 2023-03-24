@@ -22,6 +22,9 @@ function sub(){
 		window.close();
 		}, 200);
 	}
+function rst(){
+	document.prodinsert.reset();
+	}
 </script>
 
 </head>
@@ -30,17 +33,11 @@ function sub(){
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>품목정보관리 </h2><br>
-	
-<div class="wrap2">
-	<button class="button2" onclick="sub()">등록</button>
-	<button class="button2" onclick="rst()">초기화</button>	  
-</div><br> 
+	<h2>품목정보등록</h2><br>
 	 <br>
-
 <form name="prodinsert" method="post">
 제품구분 : <label><input type="radio" name="product_dv" value="원자재" > 원자재
-				 <input type="radio" name="product_dv" value="완제품"> 완제품<br></label>
+				<input type="radio" name="product_dv" value="완제품"> 완제품<br></label>
 제품코드 : <input type="text" name="product_cd_name" value=""><br>
 제품명 : <input type="text" name="product_name" value=""><br>
 거래처코드 : <input type="text" name="business_cd" value=""><br>
@@ -49,8 +46,11 @@ function sub(){
 적요 : <input type="text" name="remarks" value=""><br>
 
 </form>
-
-	
+ <br>
+<!-- <div class="wrap2"> -->
+	<button class="button2" onclick="sub()">등록</button>
+	<button class="button2" onclick="rst()">초기화</button>	  
+<!-- </div><br>  -->	
 	
 <!-- 본문HTML 입력 끝-->
 	</div>

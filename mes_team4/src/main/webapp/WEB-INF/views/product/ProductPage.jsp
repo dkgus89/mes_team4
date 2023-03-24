@@ -14,7 +14,7 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 function showPopup() {
-	window.open("prodinsert","추가팝업","width=1000,height=400,top=200,left=200");
+	window.open("prodinsert","추가팝업","width=400,height=400,top=200,left=200");
 }
 function chdelete() {
 	document.productList.action="${pageContext.request.contextPath}/product/productdelete";
