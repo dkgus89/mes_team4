@@ -12,6 +12,25 @@ public class PageDTO {
 	private int count;
 	private int pageCount;
 	
+	//검색어
+	private String search;
+	private String selectcol;
+	
+	public String getSelectcol() {
+		return selectcol;
+	}
+
+	public void setSelectcol(String selectcol) {
+		this.selectcol = selectcol;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}	
 	
 	@Override
 	public String toString() {

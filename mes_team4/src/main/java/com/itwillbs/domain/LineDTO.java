@@ -2,7 +2,6 @@ package com.itwillbs.domain;
 
 public class LineDTO {
 
-	private int line_no;
 	private String line_cd;
 	private String line_name;
 	private String line_process;
@@ -10,12 +9,6 @@ public class LineDTO {
 	private String remarks;
 	
 	
-	public int getLine_no() {
-		return line_no;
-	}
-	public void setLine_no(int line_no) {
-		this.line_no = line_no;
-	}
 	public String getLine_cd() {
 		return line_cd;
 	}

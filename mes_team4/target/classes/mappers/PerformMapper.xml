@@ -11,7 +11,7 @@
     	values(#{perform_cd},#{instruction_code},#{line_cd},#{order_cd},#{product_cd},#{perform_date},#{fair_prod},#{defect_prod},#{defect_remarks},#{remarks})
     </insert>
 
-	<select id="getPerformList" resultType="com.itwillbs.domain.PerformDTO">
+	<select id="getPerformList" resultType="com.itwillbs.domain.PerformDTO" resultMap="map1">
     	select * from performance
     	limit #{startRow} , #{pageSize}
     </select>
@@ -35,6 +35,44 @@
     	delete from performance
     	where perform_cd = #{perform_cd}
     </delete>
+    
+<!--     https://mybatis.org/mybatis-3/ -->
+	<resultMap type="map" id="map1">
+<!-- 		column="디비열이름" property="멤버변수이름" -->
+
+<!-- 		order -->
+		<result column="perform_cd" property="perform_cd"/>
+		<result column="instruction_code" property="instruction_code"/>
+		<result column="line_cd" property="line_cd"/>
+		<result column="order_cd" property="order_cd"/>
+		<result column="product_cd" property="product_cd"/>
+		<result column="perform_date" property="perform_date"/>
+		<result column="fair_prod" property="fair_prod"/>
+		<result column="defect_prod" property="defect_prod"/>
+		<result column="defect_remarks" property="defect_remarks"/>
+		
+<!-- 		perform -->
+		<result column="perform_cd" property="perform_cd"/>
+		<result column="instruction_code" property="instruction_code"/>
+		<result column="line_cd" property="line_cd"/>
+		<result column="order_cd" property="order_cd"/>
+		<result column="product_cd" property="product_cd"/>
+		<result column="perform_date" property="perform_date"/>
+		<result column="fair_prod" property="fair_prod"/>
+		<result column="defect_prod" property="defect_prod"/>
+		<result column="defect_remarks" property="defect_remarks"/>
+		
+<!-- 		line -->
+		<result column="line_cd" property="line_cd"/>
+		<result column="line_name" property="line_name"/>
+		<result column="line_process" property="line_process"/>
+		<result column="line_status" property="line_status"/>
+	</resultMap>
+
+
+    <select id="getInstMap" resultMap="map1">
+    	select instruction_code, line_cd, order_cd, product_cd from `order`
+    </select>
 	    
 </mapper>
 

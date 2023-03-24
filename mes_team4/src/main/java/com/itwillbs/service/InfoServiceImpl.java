@@ -31,10 +31,10 @@ public class InfoServiceImpl implements InfoService{
 		}		
 
 		@Override
-		public int getLineCount() {
+		public int getLineCount(PageDTO pageDTO) {
 			System.out.println("InfoServiceImpl getLineCount()");
 			
-			return infoDAO.getLineCount();
+			return infoDAO.getLineCount(pageDTO);
 		}
 
 		@Override

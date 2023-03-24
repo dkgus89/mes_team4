@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -70,7 +71,13 @@ public class PerformController {
 		}
 		
 		@RequestMapping(value = "/perform/performinsert", method = RequestMethod.GET)
-		public String performInsert() {
+		public String performInsert(Model model) {
+			
+			//메서드 호출
+			List<Map<String, Object>> InstMap
+			     =performService.getInstMap();
+			//model 담아서 이동
+			model.addAttribute("InstMap", InstMap);
 			
 			// 주소변경 없이 이동
 			// /WEB-INF/views/perform/PerformInsert.jsp

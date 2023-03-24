@@ -31,10 +31,10 @@ public class InfoDAOImpl implements InfoDAO {
 		}		
 
 		@Override
-		public int getLineCount() {
+		public int getLineCount(PageDTO pageDTO) {
 			System.out.println("InfoDAOImpl getLineCount()");
 			
-			return sqlSession.selectOne(namespace+".getLineCount");
+			return sqlSession.selectOne(namespace+".getLineCount", pageDTO);
 		}
 
 		@Override

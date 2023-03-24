@@ -1,6 +1,7 @@
 package com.itwillbs.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -66,6 +67,13 @@ public class PerformServiceImpl implements PerformService{
 				System.out.println("PerformServiceImpl deletePerform()");
 				
 				performDAO.deletePerform(perform_cd);
+			}
+
+			@Override
+			public List<Map<String, Object>> getInstMap() {
+				System.out.println("PerformServiceImpl getInstMap()");
+				
+				return performDAO.getInstMap();
 			}
 									
 }

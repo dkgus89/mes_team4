@@ -25,6 +25,11 @@ public class InfoController {
 		@RequestMapping(value = "/line/line", method = RequestMethod.GET)
 		public String line(HttpServletRequest request, Model model) {
 			System.out.println("InfoController line()");
+			//검색어 가져오기
+			String search=request.getParameter("search");
+			String selectcol=request.getParameter("selectcol");
+					
+
 			
 			// 한 화면에 보여줄 글 개수 설정
 			int pageSize=5;
@@ -41,11 +46,16 @@ public class InfoController {
 			pageDTO.setPageSize(pageSize);
 			pageDTO.setPageNum(pageNum);
 			pageDTO.setCurrentPage(currentPage);
+			//검색어
+			pageDTO.setSearch(search);
+			pageDTO.setSelectcol(selectcol);
+			
 			
 			List<LineDTO> LineList=infoService.getLineList(pageDTO);
-						
+			
+			
 			//페이징 처리
-			int count = infoService.getLineCount();
+			int count = infoService.getLineCount(pageDTO);
 			int pageBlock=10;
 			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 			int endPage=startPage+pageBlock-1;

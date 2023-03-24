@@ -24,7 +24,6 @@ setTimeout(function() {
 function rst(){
 document.PerformInsert.reset();
 }
-
 </script>
 
 
@@ -38,7 +37,7 @@ document.PerformInsert.reset();
 <!-- 	<div class="wrap2"> -->
 	<button class="button2" onclick="sub()">등록</button>
 	<button class="button2" onclick="rst()">초기화</button>
-	  
+	
 <!-- 	 </div><br> -->
 	 <br><br>
 	 
@@ -60,7 +59,11 @@ document.PerformInsert.reset();
 			<tbody>
 				<tr>
 					<td><input type="text" name="perform_cd" value=""></td>
-					<td><input type="text" name="instruction_code" value=""></td>
+					<td><select name="instruction_code">
+							<c:forEach var="dto" items="${InstMap }">					
+								<option value="${dto.instruction_code}">${dto.instruction_code}</option>							
+							</c:forEach>
+      					</select></td>
     				<td><input type="text" name="line_cd" value=""></td>
     				<td><input type="text" name="product_cd" value=""></td>
     				<td><input type="text" name="order_cd" value=""></td>
@@ -96,6 +99,7 @@ document.PerformInsert.reset();
 		</table>
 	
 	</form>
+	
 	
 	
 <!-- 본문HTML 입력 끝-->

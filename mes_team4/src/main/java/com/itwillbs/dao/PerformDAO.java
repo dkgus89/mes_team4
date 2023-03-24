@@ -1,6 +1,7 @@
 package com.itwillbs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PerformDTO;
@@ -18,4 +19,7 @@ public interface PerformDAO {
 	public void updatePerform(PerformDTO performDTO);
 	
 	public void deletePerform(String perform_cd);
+	
+	//map
+	public List<Map<String, Object>> getInstMap();
 }

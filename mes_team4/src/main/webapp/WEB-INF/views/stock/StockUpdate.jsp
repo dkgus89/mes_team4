@@ -42,7 +42,7 @@ function sub(){
 	 
 	 
 	<form name="StockUpdate" method="post">
-		<input type="hidden" value="">
+		<input type="hidden" name="stock_cd" value="${StockDTO.stock_cd}">
 		
 		<table id="vendortable" class="table table-striped">
 			<thead>
@@ -56,7 +56,7 @@ function sub(){
 			</thead>
 			
 			<tbody>
-				<tr>
+				<tr>					
 					<td>${StockDTO.stock_cd}</td>
 					<td>${StockDTO.wh_cd}</td>
 					<td>${StockDTO.rec_schedule_cd}</td>

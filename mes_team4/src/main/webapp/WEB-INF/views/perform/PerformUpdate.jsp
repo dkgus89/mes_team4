@@ -63,7 +63,7 @@ function sub(){
     				<td><input type="text" name="product_cd" value="${PerformDTO.product_cd}"></td>
     				<td><input type="text" name="order_cd" value="${PerformDTO.order_cd}"></td>    				
 				</tr>
-
+								
 			</tbody>
 		</table>
 		

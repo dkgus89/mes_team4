@@ -1,6 +1,7 @@
 package com.itwillbs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -64,6 +65,13 @@ public class PerformDAOImpl implements PerformDAO {
 			System.out.println("InfoDAOImpl deletePerform()");
 			
 			sqlSession.delete(namespace+".deletePerform", perform_cd);
+		}
+
+		@Override
+		public List<Map<String, Object>> getInstMap() {
+			System.out.println("InfoDAOImpl getInstMap()");
+			
+			return sqlSession.selectList(namespace+".getInstMap");
 		}
 		
 }

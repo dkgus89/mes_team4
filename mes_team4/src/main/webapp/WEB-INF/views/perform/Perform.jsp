@@ -32,10 +32,25 @@ function chdelete(){
 <!-- 본문HTML 입력 시작-->
 
 	<h2> 생산실적 </h2><br>
+	<div id="table_search">
+			<form action="${pageContext.request.contextPath}/perform/perform" method="get">
+				<select name="selectcol">
+							<option value="perform_cd">실적코드</option>
+							<option value="instruction_code">작업지시코드</option>
+							<option value="line_cd">라인코드</option>
+							<option value="product_cd">품목코드</option>
+							<option value="order_cd">수주코드</option>
+      			</select>
+				<input type="text" name="search" class="input_box">
+				<input type="submit" value="search" class="button2">
+			</form>
+		</div>
+		<br>
 	<div class="wrap2">
+		
 	  <button class="button2" onclick="showPopup();">추가</button>
 	  <button class="button2" onclick="chdelete();">삭제</button>
-	  
+	  <br>
 	 </div><br>
 	 <br>
 	 

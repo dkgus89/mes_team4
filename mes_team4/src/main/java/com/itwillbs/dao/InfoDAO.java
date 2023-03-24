@@ -9,7 +9,7 @@ public interface InfoDAO {
 
 	public List<LineDTO> getLineList(PageDTO pageDTO);
 	
-	public int getLineCount();
+	public int getLineCount(PageDTO pageDTO);
 	
 	public void insertLine(LineDTO lineDTO);
 	
