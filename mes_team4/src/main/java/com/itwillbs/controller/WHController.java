@@ -25,6 +25,8 @@ public class WHController {
 	public String whpage(HttpServletRequest request, Model model) {
 		//검색어 가져오기
 		String search=request.getParameter("search");
+		// 검색어 옵션
+		String search_option = request.getParameter("search_option");
 				
 				// 한 화면에 보여줄 글 개수 설정
 				int pageSize=10;
@@ -43,6 +45,7 @@ public class WHController {
 				pageDTO.setCurrentPage(currentPage);
 				//검색어
 				pageDTO.setSearch(search);
+				pageDTO.setSearch_option(search_option);
 				
 				List<WHDTO> whList=whService.getWhList(pageDTO);
 				
@@ -107,15 +110,21 @@ public class WHController {
 	@RequestMapping(value = "/wh/whdelete", method = RequestMethod.GET)
 	public String whdelete(HttpServletRequest request) {
 		System.out.println("WHController whdelete()");
-		String chbox[]=request.getParameterValues("chbox");
-		String wh_cd = null;
-		if(chbox!=null){
-			  for(int i=0;i<chbox.length;i++){
-		   
-				wh_cd=chbox[i];
-				whService.deletewh(wh_cd);
-			  }
-	       }
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+			whService.deletewh(ajaxMsg[i]);
+		}
+		
+//		String chbox[]=request.getParameterValues("chbox");
+//		String wh_cd = null;
+//		if(chbox!=null){
+//			  for(int i=0;i<chbox.length;i++){
+//		   
+//				wh_cd=chbox[i];
+//				whService.deletewh(wh_cd);
+//			  }
+//	       }
 		
 		return "redirect:/wh/whpage";
 	}

@@ -20,7 +20,15 @@ document.insertform.submit();
 setTimeout(function() { 
 	opener.parent.location.reload();
 	window.close();
-	}, 200);
+	}, 300);
+}
+
+function goSubmit(){
+// 	window.opener.name="paretPage";
+	document.insertform.target="parentPage";
+	document.insertform.action="${pageContext.request.contextPath}/wh/whinsertPro";
+	document.insertform.submit();
+	self.close();
 }
 
 function rst(){
@@ -35,14 +43,14 @@ document.insertform.reset();
 <div id="contents">	
 <!-- 본문HTML 입력 시작-->
 <h2 class="inserttitle">창고 등록</h2><br>
-<div class="wrap2">
+
+	
+	<form action="${pageContext.request.contextPath}/wh/whinsertPro" name="insertform" method="post" >
+	<div class="wrap2">
 		<input type="submit" class="button2" value="등록" onclick="sub()">
 		<input type="reset" class="button2" value="초기화" onclick="rst()">
 	 </div><br>
 	 <br>
-	
-	<form action="${pageContext.request.contextPath}/wh/whinsertPro" name="insertform" method="post" >
-	
 	
 	
 		<input type="hidden" value="">

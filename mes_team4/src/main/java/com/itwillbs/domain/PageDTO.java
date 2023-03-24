@@ -13,7 +13,18 @@ public class PageDTO {
 	private int pageCount;
 	//검색어
 	private String search;
+	//검색어 옵션
+	private String search_option;
 	
+
+	public String getSearch_option() {
+		return search_option;
+	}
+
+	public void setSearch_option(String search_option) {
+		this.search_option = search_option;
+	}
+
 	public String getSearch() {
 		return search;
 	}
