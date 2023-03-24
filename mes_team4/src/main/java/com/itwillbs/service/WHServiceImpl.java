@@ -68,10 +68,10 @@ public class WHServiceImpl implements WHService{
 	}
 
 	@Override
-	public int getWhCount() {
+	public int getWhCount(PageDTO pageDTO) {
 		System.out.println("WHServiceImpl getWhCount()");
 		
-		return whDAO.getWhCount();
+		return whDAO.getWhCount(pageDTO);
 	}
 
 	

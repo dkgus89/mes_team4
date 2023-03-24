@@ -23,9 +23,9 @@ setTimeout(function() {
 	}, 200);
 }
 
-// function rst(){
-// document.insertform.reset();
-// }
+function rst(){
+document.insertform.reset();
+}
 </script>
 
 
@@ -34,86 +34,26 @@ setTimeout(function() {
 
 <div id="contents">	
 <!-- 본문HTML 입력 시작-->
-
-<!-- 	<h2 class="inserttitle">창고 등록</h2><br> -->
-	
-<!-- 	 <br> -->
-<!-- 	 <div class="wrap2"> -->
-<!-- 	  <button class="button2" onclick="sub()">등록</button> -->
-<!-- 	<button class="button2" onclick="rst()">초기화</button>	  -->
-	  
-<!-- 	 </div><br> -->
-	 
-<%-- 	<form action="${pageContext.request.contextPath}/wh/whinsertPro" name="insertform" method="post"> --%>
-	
-	 
-<!-- 	 창고명 : <input type="text" name="wh_name"><br> -->
-<!-- 	 창고구분 : <label><input type="radio" name="wh_dv" value="완제품" checked="checked">완제품</label> -->
-<!-- 	 		 <label><input type="radio" name="wh_dv" value="원자재">원자재</label><br> -->
-<!-- 	 창고코드 : <input type="text" name="wh_cd"><br> 		  -->
-<!-- 	 창고주소 : <input type="text" name="wh_addr"><br> -->
-<!-- 	 창고연락처 : <input type="tel" name="wh_tel"><br> -->
-<!-- 	 창고사용여부 : <label><input type="radio" name="wh_use" value="사용" checked="checked">사용</label> -->
-<!-- 	 		    <label><input type="radio" name="wh_use" value="미사용">미사용</label><br> -->
-<!-- 	 적요 : <input type="text" name="remarks"><br> -->
-<!-- 	 </form> -->
-	
-	
-
 <h2 class="inserttitle">창고 등록</h2><br>
+<div class="wrap2">
+		<input type="submit" class="button2" value="등록" onclick="sub()">
+		<input type="reset" class="button2" value="초기화" onclick="rst()">
+	 </div><br>
+	 <br>
 	
 	<form action="${pageContext.request.contextPath}/wh/whinsertPro" name="insertform" method="post" >
 	
-	<div class="wrap2">
-		<input type="submit" class="button2" value="등록" onclick="sub()">
-		<input type="reset" class="button2" value="초기화">
-	 </div><br>
 	
-<!-- 		<input type="hidden" value=""> -->
+	
+		<input type="hidden" value="">
 		
 		<table id="vendortable" class="table table-striped" style="width:1000px;">
-			
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>창고구분</th>
 					<th>창고이름</th>
-				</tr>
-			</thead>
-			
-			<tbody>
-				<tr>
-					<td>
-					<select id="select1"  name="wh_dv">
-						<option value="">선택해주세요</option>
-						<option value="완제품">완제품</option>
-						<option value="원자재">원자재</option>
-					</select>
-					</td>
-					<td><input type="text" name="wh_name"></td>
-				</tr>
-			</tbody>
-			
-			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">
 					<th>창고사용여부</th>
-					<th>창고연락처</th>	
-				</tr>
-			</thead>
-			
-			<tbody>
-				<tr>
-					<td>
-						<select name="wh_use">
-							<option value="사용">사용</option>
-							<option value="미사용">미사용</option>
-						</select>
-					</td>
-					<td><input type="tel" name="wh_tel"></td>
-				</tr>
-			</tbody>
-			
-			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">
+					<th>창고연락처</th>
 					<th>창고지역</th>
 					<th>적요</th>
 				</tr>
@@ -122,31 +62,44 @@ setTimeout(function() {
 			<tbody>
 				<tr>
 					<td>
-						<select name="wh_addr">
-							<option value="" selected>지역을 선택하세요</option>
-							<option value='1'>서울</option>
-				            <option value='2'>부산</option>
-				            <option value='3'>대구</option>
-				            <option value='4'>인천</option>
-				            <option value='5'>광주</option>
-				            <option value='6'>대전</option>
-				            <option value='7'>울산</option>
-				            <option value='8'>강원</option>
-				            <option value='9'>경기</option>
-				            <option value='10'>경남</option>
-				            <option value='11'>경북</option>
-				            <option value='12'>전남</option>
-				            <option value='13'>전북</option>
-				            <option value='14'>제주</option>
-				            <option value='15'>충남</option>
-				            <option value='16'>충북</option>
+					<select  name="wh_dv">
+						<option value="">선택해주세요</option>
+						<option value="완제품">완제품</option>
+						<option value="원자재">원자재</option>
+					</select>
+					</td>
+					<td><input type="text" name="wh_name"></td>
+					<td>
+						<select name="wh_use">
+							<option value="사용">사용</option>
+							<option value="미사용">미사용</option>
 						</select>
 					</td>
-				
+					<td><input type="tel" name="wh_tel"></td>
+					<td>
+						<select name="wh_addr">
+							<option value="" selected>지역을 선택하세요</option>
+							<option value='서울'>서울</option>
+				            <option value='부산'>부산</option>
+				            <option value='대구'>대구</option>
+				            <option value='인천'>인천</option>
+				            <option value='광주'>광주</option>
+				            <option value='대전'>대전</option>
+				            <option value='울산'>울산</option>
+				            <option value='강원'>강원</option>
+				            <option value='경기'>경기</option>
+				            <option value='경남'>경남</option>
+				            <option value='경북'>경북</option>
+				            <option value='전남'>전남</option>
+				            <option value='전북'>전북</option>
+				            <option value='제주'>제주</option>
+				            <option value='충남'>충남</option>
+				            <option value='충북'>충북</option>
+						</select>
+					</td>
 					<td><input type="text"  class="remarks" name="remarks" size=40></td>
 				</tr>
-			</tbody>
-			
+			</tbody>				
 		</table>
 
 	</form>

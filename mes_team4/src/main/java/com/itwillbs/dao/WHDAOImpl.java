@@ -45,10 +45,10 @@ public class WHDAOImpl implements WHDAO{
 	}
 
 	@Override
-	public int getWhCount() {
+	public int getWhCount(PageDTO pageDTO) {
 		System.out.println("WHDAOImpl getWhCount()");
 		
-		return sqlSession.selectOne(namespace+".getWhCount");
+		return sqlSession.selectOne(namespace+".getWhCount",pageDTO);
 	}
 	
 

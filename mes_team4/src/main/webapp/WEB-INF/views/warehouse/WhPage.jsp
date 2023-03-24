@@ -26,7 +26,11 @@
 		document.whlist.action="${pageContext.request.contextPath}/wh/whdelete";
 		document.whlist.submit();
 	}
-
+	
+	function searchPopup(){
+    	window.open("whsearch","창고검색팝업","width=1000, height=500, top=200, left=200");
+	}
+	
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -35,18 +39,28 @@
 <!-- 본문HTML 입력 시작-->
 	<h2>창고</h2><br>
 	
+	
+    <div class="search">
+    <form action="${pageContext.request.contextPath}/wh/whpage" method="get">
+       <input type="text" name="search" class="button2">
+       <input type="submit" value="검색" class="button2">
+     </form>  
+    </div>
+
+	
 	<div class="wrap2">
+	
 	  <button class="button2" onclick="insertPopup();">등록</button>
 <!-- 	  <button class="button2" onclick="updatePopup();">수정</button> -->
 	  <button class="button2"  onclick="chdelete();">삭제</button>
-	  <button class="button2">조회</button>
+<!-- 	  <button class="button2" onclick="searchPopup();">조회</button> -->
 	  
 	 </div><br>
 	 <br>
 	 
 	 
 	<form name="whlist">
-		<input type="hidden" value="">
+<!-- 		<input type="hidden" value=""> -->
 		
 		<table id="vendortable" class=" table table-striped">
 			<thead>
@@ -55,6 +69,7 @@
 					<th>창고코드</th>
 					<th>창고명</th>
 					<th>창고구분</th>
+					<th>창고지역</th>
 					<th>창고연락처</th>
 					<th>창고사용여부</th>
 					<th>적요</th>
@@ -69,11 +84,12 @@
 					<td>${whDTO.wh_cd}</td>
 					<td>${whDTO.wh_name}</td>
 					<td>${whDTO.wh_dv}</td>
+					<td>${whDTO.wh_addr}</td>
 					<td>${whDTO.wh_tel}</td>
 					<td>${whDTO.wh_use}</td>
 					<td>${whDTO.remarks}</td>
 					<td>
-					<button onclick="updatePopup('${whDTO.wh_cd}');">수정</button>
+					<button class="button2" onclick="updatePopup('${whDTO.wh_cd}');">수정</button>
 					</td>
 				</tr>
 			</c:forEach>			
@@ -85,15 +101,15 @@
 
 
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
+<a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">[10페이지 이전]</a>
 </c:if>
 
 <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${i}">${i}</a> 
+<a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${i}&search=${pageDTO.search}">${i}</a> 
 </c:forEach>
 
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
+<a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">[10페이지 다음]</a>
 </c:if>
 	
 <!-- 본문HTML 입력 끝-->

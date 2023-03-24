@@ -23,7 +23,10 @@ public class WHController {
 	
 	@RequestMapping(value = "/wh/whpage", method = RequestMethod.GET)
 	public String whpage(HttpServletRequest request, Model model) {
-		// 한 화면에 보여줄 글 개수 설정
+		//검색어 가져오기
+		String search=request.getParameter("search");
+				
+				// 한 화면에 보여줄 글 개수 설정
 				int pageSize=10;
 				// 현페이지 번호 가져오기
 				String pageNum=request.getParameter("pageNum");
@@ -38,11 +41,13 @@ public class WHController {
 				pageDTO.setPageSize(pageSize);
 				pageDTO.setPageNum(pageNum);
 				pageDTO.setCurrentPage(currentPage);
+				//검색어
+				pageDTO.setSearch(search);
 				
 				List<WHDTO> whList=whService.getWhList(pageDTO);
 				
 				//페이징 처리
-				int count = whService.getWhCount();
+				int count = whService.getWhCount(pageDTO);
 				int pageBlock=10;
 				int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 				int endPage=startPage+pageBlock-1;
@@ -114,5 +119,6 @@ public class WHController {
 		
 		return "redirect:/wh/whpage";
 	}
-
+	
+	
 }

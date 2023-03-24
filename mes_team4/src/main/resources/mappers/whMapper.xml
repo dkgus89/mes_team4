@@ -26,12 +26,18 @@
 	
 	<select id="getWhList" resultType="com.itwillbs.domain.WHDTO">
         select * from warehouse
+        <if test="search != null">
+        	where wh_name like CONCAT('%',#{search},'%')
+        </if>
         order by wh_cd desc 
         limit #{startRow} , #{pageSize}    	
     </select>
 	
 	<select id="getWhCount" resultType="java.lang.Integer">
-        select count(*) from warehouse 
+        select count(*) from warehouse
+        <if test="search != null">
+        	where wh_name like CONCAT('%',#{search},'%')
+        </if> 
     </select>
 	
     <delete id="deletewh">

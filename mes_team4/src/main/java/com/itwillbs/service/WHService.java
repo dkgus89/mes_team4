@@ -11,7 +11,7 @@ public interface WHService {
 	
 	public List<WHDTO> getWhList(PageDTO pageDTO);
 	
-	public int getWhCount();
+	public int getWhCount(PageDTO pageDTO);
 	
 	public void deletewh(String wh_cd);
 
