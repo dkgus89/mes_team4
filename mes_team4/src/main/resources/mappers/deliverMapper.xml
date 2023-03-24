@@ -25,7 +25,7 @@
     </select>
 	
     <update id="updateDeliver">
-    	update deliver
+    	update shipment_management
     	set deliver_cd = #{deliver_cd}, business_cd = #{business_cd}, product_cd = #{product_cd}, 
     	order_cd = #{order_cd}, deliver_date = #{deliver_date}, deliver_count = #{deliver_count}
     	where deliver_cd = #{deliver_cd}

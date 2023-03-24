@@ -87,6 +87,7 @@ public class DeliverController {
 */			
 		@RequestMapping(value = "/deliver/update", method = RequestMethod.GET)
 		public String update(HttpServletRequest request, Model model) {
+			System.out.println("/deliver/update");
 			String deliver_cd =  request.getParameter("deliver_cd");
 			System.out.println(deliver_cd);
 			
@@ -107,11 +108,12 @@ public class DeliverController {
 */			
 		@RequestMapping(value = "/deliver/updatePro", method = RequestMethod.POST)
 		public String updatePro(DeliverDTO deliverDTO) {
+			System.out.println("/deliver/updatePro");
 			
 			deliverService.updateDeliver(deliverDTO);
 			
 			// 주소변경하면서 이동
-			return "redirect:deliver/Deliver";
+			return "redirect:/deliver/Deliver";
 		}
 		
 		

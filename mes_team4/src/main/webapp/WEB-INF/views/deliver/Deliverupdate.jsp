@@ -17,7 +17,7 @@
 	function sub() {
 		
 		
-		document.DeliverUpdate.action="${pagaContext.request.contextPath}/deliver/updatePro"
+	//	document.DeliverUpdate.action=""
 		document.DeliverUpdate.submit();
 		setTimeout(function() { 
 			opener.parent.location.reload();
@@ -42,7 +42,7 @@
 	 <br>
 	 
 	 
-	<form name="DeliverUpdate" method="post">
+	<form name="DeliverUpdate" method="post" action="${pageContext.request.contextPath}/deliver/updatePro">
 		<input type="hidden" value="">
 		
 		<table id="vendortable" class="table table-striped">
@@ -64,7 +64,7 @@
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="deliver_cd" value="${deliverDTO.deliver_cd }"></td>
+					<td><input type="text" name="deliver_cd" value="${deliverDTO.deliver_cd } " readonly="readonly"></td>
 					<td><input type="text" name="business_cd" value="${deliverDTO.business_cd }"></td>					
 					<td><input type="text" name="order_cd" value="${deliverDTO.order_cd }"></td>
 					<td><input type="text" name="product_cd" value="${deliverDTO.product_cd }"></td>
