@@ -59,6 +59,20 @@ public class WHDAOImpl implements WHDAO{
 		
 	}
 
+	@Override
+	public Integer getMNum() {
+		System.out.println("BusinessDAOImpl getMNum()");
+		
+		return sqlSession.selectOne(namespace+".getMNum");
+	}
+
+	@Override
+	public Integer getPNum() {
+		System.out.println("BusinessDAOImpl getPNum()");
+		
+		return sqlSession.selectOne(namespace+".getPNum");
+	}
+
 
 
 	

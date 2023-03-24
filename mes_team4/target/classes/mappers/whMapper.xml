@@ -16,6 +16,14 @@
         select max(wh_cd) from warehouse
     </select>
 	
+	<select id="getMNum" resultType="java.lang.Integer">
+	select max(SUBSTR(wh_cd, 2)) from warehouse where wh_cd like 'M%'
+	</select>
+
+	<select id="getPNum" resultType="java.lang.Integer"> 
+		select max(SUBSTR(wh_cd, 2)) from warehouse where wh_cd like 'P%'
+	</select>
+	
 	<select id="getWhList" resultType="com.itwillbs.domain.WHDTO">
         select * from warehouse
         order by wh_cd desc 

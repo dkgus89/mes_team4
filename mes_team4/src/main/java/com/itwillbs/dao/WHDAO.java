@@ -11,6 +11,10 @@ public interface WHDAO {
 	
 	public Integer getMaxNum();
 	
+	public Integer getMNum();
+	
+	public Integer getPNum();
+	
 	public List<WHDTO> getWhList(PageDTO pageDTO);
 	
 	public int getWhCount();
