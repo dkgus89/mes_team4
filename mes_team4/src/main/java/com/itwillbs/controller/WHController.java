@@ -80,17 +80,37 @@ public class WHController {
 	}
 	
 	@RequestMapping(value = "/wh/whupdate", method = RequestMethod.GET)
-	public String whupdate() {
+	public String whupdate(HttpServletRequest request, Model model) {
 		System.out.println("WHController whupdate()");
+		String wh_cd=request.getParameter("wh_cd");
+		WHDTO whDTO=whService.getwh(wh_cd);
+		
+		model.addAttribute("whDTO", whDTO);
 		
 		return "warehouse/WhUpdate";
 	}
 	
 	@RequestMapping(value = "/wh/whupdatePro", method = RequestMethod.POST)
-	public String whupdatePro(WHDTO whdto) {
+	public String whupdatePro(WHDTO whDTO) {
 		System.out.println("WHController whupdatePro()");
 		
-		whService.updatewh(whdto);
+		whService.updatewh(whDTO);
+		
+		return "redirect:/wh/whpage";
+	}
+	
+	@RequestMapping(value = "/wh/whdelete", method = RequestMethod.GET)
+	public String whdelete(HttpServletRequest request) {
+		System.out.println("WHController whdelete()");
+		String chbox[]=request.getParameterValues("chbox");
+		String wh_cd = null;
+		if(chbox!=null){
+			  for(int i=0;i<chbox.length;i++){
+		   
+				wh_cd=chbox[i];
+				whService.deletewh(wh_cd);
+			  }
+	       }
 		
 		return "redirect:/wh/whpage";
 	}

@@ -19,7 +19,11 @@ public interface WHDAO {
 	
 	public int getWhCount();
 	
-	public void updatewh(WHDTO whdto);
+	public void deletewh(String wh_cd);
+
+	public WHDTO getwh(String wh_cd);
+
+	public void updatewh(WHDTO whDTO);
 	
 
 }

@@ -18,8 +18,13 @@
     	window.open("whinsert","창고등록팝업","width=1000, height=500, top=200, left=200");
 	}
 
-	function updatePopup(){
-    	window.open("whupdate","수정","width=1000, height=500, top=200, left=200");
+	function updatePopup(cd){
+    	window.open("${pageContext.request.contextPath}/wh/whupdate?wh_cd="+cd,"수정","width=1000, height=500, top=200, left=200");
+	}
+	
+	function chdelete(){
+		document.whlist.action="${pageContext.request.contextPath}/wh/whdelete";
+		document.whlist.submit();
 	}
 
 </script>
@@ -32,15 +37,15 @@
 	
 	<div class="wrap2">
 	  <button class="button2" onclick="insertPopup();">등록</button>
-	  <button class="button2" onclick="updatePopup();">수정</button>
-	  <button class="button2">삭제</button>
+<!-- 	  <button class="button2" onclick="updatePopup();">수정</button> -->
+	  <button class="button2"  onclick="chdelete();">삭제</button>
 	  <button class="button2">조회</button>
 	  
 	 </div><br>
 	 <br>
 	 
 	 
-	<form method="post">
+	<form name="whlist">
 		<input type="hidden" value="">
 		
 		<table id="vendortable" class=" table table-striped">
@@ -53,19 +58,23 @@
 					<th>창고연락처</th>
 					<th>창고사용여부</th>
 					<th>적요</th>
+					<th>수정</th>
 				</tr>
 			</thead>
 			
 			<tbody>
 			<c:forEach var="whDTO" items="${whList }">
 				<tr>
-					<td><input type="checkbox" id="checkbox"></td>
+					<td><input type="checkbox" id="checkbox" name="chbox" value="${whDTO.wh_cd }"></td>
 					<td>${whDTO.wh_cd}</td>
 					<td>${whDTO.wh_name}</td>
 					<td>${whDTO.wh_dv}</td>
 					<td>${whDTO.wh_tel}</td>
 					<td>${whDTO.wh_use}</td>
 					<td>${whDTO.remarks}</td>
+					<td>
+					<button onclick="updatePopup('${whDTO.wh_cd}');">수정</button>
+					</td>
 				</tr>
 			</c:forEach>			
 			</tbody>

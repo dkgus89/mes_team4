@@ -34,7 +34,17 @@
         select count(*) from warehouse 
     </select>
 	
-	 <update id="updatewh">
+    <delete id="deletewh">
+    delete from warehouse
+    where wh_cd = #{wh_cd}       
+    </delete> 
+    
+    <select id="getwh" resultType="com.itwillbs.domain.WHDTO">
+        select * from warehouse
+        where wh_cd = #{wh_cd}
+    </select>
+    
+     <update id="updatewh">
 	 	update warehouse set wh_name = #{wh_name}, wh_dv = #{wh_dv}, wh_addr = #{wh_addr}, 
 	 	                     wh_tel = #{wh_tel}, wh_use = #{wh_use}, remarks = #{remarks} 
 	 	where wh_cd = #{wh_cd}                     
@@ -45,17 +55,16 @@
 <!-- 		where id = #{id} and pass = #{pass}  -->
 <!-- 	</select> -->
 
-<!-- 	<select id="selectBlog" parameterType="int" resultType="Blog">
-        select * from Blog where id = #{id}
-    </select>
+<!-- 	<select id="selectBlog" parameterType="int" resultType="Blog"> -->
+<!--         select * from Blog where id = #{id} -->
+<!--     </select> -->
     
-    <insert id="">
-    </insert>
+<!--     <insert id=""> -->
+<!--     </insert> -->
     
    
     
-    <delete id="">
-    </delete> -->
+    
     
 </mapper>
 

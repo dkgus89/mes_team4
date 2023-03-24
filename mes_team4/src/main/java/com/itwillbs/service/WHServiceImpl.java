@@ -75,16 +75,33 @@ public class WHServiceImpl implements WHService{
 	}
 
 	
+
+
 	@Override
-	public void updatewh(WHDTO whdto) {
+	public void deletewh(String wh_cd) {
+		System.out.println("WHServiceImpl deletewh()");
+		
+		whDAO.deletewh(wh_cd);
+	}
+
+	@Override
+	public WHDTO getwh(String wh_cd) {
+		System.out.println("WHServiceImpl getwh()");
+		
+		return whDAO.getwh(wh_cd);
+	}
+
+	@Override
+	public void updatewh(WHDTO whDTO) {
 		System.out.println("WHServiceImpl updatewh()");
 		
-		whDAO.updatewh(whdto);
-	
-
-
-
-	
+		whDAO.updatewh(whDTO);
 	}
+
+	
+
+	
+
+
 
 }

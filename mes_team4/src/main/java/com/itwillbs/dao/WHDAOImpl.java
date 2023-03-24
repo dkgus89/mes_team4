@@ -51,27 +51,46 @@ public class WHDAOImpl implements WHDAO{
 		return sqlSession.selectOne(namespace+".getWhCount");
 	}
 	
-	@Override
-	public void updatewh(WHDTO whdto) {
-		System.out.println("WHDAOImpl updatewh()");
-		
-		sqlSession.update(namespace+".updatewh", whdto);
-		
-	}
+
 
 	@Override
 	public Integer getMNum() {
-		System.out.println("BusinessDAOImpl getMNum()");
+		System.out.println("WHDAOImpl getMNum()");
 		
 		return sqlSession.selectOne(namespace+".getMNum");
 	}
 
 	@Override
 	public Integer getPNum() {
-		System.out.println("BusinessDAOImpl getPNum()");
+		System.out.println("WHDAOImpl getPNum()");
 		
 		return sqlSession.selectOne(namespace+".getPNum");
 	}
+
+	@Override
+	public void deletewh(String wh_cd) {
+		System.out.println("WHDAOImpl deletewh()");
+		
+		sqlSession.delete(namespace+".deletewh", wh_cd);
+		
+	}
+
+	@Override
+	public WHDTO getwh(String wh_cd) {
+		System.out.println("WHDAOImpl getwh()");
+		return sqlSession.selectOne(namespace+".getwh",wh_cd);
+	}
+
+	@Override
+	public void updatewh(WHDTO whDTO) {
+		System.out.println("WHDAOImpl updatewh()");
+		
+		sqlSession.update(namespace+".updatewh", whDTO);
+	}
+
+
+
+
 
 
 
