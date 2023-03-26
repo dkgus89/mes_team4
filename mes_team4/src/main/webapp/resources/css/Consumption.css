@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+	#pagingControl {
+		text-align: center; 
+		margin: 20px 0 0 0;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	#pagingControl a {
+		padding: 2px 5px; 
+		text-decoration: none;
+		color: #333; 
+		margin: 0 5px;}
+
+	#pagingControl a:hover {
+		font-weight: bold; 
+		color: #F90;
+		text-decoration: underline;
+	}
+	
+	 table tbody tr:hover {
+          background-color: lightgray;
+          cursor:pointer;
+     }

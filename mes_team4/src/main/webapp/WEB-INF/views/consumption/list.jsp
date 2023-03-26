@@ -27,12 +27,12 @@
 
 
 	
-	<div id="contents">
+<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
 	<h2>소요량 관리 </h2><br>
 	<div class="wrap2">
-	  <button class="button2" onclick="insert();"">추가</button>
+	  <button class="button2" onclick="insert();">추가</button>
 	  <button class="button2">수정</button>
 	  <button class="button2">저장</button>
 	  <button class="button2">삭제</button>
@@ -80,11 +80,7 @@
 			
 			</tbody>
 		</table>
-		<button type="button" id="test">테스트</button>
-		
-		<div id="array"></div>
-	
-	
+
 	</form>
 	
 	
