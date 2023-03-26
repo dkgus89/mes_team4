@@ -15,7 +15,7 @@
 <script>
 	function insert(){
 	var link = "${pageContext.request.contextPath}/consmpt/insert";     
-	var popupWidth = 1000;
+	var popupWidth = 900;
 	var popupHeight = 700;
 	var popupX = (window.screen.width/2) - (popupWidth/2);
 	var popupY= (window.screen.height/2) - (popupHeight/2);

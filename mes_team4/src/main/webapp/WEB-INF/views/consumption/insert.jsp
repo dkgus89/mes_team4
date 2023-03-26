@@ -52,7 +52,7 @@
 			var link = '${pageContext.request.contextPath}/consmpt/prlist?trIndex='+trIndex+'&product_dv='+product_dv;     
 			var popupWidth = 500;
 			var popupHeight = 700;
-			var popupX = (window.screen.width/2) - (popupWidth/2);
+			var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
 			var popupY= (window.screen.height/2) - (popupHeight/2);
 			
 		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
@@ -66,7 +66,7 @@
 			var link = '${pageContext.request.contextPath}/consmpt/prlist?trIndex='+trIndex+'&product_dv='+product_dv;     
 			var popupWidth = 500;
 			var popupHeight = 700;
-			var popupX = (window.screen.width/2) - (popupWidth/2);
+			var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
 			var popupY= (window.screen.height/2) - (popupHeight/2);
 			
 		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
