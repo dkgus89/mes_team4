@@ -13,6 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
 <script type="text/javascript">
+
 // function sub(){
 // 	document.LineUpdate.action="${pageContext.request.contextPath}/line/lineupdatepro";
 // 	document.LineUpdate.submit();
@@ -24,6 +25,7 @@
 // 	function rst(){
 // 	document.LineUpdate.reset();
 // 	}
+
 </script>
 
 </head>
@@ -34,39 +36,44 @@
 
 	<h2 class="inserttitle"> 품목정보수정 </h2><br>
 <!-- 	<div class="wrap2"> -->
-	<button class="button2" onclick="sub()">완료</button>
-	<button class="button2" onclick="rst()">초기화</button>	  
+<!-- 	<button class="button2" onclick="sub()">완료</button>
+	<button class="button2" onclick="rst()">초기화</button>	   -->
 <!-- 	 </div><br> -->
-	 <br><br>
 	 
-	 
-	<form name="LineUpdate" method="post">
+	<form name="productUpdate" method="post">
 		<input type="hidden" value="">
 		
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>라인코드</th>
-					<th>라인명</th>
-					<th>공정</th>
-					<th>가동상태</th>
-					<th>적요</th>
+					<th style="text-align:center">제품구분</th>
+					<th style="text-align:center">제품코드</th>
+					<th style="text-align:center">제품명</th>
+					<th style="text-align:center">거래처코드</th>
+					<th style="text-align:center">규격</th>
+					<th style="text-align:center">재고단위</th>
+					<th style="text-align:center">적요</th>
 				</tr>
 			</thead>
 			
 			<tbody>
-				<tr><td><input type="text" name="line_cd" value="${LineDTO.line_cd}" readonly></td>
-					<td><input type="text" name="line_name" value="${LineDTO.line_name}"></td>
-					<td><input type="text" name="line_process" value="${LineDTO.line_process}"></td>  					
-					<td><input type="text" name="remarks" value="${LineDTO.remarks}"></td>
+				<tr>
+					<td><input type="text" name="product_dv" value="${productDTO.product_dv }" ></td>
+					<td><input type="text" name="product_cd_name" value="${productDTO.product_cd_name }" readonly></td>
+					<td><input type="text" name="product_name" value="${productDTO.product_name }" ></td>
+					<td><input type="text" name="business_cd" value="${productDTO.business_cd }" ></td>
+					<td><input type="text" name="product_size" value="${productDTO.product_size }" ></td>
+					<td><input type="text" name="product_unit" value="${productDTO.product_unit }"></td>
+					<td><input type="text" name="remarks" value="${productDTO.remarks }"></td>
 				</tr>
 
 			</tbody>
 		</table>
 	
 	</form>
-	
-	
+	<br>
+	<button class="button2" onclick="sub()">완료</button>
+	<button class="button2" onclick="rst()">초기화</button>		
 <!-- 본문HTML 입력 끝-->
 	</div>
 </body>

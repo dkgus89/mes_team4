@@ -17,8 +17,11 @@ function showPopup() {
 	window.open("prodinsert","추가팝업","width=400,height=400,top=200,left=200");
 }
 function chdelete() {
-	document.productList.action="${pageContext.request.contextPath}/product/productdelete";
+	document.productList.action="${pageContext.request.contextPath}/product/proddelete";
 	document.productList.submit();
+}
+function updatePopup(cd) {
+	 window.open("${pageContext.request.contextPath}/product/produpdate?product_cd_name="+cd,"produpdate","width=1500, height=300, top=200, left=200");
 }
 </script>
 <!-- 자바스크립트 입력 끝-->
@@ -65,7 +68,7 @@ function chdelete() {
 					<td>${productDTO.product_size }</td>
 					<td>${productDTO.product_unit }</td>
 					<td>${productDTO.remarks }</td>
-					<td><button class="button2" onclick="updatePopup();">수정</td>
+					<td><button class="button2" onclick="updatePopup();">수정</button></td>
 				</tr>
 					</c:forEach>
 			</tbody>

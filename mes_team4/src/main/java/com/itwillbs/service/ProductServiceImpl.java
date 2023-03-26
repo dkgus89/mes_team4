@@ -47,5 +47,10 @@ public class ProductServiceImpl implements ProductService{
 		
 		productDAO.deleteProduct(product_cd_name);
 	}
+	@Override
+	public ProductDTO getProduct(String product_cd_name) {
+		
+		return null;
+	}
 
 }

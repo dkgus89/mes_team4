@@ -4,12 +4,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.service.ProductService;
@@ -71,30 +73,39 @@ public class ProductController {
 	public String prodinsertPro(ProductDTO productDTO) {
 		System.out.println("ProductController prodinsertPro()");
 		//회원가입 처리 부모인터페이스 MemberService, 
-		//           자식클래스 MemberServiceImpl
+		//           자식클래스   MemberServiceImpl
 		// 리턴할형 없음 insertMember(MemberDTO memberDTO) 메서드 정의
 		// 메서드 호출
 		productService.insertProduct(productDTO);
-		
 //		주소줄 변경하면서 이동
 		return "redirect:/product/prodpage";
 	}
 	
-	@RequestMapping(value = "/product/productdelete", method = RequestMethod.GET)
-	public String productdelete(HttpServletRequest request) {
+	@RequestMapping(value = "/product/proddelete", method = RequestMethod.GET)
+	public String proddelete(HttpServletRequest request) {
 		String chbox[]=request.getParameterValues("chbox");
 		String product_cd_name = null;
 		if(chbox!=null){
 			  for(int i=0;i<chbox.length;i++){
-		   
 				  product_cd_name=chbox[i];
 				productService.deleteProduct(product_cd_name);
 			  }
 	       }			
-		
 		// 주소변경 하면서 이동
 		return "redirect:/product/prodpage";
 	}
 	
+	@RequestMapping(value = "/product/produpdate", method = RequestMethod.GET)
+	public String update(HttpSession session, Model model) {
+		String product_cd_name=(String)session.getAttribute("product_cd_name");
+		System.out.println("세션 product_cd_name :" + product_cd_name);
+		
+		ProductDTO productDTO=productService.getProduct(product_cd_name);
+
+		model.addAttribute("productDTO", productDTO);
+		
+		// 주소변경 없이 이동
+		return "product/ProductUpdate";
+	}
 	
 }

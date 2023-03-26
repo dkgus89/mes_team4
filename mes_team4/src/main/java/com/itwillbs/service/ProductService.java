@@ -17,4 +17,6 @@ public interface ProductService {
 	public int getProductCount();
 
 	public void deleteProduct(String product_cd_name);
+
+	public ProductDTO getProduct(String product_cd_name);
 }
