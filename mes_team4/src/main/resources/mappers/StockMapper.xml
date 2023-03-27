@@ -35,6 +35,27 @@
     	delete from stock
     	where stock_cd = #{stock_cd}
     </delete>
+    
+    <resultMap type="map" id="stockmap">
+    	<result column="stock_cd" property="stock_cd"/>
+		<result column="wh_cd" property="wh_cd"/>
+		<result column="wh_name" property="wh_name"/>
+		<result column="rec_schedule_cd" property="rec_schedule_cd"/>
+		<result column="rec_date" property="rec_date"/>
+		<result column="product_cd" property="product_cd"/>
+		<result column="product_name" property="product_name"/>
+		<result column="stock_count" property="stock_count"/>
+    </resultMap>
+    
+    <select id="getStockMap" resultMap="stockmap">
+			select s.stock_cd, s.wh_cd, w.wh_name, s.rec_schedule_cd, r.rec_date, s.product_cd, p.product_name, s.stock_count
+			from stock s join warehouse w
+						 on s.wh_cd = w.wh_cd
+      			      	 join receive_schedule r
+       			   		 on s.rec_schedule_cd=r.rec_schedule_cd
+       			    	 join product p
+       			      	 on s.product_cd=p.product_cd;
+    </select>
 	    
 </mapper>
 

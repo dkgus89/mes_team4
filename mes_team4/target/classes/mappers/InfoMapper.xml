@@ -24,9 +24,6 @@
         	<if test="selectcol == 'line_process'.toString()">
         	where line_process like CONCAT('%',#{search},'%')
         	</if>
-        	<if test="selectcol == 'line_status'.toString()">
-        	where line_status like CONCAT('%',#{search},'%')
-        	</if>
         </if>
         </if>
     	limit #{startRow} , #{pageSize}
@@ -34,6 +31,19 @@
     
     <select id="getLineCount" resultType="java.lang.Integer">
         select count(*) from line 
+        <if test="search != null">
+        <if test="selectcol != null">
+        	<if test="selectcol == 'line_cd'.toString()">
+        	where line_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="selectcol == 'line_name'.toString()">
+        	where line_name like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="selectcol == 'line_process'.toString()">
+        	where line_process like CONCAT('%',#{search},'%')
+        	</if>
+        </if>
+        </if>
     </select>
 
 	<select id="getLine" resultType="com.itwillbs.domain.LineDTO">

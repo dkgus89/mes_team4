@@ -1,6 +1,7 @@
 package com.itwillbs.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -63,6 +64,13 @@ public class StockServiceImpl implements StockService{
 			System.out.println("stockServiceImpl deleteStock()");
 			
 			stockDAO.deleteStock(stock_cd);
+		}
+
+		@Override
+		public List<Map<String, Object>> getStockMap() {
+			System.out.println("stockServiceImpl getStockMap()");
+			
+			return stockDAO.getStockMap();
 		}
 
 }

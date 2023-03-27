@@ -50,18 +50,23 @@ function sub(){
 					<th>실적코드</th>
 					<th>작업지시코드</th>
 					<th>라인코드</th>
-					<th>품목코드</th>
-					<th>수주코드</th>					
+					<th>품목코드</th>				
 				</tr>
 			</thead>
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="perform_cd" value="${PerformDTO.perform_cd} " readonly></td>
-					<td><input type="text" name="instruction_code" value="${PerformDTO.instruction_code}"></td>
-    				<td><input type="text" name="line_cd" value="${PerformDTO.line_cd}"></td>
-    				<td><input type="text" name="product_cd" value="${PerformDTO.product_cd}"></td>
-    				<td><input type="text" name="order_cd" value="${PerformDTO.order_cd}"></td>    				
+					<td><input type="text" name="perform_cd" value="${perform.perform_cd} " readonly></td>
+					<td><select name="instruction_code">
+							<option value="${perform.instruction_code}" selected>${perform.instruction_code}</option>
+								<c:forEach var="dto" items="${instMap}">
+									<c:if test="${dto.instruction_code != perform.instruction_code}">											
+									<option value="${dto.instruction_code}">${dto.instruction_code}</option>	
+									</c:if>						
+								</c:forEach>
+      					</select></td>
+    				<td><input type="text" name="line_cd" value="${perform.line_cd}"></td>
+    				<td><input type="text" name="product_cd" value="${perform.product_cd}"></td>			
 				</tr>
 								
 			</tbody>
@@ -82,11 +87,11 @@ function sub(){
 			
 			<tbody>
 				<tr>
-    				<td><input type="date" name="perform_date" value="${PerformDTO.perform_date}"></td>
-    				<td><input type="text" name="fair_prod" value="${PerformDTO.fair_prod}"></td>
-    				<td><input type="text" name="defect_prod" value="${PerformDTO.defect_prod}"></td>
-    				<td><input type="text" name="defect_remarks" value="${PerformDTO.defect_remarks}"></td>
-    				<td><input type="text" name="remarks" value="${PerformDTO.remarks}"></td>
+    				<td><input type="date" name="perform_date" value="${perform.perform_date}"></td>
+    				<td><input type="text" name="fair_prod" value="${perform.fair_prod}"></td>
+    				<td><input type="text" name="defect_prod" value="${perform.defect_prod}"></td>
+    				<td><input type="text" name="defect_remarks" value="${perform.defect_remarks}"></td>
+    				<td><input type="text" name="remarks" value="${perform.remarks}"></td>
 				</tr>
 
 			</tbody>

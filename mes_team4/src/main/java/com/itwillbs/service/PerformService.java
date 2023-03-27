@@ -8,13 +8,13 @@ import com.itwillbs.domain.PerformDTO;
 
 public interface PerformService {
 
-	public List<PerformDTO> getPerformList(PageDTO pageDTO);
+//	public List<PerformDTO> getPerformList(PageDTO pageDTO);
 	
-	public int getPerformCount();
+	public int getPerformCount(PageDTO pageDTO);
 	
 	public void insertPerform(PerformDTO performDTO);
 	
-	public PerformDTO getPerform(String perform_cd);
+//	public PerformDTO getPerform(String perform_cd);
 	
 	public void updatePerform(PerformDTO performDTO);
 	
@@ -22,4 +22,8 @@ public interface PerformService {
 	
 	//map
 	public List<Map<String, Object>> getInstMap();
+
+	public List<Map<String, Object>> getPerformMap(PageDTO pageDTO);
+
+	public Map<String, Object> getPerform(String perform_cd);
 }

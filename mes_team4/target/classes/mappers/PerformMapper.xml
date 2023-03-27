@@ -8,26 +8,55 @@
 	
 	<insert id="insertPerform">
     	insert into performance
-    	values(#{perform_cd},#{instruction_code},#{line_cd},#{order_cd},#{product_cd},#{perform_date},#{fair_prod},#{defect_prod},#{defect_remarks},#{remarks})
+    	values(#{perform_cd},#{instruction_code},#{line_cd},#{product_cd},#{perform_date},#{fair_prod},#{defect_prod},#{defect_remarks},#{remarks})
     </insert>
 
-	<select id="getPerformList" resultType="com.itwillbs.domain.PerformDTO" resultMap="map1">
-    	select * from performance
-    	limit #{startRow} , #{pageSize}
-    </select>
+<!-- 	<select id="getPerformList" resultType="com.itwillbs.domain.PerformDTO" resultMap="map1"> -->
+<!--     	select * from performance -->
+<!--     	limit #{startRow} , #{pageSize} -->
+<!--     </select> -->
     
     <select id="getPerformCount" resultType="java.lang.Integer">
-        select count(*) from performance
+        select count(*)
+        from(select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
+		from performance p join line l
+							 on p.line_cd=l.line_cd
+						   join `order` o
+							 on p.instruction_code=o.instruction_code
+				   		   join product d
+                    		 on p.product_cd=d.product_cd
+        <if test="search != null">
+        <if test="selectcol != null">
+        	<if test="selectcol == 'perform_cd'.toString()">
+        	where perform_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="selectcol == 'instruction_code'.toString()">
+        	where p.instruction_code like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="selectcol == 'line_cd'.toString()">
+        	where p.line_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="selectcol == 'product_cd'.toString()">
+        	where p.product_cd like CONCAT('%',#{search},'%')
+        	</if>
+        </if>
+        </if>) a
     </select>
 
-	<select id="getPerform" resultType="com.itwillbs.domain.PerformDTO">
-        select * from performance
+	<select id="getPerform" resultMap="map2">
+        select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
+		from performance p join line l
+							 on p.line_cd=l.line_cd
+						   join `order` o
+							 on p.instruction_code=o.instruction_code
+				   		   join product d
+                    		 on p.product_cd=d.product_cd
         where perform_cd = #{perform_cd}
     </select>
     
     <update id="updatePerform">
     	update performance
-    	set instruction_code = #{instruction_code}, line_cd = #{line_cd}, order_cd = #{order_cd}, product_cd = #{product_cd}, perform_date = #{perform_date}, fair_prod = #{fair_prod}, defect_prod = #{defect_prod}, defect_remarks = #{defect_remarks}, remarks = #{remarks}
+    	set instruction_code = #{instruction_code}, line_cd = #{line_cd}, product_cd = #{product_cd}, perform_date = #{perform_date}, fair_prod = #{fair_prod}, defect_prod = #{defect_prod}, defect_remarks = #{defect_remarks}, remarks = #{remarks}
     	where perform_cd = #{perform_cd}
     </update>
     
@@ -36,42 +65,58 @@
     	where perform_cd = #{perform_cd}
     </delete>
     
-<!--     https://mybatis.org/mybatis-3/ -->
-	<resultMap type="map" id="map1">
-<!-- 		column="디비열이름" property="멤버변수이름" -->
 
-<!-- 		order -->
-		<result column="perform_cd" property="perform_cd"/>
+	<resultMap type="map" id="map1">
 		<result column="instruction_code" property="instruction_code"/>
 		<result column="line_cd" property="line_cd"/>
-		<result column="order_cd" property="order_cd"/>
 		<result column="product_cd" property="product_cd"/>
-		<result column="perform_date" property="perform_date"/>
-		<result column="fair_prod" property="fair_prod"/>
-		<result column="defect_prod" property="defect_prod"/>
-		<result column="defect_remarks" property="defect_remarks"/>
-		
-<!-- 		perform -->
-		<result column="perform_cd" property="perform_cd"/>
-		<result column="instruction_code" property="instruction_code"/>
-		<result column="line_cd" property="line_cd"/>
-		<result column="order_cd" property="order_cd"/>
-		<result column="product_cd" property="product_cd"/>
-		<result column="perform_date" property="perform_date"/>
-		<result column="fair_prod" property="fair_prod"/>
-		<result column="defect_prod" property="defect_prod"/>
-		<result column="defect_remarks" property="defect_remarks"/>
-		
-<!-- 		line -->
-		<result column="line_cd" property="line_cd"/>
-		<result column="line_name" property="line_name"/>
-		<result column="line_process" property="line_process"/>
-		<result column="line_status" property="line_status"/>
 	</resultMap>
 
-
     <select id="getInstMap" resultMap="map1">
-    	select instruction_code, line_cd, order_cd, product_cd from `order`
+    	select instruction_code, line_cd, product_cd from `order`
+    </select>
+    
+    <resultMap type="map" id="map2">
+    	<result column="perform_cd" property="perform_cd"/>
+		<result column="instruction_code" property="instruction_code"/>
+		<result column="line_cd" property="line_cd"/>
+		<result column="line_name" property="line_name"/>
+		<result column="product_cd" property="product_cd"/>
+		<result column="product_name" property="product_name"/>
+		<result column="perform_date" property="perform_date"/>
+		<result column="instruction_qt" property="instruction_qt"/>
+		<result column="fair_prod" property="fair_prod"/>
+		<result column="defect_prod" property="defect_prod"/>
+		<result column="defect_remarks" property="defect_remarks"/>
+		<result column="remarks" property="remarks"/>
+    </resultMap>
+    
+    <select id="getPerformMap" resultMap="map2">
+    	select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
+		from performance p join line l
+							 on p.line_cd=l.line_cd
+						   join `order` o
+							 on p.instruction_code=o.instruction_code
+				   		   join product d
+                    		 on p.product_cd=d.product_cd
+        <if test="search != null">
+    	<if test="selectcol != null">
+    		<if test="selectcol == 'perform_cd'.toString()">
+        	where perform_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="selectcol == 'instruction_code'.toString()">
+        	where p.instruction_code like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="selectcol == 'line_cd'.toString()">
+        	where p.line_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="selectcol == 'product_cd'.toString()">
+        	where p.product_cd like CONCAT('%',#{search},'%')
+        	</if>
+        </if>
+        </if>
+        order by perform_cd
+        limit #{startRow} , #{pageSize}
     </select>
 	    
 </mapper>

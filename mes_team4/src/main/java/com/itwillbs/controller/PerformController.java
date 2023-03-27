@@ -27,6 +27,9 @@ public class PerformController {
 		@RequestMapping(value = "/perform/perform", method = RequestMethod.GET)
 		public String perform(HttpServletRequest request, Model model) {
 			System.out.println("PerformController perform()");
+			//검색어 가져오기
+			String search=request.getParameter("search");
+			String selectcol=request.getParameter("selectcol");
 			
 			// 한 화면에 보여줄 글 개수 설정
 			int pageSize=5;
@@ -43,11 +46,18 @@ public class PerformController {
 			pageDTO.setPageSize(pageSize);
 			pageDTO.setPageNum(pageNum);
 			pageDTO.setCurrentPage(currentPage);
+			//검색어
+			pageDTO.setSearch(search);
+			pageDTO.setSelectcol(selectcol);
 			
-			List<PerformDTO> PerformList=performService.getPerformList(pageDTO);
+//			List<PerformDTO> PerformList=performService.getPerformList(pageDTO);
 						
+			//메서드 호출
+			List<Map<String, Object>> PerformMap
+			     =performService.getPerformMap(pageDTO);
+			
 			//페이징 처리
-			int count = performService.getPerformCount();
+			int count = performService.getPerformCount(pageDTO);
 			int pageBlock=10;
 			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 			int endPage=startPage+pageBlock-1;
@@ -62,7 +72,11 @@ public class PerformController {
 			pageDTO.setEndPage(endPage);
 			pageDTO.setPageCount(pageCount);
 			
-			model.addAttribute("PerformList", PerformList);
+			
+			//model 담아서 이동
+			model.addAttribute("PerformMap", PerformMap);
+			
+//			model.addAttribute("PerformList", PerformList);
 			model.addAttribute("pageDTO", pageDTO);			
 			
 			// 주소변경 없이 이동
@@ -74,10 +88,10 @@ public class PerformController {
 		public String performInsert(Model model) {
 			
 			//메서드 호출
-			List<Map<String, Object>> InstMap
+			List<Map<String, Object>> instMap
 			     =performService.getInstMap();
 			//model 담아서 이동
-			model.addAttribute("InstMap", InstMap);
+			model.addAttribute("instMap", instMap);
 			
 			// 주소변경 없이 이동
 			// /WEB-INF/views/perform/PerformInsert.jsp
@@ -99,9 +113,21 @@ public class PerformController {
 		@RequestMapping(value = "/perform/performupdate", method = RequestMethod.GET)
 		public String performUpdate(HttpServletRequest request, Model model) {
 			String perform_cd=request.getParameter("perform_cd");
-			PerformDTO performDTO=performService.getPerform(perform_cd);
+//			PerformDTO performDTO=performService.getPerform(perform_cd);
 			
-			model.addAttribute("PerformDTO", performDTO);
+			//메서드 호출
+			List<Map<String, Object>> instMap
+			     =performService.getInstMap();
+			//model 담아서 이동
+			model.addAttribute("instMap", instMap);
+			
+			//메서드 호출
+			Map<String, Object> perform
+			     =performService.getPerform(perform_cd);
+			
+			//model 담아서 이동
+			model.addAttribute("perform", perform);
+//			model.addAttribute("PerformDTO", performDTO);
 			
 			// 주소변경 없이 이동
 			// /WEB-INF/views/perform/PerformUpdate.jsp
@@ -119,7 +145,7 @@ public class PerformController {
 		
 		@RequestMapping(value = "/perform/performdelete", method = RequestMethod.GET)
 		public String performDelete(HttpServletRequest request) {
-			String chbox[]=request.getParameterValues("chbox");
+			String chbox[]=request.getParameterValues("rowcheck");
 			String perform_cd = null;
 			if(chbox!=null){
 				  for(int i=0;i<chbox.length;i++){

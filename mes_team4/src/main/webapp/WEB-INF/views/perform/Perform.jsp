@@ -23,6 +23,18 @@ function chdelete(){
 	document.performlist.action="${pageContext.request.contextPath}/perform/performdelete";
 	document.performlist.submit();
 }
+function allCheck(){
+	var ac = document.performlist.allcheck;
+	var rc = document.performlist.rowcheck;
+	if(ac.checked == true){
+		for(i=0; i<rc.length; i++){
+			rc[i].checked=true;}
+	}else {
+		for(i=0;i<rc.length;i++){
+			rc[i].checked=false;}
+	} }
+	
+	
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -39,7 +51,6 @@ function chdelete(){
 							<option value="instruction_code">작업지시코드</option>
 							<option value="line_cd">라인코드</option>
 							<option value="product_cd">품목코드</option>
-							<option value="order_cd">수주코드</option>
       			</select>
 				<input type="text" name="search" class="input_box">
 				<input type="submit" value="search" class="button2">
@@ -61,13 +72,16 @@ function chdelete(){
 		<table id="vendortable" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>선택</th>
+					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
+					<th>번호</th>
 					<th>실적코드</th>
 					<th>작업지시코드</th>
 					<th>라인코드</th>
+					<th>라인명</th>
 					<th>품목코드</th>
-					<th>수주코드</th>
+					<th>품목명</th>
 					<th>실적일자</th>
+					<th>지시수량</th>
 					<th>양품</th>
 					<th>불량</th>
 					<th>불량사유</th>
@@ -77,21 +91,24 @@ function chdelete(){
 			</thead>
 			
 			<tbody>
-				<c:forEach var="PerformDTO" items="${PerformList }">
+				<c:forEach var="dto" items="${PerformMap}" varStatus="status">
 
 				<tr style="text-align: center; font-size: 0.9rem">
-				<td><input type="checkbox" name="chbox" value="${PerformDTO.perform_cd}"></td>
-				<td>${PerformDTO.perform_cd}</td>
-    			<td>${PerformDTO.instruction_code}</td>
-    			<td>${PerformDTO.line_cd}</td>
-    			<td>${PerformDTO.product_cd}</td>
-    			<td>${PerformDTO.order_cd}</td>    			
-    			<td>${PerformDTO.perform_date}</td>
-    			<td>${PerformDTO.fair_prod}</td>
-    			<td>${PerformDTO.defect_prod}</td>
-    			<td>${PerformDTO.defect_remarks}</td>
-    			<td>${PerformDTO.remarks}</td>
-    			<td><button class="button2" onclick="showPopup2('${PerformDTO.perform_cd}');">수정</button></td>
+				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.perform_cd}"></td>
+				<td>${status.count}</td>
+				<td>${dto.perform_cd}</td>
+    			<td>${dto.instruction_code}</td>
+    			<td>${dto.line_cd}</td>
+    			<td>${dto.line_name}</td>
+    			<td>${dto.product_cd}</td> 
+    			<td>${dto.product_name}</td> 			
+    			<td>${dto.perform_date}</td>
+    			<td>${dto.instruction_qt}</td>
+    			<td>${dto.fair_prod}</td>
+    			<td>${dto.defect_prod}</td>
+    			<td>${dto.defect_remarks}</td>
+    			<td>${dto.remarks}</td>
+    			<td><button class="button2" onclick="showPopup2('${dto.perform_cd}');">수정</button></td>
     			</tr>
    			 
 				</c:forEach>				
@@ -102,15 +119,15 @@ function chdelete(){
 	
 <!-- 페이징 -->
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/perform/perform?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
+<a href="${pageContext.request.contextPath}/perform/perform?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}&selectcol=${pageDTO.selectcol}">[10페이지 이전]</a>
 </c:if>
 
 <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/perform/perform?pageNum=${i}">${i}</a> 
+<a href="${pageContext.request.contextPath}/perform/perform?pageNum=${i}&search=${pageDTO.search}&selectcol=${pageDTO.selectcol}">${i}</a> 
 </c:forEach>
 
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/perform/perform?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
+<a href="${pageContext.request.contextPath}/perform/perform?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}&selectcol=${pageDTO.selectcol}">[10페이지 다음]</a>
 </c:if>	
 	
 <!-- 본문HTML 입력 끝-->

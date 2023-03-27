@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +43,7 @@ public class StockController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
 		
-		List<StockDTO> StockList=stockService.getStockList(pageDTO);
+//		List<StockDTO> StockList=stockService.getStockList(pageDTO);
 					
 		//페이징 처리
 		int count = stockService.getStockCount();
@@ -60,7 +61,13 @@ public class StockController {
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
 		
-		model.addAttribute("StockList", StockList);
+		//메서드 호출
+		List<Map<String, Object>> StockMap
+		     =stockService.getStockMap();
+		//model 담아서 이동
+		model.addAttribute("StockMap", StockMap);
+		
+//		model.addAttribute("StockList", StockList);
 		model.addAttribute("pageDTO", pageDTO);
 		
 		// 주소변경 없이 이동

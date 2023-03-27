@@ -21,24 +21,24 @@ public class PerformServiceImpl implements PerformService{
 			@Inject
 			private PerformDAO performDAO;
 
-			@Override
-			public List<PerformDTO> getPerformList(PageDTO pageDTO) {
-				System.out.println("PerformServiceImpl getPerformList()");
-				//시작하는 행번호 구하기
-				int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
-				int endRow = startRow+pageDTO.getPageSize()-1;
-				
-				pageDTO.setStartRow(startRow);
-				pageDTO.setEndRow(endRow);
-				
-				return performDAO.getPerformList(pageDTO);
-			}
+//			@Override
+//			public List<PerformDTO> getPerformList(PageDTO pageDTO) {
+//				System.out.println("PerformServiceImpl getPerformList()");
+//				//시작하는 행번호 구하기
+//				int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+//				int endRow = startRow+pageDTO.getPageSize()-1;
+//				
+//				pageDTO.setStartRow(startRow);
+//				pageDTO.setEndRow(endRow);
+//				
+//				return performDAO.getPerformList(pageDTO);
+//			}
 			
 			@Override
-			public int getPerformCount() {
+			public int getPerformCount(PageDTO pageDTO) {
 				System.out.println("PerformServiceImpl getPerformCount()");
 				
-				return performDAO.getPerformCount();
+				return performDAO.getPerformCount(pageDTO);
 			}
 
 			@Override
@@ -48,12 +48,12 @@ public class PerformServiceImpl implements PerformService{
 				performDAO.insertPerform(performDTO);
 			}
 
-			@Override
-			public PerformDTO getPerform(String perform_cd) {
-				System.out.println("PerformServiceImpl getPerform()");
-
-				return performDAO.getPerform(perform_cd);
-			}
+//			@Override
+//			public PerformDTO getPerform(String perform_cd) {
+//				System.out.println("PerformServiceImpl getPerform()");
+//
+//				return performDAO.getPerform(perform_cd);
+//			}
 
 			@Override
 			public void updatePerform(PerformDTO performDTO) {
@@ -74,6 +74,27 @@ public class PerformServiceImpl implements PerformService{
 				System.out.println("PerformServiceImpl getInstMap()");
 				
 				return performDAO.getInstMap();
+			}
+
+			@Override
+			public List<Map<String, Object>> getPerformMap(PageDTO pageDTO) {
+				System.out.println("PerformServiceImpl getPerformMap()");
+				//시작하는 행번호 구하기
+				int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+				int endRow = startRow+pageDTO.getPageSize()-1;
+				
+				pageDTO.setStartRow(startRow);
+				pageDTO.setEndRow(endRow);
+				
+				
+				return performDAO.getPerformMap(pageDTO);
+			}
+
+			@Override
+			public Map<String, Object> getPerform(String perform_cd) {
+				System.out.println("PerformServiceImpl getPerform()");
+				
+				return performDAO.getPerform(perform_cd);
 			}
 									
 }

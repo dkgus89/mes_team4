@@ -49,22 +49,28 @@ function chdelete(){
 					<th>선택</th>
 					<th>재고번호</th>
 					<th>창고코드</th>
+					<th>창고이름</th>
 					<th>입고예정코드</th>
+					<th>입고예정일</th>
 					<th>품목코드</th>
+					<th>품목명</th>
 					<th>재고수량</th>
 					<th>수정</th>
 				</tr>
 			</thead>
 			
 			<tbody>
-				<c:forEach var="StockDTO" items="${StockList}">
+				<c:forEach var="dto" items="${StockMap}">
 
 				<tr>				
 				<td><input type="checkbox" name="chbox" value="${StockDTO.stock_cd}"></td>
-				<td>${StockDTO.stock_cd}</td>
-				<td>${StockDTO.wh_cd}</td>
-				<td>${StockDTO.rec_schedule_cd}</td>
-				<td>${StockDTO.product_cd}</td>
+				<td>${dto.stock_cd}</td>
+				<td>${dto.wh_cd}</td>
+				<td>${dto.wh_name}</td>
+				<td>${dto.rec_schedule_cd}</td>
+				<td>${dto.rec_date}</td>
+				<td>${dto.product_cd}</td>
+				<td>${dto.product_name}</td>
 				<td>${StockDTO.stock_count}</td>    			
     			<td><button class="button2" onclick="showPopup2('${StockDTO.stock_cd}');">수정</button></td>
     			</tr>

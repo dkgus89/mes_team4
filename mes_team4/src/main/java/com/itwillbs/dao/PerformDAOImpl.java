@@ -22,21 +22,21 @@ public class PerformDAOImpl implements PerformDAO {
 		// sql구문 전체 이름 정의
 		private static final String namespace="com.itwillbs.mappers.PerformMapper";
 
-		@Override
-		public List<PerformDTO> getPerformList(PageDTO pageDTO) {
-			System.out.println("PerformDAOImpl getPerformList()");
-			// limit #{startRow -1} , #{pageSize} 
-			//        1-1, 10 => 1~10
-			pageDTO.setStartRow(pageDTO.getStartRow()-1);
-			
-			return sqlSession.selectList(namespace+".getPerformList", pageDTO);
-		}
+//		@Override
+//		public List<PerformDTO> getPerformList(PageDTO pageDTO) {
+//			System.out.println("PerformDAOImpl getPerformList()");
+//			// limit #{startRow -1} , #{pageSize} 
+//			//        1-1, 10 => 1~10
+//			pageDTO.setStartRow(pageDTO.getStartRow()-1);
+//			
+//			return sqlSession.selectList(namespace+".getPerformList", pageDTO);
+//		}
 		
 		@Override
-		public int getPerformCount() {
+		public int getPerformCount(PageDTO pageDTO) {
 			System.out.println("PerformDAOImpl getPerformCount()");
 			
-			return sqlSession.selectOne(namespace+".getPerformCount");
+			return sqlSession.selectOne(namespace+".getPerformCount", pageDTO);
 		}
 
 		@Override
@@ -46,12 +46,12 @@ public class PerformDAOImpl implements PerformDAO {
 			sqlSession.insert(namespace+".insertPerform", performDTO);
 		}
 
-		@Override
-		public PerformDTO getPerform(String perform_cd) {
-			System.out.println("PerformDAOImpl getPerform()");
-			
-			return sqlSession.selectOne(namespace+".getPerform", perform_cd);
-		}
+//		@Override
+//		public PerformDTO getPerform(String perform_cd) {
+//			System.out.println("PerformDAOImpl getPerform()");
+//			
+//			return sqlSession.selectOne(namespace+".getPerform", perform_cd);
+//		}
 		
 		@Override
 		public void updatePerform(PerformDTO performDTO) {
@@ -72,6 +72,23 @@ public class PerformDAOImpl implements PerformDAO {
 			System.out.println("InfoDAOImpl getInstMap()");
 			
 			return sqlSession.selectList(namespace+".getInstMap");
+		}
+
+		@Override
+		public List<Map<String, Object>> getPerformMap(PageDTO pageDTO) {
+			System.out.println("InfoDAOImpl getPerformMap()");
+			// limit #{startRow -1} , #{pageSize} 
+			//        1-1, 10 => 1~10
+			pageDTO.setStartRow(pageDTO.getStartRow()-1);
+			
+			return sqlSession.selectList(namespace+".getPerformMap", pageDTO);
+		}
+
+		@Override
+		public Map<String, Object> getPerform(String perform_cd) {
+			System.out.println("InfoDAOImpl getPerform()");
+			
+			return sqlSession.selectOne(namespace+".getPerform", perform_cd);
 		}
 		
 }

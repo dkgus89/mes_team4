@@ -1,6 +1,7 @@
 package com.itwillbs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -63,5 +64,12 @@ public class StockDAOImpl implements StockDAO {
 		System.out.println("InfoDAOImpl deleteStock()");
 		
 		sqlSession.delete(namespace+".deleteStock", stock_cd);
+	}
+
+	@Override
+	public List<Map<String, Object>> getStockMap() {
+		System.out.println("InfoDAOImpl getStockMap()");
+		
+		return sqlSession.selectList(namespace+".getStockMap");
 	}
 }

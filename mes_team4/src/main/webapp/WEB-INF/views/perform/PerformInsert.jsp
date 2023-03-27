@@ -12,7 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-<script type="text/javascript">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<script>
 function sub(){
 document.PerformInsert.action="${pageContext.request.contextPath}/perform/performinsertpro";
 document.PerformInsert.submit();
@@ -24,9 +25,10 @@ setTimeout(function() {
 function rst(){
 document.PerformInsert.reset();
 }
+
+
+
 </script>
-
-
 </head>
 <body>
 
@@ -52,7 +54,6 @@ document.PerformInsert.reset();
 					<th>작업지시코드</th>
 					<th>라인코드</th>
 					<th>품목코드</th>
-					<th>수주코드</th>
 				</tr>
 			</thead>
 			
@@ -60,13 +61,20 @@ document.PerformInsert.reset();
 				<tr>
 					<td><input type="text" name="perform_cd" value=""></td>
 					<td><select name="instruction_code">
-							<c:forEach var="dto" items="${InstMap }">					
+							<c:forEach var="dto" items="${instMap}">					
 								<option value="${dto.instruction_code}">${dto.instruction_code}</option>							
 							</c:forEach>
-      					</select></td>
-    				<td><input type="text" name="line_cd" value=""></td>
-    				<td><input type="text" name="product_cd" value=""></td>
-    				<td><input type="text" name="order_cd" value=""></td>
+      				</select></td>
+    				<td><select name="line_cd">
+							<c:forEach var="dto" items="${instMap}">					
+								<option value="${dto.line_cd}">${dto.line_cd}</option>							
+							</c:forEach>
+      				</select></td>
+      				<td><select name="product_cd">
+							<c:forEach var="dto" items="${instMap}">					
+								<option value="${dto.product_cd}">${dto.product_cd}</option>							
+							</c:forEach>
+      				</select></td>
     			</tr>
 
 			</tbody>
