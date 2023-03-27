@@ -29,8 +29,7 @@ public class OrderDAOImpl implements OrderDAO{
 	public void insertOrder(OrderDTO orderDTO) {
 		System.out.println("OrderDAOImpl insertOrder()");
 		
-		sqlSession.insert(namespace+".insertOrder",orderDTO);
-		
+		sqlSession.insert(namespace+".insertOrder",orderDTO);		
 	}
 
 	@Override
@@ -45,8 +44,7 @@ public class OrderDAOImpl implements OrderDAO{
 	@Override
 	public int getOrderCount() {
 		System.out.println("OrderDAOImpl getOrderCount()");
-		
-		
+				
 		return sqlSession.selectOne(namespace+".getOrderCount");
 	}
 
@@ -54,8 +52,7 @@ public class OrderDAOImpl implements OrderDAO{
 	public void deteleOrder(String cd) {
 		System.out.println("OrderDAOImpl deleteOrder()");
 		
-		sqlSession.delete(namespace+".deleteOrder",cd);
-		
+		sqlSession.delete(namespace+".deleteOrder",cd);		
 	}
 
 	@Override

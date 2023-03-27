@@ -11,7 +11,6 @@ public class OrderDTO {
 	private String business_cd;
 	private String emp_no;
 	private String product_cd;
-	
 
 	public String getOrder_cd() {
 		return order_cd;

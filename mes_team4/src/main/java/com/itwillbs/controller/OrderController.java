@@ -36,15 +36,15 @@ public class OrderController {
 		}
 		// 페이지번호를 => 정수형 변경
 		int currentPage=Integer.parseInt(pageNum);
-//		
+		
 		PageDTO pageDTO=new PageDTO();
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
 		
-//		검색어 가져오기
+		// 검색어 가져오기
 		String search = request.getParameter("search");
-//		검색어를 pageDTO에 담아줌 
+		// 검색어를 pageDTO에 담아줌 
 		pageDTO.setSearch(search);
 		
 		List<OrderDTO> orderList = orderService.getOrderList(pageDTO);
@@ -74,8 +74,7 @@ public class OrderController {
 	
 	@RequestMapping(value = "/order/orderinsert", method = RequestMethod.GET)
 	public String businessinsert(Model model) {
-		
-		
+			
 		List<BusinessDTO> businessList = businessService.getBusinessList();
 		
 		model.addAttribute("businessList",businessList);
@@ -88,7 +87,6 @@ public class OrderController {
 	public String insertPro(OrderDTO orderDTO) {
 		System.out.println("OrderController insertPro()");
 		
-		
 		orderService.insertOrder(orderDTO);
 		
 		return "redirect:/order/ordermain";		
@@ -98,14 +96,11 @@ public class OrderController {
 	public String delete(HttpServletRequest request) {
 		System.out.println("OrderController delete()");
 		
-		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
 		int size = ajaxMsg.length;
 		for(int i=0; i<size; i++) {
 			orderService.deleteOrder(ajaxMsg[i]);
 		}
-		
-		
 		return "redirect:/order/ordermain";
 	}
 	

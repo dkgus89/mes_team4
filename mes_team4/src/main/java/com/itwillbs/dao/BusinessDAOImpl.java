@@ -15,7 +15,6 @@ public class BusinessDAOImpl implements BusinessDAO{
 	
 	@Inject
 	private SqlSession sqlSession;
-	//sql구문의 전체 이름
 	private static final String namespace="com.itwillbs.mappers.BusinessMapper";
 
 	@Override
@@ -23,7 +22,6 @@ public class BusinessDAOImpl implements BusinessDAO{
 		System.out.println("businessDAOImpl insertBusiness()");
 		
 		sqlSession.insert(namespace+".insertBusiness", businessDTO);
-		
 	}
 	
 	@Override

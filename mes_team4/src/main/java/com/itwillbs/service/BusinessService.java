@@ -12,6 +12,7 @@ public interface BusinessService {
 	public int getBusinessCount();
 	
 	public  List<BusinessDTO> getBusinessList(PageDTO pageDTO);
+
 	public List<BusinessDTO> getBusinessList();
 	
 	public void deleteBusiness(String cd);
@@ -19,7 +20,5 @@ public interface BusinessService {
 	public BusinessDTO getBusiness(String cd);
 
 	public void updateBusiness(BusinessDTO businessDTO);
-
-	
 	
 }

@@ -22,6 +22,7 @@
 	select count(*) from business
 	<if test="search != null">
    			where business_name like CONCAT('%',#{search},'%')
+   			or business_dv like CONCAT('%',#{search},'%')
    		</if>
 </select>
 
@@ -29,6 +30,7 @@
 	select * from business
 	<if test="search != null">
    			where business_name like CONCAT('%',#{search},'%')
+   			or business_dv like CONCAT('%',#{search},'%')
    		</if>
 	order by business_name asc
 	limit #{startRow} , #{pageSize} 

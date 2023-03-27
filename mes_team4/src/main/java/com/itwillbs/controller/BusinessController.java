@@ -21,7 +21,6 @@ public class BusinessController {
 	@Inject
 	private BusinessService businessService;
 	
-	
 	@RequestMapping(value = "/business/businessmain", method = RequestMethod.GET)
 	public String businessmain(HttpServletRequest request, Model model) {
 		// 한 화면에 보여줄 글 개수 설정
@@ -39,9 +38,9 @@ public class BusinessController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
 		
-//		검색어 가져오기
+		// 검색어 가져오기
 		String search = request.getParameter("search");
-//		검색어를 pageDTO에 담아줌 
+		// 검색어를 pageDTO에 담아줌 
 		pageDTO.setSearch(search);
 		
 		List<BusinessDTO> businessList = businessService.getBusinessList(pageDTO);
@@ -89,13 +88,11 @@ public class BusinessController {
 	public String delete(HttpServletRequest request) {
 		System.out.println("businessController delete()");
 		
-		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
 		int size = ajaxMsg.length;
 		for(int i=0; i<size; i++) {
 			businessService.deleteBusiness(ajaxMsg[i]);
 		}
-		
 		
 		return "redirect:/business/businessmain";
 	}
@@ -136,6 +133,5 @@ public class BusinessController {
 		// 가상주소 유지
 		return "mypage/mypage";
 	}
-
 	
 }

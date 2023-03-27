@@ -17,6 +17,7 @@
     select count(*) from order_management
     	<if test="search != null">
    			where product_cd like CONCAT('%',#{search},'%')
+   			or con like CONCAT('%',#{search},'%')
    		</if>
     </select>
     
@@ -24,6 +25,7 @@
     select * from order_management
     	<if test="search != null">
    			where product_cd like CONCAT('%',#{search},'%')
+   			or con like CONCAT('%',#{search},'%')
    		</if>
     order by order_cd desc
     limit #{startRow} , #{pageSize}

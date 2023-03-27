@@ -7,7 +7,6 @@ import com.itwillbs.domain.PageDTO;
 
 public interface BusinessDAO {
 
-
 	public void insertBusiness(BusinessDTO businessDTO);
 	
 	public Integer getONum();

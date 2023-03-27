@@ -11,6 +11,9 @@
 <!-- 본문적용 CSS들어가는 곳 -->
 <!-- 본문적용 CSS들어가는 곳 -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
 <!-- 자바스크립트 입력 시작-->
 <script>
 	function showPopup(){
@@ -71,7 +74,9 @@
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>거래처 관리</h2><br>
+	<h2>거래처 관리</h2>
+	<h4>* 거래처명 클릭시 상세정보 확인가능</h4>
+	
 	
 	<div class="wrap2">
 	
@@ -104,10 +109,41 @@
 				<td>${businessDTO.business_cd}</td>
 				<td>${businessDTO.business_dv}</td>
 				<td>${businessDTO.business_type}</td>
-				<td>${businessDTO.business_name}</td>
+				<td>
+<!-- 				모달창에 출력될 내용 (반복문 돌려!!! ) -->
+			<div id="ex1" class="modal">
+			  <p>
+			<table>
+				<thead>
+				<tr style="text-align: center; font-size: 1.5rem">
+				<th colspan="2">거래처 상세정보</th></tr>
+				</thead>
+				<tbody  style="text-align: center; font-size: 1rem">
+				<tr><td>거래처구분</td><td>${businessDTO.business_dv }</td></tr>
+				<tr><td>거래처코드</td><td>${businessDTO.business_cd}</td></tr>
+				<tr><td>업종유형</td><td>${businessDTO.business_type}</td></tr>
+				<tr><td>거래처명</td><td>${businessDTO.business_name}</td></tr>
+				<tr><td>대표이름</td><td>${businessDTO.business_ceo}</td></tr>
+				<tr><td>전화번호</td><td>${businessDTO.business_tel}</td></tr>
+				<tr><td>이메일</td><td>${businessDTO.business_email}</td></tr>
+				<tr><td>주소</td><td>${businessDTO.business_addr}</td></tr>		
+				</tbody>
+			</table>
+			 </p>
+				<a href="#" rel="modal:close" style="text-align: center;">닫기</a>
+				</div>
+<!-- 				모달창 클릭 #ex1으로 하이퍼링크 !!  맨위에 제이쿼리 삽입해야함 -->
+				<p><a href="#ex1" rel="modal:open" style="text-decoration: none;">${businessDTO.business_name}</a></p>
+				</td>
+				
+<%-- 			<td>${businessDTO.business_name}</td> --%>
 				<td>${businessDTO.business_tel}</td>
 				<td>${businessDTO.business_ceo}</td>
-				<td><input type="button" value="수정" onclick="updatePopup('${businessDTO.business_cd}');"></td>
+				<td><input type="button" value="수정" onclick="updatePopup('${businessDTO.business_cd}');">
+				
+				
+				
+				</td>
 			</tr>
 			</c:forEach>
 			</tbody>
@@ -117,7 +153,7 @@
 	
 	<div class ="wrap2" id="table_search">
 	<form action="${pageContext.request.contextPath}/business/businessmain" method="get">
-	<input type="text" name="search" class="input_box" placeholder="거래처명을 검색하세요" size=40>
+	<input type="text" name="search" class="input_box" placeholder="거래처명을 검색하세요" size=60>
 	<input type="submit" value="search" class="button2">
 	</form>
 	</div>
