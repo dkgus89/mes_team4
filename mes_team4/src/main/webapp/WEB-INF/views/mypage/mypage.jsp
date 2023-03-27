@@ -12,126 +12,62 @@
 <!-- 본문적용 CSS들어가는 곳 -->
 
 <!-- 자바스크립트 입력 시작-->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 
+$(function(){	
+	$("#myform").submit(function(){
+        if($('.pass').val()==""){
+        	alert("비밀번호 입력하세요");
+			$('.pass').focus();
+			return false;
+        }
+      
+        if($('.pass2').val()==""){
+        	alert("비밀번호 확인란을 입력하세요");
+			$('.pass2').focus();
+			return false;
+        }
+        
+        if($('.pass').val() != $('.pass2').val()){
+        	alert("비밀번호가 일치하지 않습니다");
+			$('.pass2').focus();
+			return false;
+        }
+        
+	});
+	
+	});
 </script>
 <!-- 자바스크립트 입력 끝-->
-
-
-
-<div id="container">
-	<div id="sidebar1">
-	 <ul class="menu">
-	      <li>
-	        <a href="#">시스템관리</a>
-	        <ul class="submenu">
-	          <li><a href="home2.jsp">사용자관리</a></li>
-	          <li><a href="#">권한관리</a></li>
-	          <li><a href="#">코드관리</a></li>
-	        </ul>
-	      </li>
-	      <li>
-	        <a href="#">기준정보관리</a>
-	        <ul class="submenu">
-	          <li><a href="#">작업자관리</a></li>
-	          <li><a href="#">품목정보관리</a></li>
-	          <li><a href="#">소요량관리</a></li>
-	          <li><a href="#">설비정보관리</a></li>
-	          <li><a href="#">거래처정보관리</a></li>
-	        </ul>
-	      </li>
-	      <li>
-	        <a href="#">영업관리</a>
-	        <ul class="submenu">
-	          <li><a href="#">수주등록</a></li>
-	          <li><a href="#">수주관리</a></li>
-	          <li><a href="#">출하등록</a></li>
-	          <li><a href="#">출하관리</a></li>
-	        </ul>
-	      </li>
-	      <li>
-	        <a href="#">MENU4</a>
-	        <ul class="submenu">
-	          <li><a href="#">submenu01</a></li>
-	          <li><a href="#">submenu02</a></li>
-	          <li><a href="#">submenu03</a></li>
-	          <li><a href="#">submenu04</a></li>
-	          <li><a href="#">submenu05</a></li>
-	        </ul>
-	      </li>
-	      <li>
-	        <a href="#">MENU5</a>
-	        <ul class="submenu">
-	          <li><a href="#">submenu01</a></li>
-	          <li><a href="#">submenu02</a></li>
-	          <li><a href="#">submenu03</a></li>
-	          <li><a href="#">submenu04</a></li>
-	          <li><a href="#">submenu05</a></li>
-	        </ul>
-	      </li>
-	    </ul>
-	</div>
-	
 	
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>값 입력할 페이지 </h2><br>
-	<div class="wrap2">
-	  <button class="button2">추가</button>
-	  <button class="button2">수정</button>
-	  <button class="button2">저장</button>
-	  <button class="button2">삭제</button>
-	  
+	<h2>마이페이지</h2><br>
+	 	 
+<form method="post" id="myform" action="${pageContext.request.contextPath}/member/update?num=emp_no">
+
+<div class="wrap2">
+		<input type="submit" class="button2" value="저장">
 	 </div><br>
 	 <br>
-	 
-	 
-	<form method="post">
-		<input type="hidden" value="">
-		
-		<table id="vendortable" class=" table table-striped">
-			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">
-					<th>선택</th>
-					<th>거래처명</th>
-					<th>거래처유형</th>
-					<th>사업자번호</th>
-					<th>비고</th>
-				</tr>
-			</thead>
-			
-			<tbody>
-				<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test1-1"></td>
-					<td><input type="text" value="test1-2"></td>
-					<td><input type="text" value="test1-3"></td>
-					<td><input type="text" value="test1-4"></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test2-1"></td>
-					<td><input type="text" value="test2-2"></td>
-					<td><input type="text" value="test2-3"></td>
-					<td><input type="text" value="test2-4"></td>
-				</tr>	
-					<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test3-1"></td>
-					<td><input type="text" value="test3-2"></td>
-					<td><input type="text" value="test3-3"></td>
-					<td><input type="text" value="test3-4"></td>
-				</tr>
-			
-			</tbody>
-		</table>
-		<button type="button" id="test">테스트</button>
-		
-		<div id="array"></div>
-	
-	
-	</form>
+	<table >	
+	<thead><th colspan="2" style="text-align: center; height:35px; font-size: 1.3rem ">사용자정보 (비밀번호 변경가능)</th></thead>
+	<tr style="text-align: center; font-size: 1rem">
+	<td>이름</td><td>김이름</td></tr>
+	<tr style="text-align: center; font-size: 1rem">
+	<td>사원번호</td><td>1010101</td></tr>
+	<tr style="text-align: center; font-size: 1rem">
+	<td>부서번호</td><td>DP101</td></tr>
+	<tr style="text-align: center; font-size: 1rem">
+	<td>비밀번호</td><td><input type="password" name="pass" class="pass" size=40  style="height:20px;"><br>
+						비밀번호는 <span style="color:red">숫자 *자리</span>를 입력하세요</td></tr>
+	<tr style="text-align: center; font-size: 1rem">
+	<td>비밀번호확인</td><td><input type="password" name="pass2" class="pass2" size=40 style="height:20px;"><br>
+						비밀번호를 다시한번 입력하세요</td></tr>
+	</table>		
+</form>
 	
 	
 <!-- 본문HTML 입력 끝-->

@@ -214,8 +214,8 @@
 	}
 	
 	#table_search .input_box{
-	height: 30px; width: 200px;
-	border-radius:7px;
+	height: 40px; width: 200px;
+	border-radius:10px;
 	/* background-color: #FEFDED; */
 	border: 1px solid #333}
 	
@@ -223,6 +223,7 @@
 	  color: #666;
 	  font: 14px/24px 'Gowun Dodum', sans-serif;
 	}
+		
 	table {
 	  border-collapse: separate;
 	  border-spacing: 0;
@@ -251,9 +252,9 @@
 	td:first-child {
 	  border-left: 1px solid #c6c9cc;
 	}
-	tr:nth-child(even) td {
-	  background: #eaeaed;
-	}
+/* 	tr:nth-child(even) td { */
+/* 	  background: #eaeaed; */
+/* 	} */
 	tr:last-child td:first-child {
 	  border-bottom-left-radius: 6px;
 	}

@@ -130,7 +130,12 @@ public class BusinessController {
 		return "redirect:/business/businessmain";
 	}
 	
-	
+	@RequestMapping(value = "/main/mypage", method = RequestMethod.GET)
+	public String mypage() {
+		
+		// 가상주소 유지
+		return "mypage/mypage";
+	}
 
 	
 }

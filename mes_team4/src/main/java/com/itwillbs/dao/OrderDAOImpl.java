@@ -37,6 +37,7 @@ public class OrderDAOImpl implements OrderDAO{
 	public List<OrderDTO> getOrderList(PageDTO pageDTO) {
 		System.out.println("OrderDAOImpl getOrderList()");
 		
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
 	
 		return sqlSession.selectList(namespace+".getOrderList",pageDTO);
 	}
