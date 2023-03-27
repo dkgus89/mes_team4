@@ -74,13 +74,15 @@
     		}
     	}
     
-    function goSubmit(){
+    function goSubmit(cd){
 //     	window.opener.name="paretPage";
     	document.insertform.target="parentPage";
-    	document.insertform.action="${pageContext.request.contextPath}/business/businessinsertpro";
+    	document.insertform.action="${pageContext.request.contextPath}/business/businessupdatepro?cd="+cd;
     	document.insertform.submit();
     	self.close();
     }
+  
+ 
     
 </script>
 
@@ -90,13 +92,13 @@
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2 class="inserttitle">거래처 등록</h2><br>
+	<h2 class="inserttitle">거래처 정보 수정하기</h2><br>
 	
 	<form  name="insertform" method="post" >
 	
 	<div class="wrap2">
-		<input type="submit" class="button2" value="등록" onclick="goSubmit()">
-		<input type="reset" class="button2" value="초기화">
+		<input type="submit" class="button2" value="수정" onclick="goSubmit('${businessDTO.business_cd}')">
+
 	 </div><br>
 	 <br>
 	
@@ -115,21 +117,24 @@
 			<tbody>
 				<tr>
 					<td>
+										
+					
 					<select id="select1"  name="business_dv" onchange="itemChange()">
 						<option value="">선택해주세요</option>
-						<option value="수주">수주</option>
-						<option value="발주">발주</option>
+						<option value="수주" ${businessDTO.business_dv eq "수주" ? 'selected="selected"' : '' }>수주</option>
+						<option value="발주" ${businessDTO.business_dv eq "발주" ? 'selected="selected"' : '' }>발주</option>
 					</select>
 					</td>
 					
 					<td>
 					<select id="select2"  name="business_type">
-						<option value="">구분을 선택하세요</option>
+						<option value="">${businessDTO.business_type}</option>
+						
 					</select>
 					</td>
 					
-					<td><input type="text" name="business_name"></td>
-					<td><input type="text" name="business_ceo"></td>	
+					<td><input type="text" name="business_name" value="${businessDTO.business_name}"></td>
+					<td><input type="text" name="business_ceo" value="${businessDTO.business_ceo}"></td>	
 				</tr>
 			</tbody>
 			<thead>
@@ -143,10 +148,10 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="text" name="business_tel"></td>
-					<td><input type="text" name="business_email"></td>
-					<td><input type="text"  class="zonecode" name="business_post"></td>
-					<td><input type="text"  class="address" name="business_addr" size=40></td>
+					<td><input type="text" name="business_tel" value="${businessDTO.business_tel}"></td>
+					<td><input type="text" name="business_email" value="${businessDTO.business_email}"></td>
+					<td><input type="text"  class="zonecode" name="business_post" value="${businessDTO.business_post}"></td>
+					<td><input type="text"  class="address" name="business_addr" size=40 value="${businessDTO.business_addr}"></td>
 					
 				</tr>
 			</tbody>

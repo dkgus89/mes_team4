@@ -11,19 +11,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.BusinessDTO;
+import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.BusinessService;
-
+import com.itwillbs.service.OrderService;
 
 @Controller
-public class BusinessController {
-	
+public class OrderController {
+
 	@Inject
 	private BusinessService businessService;
 	
+	@Inject
+	private OrderService orderService;
 	
-	@RequestMapping(value = "/business/businessmain", method = RequestMethod.GET)
-	public String businessmain(HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/order/ordermain", method = RequestMethod.GET)
+	public String ordermain(HttpServletRequest request, Model model) {
 		// 한 화면에 보여줄 글 개수 설정
 		int pageSize=5;
 		// 현페이지 번호 가져오기
@@ -33,7 +36,7 @@ public class BusinessController {
 		}
 		// 페이지번호를 => 정수형 변경
 		int currentPage=Integer.parseInt(pageNum);
-		
+//		
 		PageDTO pageDTO=new PageDTO();
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
@@ -44,10 +47,10 @@ public class BusinessController {
 //		검색어를 pageDTO에 담아줌 
 		pageDTO.setSearch(search);
 		
-		List<BusinessDTO> businessList = businessService.getBusinessList(pageDTO);
+		List<OrderDTO> orderList = orderService.getOrderList(pageDTO);
 		
 		//페이징 처리
-		int count = businessService.getBusinessCount();
+		int count = orderService.getOrderCount();
 		int pageBlock=10;
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 		int endPage=startPage+pageBlock-1;
@@ -62,75 +65,78 @@ public class BusinessController {
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
 		
-		model.addAttribute("businessList", businessList);
+		model.addAttribute("orderList", orderList);
 		model.addAttribute("pageDTO", pageDTO);
 		
 		// 가상주소 유지
-		return "business/BusinessMain";
+		return "order/OrderMain";
 	}
 	
-	@RequestMapping(value = "/business/businessinsert", method = RequestMethod.GET)
-	public String businessinsert() {
+	@RequestMapping(value = "/order/orderinsert", method = RequestMethod.GET)
+	public String businessinsert(Model model) {
+		
+		
+		List<BusinessDTO> businessList = businessService.getBusinessList();
+		
+		model.addAttribute("businessList",businessList);
 		
 		// 가상주소 유지
-		return "business/BusinessInsert";
+		return "order/OrderInsert";
 	}
 	
-	@RequestMapping(value = "/business/businessinsertpro", method = RequestMethod.POST)
-	public String insertPro(BusinessDTO businessDTO) {
-		System.out.println("BusinessController businessinsertPro()");
-
-		businessService.insertBusiness(businessDTO);
-
-		return "redirect:/business/businessmain";
+	@RequestMapping(value = "/order/orderinsertpro", method = RequestMethod.POST)
+	public String insertPro(OrderDTO orderDTO) {
+		System.out.println("OrderController insertPro()");
+		
+		
+		orderService.insertOrder(orderDTO);
+		
+		return "redirect:/order/ordermain";		
 	}
 	
-	@RequestMapping(value = "/business/delete")
+	@RequestMapping(value = "/order/delete")
 	public String delete(HttpServletRequest request) {
-		System.out.println("businessController delete()");
+		System.out.println("OrderController delete()");
 		
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
 		int size = ajaxMsg.length;
 		for(int i=0; i<size; i++) {
-			businessService.deleteBusiness(ajaxMsg[i]);
+			orderService.deleteOrder(ajaxMsg[i]);
 		}
 		
 		
-		return "redirect:/business/businessmain";
+		return "redirect:/order/ordermain";
 	}
 	
-	@RequestMapping(value = "/business/businessupdate", method = RequestMethod.GET)
+	@RequestMapping(value = "/order/orderupdate", method = RequestMethod.GET)
 	public String businessupdate(HttpServletRequest request, Model model) {
-		System.out.println("businessController UpdateForm()");
+		System.out.println("orderController UpdateForm()");
 		
 		String cd = request.getParameter("cd");
 		System.out.println("cd 값 : "+cd);
+
+		OrderDTO orderDTO = orderService.getOrder(cd);
+		List<BusinessDTO> businessList = businessService.getBusinessList();
 		
-		BusinessDTO businessDTO = businessService.getBusiness(cd);
-		
-		model.addAttribute("businessDTO",businessDTO);
-		
-		System.out.println("dv값" +businessDTO.getBusiness_dv());
-		System.out.println(businessDTO.getBusiness_type());
+		model.addAttribute("businessList",businessList);
+		model.addAttribute("orderDTO",orderDTO);
 		
 		// 가상주소 유지
-		return "business/BusinessUpdate";
+		return "order/OrderUpdate";
 	}
 	
-	@RequestMapping(value = "/business/businessupdatepro", method = RequestMethod.POST)
-	public String updatePro(BusinessDTO businessDTO, HttpServletRequest request) {
-		System.out.println("BusinessController businessupdatePro()");
+	@RequestMapping(value = "/order/orderupdatepro", method = RequestMethod.POST)
+	public String updatePro(OrderDTO orderDTO, HttpServletRequest request) {
+		System.out.println("OrderController orderupdatePro()");
 		
 		String cd = request.getParameter("cd");
-		businessDTO.setBusiness_cd(cd);
+		orderDTO.setOrder_cd(cd);
+		System.out.println("order cd값 : "+ orderDTO.getOrder_cd());
 
-		businessService.updateBusiness(businessDTO);
+		orderService.updateOrder(orderDTO);
 
-		return "redirect:/business/businessmain";
+		return "redirect:/order/ordermain";
 	}
-	
-	
-
 	
 }

@@ -63,4 +63,25 @@ public class BusinessDAOImpl implements BusinessDAO{
 		sqlSession.delete(namespace+".deleteBusiness",cd);
 	}
 
+	@Override
+	public BusinessDTO getBusiness(String cd) {
+		System.out.println("BusinessDAOImpl getBusiness()");
+		
+		return sqlSession.selectOne(namespace+".getBusiness", cd);
+	}
+
+	@Override
+	public void updateBusiness(BusinessDTO businessDTO) {
+		System.out.println("BusinessDAOImpl updateBusiness()");
+		System.out.println("업뎃중!!"+businessDTO.getBusiness_name());
+		System.out.println("code : "+businessDTO.getBusiness_cd());
+		sqlSession.update(namespace+".updateBusiness", businessDTO);		
+	}
+
+	@Override
+	public List<BusinessDTO> getBusinessList() {
+		System.out.println("BusinessDAOImpl getBusinessList()");
+		return sqlSession.selectList(namespace+".getBusiListforor");
+	}
+
 }

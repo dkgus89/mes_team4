@@ -1,18 +1,16 @@
 package com.itwillbs.domain;
 
-import java.sql.Date;
-
 public class OrderDTO {
 	
 	private String order_cd;
-	private Date order_date;
-	private Date deliver_date;
+	private String order_date;
+	private String deliver_date;
 	private int order_count;
 	private String con;
 	
 	private String business_cd;
-	private int emp_no;
-	private int product_cd;
+	private String emp_no;
+	private String product_cd;
 	
 
 	public String getOrder_cd() {
@@ -21,16 +19,16 @@ public class OrderDTO {
 	public void setOrder_cd(String order_cd) {
 		this.order_cd = order_cd;
 	}
-	public Date getOrder_date() {
+	public String getOrder_date() {
 		return order_date;
 	}
-	public void setOrder_date(Date order_date) {
+	public void setOrder_date(String order_date) {
 		this.order_date = order_date;
 	}
-	public Date getDeliver_date() {
+	public String getDeliver_date() {
 		return deliver_date;
 	}
-	public void setDeliver_date(Date deliver_date) {
+	public void setDeliver_date(String deliver_date) {
 		this.deliver_date = deliver_date;
 	}
 	public int getOrder_count() {
@@ -51,16 +49,16 @@ public class OrderDTO {
 	public void setBusiness_cd(String business_cd) {
 		this.business_cd = business_cd;
 	}
-	public int getEmp_no() {
+	public String getEmp_no() {
 		return emp_no;
 	}
-	public void setEmp_no(int emp_no) {
+	public void setEmp_no(String emp_no) {
 		this.emp_no = emp_no;
 	}
-	public int getProduct_cd() {
+	public String getProduct_cd() {
 		return product_cd;
 	}
-	public void setProduct_cd(int product_cd) {
+	public void setProduct_cd(String product_cd) {
 		this.product_cd = product_cd;
 	}
 

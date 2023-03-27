@@ -66,6 +66,12 @@ public class BusinessServiceImpl implements BusinessService{
 		
 		return businessDAO.getBusinessList(pageDTO);
 	}
+	
+	@Override
+	public List<BusinessDTO> getBusinessList() {
+		System.out.println("BusinessServiceImpl getBusinessList()");
+		return businessDAO.getBusinessList();
+	}
 
 	@Override
 	public void deleteBusiness(String cd) {
@@ -74,5 +80,23 @@ public class BusinessServiceImpl implements BusinessService{
 		businessDAO.deleteBusiness(cd);
 		
 	}
+
+	@Override
+	public BusinessDTO getBusiness(String cd) {
+		System.out.println("BusinessServiceImpl getBusiness()");
+
+		return businessDAO.getBusiness(cd);
+	}
+
+	@Override
+	public void updateBusiness(BusinessDTO businessDTO) {
+		System.out.println("BusinessServiceImpl updateBusiness()");
+		
+		businessDAO.updateBusiness(businessDTO);
+	}
+
+	
+	
+
 
 }

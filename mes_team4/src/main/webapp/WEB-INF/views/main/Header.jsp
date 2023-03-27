@@ -73,7 +73,7 @@
 	        <a href="#">영업관리</a>
 	        <ul class="submenu">
 	          <li><a href="#">수주등록</a></li>
-	          <li><a href="#">수주관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/order/ordermain">수주관리</a></li>
 	          <li><a href="#">출하등록</a></li>
 	          <li><a href="#">출하관리</a></li>
 	        </ul>

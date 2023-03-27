@@ -26,7 +26,8 @@ function showPopup(){
 
 	
 	  <button class="button3"><img src="${pageContext.request.contextPath}/resources/image/icon3.png"><br>사용자관리</button>
-	  <button class="button3"><img src="${pageContext.request.contextPath}/resources/image/icon4.png"><br>수주현황</button><br>
+	  <button class="button3" onclick="location.href='${pageContext.request.contextPath}/order/ordermain'">
+	  <img src="${pageContext.request.contextPath}/resources/image/icon4.png"><br>수주현황</button><br>
 	  <br>
 	  <button class="button3"><img src="${pageContext.request.contextPath}/resources/image/icon2.png"><br>생산현황</button>
 	  <button class="button3"><img src="${pageContext.request.contextPath}/resources/image/icon1.png"><br>자재현황</button>

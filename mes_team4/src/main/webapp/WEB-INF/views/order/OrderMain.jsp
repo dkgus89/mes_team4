@@ -14,10 +14,10 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 	function showPopup(){
-	    window.open("businessinsert","거래처팝업","width=900, height=400, top=200, left=200");
+	    window.open("orderinsert","수주팝업","width=900, height=400, top=200, left=200");
 	}
-	function updatePopup(business_cd){
-	    window.open("businessupdate?cd="+business_cd,"거래처수정팝업","width=900, height=400, top=200, left=200");
+	function updatePopup(order_cd){
+	    window.open("orderupdate?cd="+order_cd,"수주수정팝업","width=900, height=400, top=200, left=200");
 	}
 	
 	function allCheck(){
@@ -32,12 +32,12 @@
 		} }
 	
 	function deleteValue(){
-		var url = "/business/delete"; // controller로 보내고자 하는 url
+		var url = "/order/delete"; // controller로 보내고자 하는 url
 		var valueArr = new Array();
-		var businessList = $("input[name='rowcheck']");
-		for(var i=0; i<businessList.length; i++){
-			if(businessList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
-				valueArr.push(businessList[i].value);
+		var orderList = $("input[name='rowcheck']");
+		for(var i=0; i<orderList.length; i++){
+			if(orderList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
+				valueArr.push(orderList[i].value);
 			}
 		}
 		if(valueArr.length==0){
@@ -46,18 +46,18 @@
 			var chk = confirm("정말 삭제하시겠습니까?");
 			if(chk){
 			$.ajax({
-				url :'${pageContext.request.contextPath}/business/delete', 		//전송url
+				url :'${pageContext.request.contextPath}/order/delete', 		//전송url
 				type : 'POST',	// post방식
 				traditional : true,
-				data : {	
-					valueArr : valueArr 
+				data : {
+					valueArr : valueArr // 보내고자하는 data 변수설정	
 				},
 				success : function(jdata){
 					if(jdata = 1){
 						alert("삭제하였습니다");
-						location.replace("${pageContext.request.contextPath}/business/businessmain");
+						location.replace("${pageContext.request.contextPath}/order/ordermain")
 					} else {alert("삭제실패");}
-				}	
+				}
 			});
 		}else {
 			alert("삭제실패");}
@@ -71,11 +71,10 @@
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>거래처 관리</h2><br>
-	
+	<h2>수주현황</h2><br>
 	<div class="wrap2">
-	
 	  <button class="button2" onclick="showPopup();">추가</button>
+	  <button class="button2" onclick="deleteValue();">생산현황?</button>
 	  <button class="button2" onclick="deleteValue();">삭제</button>
 	 </div><br>
 	 <br>
@@ -87,27 +86,31 @@
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
-					<th>코드</th>
-					<th>구분</th>
-					<th>업종유형</th>
-					<th>거래처명</th>
-					<th>전화번호</th>
-					<th>대표이름</th>
-					<th>비고</th>
+					<th>수주코드</th>
+					<th>거래처</th>
+					<th>제품코드</th>
+					<th>주문량</th>
+					<th>수주등록날짜</th>
+					<th>출하예정날짜</th>
+					<th>담당자</th>
+					<th>진행상황</th>
+					<th></th>
 				</tr>
 			</thead>
 			
 			<tbody>
-			<c:forEach var="businessDTO" items="${businessList}">
-			<tr>
-				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${businessDTO.business_cd}"></td>
-				<td>${businessDTO.business_cd}</td>
-				<td>${businessDTO.business_dv}</td>
-				<td>${businessDTO.business_type}</td>
-				<td>${businessDTO.business_name}</td>
-				<td>${businessDTO.business_tel}</td>
-				<td>${businessDTO.business_ceo}</td>
-				<td><input type="button" value="수정" onclick="updatePopup('${businessDTO.business_cd}');"></td>
+			<c:forEach var="orderDTO" items="${orderList}">
+<!-- 			<tr> -->
+				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${orderDTO.order_cd}"></td>
+				<td>${orderDTO.order_cd}</td>
+				<td>${orderDTO.business_cd}</td>
+				<td>${orderDTO.product_cd}</td>
+				<td>${orderDTO.order_count}</td>
+				<td>${orderDTO.order_date}</td>
+				<td>${orderDTO.deliver_date}</td>
+				<td>${orderDTO.emp_no}</td>
+				<td><span style="color:red">${orderDTO.con}</span></td>
+				<td><input type="button" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
 			</tr>
 			</c:forEach>
 			</tbody>
@@ -116,26 +119,24 @@
 	<br>
 	
 	<div class ="wrap2" id="table_search">
-	<form action="${pageContext.request.contextPath}/business/businessmain" method="get">
-	<input type="text" name="search" class="input_box" placeholder="거래처명을 검색하세요" size=40>
+	<form action="${pageContext.request.contextPath}/order/ordermain" method="get">
+	<input type="text" name="search" class="input_box" placeholder="제품코드를 검색하세요" size=40>
 	<input type="submit" value="search" class="button2">
 	</form>
 	</div>
 	
+	
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/business/businessmain?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
+<a href="${pageContext.request.contextPath}/order/ordermain?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
 </c:if>
 
 <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/business/businessmain?pageNum=${i}">${i}</a> 
+<a href="${pageContext.request.contextPath}/order/ordermain?pageNum=${i}">${i}</a> 
 </c:forEach>
 
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/business/businessmain?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
+<a href="${pageContext.request.contextPath}/order/ordermain?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
 </c:if>
-
-
-		
 	
 	
 <!-- 본문HTML 입력 끝-->

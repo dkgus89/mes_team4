@@ -19,4 +19,10 @@ public interface BusinessDAO {
 	public  List<BusinessDTO> getBusinessList(PageDTO pageDTO);
 
 	public void deleteBusiness(String cd);
+	
+	public BusinessDTO getBusiness(String cd);
+
+	public void updateBusiness(BusinessDTO businessDTO);
+
+	public List<BusinessDTO> getBusinessList();
 }
