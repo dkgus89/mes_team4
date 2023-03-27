@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.PageDTO;
 
 @Repository
@@ -49,4 +50,9 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 			return 0;
 		}
 	} 
-}
+	
+	@Override
+	public void insertConsmpt(ConsumptionDTO insertConsmpt) {
+		sqlSession.selectOne(namespace+".insertConsmpt", insertConsmpt);
+	}
+}// class

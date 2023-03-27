@@ -18,7 +18,29 @@
 <!-- 자바스크립트 입력 시작-->
 <script type="text/javascript">
 	$(document).ready(function() { // j쿼리 시작
-		// newRow.find('input').val('');
+		// 초기화 버튼
+		$(document).on('click', '#resetBtn', function() {
+			var cpListBtn = $('<button>').attr({
+			    'type': 'button',
+			    'id': 'cpListBtn'
+			}).text('추가');
+			 var rpListBtn = $('<button>').attr({
+				    'type': 'button',
+				    'id': 'rpListBtn'
+				}).text('추가');
+			 
+			var cpTableTr = $('#cproductBody tr');
+			cpTableTr.find('td:eq(0)').empty();
+			cpTableTr.find('td:eq(1)').empty();
+			cpTableTr.find('td:eq(0)').append(cpListBtn);
+			
+			var rpTableTr = $('#rproductBody tr');
+			rpTableTr.find('td:eq(0)').empty();
+			rpTableTr.find('td:eq(1)').empty();
+			rpTableTr.find('td:eq(0)').append(rpListBtn);
+			rpTableTr.find('input').val('');
+		});
+		
 		// 원자재 행 추가
 		$('#addRowBtn').on('click', function() {
 		    var newRow = $('#rproductBody tr:first').clone();
@@ -75,6 +97,7 @@
 	
 	function insertBtn(){
 		alert("등록");
+		document.move.submit(); 
 		opener.parent.location.reload();
 		window.close();
 	}
@@ -88,13 +111,15 @@
 
 	<h2>소요량 등록</h2>
 	<div class="wrap2">
+	  <button class="button2" id="resetBtn">초기화</button>
 	  <button class="button2" onclick="insertBtn();">등록</button>
 	  <button class="button2" onclick="window.close();">닫기</button>
 	</div>
 	<br>
 
-	<form action="" method="post">		
+	<form name="move" action="${pageContext.request.contextPath}/consmpt/insertPro" method="post">		
 	<input type="hidden" value="">
+	
 		<div>제품 등록</div>
 		<table id="cproduct" class=" table table-striped">
 			<thead>

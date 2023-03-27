@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.ConsumptionService;
 
@@ -26,7 +27,6 @@ public class ConsumptionController {
 		System.out.println("ConsumptionController list()");
 		// 처리작업
 		
-		// 가상주소 변경없이 이동
 		return "consumption/list";
 	}
 	
@@ -34,9 +34,27 @@ public class ConsumptionController {
 	public String insert() {
 		System.out.println("ConsumptionController insert()");
 		// 처리작업
-		
-		// 가상주소 변경없이 이동
+	
 		return "consumption/insert";
+	}
+	
+	@RequestMapping(value = "/consmpt/insertPro", method = RequestMethod.POST)
+	public String insertPro(ConsumptionDTO consumptionDTO) {
+		System.out.println("ConsumptionController insert()");
+		// 처리작업
+		System.out.println(consumptionDTO.getCproduct_cd_name());
+		System.out.println(consumptionDTO.getCproduct_name());
+		System.out.println(consumptionDTO.getRproduct_cd_name()[0]);
+		System.out.println(consumptionDTO.getRproduct_name()[0]);
+		System.out.println(consumptionDTO.getRproduct_cd_name()[1]);
+		System.out.println(consumptionDTO.getRproduct_name()[1]);
+		System.out.println(consumptionDTO.getConsumtion()[0]);
+		System.out.println(consumptionDTO.getConsumtion_unit()[0]);
+		System.out.println(consumptionDTO.getConsumtion()[1]);
+		System.out.println(consumptionDTO.getConsumtion_unit()[1]);
+		
+		// consumptionService.insertConsmpt(consumptionDTO);
+		return "redirect:/consumption/list";
 	}
 	
 	@RequestMapping(value = "/consmpt/prlist", method = RequestMethod.GET)
@@ -51,7 +69,6 @@ public class ConsumptionController {
 		// 품목구분 설정
 		String product_dv = request.getParameter("product_dv");
 		pageDTO.setProduct_dv(product_dv);
-		System.out.println(product_dv);
 		
 		// 한 화면에 보여줄 글의 개수
 		int pageSize = 10;
@@ -89,7 +106,6 @@ public class ConsumptionController {
 		model.addAttribute("prList", prList); 
 		model.addAttribute("pageDTO", pageDTO);
 		
-		// 가상주소 변경없이 이동
 		return "consumption/prList";
 	}
 	

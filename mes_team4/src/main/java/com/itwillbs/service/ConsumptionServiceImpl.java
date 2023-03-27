@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.ConsumptionDAO;
+import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.PageDTO;
 
 @Service
@@ -34,6 +35,12 @@ public class ConsumptionServiceImpl implements ConsumptionService{
 		System.out.println("ConsumptionServiceImpl getPrCount()");
 		
 		return consumptionDAO.getPrCount(pageDTO);
+	}
+	
+	@Override
+	public void insertConsmpt(ConsumptionDTO insertConsmpt) {
+		System.out.println("ConsumptionServiceImpl insertConsmpt()");
+		
 	}
 	
 }// class

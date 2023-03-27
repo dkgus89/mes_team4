@@ -13,6 +13,10 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
+	$(document).ready(function() { // j쿼리 시작
+	}); // j쿼리 끝
+	
+	// 소요량 등록 팝업
 	function insert(){
 	var link = "${pageContext.request.contextPath}/consmpt/insert";     
 	var popupWidth = 900;
@@ -22,6 +26,17 @@
 	
   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 	}
+	
+	// 체크박스 올체크
+	function allChecking(){
+	    var rowCheck = document.getElementsByName("rowCheck");
+	    var allCheck = document.getElementById("allCheck");﻿
+	    for (let checkbox of rowCheck){
+	    	console.log("check");
+	    	checkbox.checked = allCheck.checked;
+	    }
+	}
+	
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -33,53 +48,51 @@
 	<h2>소요량 관리 </h2><br>
 	<div class="wrap2">
 	  <button class="button2" onclick="insert();">추가</button>
-	  <button class="button2">수정</button>
-	  <button class="button2">저장</button>
-	  <button class="button2">삭제</button>
-	  
-	 </div><br>
-	 <br>
+	  <button class="button2" onclick="deleteValue();">삭제</button>
+	</div><br>
+	<br>
 	 
-	 
-	<form method="post">
-		<input type="hidden" value="">
-		
-		<table id="vendortable" class=" table table-striped">
+	<form method="post" name="myform"> 
+	
+		<table id="vendortable" class=" table table-striped" style="width:1000px;">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>선택</th>
-					<th>거래처명</th>
-					<th>거래처유형</th>
-					<th>사업자번호</th>
-					<th>비고</th>
+					<th><input type="checkbox" id="allCheck" onclick="allChecking();"></th>
+					<th>완제품코드</th>
+					<th>품목명</th>
+					<th>원자재코드</th>
+					<th>품목명</th>
+					<th>소요량</th>
+					<th>단위</th>
+					<th></th>
 				</tr>
 			</thead>
 			
 			<tbody>
+				<%-- <c:forEach var="orderDTO" items="${orderList}"> --%>
 				<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test1-1"></td>
-					<td><input type="text" value="test1-2"></td>
-					<td><input type="text" value="test1-3"></td>
-					<td><input type="text" value="test1-4"></td>
+					<td><input type="checkbox" name="rowCheck" value=""></td>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td><input type="button" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test2-1"></td>
-					<td><input type="text" value="test2-2"></td>
-					<td><input type="text" value="test2-3"></td>
-					<td><input type="text" value="test2-4"></td>
-				</tr>	
-					<tr>
-					<td><input type="checkbox" id="checkbox"></td>
-					<td><input type="text" value="test3-1"></td>
-					<td><input type="text" value="test3-2"></td>
-					<td><input type="text" value="test3-3"></td>
-					<td><input type="text" value="test3-4"></td>
+					<td><input type="checkbox" name="rowCheck" value=""></td>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td><input type="button" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
 				</tr>
-			
+				<%-- </c:forEach> --%>
 			</tbody>
-		</table>
+		</table>	
 
 	</form>
 	
