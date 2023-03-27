@@ -90,5 +90,12 @@ public class PerformDAOImpl implements PerformDAO {
 			
 			return sqlSession.selectOne(namespace+".getPerform", perform_cd);
 		}
+
+		@Override
+		public Map<String, Object> getcallcdMap(String ic) {
+			System.out.println("InfoDAOImpl getcallcdMap()");
+			
+			return sqlSession.selectOne(namespace+".getcallcdMap", ic);
+		}
 		
 }

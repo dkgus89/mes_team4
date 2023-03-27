@@ -96,5 +96,12 @@ public class PerformServiceImpl implements PerformService{
 				
 				return performDAO.getPerform(perform_cd);
 			}
+
+			@Override
+			public Map<String, Object> getcallcdMap(String ic) {
+				System.out.println("PerformServiceImpl getcallcdMap()");
+				
+				return performDAO.getcallcdMap(ic);
+			}
 									
 }

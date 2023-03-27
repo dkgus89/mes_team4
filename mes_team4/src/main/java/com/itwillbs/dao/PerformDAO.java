@@ -26,4 +26,6 @@ public interface PerformDAO {
 	public List<Map<String, Object>> getPerformMap(PageDTO pageDTO);
 	
 	public Map<String, Object> getPerform(String perform_cd);
+
+	public Map<String, Object> getcallcdMap(String ic);
 }

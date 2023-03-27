@@ -26,9 +26,18 @@ function rst(){
 document.PerformInsert.reset();
 }
 
-
-
+$(document).ready(function () {
+// 	alert($("#inst").val());
+	$.ajax({
+		url:'${pageContext.request.contextPath}/perform/callcd',
+		data:{'ic':$("#inst").val()},
+		success:function(callcdMap){
+			alert(callcdMap);
+		}
+	})
+});
 </script>
+
 </head>
 <body>
 
@@ -60,21 +69,13 @@ document.PerformInsert.reset();
 			<tbody>
 				<tr>
 					<td><input type="text" name="perform_cd" value=""></td>
-					<td><select name="instruction_code">
+					<td><select name="instruction_code" id="inst">
 							<c:forEach var="dto" items="${instMap}">					
 								<option value="${dto.instruction_code}">${dto.instruction_code}</option>							
 							</c:forEach>
       				</select></td>
-    				<td><select name="line_cd">
-							<c:forEach var="dto" items="${instMap}">					
-								<option value="${dto.line_cd}">${dto.line_cd}</option>							
-							</c:forEach>
-      				</select></td>
-      				<td><select name="product_cd">
-							<c:forEach var="dto" items="${instMap}">					
-								<option value="${dto.product_cd}">${dto.product_cd}</option>							
-							</c:forEach>
-      				</select></td>
+    				<td><input type="text" name="line_cd" value="${perform.line_cd}"></td>
+    				<td><input type="text" name="product_cd" value="${perform.product_cd}"></td>
     			</tr>
 
 			</tbody>

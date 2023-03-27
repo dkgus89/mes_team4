@@ -68,12 +68,10 @@
 
 	<resultMap type="map" id="map1">
 		<result column="instruction_code" property="instruction_code"/>
-		<result column="line_cd" property="line_cd"/>
-		<result column="product_cd" property="product_cd"/>
 	</resultMap>
 
     <select id="getInstMap" resultMap="map1">
-    	select instruction_code, line_cd, product_cd from `order`
+    	select distinct instruction_code from `order`
     </select>
     
     <resultMap type="map" id="map2">
@@ -117,6 +115,16 @@
         </if>
         order by perform_cd
         limit #{startRow} , #{pageSize}
+    </select>
+    
+    	<resultMap type="map" id="map3">
+		<result column="line_cd" property="line_cd"/>
+	</resultMap>
+    
+    <select id="getcallcdMap" resultMap="map3">
+    	select line_cd
+    	from `order`
+    	where instruction_code = #{ic}
     </select>
 	    
 </mapper>
