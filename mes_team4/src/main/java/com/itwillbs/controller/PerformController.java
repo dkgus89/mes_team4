@@ -105,7 +105,27 @@ public class PerformController {
 			if(performService.getPerformCount2()==0) {
 				performDTO.setPerform_cd("MPF00001");
 			}else {
-				
+				String maxpc=performService.getPerform_cd();
+				maxpc=maxpc.substring(3);
+				int tpc=Integer.parseInt(maxpc);
+				tpc=tpc+1;
+				maxpc=String.valueOf(tpc);
+				if(maxpc.length()==1) {
+				maxpc="0000".concat(maxpc);
+				maxpc="MPF".concat(maxpc);
+				}else if(maxpc.length()==2) {
+					maxpc="000".concat(maxpc);
+					maxpc="MPF".concat(maxpc);
+				}else if(maxpc.length()==3) {
+					maxpc="00".concat(maxpc);
+					maxpc="MPF".concat(maxpc);
+				}else if(maxpc.length()==4) {
+					maxpc="0".concat(maxpc);
+					maxpc="MPF".concat(maxpc);
+				}else if(maxpc.length()==5) {
+					maxpc="MPF".concat(maxpc);
+				}
+				performDTO.setPerform_cd(maxpc);
 			}
 			
 			//글쓰기 작업 메서드 호출

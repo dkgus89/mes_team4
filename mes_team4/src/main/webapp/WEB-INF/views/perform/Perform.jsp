@@ -95,7 +95,7 @@ function allCheck(){
 
 				<tr style="text-align: center; font-size: 0.9rem">
 				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.perform_cd}"></td>
-				<td>${status.count}</td>
+				<td>${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
 				<td>${dto.perform_cd}</td>
     			<td>${dto.instruction_code}</td>
     			<td>${dto.line_cd}</td>

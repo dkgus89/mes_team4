@@ -106,10 +106,10 @@ public class PerformDAOImpl implements PerformDAO {
 		}
 
 		@Override
-		public Map<String, Object> getPerform_cd() {
+		public String getPerform_cd() {
 			System.out.println("InfoDAOImpl getPerform_cd()");
 			
-			return null;
+			return sqlSession.selectOne(namespace+".getPerform_cd");
 		}
 		
 }

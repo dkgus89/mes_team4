@@ -31,5 +31,5 @@ public interface PerformDAO {
 
 	public int getPerformCount2();
 
-	public Map<String, Object> getPerform_cd();
+	public String getPerform_cd();
 }

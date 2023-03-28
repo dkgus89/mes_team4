@@ -112,7 +112,7 @@ public class PerformServiceImpl implements PerformService{
 			}
 
 			@Override
-			public Map<String, Object> getPerform_cd() {
+			public String getPerform_cd() {
 				System.out.println("PerformServiceImpl getPerform_cd()");
 				
 				return performDAO.getPerform_cd();

@@ -15,12 +15,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 function sub(){
+window.opener.name = "parentPage"; 
+document.PerformInsert.target="parentPage";
 document.PerformInsert.action="${pageContext.request.contextPath}/perform/performinsertpro";
 document.PerformInsert.submit();
-setTimeout(function() { 
-	opener.parent.location.reload();
-	window.close();
-	}, 200);
+self.close();
 }
 function rst(){
 document.PerformInsert.reset();
@@ -73,7 +72,7 @@ $(document).ready(function () {
 	<h2 class="inserttitle">생산실적 추가 </h2><br>
 <!-- 	<div class="wrap2"> -->
 <!-- 	<button class="button2" id="aj">ajax</button> -->
-	<button class="button2" onclick="sub()">등록</button>
+	<button class="button2" id="sub" onclick="sub()">등록</button>
 	<button class="button2" onclick="rst()">초기화</button>
 	
 <!-- 	 </div><br> -->

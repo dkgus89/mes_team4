@@ -64,6 +64,11 @@
                     		 on p.product_cd=d.product_cd
         where perform_cd = #{perform_cd}
     </select>
+        
+    <select id="getPerform_cd" resultType="java.lang.String">
+        select max(perform_cd)
+        from performance
+    </select>
     
     <update id="updatePerform">
     	update performance
