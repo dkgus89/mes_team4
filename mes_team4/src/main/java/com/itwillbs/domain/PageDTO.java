@@ -14,14 +14,14 @@ public class PageDTO {
 	
 	//검색어
 	private String search;
-	private String selectcol;
+	private String select;
 	
-	public String getSelectcol() {
-		return selectcol;
+	public String getSelect() {
+		return select;
 	}
 
-	public void setSelectcol(String selectcol) {
-		this.selectcol = selectcol;
+	public void setSelect(String select) {
+		this.select = select;
 	}
 
 	public String getSearch() {

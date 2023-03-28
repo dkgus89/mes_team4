@@ -103,5 +103,19 @@ public class PerformServiceImpl implements PerformService{
 				
 				return performDAO.getcallcdMap(ic);
 			}
+
+			@Override
+			public int getPerformCount2() {
+				System.out.println("PerformServiceImpl getPerformCount2()");
+				
+				return performDAO.getPerformCount2();
+			}
+
+			@Override
+			public Map<String, Object> getPerform_cd() {
+				System.out.println("PerformServiceImpl getPerform_cd()");
+				
+				return performDAO.getPerform_cd();
+			}
 									
 }

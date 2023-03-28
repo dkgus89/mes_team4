@@ -12,6 +12,8 @@ public interface PerformService {
 	
 	public int getPerformCount(PageDTO pageDTO);
 	
+	public int getPerformCount2();
+	
 	public void insertPerform(PerformDTO performDTO);
 	
 //	public PerformDTO getPerform(String perform_cd);
@@ -27,5 +29,7 @@ public interface PerformService {
 
 	public Map<String, Object> getPerform(String perform_cd);
 
+	public Map<String, Object> getPerform_cd();
+	
 	public Map<String, Object> getcallcdMap(String ic);
 }

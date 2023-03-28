@@ -28,4 +28,8 @@ public interface PerformDAO {
 	public Map<String, Object> getPerform(String perform_cd);
 
 	public Map<String, Object> getcallcdMap(String ic);
+
+	public int getPerformCount2();
+
+	public Map<String, Object> getPerform_cd();
 }

@@ -28,13 +28,39 @@ document.PerformInsert.reset();
 
 $(document).ready(function () {
 // 	alert($("#inst").val());
-	$.ajax({
-		url:'${pageContext.request.contextPath}/perform/callcd',
-		data:{'ic':$("#inst").val()},
-		success:function(callcdMap){
-			alert(callcdMap);
-		}
-	})
+		$.ajax({
+			url:'${pageContext.request.contextPath}/perform/callcd',
+			data:{'ic':$("#inst").val()},
+			success:function(result){
+				  $('#line_cd').val(result);
+			}
+		});
+		
+		$.ajax({
+			url:'${pageContext.request.contextPath}/perform/callcd2',
+			data:{'ic':$("#inst").val()},
+			success:function(result){
+				  $('#product_cd').val(result);
+			}
+		});
+		
+		$("#inst").on("change", function(){
+			$.ajax({
+				url:'${pageContext.request.contextPath}/perform/callcd',
+				data:{'ic':$("#inst").val()},
+				success:function(result){
+					  $('#line_cd').val(result);			
+				}
+			});
+			
+			$.ajax({
+				url:'${pageContext.request.contextPath}/perform/callcd2',
+				data:{'ic':$("#inst").val()},
+				success:function(result){
+					$('#product_cd').val(result);			
+				}
+			});			
+		});
 });
 </script>
 
@@ -46,6 +72,7 @@ $(document).ready(function () {
 
 	<h2 class="inserttitle">생산실적 추가 </h2><br>
 <!-- 	<div class="wrap2"> -->
+<!-- 	<button class="button2" id="aj">ajax</button> -->
 	<button class="button2" onclick="sub()">등록</button>
 	<button class="button2" onclick="rst()">초기화</button>
 	
@@ -58,8 +85,7 @@ $(document).ready(function () {
 		
 		<table id="vendortable" class="table table-striped">
 			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">
-					<th>실적코드</th>
+				<tr style="text-align: center; font-size: 0.9rem">					
 					<th>작업지시코드</th>
 					<th>라인코드</th>
 					<th>품목코드</th>
@@ -68,14 +94,13 @@ $(document).ready(function () {
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="perform_cd" value=""></td>
 					<td><select name="instruction_code" id="inst">
 							<c:forEach var="dto" items="${instMap}">					
 								<option value="${dto.instruction_code}">${dto.instruction_code}</option>							
 							</c:forEach>
       				</select></td>
-    				<td><input type="text" name="line_cd" value="${perform.line_cd}"></td>
-    				<td><input type="text" name="product_cd" value="${perform.product_cd}"></td>
+    				<td><input type="text" name="line_cd" id="line_cd" value=""></td>
+    				<td><input type="text" name="product_cd" id="product_cd" value=""></td>
     			</tr>
 
 			</tbody>

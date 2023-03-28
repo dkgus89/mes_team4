@@ -26,21 +26,32 @@
 				   		   join product d
                     		 on p.product_cd=d.product_cd
         <if test="search != null">
-        <if test="selectcol != null">
-        	<if test="selectcol == 'perform_cd'.toString()">
+        <if test="select != null">
+        	<if test="select == 'perform_cd'.toString()">
         	where perform_cd like CONCAT('%',#{search},'%')
         	</if>
-        	<if test="selectcol == 'instruction_code'.toString()">
+        	<if test="select == 'instruction_code'.toString()">
         	where p.instruction_code like CONCAT('%',#{search},'%')
         	</if>
-        	<if test="selectcol == 'line_cd'.toString()">
+        	<if test="select == 'line_cd'.toString()">
         	where p.line_cd like CONCAT('%',#{search},'%')
         	</if>
-        	<if test="selectcol == 'product_cd'.toString()">
+        	<if test="select == 'product_cd'.toString()">
         	where p.product_cd like CONCAT('%',#{search},'%')
         	</if>
         </if>
         </if>) a
+    </select>
+    
+    <select id="getPerformCount2" resultType="java.lang.Integer">
+        select count(*)
+        from(select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
+		from performance p join line l
+							 on p.line_cd=l.line_cd
+						   join `order` o
+							 on p.instruction_code=o.instruction_code
+				   		   join product d
+                    		 on p.product_cd=d.product_cd) a
     </select>
 
 	<select id="getPerform" resultMap="map2">
@@ -98,17 +109,17 @@
 				   		   join product d
                     		 on p.product_cd=d.product_cd
         <if test="search != null">
-    	<if test="selectcol != null">
-    		<if test="selectcol == 'perform_cd'.toString()">
+    	<if test="select != null">
+    		<if test="select == 'perform_cd'.toString()">
         	where perform_cd like CONCAT('%',#{search},'%')
         	</if>
-        	<if test="selectcol == 'instruction_code'.toString()">
+        	<if test="select == 'instruction_code'.toString()">
         	where p.instruction_code like CONCAT('%',#{search},'%')
         	</if>
-        	<if test="selectcol == 'line_cd'.toString()">
+        	<if test="select == 'line_cd'.toString()">
         	where p.line_cd like CONCAT('%',#{search},'%')
         	</if>
-        	<if test="selectcol == 'product_cd'.toString()">
+        	<if test="select == 'product_cd'.toString()">
         	where p.product_cd like CONCAT('%',#{search},'%')
         	</if>
         </if>
@@ -119,10 +130,11 @@
     
     	<resultMap type="map" id="map3">
 		<result column="line_cd" property="line_cd"/>
+		<result column="product_cd" property="product_cd"/>
 	</resultMap>
     
     <select id="getcallcdMap" resultMap="map3">
-    	select line_cd
+    	select line_cd, product_cd
     	from `order`
     	where instruction_code = #{ic}
     </select>

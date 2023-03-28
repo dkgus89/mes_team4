@@ -12,7 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-<script type="text/javascript">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<script>
 function sub(){
 	document.PerformUpdate.action="${pageContext.request.contextPath}/perform/performupdatepro";
 	document.PerformUpdate.submit();
@@ -24,6 +25,43 @@ function sub(){
 	function rst(){
 	document.PerformUpdate.reset();
 	}
+	
+	$(document).ready(function () {
+//	 	alert($("#inst").val());
+// 			$.ajax({
+// 				url:'${pageContext.request.contextPath}/perform/callcd',
+// 				data:{'ic':$("#inst").val()},
+// 				success:function(result){
+// 					  $('#line_cd').val(result);
+// 				}
+// 			});
+			
+// 			$.ajax({
+// 				url:'${pageContext.request.contextPath}/perform/callcd2',
+// 				data:{'ic':$("#inst").val()},
+// 				success:function(result){
+// 					  $('#product_cd').val(result);
+// 				}
+// 			});
+			
+			$("#inst").on("change", function(){
+				$.ajax({
+					url:'${pageContext.request.contextPath}/perform/callcd',
+					data:{'ic':$("#inst").val()},
+					success:function(result){
+						  $('#line_cd').val(result);			
+					}
+				});
+				
+				$.ajax({
+					url:'${pageContext.request.contextPath}/perform/callcd2',
+					data:{'ic':$("#inst").val()},
+					success:function(result){
+						$('#product_cd').val(result);			
+					}
+				});			
+			});
+	});
 </script>
 
 
@@ -57,7 +95,7 @@ function sub(){
 			<tbody>
 				<tr>
 					<td><input type="text" name="perform_cd" value="${perform.perform_cd} " readonly></td>
-					<td><select name="instruction_code">
+					<td><select name="instruction_code"  id="inst">
 							<option value="${perform.instruction_code}" selected>${perform.instruction_code}</option>
 								<c:forEach var="dto" items="${instMap}">
 									<c:if test="${dto.instruction_code != perform.instruction_code}">											
@@ -65,8 +103,8 @@ function sub(){
 									</c:if>						
 								</c:forEach>
       					</select></td>
-    				<td><input type="text" name="line_cd" value="${perform.line_cd}"></td>
-    				<td><input type="text" name="product_cd" value="${perform.product_cd}"></td>			
+    				<td><input type="text" name="line_cd" id="line_cd" value="${perform.line_cd}"></td>
+    				<td><input type="text" name="product_cd" id="product_cd" value="${perform.product_cd}"></td>			
 				</tr>
 								
 			</tbody>

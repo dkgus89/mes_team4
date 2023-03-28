@@ -42,7 +42,7 @@ public class PerformDAOImpl implements PerformDAO {
 		@Override
 		public void insertPerform(PerformDTO performDTO) {
 			System.out.println("PerformDAOImpl insertPerform()");
-			
+						
 			sqlSession.insert(namespace+".insertPerform", performDTO);
 		}
 
@@ -96,6 +96,20 @@ public class PerformDAOImpl implements PerformDAO {
 			System.out.println("InfoDAOImpl getcallcdMap()");
 			
 			return sqlSession.selectOne(namespace+".getcallcdMap", ic);
+		}
+
+		@Override
+		public int getPerformCount2() {
+			System.out.println("InfoDAOImpl getPerformCount2()");
+			
+			return sqlSession.selectOne(namespace+".getPerformCount2");
+		}
+
+		@Override
+		public Map<String, Object> getPerform_cd() {
+			System.out.println("InfoDAOImpl getPerform_cd()");
+			
+			return null;
 		}
 		
 }

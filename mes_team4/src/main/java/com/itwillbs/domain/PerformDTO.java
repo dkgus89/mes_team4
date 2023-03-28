@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class PerformDTO {
 	
-	private int perform_cd;
+	private String perform_cd;
 	private String instruction_code;
 	private String line_cd;
 	private int product_cd;
@@ -14,10 +14,10 @@ public class PerformDTO {
 	private String defect_remarks;
 	private String remarks;
 	
-	public int getPerform_cd() {
+	public String getPerform_cd() {
 		return perform_cd;
 	}
-	public void setPerform_cd(int perform_cd) {
+	public void setPerform_cd(String perform_cd) {
 		this.perform_cd = perform_cd;
 	}
 	public String getInstruction_code() {

@@ -27,7 +27,7 @@ public class InfoController {
 			System.out.println("InfoController line()");
 			//검색어 가져오기
 			String search=request.getParameter("search");
-			String selectcol=request.getParameter("selectcol");
+			String select=request.getParameter("select");
 					
 
 			
@@ -48,7 +48,7 @@ public class InfoController {
 			pageDTO.setCurrentPage(currentPage);
 			//검색어
 			pageDTO.setSearch(search);
-			pageDTO.setSelectcol(selectcol);
+			pageDTO.setSelect(select);
 			
 			
 			List<LineDTO> LineList=infoService.getLineList(pageDTO);

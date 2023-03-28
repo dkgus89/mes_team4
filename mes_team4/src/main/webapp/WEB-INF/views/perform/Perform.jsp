@@ -46,7 +46,7 @@ function allCheck(){
 	<h2> 생산실적 </h2><br>
 	<div id="table_search">
 			<form action="${pageContext.request.contextPath}/perform/perform" method="get">
-				<select name="selectcol">
+				<select name="select">
 							<option value="perform_cd">실적코드</option>
 							<option value="instruction_code">작업지시코드</option>
 							<option value="line_cd">라인코드</option>
@@ -119,15 +119,15 @@ function allCheck(){
 	
 <!-- 페이징 -->
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/perform/perform?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}&selectcol=${pageDTO.selectcol}">[10페이지 이전]</a>
+<a href="${pageContext.request.contextPath}/perform/perform?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 이전]</a>
 </c:if>
 
 <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/perform/perform?pageNum=${i}&search=${pageDTO.search}&selectcol=${pageDTO.selectcol}">${i}</a> 
+<a href="${pageContext.request.contextPath}/perform/perform?pageNum=${i}&search=${pageDTO.search}&select=${pageDTO.select}">${i}</a> 
 </c:forEach>
 
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/perform/perform?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}&selectcol=${pageDTO.selectcol}">[10페이지 다음]</a>
+<a href="${pageContext.request.contextPath}/perform/perform?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 다음]</a>
 </c:if>	
 	
 <!-- 본문HTML 입력 끝-->

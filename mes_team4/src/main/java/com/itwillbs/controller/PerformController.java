@@ -10,8 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.itwillbs.domain.LineDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PerformDTO;
 import com.itwillbs.service.PerformService;
@@ -29,7 +29,7 @@ public class PerformController {
 			System.out.println("PerformController perform()");
 			//검색어 가져오기
 			String search=request.getParameter("search");
-			String selectcol=request.getParameter("selectcol");
+			String select=request.getParameter("select");
 			
 			// 한 화면에 보여줄 글 개수 설정
 			int pageSize=5;
@@ -48,7 +48,7 @@ public class PerformController {
 			pageDTO.setCurrentPage(currentPage);
 			//검색어
 			pageDTO.setSearch(search);
-			pageDTO.setSelectcol(selectcol);
+			pageDTO.setSelect(select);
 			
 //			List<PerformDTO> PerformList=performService.getPerformList(pageDTO);
 						
@@ -102,6 +102,11 @@ public class PerformController {
 		public String performInsertPro(HttpServletRequest request, PerformDTO performDTO) {
 			System.out.println("PerformController performInsertPro()");
 			
+			if(performService.getPerformCount2()==0) {
+				performDTO.setPerform_cd("MPF00001");
+			}else {
+				
+			}
 			
 			//글쓰기 작업 메서드 호출
 			performService.insertPerform(performDTO);
@@ -128,6 +133,7 @@ public class PerformController {
 			//model 담아서 이동
 			model.addAttribute("perform", perform);
 //			model.addAttribute("PerformDTO", performDTO);
+//			System.out.println(perform.get("line_cd"));
 			
 			// 주소변경 없이 이동
 			// /WEB-INF/views/perform/PerformUpdate.jsp
@@ -149,7 +155,6 @@ public class PerformController {
 			String perform_cd = null;
 			if(chbox!=null){
 				  for(int i=0;i<chbox.length;i++){
-			   
 					perform_cd=chbox[i];
 					performService.deletePerform(perform_cd);
 				  }
@@ -158,4 +163,35 @@ public class PerformController {
 			// 주소변경 하면서 이동
 			return "redirect:/perform/perform";
 		}
+		
+			@ResponseBody
+			@RequestMapping(value = "/perform/callcd", method = RequestMethod.GET)
+			public String callcd(HttpServletRequest request, Model model) {
+				// request 파라미터 
+				String ic=request.getParameter("ic");
+				
+				// 메서드 호출
+				Map<String, Object> callcdMap
+				     =performService.getcallcdMap(ic);
+												
+				String result=(String) callcdMap.get("line_cd");
+								
+				return result;
+			}
+			
+			@ResponseBody
+			@RequestMapping(value = "/perform/callcd2", method = RequestMethod.GET)
+			public String callcd2(HttpServletRequest request, Model model) {
+				// request 파라미터 
+				String ic=request.getParameter("ic");
+				
+				// 메서드 호출
+				Map<String, Object> callcdMap
+				     =performService.getcallcdMap(ic);
+				
+				int a=(int) callcdMap.get("product_cd");
+				String result=Integer.toString(a);
+								
+				return result;
+			}
 }
