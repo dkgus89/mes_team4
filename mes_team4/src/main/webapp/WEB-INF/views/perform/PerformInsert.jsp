@@ -15,7 +15,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 function sub(){
-window.opener.name = "parentPage"; 
+window.opener.name = "parentPage";
 document.PerformInsert.target="parentPage";
 document.PerformInsert.action="${pageContext.request.contextPath}/perform/performinsertpro";
 document.PerformInsert.submit();
@@ -98,8 +98,8 @@ $(document).ready(function () {
 								<option value="${dto.instruction_code}">${dto.instruction_code}</option>							
 							</c:forEach>
       				</select></td>
-    				<td><input type="text" name="line_cd" id="line_cd" value=""></td>
-    				<td><input type="text" name="product_cd" id="product_cd" value=""></td>
+    				<td><input type="button" class="button2" name="line_cd" id="line_cd"></td>
+    				<td><input type="button" class="button2" name="product_cd" id="product_cd"></td>
     			</tr>
 
 			</tbody>
