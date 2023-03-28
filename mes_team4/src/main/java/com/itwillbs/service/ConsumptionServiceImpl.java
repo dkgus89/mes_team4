@@ -38,9 +38,10 @@ public class ConsumptionServiceImpl implements ConsumptionService{
 	}
 	
 	@Override
-	public void insertConsmpt(ConsumptionDTO insertConsmpt) {
+	public void insertConsmpt(ConsumptionDTO[] consmptArray) {
 		System.out.println("ConsumptionServiceImpl insertConsmpt()");
 		
+		consumptionDAO.insertConsmpt(consmptArray);
 	}
 	
 }// class

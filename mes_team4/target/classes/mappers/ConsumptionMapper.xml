@@ -60,6 +60,20 @@
 		</if> -->
 	</select>
 	
+	<insert id="insertConsmpt" parameterType="map">
+	  insert into consumption_management (cproduct_cd_name, cproduct_name, rproduct_cd_name, rproduct_name, consumption, consumption_unit, insert_date)
+	  values
+	  <foreach item="consmpt" index="index" collection="consmptArray" separator=",">
+		  (#{consmpt.cproduct_cd_name},
+		   #{consmpt.cproduct_name},
+		   #{consmpt.rproduct_cd_name},
+		   #{consmpt.rproduct_name},
+		   #{consmpt.consumption},
+		   #{consmpt.consumption_unit},
+		   now())
+	  </foreach>
+	</insert>
+	
 </mapper>
 
 

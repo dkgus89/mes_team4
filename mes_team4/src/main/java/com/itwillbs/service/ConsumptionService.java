@@ -12,6 +12,6 @@ public interface ConsumptionService {
 	
 	public int getPrCount(PageDTO pageDTO);
 	
-	public void insertConsmpt(ConsumptionDTO consumptionDTO);
+	public void insertConsmpt(ConsumptionDTO[] consmptArray);
 	
 }// class

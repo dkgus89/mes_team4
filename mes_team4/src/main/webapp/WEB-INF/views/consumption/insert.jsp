@@ -94,12 +94,18 @@
 		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 		});
 	}); // j쿼리 끝
-	
 	function insertBtn(){
-		alert("등록");
-		document.move.submit(); 
-		opener.parent.location.reload();
-		window.close();
+		// submit 전 제한 사항
+		
+		// 내용 제한 넘길 시 submit 진행
+		var result = confirm("게시글을 등록하시겠습니까?");
+		if (result == true){     
+			document.getElementById('move').submit(); 
+			opener.parent.location.reload();
+			alert("등록");
+		} else {
+			return false;
+		}
 	}
 </script>
 <!-- 자바스크립트 입력 끝-->
@@ -117,7 +123,7 @@
 	</div>
 	<br>
 
-	<form name="move" action="${pageContext.request.contextPath}/consmpt/insertPro" method="post">		
+	<form id="move" action="${pageContext.request.contextPath}/consmpt/insertPro" method="post">		
 	<input type="hidden" value="">
 	
 		<div>제품 등록</div>
@@ -153,14 +159,14 @@
 				<tr>
 					<td><button type="button" id="rpListBtn">추가</button></td>
 					<td></td>
-					<td><input type="text" name="consumption" value=""></td>
-					<td><input type="text" name="consumption_unit" value=""></td>
+					<td><input type="text" name="consumption_arr" value="" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
+					<td><input type="text" name="consumption_unit_arr" value=""></td>
 					<td><button type="button" id="deleteRowBtn">삭제</button></td>
 				</tr>
 			</tbody>
 			
 		</table>
-		
+			
 	</form>
 	
 	<button id="addRowBtn">원자재 추가</button>

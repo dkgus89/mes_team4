@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -40,21 +41,26 @@ public class ConsumptionController {
 	
 	@RequestMapping(value = "/consmpt/insertPro", method = RequestMethod.POST)
 	public String insertPro(ConsumptionDTO consumptionDTO) {
-		System.out.println("ConsumptionController insert()");
+		System.out.println("ConsumptionController insertPro()");
 		// 처리작업
-		System.out.println(consumptionDTO.getCproduct_cd_name());
-		System.out.println(consumptionDTO.getCproduct_name());
-		System.out.println(consumptionDTO.getRproduct_cd_name()[0]);
-		System.out.println(consumptionDTO.getRproduct_name()[0]);
-		System.out.println(consumptionDTO.getRproduct_cd_name()[1]);
-		System.out.println(consumptionDTO.getRproduct_name()[1]);
-		System.out.println(consumptionDTO.getConsumtion()[0]);
-		System.out.println(consumptionDTO.getConsumtion_unit()[0]);
-		System.out.println(consumptionDTO.getConsumtion()[1]);
-		System.out.println(consumptionDTO.getConsumtion_unit()[1]);
 		
-		// consumptionService.insertConsmpt(consumptionDTO);
-		return "redirect:/consumption/list";
+		// 배열 길이 지정
+		int length = consumptionDTO.getRproduct_cd_name_arr().length;
+		
+		ConsumptionDTO[] consmptArray = new ConsumptionDTO[length];
+		for (int i = 0; i < length; i++) {
+			ConsumptionDTO consumptionDTO2 = new ConsumptionDTO();
+			consumptionDTO2.setCproduct_cd_name(consumptionDTO.getCproduct_cd_name());
+			consumptionDTO2.setCproduct_name(consumptionDTO.getCproduct_name());
+			consumptionDTO2.setRproduct_cd_name(consumptionDTO.getRproduct_cd_name_arr()[i]);
+			consumptionDTO2.setRproduct_name(consumptionDTO.getRproduct_name_arr()[i]);
+			consumptionDTO2.setConsumption(consumptionDTO.getConsumption_arr()[i]);
+			consumptionDTO2.setConsumption_unit(consumptionDTO.getConsumption_unit_arr()[i]);
+			consmptArray[i] = consumptionDTO2;
+		}
+		
+		consumptionService.insertConsmpt(consmptArray);
+		return "consumption/close";
 	}
 	
 	@RequestMapping(value = "/consmpt/prlist", method = RequestMethod.GET)

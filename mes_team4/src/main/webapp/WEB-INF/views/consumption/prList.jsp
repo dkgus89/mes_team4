@@ -60,12 +60,12 @@
 					
 					var input0 = $('<input>').attr({
 					    'type': 'text',
-					    'name': 'rproduct_cd_name',
+					    'name': 'rproduct_cd_name_arr',
 					    'readonly': true
 					}).val(tdArr[0]);
 					var input1 = $('<input>').attr({
 					    'type': 'text',
-					    'name': 'rproduct_name',
+					    'name': 'rproduct_name_arr',
 					    'readonly': true
 					}).val(tdArr[1]);
 					

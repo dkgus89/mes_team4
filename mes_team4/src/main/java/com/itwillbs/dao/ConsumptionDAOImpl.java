@@ -21,7 +21,7 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 	
 	@Override
 	public List<Map<String, Object>> getPrList(PageDTO pageDTO) {
-		System.out.println("BoardDAOImpl getPrList()");
+		System.out.println("ConsumptionDAOImpl getPrList()");
 
 		pageDTO.setStartRow(pageDTO.getStartRow()-1);
 		
@@ -38,7 +38,7 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 	
 	@Override
 	public int getPrCount(PageDTO pageDTO) {
-		System.out.println("BoardDAOImpl getPrCount()");
+		System.out.println("ConsumptionDAOImpl getPrCount()");
 		
 		if (pageDTO.getProduct_dv().equals("cp")) {
 			return sqlSession.selectOne(namespace+".getCpCount", pageDTO);
@@ -52,7 +52,10 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 	} 
 	
 	@Override
-	public void insertConsmpt(ConsumptionDTO insertConsmpt) {
-		sqlSession.selectOne(namespace+".insertConsmpt", insertConsmpt);
+	public void insertConsmpt(ConsumptionDTO[] consmptArray) {
+		System.out.println("ConsumptionDAOImpl insertConsmpt()");
+		
+		sqlSession.insert(namespace+".insertConsmpt", Map.of("consmptArray" ,consmptArray));
 	}
+	
 }// class

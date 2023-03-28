@@ -52,7 +52,7 @@
 	</div><br>
 	<br>
 	 
-	<form method="post" name="myform"> 
+	<form method="post"> 
 	
 		<table id="vendortable" class=" table table-striped" style="width:1000px;">
 			<thead>
@@ -64,6 +64,8 @@
 					<th>품목명</th>
 					<th>소요량</th>
 					<th>단위</th>
+					<th>등록일</th>
+					<th>수정일</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -78,10 +80,14 @@
 					<td>test</td>
 					<td>test</td>
 					<td>test</td>
+					<td>test</td>
+					<td>test</td>
 					<td><input type="button" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" name="rowCheck" value=""></td>
+					<td>test</td>
+					<td>test</td>
 					<td>test</td>
 					<td>test</td>
 					<td>test</td>
