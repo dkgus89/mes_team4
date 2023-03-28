@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.DeliverDAO;
 import com.itwillbs.domain.DeliverDTO;
+import com.itwillbs.domain.PageDTO;
 
 @Service
 public class DeliverServiceImpl implements DeliverService{
@@ -18,11 +19,19 @@ public class DeliverServiceImpl implements DeliverService{
 
 	
 	@Override
-	public List<DeliverDTO> getDeliverList() {
+	public List<DeliverDTO> getDeliverList(PageDTO pageDTO) {
 		System.out.println("DeliverServiceImpl getDeliverList()");
+		//startRow endRow 구하기
+		// 시작하는 행번호 구하기
+		int startRow =(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+		int endRow = startRow+pageDTO.getPageSize()-1;
 		
-		return deliverDAO.getDeliverList();
+		pageDTO.setStartRow(startRow);
+		pageDTO.setEndPage(endRow);
+		
+		return deliverDAO.getDeliverList(pageDTO);
 	}
+	
 	
 	
 	@Override
@@ -50,6 +59,17 @@ public class DeliverServiceImpl implements DeliverService{
 		
 		deliverDAO.updateDeliver(deliverDTO);
 	}
+
+
+
+	@Override
+	public int getDeliverCount(PageDTO pageDTO) {
+		System.out.println("DeliverServiceImpl getDeliverCount()");
+		return deliverDAO.getDeliverCount(pageDTO);
+	}
+
+
+	
 	
 	
 

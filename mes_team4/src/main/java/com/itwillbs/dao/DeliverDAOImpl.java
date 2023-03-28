@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.DeliverDTO;
+import com.itwillbs.domain.PageDTO;
 
 
 
@@ -23,11 +24,13 @@ public class DeliverDAOImpl implements DeliverDAO  {
 
 	
 	@Override
-	public List<DeliverDTO> getDeliverList() {
+	public List<DeliverDTO> getDeliverList(PageDTO pageDTO) {
 		System.out.println("DeliverDAOImpl getDeliverList()");
+		// startRow -1
 		
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);		
 		
-		return sqlSession.selectList(namespace+".getDeliverList");
+		return sqlSession.selectList(namespace+".getDeliverList",pageDTO);
 	}
 	
 	@Override
@@ -44,6 +47,7 @@ public class DeliverDAOImpl implements DeliverDAO  {
 		return sqlSession.selectOne(namespace+".getDeliver", deliver_cd);
 	}
 
+	
 	@Override
 	public void updateDeliver(DeliverDTO deliverDTO) {
 		System.out.println("DeliverDAOImpl updateDeliver()");
@@ -54,6 +58,14 @@ public class DeliverDAOImpl implements DeliverDAO  {
 		
 		
 	}
+
+	@Override
+	public int getDeliverCount(PageDTO pageDTO) {
+		System.out.println("DeliverDAOImpl getDeliverCount()");
+		
+		return sqlSession.selectOne(namespace+".getDeliverCount", pageDTO);
+	}
+
 	
 	
 	

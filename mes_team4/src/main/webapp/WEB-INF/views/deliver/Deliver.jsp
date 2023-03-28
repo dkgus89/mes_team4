@@ -72,7 +72,7 @@ function DeliverUpdate(deliver_cd){
 					
 <!-- 				</tr> -->
 				
-				<c:forEach var="DeliverDTO" items="${DeliverList}">
+				<c:forEach var="DeliverDTO" items="${deliverList}">
 
 				<tr>
 				<td><input type="checkbox" id="checkbox"></td> 
@@ -92,6 +92,22 @@ function DeliverUpdate(deliver_cd){
 		<button type="button" id="test">테스트</button>
 		
 		<div id="array"></div>
+		
+	<c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
+	<a href="${pageContext.request.contextPath }deliver/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">[10페이지 이전]	</a>
+	</c:if>
+	
+	
+	<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+	<a href="${pageContext.request.contextPath }/deliver/list?pageNum=${i}&search=${pageDTO.search}">${i }</a>
+	
+	</c:forEach>
+	
+	<c:if test="${pageDTO.endPage < pageDTO.pageCount}">
+	<a href="${pageContext.request.contextPath }deliver/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">Next</a>
+	</c:if>
+	
+	
 	
 	
 	</form>
