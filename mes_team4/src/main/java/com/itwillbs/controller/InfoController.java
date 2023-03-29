@@ -120,7 +120,7 @@ public class InfoController {
 		
 		@RequestMapping(value = "/line/linedelete", method = RequestMethod.GET)
 		public String lineDelete(HttpServletRequest request) {
-			String chbox[]=request.getParameterValues("chbox");
+			String chbox[]=request.getParameterValues("rowcheck");
 			String line_cd = null;
 			if(chbox!=null){
 				  for(int i=0;i<chbox.length;i++){

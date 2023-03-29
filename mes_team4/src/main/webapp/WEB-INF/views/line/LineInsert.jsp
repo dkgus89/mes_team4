@@ -14,12 +14,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript">
 function sub(){
+window.opener.name = "parentPage";
+document.LineInsert.target="parentPage";
 document.LineInsert.action="${pageContext.request.contextPath}/line/lineinsertpro";
 document.LineInsert.submit();
-setTimeout(function() { 
-	opener.parent.location.reload();
-	window.close();
-	}, 200);
+self.close();
 }
 function rst(){
 document.LineInsert.reset();

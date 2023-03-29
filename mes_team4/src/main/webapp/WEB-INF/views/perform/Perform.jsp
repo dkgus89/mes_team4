@@ -24,6 +24,7 @@ function chdelete(){
 	document.performlist.submit();
 }
 function allCheck(){
+	
 	var ac = document.performlist.allcheck;
 	var rc = document.performlist.rowcheck;
 	if(ac.checked == true){
@@ -32,7 +33,8 @@ function allCheck(){
 	}else {
 		for(i=0;i<rc.length;i++){
 			rc[i].checked=false;}
-	} }
+	} 
+}
 	
 	
 </script>

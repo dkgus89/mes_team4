@@ -15,12 +15,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 function sub(){
+	window.opener.name = "parentPage";
+	document.PerformUpdate.target="parentPage";
 	document.PerformUpdate.action="${pageContext.request.contextPath}/perform/performupdatepro";
 	document.PerformUpdate.submit();
-	setTimeout(function() { 
-		opener.parent.location.reload();
-		window.close();
-		}, 200);
+	self.close();
 	}
 	function rst(){
 	document.PerformUpdate.reset();
@@ -94,7 +93,7 @@ function sub(){
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="perform_cd" value="${perform.perform_cd} " readonly></td>
+					<td><input type="text" name="perform_cd" value="${perform.perform_cd}" readonly></td>
 					<td><select name="instruction_code"  id="inst">
 							<option value="${perform.instruction_code}" selected>${perform.instruction_code}</option>
 								<c:forEach var="dto" items="${instMap}">

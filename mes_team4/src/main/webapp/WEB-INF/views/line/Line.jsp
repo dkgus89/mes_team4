@@ -23,6 +23,18 @@ function chdelete(){
 	document.linelist.action="${pageContext.request.contextPath}/line/linedelete";
 	document.linelist.submit();
 }
+function allCheck2(){
+	var ac = document.linelist.allcheck;
+	var rc = document.linelist.rowcheck;
+	if(ac.checked == true){
+		for(i=0; i<rc.length; i++){
+			rc[i].checked=true;}
+	}else {
+		for(i=0;i<rc.length;i++){
+			rc[i].checked=false;}
+	} 
+}
+	
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -58,7 +70,8 @@ function chdelete(){
 		<table id="vendortable" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">					
-					<th>선택</th>	
+					<th><input type="checkbox" name="allcheck" onClick='allCheck2()'></th>
+					<th>번호</th>
 					<th>라인코드</th>
 					<th>라인명</th>
 					<th>공정</th>
@@ -69,10 +82,11 @@ function chdelete(){
 			</thead>
 			
 			<tbody>
-				<c:forEach var="LineDTO" items="${LineList }">
+				<c:forEach var="LineDTO" items="${LineList }"  varStatus="status">
 
 				<tr>				
-				<td><input type="checkbox" name="chbox" value="${LineDTO.line_cd}"></td>
+				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${LineDTO.line_cd}"></td>
+				<td>${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
 				<td>${LineDTO.line_cd}</td>
     			<td>${LineDTO.line_name}</td>
     			<td>${LineDTO.line_process}</td>

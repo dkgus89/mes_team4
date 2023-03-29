@@ -14,12 +14,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript">
 function sub(){
+	window.opener.name = "parentPage";
+	document.LineUpdate.target="parentPage";
 	document.LineUpdate.action="${pageContext.request.contextPath}/line/lineupdatepro";
 	document.LineUpdate.submit();
-	setTimeout(function() { 
-		opener.parent.location.reload();
-		window.close();
-		}, 200);
+	self.close();
 	}
 	function rst(){
 	document.LineUpdate.reset();

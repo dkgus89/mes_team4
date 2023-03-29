@@ -98,8 +98,8 @@ $(document).ready(function () {
 								<option value="${dto.instruction_code}">${dto.instruction_code}</option>							
 							</c:forEach>
       				</select></td>
-    				<td><input type="button" class="button2" name="line_cd" id="line_cd"></td>
-    				<td><input type="button" class="button2" name="product_cd" id="product_cd"></td>
+    				<td><input type="text" name="line_cd" id="line_cd"></td>
+    				<td><input type="text" name="product_cd" id="product_cd"></td>
     			</tr>
 
 			</tbody>
