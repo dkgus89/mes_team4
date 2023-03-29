@@ -123,7 +123,6 @@ public class ConsumptionController {
 		System.out.println("ConsumptionController cprcheck()");
 		// 처리작업
 		String cprCdName = request.getParameter("cprCdName");
-		System.out.println("cprCdName "+cprCdName);
 		String result = "insert";
 		
 		List<ConsumptionDTO> consmptList = consumptionService.checkCprCdName(cprCdName);

@@ -12,13 +12,13 @@
 <!-- js파일 들어가는 곳 -->
 
 <!-- 본문적용 CSS들어가는 곳 -->
-<link href="${pageContext.request.contextPath}/resources/css/MainFront.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/resources/css/Consumption.css" rel="stylesheet" type="text/css">
 <!-- 본문적용 CSS들어가는 곳 -->
 
 <!-- 자바스크립트 입력 시작-->
 <script type="text/javascript">
 	$(document).ready(function() { // j쿼리 시작
+		
 		// Url값 전달받기
 		var queryString = window.location.search;
 		var urlParams = new URLSearchParams(queryString);
@@ -34,56 +34,78 @@
 	                tdArr.push(td.eq(i).text());
 	            });
 				
-				$.ajax({ // ajex start
-					url:'${pageContext.request.contextPath }/consmpt/cprcheck',
-					data:{'cprCdName':tdArr[0]},
-					success:function(result){
-						if(result=="insert"){
-							if(product_dv==='cp') {
-								var parentWindowTr = window.opener.$('#cproductBody').eq(trIndex);
-								
-								parentWindowTr.find('td').empty();
-								
-								var input0 = $('<input>').attr({
-								    'type': 'text',
-								    'name': 'cproduct_cd_name',
-								    'readonly': true
-								}).val(tdArr[0]);
-								var input1 = $('<input>').attr({
-								    'type': 'text',
-								    'name': 'cproduct_name',
-								    'readonly': true
-								}).val(tdArr[1]);
-								
-								parentWindowTr.find('td:eq(0)').append(input0);
-								parentWindowTr.find('td:eq(1)').append(input1);
-							} else if(product_dv==='rp') {
-								var parentWindowTr = window.opener.$('#rproductBody tr').eq(trIndex);
-								console.log(trIndex);
-								
-								parentWindowTr.find('td:eq(0)').empty();
-								parentWindowTr.find('td:eq(1)').empty();
-								
-								var input0 = $('<input>').attr({
-								    'type': 'text',
-								    'name': 'rproduct_cd_name_arr',
-								    'readonly': true
-								}).val(tdArr[0]);
-								var input1 = $('<input>').attr({
-								    'type': 'text',
-								    'name': 'rproduct_name_arr',
-								    'readonly': true
-								}).val(tdArr[1]);
-								
-								parentWindowTr.find('td:eq(0)').append(input0);
-								parentWindowTr.find('td:eq(1)').append(input1);
-							} 
-							window.close();
-						}else{
-							alert("해당 완제품에 대한 소요량 기록이 있습니다. 다른 완제품을 선택하세요.");	
+				if(product_dv==='cp') {
+					// 완제품 중복 체크
+					$.ajax({ // ajex start
+						url:'${pageContext.request.contextPath }/consmpt/cprcheck',
+						data:{'cprCdName':tdArr[0]},
+						success:function(result){
+							if(result=="insert"){
+									var parentWindowTr = window.opener.$('#cproductBody').eq(trIndex);
+									
+									parentWindowTr.find('td').empty();
+									
+									var input0 = $('<input>').attr({
+									    'type': 'text',
+									    'name': 'cproduct_cd_name',
+									    'readonly': true
+									}).val(tdArr[0]);
+									var input1 = $('<input>').attr({
+									    'type': 'text',
+									    'name': 'cproduct_name',
+									    'readonly': true
+									}).val(tdArr[1]);
+									
+									parentWindowTr.find('td:eq(0)').append(input0);
+									parentWindowTr.find('td:eq(1)').append(input1);
+	
+									window.close();
+							}else{
+								alert("해당 완제품에 대한 소요량 기록이 있습니다. 다른 완제품을 선택하세요.");	
+							}
 						}
-					}
-				});// ajex end
+					});// ajex end
+				} else if(product_dv==='rp') {
+						// 원자재 중복 체크
+						let insert = true;
+						
+						if(trIndex > 0) {
+							var firstColumnValues = window.opener.$('#rproductBody tr').map(function() {
+								  return window.opener.$(this).find('td:first-child input').val();
+							}).get();
+							console.log(firstColumnValues); 
+							
+							for(let i = 0; i < trIndex; i++) {
+								if(firstColumnValues[i]===tdArr[0]) {
+									insert = false;
+									alert("해당 원자재는 등록되어 있습니다. 다른 원자재를 선택하세요.");	
+								}
+							}
+						} 
+						
+						if (insert) {
+							var parentWindowTr = window.opener.$('#rproductBody tr').eq(trIndex);
+							
+							parentWindowTr.find('td:eq(0)').empty();
+							parentWindowTr.find('td:eq(1)').empty();
+							
+							var input0 = $('<input>').attr({
+							    'type': 'text',
+							    'name': 'rproduct_cd_name_arr',
+							    'readonly': true
+							}).val(tdArr[0]);
+							var input1 = $('<input>').attr({
+							    'type': 'text',
+							    'name': 'rproduct_name_arr',
+							    'readonly': true
+							}).val(tdArr[1]);
+							
+							parentWindowTr.find('td:eq(0)').append(input0);
+							parentWindowTr.find('td:eq(1)').append(input1);
+							
+							window.close();
+						}
+				} 
 			});
 		
 	}); // j쿼리 끝
