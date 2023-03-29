@@ -1,6 +1,7 @@
 package com.itwillbs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -24,17 +25,18 @@ public class ProductDAOImpl implements ProductDAO{
 		sqlSession.insert(namespace+".insertProduct", productDTO);
 	}
 
-	@Override
-	public List<ProductDTO> getProductList(PageDTO pageDTO) {
-		System.out.println("ProductDAOImpl getProductList()");
-		// startRow-1
-		pageDTO.setStartRow(pageDTO.getStartRow()-1);
-		return sqlSession.selectList(namespace+".getProductList", pageDTO);
-	}
+//	@Override
+//	public List<ProductDTO> getProductList(PageDTO pageDTO) {
+//		System.out.println("ProductDAOImpl getProductList()");
+//		// startRow-1
+//		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+//		return sqlSession.selectList(namespace+".getProductList", pageDTO);
+//	}
 
 	@Override
-	public int getProductCount() {
-		return sqlSession.selectOne(namespace+".getProductCount");
+	public int getProductCount(PageDTO pageDTO) {
+		
+		return sqlSession.selectOne(namespace+".getProductCount", pageDTO);
 	}
 
 	@Override
@@ -48,5 +50,37 @@ public class ProductDAOImpl implements ProductDAO{
 		System.out.println("ProductDAOImpl deleteProduct()");
 		sqlSession.delete(namespace+".deleteProduct", product_cd_name);
 	}
+
+	@Override
+	public ProductDTO getProduct(String product_cd_name) {
+		System.out.println("ProductDAOImpl getProduct()");
+		
+		return sqlSession.selectOne(namespace+".getProduct",product_cd_name);
+	}
+
+	@Override
+	public void updateProduct(ProductDTO productDTO) {
+		System.out.println("ProductDAOImpl updateProduct()");
+		
+		sqlSession.update(namespace+".updateProduct", productDTO);	
+	}
+
+	@Override
+	public List<Map<String, Object>> getInstMap() {
+		System.out.println("ProductDAOImpl getInstMap()");
+		
+		return sqlSession.selectList(namespace+".getInstMap");
+	}
+
+	@Override
+	public List<Map<String, Object>> getProductList(PageDTO pageDTO) {
+		System.out.println("ProductDAOImpl getProductList()");
+		
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		
+		return sqlSession.selectList(namespace+".getProductList",pageDTO);
+	}
+
+
 
 }

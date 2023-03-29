@@ -14,17 +14,17 @@
 
 <script type="text/javascript">
 
-// function sub(){
-// 	document.LineUpdate.action="${pageContext.request.contextPath}/line/lineupdatepro";
-// 	document.LineUpdate.submit();
-// 	setTimeout(function() { 
-// 		opener.parent.location.reload();
-// 		window.close();
-// 		}, 200);
-// 	}
-// 	function rst(){
-// 	document.LineUpdate.reset();
-// 	}
+function sub(){
+	document.productUpdate.action="${pageContext.request.contextPath}/product/produpdatePro";
+	document.productUpdate.submit();
+	setTimeout(function() { 
+		opener.parent.location.reload();
+		window.close();
+		}, 200);
+	}
+	function rst(){
+	document.productUpdate.reset();
+	}
 
 </script>
 
@@ -58,7 +58,13 @@
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="product_dv" value="${productDTO.product_dv }" ></td>
+					<td>
+					<select  name="product_dv">
+						<option value="">선택해주세요</option>
+						<option value="완제품">완제품</option>
+						<option value="원자재">원자재</option>
+					</select>
+					</td>
 					<td><input type="text" name="product_cd_name" value="${productDTO.product_cd_name }" readonly></td>
 					<td><input type="text" name="product_name" value="${productDTO.product_name }" ></td>
 					<td><input type="text" name="business_cd" value="${productDTO.business_cd }" ></td>

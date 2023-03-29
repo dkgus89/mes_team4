@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.service.ProductService;
@@ -24,9 +24,14 @@ public class ProductController {
 	
 	@RequestMapping(value = "/product/prodpage", method = RequestMethod.GET)
 	public String prodpage(HttpServletRequest request, Model model) {
+		// 검색어 가져오기
+		String search=request.getParameter("search");
+		// 검색어 옵션
+		String select=request.getParameter("select");
+		
 		String pageNum=request.getParameter("pageNum");
 		// 한 화면에 보여질 글의 개수 설정
-		int pageSize=10;
+		int pageSize=5;
 		// 현재 페이지번호 가져오기
 		if(pageNum==null) {
 			// pageNum없으면 1페이지로 설정
@@ -39,11 +44,16 @@ public class ProductController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
+		// 검색어
+		pageDTO.setSearch(search);
+		pageDTO.setSelect(select);
 		
-		List<ProductDTO> productList=productService.getProductList(pageDTO);
+//		List<ProductDTO> productList=productService.getProductList(pageDTO);
+		List<Map<String, Object>> productList
+	     =productService.getProductList(pageDTO);
 		
 		// 페이징 처리
-		int count =productService.getProductCount();
+		int count =productService.getProductCount(pageDTO);
 		int pageBlock=10;
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 		int endPage=startPage+pageBlock-1;
@@ -57,25 +67,28 @@ public class ProductController {
 		pageDTO.setStartPage(startPage);
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
-		System.out.println(productList.get(0).getProduct_cd_name());
-		model.addAttribute("productList",productList);
+//		System.out.println(productList.get(0).getProduct_cd_name());
+		model.addAttribute("productList", productList);
 		model.addAttribute("pageDTO",pageDTO);
 		
 		return "product/ProductPage";
 	}
 	
 	@RequestMapping(value = "/product/prodinsert", method = RequestMethod.GET)
-	public String prodinsert() {
+	public String prodinsert(Model model) {
+		
+		List<Map<String, Object>> instMap
+			=productService.getInstMap();
+		// model에 담아서 이동
+		model.addAttribute("instMap", instMap);
+		
 		return "product/ProductInsert";
 	}
 	
 	@RequestMapping(value = "/product/prodinsertPro", method = RequestMethod.POST)
 	public String prodinsertPro(ProductDTO productDTO) {
 		System.out.println("ProductController prodinsertPro()");
-		//회원가입 처리 부모인터페이스 MemberService, 
-		//           자식클래스   MemberServiceImpl
-		// 리턴할형 없음 insertMember(MemberDTO memberDTO) 메서드 정의
-		// 메서드 호출
+		
 		productService.insertProduct(productDTO);
 //		주소줄 변경하면서 이동
 		return "redirect:/product/prodpage";
@@ -96,16 +109,20 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product/produpdate", method = RequestMethod.GET)
-	public String update(HttpSession session, Model model) {
-		String product_cd_name=(String)session.getAttribute("product_cd_name");
-		System.out.println("세션 product_cd_name :" + product_cd_name);
-		
+	public String produpdate(HttpServletRequest request, Model model) {
+		String product_cd_name=request.getParameter("product_cd_name");
+//		System.out.println("세션 product_cd_name :" + product_cd_name);
 		ProductDTO productDTO=productService.getProduct(product_cd_name);
-
 		model.addAttribute("productDTO", productDTO);
-		
 		// 주소변경 없이 이동
 		return "product/ProductUpdate";
+	}
+	
+	@RequestMapping(value = "/product/produpdatePro", method = RequestMethod.POST)
+	public String produpdatePro(ProductDTO productDTO) {
+		productService.updateProduct(productDTO);
+		// 주소변경 하면서 이동
+		return "redirect:/product/prodpage";
 	}
 	
 }

@@ -35,17 +35,47 @@ function rst(){
 
 	<h2>품목정보등록</h2><br>
 	 <br>
-<form name="prodinsert" method="post">
-제품구분 : <label><input type="radio" name="product_dv" value="원자재" > 원자재
-				<input type="radio" name="product_dv" value="완제품"> 완제품<br></label>
-제품코드 : <input type="text" name="product_cd_name" value=""><br>
-제품명 : <input type="text" name="product_name" value=""><br>
-거래처코드 : <input type="text" name="business_cd" value=""><br>
-규격 : <input type="text" name="product_size" value=""><br>
-재고단위 : <input type="text" name="product_unit" value=""><br>
-적요 : <input type="text" name="remarks" value=""><br>
+<form action="${pageContext.request.contextPath}/product/prodinsertPro" name="insertform" method="post" >
 
-</form>
+		<input type="hidden" value="">
+		
+		<table id="vendortable" class="table table-striped">
+			<thead>
+				<tr style="text-align: center; font-size: 0.9rem">
+					<th>제품구분 </th>
+					<th>제품코드 </th>
+					<th>제품명 </th>
+					<th>거래처코드 </th>
+					<th>규격 </th>
+					<th>재고단위  </th>
+					<th>적요</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>
+					<select  name="product_dv">
+						<option value="">선택해주세요</option>
+						<option value="완제품">완제품</option>
+						<option value="원자재">원자재</option>
+					</select>
+					</td>
+					<td><input type="text" name="product_cd_name"></td>
+					<td><input type="text" name="product_name"></td>
+					<td><select name ="business_cd">
+						<c:forEach var="dto" items="${instMap}">
+							<option value="${dto.business_cd }">${dto.business_cd }</option>
+						</c:forEach>
+					</select></td>
+					<td><input type="tel" name="product_unit"></td>
+					<td><input type="text" name="product_unit"></td>
+					<td><input type="text"  class="remarks" name="remarks" ></td>
+				</tr>
+			</tbody>				
+		</table>
+
+	</form>
  <br>
 <!-- <div class="wrap2"> -->
 	<button class="button2" onclick="sub()">등록</button>

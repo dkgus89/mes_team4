@@ -11,7 +11,9 @@ public class PageDTO {
 	private int endPage;
 	private int count;
 	private int pageCount;
-	
+	// 검색어
+	private String search;
+	private String select;
 	
 	@Override
 	public String toString() {
@@ -20,6 +22,22 @@ public class PageDTO {
 				+ ", endPage=" + endPage + ", count=" + count + ", pageCount=" + pageCount + "]";
 	}
 	
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public String getSelect() {
+		return select;
+	}
+
+	public void setSelect(String select) {
+		this.select = select;
+	}
+
 	public int getPageSize() {
 		return pageSize;
 	}
