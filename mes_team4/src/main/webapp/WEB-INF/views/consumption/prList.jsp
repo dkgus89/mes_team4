@@ -61,7 +61,7 @@
 	
 									window.close();
 							}else{
-								alert("해당 완제품에 대한 소요량 기록이 있습니다. 다른 완제품을 선택하세요.");	
+								alert("해당 완제품에 대한 소요량 기록이 있습니다.\n다른 완제품을 선택하세요.");	
 							}
 						}
 					});// ajex end
@@ -78,7 +78,7 @@
 							for(let i = 0; i < trIndex; i++) {
 								if(firstColumnValues[i]===tdArr[0]) {
 									insert = false;
-									alert("해당 원자재는 등록되어 있습니다. 다른 원자재를 선택하세요.");	
+									alert("해당 원자재는 등록되어 있습니다.\n다른 원자재를 선택하세요.");	
 								}
 							}
 						} 
