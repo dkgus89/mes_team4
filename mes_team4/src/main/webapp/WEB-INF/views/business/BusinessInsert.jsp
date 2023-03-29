@@ -75,7 +75,7 @@
     	}
     
     function goSubmit(){
-//     	window.opener.name="paretPage";
+    	opener.name="parentPage";
     	document.insertform.target="parentPage";
     	document.insertform.action="${pageContext.request.contextPath}/business/businessinsertpro";
     	document.insertform.submit();

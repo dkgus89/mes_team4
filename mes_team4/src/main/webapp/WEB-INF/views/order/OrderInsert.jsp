@@ -15,7 +15,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function goSubmit(){
-//     	window.opener.name="paretPage";
+    	window.opener.name="parentPage";
     	document.insertform1.target="parentPage";
     	document.insertform1.action="${pageContext.request.contextPath}/order/orderinsertpro";
     	document.insertform1.submit();

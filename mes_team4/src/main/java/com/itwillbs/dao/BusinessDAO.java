@@ -24,4 +24,6 @@ public interface BusinessDAO {
 	public void updateBusiness(BusinessDTO businessDTO);
 
 	public List<BusinessDTO> getBusinessList();
+	
+	public Integer getCon(String cd);
 }

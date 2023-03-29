@@ -76,7 +76,7 @@ public class BusinessServiceImpl implements BusinessService{
 	@Override
 	public void deleteBusiness(String cd) {
 		System.out.println("BusinessServiceImpl deleteBusiness()");
-		System.out.println(cd);
+		System.out.println("delete code값 : " +cd);
 		businessDAO.deleteBusiness(cd);		
 	}
 

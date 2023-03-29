@@ -59,7 +59,10 @@
 		where business_cd = #{business_cd}
 </update>
 
-
+<select id="getCon" resultType="java.lang.Integer">
+	select count(*)  from order_management 
+    where business_cd = #{cd} and con = "생산전";
+</select>
 
 
 

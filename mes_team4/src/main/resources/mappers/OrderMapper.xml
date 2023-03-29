@@ -24,7 +24,7 @@
     <select id="getOrderList" resultType="com.itwillbs.domain.OrderDTO">
     select * from order_management
     	<if test="search != null">
-   			where product_cd like CONCAT('%',#{search},'%')
+   			where business_cd like CONCAT('%',#{search},'%')
    			or con like CONCAT('%',#{search},'%')
    		</if>
     order by order_cd desc

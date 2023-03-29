@@ -82,4 +82,11 @@ public class BusinessDAOImpl implements BusinessDAO{
 		return sqlSession.selectList(namespace+".getBusiListforor");
 	}
 
+	@Override
+	public Integer getCon(String cd) {
+		System.out.println("BusinessDAOImpl getCon()");
+		System.out.println("cd이름 : "+cd);
+		return sqlSession.selectOne(namespace+".getCon",cd);
+	}
+
 }

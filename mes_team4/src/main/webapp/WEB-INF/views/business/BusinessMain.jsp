@@ -56,10 +56,10 @@
 					valueArr : valueArr 
 				},
 				success : function(jdata){
-					if(jdata = 1){
+					if(jdata == '1'){
 						alert("삭제하였습니다");
 						location.replace("${pageContext.request.contextPath}/business/businessmain");
-					} else {alert("삭제실패");}
+					} else {alert("생산진행중인 거래처입니다.\n수주관리 -> 진행상황을 확인해주세요.");}
 				}	
 			});
 		}else {

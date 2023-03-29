@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwillbs.dao.BusinessDAO;
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.BusinessService;
@@ -20,6 +22,8 @@ public class BusinessController {
 	
 	@Inject
 	private BusinessService businessService;
+	@Inject
+	private BusinessDAO businessDAO;
 	
 	@RequestMapping(value = "/business/businessmain", method = RequestMethod.GET)
 	public String businessmain(HttpServletRequest request, Model model) {
@@ -84,17 +88,26 @@ public class BusinessController {
 		return "redirect:/business/businessmain";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/business/delete")
 	public String delete(HttpServletRequest request) {
 		System.out.println("businessController delete()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
+		String jdata = "0";
 		int size = ajaxMsg.length;
 		for(int i=0; i<size; i++) {
-			businessService.deleteBusiness(ajaxMsg[i]);
+
+			System.out.println("get con 값 : "+businessDAO.getCon(ajaxMsg[i]));
+			if(businessDAO.getCon(ajaxMsg[i])==0) {
+				
+				businessService.deleteBusiness(ajaxMsg[i]);	
+				jdata = "1";
+			}
+			
+			
 		}
-		
-		return "redirect:/business/businessmain";
+		return jdata;
 	}
 	
 	@RequestMapping(value = "/business/businessupdate", method = RequestMethod.GET)
