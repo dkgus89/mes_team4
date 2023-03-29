@@ -3,11 +3,19 @@ package com.itwillbs.domain;
 import java.sql.Timestamp;
 
 public class ReleaseDTO {
+	// 출고코드, 출고일자, 적요, 진행상태, 출고수량
 	private String rel_schedule_cd;
 	private String rel_date;
 	private Timestamp remarks;
 	private String out_complete;
+	private int rel_count;
 	
+	public int getRel_count() {
+		return rel_count;
+	}
+	public void setRel_count(int rel_count) {
+		this.rel_count = rel_count;
+	}
 	public String getRel_schedule_cd() {
 		return rel_schedule_cd;
 	}

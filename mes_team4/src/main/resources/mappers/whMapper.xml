@@ -27,12 +27,12 @@
 	<select id="getWhList" resultType="com.itwillbs.domain.WHDTO">
         select * from warehouse
         <if test="search != null">
-        <if test="search_option != null">
-        	<if test="search_option == 'wh_name'.toString()">
+        <if test="select != null">
+        	<if test="select == 'wh_name'.toString()">
         		where wh_name like CONCAT('%',#{search},'%')
         	</if>
         	
-        	<if test="search_option == 'wh_addr'.toString()">
+        	<if test="select == 'wh_addr'.toString()">
         		where wh_addr like CONCAT('%',#{search},'%')
         	</if>
         </if>
@@ -44,12 +44,12 @@
 	<select id="getWhCount" resultType="java.lang.Integer">
         select count(*) from warehouse
         <if test="search != null">
-        <if test="search_option != null">
-        	<if test="search_option == 'wh_name'.toString()">
+        <if test="select != null">
+        	<if test="select == 'wh_name'.toString()">
         		where wh_name like CONCAT('%',#{search},'%')
         	</if>
         	
-        	<if test="search_option == 'wh_addr'.toString()">
+        	<if test="select == 'wh_addr'.toString()">
         		where wh_addr like CONCAT('%',#{search},'%')
         	</if>
         	

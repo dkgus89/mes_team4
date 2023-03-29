@@ -4,57 +4,57 @@
 
 <!-- 파일이름 대신 namespace 이름을 불러서 사용 -->
 
-<mapper namespace="com.itwillbs.mappers.whMapper">
+<mapper namespace="com.itwillbs.mappers.relMapper">
 	
 	<!-- ?대신 WHDTO의 멤버변수명 사용-->
-	<insert id="insertwh">
-		insert into warehouse(wh_cd, wh_name, wh_dv,wh_addr, wh_tel, wh_use, remarks) 
-		values(#{wh_cd},#{wh_name},#{wh_dv},#{wh_addr},#{wh_tel},#{wh_use},#{remarks})
+	<insert id="insertrel">
+		insert into release_schdule(rel_schedule_cd, rel_date, product_name, wh_name ,out_complete, rel_count, remarks, wh_use, remarks) 
+		values(#{rel_schedule_cd},#{rel_date}, #{product_name}, #{wh_name}, #{out_complete},#{rel_count}, #{remarks}, #{wh_use},#{remarks})
 	</insert>
 	
 	<select id="getMaxNum" resultType="java.lang.Integer">
         select max(wh_cd) from warehouse
     </select>
 	
-	<select id="getMNum" resultType="java.lang.Integer">
-	select max(SUBSTR(wh_cd, 2)) from warehouse where wh_cd like 'M%'
+	<select id="getRNum" resultType="java.lang.Integer">
+	select max(SUBSTR(rel_schedule_cd, 2)) from release_schdule where rel_schedule_cd like 'R%'
 	</select>
 
 	<select id="getPNum" resultType="java.lang.Integer"> 
 		select max(SUBSTR(wh_cd, 2)) from warehouse where wh_cd like 'P%'
 	</select>
 	
-	<select id="getWhList" resultType="com.itwillbs.domain.WHDTO">
-        select * from warehouse
-        <if test="search != null">
-        <if test="select != null">
-        	<if test="select == 'wh_name'.toString()">
-        		where wh_name like CONCAT('%',#{search},'%')
-        	</if>
+	<select id="getRelList" resultType="com.itwillbs.domain.ReleaseDTO">
+        select * from release_schedule
+<!--         <if test="search != null"> -->
+<!--         <if test="select != null"> -->
+<!--         	<if test="select == 'wh_name'.toString()"> -->
+<!--         		where wh_name like CONCAT('%',#{search},'%') -->
+<!--         	</if> -->
         	
-        	<if test="select == 'wh_addr'.toString()">
-        		where wh_addr like CONCAT('%',#{search},'%')
-        	</if>
-        </if>
-        </if>
-        order by wh_cd desc 
+<!--         	<if test="select == 'wh_addr'.toString()"> -->
+<!--         		where wh_addr like CONCAT('%',#{search},'%') -->
+<!--         	</if> -->
+<!--         </if> -->
+<!--         </if> -->
+        order by rel_schedule_cd desc 
         limit #{startRow} , #{pageSize}    	
     </select>
 	
-	<select id="getWhCount" resultType="java.lang.Integer">
-        select count(*) from warehouse
-        <if test="search != null">
-        <if test="select != null">
-        	<if test="select == 'wh_name'.toString()">
-        		where wh_name like CONCAT('%',#{search},'%')
-        	</if>
+	<select id="getRelCount" resultType="java.lang.Integer">
+        select count(*) from release_schedule
+<!--         <if test="search != null"> -->
+<!--         <if test="select != null"> -->
+<!--         	<if test="select == 'wh_name'.toString()"> -->
+<!--         		where wh_name like CONCAT('%',#{search},'%') -->
+<!--         	</if> -->
         	
-        	<if test="select == 'wh_addr'.toString()">
-        		where wh_addr like CONCAT('%',#{search},'%')
-        	</if>
+<!--         	<if test="select == 'wh_addr'.toString()"> -->
+<!--         		where wh_addr like CONCAT('%',#{search},'%') -->
+<!--         	</if> -->
         	
-        </if>
-        </if> 
+<!--         </if> -->
+<!--         </if>  -->
     </select>
 	
     <delete id="deletewh">

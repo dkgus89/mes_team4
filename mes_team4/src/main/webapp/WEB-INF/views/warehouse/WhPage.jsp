@@ -77,7 +77,7 @@
 	
     <div class="search">
     <form action="${pageContext.request.contextPath}/wh/whpage" method="get">
-       <select name="search_option" class="button2">
+       <select name="select" class="button2">
        		<option value="wh_name">이름</option>
        		<option value="wh_addr">지역</option>
        </select>

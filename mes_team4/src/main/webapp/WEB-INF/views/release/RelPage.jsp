@@ -15,7 +15,7 @@
 <script>
 
 	function insertPopup(){
-    	window.open("relinsert","창고등록팝업","width=1000, height=500, top=200, left=200");
+    	window.open("${pageContext.request.contextPath}/rel/relinsert","창고등록팝업","width=1000, height=500, top=200, left=200");
 	}
 
 	function updatePopup(cd){
@@ -98,7 +98,7 @@
 	 <br>
 	 
 	 
-	<form name="whlist">
+	<form name="rellist">
 <!-- 		<input type="hidden" value=""> -->
 		
 		<table id="vendortable" class=" table table-striped">
@@ -112,18 +112,19 @@
 					<th>출고수량</th>
 					<th>출고진행상태</th>
 					<th>적요</th>
+					<th>수정</th>
 				</tr>
 			</thead>
 			
 			<tbody>
-			<c:forEach var="whDTO" items="${whList }">
+			<c:forEach var="releaseDTO" items="${relList }">
 				<tr>
 					<td><input type="checkbox" id="checkbox" name="rowcheck" value="${releaseDTO.rel_schedule_cd }"></td>
 					<td>${releaseDTO.rel_schedule_cd}</td>
 					<td>${releaseDTO.rel_date}</td>
 					<td>${productDTO.product_name}</td>
 					<td>${whDTO.wh_name}</td>
-					<td></td>
+					<td>${releaseDTO.rel_count }</td>
 					<td>${releaseDTO.out_complete}</td>
 					<td>${releaseDTO.remarks}</td>
 					<td>

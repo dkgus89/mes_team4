@@ -15,7 +15,7 @@
 
 <script type="text/javascript">
 function sub(){
-document.insertform.action="${pageContext.request.contextPath}/wh/whinsertPro";
+document.insertform.action="${pageContext.request.contextPath}/rel/relinsertPro";
 document.insertform.submit();
 setTimeout(function() { 
 	opener.parent.location.reload();
@@ -26,7 +26,7 @@ setTimeout(function() {
 function goSubmit(){
 // 	window.opener.name="paretPage";
 	document.insertform.target="parentPage";
-	document.insertform.action="${pageContext.request.contextPath}/wh/whinsertPro";
+	document.insertform.action="${pageContext.request.contextPath}/rel/relinsertPro";
 	document.insertform.submit();
 	self.close();
 }
@@ -34,6 +34,28 @@ function goSubmit(){
 function rst(){
 document.insertform.reset();
 }
+
+// 수량 버튼 조작
+function count(type)  {
+  // 결과를 표시할 element
+  const resultElement = document.getElementById('result');
+  
+  // 현재 화면에 표시된 값
+  let number = resultElement.innerText;
+  
+  // 더하기/빼기
+  if(type === 'plus') {
+    number = parseInt(number) + 10;
+  }else if(type === 'minus')  {
+	  if(number > 0){
+		  number = parseInt(number) - 10;
+	  }
+  }
+  // 결과 출력
+  resultElement.innerText = number;
+}
+
+
 </script>
 
 
@@ -44,8 +66,10 @@ document.insertform.reset();
 <!-- 본문HTML 입력 시작-->
 <h2 class="inserttitle">자재출고 등록</h2><br>
 
+
+
 	
-	<form action="${pageContext.request.contextPath}/wh/whinsertPro" name="insertform" method="post" >
+	<form action="${pageContext.request.contextPath}/rel/relinsertPro" name="insertform" method="post" >
 	<div class="wrap2">
 		<input type="submit" class="button2" value="등록" onclick="sub()">
 		<input type="reset" class="button2" value="초기화" onclick="rst()">
@@ -62,7 +86,6 @@ document.insertform.reset();
 					<th>출고품목명</th>
 					<th>출고창고</th>
 					<th>출고수량</th>
-					<th>출고진행상태</th>
 					<th>적요</th>
 				</tr>
 			</thead>
@@ -70,40 +93,18 @@ document.insertform.reset();
 			<tbody>
 				<tr>
 					<td>
-					<select  name="wh_dv">
-						<option value="">선택해주세요</option>
-						<option value="완제품">완제품</option>
-						<option value="원자재">원자재</option>
-					</select>
-					</td>
-					<td><input type="text" name="wh_name"></td>
+					<input type="date" name="rel_date"></td>
+					<td><input type="text" name="product_name"></td>
 					<td>
-						<select name="wh_use">
+						<select name="wh_name">
 							<option value="사용">진행중</option>
-							<option value="미사용">미사용</option>
+							<option value="미사용">완료</option>
 						</select>
 					</td>
-					<td><input type="tel" name="wh_tel"></td>
 					<td>
-						<select name="wh_addr">
-							<option value="" selected>지역을 선택하세요</option>
-							<option value='서울'>서울</option>
-				            <option value='부산'>부산</option>
-				            <option value='대구'>대구</option>
-				            <option value='인천'>인천</option>
-				            <option value='광주'>광주</option>
-				            <option value='대전'>대전</option>
-				            <option value='울산'>울산</option>
-				            <option value='강원'>강원</option>
-				            <option value='경기'>경기</option>
-				            <option value='경남'>경남</option>
-				            <option value='경북'>경북</option>
-				            <option value='전남'>전남</option>
-				            <option value='전북'>전북</option>
-				            <option value='제주'>제주</option>
-				            <option value='충남'>충남</option>
-				            <option value='충북'>충북</option>
-						</select>
+						<input type="button" onclick='count("minus")' value="-"/>
+							<div id="result" name="rel_count">0</div>
+						<input type="button" onclick='count("plus")' value="+"/>
 					</td>
 					<td><input type="text"  class="remarks" name="remarks" size=40></td>
 				</tr>

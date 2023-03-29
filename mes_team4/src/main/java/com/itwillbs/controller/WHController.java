@@ -26,7 +26,7 @@ public class WHController {
 		//검색어 가져오기
 		String search=request.getParameter("search");
 		// 검색어 옵션
-		String search_option = request.getParameter("search_option");
+		String select = request.getParameter("select");
 				
 				// 한 화면에 보여줄 글 개수 설정
 				int pageSize=10;
@@ -45,7 +45,7 @@ public class WHController {
 				pageDTO.setCurrentPage(currentPage);
 				//검색어
 				pageDTO.setSearch(search);
-				pageDTO.setSearch_option(search_option);
+				pageDTO.setSelect(select);
 				
 				List<WHDTO> whList=whService.getWhList(pageDTO);
 				

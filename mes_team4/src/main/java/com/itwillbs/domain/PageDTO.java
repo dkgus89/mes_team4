@@ -14,15 +14,14 @@ public class PageDTO {
 	//검색어
 	private String search;
 	//검색어 옵션
-	private String search_option;
-	
+	private String select;
 
-	public String getSearch_option() {
-		return search_option;
+	public String getSelect() {
+		return select;
 	}
 
-	public void setSearch_option(String search_option) {
-		this.search_option = search_option;
+	public void setSelect(String select) {
+		this.select = select;
 	}
 
 	public String getSearch() {
