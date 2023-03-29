@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.PageDTO;
@@ -47,6 +48,7 @@ public class ConsumptionController {
 		// 배열 길이 지정
 		int length = consumptionDTO.getRproduct_cd_name_arr().length;
 		
+		// consmptArray 저장
 		ConsumptionDTO[] consmptArray = new ConsumptionDTO[length];
 		for (int i = 0; i < length; i++) {
 			ConsumptionDTO consumptionDTO2 = new ConsumptionDTO();
@@ -69,8 +71,8 @@ public class ConsumptionController {
 		// 처리작업
 
 		// 검색어 설정
-		//String search= request.getParameter("search");
-		//pageDTO.setSearch(search);		
+		// String search= request.getParameter("search");
+		// pageDTO.setSearch(search);		
 		
 		// 품목구분 설정
 		String product_dv = request.getParameter("product_dv");
@@ -113,6 +115,24 @@ public class ConsumptionController {
 		model.addAttribute("pageDTO", pageDTO);
 		
 		return "consumption/prList";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/consmpt/cprcheck", method = RequestMethod.GET)
+	public String cprcheck(HttpServletRequest request) {
+		System.out.println("ConsumptionController cprcheck()");
+		// 처리작업
+		String cprCdName = request.getParameter("cprCdName");
+		System.out.println("cprCdName "+cprCdName);
+		String result = "insert";
+		
+		List<ConsumptionDTO> consmptList = consumptionService.checkCprCdName(cprCdName);
+		
+		if(!(consmptList.isEmpty())) {
+			result = "notInsert";
+		} 
+		
+		return result;
 	}
 	
 }// class

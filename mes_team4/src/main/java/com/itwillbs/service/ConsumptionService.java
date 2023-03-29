@@ -14,4 +14,6 @@ public interface ConsumptionService {
 	
 	public void insertConsmpt(ConsumptionDTO[] consmptArray);
 	
+	public List<ConsumptionDTO> checkCprCdName(String cprCdName);
+	
 }// class

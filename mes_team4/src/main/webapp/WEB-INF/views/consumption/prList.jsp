@@ -25,55 +25,66 @@
 		var trIndex = urlParams.get('trIndex');
 		var product_dv = urlParams.get('product_dv');
 		
-		// 선택한 제품값 넘기기
-		$(document).on('click', 'tr', function() {
-			var tr = $(this);
-			var td = tr.children();
-			var tdArr = [];
-			td.each(function(i){
-                tdArr.push(td.eq(i).text());
-            });
-				if(product_dv==='cp') {
-					var parentWindowTr = window.opener.$('#cproductBody').eq(trIndex);
-					
-					parentWindowTr.find('td').empty();
-					
-					var input0 = $('<input>').attr({
-					    'type': 'text',
-					    'name': 'cproduct_cd_name',
-					    'readonly': true
-					}).val(tdArr[0]);
-					var input1 = $('<input>').attr({
-					    'type': 'text',
-					    'name': 'cproduct_name',
-					    'readonly': true
-					}).val(tdArr[1]);
-					
-					parentWindowTr.find('td:eq(0)').append(input0);
-					parentWindowTr.find('td:eq(1)').append(input1);
-				} else if(product_dv==='rp') {
-					var parentWindowTr = window.opener.$('#rproductBody tr').eq(trIndex);
-					console.log(trIndex);
-					
-					parentWindowTr.find('td:eq(0)').empty();
-					parentWindowTr.find('td:eq(1)').empty();
-					
-					var input0 = $('<input>').attr({
-					    'type': 'text',
-					    'name': 'rproduct_cd_name_arr',
-					    'readonly': true
-					}).val(tdArr[0]);
-					var input1 = $('<input>').attr({
-					    'type': 'text',
-					    'name': 'rproduct_name_arr',
-					    'readonly': true
-					}).val(tdArr[1]);
-					
-					parentWindowTr.find('td:eq(0)').append(input0);
-					parentWindowTr.find('td:eq(1)').append(input1);
-				}
-			window.close();
-		});
+		// 선택한 제품값 넘기기			
+			$(document).on('click', 'tr', function() {
+				var tr = $(this);
+				var td = tr.children();
+				var tdArr = [];
+				td.each(function(i){
+	                tdArr.push(td.eq(i).text());
+	            });
+				
+				$.ajax({ // ajex start
+					url:'${pageContext.request.contextPath }/consmpt/cprcheck',
+					data:{'cprCdName':tdArr[0]},
+					success:function(result){
+						if(result=="insert"){
+							if(product_dv==='cp') {
+								var parentWindowTr = window.opener.$('#cproductBody').eq(trIndex);
+								
+								parentWindowTr.find('td').empty();
+								
+								var input0 = $('<input>').attr({
+								    'type': 'text',
+								    'name': 'cproduct_cd_name',
+								    'readonly': true
+								}).val(tdArr[0]);
+								var input1 = $('<input>').attr({
+								    'type': 'text',
+								    'name': 'cproduct_name',
+								    'readonly': true
+								}).val(tdArr[1]);
+								
+								parentWindowTr.find('td:eq(0)').append(input0);
+								parentWindowTr.find('td:eq(1)').append(input1);
+							} else if(product_dv==='rp') {
+								var parentWindowTr = window.opener.$('#rproductBody tr').eq(trIndex);
+								console.log(trIndex);
+								
+								parentWindowTr.find('td:eq(0)').empty();
+								parentWindowTr.find('td:eq(1)').empty();
+								
+								var input0 = $('<input>').attr({
+								    'type': 'text',
+								    'name': 'rproduct_cd_name_arr',
+								    'readonly': true
+								}).val(tdArr[0]);
+								var input1 = $('<input>').attr({
+								    'type': 'text',
+								    'name': 'rproduct_name_arr',
+								    'readonly': true
+								}).val(tdArr[1]);
+								
+								parentWindowTr.find('td:eq(0)').append(input0);
+								parentWindowTr.find('td:eq(1)').append(input1);
+							} 
+							window.close();
+						}else{
+							alert("해당 완제품에 대한 소요량 기록이 있습니다. 다른 완제품을 선택하세요.");	
+						}
+					}
+				});// ajex end
+			});
 		
 	}); // j쿼리 끝
 	
@@ -96,7 +107,6 @@
 	<div class="wrap2">
 	  <button class="button2" onclick="window.close();">닫기</button>
 	</div>
-	 	
 		<table id="cproduct" class=" table table-striped">
 		
 			<thead>

@@ -58,4 +58,10 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 		sqlSession.insert(namespace+".insertConsmpt", Map.of("consmptArray" ,consmptArray));
 	}
 	
+	@Override
+	public List<ConsumptionDTO> checkCprCdName(String cprCdName) {
+		System.out.println("ConsumptionDAOImpl checkCprCdName()");
+		
+		return sqlSession.selectList(namespace+".checkCprCdName", cprCdName);
+	}
 }// class

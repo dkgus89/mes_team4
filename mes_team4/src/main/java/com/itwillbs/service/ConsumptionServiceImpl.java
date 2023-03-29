@@ -44,4 +44,11 @@ public class ConsumptionServiceImpl implements ConsumptionService{
 		consumptionDAO.insertConsmpt(consmptArray);
 	}
 	
+	@Override
+	public List<ConsumptionDTO> checkCprCdName(String cprCdName) {
+		System.out.println("ConsumptionServiceImpl checkCprCdName()");
+		
+		return consumptionDAO.checkCprCdName(cprCdName);
+	}
+	
 }// class
