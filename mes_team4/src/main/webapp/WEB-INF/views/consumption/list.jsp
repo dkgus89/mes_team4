@@ -102,6 +102,19 @@
 
 	</form>
 	
+	<div id="pagingControl">
+		<c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
+			<a href="${pageContext.request.contextPath}/consmpt/cplist?pageNum=${pageDTO.startPage-pageDTO.pageBlock}&search=">Prev</a>
+		</c:if>
+		
+		<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
+			<a href="${pageContext.request.contextPath}/consmpt/cplist?pageNum=${i}&search=">${i}</a> 
+		</c:forEach> 
+		
+		<c:if test="${pageDTO.endPage < pageDTO.pageCount}">
+			<a href="${pageContext.request.contextPath}/consmpt/cplist?pageNum=${pageDTO.startPage+pageDTO.pageBlock}&search=">Next</a>
+		</c:if>
+	</div>
 	
 <!-- 본문HTML 입력 끝-->
 	</div>

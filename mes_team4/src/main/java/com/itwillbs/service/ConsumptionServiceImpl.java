@@ -51,4 +51,25 @@ public class ConsumptionServiceImpl implements ConsumptionService{
 		return consumptionDAO.checkCprCdName(cprCdName);
 	}
 	
+	@Override
+	public List<ConsumptionDTO> getConsmptList(PageDTO pageDTO) {
+		System.out.println("ConsumptionServiceImpl getConsmptList()");
+		
+		return consumptionDAO.getConsmptList(pageDTO);
+	}
+	
+	@Override
+	public int getConsmptCount(PageDTO pageDTO) {
+		System.out.println("ConsumptionServiceImpl getConsmptList()");
+		
+		return consumptionDAO.getConsmptCount(pageDTO);
+	}
+	
+	@Override
+	public int getCprConsmptCount(PageDTO pageDTO) {
+		System.out.println("ConsumptionServiceImpl getCprConsmptCount()");
+		
+		return consumptionDAO.getCprConsmptCount(pageDTO);
+	}
+	
 }// class

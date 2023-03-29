@@ -153,15 +153,15 @@
 	
 	<div id="pagingControl">
 		<c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
-			<a href="${pageContext.request.contextPath}/consmpt/cplist?pageNum=${pageDTO.startPage-pageDTO.pageBlock}&search=">Prev</a>
+			<a href="${pageContext.request.contextPath}/consmpt/prlist?pageNum=${pageDTO.startPage-pageDTO.pageBlock}&search=">Prev</a>
 		</c:if>
 		
 		<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-			<a href="${pageContext.request.contextPath}/consmpt/cplist?pageNum=${i}&search=">${i}</a> 
+			<a href="${pageContext.request.contextPath}/consmpt/prlist?pageNum=${i}&search=">${i}</a> 
 		</c:forEach> 
 		
 		<c:if test="${pageDTO.endPage < pageDTO.pageCount}">
-			<a href="${pageContext.request.contextPath}/consmpt/cplist?pageNum=${pageDTO.startPage+pageDTO.pageBlock}&search=">Next</a>
+			<a href="${pageContext.request.contextPath}/consmpt/prlist?pageNum=${pageDTO.startPage+pageDTO.pageBlock}&search=">Next</a>
 		</c:if>
 	</div>
 	

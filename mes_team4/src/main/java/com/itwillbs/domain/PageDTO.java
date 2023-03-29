@@ -6,7 +6,7 @@ public class PageDTO {
 	private int startRow; // 테이블에서 가져올 시작 글번호
 	private int endRow; // 시작 글번호에서 가져올 글 개수
 	private String search; // 페이지 검색어
-	private String product_dv; // 품목구분
+	private String product_dv; // 품목 구분
 	
 	// 페이징처리 계산 멤버변수
 	private int pageSize; // 화면에 보여줄 글의 개수
@@ -16,9 +16,15 @@ public class PageDTO {
 	private int pageCount; // 총 페이징 개수
 	private int startPage; // 페이징 시작 번호
 	private int endPage; // 페이징 끝 번호
-	private int count; // 게시판의 모든 글 개수
+	private int count; // 게시판의 모든 행 개수
+	private int cprCount; // 게시판의 완제품 행 개수 
 	
-	
+	public int getCprCount() {
+		return cprCount;
+	}
+	public void setCprCount(int cprCount) {
+		this.cprCount = cprCount;
+	}
 	public String getProduct_dv() {
 		return product_dv;
 	}

@@ -9,7 +9,7 @@
 	<!-- ?대신 #{변수값}-->
 	
 	<resultMap type="map" id="prListMap">
-		<!-- column="DB의 열이름" property="해당 DB열에 대해 저장한 변수이름" DB컬럼명 및 DTO의 멤버변수 명과 일치 -->
+		<!-- column="DB의 열이름" property="해당 DB열에 대해 저장할 변수이름"-->
 		<result column="product_cd_name" property="prCdName"/>
 		<result column="product_name" property="prName"/>
 		<result column="product_type_name" property="prTypeName"/>
