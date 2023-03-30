@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +38,7 @@ public class ConsumptionController {
 		pageDTO.setProduct_dv(product_dv);
 		
 		// 한 화면에 보여줄 글의 개수
-		int pageSize = 10;
+		int pageSize = 5;
 		
 		// 현재페이지 번호 설정
 		String pageNum= request.getParameter("pageNum");
@@ -50,11 +51,33 @@ public class ConsumptionController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(CurrentPage);
 		
-		//List<ConsumptionDTO> consmptList = consumptionService.getConsmptList(pageDTO);
-		  
+		// 완제품 페이징 처리에 따른 원자재 저장
+		List<ConsumptionDTO> cprConsmptList = consumptionService.getCprConsmptList(pageDTO);
+		int count = consumptionService.getCprConsmptCount(pageDTO);
+		
+		String[] cprCdName = new String[cprConsmptList.size()];
+		for(int i = 0; i < count; i++) {
+			cprCdName[i] = cprConsmptList.get(i).getCproduct_cd_name();
+		}
+		
+		List<ConsumptionDTO> rprConsmptList = consumptionService.getRprConsmptList(cprCdName);
+		
+		// 테이블 동적처리 계산
+		List<Integer> rowcolsTd = consumptionService.getRowcolsTd(pageDTO);
+		pageDTO.setRowcolsTd(rowcolsTd);
+		
+		List<Integer> showTd = new ArrayList<Integer>(rowcolsTd.size());
+		showTd.add(0);
+		if (rowcolsTd.size() > 0) {
+			for(int i = 0; i < rowcolsTd.size()-1; i++) {
+				int x = rowcolsTd.get(i);
+				int y = showTd.get(i) + x;
+				showTd.add(y);
+			}
+		}
+		pageDTO.setShowTd(showTd);
+		
 		// 페이징 처리
-		int count = consumptionService.getConsmptCount(pageDTO);
-		int cprCount = consumptionService.getCprConsmptCount(pageDTO);
 		int pageBlock = 5;
 		int startPage = (CurrentPage-1)/pageBlock*pageBlock+1;
 		int endPage = startPage+pageBlock-1;
@@ -70,7 +93,7 @@ public class ConsumptionController {
 		pageDTO.setPageCount(pageCount);
 		
 		// 서버단 처리 결과 전달
-		//model.addAttribute("consmptList", consmptList); 
+		model.addAttribute("rprConsmptList", rprConsmptList); 
 		model.addAttribute("pageDTO", pageDTO);
 		
 		return "consumption/List";

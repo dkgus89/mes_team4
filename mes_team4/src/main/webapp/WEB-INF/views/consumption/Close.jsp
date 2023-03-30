@@ -19,6 +19,7 @@
 <script type="text/javascript">
 	$(document).ready(function() { // j쿼리 시작
 	}); // j쿼리 끝
+	opener.parent.location.reload();
 	window.close();
 </script>
 <!-- 자바스크립트 입력 끝-->

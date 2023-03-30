@@ -1,5 +1,6 @@
 package com.itwillbs.dao;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -66,23 +67,33 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 	}
 	
 	@Override
-	public List<ConsumptionDTO> getConsmptList(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getConsmptList()");
+	public List<ConsumptionDTO> getCprConsmptList(PageDTO pageDTO) {
+		System.out.println("ConsumptionDAOImpl getConsmptList()");
 		
-		return sqlSession.selectList(namespace+".getConsmptList", pageDTO);
-	}
-	
-	@Override
-	public int getConsmptCount(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getConsmptCount()");
-		
-		return sqlSession.selectOne(namespace+".getConsmptCount", pageDTO);
+		return sqlSession.selectList(namespace+".getCprConsmptList", pageDTO);
 	}
 	
 	@Override
 	public int getCprConsmptCount(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getCprConsmptCount()");
+		System.out.println("ConsumptionDAOImpl getCprConsmptCount()");
 		
 		return sqlSession.selectOne(namespace+".getCprConsmptCount", pageDTO);
 	}
+	
+	@Override
+	public List<ConsumptionDTO> getRprConsmptList(String[] cprCdName) {
+		System.out.println("ConsumptionDAOImpl getRprConsmptList()");
+		
+		List<String> cprCdNameList = Arrays.asList(cprCdName);
+		
+		return sqlSession.selectList(namespace+".getRprConsmptList", Map.of("cprCdNameList" ,cprCdNameList));
+	}
+	
+	@Override
+	public List<Integer> getRowcolsTd(PageDTO pageDTO) {
+		System.out.println("ConsumptionDAOImpl getRowcolsTd()");
+		
+		return sqlSession.selectList(namespace+".getRowcolsTd", pageDTO);
+	}
+	
 }// class

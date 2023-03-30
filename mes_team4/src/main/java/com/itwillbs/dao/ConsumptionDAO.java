@@ -16,10 +16,12 @@ public interface ConsumptionDAO {
 	
 	public List<ConsumptionDTO> checkCprCdName(String cprCdName);
 	
-	public List<ConsumptionDTO> getConsmptList(PageDTO pageDTO);
-	
-	public int getConsmptCount(PageDTO pageDTO);
+	public List<ConsumptionDTO> getCprConsmptList(PageDTO pageDTO);
 	
 	public int getCprConsmptCount(PageDTO pageDTO);
+	
+	public List<ConsumptionDTO> getRprConsmptList(String[] cprCdName);
+	
+	public List<Integer> getRowcolsTd(PageDTO pageDTO);
 	
 }// class

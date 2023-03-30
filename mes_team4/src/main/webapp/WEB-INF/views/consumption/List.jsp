@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="../main/Header.jsp" />
@@ -51,19 +51,28 @@
 	  <button class="button2" onclick="deleteValue();">삭제</button>
 	</div><br>
 	<br>
-	 
-	<form method="post"> 
+	
+	<div class ="wrap2" id="table_search">
+		<form action="${pageContext.request.contextPath}/consmpt/list" method="get">
+			<input type="text" name="search" class="input_box" placeholder="검색하세요" value="" size=60>
+			<input type="submit" value="search" class="button2">
+		</form>
+	</div>
+	
+	<form method="post">
 	
 		<table id="vendortable" class=" table table-striped" style="width:1000px;">
-			<thead>
+		<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" id="allCheck" onclick="allChecking();"></th>
 					<th>완제품코드</th>
 					<th>품목명</th>
+					
 					<th>원자재코드</th>
 					<th>품목명</th>
 					<th>소요량</th>
 					<th>단위</th>
+					
 					<th>등록일</th>
 					<th>수정일</th>
 					<th></th>
@@ -71,34 +80,38 @@
 			</thead>
 			
 			<tbody>
-				<%-- <c:forEach var="orderDTO" items="${orderList}"> --%>
-				<tr>
-					<td><input type="checkbox" name="rowCheck" value=""></td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td><input type="button" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" name="rowCheck" value=""></td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td><input type="button" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
-				</tr>
-				<%-- </c:forEach> --%>
+			
+				<c:set var="count" value="-1"></c:set>
+				<c:set var="current" value="-1"></c:set>
+				
+				<c:forEach var="dto" items="${rprConsmptList }"> 
+				<c:set var="current" value="${current+1 }"></c:set>
+				
+  				<tr>
+  				<c:if test="${fn:contains(pageDTO.showTd, current)}">
+  					<c:set var="count" value="${count+1 }"></c:set>
+        			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><input type="checkbox" name="rowCheck" value=""></td>
+    				<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.cproduct_cd_name}</td>
+    				<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.cproduct_name}</td>
+    			</c:if>
+    			
+	    			<td>${dto.rproduct_cd_name}</td>
+	    			<td>${dto.rproduct_name}</td>
+	    			<td>${dto.consumption}</td>
+	    			<td>${dto.consumption_unit}</td> 
+	    			
+	    		<c:if test="${fn:contains(pageDTO.showTd, current)}">
+	    			<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.insert_date}</td>
+	    			<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.update_date}</td>
+	    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><input type="button" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
+	    		</c:if>
+  				</tr>
+  				
+				</c:forEach>
+				
 			</tbody>
-		</table>	
+		</table>
+	
 
 	</form>
 	

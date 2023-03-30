@@ -52,17 +52,10 @@ public class ConsumptionServiceImpl implements ConsumptionService{
 	}
 	
 	@Override
-	public List<ConsumptionDTO> getConsmptList(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getConsmptList()");
+	public List<ConsumptionDTO> getCprConsmptList(PageDTO pageDTO) {
+		System.out.println("ConsumptionServiceImpl getCprConsmptList()");
 		
-		return consumptionDAO.getConsmptList(pageDTO);
-	}
-	
-	@Override
-	public int getConsmptCount(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getConsmptList()");
-		
-		return consumptionDAO.getConsmptCount(pageDTO);
+		return consumptionDAO.getCprConsmptList(pageDTO);
 	}
 	
 	@Override
@@ -70,6 +63,20 @@ public class ConsumptionServiceImpl implements ConsumptionService{
 		System.out.println("ConsumptionServiceImpl getCprConsmptCount()");
 		
 		return consumptionDAO.getCprConsmptCount(pageDTO);
+	}
+	
+	@Override
+	public List<ConsumptionDTO> getRprConsmptList(String[] cprCdName) {
+		System.out.println("ConsumptionServiceImpl getRprConsmptList()");
+		
+		return consumptionDAO.getRprConsmptList(cprCdName);
+	}
+	
+	@Override
+	public List<Integer> getRowcolsTd(PageDTO pageDTO) {
+		System.out.println("ConsumptionServiceImpl getRowcolsTd()");
+		
+		return consumptionDAO.getRowcolsTd(pageDTO);
 	}
 	
 }// class

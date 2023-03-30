@@ -1,7 +1,9 @@
 package com.itwillbs.domain;
 
+import java.util.List;
+
 public class PageDTO {
-	// DB 쿼리문 사용 멤버변수
+	// DB 쿼리문 입력 멤버변수
 	private int CurrentPage; // pageNum int 형변환
 	private int startRow; // 테이블에서 가져올 시작 글번호
 	private int endRow; // 시작 글번호에서 가져올 글 개수
@@ -19,6 +21,22 @@ public class PageDTO {
 	private int count; // 게시판의 모든 행 개수
 	private int cprCount; // 게시판의 완제품 행 개수 
 	
+	// 테이블 동적처리 멤버변수
+	private List<Integer> rowcolsTd; // td의 rowcols 수 
+	private List<Integer> showTd; // td를 나타낼 위치
+			
+	public List<Integer> getRowcolsTd() {
+		return rowcolsTd;
+	}
+	public void setRowcolsTd(List<Integer> rowcolsTd) {
+		this.rowcolsTd = rowcolsTd;
+	}
+	public List<Integer> getShowTd() {
+		return showTd;
+	}
+	public void setShowTd(List<Integer> showTd) {
+		this.showTd = showTd;
+	}
 	public int getCprCount() {
 		return cprCount;
 	}

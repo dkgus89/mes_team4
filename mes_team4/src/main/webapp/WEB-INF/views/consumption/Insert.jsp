@@ -99,9 +99,8 @@
 		
 		// 내용 제한 넘길 시 submit 진행
 		var result = confirm("게시글을 등록하시겠습니까?");
-		if (result == true){     
+		if (result == true){    
 			document.getElementById('move').submit(); 
-			opener.parent.location.reload();
 			alert("등록");
 		} else {
 			return false;

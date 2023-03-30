@@ -80,6 +80,62 @@
 		where cproduct_cd_name = #{cprCdName}
 	</select>
 	
+	<select id="getConsmptList" resultType="com.itwillbs.domain.ConsumptionDTO">
+		select *  
+		from consumption_management
+		<!-- <if test="search != null">
+			where subject like CONCAT('%',#{search},'%')
+		</if> -->
+		limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getCprConsmptList" resultType="com.itwillbs.domain.ConsumptionDTO">
+		select *  
+		from consumption_management
+		group by cproduct_cd_name
+		<!-- <if test="search != null">
+			where subject like CONCAT('%',#{search},'%')
+		</if> -->
+		limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getCprConsmptCount" resultType="java.lang.Integer">
+		select count(*)  
+		from (
+    	select *
+   		from consumption_management
+    	group by cproduct_cd_name
+		<!-- <if test="search != null">
+			where subject like CONCAT('%',#{search},'%')
+		</if> -->
+		limit #{startRow},#{pageSize}
+		) as sub
+	</select>
+	
+	<select id="getRprConsmptList" parameterType="map" resultType="com.itwillbs.domain.ConsumptionDTO">
+		select *  
+		from consumption_management
+		where cproduct_cd_name in 
+        <foreach item="name" collection="cprCdNameList" index="index" open="(" separator="," close=")">
+        	#{name}
+        </foreach>
+		<!-- <if test="search != null">
+			where subject like CONCAT('%',#{search},'%')
+		</if> -->
+	</select>
+	
+	<resultMap id="ListIntegerMap" type="java.lang.Integer" />
+	
+	<select id="getRowcolsTd" resultMap="ListIntegerMap">
+		SELECT count(*)
+		from consumption_management
+		group by cproduct_cd_name
+		<!-- <if test="search != null">
+			where subject like CONCAT('%',#{search},'%')
+		</if> -->
+		limit #{startRow},#{pageSize}
+	</select>
+	
 </mapper>
 
 
