@@ -74,15 +74,15 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 	
 	@Override
 	public int getConsmptCount(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getConsmptList()");
+		System.out.println("ConsumptionServiceImpl getConsmptCount()");
 		
-		return sqlSession.selectOne(namespace+".getConsmptList", pageDTO);
+		return sqlSession.selectOne(namespace+".getConsmptCount", pageDTO);
 	}
 	
 	@Override
 	public int getCprConsmptCount(PageDTO pageDTO) {
 		System.out.println("ConsumptionServiceImpl getCprConsmptCount()");
 		
-		return sqlSession.selectOne(namespace+".getConsmptList", pageDTO);
+		return sqlSession.selectOne(namespace+".getCprConsmptCount", pageDTO);
 	}
 }// class

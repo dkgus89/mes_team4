@@ -1,6 +1,5 @@
 package com.itwillbs.controller;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -51,8 +50,8 @@ public class ConsumptionController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(CurrentPage);
 		
-		List<ConsumptionDTO> consmptList = consumptionService.getConsmptList(pageDTO);
-		
+		//List<ConsumptionDTO> consmptList = consumptionService.getConsmptList(pageDTO);
+		  
 		// 페이징 처리
 		int count = consumptionService.getConsmptCount(pageDTO);
 		int cprCount = consumptionService.getCprConsmptCount(pageDTO);
@@ -71,10 +70,10 @@ public class ConsumptionController {
 		pageDTO.setPageCount(pageCount);
 		
 		// 서버단 처리 결과 전달
-		model.addAttribute("prList", prList); 
+		//model.addAttribute("consmptList", consmptList); 
 		model.addAttribute("pageDTO", pageDTO);
 		
-		return "consumption/list";
+		return "consumption/List";
 	}
 	
 	@RequestMapping(value = "/consmpt/insert", method = RequestMethod.GET)
@@ -82,7 +81,7 @@ public class ConsumptionController {
 		System.out.println("ConsumptionController insert()");
 		// 처리작업
 	
-		return "consumption/insert";
+		return "consumption/Insert";
 	}
 	
 	@RequestMapping(value = "/consmpt/insertPro", method = RequestMethod.POST)
@@ -107,7 +106,7 @@ public class ConsumptionController {
 		}
 		
 		consumptionService.insertConsmpt(consmptArray);
-		return "consumption/close";
+		return "consumption/Close";
 	}
 	
 	@RequestMapping(value = "/consmpt/prlist", method = RequestMethod.GET)
@@ -159,7 +158,7 @@ public class ConsumptionController {
 		model.addAttribute("prList", prList); 
 		model.addAttribute("pageDTO", pageDTO);
 		
-		return "consumption/prList";
+		return "consumption/PrList";
 	}
 	
 	@ResponseBody
