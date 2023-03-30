@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.mappers.systemMapper">
+
+<!-- 거래처이름 팝업 리스트  -->
+<select id="getEnameList" resultType="com.itwillbs.domain.SystemDTO">
+	select * from employees
+	<if test="search != null">
+   			where emp_name like CONCAT('%',#{search},'%')
+   		</if>
+	order by emp_name asc
+	limit #{startRow} , #{pageSize} 
+</select>
+
+<select id="getsystemcount" resultType="java.lang.Integer">
+        select count(*) from employees
+        <if test="search != null">
+    	where emp_name like CONCAT('%',#{search},'%')
+    	</if>
+    </select>
+
+</mapper>

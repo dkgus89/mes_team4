@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.mappers.productMapper">
+
+<!-- 거래처이름 팝업 리스트  -->
+<select id="getPnameList" resultType="com.itwillbs.domain.ProductDTO">
+	select * from product
+	<if test="search != null">
+   			where product_name like CONCAT('%',#{search},'%')
+   		</if>
+	order by product_name asc
+	limit #{startRow} , #{pageSize} 
+</select>
+
+<select id="getProductCount" resultType="java.lang.Integer">
+	select count(*) from product
+	<if test="search != null">
+   			where product_name like CONCAT('%',#{search},'%')
+   		</if>
+</select>
+
+</mapper>

@@ -35,26 +35,41 @@ function rst(){
 document.insertform.reset();
 }
 
-// 수량 버튼 조작
-function count(type)  {
-  // 결과를 표시할 element
-  const resultElement = document.getElementById('result');
+// // 수량 버튼 조작
+// function count(type)  {
+//   // 결과를 표시할 element
+//   const resultElement = document.getElementById('result');
   
-  // 현재 화면에 표시된 값
-  let number = resultElement.innerText;
+//   // 현재 화면에 표시된 값
+//   let number = resultElement.innerText;
   
-  // 더하기/빼기
-  if(type === 'plus') {
-    number = parseInt(number) + 10;
-  }else if(type === 'minus')  {
-	  if(number > 0){
-		  number = parseInt(number) - 10;
-	  }
-  }
-  // 결과 출력
-  resultElement.innerText = number;
+//   // 더하기/빼기
+//   if(type === 'plus') {
+//     number = parseInt(number) + 1;
+//   }else if(type === 'minus')  {
+// 	  if(number > 0){
+// 		  number = parseInt(number) - 1;
+// 	  }
+//   }
+//   // 결과 출력
+//   resultElement.innerText = number;
+// }
+
+
+// 거래처 리스트 팝업
+function bnopenPop(){
+    var popup = window.open('${pageContext.request.contextPath}/rel/bnlist', '거래처리스트 팝업', 'width=500, height=500, top=200, left=200,scrollbars=yes');
 }
 
+// 사원명 리스트 팝업
+function enopenPop(){
+    var popup = window.open('${pageContext.request.contextPath}/rel/enlist', '사원명리스트 팝업', 'width=500, height=500, top=200, left=200,scrollbars=yes');
+}
+
+// 품목명 리스트 팝업
+function pnopenPop(){
+    var popup = window.open('${pageContext.request.contextPath}/rel/pnlist', '품목명리스트 팝업', 'width=500, height=500, top=200, left=200,scrollbars=yes');
+}
 
 </script>
 
@@ -66,45 +81,45 @@ function count(type)  {
 <!-- 본문HTML 입력 시작-->
 <h2 class="inserttitle">자재출고 등록</h2><br>
 
-
-
-	
 	<form action="${pageContext.request.contextPath}/rel/relinsertPro" name="insertform" method="post" >
 	<div class="wrap2">
 		<input type="submit" class="button2" value="등록" onclick="sub()">
 		<input type="reset" class="button2" value="초기화" onclick="rst()">
 	 </div><br>
 	 <br>
-	
-	
-		<input type="hidden" value="">
 		
 		<table id="vendortable" class="table table-striped" style="width:1000px;">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>출고일자</th>
+					<th>거래처명</th>
+					<th>담당자</th>
 					<th>출고품목명</th>
-					<th>출고창고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input type="text" name="business_name"><input type="button" onclick="bnopenPop()" id="bnList" value="조회"></td>
+					<td><input type="text" name="emp_name"><input type="button" onclick="enopenPop()" id="enList" value="조회"></td>
+					<td><input type="text" name="product_name"><input type="button" onclick="pnopenPop()" id="pnList" value="조회"></td>
+				</tr>
+			</tbody>	
+			
+			<thead>
+				<tr style="text-align: center; font-size: 0.9rem">
+					<th>출고일자</th>
 					<th>출고수량</th>
 					<th>적요</th>
 				</tr>
 			</thead>
-			
 			<tbody>
 				<tr>
+					<td><input type="date" name="rel_date"></td>
 					<td>
-					<input type="date" name="rel_date"></td>
-					<td><input type="text" name="product_name"></td>
-					<td>
-						<select name="wh_name">
-							<option value="사용">진행중</option>
-							<option value="미사용">완료</option>
-						</select>
-					</td>
-					<td>
-						<input type="button" onclick='count("minus")' value="-"/>
-							<div id="result" name="rel_count">0</div>
-						<input type="button" onclick='count("plus")' value="+"/>
+<!-- 						<input type="button" onclick='count("minus")' value="-"> -->
+<!-- 							<div id="result" name="rel_count"></div> -->
+<!-- 						<input type="button" onclick='count("plus")' value="+"> -->
+							<input type="text" name="rel_count" placeholder="숫자만 입력하세요">
+						
 					</td>
 					<td><input type="text"  class="remarks" name="remarks" size=40></td>
 				</tr>

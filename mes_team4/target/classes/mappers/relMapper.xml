@@ -6,24 +6,49 @@
 
 <mapper namespace="com.itwillbs.mappers.relMapper">
 	
-	<!-- ?대신 WHDTO의 멤버변수명 사용-->
 	<insert id="insertrel">
-		insert into release_schdule(rel_schedule_cd, rel_date, product_name, wh_name ,out_complete, rel_count, remarks, wh_use, remarks) 
-		values(#{rel_schedule_cd},#{rel_date}, #{product_name}, #{wh_name}, #{out_complete},#{rel_count}, #{remarks}, #{wh_use},#{remarks})
+		insert into release_schdule(rel_schedule_cd, business_name, emp_name, product_name, 
+									rel_date, wh_name ,rel_count, out_complete, remarks) 
+		values(#{rel_schedule_cd},#{business_name}, #{emp_name}, #{product_name}, 
+			   #{rel_date},#{wh_name}, #{rel_count}, #{out_complete}, #{remarks})
 	</insert>
 	
-	<select id="getMaxNum" resultType="java.lang.Integer">
-        select max(wh_cd) from warehouse
-    </select>
-	
+<!-- 	출고코드번호 -->
 	<select id="getRNum" resultType="java.lang.Integer">
 	select max(SUBSTR(rel_schedule_cd, 2)) from release_schdule where rel_schedule_cd like 'R%'
 	</select>
+	
+	<resultMap type="map" id="map1">
+		<result column="business_name" property="business_name"/>
+		<result column="emp_name" property="emp_name"/>
+		<result column="product_name" property="product_name"/>
+	</resultMap>
 
-	<select id="getPNum" resultType="java.lang.Integer"> 
-		select max(SUBSTR(wh_cd, 2)) from warehouse where wh_cd like 'P%'
+	<select id="getInstMap" resultMap="map1">
+		select business_name from business
 	</select>
 	
+<!-- 	<select id="getInstMap" resultMap="map1"> -->
+<!-- 		select emp_name from employees -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="getInstMap" resultMap="map1"> -->
+<!-- 		select product_name from product -->
+<!-- 	</select> -->
+	
+	<resultMap type="map" id="map2">
+		<result column="rel_schedule_cd"  property="rel_schedule_cd"/>
+		<result column="business_name"  property="business_name"/>
+		<result column="emp_name"  property="emp_name"/>
+		<result column="product_name"  property="product_name"/>
+		<result column="rel_date"  property="rel_date"/>
+		<result column="wh_name"  property="wh_name"/>
+		<result column="rel_count"  property="rel_count"/>
+		<result column="out_complete"  property="out_complete"/>
+		<result column="remarks"  property="remarks"/>
+	</resultMap>
+	
+<!-- 	리스트 -->
 	<select id="getRelList" resultType="com.itwillbs.domain.ReleaseDTO">
         select * from release_schedule
 <!--         <if test="search != null"> -->
@@ -41,6 +66,7 @@
         limit #{startRow} , #{pageSize}    	
     </select>
 	
+<!-- 	페이징 -->
 	<select id="getRelCount" resultType="java.lang.Integer">
         select count(*) from release_schedule
 <!--         <if test="search != null"> -->

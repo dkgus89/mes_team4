@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -67,8 +68,13 @@ public class ReleaseController {
 	}
 	
 	@RequestMapping(value = "/rel/relinsert", method = RequestMethod.GET)
-	public String relinsert() {
+	public String relinsert(Model model) {
 		System.out.println("ReleaseController relinsert()");
+		
+		List<Map<String, Object>> instMap
+		=relService.getInstMap();
+		// model에 담아서 이동
+		model.addAttribute("instMap", instMap);
 		
 		return "release/RelInsert";
 	}
@@ -81,4 +87,7 @@ public class ReleaseController {
 		
 		return "release/RelPage";
 	}
+	
+	
+	
 }

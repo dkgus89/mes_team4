@@ -106,9 +106,10 @@
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
 					<th>출고코드</th>
-					<th>출고일자</th>
+					<th>거래처명</th>
+					<th>담당자</th>
 					<th>출고품목명</th>
-					<th>출고창고</th>
+					<th>출고일자</th>
 					<th>출고수량</th>
 					<th>출고진행상태</th>
 					<th>적요</th>
@@ -121,9 +122,10 @@
 				<tr>
 					<td><input type="checkbox" id="checkbox" name="rowcheck" value="${releaseDTO.rel_schedule_cd }"></td>
 					<td>${releaseDTO.rel_schedule_cd}</td>
-					<td>${releaseDTO.rel_date}</td>
+					<td>${businessDTO.business_name}</td>
+					<td>${systemDTO.emp_name}</td>
 					<td>${productDTO.product_name}</td>
-					<td>${whDTO.wh_name}</td>
+					<td>${releaseDTO.rel_date}</td>
 					<td>${releaseDTO.rel_count }</td>
 					<td>${releaseDTO.out_complete}</td>
 					<td>${releaseDTO.remarks}</td>

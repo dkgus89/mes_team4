@@ -1,6 +1,7 @@
 package com.itwillbs.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -47,11 +48,20 @@ public class ReleaseServiceImpl implements ReleaseService{
 			//출고품목 => max(num)+1
 			int num = releaseDAO.getRNum()+1;
 			String str = releaseDTO.getRel_date() + "_R00" + num;
+			System.out.println(releaseDTO.getRel_date() + "_R00" + num);
 			releaseDTO.setRel_schedule_cd(str);
 		}
 		
 		releaseDAO.insertrel(releaseDTO);
 	}
+
+	@Override
+	public List<Map<String, Object>> getInstMap() {
+		System.out.println("ReleaseServiceImpl getInstMap()");
+		return releaseDAO.getInstMap();
+	}
+
+	
 
 	
 

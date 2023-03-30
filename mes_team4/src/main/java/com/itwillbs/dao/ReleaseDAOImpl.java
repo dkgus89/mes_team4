@@ -1,6 +1,7 @@
 package com.itwillbs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -20,7 +21,7 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 	
 	@Override
 	public List<ReleaseDTO> getRelList(PageDTO pageDTO) {
-		System.out.println("ReleaseDAOImpl getWhList()");
+		System.out.println("ReleaseDAOImpl getRelList()");
 		
 		// limit #{startRow -1} , #{pageSize} 
 		//        1-1, 10 => 1~10
@@ -47,6 +48,13 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 		System.out.println("ReleaseDAOImpl getRNum()");
 		
 		return sqlSession.selectOne(namespace+".getRNum");
+	}
+
+	@Override
+	public List<Map<String, Object>> getInstMap() {
+		System.out.println("ReleaseDAOImpl getInstMap()");
+		
+		return sqlSession.selectList(namespace+".getInstMap");
 	}
 
 }
