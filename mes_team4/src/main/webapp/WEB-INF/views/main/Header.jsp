@@ -91,7 +91,7 @@
 	      <li>
 	        <a href="#">자재관리</a>
 	        <ul class="submenu">
-	          <li><a href="#">자재입고관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/receive/recpage">자재입고관리</a></li>
 	          <li><a href="#">자재출고관리</a></li>
 	          <li><a href="#">자재재고현황</a></li>
 	          <li><a href="#">자재발주관리</a></li>

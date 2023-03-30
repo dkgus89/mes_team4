@@ -62,7 +62,7 @@ function sub(){
 					<select  name="product_dv">
 						<option value="">선택해주세요</option>
 						<option value="완제품">완제품</option>
-						<option value="원자재">원자재</option>
+						<option value="원재료">원재료</option>
 					</select>
 					</td>
 					<td><input type="text" name="product_cd_name" value="${productDTO.product_cd_name }" readonly></td>

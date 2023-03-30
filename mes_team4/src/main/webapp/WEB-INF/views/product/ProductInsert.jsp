@@ -35,7 +35,7 @@ function rst(){
 
 	<h2>품목정보등록</h2><br>
 	 <br>
-<form action="${pageContext.request.contextPath}/product/prodinsertPro" name="insertform" method="post" >
+<form action="${pageContext.request.contextPath}/product/prodinsertPro" name="prodinsert" method="post" >
 
 		<input type="hidden" value="">
 		
@@ -58,7 +58,7 @@ function rst(){
 					<select  name="product_dv">
 						<option value="">선택해주세요</option>
 						<option value="완제품">완제품</option>
-						<option value="원자재">원자재</option>
+						<option value="원재료">원재료</option>
 					</select>
 					</td>
 					<td><input type="text" name="product_cd_name"></td>
