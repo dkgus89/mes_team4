@@ -43,7 +43,7 @@ public class ReleaseController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
 		
-		List<ReleaseDTO> relList=relService.getRelList(pageDTO);
+		List<Map<String, Object>> relList=relService.getRelList(pageDTO);
 		
 		//페이징 처리
 		int count = relService.getRelCount(pageDTO);

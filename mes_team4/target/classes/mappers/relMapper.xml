@@ -8,26 +8,64 @@
 	
 	<insert id="insertrel">
 		insert into release_schdule(rel_schedule_cd, business_name, emp_name, product_name, 
-									rel_date, wh_name ,rel_count, out_complete, remarks) 
+									rel_date,rel_count, out_complete, remarks) 
 		values(#{rel_schedule_cd},#{business_name}, #{emp_name}, #{product_name}, 
-			   #{rel_date},#{wh_name}, #{rel_count}, #{out_complete}, #{remarks})
+			   #{rel_date}, #{rel_count}, #{out_complete}, #{remarks})
 	</insert>
 	
 <!-- 	출고코드번호 -->
 	<select id="getRNum" resultType="java.lang.Integer">
 	select max(SUBSTR(rel_schedule_cd, 2)) from release_schdule where rel_schedule_cd like 'R%'
 	</select>
-	
+
+<!-- 조인 리스트	 -->
 	<resultMap type="map" id="map1">
 		<result column="business_name" property="business_name"/>
-		<result column="emp_name" property="emp_name"/>
-		<result column="product_name" property="product_name"/>
 	</resultMap>
 
 	<select id="getInstMap" resultMap="map1">
 		select business_name from business
 	</select>
 	
+	<resultMap type="map" id="map2">
+		<result column="rel_schedule_cd"  property="rel_schedule_cd"/>
+		<result column="business_name"  property="business_name"/>
+		<result column="emp_name"  property="emp_name"/>
+		<result column="product_name"  property="product_name"/>
+		<result column="rel_date"  property="rel_date"/>
+		<result column="rel_count"  property="rel_count"/>
+		<result column="out_complete"  property="out_complete"/>
+		<result column="remarks"  property="remarks"/>
+	</resultMap>
+	
+	<select id="getRelList" resultMap="map2">
+	select * from release_schedule
+<!-- 	select r.rel_schedule_cd, b.business_name, e.emp_name, p.product_name,  -->
+<!-- 	   	   r.rel_date, r.rel_count, r.out_complete, r.remarks -->
+<!-- 			from release_schedule as r -->
+<!-- 			left join business as b -->
+<!-- 			on r.business_cd = b.business_cd -->
+<!-- 			left join employees as e -->
+<!-- 			on r.emp_no = e.emp_no -->
+<!-- 			left join product as p -->
+<!-- 			on r.business_cd = p.business_cd; -->
+<!--         <if test="search != null"> -->
+<!--         <if test="select != null"> -->
+<!-- 			<if test="select == 'product_dv'.toString()"> -->
+<!-- 				where product_dv like CONCAT('%',#{search},'%') -->
+<!-- 			</if> -->
+<!-- 			<if test="select == 'product_cd_name'.toString()"> -->
+<!-- 				where product_cd_name like CONCAT('%',#{search},'%') -->
+<!-- 			</if> -->
+<!-- 			<if test="select == 'product_name'.toString()"> -->
+<!-- 				where product_name like CONCAT('%',#{search},'%') -->
+<!-- 			</if> -->
+<!--         </if> -->
+<!--         </if> -->
+        
+        order by rel_schedule_cd desc 
+        limit #{startRow}, #{pageSize}   	
+    </select>
 <!-- 	<select id="getInstMap" resultMap="map1"> -->
 <!-- 		select emp_name from employees -->
 <!-- 	</select> -->
@@ -36,35 +74,6 @@
 <!-- 		select product_name from product -->
 <!-- 	</select> -->
 	
-	<resultMap type="map" id="map2">
-		<result column="rel_schedule_cd"  property="rel_schedule_cd"/>
-		<result column="business_name"  property="business_name"/>
-		<result column="emp_name"  property="emp_name"/>
-		<result column="product_name"  property="product_name"/>
-		<result column="rel_date"  property="rel_date"/>
-		<result column="wh_name"  property="wh_name"/>
-		<result column="rel_count"  property="rel_count"/>
-		<result column="out_complete"  property="out_complete"/>
-		<result column="remarks"  property="remarks"/>
-	</resultMap>
-	
-<!-- 	리스트 -->
-	<select id="getRelList" resultType="com.itwillbs.domain.ReleaseDTO">
-        select * from release_schedule
-<!--         <if test="search != null"> -->
-<!--         <if test="select != null"> -->
-<!--         	<if test="select == 'wh_name'.toString()"> -->
-<!--         		where wh_name like CONCAT('%',#{search},'%') -->
-<!--         	</if> -->
-        	
-<!--         	<if test="select == 'wh_addr'.toString()"> -->
-<!--         		where wh_addr like CONCAT('%',#{search},'%') -->
-<!--         	</if> -->
-<!--         </if> -->
-<!--         </if> -->
-        order by rel_schedule_cd desc 
-        limit #{startRow} , #{pageSize}    	
-    </select>
 	
 <!-- 	페이징 -->
 	<select id="getRelCount" resultType="java.lang.Integer">
@@ -83,21 +92,21 @@
 <!--         </if>  -->
     </select>
 	
-    <delete id="deletewh">
-    delete from warehouse
-    where wh_cd = #{wh_cd}       
-    </delete> 
+<!--     <delete id="deletewh"> -->
+<!--     delete from warehouse -->
+<!--     where wh_cd = #{wh_cd}        -->
+<!--     </delete>  -->
     
-    <select id="getwh" resultType="com.itwillbs.domain.WHDTO">
-        select * from warehouse
-        where wh_cd = #{wh_cd}
-    </select>
+<!--     <select id="getwh" resultType="com.itwillbs.domain.WHDTO"> -->
+<!--         select * from warehouse -->
+<!--         where wh_cd = #{wh_cd} -->
+<!--     </select> -->
     
-     <update id="updatewh">
-	 	update warehouse set wh_name = #{wh_name}, wh_dv = #{wh_dv}, wh_addr = #{wh_addr}, 
-	 	                     wh_tel = #{wh_tel}, wh_use = #{wh_use}, remarks = #{remarks} 
-	 	where wh_cd = #{wh_cd}                     
-    </update>
+<!--      <update id="updatewh"> -->
+<!-- 	 	update warehouse set wh_name = #{wh_name}, wh_dv = #{wh_dv}, wh_addr = #{wh_addr},  -->
+<!-- 	 	                     wh_tel = #{wh_tel}, wh_use = #{wh_use}, remarks = #{remarks}  -->
+<!-- 	 	where wh_cd = #{wh_cd}                      -->
+<!--     </update> -->
     
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
 <!-- 		select * from members  -->

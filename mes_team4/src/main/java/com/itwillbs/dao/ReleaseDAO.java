@@ -8,8 +8,6 @@ import com.itwillbs.domain.ReleaseDTO;
 
 public interface ReleaseDAO {
 	
-	public List<ReleaseDTO> getRelList(PageDTO pageDTO);
-	
 	public int getRelCount(PageDTO pageDTO);
 	
 	public void insertrel(ReleaseDTO releaseDTO);
@@ -17,4 +15,7 @@ public interface ReleaseDAO {
 	public Integer getRNum();
 
 	public List<Map<String, Object>> getInstMap();
+	
+	public List<Map<String, Object>> getRelList(PageDTO pageDTO);
+
 }

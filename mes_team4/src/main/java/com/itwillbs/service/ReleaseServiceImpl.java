@@ -16,27 +16,7 @@ public class ReleaseServiceImpl implements ReleaseService{
 	
 	@Inject
 	private ReleaseDAO releaseDAO;
-
-	@Override
-	public List<ReleaseDTO> getRelList(PageDTO pageDTO) {
-		System.out.println("ReleaseServiceImpl getRelList()");
-		//시작하는 행번호 구하기
-		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
-		int endRow = startRow+pageDTO.getPageSize()-1;
-			
-			pageDTO.setStartRow(startRow);
-			pageDTO.setEndRow(endRow);
-			
-			return releaseDAO.getRelList(pageDTO);
-	}
-
-	@Override
-	public int getRelCount(PageDTO pageDTO) {
-		System.out.println("ReleaseServiceImpl getRelList()");
-		
-		return releaseDAO.getRelCount(pageDTO);
-	}
-
+	
 	@Override
 	public void insertrel(ReleaseDTO releaseDTO) {
 		System.out.println("ReleaseServiceImpl insertrel()");
@@ -55,13 +35,35 @@ public class ReleaseServiceImpl implements ReleaseService{
 		releaseDAO.insertrel(releaseDTO);
 	}
 
+	
+	
+	
+	@Override
+	public int getRelCount(PageDTO pageDTO) {
+		System.out.println("ReleaseServiceImpl getRelList()");
+		
+		return releaseDAO.getRelCount(pageDTO);
+	}
+
+	@Override
+	public List<Map<String, Object>> getRelList(PageDTO pageDTO) {
+		System.out.println("ReleaseServiceImpl getRelList()");
+		// 시작하는 행번호 구하기
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+		int endRow= startRow+pageDTO.getPageSize()-1;
+		
+		pageDTO.setStartRow(startRow);
+		pageDTO.setEndRow(endRow);
+		
+		return releaseDAO.getRelList(pageDTO);
+	}
+	
 	@Override
 	public List<Map<String, Object>> getInstMap() {
 		System.out.println("ReleaseServiceImpl getInstMap()");
 		return releaseDAO.getInstMap();
 	}
 
-	
 
 	
 

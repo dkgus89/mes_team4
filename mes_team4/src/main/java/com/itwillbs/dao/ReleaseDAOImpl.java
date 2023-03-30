@@ -20,17 +20,6 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 	private static final String namespace="com.itwillbs.mappers.relMapper";
 	
 	@Override
-	public List<ReleaseDTO> getRelList(PageDTO pageDTO) {
-		System.out.println("ReleaseDAOImpl getRelList()");
-		
-		// limit #{startRow -1} , #{pageSize} 
-		//        1-1, 10 => 1~10
-		pageDTO.setStartRow(pageDTO.getStartRow()-1);
-		
-		return sqlSession.selectList(namespace+".getRelList", pageDTO);
-	}
-
-	@Override
 	public int getRelCount(PageDTO pageDTO) {
 		System.out.println("ReleaseDAOImpl getRelCount()");
 		return sqlSession.selectOne(namespace+".getRelCount", pageDTO);
@@ -57,4 +46,15 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 		return sqlSession.selectList(namespace+".getInstMap");
 	}
 
-}
+	@Override
+	public List<Map<String, Object>> getRelList(PageDTO pageDTO) {
+System.out.println("ReleaseDAOImpl getRelList()");
+		
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		
+		return sqlSession.selectList(namespace+".getRelList",pageDTO);
+	}
+
+	}
+
+
