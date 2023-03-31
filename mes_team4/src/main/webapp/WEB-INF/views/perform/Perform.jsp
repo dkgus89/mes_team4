@@ -49,17 +49,39 @@ function allCheck(){
 	<div id="table_search">
 			<form action="${pageContext.request.contextPath}/perform/perform" method="get">
 				<select name="select">
+				<c:choose>						
+						<c:when test="${pageDTO.select == 'instruction_code'.toString()}">
+							<option value="perform_cd">실적코드</option>
+							<option value="instruction_code" selected>작업지시코드</option>
+							<option value="line_cd">라인코드</option>
+							<option value="product_cd">품목코드</option>
+						</c:when>
+						<c:when test="${pageDTO.select == 'line_cd'.toString()}">
+							<option value="perform_cd">실적코드</option>
+							<option value="instruction_code">작업지시코드</option>
+							<option value="line_cd" selected>라인코드</option>
+							<option value="product_cd">품목코드</option>
+						</c:when>
+						<c:when test="${pageDTO.select == 'product_cd'.toString()}">
 							<option value="perform_cd">실적코드</option>
 							<option value="instruction_code">작업지시코드</option>
 							<option value="line_cd">라인코드</option>
+							<option value="product_cd" selected>품목코드</option>
+						</c:when>
+						<c:otherwise>
+							<option value="perform_cd" selected>실적코드</option>
+							<option value="instruction_code">작업지시코드</option>
+							<option value="line_cd">라인코드</option>
 							<option value="product_cd">품목코드</option>
+						</c:otherwise>
+				</c:choose>
       			</select>
-				<input type="text" name="search" class="input_box">
+				<input type="text" name="search" class="input_box" value="${pageDTO.search}">
 				<input type="submit" value="search" class="button2">
 			</form>
-		</div>
-		<br>
-	<div class="wrap2">
+	</div>
+	<br>
+	<div class="wrap2" style="float: left;">
 		
 	  <button class="button2" onclick="showPopup();">추가</button>
 	  <button class="button2" onclick="chdelete();">삭제</button>
@@ -71,46 +93,46 @@ function allCheck(){
 	<form name="performlist">
 		<input type="hidden" value="">
 		
-		<table id="vendortable" class=" table table-striped">
+		<table id="vendortable" class=" table table-striped" style="width:1000px">
 			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">
-					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
-					<th>번호</th>
-					<th>실적코드</th>
-					<th>작업지시코드</th>
-					<th>라인코드</th>
-					<th>라인명</th>
-					<th>품목코드</th>
-					<th>품목명</th>
-					<th>실적일자</th>
-					<th>지시수량</th>
-					<th>양품</th>
-					<th>불량</th>
-					<th>불량사유</th>
-					<th>적요</th>
-					<th>수정</th>
+				<tr style="text-align: center; font-size: 0.8rem">
+					<th style="text-align: center;"><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
+					<th style="text-align: center; width: 25px;">번호</th>
+					<th style="text-align: center;">실적코드</th>
+					<th style="text-align: center;">작업지시코드</th>
+					<th style="text-align: center;">라인코드</th>
+					<th style="text-align: center; width: 25px;">라인명</th>
+					<th style="text-align: center;">품목코드</th>
+					<th style="text-align: center;">품목명</th>
+					<th style="text-align: center;">실적일자</th>
+					<th style="text-align: center;">지시수량</th>
+					<th style="text-align: center;">양품</th>
+					<th style="text-align: center;">불량</th>
+					<th style="text-align: center;">불량사유</th>
+					<th style="text-align: center;">적요</th>
+					<th style="text-align: center;">수정</th>
 				</tr>
 			</thead>
 			
 			<tbody>
 				<c:forEach var="dto" items="${PerformMap}" varStatus="status">
 
-				<tr style="text-align: center; font-size: 0.9rem">
-				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.perform_cd}"></td>
-				<td>${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
-				<td>${dto.perform_cd}</td>
-    			<td>${dto.instruction_code}</td>
-    			<td>${dto.line_cd}</td>
-    			<td>${dto.line_name}</td>
-    			<td>${dto.product_cd}</td> 
-    			<td>${dto.product_name}</td> 			
-    			<td>${dto.perform_date}</td>
-    			<td>${dto.instruction_qt}</td>
-    			<td>${dto.fair_prod}</td>
-    			<td>${dto.defect_prod}</td>
-    			<td>${dto.defect_remarks}</td>
-    			<td>${dto.remarks}</td>
-    			<td><button class="button2" onclick="showPopup2('${dto.perform_cd}');">수정</button></td>
+				<tr style="text-align: center; font-size: 0.8rem">
+				<td style="text-align: center;"><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.perform_cd}"></td>
+				<td style="text-align: center;">${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
+				<td style="text-align: center;">${dto.perform_cd}</td>
+    			<td style="text-align: center;">${dto.instruction_code}</td>
+    			<td style="text-align: center;">${dto.line_cd}</td>
+    			<td style="text-align: center;">${dto.line_name}</td>
+    			<td style="text-align: center;">${dto.product_cd}</td> 
+    			<td style="text-align: center;">${dto.product_name}</td> 			
+    			<td style="text-align: center;">${dto.perform_date}</td>
+    			<td style="text-align: center;">${dto.instruction_qt}</td>
+    			<td style="text-align: center;">${dto.fair_prod}</td>
+    			<td style="text-align: center;">${dto.defect_prod}</td>
+    			<td style="text-align: center;">${dto.defect_remarks}</td>
+    			<td style="text-align: center;">${dto.remarks}</td>
+    			<td style="text-align: center;"><button class="button2" onclick="showPopup2('${dto.perform_cd}');">수정</button></td>
     			</tr>
    			 
 				</c:forEach>				

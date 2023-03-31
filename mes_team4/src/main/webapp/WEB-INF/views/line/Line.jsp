@@ -47,11 +47,25 @@ function allCheck2(){
 	<div id="table_search">
 			<form action="${pageContext.request.contextPath}/line/line" method="get">
 				<select name="select">
+				<c:choose>						
+						<c:when test="${pageDTO.select == 'line_name'.toString()}">
+							<option value="line_cd">라인코드</option>
+							<option value="line_name" selected>라인명</option>
+							<option value="line_process">공정</option>
+						</c:when>
+						<c:when test="${pageDTO.select == 'line_process'.toString()}">
 							<option value="line_cd">라인코드</option>
 							<option value="line_name">라인명</option>
+							<option value="line_process" selected>공정</option>
+						</c:when>
+						<c:otherwise>
+							<option value="line_cd" selected>라인코드</option>
+							<option value="line_name">라인명</option>
 							<option value="line_process">공정</option>
+						</c:otherwise>
+				</c:choose>
       			</select>
-				<input type="text" name="search" class="input_box">
+				<input type="text" name="search" class="input_box" value="${pageDTO.search}">
 				<input type="submit" value="search" class="button2">
 			</form>
 		</div>

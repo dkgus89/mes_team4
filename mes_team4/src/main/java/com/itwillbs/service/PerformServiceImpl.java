@@ -84,8 +84,7 @@ public class PerformServiceImpl implements PerformService{
 				int endRow = startRow+pageDTO.getPageSize()-1;
 				
 				pageDTO.setStartRow(startRow);
-				pageDTO.setEndRow(endRow);
-				
+				pageDTO.setEndRow(endRow);				
 				
 				return performDAO.getPerformMap(pageDTO);
 			}

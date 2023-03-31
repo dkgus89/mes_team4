@@ -5,7 +5,7 @@ public class StockDTO {
 	private String stock_cd;
 	private String wh_cd;
 	private String rec_schedule_cd;
-	private int product_cd;
+	private String product_cd;
 	private int stock_count;
 	
 	
@@ -27,10 +27,10 @@ public class StockDTO {
 	public void setRec_schedule_cd(String rec_schedule_cd) {
 		this.rec_schedule_cd = rec_schedule_cd;
 	}
-	public int getProduct_cd() {
+	public String getProduct_cd() {
 		return product_cd;
 	}
-	public void setProduct_cd(int product_cd) {
+	public void setProduct_cd(String product_cd) {
 		this.product_cd = product_cd;
 	}
 	public int getStock_count() {

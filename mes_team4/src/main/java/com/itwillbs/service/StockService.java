@@ -8,9 +8,9 @@ import com.itwillbs.domain.StockDTO;
 
 public interface StockService {
 	
-public List<StockDTO> getStockList(PageDTO pageDTO);
+//public List<StockDTO> getStockList(PageDTO pageDTO);
 	
-	public int getStockCount();
+	public int getStockCount(PageDTO pageDTO);
 	
 	public void insertStock(StockDTO stockDTO);
 	
@@ -20,5 +20,11 @@ public List<StockDTO> getStockList(PageDTO pageDTO);
 	
 	public void deleteStock(String stock_cd);
 
-	public List<Map<String, Object>> getStockMap();
+	public List<Map<String, Object>> getStockMap(PageDTO pageDTO);
+
+	public List<Map<String, Object>> getwhMap();
+
+	public List<Map<String, Object>> getrecMap();
+
+	public List<Map<String, Object>> getprodMap();
 }

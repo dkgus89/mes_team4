@@ -14,17 +14,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript">
 function sub(){
+window.opener.name = "parentPage";
+document.StockInsert.target="parentPage";
 document.StockInsert.action="${pageContext.request.contextPath}/stock/stockinsertpro";
 document.StockInsert.submit();
-setTimeout(function() { 
-	opener.parent.location.reload();
-	window.close();
-	}, 200);
+self.close();	
 }
 function rst(){
 document.StockInsert.reset();
 }
-
 </script>
 
 
@@ -59,9 +57,21 @@ document.StockInsert.reset();
 			<tbody>
 				<tr>
 					<td><input type="text" name="stock_cd" value=""></td>
-					<td><input type="text" name="wh_cd" value=""></td>
-					<td><input type="text" name="rec_schedule_cd" value=""></td>
-					<td><input type="text" name="product_cd" value=""></td>
+					<td><select name="wh_cd">
+							<c:forEach var="dto" items="${whMap}">					
+								<option value="${dto.wh_cd}">${dto.wh_cd}</option>							
+							</c:forEach>
+      				</select></td>
+					<td><select name="rec_schedule_cd">
+							<c:forEach var="dto" items="${recMap}">					
+								<option value="${dto.rec_schedule_cd}">${dto.rec_schedule_cd}</option>							
+							</c:forEach>
+      				</select></td>
+					<td><select name="product_cd">
+							<c:forEach var="dto" items="${prodMap}">					
+								<option value="${dto.product_cd}">${dto.product_cd}</option>							
+							</c:forEach>
+      				</select></td>
 					<td><input type="text" name="stock_count" value=""></td>
 				</tr>
 

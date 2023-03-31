@@ -14,16 +14,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript">
 function sub(){
-	document.StockUpdate.action="${pageContext.request.contextPath}/stock/stockupdatepro";
-	document.StockUpdate.submit();
-	setTimeout(function() { 
-		opener.parent.location.reload();
-		window.close();
-		}, 200);
-	}
-	function rst(){
-	document.StockUpdate.reset();
-	}
+window.opener.name = "parentPage";
+document.StockUpdate.target="parentPage";
+document.StockUpdate.action="${pageContext.request.contextPath}/stock/stockupdatepro";
+document.StockUpdate.submit();
+self.close();
+}
+function rst(){
+document.StockUpdate.reset();
+}
 </script>
 
 
@@ -42,7 +41,7 @@ function sub(){
 	 
 	 
 	<form name="StockUpdate" method="post">
-		<input type="hidden" name="stock_cd" value="${StockDTO.stock_cd}">
+		<input type="hidden">
 		
 		<table id="vendortable" class="table table-striped">
 			<thead>
@@ -57,10 +56,31 @@ function sub(){
 			
 			<tbody>
 				<tr>					
-					<td>${StockDTO.stock_cd}</td>
-					<td>${StockDTO.wh_cd}</td>
-					<td>${StockDTO.rec_schedule_cd}</td>
-					<td>${StockDTO.product_cd}</td>
+					<td><input type="text" name="stock_cd" value="${StockDTO.stock_cd}" readonly></td>
+					<td><select name="wh_cd">
+							<option value="${StockDTO.wh_cd}" selected>${StockDTO.wh_cd}</option>
+								<c:forEach var="dto" items="${whMap}">
+									<c:if test="${dto.wh_cd != StockDTO.wh_cd}">											
+									<option value="${dto.wh_cd}">${dto.wh_cd}</option>	
+									</c:if>						
+								</c:forEach>
+      					</select></td>
+					<td><select name="rec_schedule_cd">
+							<option value="${StockDTO.rec_schedule_cd}" selected>${StockDTO.rec_schedule_cd}</option>
+								<c:forEach var="dto" items="${recMap}">
+									<c:if test="${dto.rec_schedule_cd != StockDTO.rec_schedule_cd}">											
+									<option value="${dto.rec_schedule_cd}">${dto.rec_schedule_cd}</option>	
+									</c:if>						
+								</c:forEach>
+      					</select></td>
+					<td><select name="product_cd">
+							<option value="${StockDTO.product_cd}" selected>${StockDTO.product_cd}</option>
+								<c:forEach var="dto" items="${prodMap}">
+									<c:if test="${dto.product_cd != StockDTO.product_cd}">											
+									<option value="${dto.product_cd}">${dto.product_cd}</option>	
+									</c:if>						
+								</c:forEach>
+      					</select></td>
 					<td><input type="text" name="stock_count" value="${StockDTO.stock_count}"></td>
 				</tr>
 			</tbody>

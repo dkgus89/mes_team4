@@ -26,6 +26,9 @@ public class StockController {
 	@RequestMapping(value = "/stock/stock", method = RequestMethod.GET)
 	public String stock(HttpServletRequest request, Model model) {
 		System.out.println("StockController stock()");
+		//검색어 가져오기
+		String search=request.getParameter("search");
+		String select=request.getParameter("select");
 		
 		// 한 화면에 보여줄 글 개수 설정
 		int pageSize=5;
@@ -42,11 +45,14 @@ public class StockController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
+		//검색어
+		pageDTO.setSearch(search);
+		pageDTO.setSelect(select);
 		
 //		List<StockDTO> StockList=stockService.getStockList(pageDTO);
 					
 		//페이징 처리
-		int count = stockService.getStockCount();
+		int count = stockService.getStockCount(pageDTO);
 		int pageBlock=10;
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 		int endPage=startPage+pageBlock-1;
@@ -63,7 +69,7 @@ public class StockController {
 		
 		//메서드 호출
 		List<Map<String, Object>> StockMap
-		     =stockService.getStockMap();
+		     =stockService.getStockMap(pageDTO);
 		//model 담아서 이동
 		model.addAttribute("StockMap", StockMap);
 		
@@ -76,7 +82,25 @@ public class StockController {
 	}
 	
 	@RequestMapping(value = "/stock/stockinsert", method = RequestMethod.GET)
-	public String stockInsert() {
+	public String stockInsert(Model model) {
+		
+		//메서드 호출
+		List<Map<String, Object>> whMap
+		     =stockService.getwhMap();
+		//model 담아서 이동
+		model.addAttribute("whMap", whMap);
+		
+		//메서드 호출
+		List<Map<String, Object>> recMap
+		     =stockService.getrecMap();
+		//model 담아서 이동
+		model.addAttribute("recMap", recMap);
+		
+		//메서드 호출
+		List<Map<String, Object>> prodMap
+		     =stockService.getprodMap();
+		//model 담아서 이동
+		model.addAttribute("prodMap", prodMap);
 		
 		// 주소변경 없이 이동
 		// /WEB-INF/views/stock/StockInsert.jsp
@@ -99,7 +123,27 @@ public class StockController {
 		String stock_cd=request.getParameter("stock_cd");
 		StockDTO stockDTO=stockService.getStock(stock_cd);
 		
+		//메서드 호출
+		List<Map<String, Object>> whMap
+		     =stockService.getwhMap();
+		//model 담아서 이동
+		model.addAttribute("whMap", whMap);
+		
+		//메서드 호출
+		List<Map<String, Object>> recMap
+		     =stockService.getrecMap();
+		//model 담아서 이동
+		model.addAttribute("recMap", recMap);
+		
+		//메서드 호출
+		List<Map<String, Object>> prodMap
+		     =stockService.getprodMap();
+		//model 담아서 이동
+		model.addAttribute("prodMap", prodMap);	
+		
 		model.addAttribute("StockDTO", stockDTO);
+		
+		
 		
 		// 주소변경 없이 이동
 		// /WEB-INF/views/stock/StockUpdate.jsp
@@ -108,6 +152,11 @@ public class StockController {
 	
 	@RequestMapping(value = "/stock/stockupdatepro", method = RequestMethod.POST)
 	public String stockUpdatePro(StockDTO stockDTO) {
+		System.out.println(stockDTO.getStock_cd());
+		System.out.println(stockDTO.getWh_cd());
+		System.out.println(stockDTO.getRec_schedule_cd());
+		System.out.println(stockDTO.getProduct_cd());
+		System.out.println(stockDTO.getStock_count());
 		
 		stockService.updateStock(stockDTO);
 		

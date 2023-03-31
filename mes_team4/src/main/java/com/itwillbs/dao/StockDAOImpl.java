@@ -21,21 +21,21 @@ public class StockDAOImpl implements StockDAO {
 	// sql구문 전체 이름 정의
 	private static final String namespace="com.itwillbs.mappers.StockMapper";
 
-	@Override
-	public List<StockDTO> getStockList(PageDTO pageDTO) {
-		System.out.println("InfoDAOImpl getStockList()");
-		// limit #{startRow -1} , #{pageSize} 
-		//        1-1, 10 => 1~10
-		pageDTO.setStartRow(pageDTO.getStartRow()-1);
-		
-		return sqlSession.selectList(namespace+".getStockList", pageDTO);
-	}		
+//	@Override
+//	public List<StockDTO> getStockList(PageDTO pageDTO) {
+//		System.out.println("InfoDAOImpl getStockList()");
+//		// limit #{startRow -1} , #{pageSize} 
+//		//        1-1, 10 => 1~10
+//		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+//		
+//		return sqlSession.selectList(namespace+".getStockList", pageDTO);
+//	}		
 
 	@Override
-	public int getStockCount() {
+	public int getStockCount(PageDTO pageDTO) {
 		System.out.println("InfoDAOImpl getStockCount()");
 		
-		return sqlSession.selectOne(namespace+".getStockCount");
+		return sqlSession.selectOne(namespace+".getStockCount", pageDTO);
 	}
 
 	@Override
@@ -67,9 +67,33 @@ public class StockDAOImpl implements StockDAO {
 	}
 
 	@Override
-	public List<Map<String, Object>> getStockMap() {
+	public List<Map<String, Object>> getStockMap(PageDTO pageDTO) {
 		System.out.println("InfoDAOImpl getStockMap()");
+		// limit #{startRow -1} , #{pageSize} 
+		//        1-1, 10 => 1~10
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
 		
-		return sqlSession.selectList(namespace+".getStockMap");
+		return sqlSession.selectList(namespace+".getStockMap", pageDTO);
+	}
+
+	@Override
+	public List<Map<String, Object>> getwhMap() {
+		System.out.println("InfoDAOImpl getwhMap()");
+		
+		return sqlSession.selectList(namespace+".getwhMap");
+	}
+
+	@Override
+	public List<Map<String, Object>> getrecMap() {
+		System.out.println("InfoDAOImpl getrecMap()");
+		
+		return sqlSession.selectList(namespace+".getrecMap");
+	}
+
+	@Override
+	public List<Map<String, Object>> getprodMap() {
+		System.out.println("InfoDAOImpl getprodMap()");
+		
+		return sqlSession.selectList(namespace+".getprodMap");
 	}
 }

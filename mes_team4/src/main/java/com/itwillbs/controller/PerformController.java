@@ -209,8 +209,10 @@ public class PerformController {
 				Map<String, Object> callcdMap
 				     =performService.getcallcdMap(ic);
 				
-				int a=(int) callcdMap.get("product_cd");
-				String result=Integer.toString(a);
+//				int a=(int) callcdMap.get("product_cd");
+//				String result=Integer.toString(a);
+				
+				String result=(String) callcdMap.get("product_cd");
 								
 				return result;
 			}

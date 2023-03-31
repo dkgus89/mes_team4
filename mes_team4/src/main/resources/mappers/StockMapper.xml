@@ -11,13 +11,36 @@
     	values(#{stock_cd},#{wh_cd},#{rec_schedule_cd},#{product_cd},#{stock_count})
     </insert>
 
-	<select id="getStockList" resultType="com.itwillbs.domain.StockDTO">
-    	select * from stock
-    	limit #{startRow} , #{pageSize}
-    </select>
+<!-- 	<select id="getStockList" resultType="com.itwillbs.domain.StockDTO"> -->
+<!--     	select * from stock -->
+<!--     	limit #{startRow} , #{pageSize} -->
+<!--     </select> -->
     
     <select id="getStockCount" resultType="java.lang.Integer">
-        select count(*) from stock 
+        select count(*)
+        from(select s.stock_cd, s.wh_cd, w.wh_name, s.rec_schedule_cd, r.rec_date, s.product_cd, p.product_name, s.stock_count
+			from stock s join warehouse w
+						 on s.wh_cd = w.wh_cd
+      			      	 join receive_schedule r
+       			   		 on s.rec_schedule_cd=r.rec_schedule_cd
+       			    	 join product p
+       			      	 on s.product_cd=p.product_cd
+       	<if test="search != null">
+        <if test="select != null">
+        	<if test="select == 'stock_cd'.toString()">
+        	where stock_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="select == 'wh_cd'.toString()">
+        	where s.wh_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="select == 'rec_schedule_cd'.toString()">
+        	where s.rec_schedule_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="select == 'product_cd'.toString()">
+        	where s.product_cd like CONCAT('%',#{search},'%')
+        	</if>
+        </if>
+        </if>) a
     </select>
 
 	<select id="getStock" resultType="com.itwillbs.domain.StockDTO">
@@ -27,7 +50,7 @@
     
     <update id="updateStock">
     	update stock
-    	set stock_count = #{stock_count}
+    	set wh_cd = #{wh_cd}, rec_schedule_cd = #{rec_schedule_cd}, product_cd=#{product_cd}, stock_count = #{stock_count}
     	where stock_cd = #{stock_cd}
     </update>
     
@@ -54,9 +77,51 @@
       			      	 join receive_schedule r
        			   		 on s.rec_schedule_cd=r.rec_schedule_cd
        			    	 join product p
-       			      	 on s.product_cd=p.product_cd;
+       			      	 on s.product_cd=p.product_cd
+       	<if test="search != null">
+        <if test="select != null">
+        	<if test="select == 'stock_cd'.toString()">
+        	where stock_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="select == 'wh_cd'.toString()">
+        	where s.wh_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="select == 'rec_schedule_cd'.toString()">
+        	where s.rec_schedule_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="select == 'product_cd'.toString()">
+        	where s.product_cd like CONCAT('%',#{search},'%')
+        	</if>
+        </if>
+        </if>       	
+       		order by stock_cd
+       		limit #{startRow} , #{pageSize}
     </select>
-	    
+    
+	<resultMap type="map" id="map1">
+		<result column="wh_cd" property="wh_cd"/>
+	</resultMap>
+
+    <select id="getwhMap" resultMap="map1">
+    	select distinct wh_cd from warehouse
+    </select>
+    
+    <resultMap type="map" id="map2">
+		<result column="rec_schedule_cd" property="rec_schedule_cd"/>
+	</resultMap>
+
+    <select id="getrecMap" resultMap="map2">
+    	select distinct rec_schedule_cd from receive_schedule
+    </select>
+    
+    <resultMap type="map" id="map3">
+		<result column="product_cd" property="product_cd"/>
+	</resultMap>
+
+    <select id="getprodMap" resultMap="map3">
+    	 select distinct product_cd from product
+    </select>
+
 </mapper>
 
 

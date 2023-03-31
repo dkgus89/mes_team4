@@ -7,7 +7,7 @@ public class PerformDTO {
 	private String perform_cd;
 	private String instruction_code;
 	private String line_cd;
-	private int product_cd;
+	private String product_cd;
 	private Date perform_date;
 	private int fair_prod;
 	private int defect_prod;
@@ -32,10 +32,10 @@ public class PerformDTO {
 	public void setLine_cd(String line_cd) {
 		this.line_cd = line_cd;
 	}
-	public int getProduct_cd() {
+	public String getProduct_cd() {
 		return product_cd;
 	}
-	public void setProduct_cd(int product_cd) {
+	public void setProduct_cd(String product_cd) {
 		this.product_cd = product_cd;
 	}
 	public Date getPerform_date() {
