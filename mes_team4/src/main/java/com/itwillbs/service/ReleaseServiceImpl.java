@@ -32,6 +32,8 @@ public class ReleaseServiceImpl implements ReleaseService{
 			releaseDTO.setRel_schedule_cd(str);
 		}
 		
+		releaseDTO.setOut_complete("진행중");
+		
 		releaseDAO.insertrel(releaseDTO);
 	}
 
@@ -57,10 +59,11 @@ public class ReleaseServiceImpl implements ReleaseService{
 		
 		return releaseDAO.getRelList(pageDTO);
 	}
-	
+
 	@Override
 	public List<Map<String, Object>> getInstMap() {
 		System.out.println("ReleaseServiceImpl getInstMap()");
+		
 		return releaseDAO.getInstMap();
 	}
 

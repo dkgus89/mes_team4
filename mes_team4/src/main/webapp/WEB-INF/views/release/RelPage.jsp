@@ -108,6 +108,7 @@
 					<th>출고코드</th>
 					<th>거래처명</th>
 					<th>담당자</th>
+					<th>창고</th>
 					<th>출고품목명</th>
 					<th>출고일자</th>
 					<th>출고수량</th>
@@ -118,17 +119,18 @@
 			</thead>
 			
 			<tbody>
-			<c:forEach var="releaseDTO" items="${relList }">
+			<c:forEach var="dto" items="${relList }">
 				<tr>
 					<td><input type="checkbox" id="checkbox" name="rowcheck" value="${releaseDTO.rel_schedule_cd }"></td>
-					<td>${releaseDTO.rel_schedule_cd}</td>
-					<td>${businessDTO.business_name}</td>
-					<td>${systemDTO.emp_name}</td>
-					<td>${productDTO.product_name}</td>
-					<td>${releaseDTO.rel_date}</td>
-					<td>${releaseDTO.rel_count }</td>
-					<td>${releaseDTO.out_complete}</td>
-					<td>${releaseDTO.remarks}</td>
+					<td>${dto.rel_schedule_cd}</td>
+					<td>${dto.business_name}</td>
+					<td>${dto.emp_name}</td>
+					<td>${dto.wh_name}</td>
+					<td>${dto.product_name}</td>
+					<td>${dto.rel_date}</td>
+					<td>${dto.rel_count }</td>
+					<td>${dto.out_complete}</td>
+					<td>${dto.remarks}</td>
 					<td>
 					<button class="button2" onclick="updatePopup('${releaseDTO.rel_schedule_cd}');">수정</button>
 					</td>
@@ -142,15 +144,15 @@
 
 
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">[10페이지 이전]</a>
+<a href="${pageContext.request.contextPath}/rel/relpage?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">[10페이지 이전]</a>
 </c:if>
 
 <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${i}&search=${pageDTO.search}">${i}</a> 
+<a href="${pageContext.request.contextPath}/rel/relpage?pageNum=${i}&search=${pageDTO.search}">${i}</a> 
 </c:forEach>
 
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">[10페이지 다음]</a>
+<a href="${pageContext.request.contextPath}/rel/relpage?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">[10페이지 다음]</a>
 </c:if>
 	
 <!-- 본문HTML 입력 끝-->

@@ -16,7 +16,7 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 function setParentText(){
-	opener.document.getElementById("bInput").value = document.getElementById("bInput").value
+	opener.document.getElementById("wInput").value = document.getElementById("wInput").value
 	window.close();
 }
 
@@ -89,9 +89,9 @@ $(document).ready(function() { // j쿼리 시작
 			</thead>
 			
 			<tbody id="busbody">
-			<c:forEach var="businessDTO" items="${bnameList }">
+			<c:forEach var="warehouseDTO" items="${wnameList }">
 				<tr>
-					<td>${businessDTO.business_name}</td>
+					<td>${warehouseDTO.wh_name}</td>
 <!-- 					<td> -->
 <%-- 					<button class="button2" id="bInput" value="${businessDTO.business_name}" onclick="setParentText()">선택</button> --%>
 <!-- 					</td> -->

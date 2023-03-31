@@ -15,7 +15,10 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
-
+function setParentText(){
+	opener.document.getElementById("eInput").value = document.getElementById("eInput").value
+	window.close();
+}
 
 
 </script>
@@ -46,9 +49,9 @@
 			<tbody>
 			<c:forEach var="systemDTO" items="${enameList }">
 				<tr>
-					<td>${systemDTO.emp_name}</td>
+					<td><input type="text" class="button2" id="eInput" value="${systemDTO.emp_name}" readonly></td>
 					<td>
-					<button class="button2">선택</button>
+					<button class="button2" onclick="setParentText()">선택</button>
 					</td>
 				</tr>
 			</c:forEach>			

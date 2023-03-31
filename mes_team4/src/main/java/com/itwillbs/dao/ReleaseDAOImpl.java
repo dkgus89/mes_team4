@@ -48,12 +48,13 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 
 	@Override
 	public List<Map<String, Object>> getRelList(PageDTO pageDTO) {
-System.out.println("ReleaseDAOImpl getRelList()");
+		System.out.println("ReleaseDAOImpl getRelList()");
 		
 		pageDTO.setStartRow(pageDTO.getStartRow()-1);
 		
-		return sqlSession.selectList(namespace+".getRelList",pageDTO);
+		return sqlSession.selectList(namespace+".getRelList", pageDTO);
 	}
+
 
 	}
 

@@ -15,5 +15,6 @@ public interface ReleaseService {
 	public List<Map<String, Object>> getInstMap();
 	
 	public List<Map<String, Object>> getRelList(PageDTO pageDTO);
+
 	
 }

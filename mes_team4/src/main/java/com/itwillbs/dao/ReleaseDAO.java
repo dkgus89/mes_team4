@@ -18,4 +18,5 @@ public interface ReleaseDAO {
 	
 	public List<Map<String, Object>> getRelList(PageDTO pageDTO);
 
+
 }

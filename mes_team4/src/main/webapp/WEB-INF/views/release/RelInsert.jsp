@@ -58,12 +58,17 @@ document.insertform.reset();
 
 // 거래처 리스트 팝업
 function bnopenPop(){
-    var popup = window.open('${pageContext.request.contextPath}/rel/bnlist', '거래처리스트 팝업', 'width=500, height=500, top=200, left=200,scrollbars=yes');
+	var popup = window.open('${pageContext.request.contextPath}/rel/bnlist', '거래처명리스트 팝업', 'width=500, height=500, top=200, left=200,scrollbars=yes');
 }
 
 // 사원명 리스트 팝업
 function enopenPop(){
     var popup = window.open('${pageContext.request.contextPath}/rel/enlist', '사원명리스트 팝업', 'width=500, height=500, top=200, left=200,scrollbars=yes');
+}
+
+// 창고 리스트 팝업
+function wnopenPop(){
+    var popup = window.open('${pageContext.request.contextPath}/rel/wnlist', '창고명리스트 팝업', 'width=500, height=500, top=200, left=200,scrollbars=yes');
 }
 
 // 품목명 리스트 팝업
@@ -87,20 +92,27 @@ function pnopenPop(){
 		<input type="reset" class="button2" value="초기화" onclick="rst()">
 	 </div><br>
 	 <br>
-		
 		<table id="vendortable" class="table table-striped" style="width:1000px;">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>거래처명</th>
 					<th>담당자</th>
+					<th>창고코드</th>
 					<th>출고품목명</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="text" name="business_name"><input type="button" onclick="bnopenPop()" id="bnList" value="조회"></td>
-					<td><input type="text" name="emp_name"><input type="button" onclick="enopenPop()" id="enList" value="조회"></td>
-					<td><input type="text" name="product_name"><input type="button" onclick="pnopenPop()" id="pnList" value="조회"></td>
+					<td>
+<!-- 					<input type="text" name="business_name" id="bInput"><input type="button" onclick="bnopenPop()" id="bnList" value="조회"></td> -->
+					<td><select name ="business_name">
+							<c:forEach var="dto" items="${instMap}">
+							<option value="${dto.business_name }">${dto.business_name }</option>
+							</c:forEach>
+						</select></td>
+					<td><input type="text" name="emp_name" id="eInput"><input type="button" onclick="enopenPop()" id="enList" value="조회"></td>
+					<td><input type="text" name="emp_name" id="wInput"><input type="button" onclick="wnopenPop()" id="wnList" value="조회"></td>
+					<td><input type="text" name="product_name" id="pInput"><input type="button" onclick="pnopenPop()" id="pnList" value="조회"></td>
 				</tr>
 			</tbody>	
 			
@@ -125,7 +137,6 @@ function pnopenPop(){
 				</tr>
 			</tbody>				
 		</table>
-
 	</form>
 <!-- 본문HTML 입력 끝-->
 </div>	

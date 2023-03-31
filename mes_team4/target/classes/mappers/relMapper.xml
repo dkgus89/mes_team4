@@ -7,9 +7,9 @@
 <mapper namespace="com.itwillbs.mappers.relMapper">
 	
 	<insert id="insertrel">
-		insert into release_schdule(rel_schedule_cd, business_name, emp_name, product_name, 
+		insert into release_schdule(rel_schedule_cd, business_name, emp_name, wh_name, product_name, 
 									rel_date,rel_count, out_complete, remarks) 
-		values(#{rel_schedule_cd},#{business_name}, #{emp_name}, #{product_name}, 
+		values(#{rel_schedule_cd},#{business_name}, #{emp_name}, #{wh_name},  #{product_name}, 
 			   #{rel_date}, #{rel_count}, #{out_complete}, #{remarks})
 	</insert>
 	
@@ -19,14 +19,29 @@
 	</select>
 
 <!-- 조인 리스트	 -->
-	<resultMap type="map" id="map1">
-		<result column="business_name" property="business_name"/>
+<!-- insert페이지 -->
+<resultMap type="map" id="map1">
+		<result column="business_cd" property="business_cd"/>
+		<result column="emp_name"  property="emp_name"/>
+		<result column="wh_name"  property="wh_name"/>
+		<result column="product_name"  property="product_name"/>
+		<result column="rel_date"  property="rel_date"/>
+		<result column="rel_count"  property="rel_count"/>
+		<result column="remarks"  property="remarks"/>
 	</resultMap>
-
-	<select id="getInstMap" resultMap="map1">
-		select business_name from business
-	</select>
 	
+	<select id="getInstMap" resultMap="map1">
+		select b.business_name, e.emp_name, p.product_name, 
+	   	   r.rel_date, r.rel_count, r.remarks
+		   from release_schedule as r
+		   left join business as b
+		   on r.business_cd = b.business_cd
+		   left join employees as e
+		   on r.emp_no = e.emp_no
+		   left join product as p
+		   on r.business_cd = p.business_cd
+	</select>
+<!-- 메인페이지 -->
 	<resultMap type="map" id="map2">
 		<result column="rel_schedule_cd"  property="rel_schedule_cd"/>
 		<result column="business_name"  property="business_name"/>
@@ -39,16 +54,18 @@
 	</resultMap>
 	
 	<select id="getRelList" resultMap="map2">
-	select * from release_schedule
-<!-- 	select r.rel_schedule_cd, b.business_name, e.emp_name, p.product_name,  -->
-<!-- 	   	   r.rel_date, r.rel_count, r.out_complete, r.remarks -->
-<!-- 			from release_schedule as r -->
-<!-- 			left join business as b -->
-<!-- 			on r.business_cd = b.business_cd -->
-<!-- 			left join employees as e -->
-<!-- 			on r.emp_no = e.emp_no -->
-<!-- 			left join product as p -->
-<!-- 			on r.business_cd = p.business_cd; -->
+<!-- 	select * from release_schedule -->
+	select r.rel_schedule_cd, b.business_name, e.emp_name,  w.wh_name, p.product_name, 
+	   	   r.rel_date, r.rel_count, r.out_complete, r.remarks
+		   from release_schedule as r
+		   left join business as b
+		   on r.business_cd = b.business_cd
+		   left join employees as e
+		   on r.emp_no = e.emp_no
+		   left join product as p
+		   on r.business_cd = p.business_cd
+		   left join warehouse as w
+		   on r.wh_cd = w.wh_cd
 <!--         <if test="search != null"> -->
 <!--         <if test="select != null"> -->
 <!-- 			<if test="select == 'product_dv'.toString()"> -->
@@ -66,11 +83,11 @@
         order by rel_schedule_cd desc 
         limit #{startRow}, #{pageSize}   	
     </select>
-<!-- 	<select id="getInstMap" resultMap="map1"> -->
+<!-- 	<select id="getInstMap" resultMap="map2"> -->
 <!-- 		select emp_name from employees -->
 <!-- 	</select> -->
 	
-<!-- 	<select id="getInstMap" resultMap="map1"> -->
+<!-- 	<select id="getInstMap" resultMap="map2"> -->
 <!-- 		select product_name from product -->
 <!-- 	</select> -->
 	
