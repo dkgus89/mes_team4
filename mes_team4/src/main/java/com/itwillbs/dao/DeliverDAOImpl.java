@@ -1,6 +1,7 @@
 package com.itwillbs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -41,10 +42,10 @@ public class DeliverDAOImpl implements DeliverDAO  {
 	}
 
 	@Override
-	public DeliverDTO getDeliver(String deliver_cd) {
+	public DeliverDTO getDeliver(DeliverDTO deliverDTO) {
 		System.out.println("DeliverDAOImpl getDeliver()");
 		
-		return sqlSession.selectOne(namespace+".getDeliver", deliver_cd);
+		return sqlSession.selectOne(namespace+".getDeliver", deliverDTO);
 	}
 
 	
@@ -64,6 +65,37 @@ public class DeliverDAOImpl implements DeliverDAO  {
 		System.out.println("DeliverDAOImpl getDeliverCount()");
 		
 		return sqlSession.selectOne(namespace+".getDeliverCount", pageDTO);
+	}
+
+	@Override
+	public void deleteDeliver(String deliver_cd) {
+		System.out.println("DeliverDAOImpl deleteDeliver()");
+		
+		sqlSession.delete(namespace+".deletDeliver", deliver_cd);
+		
+	}
+
+	@Override
+	public List<Map<String, Object>> getInstMap() {
+		System.out.println("DeliverDAOImpl getInstMap()");
+		
+		
+		return sqlSession.selectList(namespace+".getInstMap");
+	}
+
+	@Override
+	public List<Map<String, Object>> getInstMap2() {
+		System.out.println("DeliverDAOImpl getInstMap2()");
+		
+		
+		return sqlSession.selectList(namespace+".getInstMap2");
+	}
+
+	@Override
+	public List<Map<String, Object>> getInstMap3() {
+		System.out.println("DeliverDAOImpl getInstMap2()");
+		
+		return sqlSession.selectList(namespace+".getInstMap3");
 	}
 
 	

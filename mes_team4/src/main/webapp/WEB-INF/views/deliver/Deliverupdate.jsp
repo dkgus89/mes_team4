@@ -65,9 +65,30 @@
 			<tbody>
 				<tr>
 					<td><input type="text" name="deliver_cd" value="${deliverDTO.deliver_cd } " readonly="readonly"></td>
-					<td><input type="text" name="business_cd" value="${deliverDTO.business_cd }"></td>					
-					<td><input type="text" name="order_cd" value="${deliverDTO.order_cd }"></td>
-					<td><input type="text" name="product_cd" value="${deliverDTO.product_cd }"></td>
+<%-- 					<td><input type="text" name="business_cd" value="${deliverDTO.business_cd }"></td>					 --%>
+<%-- 					<td><input type="text" name="order_cd" value="${deliverDTO.order_cd }"></td> --%>
+<%-- 					<td><input type="text" name="product_cd" value="${deliverDTO.product_cd }"></td> --%>
+						<td><select name="business_cd"> 
+							<c:forEach var="dto" items="${instMap }">
+								<option value="${dto.business_cd }" >${dto.business_cd } </option>
+							 </c:forEach>	
+						</select></td>		
+							
+									
+									
+						<td><select  name="order_cd">
+								<c:forEach var="dto" items="${instMap2 }">
+									<option value="${dto.order_cd }" > ${dto.order_cd }</option>
+								</c:forEach>
+						</select> </td>
+					
+					
+					
+					<td><select name="product_cd">
+						<c:forEach var="dto" items="${instMap3 }">
+							<option value="${dto.product_cd }" > ${dto.product_cd } </option>
+						</c:forEach>
+						</select> </td>
 					<td><input type="Date" name="deliver_date" value="${deliverDTO.deliver_date }"></td>
 					<td><input type="text" name="deliver_count" value="${deliverDTO.deliver_count }"></td>
 				</tr>

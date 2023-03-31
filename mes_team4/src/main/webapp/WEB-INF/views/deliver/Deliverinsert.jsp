@@ -21,6 +21,8 @@
 			window.close();
 			}, 100);
 	}
+	
+	
 
 </script>
 
@@ -62,9 +64,32 @@
 			<tbody>
 				<tr>
 					<td><input type="text" name="deliver_cd" value=""></td>
-					<td><input type="text" name="business_cd" value=""></td>					
-					<td><input type="text" name="order_cd" value=""></td>
-					<td><input type="text" name="product_cd" value=""></td>
+					
+					
+					
+						<td><select name="business_cd"> 
+							<c:forEach var="dto" items="${instMap }">
+								<option value="${dto.business_cd }" >${dto.business_cd } </option>
+							 </c:forEach>	
+						</select></td>		
+							
+									
+									
+						<td><select  name="order_cd">
+								<c:forEach var="dto" items="${instMap2 }">
+									<option value="${dto.order_cd }" > ${dto.order_cd }</option>
+								</c:forEach>
+						</select> </td>
+					
+					
+					
+					<td><select name="product_cd">
+						<c:forEach var="dto" items="${instMap3 }">
+							<option value="${dto.product_cd }" > ${dto.product_cd } </option>
+						</c:forEach>
+						</select> </td>
+						
+						
 					<td><input type="Date" name="deliver_date" value=""></td>
 					<td><input type="text" name="deliver_count" value=""></td>
 				</tr>

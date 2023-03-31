@@ -1,6 +1,7 @@
 package com.itwillbs.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.itwillbs.domain.DeliverDTO;
 import com.itwillbs.domain.PageDTO;
@@ -14,11 +15,19 @@ public interface DeliverService {
 	//추상메소드
 	public void insertDeliver(DeliverDTO deliverDTO);
 
-	public DeliverDTO getDeliver(String deliver_cd);
+	public DeliverDTO getDeliver(DeliverDTO deliverDTO);
 
 	public void updateDeliver(DeliverDTO deliverDTO);
 	
 	int getDeliverCount(PageDTO pageDTO);
+
+	public void deleteDeliver(String deliver_cd);
+
+	public List<Map<String, Object>> getInstMap();
+
+	public List<Map<String, Object>> getInstMap2();
+
+	public List<Map<String, Object>> getInstMap3();
 
 	
 

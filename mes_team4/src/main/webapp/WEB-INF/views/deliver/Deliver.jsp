@@ -18,9 +18,29 @@ function DeliverInsert(){
     window.open("${pageContext.request.contextPath}/deliver/insert","출하 등록","width=1200, height=300, top=200, left=200");
 }
 
-function DeliverUpdate(deliver_cd){
+function DeliverUpdate(deliver_cd,business_cd,product_cd){
+//     window.open("${pageContext.request.contextPath}/deliver/update?deliver_cd=deliver_cd","출하 수정","width=1200, height=300, top=200, left=200");
     window.open("${pageContext.request.contextPath}/deliver/update?deliver_cd="+deliver_cd,"출하 수정","width=1200, height=300, top=200, left=200");
+//     "&business_cd="+business_cd+"&product_cd="+product_cd,
 }
+
+function DeliverDelete1() {
+	document.deliverlist.action="${pageContext.request.contextPath}/deliver/deliverdelete";
+	document.deliverlist.submit();
+}
+
+function allcheck() {
+	var ac = document.deliverlist.allcheck;
+	var rc = document.deliverlist.rowcheck;
+	if(ac.checked == true){
+		for(i=0; i<rc.length; i++){
+			rc[i].checked=ture;}
+		}else {
+			for(i=0; i<rc.length; i++){
+				rc[i].checked=false;}
+		}	
+	}
+
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -33,7 +53,7 @@ function DeliverUpdate(deliver_cd){
 	<div class="wrap2">
 	  <button class="button2" onclick="DeliverInsert();">추가</button>
 	  <button class="button2">저장</button>
-	  <button class="button2">삭제</button>
+	  <button class="button2" onclick="DeliverDelete1()">삭제</button>
 	  
 	 </div><br>
 	 <br>
@@ -45,12 +65,13 @@ function DeliverUpdate(deliver_cd){
 		<table id="vendortable" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-				
-					<th>선택</th>
+					<th><input type="checkbox" name="allcheck" onClick='alCheck()'></th>
+					<th>번호</th>
+<!-- 					//<th>선택</th> -->
 					<th>출하코드</th>
 					<th>거래처코드</th>
-					<th>수주코드</th>
 					<th>품목코드</th>
+					<th>수주코드</th>
 					<th>출하일자</th>
 					<th>출하량</th>
 					<th>수정</th>
@@ -72,17 +93,20 @@ function DeliverUpdate(deliver_cd){
 					
 <!-- 				</tr> -->
 				
-				<c:forEach var="DeliverDTO" items="${deliverList}">
+				<c:forEach var="DeliverDTO" items="${deliverList}" varStatus="status">
 
-				<tr>
-				<td><input type="checkbox" id="checkbox"></td> 
+				<tr style="text-align: center; font-size: 0.9rem">
+				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.deliver_cd }"></td> 
+				<td>${status.count + ((pageDTO.pageNum -1) * pageDTO.pageSize) }</td>
+				
+					
     			<td>${DeliverDTO.deliver_cd}</td>
 				<td>${DeliverDTO.business_cd}</td>
-    			<td>${DeliverDTO.order_cd}</td>
     			<td>${DeliverDTO.product_cd}</td>
+    			<td>${DeliverDTO.order_cd}</td>
     			<td>${DeliverDTO.deliver_date}</td>
     			<td>${DeliverDTO.deliver_count}</td>
-    			<td><button class="button2" onclick="DeliverUpdate('${DeliverDTO.deliver_cd}');">수정</button></td>
+    			<td><button class="button2" onclick="DeliverUpdate('${DeliverDTO.deliver_cd}','${DeliverDTO.business_cd}','${DeliverDTO.product_cd}');">수정</button></td>
     			
    			 
 				</c:forEach>

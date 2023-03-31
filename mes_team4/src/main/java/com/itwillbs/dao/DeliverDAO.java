@@ -1,6 +1,7 @@
 package com.itwillbs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.itwillbs.domain.DeliverDTO;
 import com.itwillbs.domain.PageDTO;
@@ -13,11 +14,26 @@ public interface DeliverDAO {
 		
 		public List<DeliverDTO> getDeliverList(PageDTO pageDTO);
 		
-		public DeliverDTO getDeliver(String deliver_cd);
+		public DeliverDTO getDeliver(DeliverDTO deliverDTO);
 		
 		public void updateDeliver(DeliverDTO deliverDTO);
 		
 		int getDeliverCount(PageDTO pageDTO);
+		
+		
+		public void deleteDeliver(String deliver_cd);
+		
+		
+		public List<Map<String, Object>> getInstMap();
+		
+		
+		public List<Map<String, Object>> getInstMap2();
+		
+		
+		public List<Map<String, Object>> getInstMap3();
+
+
+
 
 
 

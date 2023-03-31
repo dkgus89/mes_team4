@@ -1,6 +1,7 @@
 package com.itwillbs.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -46,10 +47,10 @@ public class DeliverServiceImpl implements DeliverService{
 
 
 	@Override
-	public DeliverDTO getDeliver(String deliver_cd) {
+	public DeliverDTO getDeliver(DeliverDTO deliverDTO) {
 		System.out.println("DeliverServiceImpl getDeliver()");
 		
-		return deliverDAO.getDeliver(deliver_cd);
+		return deliverDAO.getDeliver(deliverDTO);
 	}
 
 
@@ -66,6 +67,43 @@ public class DeliverServiceImpl implements DeliverService{
 	public int getDeliverCount(PageDTO pageDTO) {
 		System.out.println("DeliverServiceImpl getDeliverCount()");
 		return deliverDAO.getDeliverCount(pageDTO);
+	}
+
+
+
+	@Override
+	public void deleteDeliver(String deliver_cd) {
+		System.out.println("DeliverServiceImpl deleteDeliver()");
+		
+		deliverDAO.deleteDeliver(deliver_cd);
+		
+	}
+
+
+
+	@Override
+	public List<Map<String, Object>> getInstMap() {
+		System.out.println("DeliverServiceImpl getInstMap()");
+
+		
+		return deliverDAO.getInstMap();
+	}
+
+
+
+	@Override
+	public List<Map<String, Object>> getInstMap2() {
+		System.out.println("DeliverServiceImpl getInstMap2()");
+		
+		return deliverDAO.getInstMap2();
+	}
+
+
+
+	@Override
+	public List<Map<String, Object>> getInstMap3() {
+		System.out.println("DeliverServiceImpl getInstMap3()");
+		return deliverDAO.getInstMap3();
 	}
 
 

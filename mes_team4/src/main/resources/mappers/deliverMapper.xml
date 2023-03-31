@@ -19,13 +19,14 @@
     	<if test="search != null">
     		where deliver_cd like CONCAT('%',#{search},'%')
     	</if>
-    	order by deliver_cd desc
+    	order by deliver_date asc
     	limit #{startRow}, #{pageSize}
     </select>
     
     <select id="getDeliver" resultType="com.itwillbs.domain.DeliverDTO">
     select * from shipment_management
-    where deliver_cd = #{deliver_cd}
+    where deliver_cd = #{deliver_cd} 
+<!--     and business_cd=#{business_cd} and product_cd =#{product_cd} -->
     
     </select>
 	
@@ -43,6 +44,43 @@
     	</if>
 
     </select>
+    
+    <delete id="deleteDeliver">
+    delete from shipment_management
+    where deliver_cd = #{deliver_cd}
+    </delete>
+	
+	
+	
+	
+<!-- 	비즈니스 코드 갖고 오기 -->
+	<resultMap type="map" id="map1">
+		<result column="business_cd" property="business_cd"/>
+	</resultMap>
+	<select id="getInstMap" resultMap="map1">
+		select distinct business_cd from business;
+	</select>
+	
+	
+	
+<!-- 수주코드 갖고오기	 -->
+	<resultMap type="map" id="map2">
+		<result column="order_cd" property="order_cd"/>
+	</resultMap>
+	<select id="getInstMap2" resultMap="map2">
+		select distinct order_cd from order_management;
+	</select>
+	
+	
+	
+<!-- 품목코드 갖고오기 -->
+<resultMap type="map" id="map3">
+		<result column="product_cd" property="product_cd"/>
+	</resultMap>
+	<select id="getInstMap3" resultMap="map3">
+		select distinct product_cd from product;
+	</select>	
+	
 	
 	
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
@@ -50,16 +88,13 @@
 <!-- 		where id = #{id} and pass = #{pass}  -->
 <!-- 	</select> -->
 
-<!-- 	<select id="selectBlog" parameterType="int" resultType="Blog">
-        select * from Blog where id = #{id}
-    </select>
+<!-- 	<select id="selectBlog" parameterType="int" resultType="Blog"> -->
+<!--         select * from Blog where id = #{id} -->
+<!--     </select> -->
     
-    <insert id="">
-    </insert>
+<!--     <insert id=""> -->
+<!--     </insert> -->
     
-    
-    <delete id="">
-    </delete> -->
     
 </mapper>
 

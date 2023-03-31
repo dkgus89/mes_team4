@@ -3,6 +3,7 @@ package com.itwillbs.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -94,7 +95,7 @@ public class DeliverController {
 			
 			model.addAttribute("deliverList", deliverList);
 			model.addAttribute("pageDTO",pageDTO);
-			System.out.println(deliverList.get(0).getDeliver_cd());
+//			System.out.println(deliverList.get(0).getDeliver_cd());
 			
 			// 주소변경없이 이동
 			return "deliver/Deliver";
@@ -108,7 +109,27 @@ public class DeliverController {
 	//자동으로 가상주소 뽑아오나? /deliver/Deliverinsert
 	//가상주소???!!!????여기는 영업관리=>출하등록 이동후  "추가" 버튼 누르면 팝업창이 생성되어서 값을 등록할수 있게 되어야함.
 	@RequestMapping(value = "/deliver/insert", method = RequestMethod.GET)
-	public String insert() {
+	public String insert(Model model) {
+		
+		
+		// 거래처코드 갖고오기 메소드 호출
+		List<Map<String,Object >> instMap = deliverService.getInstMap();
+		//model담아서 이동
+		model.addAttribute("instMap", instMap);
+		
+		
+		// 수주코드 갖고오기 메소드호출
+		List<Map<String,Object >> instMap2 = deliverService.getInstMap2();
+		model.addAttribute("instMap2", instMap2);
+		
+		
+		// 수주코드 갖고오기 메소드호출
+		List<Map<String,Object >> instMap3= deliverService.getInstMap3();
+		model.addAttribute("instMap3", instMap3);
+
+		
+		
+		
 		
 		//주소변경 없이 이동
 		// /WEB-INF/views/deliver/Deliverinsert.jsp
@@ -143,15 +164,42 @@ public class DeliverController {
 */			
 		@RequestMapping(value = "/deliver/update", method = RequestMethod.GET)
 		public String update(HttpServletRequest request, Model model) {
-			System.out.println("/deliver/update");
+		//	System.out.println("/deliver/update");
 			String deliver_cd =  request.getParameter("deliver_cd");
-			System.out.println(deliver_cd);
+//			String business_cd =  request.getParameter("business_cd");
+//			String product_cd =  request.getParameter("product_cd");
+			
+		//	System.out.println(deliver_cd);
+			
+			DeliverDTO deliverDTO= new DeliverDTO();
+			deliverDTO.setDeliver_cd(deliver_cd);
+//			deliverDTO2.setBusiness_cd(business_cd);
+//			deliverDTO2.setProduct_cd(product_cd);
 			
 			//System.out.println(deliverDTO.getDeliver_cd());	
 			
-			DeliverDTO deliverDTO=deliverService.getDeliver(deliver_cd);
+			DeliverDTO deliverDTO=deliverService.getDeliver(deliverDTO);
 		
 			model.addAttribute("deliverDTO", deliverDTO);
+			
+			
+			
+			// 거래처코드 갖고오기 메소드 호출
+			List<Map<String,Object >> instMap = deliverService.getInstMap();
+			//model담아서 이동
+			model.addAttribute("instMap", instMap);
+			
+			
+			// 수주코드 갖고오기 메소드호출
+			List<Map<String,Object >> instMap2 = deliverService.getInstMap2();
+			model.addAttribute("instMap2", instMap2);
+			
+			
+			// 수주코드 갖고오기 메소드호출
+			List<Map<String,Object >> instMap3= deliverService.getInstMap3();
+			model.addAttribute("instMap3", instMap3);
+			
+			
 			
 			
 			// 가상주소에서 주소변경 없이 이동
@@ -176,6 +224,25 @@ public class DeliverController {
 		
 		
 		
+		@RequestMapping(value = "/deliver/delete", method = RequestMethod.GET)
+		public String delete(HttpServletRequest request) {
+		//	System.out.println("DeliverController delete()");
+			String chbox[]=request.getParameterValues("rowcheck");
+			String deliver_cd = null;
+			if(chbox!=null) {
+				for(int i=0; i<chbox.length; i++) {
+					deliver_cd=chbox[i];
+					deliverService.deleteDeliver(deliver_cd);
+				}
+			}
+			
+			
+		
+			
+			
+			// 주소줄 변경하면서 이동
+			return "redirect:/deliver/Deliver";
+		}	
 		
 		
 		
