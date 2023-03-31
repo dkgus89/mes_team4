@@ -81,6 +81,18 @@ public class ProductDAOImpl implements ProductDAO{
 		return sqlSession.selectList(namespace+".getProductList",pageDTO);
 	}
 
+	@Override
+	public int getProductCount2() {
+		
+		return sqlSession.selectOne(namespace+".getProductCount2");
+	}
+
+	@Override
+	public String getProduct_cd() {
+		
+		return sqlSession.selectOne(namespace+".getProduct_cd");
+	}
+
 
 
 }

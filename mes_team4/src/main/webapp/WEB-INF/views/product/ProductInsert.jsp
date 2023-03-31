@@ -42,10 +42,11 @@ function rst(){
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
+					<th>품목타입코드</th>
 					<th>제품구분 </th>
 					<th>제품코드 </th>
 					<th>제품명 </th>
-					<th>거래처코드 </th>
+					<th>거래처명 </th>
 					<th>규격 </th>
 					<th>재고단위  </th>
 					<th>적요</th>
@@ -55,17 +56,26 @@ function rst(){
 			<tbody>
 				<tr>
 					<td>
+					<select  name="product_type_cd">
+						<option value="">선택해주세요</option>
+						<option value="1">1 완제품</option>
+						<option value="2">2 주원료</option>
+						<option value="3">3 부원료</option>
+						<option value="4">4 포장자재</option>
+					</select>
+					</td>
+					<td>
 					<select  name="product_dv">
 						<option value="">선택해주세요</option>
 						<option value="완제품">완제품</option>
-						<option value="원재료">원재료</option>
+						<option value="원자재">원자재</option>
 					</select>
 					</td>
 					<td><input type="text" name="product_cd_name"></td>
 					<td><input type="text" name="product_name"></td>
 					<td><select name ="business_cd">
 						<c:forEach var="dto" items="${instMap}">
-							<option value="${dto.business_cd }">${dto.business_cd }</option>
+							<option value="${dto.business_cd }">${dto.business_cd } </option>
 						</c:forEach>
 					</select></td>
 					<td><input type="tel" name="product_unit"></td>

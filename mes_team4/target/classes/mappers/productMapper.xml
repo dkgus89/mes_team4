@@ -8,8 +8,8 @@
 	
 	<!-- ?대신 productDTO의 멤버변수명 사용 #{id}-->
 	<insert id="insertProduct">
-		insert into product(product_cd_name,product_name,product_dv,business_cd,product_size,product_unit,remarks) 
-		values(#{product_cd_name},#{product_name},#{product_dv},#{business_cd},#{product_size},#{product_unit},#{remarks})
+		insert into product(product_type_cd,product_cd,product_cd_name,product_name,product_dv,business_cd,product_unit,remarks) 
+		values(#{product_type_cd},#{product_cd},#{product_cd_name},#{product_name},#{product_dv},#{business_cd},#{product_unit},#{remarks})
 	</insert>
 	
 	<resultMap type="map" id="map1">
@@ -21,20 +21,23 @@
 	</select>
 	
 	<resultMap type="map" id="map2">
+		<result column="product_cd"  property="product_cd"/>
+		<result column="product_type_cd"  property="product_type_cd"/>
 		<result column="product_dv"  property="product_dv"/>
 		<result column="product_cd_name"  property="product_cd_name"/>
 		<result column="product_name"  property="product_name"/>
 		<result column="business_cd"  property="business_cd"/>
 		<result column="business_name"  property="business_name"/>
-		<result column="product_size"  property="product_size"/>
 		<result column="product_unit"  property="product_unit"/>
 		<result column="remarks"  property="remarks"/>
 	</resultMap>
 	
 	<select id="getProductList" resultMap="map2">
-        select p.product_dv,p.product_cd_name, p.product_name, b.business_cd, b.business_name, p.product_size, p.product_unit, p.remarks
+        select p.product_cd,p.product_dv,p.product_cd_name, p.product_name, b.business_cd, b.business_name, p.product_unit, p.remarks
         from product p join business b
         on p.business_cd=b.business_cd
+        join product_type t
+        on p.product_type_cd=t.product_type_cd
         <if test="search != null">
         <if test="select != null">
 			<if test="select == 'product_dv'.toString()">
@@ -49,7 +52,7 @@
         </if>
         </if>
         
-        order by product_cd_name desc 
+        order by product_cd  
         limit #{startRow}, #{pageSize}   	
     </select>
     
@@ -70,6 +73,20 @@
         </if>
     </select>
     
+     <select id="getProductCount2" resultType="java.lang.Integer">
+        select count(*)
+        from(        select p.product_dv,p.product_cd_name, p.product_name, b.business_cd, b.business_name, p.product_unit, p.remarks
+      				  from product p join business b
+      				  on p.business_cd=b.business_cd
+       				  join product_type t
+      				  on p.product_type_cd=t.product_type_cd) a
+    </select>
+    
+    <select id="getProduct_cd" resultType="java.lang.String">
+        select max(product_cd)
+        from product
+    </select>
+    
     <delete id="deleteProduct">
     	delete from product
     	where product_cd_name = #{product_cd_name}
@@ -81,7 +98,7 @@
     </select>
 
     <update id="updateProduct">
-    	update product set product_dv = #{product_dv}, product_name = #{product_name}, business_cd = #{business_cd}, product_size = #{product_size}, product_unit = #{product_unit}, remarks = #{remarks}
+    	update product set product_dv = #{product_dv}, product_name = #{product_name}, business_cd = #{business_cd}, product_unit = #{product_unit}, remarks = #{remarks}
     	where product_cd_name = #{product_cd_name}   
     </update>
     

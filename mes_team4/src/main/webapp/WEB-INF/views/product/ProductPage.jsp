@@ -61,12 +61,12 @@ function updatePopup(cd) {
 				<tr style="text-align:center; font-size: 0.9rem">
 					<th style="text-align:center">선택</th>
 					<th style="text-align:center">번호</th>
+					<th style="text-align:center">품목코드</th>
 					<th style="text-align:center">제품구분</th>
 					<th style="text-align:center">제품코드</th>
 					<th style="text-align:center">제품명</th>
 					<th style="text-align:center">거래처코드</th>
 					<th style="text-align:center">거래처명</th>
-					<th style="text-align:center">규격</th>
 					<th style="text-align:center">재고단위</th>
 					<th style="text-align:center">적요</th>
 					<th style="text-align:center">수정</th>
@@ -79,12 +79,12 @@ function updatePopup(cd) {
 				<tr style="text-align:center; font-size: 0.9rem">
 					<td><input type="checkbox" name="chbox" value="${productDTO.product_cd_name}"></td>
 					<td>${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
+					<td>${productDTO.product_cd }</td>
 					<td>${productDTO.product_dv }</td>
 					<td>${productDTO.product_cd_name }</td>
 					<td>${productDTO.product_name }</td>
 					<td>${productDTO.business_cd }</td>
 					<td>${productDTO.business_name }</td>
-					<td>${productDTO.product_size }</td>
 					<td>${productDTO.product_unit }</td>
 					<td>${productDTO.remarks }</td>
 					<td><button class="button2" onclick="updatePopup('${productDTO.product_cd_name}');">수정</button></td>

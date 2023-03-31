@@ -31,7 +31,7 @@ public class ProductController {
 		
 		String pageNum=request.getParameter("pageNum");
 		// 한 화면에 보여질 글의 개수 설정
-		int pageSize=5;
+		int pageSize=6;
 		// 현재 페이지번호 가져오기
 		if(pageNum==null) {
 			// pageNum없으면 1페이지로 설정
@@ -67,7 +67,7 @@ public class ProductController {
 		pageDTO.setStartPage(startPage);
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
-//		System.out.println(productList.get(0).getProduct_cd_name());
+		System.out.println(productList.get(0));
 		model.addAttribute("productList", productList);
 		model.addAttribute("pageDTO",pageDTO);
 		
@@ -86,8 +86,33 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product/prodinsertPro", method = RequestMethod.POST)
-	public String prodinsertPro(ProductDTO productDTO) {
+	public String prodinsertPro(HttpServletRequest request, ProductDTO productDTO) {
 		System.out.println("ProductController prodinsertPro()");
+		
+		if(productService.getProductCount2()==0) {
+			productDTO.setProduct_cd("P0001");
+		}else {
+			String maxpc=productService.getProduct_cd();
+			System.out.println(maxpc);
+			maxpc=maxpc.substring(3); 
+			int tpc=Integer.parseInt(maxpc);
+			tpc=tpc+1;
+			maxpc=String.valueOf(tpc);
+			if(maxpc.length()==1) {
+			maxpc="000".concat(maxpc);
+			maxpc="P".concat(maxpc);
+			}else if(maxpc.length()==2) {
+				maxpc="00".concat(maxpc);
+				maxpc="P".concat(maxpc);
+			}else if(maxpc.length()==3) {
+				maxpc="0".concat(maxpc);
+				maxpc="P".concat(maxpc);
+			}else if(maxpc.length()==4) {
+				maxpc="P".concat(maxpc);
+			}
+			productDTO.setProduct_cd(maxpc);
+			System.out.println(maxpc);
+		}
 		
 		productService.insertProduct(productDTO);
 //		주소줄 변경하면서 이동

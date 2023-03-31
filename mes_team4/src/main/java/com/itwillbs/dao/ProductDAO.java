@@ -27,6 +27,10 @@ public interface ProductDAO {
 	
 	public List<Map<String, Object>> getProductList(PageDTO pageDTO);
 
+	public int getProductCount2();
+
+	public String getProduct_cd();
+
 
 
 

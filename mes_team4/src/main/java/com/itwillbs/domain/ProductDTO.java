@@ -8,7 +8,6 @@ public class ProductDTO {
 	private String product_name;
 	private String product_cd_name;
 	private String business_cd;
-	private String product_size;
 	private String product_unit;
 	private String remarks;
 	
@@ -47,12 +46,6 @@ public class ProductDTO {
 	}
 	public void setBusiness_cd(String business_cd) {
 		this.business_cd = business_cd;
-	}
-	public String getProduct_size() {
-		return product_size;
-	}
-	public void setProduct_size(String product_size) {
-		this.product_size = product_size;
 	}
 	public String getProduct_unit() {
 		return product_unit;

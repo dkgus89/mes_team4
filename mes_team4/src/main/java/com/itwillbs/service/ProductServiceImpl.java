@@ -86,5 +86,15 @@ public class ProductServiceImpl implements ProductService{
 		return productDAO.getInstMap();
 	}
 
+	@Override
+	public int getProductCount2() {
+		return productDAO.getProductCount2();
+	}
+
+	@Override
+	public String getProduct_cd() {
+		return productDAO.getProduct_cd();
+	}
+
 
 }

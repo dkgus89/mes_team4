@@ -27,5 +27,9 @@ public interface ProductService {
 	public List<Map<String, Object>> getProductList(PageDTO pageDTO);
 
 	public List<Map<String, Object>> getInstMap();
+
+	public int getProductCount2();
+
+	public String getProduct_cd();
 	
 }

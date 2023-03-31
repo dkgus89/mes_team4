@@ -40,12 +40,13 @@
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>선택</th>
-					<th>코드</th>
+					<th>입고코드</th>
 					<th>거래처명</th>
-					<th>담당자명</th>
-					<th>품목명</th>
-					<th>일자</th>
-					<th>수량</th>
+					<th>담당자</th>
+					<th>입고창고</th>
+					<th>입고품목명</th>
+					<th>입고일자</th>
+					<th>입고수량</th>
 					<th>진행상태</th>
 					<th>비고</th>
 				</tr>
@@ -57,6 +58,7 @@
 					<td><input type="text" value="test1-1"></td>
 					<td><input type="text" value="test1-2"></td>
 					<td><input type="text" value="test1-3"></td>
+					<td><input type="text" value="test1-4"></td>
 					<td><input type="text" value="test1-4"></td>
 					<td><input type="text" value="test1-4"></td>
 					<td><input type="text" value="test1-4"></td>
