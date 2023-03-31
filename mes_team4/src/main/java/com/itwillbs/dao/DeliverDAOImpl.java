@@ -53,7 +53,7 @@ public class DeliverDAOImpl implements DeliverDAO  {
 	public void updateDeliver(DeliverDTO deliverDTO) {
 		System.out.println("DeliverDAOImpl updateDeliver()");
 		System.out.println(deliverDTO.getDeliver_cd());
-		System.out.println(deliverDTO.getDeliver_cd());
+	//	System.out.println(deliverDTO.getDeliver_cd());
 		
 		sqlSession.update(namespace+".updateDeliver", deliverDTO);
 		

@@ -36,6 +36,13 @@
     	order_cd = #{order_cd}, deliver_date = #{deliver_date}, deliver_count = #{deliver_count}
     	where deliver_cd = #{deliver_cd}
     </update>
+    
+    
+<!--      <update id="updateDeliver"> -->
+<!--     	update shipment_management -->
+<!--     	set deliver_count = #{deliver_count} -->
+<!--     	where deliver_cd = #{deliver_cd} -->
+<!--     </update> -->
 	
 	<select id="getDeliverCount" resultType="java.lang.Integer">
     select count(*) from shipment_management

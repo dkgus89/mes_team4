@@ -46,7 +46,7 @@ public class DeliverController {
 			
 		@RequestMapping(value = "/deliver/list", method = RequestMethod.GET)
 		public String list(HttpServletRequest request, Model model) {
-			System.out.println("/deliver/list()");
+			System.out.println("리스트"+"/deliver/list()");
 			
 			//검색어 가져오기
 			String search = request.getParameter("search");
@@ -164,7 +164,7 @@ public class DeliverController {
 */			
 		@RequestMapping(value = "/deliver/update", method = RequestMethod.GET)
 		public String update(HttpServletRequest request, Model model) {
-		//	System.out.println("/deliver/update");
+			System.out.println("업데이트"+"/deliver/update");
 			String deliver_cd =  request.getParameter("deliver_cd");
 //			String business_cd =  request.getParameter("business_cd");
 //			String product_cd =  request.getParameter("product_cd");
@@ -178,7 +178,7 @@ public class DeliverController {
 			
 			//System.out.println(deliverDTO.getDeliver_cd());	
 			
-			DeliverDTO deliverDTO=deliverService.getDeliver(deliverDTO);
+			 deliverDTO=deliverService.getDeliver(deliverDTO);
 		
 			model.addAttribute("deliverDTO", deliverDTO);
 			
@@ -214,9 +214,11 @@ public class DeliverController {
 */			
 		@RequestMapping(value = "/deliver/updatePro", method = RequestMethod.POST)
 		public String updatePro(DeliverDTO deliverDTO) {
-			System.out.println("/deliver/updatePro");
-			
+			System.out.println("updatepro부분"+"/deliver/updatePro");
+			System.out.println("전"+deliverDTO.getDeliver_count());
 			deliverService.updateDeliver(deliverDTO);
+			
+	//		System.out.println("후"+deliverDTO.getDeliver_count());
 			
 			// 주소변경하면서 이동
 			return "redirect:/deliver/Deliver";
