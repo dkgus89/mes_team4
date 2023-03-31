@@ -81,40 +81,50 @@
  
 	<form method="post" name="myform">
 <!-- 		<input type="hidden" value="">	 -->
-		
-		<table id="vendortable" class=" table table-striped" style="width:1000px;">
-			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">
-					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
-					<th>수주코드</th>
-					<th>거래처</th>
-					<th>제품코드</th>
-					<th>주문량</th>
-					<th>수주등록날짜</th>
-					<th>출하예정날짜</th>
-					<th>담당자</th>
-					<th>진행상황</th>
-					<th></th>
-				</tr>
-			</thead>
-			
-			<tbody>
+	<table id="vendortable" class=" table table-striped" style="width:1000px;">
+		<thead>
+			<tr style="text-align: center; font-size: 0.9rem">
+			<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
+			<th>수주코드</th>
+			<th>거래처</th>
+			<th>제품코드</th>
+			<th>주문량</th>
+			<th>수주등록날짜</th>
+			<th>출하예정날짜</th>
+			<th>담당자</th>
+			<th>진행상황</th>
+			<th></th>
+			</tr>
+		</thead>	
+
+		<tbody>
+		<c:choose>
+			<c:when test="${not empty orderList}">
 			<c:forEach var="orderDTO" items="${orderList}">
-<!-- 			<tr> -->
-				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${orderDTO.order_cd}"></td>
-				<td>${orderDTO.order_cd}</td>
-				<td>${orderDTO.business_cd}</td>
-				<td>${orderDTO.product_cd}</td>
-				<td>${orderDTO.order_count}</td>
-				<td>${orderDTO.order_date}</td>
-				<td>${orderDTO.deliver_date}</td>
-				<td>${orderDTO.emp_no}</td>
-				<td><span style="color:red">${orderDTO.con}</span></td>
-				<td><input type="button" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
+			<tr>
+			<td><input type="checkbox" id="checkbox" name="rowcheck" value="${orderDTO.order_cd}"></td>
+			<td>${orderDTO.order_cd}</td>
+			<td>${orderDTO.business_cd}</td>
+			<td>${orderDTO.product_cd}</td>
+			<td>${orderDTO.order_count}</td>
+			<td>${orderDTO.order_date}</td>
+			<td>${orderDTO.deliver_date}</td>
+			<td>${orderDTO.emp_no}</td>
+			<td><span style="color:red">${orderDTO.con}</span></td>
+			<td><input type="button" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
 			</tr>
 			</c:forEach>
-			</tbody>
-		</table>	
+			</c:when>
+         
+        <c:otherwise>
+            <tr>
+            <td colspan="10" style="text-align: center;">등록된 데이터가 없습니다.</td>
+            </tr>
+        </c:otherwise>	
+		</c:choose>
+		</tbody>
+			
+	</table>	
 	</form>	
 	<br>
 	
@@ -125,18 +135,17 @@
 	</form>
 	</div>
 	
+	<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+	<a href="${pageContext.request.contextPath}/order/ordermain?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
+	</c:if>
 	
-<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/order/ordermain?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
-</c:if>
-
-<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/order/ordermain?pageNum=${i}">${i}</a> 
-</c:forEach>
-
-<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/order/ordermain?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
-</c:if>
+	<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+	<a href="${pageContext.request.contextPath}/order/ordermain?pageNum=${i}">${i}</a> 
+	</c:forEach>
+	
+	<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+	<a href="${pageContext.request.contextPath}/order/ordermain?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
+	</c:if>
 	
 	
 <!-- 본문HTML 입력 끝-->

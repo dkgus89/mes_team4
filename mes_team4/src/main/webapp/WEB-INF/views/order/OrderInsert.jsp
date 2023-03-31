@@ -63,23 +63,25 @@
 					
 					</td>
 					<td>
-					<select id="select1"  name="product_cd" >
-						<option value="">코드 : 제품명</option>
-					<c:forEach var="businessList" items="${businessList}">
-						<option value="${businessList.business_cd}"  name="${businessList.business_cd}">${businessList.business_cd} : ${businessList.business_name}</option>
-					</c:forEach>
-					</select>
+					<input type="text" name="product_cd">
+<!-- 					<select id="select1"  name="product_cd" > -->
+<!-- 						<option value="">코드 : 제품명</option> -->
+<%-- 					<c:forEach var="businessList" items="${businessList}"> --%>
+<%-- 						<option value="${businessList.business_cd}"  name="${businessList.business_cd}">${businessList.business_cd} : ${businessList.business_name}</option> --%>
+<%-- 					</c:forEach> --%>
+<!-- 					</select> -->
 					</td>
 					<td><input type="text" name="order_count" size=8;></td>	
 					<td><input type="date" name="order_date"></td>
 					<td><input type="date" name="deliver_date"></td>
 					<td>
-					<select id="select1"  name="emp_no" >
-						<option value="">담당직원</option>
-					<c:forEach var="businessList" items="${businessList}">
-						<option value="${businessList.business_cd}"  name="${businessList.business_cd}">${businessList.business_cd} : ${businessList.business_name}</option>
-					</c:forEach>
-					</select>
+					<input type="text" name="emp_no">
+<!-- 					<select id="select1"  name="emp_no" > -->
+<!-- 						<option value="">담당직원</option> -->
+<%-- 					<c:forEach var="businessList" items="${businessList}"> --%>
+<%-- 						<option value="${businessList.business_cd}"  name="${businessList.business_cd}">${businessList.business_cd} : ${businessList.business_name}</option> --%>
+<%-- 					</c:forEach> --%>
+<!-- 					</select> -->
 					</td>	
 				</tr>
 			</tbody>

@@ -69,50 +69,48 @@
 </script>
 <!-- 자바스크립트 입력 끝-->
 
-
-	
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
 	<h2>거래처 관리</h2>
 	<h4>* 거래처명 클릭시 상세정보 확인가능</h4>
 	
-	
 	<div class="wrap2">
-	
 	  <button class="button2" onclick="showPopup();">추가</button>
 	  <button class="button2" onclick="deleteValue();">삭제</button>
 	 </div><br>
 	 <br>
  
 	<form method="post" name="myform">
-<!-- 		<input type="hidden" value="">	 -->
-		
-		<table id="vendortable" class=" table table-striped" style="width:1000px;">
-			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">
-					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
-					<th>코드</th>
-					<th>구분</th>
-					<th>업종유형</th>
-					<th>거래처명</th>
-					<th>전화번호</th>
-					<th>대표이름</th>
-					<th>비고</th>
-				</tr>
-			</thead>
-			
-			<tbody>
-			<c:forEach var="businessDTO" items="${businessList}">
+<!-- <input type="hidden" value="">	 -->	
+	<table id="vendortable" class=" table table-striped" style="width:1000px;">
+		<thead>
+			<tr style="text-align: center; font-size: 0.9rem">
+			<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
+			<th>코드</th>
+			<th>구분</th>
+			<th>업종유형</th>
+			<th>거래처명</th>
+			<th>전화번호</th>
+			<th>대표이름</th>
+			<th>비고</th>
+			</tr>
+		</thead>
+
+		<tbody>			
+		<c:choose>
+		<c:when test="${not empty businessList}">
+		<c:forEach var="businessDTO" items="${businessList}">
 			<tr>
-				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${businessDTO.business_cd}"></td>
-				<td>${businessDTO.business_cd}</td>
-				<td>${businessDTO.business_dv}</td>
-				<td>${businessDTO.business_type}</td>
-				<td>
-<!-- 				모달창에 출력될 내용 (반복문 돌려!!! ) -->
+			<td><input type="checkbox" id="checkbox" name="rowcheck" value="${businessDTO.business_cd}"></td>
+			<td>${businessDTO.business_cd}</td>
+			<td>${businessDTO.business_dv}</td>
+			<td>${businessDTO.business_type}</td>
+			
+			<td>
+<!-- 		모달창에 출력될 내용 (반복문 돌려!!! ) -->
 			<div id="ex1" class="modal">
-			  <p>
+			<p>
 			<table>
 				<thead>
 				<tr style="text-align: center; font-size: 1.5rem">
@@ -129,24 +127,29 @@
 				<tr><td>주소</td><td>${businessDTO.business_addr}</td></tr>		
 				</tbody>
 			</table>
-			 </p>
-				<a href="#" rel="modal:close" style="text-align: center;">닫기</a>
-				</div>
-<!-- 				모달창 클릭 #ex1으로 하이퍼링크 !!  맨위에 제이쿼리 삽입해야함 -->
-				<p><a href="#ex1" rel="modal:open" style="text-decoration: none;">${businessDTO.business_name}</a></p>
-				</td>
+			</p>
+			<a href="#" rel="modal:close" style="text-align: center;">닫기</a>
+			</div>
+<!-- 		모달창 클릭 #ex1으로 하이퍼링크 !!  맨위에 제이쿼리 삽입해야함 -->
+			<p><a href="#ex1" rel="modal:open" style="text-decoration: none;">${businessDTO.business_name}</a></p>
+			</td>
 				
-<%-- 			<td>${businessDTO.business_name}</td> --%>
-				<td>${businessDTO.business_tel}</td>
-				<td>${businessDTO.business_ceo}</td>
-				<td><input type="button" value="수정" onclick="updatePopup('${businessDTO.business_cd}');">
-				
-				
-				
-				</td>
+<%-- 		<td>${businessDTO.business_name}</td> --%>
+			<td>${businessDTO.business_tel}</td>
+			<td>${businessDTO.business_ceo}</td>
+			<td><input type="button" value="수정" onclick="updatePopup('${businessDTO.business_cd}');">
+			</td>
 			</tr>
 			</c:forEach>
-			</tbody>
+		</c:when>
+        
+        <c:otherwise>
+            <tr>
+            <td colspan="10" style="text-align: center;">등록된 데이터가 없습니다.</td>
+            </tr>
+        </c:otherwise>
+		</c:choose>
+		</tbody>
 		</table>	
 	</form>	
 	<br>
@@ -157,22 +160,19 @@
 	<input type="submit" value="search" class="button2">
 	</form>
 	</div>
-	
-<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/business/businessmain?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
-</c:if>
-
-<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/business/businessmain?pageNum=${i}">${i}</a> 
-</c:forEach>
-
-<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/business/businessmain?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
-</c:if>
-
-
 		
+	<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+	<a href="${pageContext.request.contextPath}/business/businessmain?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
+	</c:if>
 	
+	<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+	<a href="${pageContext.request.contextPath}/business/businessmain?pageNum=${i}">${i}</a> 
+	</c:forEach>
+	
+	<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+	<a href="${pageContext.request.contextPath}/business/businessmain?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
+	</c:if>
+
 	
 <!-- 본문HTML 입력 끝-->
 	</div>
