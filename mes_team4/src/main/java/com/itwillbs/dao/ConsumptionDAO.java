@@ -24,4 +24,6 @@ public interface ConsumptionDAO {
 	
 	public List<Integer> getRowcolsTd(PageDTO pageDTO);
 	
+	public void deleteConsmpt(String[] checkedValue);
+	
 }// class

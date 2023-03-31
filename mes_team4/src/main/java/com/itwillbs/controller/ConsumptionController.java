@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.ConsumptionService;
+import com.mysql.cj.xdevapi.JsonArray;
 
 
 @Controller
@@ -54,28 +55,33 @@ public class ConsumptionController {
 		// 완제품 페이징 처리에 따른 원자재 저장
 		List<ConsumptionDTO> cprConsmptList = consumptionService.getCprConsmptList(pageDTO);
 		int count = consumptionService.getCprConsmptCount(pageDTO);
+		System.out.println(count);
 		
-		String[] cprCdName = new String[cprConsmptList.size()];
-		for(int i = 0; i < count; i++) {
-			cprCdName[i] = cprConsmptList.get(i).getCproduct_cd_name();
-		}
+		List<ConsumptionDTO> rprConsmptList = null;
 		
-		List<ConsumptionDTO> rprConsmptList = consumptionService.getRprConsmptList(cprCdName);
-		
-		// 테이블 병합처리 변수 저장
-		List<Integer> rowcolsTd = consumptionService.getRowcolsTd(pageDTO);
-		pageDTO.setRowcolsTd(rowcolsTd);
-		
-		List<Integer> showTd = new ArrayList<Integer>(rowcolsTd.size());
-		showTd.add(0);
-		if (rowcolsTd.size() > 0) {
-			for(int i = 0; i < rowcolsTd.size()-1; i++) {
-				int x = rowcolsTd.get(i);
-				int y = showTd.get(i) + x;
-				showTd.add(y);
+		if(count != 0) {
+			String[] cprCdName = new String[cprConsmptList.size()];
+			for(int i = 0; i < count; i++) {
+				cprCdName[i] = cprConsmptList.get(i).getCproduct_cd_name();
 			}
+			
+			rprConsmptList = consumptionService.getRprConsmptList(cprCdName);
+			
+			// 테이블 병합처리 변수 저장
+			List<Integer> rowcolsTd = consumptionService.getRowcolsTd(pageDTO);
+			pageDTO.setRowcolsTd(rowcolsTd);
+			
+			List<Integer> showTd = new ArrayList<Integer>(rowcolsTd.size());
+			showTd.add(0);
+			if (rowcolsTd.size() > 0) {
+				for(int i = 0; i < rowcolsTd.size()-1; i++) {
+					int x = rowcolsTd.get(i);
+					int y = showTd.get(i) + x;
+					showTd.add(y);
+				}
+			}
+			pageDTO.setShowTd(showTd);
 		}
-		pageDTO.setShowTd(showTd);
 		
 		// 페이징 처리
 		int pageBlock = 5;
@@ -206,16 +212,16 @@ public class ConsumptionController {
 	public String delete(HttpServletRequest request) {
 		System.out.println("ConsumptionController delete()");
 		// 처리작업
-		String cprCdName = request.getParameter("cprCdName");
-		String result = "insert";
+		String response = "delete";
 		
-		List<ConsumptionDTO> consmptList = consumptionService.checkCprCdName(cprCdName);
+		String[] checkedValue = request.getParameterValues("checkedValue");
+		if(checkedValue == null) {
+			response = "false";
+		}
 		
-		if(!(consmptList.isEmpty())) {
-			result = "notInsert";
-		} 
+		consumptionService.deleteConsmpt(checkedValue);
 		
-		return result;
+		return response;
 	}
 	
 }// class

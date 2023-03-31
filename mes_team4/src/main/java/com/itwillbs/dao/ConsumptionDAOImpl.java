@@ -96,4 +96,11 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 		return sqlSession.selectList(namespace+".getRowcolsTd", pageDTO);
 	}
 	
+	@Override
+	public void deleteConsmpt(String[] checkedValue) {
+		System.out.println("ConsumptionDAOImpl deleteConsmpt()");
+		
+		sqlSession.delete(namespace+".deleteConsmpt", Map.of("checkedValue" ,checkedValue));
+	}
+	
 }// class

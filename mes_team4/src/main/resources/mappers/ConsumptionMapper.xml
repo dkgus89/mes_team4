@@ -124,9 +124,9 @@
 		</if> -->
 	</select>
 	
-	<resultMap id="ListIntegerMap" type="java.lang.Integer" />
+	<resultMap id="ListInteger" type="java.lang.Integer" />
 	
-	<select id="getRowcolsTd" resultMap="ListIntegerMap">
+	<select id="getRowcolsTd" resultMap="ListInteger">
 		SELECT count(*)
 		from consumption_management
 		group by cproduct_cd_name
@@ -135,6 +135,14 @@
 		</if> -->
 		limit #{startRow},#{pageSize}
 	</select>
+	
+	<delete id="deleteConsmpt" parameterType="map">
+	  delete from consumption_management
+	  where cproduct_cd_name in 
+      <foreach item="name" collection="checkedValue" index="index" open="(" separator="," close=")">
+      	#{name}
+      </foreach>
+	</delete>
 	
 </mapper>
 

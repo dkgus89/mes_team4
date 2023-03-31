@@ -23,4 +23,6 @@ public interface ConsumptionService {
 	public List<ConsumptionDTO> getRprConsmptList(String[] cprCdName);
 	
 	public List<Integer> getRowcolsTd(PageDTO pageDTO);
+	
+	public void deleteConsmpt(String[] checkedValue);
 }// class

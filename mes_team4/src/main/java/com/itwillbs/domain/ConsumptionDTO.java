@@ -7,12 +7,13 @@ public class ConsumptionDTO {
 	private String cproduct_cd_name;
 	private String cproduct_name;
 	
-	// 원자재
+	// 원자재 배열 저장
 	private String[] rproduct_cd_name_arr;
 	private String[] rproduct_name_arr;
 	private int[] consumption_arr;
 	private String[] consumption_unit_arr;
 	
+	// 원자재 단일 저장
 	private String rproduct_cd_name;
 	private String rproduct_name;
 	private int consumption;

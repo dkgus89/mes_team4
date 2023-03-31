@@ -15,15 +15,10 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 	$(document).ready(function() { // j쿼리 시작
-		// 페이지 이동 없이 삭제
-		$(document).on('click', 'deleteBtn', function() {
-			
-		});
-	
 	}); // j쿼리 끝
 	
 	// 소요량 등록 팝업
-	function insert(){
+	function insertFn(){
 	var link = "${pageContext.request.contextPath}/consmpt/insert";     
 	var popupWidth = 900;
 	var popupHeight = 700;
@@ -31,6 +26,44 @@
 	var popupY= (window.screen.height/2) - (popupHeight/2);
 	
   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+	}
+	
+	// 소요량 삭제 처리
+	function deleteFn(){
+		var link = "${pageContext.request.contextPath}/consmpt/delete";     
+		var checkedValue = [];
+		var checkList = $("input[name='rowCheck']");
+		for(var i=0; i<checkList.length; i++){
+			if(checkList[i].checked){
+				checkedValue.push(checkList[i].value);
+			}
+		}
+		
+		if (checkedValue.length==0) {
+			alert("선택한 행이 없습니다.\n삭제할 행을 선택 후 삭제 버튼을 눌러주세요.");
+			return false;
+		} else {
+			var result = confirm("선택한 행을 삭제하시겠습니까?");
+			if(result) {
+				$.ajax({ // ajex start
+					url:'${pageContext.request.contextPath }/consmpt/delete',
+					type : 'POST',
+					traditional : true,
+					data: {checkedValue:checkedValue },
+					success:function(response){
+						if(response=="delete") {
+							window.location.reload(true);
+							alert("삭제 되었습니다.");
+						} else {
+							alert("실패");
+						}
+					}
+				});// ajex end
+			} else {
+				return false;
+			}
+		}
+		
 	}
 	
 	// 체크박스 올체크
@@ -53,8 +86,8 @@
 
 	<h2>소요량 관리 </h2><br>
 	<div class="wrap2">
-	  <button class="button2" id="insertBtn" onclick="insert();">추가</button>
-	  <button class="button2" id="deleteBtn">삭제</button>
+	  <button class="button2" id="insertBtn" onclick="insertFn();">추가</button>
+	  <button class="button2" id="deleteBtn" onclick="deleteFn();">삭제</button>
 	</div><br>
 	<br>
 	
@@ -66,9 +99,9 @@
 	</div>
 	
 	<form method="post">
-	
-		<table id="vendortable" class=" table table-striped" style="width:1000px;">
 		
+		<table id="vendortable" class=" table table-striped" style="width:1000px;">
+			
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" id="allCheck" onclick="allChecking();"></th>
@@ -85,16 +118,18 @@
 					<th></th>
 				</tr>
 			</thead>
-			
 			<tbody>
+			<c:choose>
+			<c:when test="${not empty rprConsmptList}">
+			
 				<c:set var="count" value="-1" />
 				<c:set var="current" value="-1" />
-				
+			
 				<c:forEach var="dto" items="${rprConsmptList }"> 
 					<c:set var="current" value="${current+1 }" />
-					
-	  				<tr>
-	  				<c:if test="${fn:contains(pageDTO.showTd, current)}">
+							
+			  		<tr>
+			  		<c:if test="${fn:contains(pageDTO.showTd, current)}">
 	  					<c:set var="count" value="${count+1 }" />
 	        			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><input type="checkbox" name="rowCheck" value="${dto.cproduct_cd_name }"></td>
 	    				<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.cproduct_cd_name}</td>
@@ -109,15 +144,23 @@
 		    		<c:if test="${fn:contains(pageDTO.showTd, current)}">
 		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><fmt:formatDate value="${dto.insert_date}" pattern="yyyy-MM-dd HH:mm" /></td>
 		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><fmt:formatDate value="${dto.update_date}" pattern="yyyy-MM-dd HH:mm" /></td>
-		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><input type="button" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
+		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><input type="button" value="수정" onclick="updateFn();"></td>
 		    		</c:if>
 	  				</tr>
 				</c:forEach>
-			</tbody>
 			
+			</c:when>
+			<c:otherwise>
+				<tr>
+				<td colspan="10" style="text-align: center;">등록된 데이터가 없습니다.</td>
+				</tr>
+			</c:otherwise>
+			</c:choose>
+			</tbody>
 		</table>
+		
+		
 	
-
 	</form>
 	
 	<div id="pagingControl">

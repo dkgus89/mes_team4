@@ -26,87 +26,86 @@
 		var product_dv = urlParams.get('product_dv');
 		
 		// 선택한 제품값 넘기기			
-			$(document).on('click', 'tr', function() {
-				var tr = $(this);
-				var td = tr.children();
-				var tdArr = [];
-				td.each(function(i){
-	                tdArr.push(td.eq(i).text());
-	            });
-				
-				if(product_dv==='cp') {
-					// 완제품 중복 체크
-					$.ajax({ // ajex start
-						url:'${pageContext.request.contextPath }/consmpt/cprcheck',
-						data:{'cprCdName':tdArr[0]},
-						success:function(result){
-							if(result=="insert"){
-									var parentWindowTr = window.opener.$('#cproductBody').eq(trIndex);
-									
-									parentWindowTr.find('td').empty();
-									
-									var input0 = $('<input>').attr({
-									    'type': 'text',
-									    'name': 'cproduct_cd_name',
-									    'readonly': true
-									}).val(tdArr[0]);
-									var input1 = $('<input>').attr({
-									    'type': 'text',
-									    'name': 'cproduct_name',
-									    'readonly': true
-									}).val(tdArr[1]);
-									
-									parentWindowTr.find('td:eq(0)').append(input0);
-									parentWindowTr.find('td:eq(1)').append(input1);
-	
-									window.close();
-							}else{
-								alert("해당 완제품에 대한 소요량 기록이 있습니다.\n다른 완제품을 선택하세요.");	
+		$(document).on('click', 'tr', function() {
+			var tr = $(this);
+			var td = tr.children();
+			var tdArr = [];
+			td.each(function(i){
+                tdArr.push(td.eq(i).text());
+            });
+			
+			if(product_dv==='cp') {
+				// 완제품 중복 체크
+				$.ajax({ // ajex start
+					url:'${pageContext.request.contextPath }/consmpt/cprcheck',
+					data:{'cprCdName':tdArr[0]},
+					success:function(result){
+						if(result=="insert"){
+								var parentWindowTr = window.opener.$('#cproductBody').eq(trIndex);
+								
+								parentWindowTr.find('td').empty();
+								
+								var input0 = $('<input>').attr({
+								    'type': 'text',
+								    'name': 'cproduct_cd_name',
+								    'readonly': true
+								}).val(tdArr[0]);
+								var input1 = $('<input>').attr({
+								    'type': 'text',
+								    'name': 'cproduct_name',
+								    'readonly': true
+								}).val(tdArr[1]);
+								
+								parentWindowTr.find('td:eq(0)').append(input0);
+								parentWindowTr.find('td:eq(1)').append(input1);
+
+								window.close();
+						}else{
+							alert("해당 완제품에 대한 소요량 기록이 있습니다.\n다른 완제품을 선택하세요.");	
+						}
+					}
+				});// ajex end
+			} else if(product_dv==='rp') {
+					// 원자재 중복 체크
+					let insert = true;
+					
+					if(trIndex > 0) {
+						var firstColumnValues = window.opener.$('#rproductBody tr').map(function() {
+							  return window.opener.$(this).find('td:first-child input').val();
+						}).get();
+						
+						for(let i = 0; i < trIndex; i++) {
+							if(firstColumnValues[i]===tdArr[0]) {
+								insert = false;
+								alert("해당 원자재는 등록되어 있습니다.\n다른 원자재를 선택하세요.");	
 							}
 						}
-					});// ajex end
-				} else if(product_dv==='rp') {
-						// 원자재 중복 체크
-						let insert = true;
+					} 
+					
+					if (insert) {
+						var parentWindowTr = window.opener.$('#rproductBody tr').eq(trIndex);
 						
-						if(trIndex > 0) {
-							var firstColumnValues = window.opener.$('#rproductBody tr').map(function() {
-								  return window.opener.$(this).find('td:first-child input').val();
-							}).get();
-							console.log(firstColumnValues); 
-							
-							for(let i = 0; i < trIndex; i++) {
-								if(firstColumnValues[i]===tdArr[0]) {
-									insert = false;
-									alert("해당 원자재는 등록되어 있습니다.\n다른 원자재를 선택하세요.");	
-								}
-							}
-						} 
+						parentWindowTr.find('td:eq(0)').empty();
+						parentWindowTr.find('td:eq(1)').empty();
 						
-						if (insert) {
-							var parentWindowTr = window.opener.$('#rproductBody tr').eq(trIndex);
-							
-							parentWindowTr.find('td:eq(0)').empty();
-							parentWindowTr.find('td:eq(1)').empty();
-							
-							var input0 = $('<input>').attr({
-							    'type': 'text',
-							    'name': 'rproduct_cd_name_arr',
-							    'readonly': true
-							}).val(tdArr[0]);
-							var input1 = $('<input>').attr({
-							    'type': 'text',
-							    'name': 'rproduct_name_arr',
-							    'readonly': true
-							}).val(tdArr[1]);
-							
-							parentWindowTr.find('td:eq(0)').append(input0);
-							parentWindowTr.find('td:eq(1)').append(input1);
-							
-							window.close();
-						}
-				} 
-			});
+						var input0 = $('<input>').attr({
+						    'type': 'text',
+						    'name': 'rproduct_cd_name_arr',
+						    'readonly': true
+						}).val(tdArr[0]);
+						var input1 = $('<input>').attr({
+						    'type': 'text',
+						    'name': 'rproduct_name_arr',
+						    'readonly': true
+						}).val(tdArr[1]);
+						
+						parentWindowTr.find('td:eq(0)').append(input0);
+						parentWindowTr.find('td:eq(1)').append(input1);
+						
+						window.close();
+					}
+			} 
+		});
 		
 	}); // j쿼리 끝
 	

@@ -79,4 +79,11 @@ public class ConsumptionServiceImpl implements ConsumptionService{
 		return consumptionDAO.getRowcolsTd(pageDTO);
 	}
 	
+	@Override
+	public void deleteConsmpt(String[] checkedValue) {
+		System.out.println("ConsumptionServiceImpl deleteConsmpt()");
+		
+		consumptionDAO.deleteConsmpt(checkedValue);
+	}
+	
 }// class

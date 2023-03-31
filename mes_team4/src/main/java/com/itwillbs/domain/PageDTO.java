@@ -4,17 +4,16 @@ import java.util.List;
 
 public class PageDTO {
 	// DB 쿼리문 입력 멤버변수
-	private int CurrentPage; // pageNum int 형변환
+	private int pageSize; // 화면에 보여줄 글의 개수
 	private int startRow; // 테이블에서 가져올 시작 글번호
 	private int endRow; // 시작 글번호에서 가져올 글 개수
 	private String search; // 페이지 검색어
 	private String product_dv; // 품목 구분
 	
 	// 페이징처리 계산 멤버변수
-	private int pageSize; // 화면에 보여줄 글의 개수
-	private String pageNum; // 페이지번호
-	
-	private int pageBlock; // 나타낼 페이징 개수
+	private String pageNum; // 현재 화면의 페이지번호 String
+	private int CurrentPage; // 현재 화면의 페이지번호 int(형변환)
+	private int pageBlock; // 한 화면에 나타낼 페이징 개수
 	private int pageCount; // 총 페이징 개수
 	private int startPage; // 페이징 시작 번호
 	private int endPage; // 페이징 끝 번호
