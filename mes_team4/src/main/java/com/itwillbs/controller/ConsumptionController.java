@@ -62,7 +62,7 @@ public class ConsumptionController {
 		
 		List<ConsumptionDTO> rprConsmptList = consumptionService.getRprConsmptList(cprCdName);
 		
-		// 테이블 동적처리 계산
+		// 테이블 병합처리 변수 저장
 		List<Integer> rowcolsTd = consumptionService.getRowcolsTd(pageDTO);
 		pageDTO.setRowcolsTd(rowcolsTd);
 		
@@ -115,7 +115,7 @@ public class ConsumptionController {
 		// 배열 길이 지정
 		int length = consumptionDTO.getRproduct_cd_name_arr().length;
 		
-		// consmptArray 저장
+		// consmptArray에 한줄씩 저장
 		ConsumptionDTO[] consmptArray = new ConsumptionDTO[length];
 		for (int i = 0; i < length; i++) {
 			ConsumptionDTO consumptionDTO2 = new ConsumptionDTO();
@@ -188,6 +188,23 @@ public class ConsumptionController {
 	@RequestMapping(value = "/consmpt/cprcheck", method = RequestMethod.GET)
 	public String cprcheck(HttpServletRequest request) {
 		System.out.println("ConsumptionController cprcheck()");
+		// 처리작업
+		String cprCdName = request.getParameter("cprCdName");
+		String result = "insert";
+		
+		List<ConsumptionDTO> consmptList = consumptionService.checkCprCdName(cprCdName);
+		
+		if(!(consmptList.isEmpty())) {
+			result = "notInsert";
+		} 
+		
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/consmpt/delete", method = RequestMethod.POST)
+	public String delete(HttpServletRequest request) {
+		System.out.println("ConsumptionController delete()");
 		// 처리작업
 		String cprCdName = request.getParameter("cprCdName");
 		String result = "insert";

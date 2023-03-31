@@ -21,7 +21,7 @@ public class PageDTO {
 	private int count; // 게시판의 모든 행 개수
 	private int cprCount; // 게시판의 완제품 행 개수 
 	
-	// 테이블 동적처리 멤버변수
+	// 테이블 병합처리 멤버변수
 	private List<Integer> rowcolsTd; // td의 rowcols 수 
 	private List<Integer> showTd; // td를 나타낼 위치
 			

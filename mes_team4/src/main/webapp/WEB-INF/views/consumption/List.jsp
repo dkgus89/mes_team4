@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="../main/Header.jsp" />
@@ -14,6 +15,11 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 	$(document).ready(function() { // j쿼리 시작
+		// 페이지 이동 없이 삭제
+		$(document).on('click', 'deleteBtn', function() {
+			
+		});
+	
 	}); // j쿼리 끝
 	
 	// 소요량 등록 팝업
@@ -47,8 +53,8 @@
 
 	<h2>소요량 관리 </h2><br>
 	<div class="wrap2">
-	  <button class="button2" onclick="insert();">추가</button>
-	  <button class="button2" onclick="deleteValue();">삭제</button>
+	  <button class="button2" id="insertBtn" onclick="insert();">추가</button>
+	  <button class="button2" id="deleteBtn">삭제</button>
 	</div><br>
 	<br>
 	
@@ -62,7 +68,8 @@
 	<form method="post">
 	
 		<table id="vendortable" class=" table table-striped" style="width:1000px;">
-		<thead>
+		
+			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" id="allCheck" onclick="allChecking();"></th>
 					<th>완제품코드</th>
@@ -80,36 +87,34 @@
 			</thead>
 			
 			<tbody>
-			
-				<c:set var="count" value="-1"></c:set>
-				<c:set var="current" value="-1"></c:set>
+				<c:set var="count" value="-1" />
+				<c:set var="current" value="-1" />
 				
 				<c:forEach var="dto" items="${rprConsmptList }"> 
-				<c:set var="current" value="${current+1 }"></c:set>
-				
-  				<tr>
-  				<c:if test="${fn:contains(pageDTO.showTd, current)}">
-  					<c:set var="count" value="${count+1 }"></c:set>
-        			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><input type="checkbox" name="rowCheck" value=""></td>
-    				<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.cproduct_cd_name}</td>
-    				<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.cproduct_name}</td>
-    			</c:if>
-    			
-	    			<td>${dto.rproduct_cd_name}</td>
-	    			<td>${dto.rproduct_name}</td>
-	    			<td>${dto.consumption}</td>
-	    			<td>${dto.consumption_unit}</td> 
+					<c:set var="current" value="${current+1 }" />
+					
+	  				<tr>
+	  				<c:if test="${fn:contains(pageDTO.showTd, current)}">
+	  					<c:set var="count" value="${count+1 }" />
+	        			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><input type="checkbox" name="rowCheck" value="${dto.cproduct_cd_name }"></td>
+	    				<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.cproduct_cd_name}</td>
+	    				<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.cproduct_name}</td>
+	    			</c:if>
 	    			
-	    		<c:if test="${fn:contains(pageDTO.showTd, current)}">
-	    			<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.insert_date}</td>
-	    			<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.update_date}</td>
-	    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><input type="button" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
-	    		</c:if>
-  				</tr>
-  				
+		    			<td>${dto.rproduct_cd_name}</td>
+		    			<td>${dto.rproduct_name}</td>
+		    			<td>${dto.consumption}</td>
+		    			<td>${dto.consumption_unit}</td> 
+		    			
+		    		<c:if test="${fn:contains(pageDTO.showTd, current)}">
+		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><fmt:formatDate value="${dto.insert_date}" pattern="yyyy-MM-dd HH:mm" /></td>
+		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><fmt:formatDate value="${dto.update_date}" pattern="yyyy-MM-dd HH:mm" /></td>
+		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><input type="button" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
+		    		</c:if>
+	  				</tr>
 				</c:forEach>
-				
 			</tbody>
+			
 		</table>
 	
 
