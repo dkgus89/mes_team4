@@ -14,7 +14,7 @@ public interface ConsumptionDAO {
 	
 	public void insertConsmpt(ConsumptionDTO[] consmptArray);
 	
-	public List<ConsumptionDTO> checkCprCdName(String cprCdName);
+	public List<ConsumptionDTO> checkCprCdName(String cproduct_cd_name);
 	
 	public List<ConsumptionDTO> getCprConsmptList(PageDTO pageDTO);
 	
@@ -25,5 +25,7 @@ public interface ConsumptionDAO {
 	public List<Integer> getRowcolsTd(PageDTO pageDTO);
 	
 	public void deleteConsmpt(String[] checkedValue);
+	
+	public void updateConsmpt(ConsumptionDTO[] consmptArray);
 	
 }// class

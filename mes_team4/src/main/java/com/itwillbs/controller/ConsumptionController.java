@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,6 @@ public class ConsumptionController {
 		// 완제품 페이징 처리에 따른 원자재 저장
 		List<ConsumptionDTO> cprConsmptList = consumptionService.getCprConsmptList(pageDTO);
 		int count = consumptionService.getCprConsmptCount(pageDTO);
-		System.out.println(count);
 		
 		List<ConsumptionDTO> rprConsmptList = null;
 		
@@ -113,6 +113,20 @@ public class ConsumptionController {
 		return "consumption/Insert";
 	}
 	
+	@RequestMapping(value = "/consmpt/update", method = RequestMethod.GET)
+	public String update(HttpServletRequest request, Model model) {
+		System.out.println("ConsumptionController update()");
+		// 처리작업
+		String cproduct_cd_name = request.getParameter("cproduct_cd_name");
+		System.out.println("출력체크"+cproduct_cd_name);
+		
+		List<ConsumptionDTO> consmptList = consumptionService.checkCprCdName(cproduct_cd_name);
+		
+		model.addAttribute("consmptList", consmptList);
+		
+		return "consumption/Update";
+	}
+	
 	@RequestMapping(value = "/consmpt/insertPro", method = RequestMethod.POST)
 	public String insertPro(ConsumptionDTO consumptionDTO) {
 		System.out.println("ConsumptionController insertPro()");
@@ -135,6 +149,42 @@ public class ConsumptionController {
 		}
 		
 		consumptionService.insertConsmpt(consmptArray);
+		return "consumption/Close";
+	}
+	
+	@RequestMapping(value = "/consmpt/updatePro", method = RequestMethod.POST)
+	public String updatePro(ConsumptionDTO consumptionDTO, HttpServletRequest request) {
+		System.out.println("ConsumptionController updatePro()");
+		// 처리작업
+		String[] cproduct_cd_name = new String[1];
+		cproduct_cd_name[0] = consumptionDTO.getCproduct_cd_name();
+		
+		String insert_date_st = request.getParameter("insert_date_st").substring(0, 19);
+		System.out.println(insert_date_st);
+		Timestamp insert_date = Timestamp.valueOf(insert_date_st);
+		System.out.println(insert_date);
+		
+		consumptionService.deleteConsmpt(cproduct_cd_name);
+		
+		// 배열 길이 지정
+		int length = consumptionDTO.getRproduct_cd_name_arr().length;
+				
+		// consmptArray에 한줄씩 저장
+		ConsumptionDTO[] consmptArray = new ConsumptionDTO[length];
+		for (int i = 0; i < length; i++) {
+			ConsumptionDTO consumptionDTO2 = new ConsumptionDTO();
+			consumptionDTO2.setCproduct_cd_name(consumptionDTO.getCproduct_cd_name());
+			consumptionDTO2.setCproduct_name(consumptionDTO.getCproduct_name());
+			consumptionDTO2.setRproduct_cd_name(consumptionDTO.getRproduct_cd_name_arr()[i]);
+			consumptionDTO2.setRproduct_name(consumptionDTO.getRproduct_name_arr()[i]);
+			consumptionDTO2.setConsumption(consumptionDTO.getConsumption_arr()[i]);
+			consumptionDTO2.setConsumption_unit(consumptionDTO.getConsumption_unit_arr()[i]);
+			consumptionDTO2.setInsert_date(insert_date);
+			consmptArray[i] = consumptionDTO2;
+		}
+		
+		consumptionService.updateConsmpt(consmptArray);
+		
 		return "consumption/Close";
 	}
 	
@@ -195,10 +245,10 @@ public class ConsumptionController {
 	public String cprcheck(HttpServletRequest request) {
 		System.out.println("ConsumptionController cprcheck()");
 		// 처리작업
-		String cprCdName = request.getParameter("cprCdName");
+		String cproduct_cd_name = request.getParameter("cproduct_cd_name");
 		String result = "insert";
 		
-		List<ConsumptionDTO> consmptList = consumptionService.checkCprCdName(cprCdName);
+		List<ConsumptionDTO> consmptList = consumptionService.checkCprCdName(cproduct_cd_name);
 		
 		if(!(consmptList.isEmpty())) {
 			result = "notInsert";

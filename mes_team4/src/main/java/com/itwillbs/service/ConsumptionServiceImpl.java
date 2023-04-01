@@ -45,10 +45,10 @@ public class ConsumptionServiceImpl implements ConsumptionService{
 	}
 	
 	@Override
-	public List<ConsumptionDTO> checkCprCdName(String cprCdName) {
+	public List<ConsumptionDTO> checkCprCdName(String cproduct_cd_name) {
 		System.out.println("ConsumptionServiceImpl checkCprCdName()");
 		
-		return consumptionDAO.checkCprCdName(cprCdName);
+		return consumptionDAO.checkCprCdName(cproduct_cd_name);
 	}
 	
 	@Override
@@ -84,6 +84,13 @@ public class ConsumptionServiceImpl implements ConsumptionService{
 		System.out.println("ConsumptionServiceImpl deleteConsmpt()");
 		
 		consumptionDAO.deleteConsmpt(checkedValue);
+	}
+	
+	@Override
+	public void updateConsmpt(ConsumptionDTO[] consmptArray) {
+		System.out.println("ConsumptionServiceImpl updateConsmpt()");
+		
+		consumptionDAO.updateConsmpt(consmptArray);
 	}
 	
 }// class

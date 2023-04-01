@@ -60,10 +60,10 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 	}
 	
 	@Override
-	public List<ConsumptionDTO> checkCprCdName(String cprCdName) {
+	public List<ConsumptionDTO> checkCprCdName(String cproduct_cd_name) {
 		System.out.println("ConsumptionDAOImpl checkCprCdName()");
 		
-		return sqlSession.selectList(namespace+".checkCprCdName", cprCdName);
+		return sqlSession.selectList(namespace+".checkCprCdName", cproduct_cd_name);
 	}
 	
 	@Override
@@ -101,6 +101,13 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 		System.out.println("ConsumptionDAOImpl deleteConsmpt()");
 		
 		sqlSession.delete(namespace+".deleteConsmpt", Map.of("checkedValue" ,checkedValue));
+	}
+	
+	@Override
+	public void updateConsmpt(ConsumptionDTO[] consmptArray) {
+		System.out.println("ConsumptionDAOImpl updateConsmpt()");
+		
+		sqlSession.insert(namespace+".updateConsmpt", Map.of("consmptArray" ,consmptArray));
 	}
 	
 }// class

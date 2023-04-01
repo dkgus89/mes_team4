@@ -38,7 +38,7 @@
 				// 완제품 중복 체크
 				$.ajax({ // ajex start
 					url:'${pageContext.request.contextPath }/consmpt/cprcheck',
-					data:{'cprCdName':tdArr[0]},
+					data:{'cproduct_cd_name':tdArr[0]},
 					success:function(result){
 						if(result=="insert"){
 								var parentWindowTr = window.opener.$('#cproductBody').eq(trIndex);

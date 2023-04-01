@@ -28,6 +28,17 @@
   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 	}
 	
+	// 소요량 수정 팝업
+	function updateFn(cproduct_cd_name){
+	var link = "${pageContext.request.contextPath}/consmpt/update?cproduct_cd_name="+cproduct_cd_name;     
+	var popupWidth = 900;
+	var popupHeight = 700;
+	var popupX = (window.screen.width/2) - (popupWidth/2);
+	var popupY= (window.screen.height/2) - (popupHeight/2);
+	
+  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+	}
+	
 	// 소요량 삭제 처리
 	function deleteFn(){
 		var link = "${pageContext.request.contextPath}/consmpt/delete";     
@@ -71,7 +82,6 @@
 	    var rowCheck = document.getElementsByName("rowCheck");
 	    var allCheck = document.getElementById("allCheck");﻿
 	    for (let checkbox of rowCheck){
-	    	console.log("check");
 	    	checkbox.checked = allCheck.checked;
 	    }
 	}
@@ -98,8 +108,8 @@
 		</form>
 	</div>
 	
-	<form method="post">
-		
+	<form method="get">
+		<input type="hidden" value="" name="cproduct_cd_name">
 		<table id="vendortable" class=" table table-striped" style="width:1000px;">
 			
 			<thead>
@@ -118,6 +128,7 @@
 					<th></th>
 				</tr>
 			</thead>
+			
 			<tbody>
 			<c:choose>
 			<c:when test="${not empty rprConsmptList}">
@@ -144,7 +155,7 @@
 		    		<c:if test="${fn:contains(pageDTO.showTd, current)}">
 		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><fmt:formatDate value="${dto.insert_date}" pattern="yyyy-MM-dd HH:mm" /></td>
 		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><fmt:formatDate value="${dto.update_date}" pattern="yyyy-MM-dd HH:mm" /></td>
-		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><input type="button" value="수정" onclick="updateFn();"></td>
+		    			<td rowspan="${pageDTO.rowcolsTd.get(count)}"><button class="button2" id="updateBtn" onclick="updateFn('${dto.cproduct_cd_name}')">수정</button></td>
 		    		</c:if>
 	  				</tr>
 				</c:forEach>

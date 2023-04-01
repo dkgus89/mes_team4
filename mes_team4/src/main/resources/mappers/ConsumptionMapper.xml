@@ -74,10 +74,25 @@
 	  </foreach>
 	</insert>
 	
+	<insert id="updateConsmpt" parameterType="map">
+	  insert into consumption_management (cproduct_cd_name, cproduct_name, rproduct_cd_name, rproduct_name, consumption, consumption_unit, insert_date, update_date)
+	  values
+	  <foreach item="consmpt" index="index" collection="consmptArray" separator=",">
+		  (#{consmpt.cproduct_cd_name},
+		   #{consmpt.cproduct_name},
+		   #{consmpt.rproduct_cd_name},
+		   #{consmpt.rproduct_name},
+		   #{consmpt.consumption},
+		   #{consmpt.consumption_unit},
+		   #{consmpt.insert_date},
+		   now())
+	  </foreach>
+	</insert>
+	
 	<select id="checkCprCdName" resultType="com.itwillbs.domain.ConsumptionDTO">
 		select *
 		from consumption_management
-		where cproduct_cd_name = #{cprCdName}
+		where cproduct_cd_name = #{cproduct_cd_name}
 	</select>
 	
 	<select id="getConsmptList" resultType="com.itwillbs.domain.ConsumptionDTO">
