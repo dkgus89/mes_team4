@@ -18,6 +18,11 @@
 <!-- 자바스크립트 입력 시작-->
 <script type="text/javascript">
 	$(document).ready(function() { // j쿼리 시작
+		// 셀렉트박스 선택 시 value 저장
+		$(document).on('change', '.select-option', function(){
+			let consumption_unit = $("option:selected", this).val();
+			$(this).closest("td").find("#consumption_unit_arr").val(consumption_unit);
+		});
 		// 초기화 버튼
 		$(document).on('click', '#resetBtn', function() {
 			var rpListBtn = $('<button>').attr({
@@ -57,20 +62,6 @@
 			} else {
 				alert('첫 번째 행은 삭제할 수 없습니다.');
 			}     
-		});
-		
-		// 완제품 리스트 팝업
-		$(document).on('click', '#cpListBtn', function() {
-			var trIndex = $(this).parent().parent().index();
-			var product_dv = 'cp';
-			
-			var link = '${pageContext.request.contextPath}/consmpt/prlist?trIndex='+trIndex+'&product_dv='+product_dv;     
-			var popupWidth = 500;
-			var popupHeight = 700;
-			var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
-			var popupY= (window.screen.height/2) - (popupHeight/2);
-			
-		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 		});
 		
 		// 원자재 리스트 팝업
@@ -157,7 +148,14 @@
 					<td><input type="text" name="rproduct_cd_name_arr" value="${dto.rproduct_cd_name }" readonly></td>
 					<td><input type="text" name="rproduct_name_arr" value="${dto.rproduct_name }" readonly></td>
 					<td><input type="text" name="consumption_arr" value="${dto.consumption }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
-					<td><input type="text" name="consumption_unit_arr" value="${dto.consumption_unit }"></td>
+					<td><input type="hidden" id="consumption_unit_arr" name="consumption_unit_arr" value="${dto.consumption_unit }">
+					<select class="select-option">
+						<option value="">단위를 선택하세요.</option>
+						<c:forEach var="unit" items="${unit}">
+							<option value="${unit}" <c:if test ="${dto.consumption_unit eq unit}">selected="selected"</c:if>>${unit}</option>
+						</c:forEach>
+					</select>
+					</td>
 					<td><button type="button" id="deleteRowBtn">삭제</button></td>
 				</tr>
 				</c:forEach>

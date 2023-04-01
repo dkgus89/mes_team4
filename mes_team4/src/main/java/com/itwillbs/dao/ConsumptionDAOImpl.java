@@ -68,7 +68,7 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 	
 	@Override
 	public List<ConsumptionDTO> getCprConsmptList(PageDTO pageDTO) {
-		System.out.println("ConsumptionDAOImpl getConsmptList()");
+		System.out.println("ConsumptionDAOImpl getCprConsmptList()");
 		
 		return sqlSession.selectList(namespace+".getCprConsmptList", pageDTO);
 	}

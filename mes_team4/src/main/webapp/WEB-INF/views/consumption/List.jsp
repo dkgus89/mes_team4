@@ -15,6 +15,12 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 	$(document).ready(function() { // j쿼리 시작
+		// 셀렉트박스 선택 시 value 저장
+		$("#select").on("change", function(){
+			let product_dv = $("option:selected", this).val();
+			$("#product_dv").val(product_dv);
+		});
+
 	}); // j쿼리 끝
 	
 	// 소요량 등록 팝업
@@ -102,14 +108,21 @@
 	<br>
 	
 	<div class ="wrap2" id="table_search">
-		<form action="${pageContext.request.contextPath}/consmpt/list" method="get">
-			<input type="text" name="search" class="input_box" placeholder="검색하세요" value="" size=60>
+		<form action="${pageContext.request.contextPath}/consmpt/list?search=${pageDTO.search}&product_dv=${pageDTO.product_dv}" method="get">
+			<input id= "product_dv" name="product_dv" type="hidden" value="all">
+			<select id="select" class="button2">
+			<option value="all">전체</option>
+			<option value="cp">완제품</option>
+			<option value="rp">원자재</option>
+			</select> 
+			<input type="text" name="search" class="input_box" placeholder="품목명 또는 코드를 입력하세요." value="" size=60>
 			<input type="submit" value="search" class="button2">
 		</form>
 	</div>
+	<br>
+	<br>
+	<div>전체 ${pageDTO.count }건</div>
 	
-	<form method="get">
-		<input type="hidden" value="" name="cproduct_cd_name">
 		<table id="vendortable" class=" table table-striped" style="width:1000px;">
 			
 			<thead>
@@ -170,21 +183,18 @@
 			</tbody>
 		</table>
 		
-		
-	
-	</form>
 	
 	<div id="pagingControl">
 		<c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
-			<a href="${pageContext.request.contextPath}/consmpt/cplist?pageNum=${pageDTO.startPage-pageDTO.pageBlock}&search=">Prev</a>
+			<a href="${pageContext.request.contextPath}/consmpt/list?pageNum=${pageDTO.startPage-pageDTO.pageBlock}&search=${pageDTO.search}&product_dv=${pageDTO.product_dv}">Prev</a>
 		</c:if>
 		
 		<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-			<a href="${pageContext.request.contextPath}/consmpt/cplist?pageNum=${i}&search=">${i}</a> 
+			<a href="${pageContext.request.contextPath}/consmpt/list?pageNum=${i}&search=${pageDTO.search}&product_dv=${pageDTO.product_dv}">${i}</a> 
 		</c:forEach> 
 		
 		<c:if test="${pageDTO.endPage < pageDTO.pageCount}">
-			<a href="${pageContext.request.contextPath}/consmpt/cplist?pageNum=${pageDTO.startPage+pageDTO.pageBlock}&search=">Next</a>
+			<a href="${pageContext.request.contextPath}/consmpt/list?pageNum=${pageDTO.startPage+pageDTO.pageBlock}&search=${pageDTO.search}&product_dv=${pageDTO.product_dv}">Next</a>
 		</c:if>
 	</div>
 	

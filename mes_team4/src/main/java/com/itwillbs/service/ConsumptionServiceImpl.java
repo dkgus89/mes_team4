@@ -21,7 +21,7 @@ public class ConsumptionServiceImpl implements ConsumptionService{
 	public List<Map<String, Object>> getPrList(PageDTO pageDTO) {
 		System.out.println("ConsumptionServiceImpl getPrList()");
 		
-		int startRow = ((pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1);
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize();
 		int endRow = startRow + pageDTO.getPageSize()-1;
 		
 		pageDTO.setStartRow(startRow);
@@ -54,6 +54,12 @@ public class ConsumptionServiceImpl implements ConsumptionService{
 	@Override
 	public List<ConsumptionDTO> getCprConsmptList(PageDTO pageDTO) {
 		System.out.println("ConsumptionServiceImpl getCprConsmptList()");
+		
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize();
+		int endRow = startRow + pageDTO.getPageSize()-1;
+		
+		pageDTO.setStartRow(startRow);
+		pageDTO.setEndRow(endRow);
 		
 		return consumptionDAO.getCprConsmptList(pageDTO);
 	}

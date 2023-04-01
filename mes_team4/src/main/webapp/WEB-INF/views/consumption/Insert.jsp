@@ -18,6 +18,11 @@
 <!-- 자바스크립트 입력 시작-->
 <script type="text/javascript">
 	$(document).ready(function() { // j쿼리 시작
+		// 셀렉트박스 선택 시 value 저장
+		$(document).on('change', '.select-option', function(){
+			let consumption_unit = $("option:selected", this).val();
+			$(this).closest("td").find("#consumption_unit_arr").val(consumption_unit);
+		});
 		// 초기화 버튼
 		$(document).on('click', '#resetBtn', function() {
 			var cpListBtn = $('<button>').attr({
@@ -159,7 +164,13 @@
 					<td><button type="button" id="rpListBtn">추가</button></td>
 					<td></td>
 					<td><input type="text" name="consumption_arr" value="" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
-					<td><input type="text" name="consumption_unit_arr" value=""></td>
+					<td><input type="hidden" id="consumption_unit_arr" name="consumption_unit_arr" value="">
+					<select class="select-option">
+						<option value="">단위를 선택하세요.</option>
+						<c:forEach var="unit" items="${unit}">
+							<option value="${unit}">${unit}</option>
+						</c:forEach>
+					</select> </td>
 					<td><button type="button" id="deleteRowBtn">삭제</button></td>
 				</tr>
 			</tbody>

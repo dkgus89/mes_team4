@@ -18,7 +18,6 @@ public class PageDTO {
 	private int startPage; // 페이징 시작 번호
 	private int endPage; // 페이징 끝 번호
 	private int count; // 게시판의 모든 행 개수
-	private int cprCount; // 게시판의 완제품 행 개수 
 	
 	// 테이블 병합처리 멤버변수
 	private List<Integer> rowcolsTd; // td의 rowcols 수 
@@ -35,12 +34,6 @@ public class PageDTO {
 	}
 	public void setShowTd(List<Integer> showTd) {
 		this.showTd = showTd;
-	}
-	public int getCprCount() {
-		return cprCount;
-	}
-	public void setCprCount(int cprCount) {
-		this.cprCount = cprCount;
 	}
 	public String getProduct_dv() {
 		return product_dv;

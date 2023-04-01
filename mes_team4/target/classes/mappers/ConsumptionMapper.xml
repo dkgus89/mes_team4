@@ -95,22 +95,24 @@
 		where cproduct_cd_name = #{cproduct_cd_name}
 	</select>
 	
-	<select id="getConsmptList" resultType="com.itwillbs.domain.ConsumptionDTO">
-		select *  
-		from consumption_management
-		<!-- <if test="search != null">
-			where subject like CONCAT('%',#{search},'%')
-		</if> -->
-		limit #{startRow},#{pageSize}
-	</select>
-	
 	<select id="getCprConsmptList" resultType="com.itwillbs.domain.ConsumptionDTO">
 		select *  
 		from consumption_management
+		<where>
+            <choose>
+            	<when test='search != null and product_dv.equals("all")'>
+                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or rproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+                <when test='search != null and product_dv.equals("cp")'>
+                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+                <when test='search != null and product_dv.equals("rp")'>
+                    and (rproduct_cd_name like CONCAT('%',#{search},'%') or rproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+            </choose>
+        </where>
 		group by cproduct_cd_name
-		<!-- <if test="search != null">
-			where subject like CONCAT('%',#{search},'%')
-		</if> -->
+		order by cproduct_cd_name
 		limit #{startRow},#{pageSize}
 	</select>
 	
@@ -119,11 +121,20 @@
 		from (
     	select *
    		from consumption_management
+   		<where>
+            <choose>
+            	<when test='search != null and product_dv.equals("all")'>
+                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or rproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+                <when test='search != null and product_dv.equals("cp")'>
+                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+                <when test='search != null and product_dv.equals("rp")'>
+                    and (rproduct_cd_name like CONCAT('%',#{search},'%') or rproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+            </choose>
+        </where>
     	group by cproduct_cd_name
-		<!-- <if test="search != null">
-			where subject like CONCAT('%',#{search},'%')
-		</if> -->
-		limit #{startRow},#{pageSize}
 		) as sub
 	</select>
 	
@@ -134,9 +145,7 @@
         <foreach item="name" collection="cprCdNameList" index="index" open="(" separator="," close=")">
         	#{name}
         </foreach>
-		<!-- <if test="search != null">
-			where subject like CONCAT('%',#{search},'%')
-		</if> -->
+        order by cproduct_cd_name 
 	</select>
 	
 	<resultMap id="ListInteger" type="java.lang.Integer" />
@@ -144,10 +153,14 @@
 	<select id="getRowcolsTd" resultMap="ListInteger">
 		SELECT count(*)
 		from consumption_management
+		<where>
+            <choose>
+                <when test='search != null and product_dv.equals("cp")'>
+                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+            </choose>
+        </where>
 		group by cproduct_cd_name
-		<!-- <if test="search != null">
-			where subject like CONCAT('%',#{search},'%')
-		</if> -->
 		limit #{startRow},#{pageSize}
 	</select>
 	

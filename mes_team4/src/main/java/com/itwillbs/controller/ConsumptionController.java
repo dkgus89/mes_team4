@@ -32,8 +32,8 @@ public class ConsumptionController {
 		// 처리작업
 
 		// 검색어 설정
-		// String search= request.getParameter("search");
-		// pageDTO.setSearch(search);		
+		String search= request.getParameter("search");
+		pageDTO.setSearch(search);		
 		
 		// 품목구분 설정
 		String product_dv = request.getParameter("product_dv");
@@ -53,15 +53,15 @@ public class ConsumptionController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(CurrentPage);
 		
-		// 완제품 페이징 처리에 따른 원자재 저장
 		List<ConsumptionDTO> cprConsmptList = consumptionService.getCprConsmptList(pageDTO);
 		int count = consumptionService.getCprConsmptCount(pageDTO);
 		
+		// 완제품 페이징 처리에 따른 원자재 저장
 		List<ConsumptionDTO> rprConsmptList = null;
 		
 		if(count != 0) {
 			String[] cprCdName = new String[cprConsmptList.size()];
-			for(int i = 0; i < count; i++) {
+			for(int i = 0; i < cprConsmptList.size(); i++) {
 				cprCdName[i] = cprConsmptList.get(i).getCproduct_cd_name();
 			}
 			
@@ -106,10 +106,16 @@ public class ConsumptionController {
 	}
 	
 	@RequestMapping(value = "/consmpt/insert", method = RequestMethod.GET)
-	public String insert() {
+	public String insert(Model model) {
 		System.out.println("ConsumptionController insert()");
 		// 처리작업
-	
+		
+		List<String> unit = new ArrayList<String>();
+		unit.add("kg");
+		unit.add("EA");
+		
+		model.addAttribute("unit", unit);
+		
 		return "consumption/Insert";
 	}
 	
@@ -117,12 +123,17 @@ public class ConsumptionController {
 	public String update(HttpServletRequest request, Model model) {
 		System.out.println("ConsumptionController update()");
 		// 처리작업
+		
+		List<String> unit = new ArrayList<String>();
+		unit.add("kg");
+		unit.add("EA");
+		
 		String cproduct_cd_name = request.getParameter("cproduct_cd_name");
-		System.out.println("출력체크"+cproduct_cd_name);
 		
 		List<ConsumptionDTO> consmptList = consumptionService.checkCprCdName(cproduct_cd_name);
 		
 		model.addAttribute("consmptList", consmptList);
+		model.addAttribute("unit", unit);
 		
 		return "consumption/Update";
 	}
@@ -160,9 +171,7 @@ public class ConsumptionController {
 		cproduct_cd_name[0] = consumptionDTO.getCproduct_cd_name();
 		
 		String insert_date_st = request.getParameter("insert_date_st").substring(0, 19);
-		System.out.println(insert_date_st);
 		Timestamp insert_date = Timestamp.valueOf(insert_date_st);
-		System.out.println(insert_date);
 		
 		consumptionService.deleteConsmpt(cproduct_cd_name);
 		
