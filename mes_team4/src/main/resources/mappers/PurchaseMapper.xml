@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 파일이름 대신 namespace 이름을 불러서 사용 -->
+
+<mapper namespace="com.itwillbs.mappers.PurchaseMapper">
+	
+	<!-- ?대신 #{변수값}-->
+	
+	<resultMap type="map" id="prListMap">
+		<!-- column="DB의 열이름" property="해당 DB열에 대해 저장할 변수이름"-->
+		<result column="product_cd_name" property="prCdName"/>
+		<result column="product_name" property="prName"/>
+		<result column="product_type_name" property="prTypeName"/>
+		<result column="product_type_cd" property="prTypeCd"/>
+	</resultMap>
+	
+	<select id="getCpList" resultMap="prListMap">
+		select p.product_cd_name, p.product_name, pt.product_type_name, pt.product_type_cd
+		from product p join product_type pt
+		on p.product_type_cd = pt.product_type_cd 
+		where product_dv = '완제품'
+		order by pt.product_type_cd, p.product_cd_name
+		<!-- <if test="search != null">
+			where subject like CONCAT('%',#{search},'%')
+		</if> -->
+		limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getCpCount" resultType="java.lang.Integer">
+		select count(*)
+		from product p join product_type pt
+		on p.product_type_cd = pt.product_type_cd
+		where product_dv = '완제품'
+		<!-- <if test="search != null">
+			where subject like CONCAT('%',#{search},'%')
+		</if> -->
+	</select>
+	
+	<select id="getRpList" resultMap="prListMap">
+		select p.product_cd_name, p.product_name, pt.product_type_name, pt.product_type_cd
+		from product p join product_type pt
+		on p.product_type_cd = pt.product_type_cd 
+		where product_dv = '원자재'
+		order by pt.product_type_cd, p.product_cd_name
+		<!-- <if test="search != null">
+			where subject like CONCAT('%',#{search},'%')
+		</if> -->
+		limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getRpCount" resultType="java.lang.Integer">
+		select count(*)
+		from product p join product_type pt
+		on p.product_type_cd = pt.product_type_cd
+		where product_dv = '원자재'
+		<!-- <if test="search != null">
+			where subject like CONCAT('%',#{search},'%')
+		</if> -->
+	</select>
+	
+	<resultMap type="map" id="bsListMap">
+		<!-- column="DB의 열이름" property="해당 DB열에 대해 저장할 변수이름"-->
+		<id column="business_cd" property="bsCdName"/>
+		<result column="business_name" property="bsName"/>
+		<result column="business_type" property="bsTypeName"/>
+	</resultMap>
+	
+	<select id="getBsList" resultMap="bsListMap">
+		select business_cd, business_name, business_type
+		from business
+		where business_dv = '발주'
+		order by business_cd
+		<!-- <if test="search != null">
+			where subject like CONCAT('%',#{search},'%')
+		</if> -->
+		limit #{startRow},#{pageSize}
+	</select>
+	
+	
+	<select id="getBsCount" resultType="java.lang.Integer">
+		select count(*)
+		from business
+		where business_dv = '발주'
+		<!-- <if test="search != null">
+			where subject like CONCAT('%',#{search},'%')
+		</if> -->
+	</select>
+	
+	<resultMap type="map" id="emListMap">
+		<!-- column="DB의 열이름" property="해당 DB열에 대해 저장할 변수이름"-->
+		<id column="emp_no" property="emCdName"/>
+		<result column="dept_name" property="emDeptName"/>
+		<result column="grade_name" property="emGradeName"/>
+		<result column="emp_name" property="emName"/>
+	</resultMap>
+	
+	<select id="getEmList" resultMap="emListMap">
+		select e.emp_no, ed.dept_name, eg.grade_name, e.emp_name
+		from employees e join employees_dept ed
+		on e.dept_cd = ed.dept_cd
+		join employees_grade eg
+		on e.grade_cd = eg.grade_cd
+		order by e.emp_no, ed.dept_name, eg.grade_name, e.emp_name
+		<!-- <if test="search != null">
+			where subject like CONCAT('%',#{search},'%')
+		</if> -->
+		limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getEmCount" resultType="java.lang.Integer">
+		select count(*)
+		from employees e join employees_dept ed
+		on e.dept_cd = ed.dept_cd
+		join employees_grade eg
+		on e.grade_cd = eg.grade_cd
+		order by e.emp_no
+		<!-- <if test="search != null">
+			where subject like CONCAT('%',#{search},'%')
+		</if> -->
+	</select>
+	
+	<insert id="insertPurchase">
+	  insert into purchase_management(purchase_cd, business_cd, emp_no, rproduct_cd_name, purchase_date, purchase_due, purchase_count, purchase_com)
+	  values(#{purchase_cd}, #{business_cd}, #{emp_no}, #{rproduct_cd_name}, #{purchase_date}, #{purchase_due}, #{purchase_count}, #{purchase_com})
+	</insert>
+	
+	<select id="getPurchaseList" resultType="com.itwillbs.domain.PurchaseDTO">
+		select *  
+		from purchase_management
+		<!-- <where>
+            <choose>
+            	<when test='search != null and product_dv.equals("all")'>
+                    and (lower(cproduct_cd_name) like CONCAT('%',lower(#{search}),'%') or lower(cproduct_name) like CONCAT('%',lower(#{search}),'%') or lower(rproduct_cd_name) like CONCAT('%',lower(#{search}),'%') or lower(rproduct_name) like CONCAT('%',lower(#{search}),'%'))
+                </when>
+                <when test='search != null and product_dv.equals("cp")'>
+                    and (lower(cproduct_cd_name) like CONCAT('%',lower(#{search}),'%') or lower(cproduct_name) like CONCAT('%',lower(#{search}),'%'))
+                </when>
+                <when test='search != null and product_dv.equals("rp")'>
+                    and (lower(rproduct_cd_name) like CONCAT('%',lower(#{search}),'%') or lower(rproduct_name) like CONCAT('%',lower(#{search}),'%'))
+                </when>
+            </choose>
+        </where> -->
+		order by purchase_cd desc
+		limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getPurchaseCount" resultType="java.lang.Integer">
+		select count(*)  
+   		from purchase_management
+   		<!-- <where>
+            <choose>
+            	<when test='search != null and product_dv.equals("all")'>
+                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or rproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+                <when test='search != null and product_dv.equals("cp")'>
+                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+                <when test='search != null and product_dv.equals("rp")'>
+                    and (rproduct_cd_name like CONCAT('%',#{search},'%') or rproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+            </choose>
+        </where> -->
+	</select>
+	
+	<select id="getPurchaseDTO" resultType="com.itwillbs.domain.PurchaseDTO">
+		select *
+		from purchase_management
+		where purchase_cd = #{purchase_cd}
+	</select>
+	
+	<update id="updatePurchase">
+		update purchase_management 
+		set business_cd = #{business_cd}, emp_no = #{emp_no}, rproduct_cd_name = #{rproduct_cd_name}, purchase_date = #{purchase_date}, purchase_due = #{purchase_due}, purchase_count = #{purchase_count}, purchase_com = #{purchase_com}
+		where purchase_cd = #{purchase_cd}
+	</update>
+	
+	<delete id="deletePurchase" parameterType="map">
+	  delete from purchase_management
+	  where purchase_cd in
+      <foreach item="name" collection="checkedValue" index="index" open="(" separator="," close=")">
+      	#{name}
+      </foreach>
+	</delete>
+	
+</mapper>
+
+
+

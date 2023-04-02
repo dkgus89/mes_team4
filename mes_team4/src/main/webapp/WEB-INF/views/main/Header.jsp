@@ -94,7 +94,7 @@
 	          <li><a href="#">자재입고관리</a></li>
 	          <li><a href="#">자재출고관리</a></li>
 	          <li><a href="#">자재재고현황</a></li>
-	          <li><a href="#">자재발주관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/purchase/list">자재발주관리</a></li>
 	          <li><a href="#">submenu05</a></li>
 	        </ul>
 	      </li>

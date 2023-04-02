@@ -110,6 +110,7 @@ public class ConsumptionController {
 		System.out.println("ConsumptionController insert()");
 		// 처리작업
 		
+		// 임시 unit 저장
 		List<String> unit = new ArrayList<String>();
 		unit.add("kg");
 		unit.add("EA");
@@ -124,6 +125,7 @@ public class ConsumptionController {
 		System.out.println("ConsumptionController update()");
 		// 처리작업
 		
+		// 임시 unit 저장
 		List<String> unit = new ArrayList<String>();
 		unit.add("kg");
 		unit.add("EA");
@@ -167,9 +169,12 @@ public class ConsumptionController {
 	public String updatePro(ConsumptionDTO consumptionDTO, HttpServletRequest request) {
 		System.out.println("ConsumptionController updatePro()");
 		// 처리작업
+		
+		// consmptArray의 cproduct_cd_name 저장
 		String[] cproduct_cd_name = new String[1];
 		cproduct_cd_name[0] = consumptionDTO.getCproduct_cd_name();
 		
+		// String -> timestamp 변환
 		String insert_date_st = request.getParameter("insert_date_st").substring(0, 19);
 		Timestamp insert_date = Timestamp.valueOf(insert_date_st);
 		

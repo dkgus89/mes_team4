@@ -24,7 +24,7 @@ public class ConsumptionServiceImpl implements ConsumptionService{
 		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize();
 		int endRow = startRow + pageDTO.getPageSize()-1;
 		
-		pageDTO.setStartRow(startRow);
+		pageDTO.setStartRow(startRow);  
 		pageDTO.setEndRow(endRow);
 		
 		return consumptionDAO.getPrList(pageDTO);
