@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ReleaseDTO;
-import com.itwillbs.domain.WHDTO;
 import com.itwillbs.service.ReleaseService;
-import com.itwillbs.service.WHService;
 
 @Controller
 public class ReleaseController {
@@ -71,10 +69,14 @@ public class ReleaseController {
 	public String relinsert(Model model) {
 		System.out.println("ReleaseController relinsert()");
 		
-		List<Map<String, Object>> instMap
-		=relService.getInstMap();
+		List<Map<String, Object>> binstMap = relService.getBInstMap();
+		List<Map<String, Object>> winstMap = relService.getWInstMap();
+		List<Map<String, Object>> pinstMap = relService.getPInstMap();
+		
 //		 model에 담아서 이동
-		model.addAttribute("instMap", instMap);
+		model.addAttribute("binstMap", binstMap);
+		model.addAttribute("winstMap", winstMap);
+		model.addAttribute("pinstMap", pinstMap);
 		
 		return "release/RelInsert";
 	}

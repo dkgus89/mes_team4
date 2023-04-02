@@ -26,7 +26,7 @@ public class WHServiceImpl implements WHService{
 //		}else {
 //			whDTO.setWh_cd(whDAO.getMaxNum()+"1");
 //		}
-//		만약 원자재이면 W넘 찾고, 완제품이면 P넘 찾음 
+//		만약 원자재이면 M넘 찾고, 완제품이면 P넘 찾음 
 		if(whDTO.getWh_dv().equals("원자재")) {
 			System.out.println(whDTO.getWh_dv());
 			

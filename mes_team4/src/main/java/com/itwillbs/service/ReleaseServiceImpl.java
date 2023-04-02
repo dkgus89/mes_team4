@@ -21,23 +21,23 @@ public class ReleaseServiceImpl implements ReleaseService{
 	public void insertrel(ReleaseDTO releaseDTO) {
 		System.out.println("ReleaseServiceImpl insertrel()");
 		
-		if(releaseDAO.getRNum()==null) {
+		if(releaseDAO.getLNum()==null) {
 			//출고품목 없음
-			releaseDTO.setRel_schedule_cd(releaseDTO.getRel_date()+"_R001");
+			releaseDTO.setRel_schedule_cd("L001");
+			releaseDTO.setOut_complete("진행중");
 		}else{
 			//출고품목 => max(num)+1
-			int num = releaseDAO.getRNum()+1;
-			String str = releaseDTO.getRel_date() + "_R00" + num;
-			System.out.println(releaseDTO.getRel_date() + "_R00" + num);
+			System.out.println("LNum 출력 : "+releaseDAO.getLNum());
+			int num = releaseDAO.getLNum()+1;
+			String str = "L00" + num;
+			
 			releaseDTO.setRel_schedule_cd(str);
+			releaseDTO.setOut_complete("진행중");
 		}
 		
-		releaseDTO.setOut_complete("진행중");
 		
 		releaseDAO.insertrel(releaseDTO);
 	}
-
-	
 	
 	
 	@Override
@@ -61,11 +61,28 @@ public class ReleaseServiceImpl implements ReleaseService{
 	}
 
 	@Override
-	public List<Map<String, Object>> getInstMap() {
-		System.out.println("ReleaseServiceImpl getInstMap()");
+	public List<Map<String, Object>> getBInstMap() {
+		System.out.println("ReleaseServiceImpl getBInstMap()");
 		
-		return releaseDAO.getInstMap();
+		return releaseDAO.getBInstMap();
 	}
+
+	@Override
+	public List<Map<String, Object>> getWInstMap() {
+		System.out.println("ReleaseServiceImpl getWInstMap()");
+		
+		return releaseDAO.getWInstMap();
+	}
+
+	@Override
+	public List<Map<String, Object>> getPInstMap() {
+		System.out.println("ReleaseServiceImpl getPInstMap()");
+		
+		return releaseDAO.getPInstMap();
+	}
+
+
+
 
 
 	

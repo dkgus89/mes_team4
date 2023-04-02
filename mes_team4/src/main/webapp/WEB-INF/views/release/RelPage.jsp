@@ -90,9 +90,8 @@
 	<div class="wrap2">
 	
 	  <button class="button2" onclick="insertPopup();">등록</button>
-<!-- 	  <button class="button2" onclick="updatePopup();">수정</button> -->
 	  <button class="button2"  onclick="deleteValue();">삭제</button>
-<!-- 	  <button class="button2" onclick="searchPopup();">조회</button> -->
+	  <button class="button2"">출고처리</button>
 	  
 	 </div><br>
 	 <br>
@@ -107,7 +106,7 @@
 					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
 					<th>출고코드</th>
 					<th>거래처명</th>
-					<th>담당자</th>
+<!-- 					<th>담당자</th> -->
 					<th>창고</th>
 					<th>출고품목명</th>
 					<th>출고일자</th>
@@ -124,7 +123,7 @@
 					<td><input type="checkbox" id="checkbox" name="rowcheck" value="${releaseDTO.rel_schedule_cd }"></td>
 					<td>${dto.rel_schedule_cd}</td>
 					<td>${dto.business_name}</td>
-					<td>${dto.emp_name}</td>
+<%-- 					<td>${dto.emp_name}</td> --%>
 					<td>${dto.wh_name}</td>
 					<td>${dto.product_name}</td>
 					<td>${dto.rel_date}</td>

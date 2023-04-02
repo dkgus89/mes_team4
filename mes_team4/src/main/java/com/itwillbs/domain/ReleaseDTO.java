@@ -10,6 +10,29 @@ public class ReleaseDTO {
 	private String out_complete;
 	private int rel_count;
 	
+	private String business_cd;
+	private String wh_cd;
+	private String product_cd;
+	
+	public String getBusiness_cd() {
+		return business_cd;
+	}
+	public void setBusiness_cd(String business_cd) {
+		this.business_cd = business_cd;
+	}
+	public String getWh_cd() {
+		return wh_cd;
+	}
+	public void setWh_cd(String wh_cd) {
+		this.wh_cd = wh_cd;
+	}
+	public String getProduct_cd() {
+		return product_cd;
+	}
+	public void setProduct_cd(String product_cd) {
+		this.product_cd = product_cd;
+	}
+	
 	public String getRel_schedule_cd() {
 		return rel_schedule_cd;
 	}

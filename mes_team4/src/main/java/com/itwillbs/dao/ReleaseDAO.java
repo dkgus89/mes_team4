@@ -12,11 +12,19 @@ public interface ReleaseDAO {
 	
 	public void insertrel(ReleaseDTO releaseDTO);
 	
-	public Integer getRNum();
+	public Integer getLNum();
 
 	public List<Map<String, Object>> getInstMap();
 	
 	public List<Map<String, Object>> getRelList(PageDTO pageDTO);
+
+	public List<Map<String, Object>> getBInstMap();
+
+	public List<Map<String, Object>> getWInstMap();
+
+	public List<Map<String, Object>> getPInstMap();
+
+
 
 
 }

@@ -33,10 +33,10 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 	}
 
 	@Override
-	public Integer getRNum() {
-		System.out.println("ReleaseDAOImpl getRNum()");
+	public Integer getLNum() {
+		System.out.println("ReleaseDAOImpl getLNum()");
 		
-		return sqlSession.selectOne(namespace+".getRNum");
+		return sqlSession.selectOne(namespace+".getLNum");
 	}
 
 	@Override
@@ -55,6 +55,31 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 		return sqlSession.selectList(namespace+".getRelList", pageDTO);
 	}
 
+	@Override
+	public List<Map<String, Object>> getBInstMap() {
+		System.out.println("ReleaseDAOImpl getBInstMap()");
+		
+		return sqlSession.selectList(namespace+".getBInstMap");
+	}
+
+	@Override
+	public List<Map<String, Object>> getWInstMap() {
+		System.out.println("ReleaseDAOImpl getWInstMap()");
+		
+		return sqlSession.selectList(namespace+".getWInstMap");
+	}
+
+	@Override
+	public List<Map<String, Object>> getPInstMap() {
+		System.out.println("ReleaseDAOImpl getPInstMap()");
+		
+		return sqlSession.selectList(namespace+".getPInstMap");
+	}
+
+
+	
+
+	
 
 	}
 

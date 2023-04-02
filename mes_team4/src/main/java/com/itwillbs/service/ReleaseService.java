@@ -12,9 +12,15 @@ public interface ReleaseService {
 	
 	public int getRelCount(PageDTO pageDTO);
 
-	public List<Map<String, Object>> getInstMap();
-	
 	public List<Map<String, Object>> getRelList(PageDTO pageDTO);
+
+	public List<Map<String, Object>> getBInstMap();
+
+	public List<Map<String, Object>> getWInstMap();
+
+	public List<Map<String, Object>> getPInstMap();
+
+
 
 	
 }

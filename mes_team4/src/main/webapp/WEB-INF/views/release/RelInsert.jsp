@@ -15,8 +15,8 @@
 
 <script type="text/javascript">
 function sub(){
-document.insertform.action="${pageContext.request.contextPath}/rel/relinsertPro";
-document.insertform.submit();
+document.insertrel.action="${pageContext.request.contextPath}/rel/relinsertPro";
+document.insertrel.submit();
 setTimeout(function() { 
 	opener.parent.location.reload();
 	window.close();
@@ -54,28 +54,6 @@ document.insertform.reset();
 //   // 결과 출력
 //   resultElement.innerText = number;
 // }
-
-
-// 거래처 리스트 팝업
-function bnopenPop(){
-	var popup = window.open('${pageContext.request.contextPath}/rel/bnlist', '거래처명리스트 팝업', 'width=500, height=500, top=200, left=200,scrollbars=yes');
-}
-
-// 사원명 리스트 팝업
-function enopenPop(){
-    var popup = window.open('${pageContext.request.contextPath}/rel/enlist', '사원명리스트 팝업', 'width=500, height=500, top=200, left=200,scrollbars=yes');
-}
-
-// 창고 리스트 팝업
-function wnopenPop(){
-    var popup = window.open('${pageContext.request.contextPath}/rel/wnlist', '창고명리스트 팝업', 'width=500, height=500, top=200, left=200,scrollbars=yes');
-}
-
-// 품목명 리스트 팝업
-function pnopenPop(){
-    var popup = window.open('${pageContext.request.contextPath}/rel/pnlist', '품목명리스트 팝업', 'width=500, height=500, top=200, left=200,scrollbars=yes');
-}
-
 </script>
 
 
@@ -86,7 +64,7 @@ function pnopenPop(){
 <!-- 본문HTML 입력 시작-->
 <h2 class="inserttitle">자재출고 등록</h2><br>
 
-	<form action="${pageContext.request.contextPath}/rel/relinsertPro" name="insertform" method="post" >
+	<form action="${pageContext.request.contextPath}/rel/relinsertPro" name="insertrel" method="post" >
 	<div class="wrap2">
 		<input type="submit" class="button2" value="등록" onclick="sub()">
 		<input type="reset" class="button2" value="초기화" onclick="rst()">
@@ -96,23 +74,31 @@ function pnopenPop(){
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>거래처명</th>
-					<th>담당자</th>
-					<th>창고코드</th>
+					<th>창고</th>
 					<th>출고품목명</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>
-<!-- 					<input type="text" name="business_name" id="bInput"><input type="button" onclick="bnopenPop()" id="bnList" value="조회"></td> -->
-					<td><select name ="business_name">
-							<c:forEach var="dto" items="${instMap}">
-							<option value="${dto.business_name }">${dto.business_name }</option>
+					<td><select name ="business_cd">
+							<c:forEach var="dto" items="${binstMap}">
+							<option value="${dto.business_cd }">${dto.business_name}</option>
 							</c:forEach>
 						</select></td>
-					<td><input type="text" name="emp_name" id="eInput"><input type="button" onclick="enopenPop()" id="enList" value="조회"></td>
-					<td><input type="text" name="emp_name" id="wInput"><input type="button" onclick="wnopenPop()" id="wnList" value="조회"></td>
-					<td><input type="text" name="product_name" id="pInput"><input type="button" onclick="pnopenPop()" id="pnList" value="조회"></td>
+					<td>
+						<select name ="wh_cd">
+							<c:forEach var="dto" items="${winstMap}">
+								<option value="${dto.wh_cd }">${dto.wh_name }</option>
+							</c:forEach>
+						</select>
+					</td>
+					<td>
+						<select name ="product_cd">
+							<c:forEach var="dto" items="${pinstMap}">
+								<option value="${dto.product_cd }">${dto.product_name }</option>
+							</c:forEach>
+						</select>
+					</td>
 				</tr>
 			</tbody>	
 			
