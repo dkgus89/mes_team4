@@ -101,7 +101,6 @@ public class PerformController {
 		@RequestMapping(value = "/perform/performinsertpro", method = RequestMethod.POST)
 		public String performInsertPro(HttpServletRequest request, PerformDTO performDTO) {
 			System.out.println("PerformController performInsertPro()");
-			
 			if(performService.getPerformCount2()==0) {
 				performDTO.setPerform_cd("MPF00001");
 			}else {

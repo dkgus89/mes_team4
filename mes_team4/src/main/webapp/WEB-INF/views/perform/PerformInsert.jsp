@@ -16,16 +16,16 @@
 <script>
 
 	// jQuery 준비 => 대상.함수()
- 	$(document).ready(function(){
+//  	$(document).ready(function(){
 //  		alert("준비");
 		//submit 버튼을 클릭했을때 전송되어지면 이벤트 onsubmit()
 		// id="join" 폼태그 표시 => 전송
-// 		$('#sub').click(function(){
+// 		$('#PI').submit(function(){
 // 			alert("전송");
 // 		// class="id" 표시 대상.함수()
-// 			if($('.id').val()==""){
-// 				alert("아이디 입력하세요");
-// 				$('.id').focus();
+// 			if($('#line_cd').val()==""){
+// 				alert("라인코드를 입력하세요");
+// 				$('#line_cd').focus();
 // 				//대상 지정 * 전체, h1 태그, id=이름 #이름, class=이름 .
 // // 				$('*').css('color','red');
 // // 				$('form').css('color','blue');
@@ -68,13 +68,42 @@
 // 				return false;
 // 			}
 //  		});
- 	});
+//  	});
 function sub(){
-window.opener.name = "parentPage";
-document.PerformInsert.target="parentPage";
-document.PerformInsert.action="${pageContext.request.contextPath}/perform/performinsertpro";
-document.PerformInsert.submit();
-// self.close();
+	$(document).ready(function(){
+// 	alert("준비");
+		if($('#line_cd').val()==""){
+			alert("라인코드를 입력하세요");
+			$('#line_cd').focus();
+			return false;
+		}
+		if($('#product_cd').val()==""){
+			alert("품목코드를 입력하세요");
+			$('#product_cd').focus();
+			return false;
+		}
+		if($('#perform_date').val()==""){
+			alert("실적일자를 입력하세요");
+			$('#perform_date').focus();
+			return false;
+		}
+		if($('#fair_prod').val()==""){
+			alert("양품 수량을 입력하세요");
+			$('#fair_prod').focus();
+			return false;
+		}
+		if($('#defect_prod').val()==""){
+			alert("불량 수량을 입력하세요");
+			$('#defect_prod').focus();
+			return false;
+		}
+		
+	window.opener.name = "parentPage";
+	document.PerformInsert.target="parentPage";
+	document.PerformInsert.action="${pageContext.request.contextPath}/perform/performinsertpro";
+	document.PerformInsert.submit();
+	self.close();
+	});
 }
 function rst(){
 document.PerformInsert.reset();
@@ -134,7 +163,7 @@ $(document).ready(function () {
 	 <br><br>
 	 
 	 
-	<form name="PerformInsert" id="PI" method="post">
+	<form action="${pageContext.request.contextPath}/perform/performinsertpro" name="PerformInsert" id="PI" method="post">
 		<input type="hidden" value="">
 		
 		<table id="vendortable" class="table table-striped">
@@ -176,11 +205,11 @@ $(document).ready(function () {
 			
 			<tbody>
 				<tr>
-					<td><input type="date" name="perform_date" value=""></td>
-    				<td><input type="text" name="fair_prod" value=""></td>
-    				<td><input type="text" name="defect_prod" value=""></td>
-    				<td><input type="text" name="defect_remarks" value=""></td>
-    				<td><input type="text" name="remarks" value=""></td>
+					<td><input type="date" name="perform_date" id="perform_date" value=""></td>
+    				<td><input type="text" name="fair_prod" id="fair_prod" value=""></td>
+    				<td><input type="text" name="defect_prod" id="defect_prod" value=""></td>
+    				<td><input type="text" name="defect_remarks" id="defect_remarks" value=""></td>
+    				<td><input type="text" name="remarks" id="remarks" value=""></td>
     			</tr>
 
 			</tbody>
