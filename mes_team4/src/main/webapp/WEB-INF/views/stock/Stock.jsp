@@ -23,6 +23,18 @@ function chdelete(){
 	document.stocklist.action="${pageContext.request.contextPath}/stock/stockdelete";
 	document.stocklist.submit();
 }
+function allCheck(){
+	
+	var ac = document.stocklist.allcheck;
+	var rc = document.stocklist.rowcheck;
+	if(ac.checked == true){
+		for(i=0; i<rc.length; i++){
+			rc[i].checked=true;}
+	}else {
+		for(i=0;i<rc.length;i++){
+			rc[i].checked=false;}
+	} 
+}
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -83,7 +95,7 @@ function chdelete(){
 		<table id="vendortable" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>선택</th>
+					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
 					<th style="text-align: center; width: 25px;">번호</th>
 					<th>재고번호</th>
 					<th>창고코드</th>
@@ -101,7 +113,7 @@ function chdelete(){
 				<c:forEach var="dto" items="${StockMap}" varStatus="status">
 
 				<tr>				
-				<td><input type="checkbox" name="chbox" value="${dto.stock_cd}"></td>
+				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.stock_cd}"></td>
 				<td style="text-align: center;">${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
 				<td>${dto.stock_cd}</td>
 				<td>${dto.wh_cd}</td>

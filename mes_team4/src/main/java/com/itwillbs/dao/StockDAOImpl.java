@@ -96,4 +96,18 @@ public class StockDAOImpl implements StockDAO {
 		
 		return sqlSession.selectList(namespace+".getprodMap");
 	}
+
+	@Override
+	public int getStockCount2() {
+		System.out.println("InfoDAOImpl getStockCount2()");
+		
+		return sqlSession.selectOne(namespace+".getStockCount2");
+	}
+
+	@Override
+	public String getStock_cd() {
+		System.out.println("InfoDAOImpl getStock_cd()");
+		
+		return sqlSession.selectOne(namespace+".getStock_cd");
+	}
 }

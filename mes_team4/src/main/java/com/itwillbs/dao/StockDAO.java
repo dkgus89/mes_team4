@@ -27,4 +27,8 @@ public interface StockDAO {
 	public List<Map<String, Object>> getrecMap();
 
 	public List<Map<String, Object>> getprodMap();
+
+	public int getStockCount2();
+
+	public String getStock_cd();
 }

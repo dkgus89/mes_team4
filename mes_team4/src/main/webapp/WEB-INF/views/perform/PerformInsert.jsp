@@ -14,12 +14,67 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
+
+	// jQuery 준비 => 대상.함수()
+ 	$(document).ready(function(){
+//  		alert("준비");
+		//submit 버튼을 클릭했을때 전송되어지면 이벤트 onsubmit()
+		// id="join" 폼태그 표시 => 전송
+// 		$('#sub').click(function(){
+// 			alert("전송");
+// 		// class="id" 표시 대상.함수()
+// 			if($('.id').val()==""){
+// 				alert("아이디 입력하세요");
+// 				$('.id').focus();
+// 				//대상 지정 * 전체, h1 태그, id=이름 #이름, class=이름 .
+// // 				$('*').css('color','red');
+// // 				$('form').css('color','blue');
+// 				return false;
+// 			}
+// 		//class="pass"
+// 			if($('.pass').val()==""){
+// 				alert("비밀번호 입력하세요")
+// 				$('.pass').focus();
+// 				return false;
+// 			}
+// 			if($('.pass2').val()==""){
+// 				alert("비밀번호2 입력하세요")
+// 				$('.pass2').focus();
+// 				return false;
+// 			}
+// 			if($('.pass').val() != $('.pass2').val()){
+// 				alert("비밀번호 틀림");
+// 				$('.pass2').focus();
+// 				return false;		
+// 			}
+// 			if($('.name').val()==""){
+// 				alert("이름 입력하세요")
+// 				$('.name').focus();
+// 				return false;
+// 			}
+// 			if($('.email').val()==""){
+// 				alert("이메일 입력하세요")
+// 				$('.email').focus();
+// 				return false;
+// 			}
+// 			if($('.email').val() != $('.email2').val()){
+// 				alert("이메일 틀림");
+// 				$('.email2').focus();
+// 				return false;		
+// 			}
+// 			if($('.email2').val()==""){
+// 				alert("이메일2 입력하세요")
+// 				$('.email2').focus();
+// 				return false;
+// 			}
+//  		});
+ 	});
 function sub(){
 window.opener.name = "parentPage";
 document.PerformInsert.target="parentPage";
 document.PerformInsert.action="${pageContext.request.contextPath}/perform/performinsertpro";
 document.PerformInsert.submit();
-self.close();
+// self.close();
 }
 function rst(){
 document.PerformInsert.reset();
@@ -79,7 +134,7 @@ $(document).ready(function () {
 	 <br><br>
 	 
 	 
-	<form name="PerformInsert" method="post">
+	<form name="PerformInsert" id="PI" method="post">
 		<input type="hidden" value="">
 		
 		<table id="vendortable" class="table table-striped">

@@ -83,7 +83,7 @@ public class StockController {
 	
 	@RequestMapping(value = "/stock/stockinsert", method = RequestMethod.GET)
 	public String stockInsert(Model model) {
-		
+			
 		//메서드 호출
 		List<Map<String, Object>> whMap
 		     =stockService.getwhMap();
@@ -110,6 +110,29 @@ public class StockController {
 	@RequestMapping(value = "/stock/stockinsertpro", method = RequestMethod.POST)
 	public String stockInsertPro(HttpServletRequest request, StockDTO stockDTO) {
 		System.out.println("StockController stockInsertPro()");
+		
+		if(stockService.getStockCount2()==0) {
+			stockDTO.setStock_cd("STC001");
+		}else {
+			String maxpc=stockService.getStock_cd();
+			System.out.println(maxpc);
+			maxpc=maxpc.substring(3);
+			int tpc=Integer.parseInt(maxpc);
+			tpc=tpc+1;
+			maxpc=String.valueOf(tpc);
+			if(maxpc.length()==1) {
+			maxpc="00".concat(maxpc);
+			maxpc="STC".concat(maxpc);
+			}else if(maxpc.length()==2) {
+				maxpc="0".concat(maxpc);
+				maxpc="STC".concat(maxpc);
+			}else if(maxpc.length()==3) {
+				maxpc="STC".concat(maxpc);
+			}
+			stockDTO.setStock_cd(maxpc);
+			System.out.println(maxpc);
+		}
+		
 		
 		//글쓰기 작업 메서드 호출
 		stockService.insertStock(stockDTO);
@@ -166,11 +189,10 @@ public class StockController {
 	
 	@RequestMapping(value = "/stock/stockdelete", method = RequestMethod.GET)
 	public String stockDelete(HttpServletRequest request) {
-		String chbox[]=request.getParameterValues("chbox");
+		String chbox[]=request.getParameterValues("rowcheck");
 		String stock_cd = null;
 		if(chbox!=null){
-			  for(int i=0;i<chbox.length;i++){
-		   
+			  for(int i=0;i<chbox.length;i++){		   
 				stock_cd=chbox[i];
 				stockService.deleteStock(stock_cd);
 			  }

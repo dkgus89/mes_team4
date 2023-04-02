@@ -42,10 +42,26 @@
         </if>
         </if>) a
     </select>
+    
+     <select id="getStockCount2" resultType="java.lang.Integer">
+        select count(*)
+        from(select s.stock_cd, s.wh_cd, w.wh_name, s.rec_schedule_cd, r.rec_date, s.product_cd, p.product_name, s.stock_count
+			from stock s join warehouse w
+						 on s.wh_cd = w.wh_cd
+      			      	 join receive_schedule r
+       			   		 on s.rec_schedule_cd=r.rec_schedule_cd
+       			    	 join product p
+       			      	 on s.product_cd=p.product_cd) a
+    </select>
 
 	<select id="getStock" resultType="com.itwillbs.domain.StockDTO">
         select * from stock
         where stock_cd = #{stock_cd}
+    </select>
+    
+     <select id="getStock_cd" resultType="java.lang.String">
+        select max(stock_cd)
+        from stock
     </select>
     
     <update id="updateStock">

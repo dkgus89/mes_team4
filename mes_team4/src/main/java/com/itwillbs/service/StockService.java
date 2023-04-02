@@ -12,6 +12,8 @@ public interface StockService {
 	
 	public int getStockCount(PageDTO pageDTO);
 	
+	public int getStockCount2();
+	
 	public void insertStock(StockDTO stockDTO);
 	
 	public StockDTO getStock(String stock_cd);
@@ -27,4 +29,6 @@ public interface StockService {
 	public List<Map<String, Object>> getrecMap();
 
 	public List<Map<String, Object>> getprodMap();
+
+	public String getStock_cd();
 }

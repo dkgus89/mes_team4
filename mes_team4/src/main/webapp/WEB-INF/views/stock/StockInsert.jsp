@@ -46,7 +46,6 @@ document.StockInsert.reset();
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>재고번호</th>
 					<th>창고코드</th>
 					<th>입고예정코드</th>
 					<th>품목코드</th>
@@ -56,7 +55,6 @@ document.StockInsert.reset();
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="stock_cd" value=""></td>
 					<td><select name="wh_cd">
 							<c:forEach var="dto" items="${whMap}">					
 								<option value="${dto.wh_cd}">${dto.wh_cd}</option>							

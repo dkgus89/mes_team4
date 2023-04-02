@@ -100,4 +100,18 @@ public class StockServiceImpl implements StockService{
 			return stockDAO.getprodMap();
 		}
 
+		@Override
+		public int getStockCount2() {
+			System.out.println("stockServiceImpl getStockCount2()");
+			
+			return stockDAO.getStockCount2();
+		}
+
+		@Override
+		public String getStock_cd() {
+			System.out.println("stockServiceImpl getStock_cd()");
+			
+			return stockDAO.getStock_cd();
+		}
+
 }
