@@ -235,6 +235,8 @@ public class ConsumptionController {
 		if(endPage > pageCount){
 		 	endPage = pageCount;
 		}
+		System.out.println("startPage"+startPage);
+		System.out.println("endPage"+endPage);
 		
 		pageDTO.setCount(count);
 		pageDTO.setPageBlock(pageBlock);

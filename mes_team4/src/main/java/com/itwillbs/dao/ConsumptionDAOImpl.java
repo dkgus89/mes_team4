@@ -23,8 +23,6 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 	@Override
 	public List<Map<String, Object>> getPrList(PageDTO pageDTO) {
 		System.out.println("ConsumptionDAOImpl getPrList()");
-
-		pageDTO.setStartRow(pageDTO.getStartRow()-1);
 		
 		if (pageDTO.getProduct_dv().equals("cp")) {
 			return sqlSession.selectList(namespace+".getCpList", pageDTO);

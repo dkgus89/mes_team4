@@ -101,13 +101,13 @@
 		<where>
             <choose>
             	<when test='search != null and product_dv.equals("all")'>
-                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or rproduct_name like CONCAT('%',#{search},'%'))
+                    and (lower(cproduct_cd_name) like CONCAT('%',lower(#{search}),'%') or lower(cproduct_name) like CONCAT('%',lower(#{search}),'%') or lower(rproduct_cd_name) like CONCAT('%',lower(#{search}),'%') or lower(rproduct_name) like CONCAT('%',lower(#{search}),'%'))
                 </when>
                 <when test='search != null and product_dv.equals("cp")'>
-                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%'))
+                    and (lower(cproduct_cd_name) like CONCAT('%',lower(#{search}),'%') or lower(cproduct_name) like CONCAT('%',lower(#{search}),'%'))
                 </when>
                 <when test='search != null and product_dv.equals("rp")'>
-                    and (rproduct_cd_name like CONCAT('%',#{search},'%') or rproduct_name like CONCAT('%',#{search},'%'))
+                    and (lower(rproduct_cd_name) like CONCAT('%',lower(#{search}),'%') or lower(rproduct_name) like CONCAT('%',lower(#{search}),'%'))
                 </when>
             </choose>
         </where>
