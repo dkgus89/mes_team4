@@ -3,6 +3,8 @@ package com.itwillbs.dao;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ProductDAOImpl {
+public class ProductDAOImpl implements ProductDAO {
+
+	
 
 }

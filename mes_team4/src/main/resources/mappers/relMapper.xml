@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 파일이름 대신 namespace 이름을 불러서 사용 -->
+
+<mapper namespace="com.itwillbs.mappers.relMapper">
+	
+	<insert id="insertrel">
+	insert into release_schedule(rel_schedule_cd, business_cd, wh_cd, product_cd, rel_date, remarks, out_complete, rel_count) 
+	values(#{rel_schedule_cd},#{business_cd}, #{wh_cd}, #{product_cd}, #{rel_date},#{remarks}, #{out_complete}, #{rel_count})
+	</insert>
+	
+<!-- 	출고코드번호 -->
+	<select id="getLNum" resultType="java.lang.Integer">
+	select max(SUBSTR(rel_schedule_cd, 2)) from release_schedule where rel_schedule_cd like 'L%'
+	</select>
+
+<!-- 조인 리스트	 -->
+<!-- insert페이지 -->
+	<resultMap type="map" id="map1">
+		<result column="business_name" property="business_name"/>
+		<result column="business_cd" property="business_cd"/>
+	</resultMap>
+	
+	<select id="getBInstMap" resultMap="map1">
+	select business_name,business_cd from business
+	order by business_name
+	</select>
+
+	<resultMap type="map" id="map3">
+		<result column="wh_name"  property="wh_name"/>
+		<result column="wh_cd"  property="wh_cd"/>
+	</resultMap>
+	
+	<select id="getWInstMap" resultMap="map3">
+	select wh_name,wh_cd from warehouse
+	order by wh_name
+	</select>
+	
+	<resultMap type="map" id="map4">
+		<result column="product_name"  property="product_name"/>
+		<result column="product_cd"  property="product_cd"/>
+	</resultMap>
+	
+	<select id="getPInstMap" resultMap="map4">
+	select product_name,product_cd from product
+	order by product_name
+	</select>
+	
+	
+<!-- 메인페이지 -->
+	<resultMap type="map" id="map2">
+		<result column="rel_schedule_cd"  property="rel_schedule_cd"/>
+		<result column="business_name"  property="business_name"/>
+		<result column="emp_name"  property="emp_name"/>
+		<result column="product_name"  property="product_name"/>
+		<result column="rel_date"  property="rel_date"/>
+		<result column="rel_count"  property="rel_count"/>
+		<result column="out_complete"  property="out_complete"/>
+		<result column="remarks"  property="remarks"/>
+	</resultMap>
+	
+	<select id="getRelList" resultMap="map2">
+<!-- 	select * from release_schedule -->
+	select r.rel_schedule_cd,  b.business_name, w.wh_name, p.product_name, r.rel_date, r.rel_count, r.out_complete, r.remarks
+		   from release_schedule as r
+           left join business as b
+		   on r.business_cd = b.business_cd
+		   left join product as p
+		   on r.product_cd = p.product_cd
+		   left join warehouse as w
+		   on r.wh_cd = w.wh_cd
+<!--         <if test="search != null"> -->
+<!--         <if test="select != null"> -->
+<!-- 			<if test="select == 'product_dv'.toString()"> -->
+<!-- 				where product_dv like CONCAT('%',#{search},'%') -->
+<!-- 			</if> -->
+<!-- 			<if test="select == 'product_cd_name'.toString()"> -->
+<!-- 				where product_cd_name like CONCAT('%',#{search},'%') -->
+<!-- 			</if> -->
+<!-- 			<if test="select == 'product_name'.toString()"> -->
+<!-- 				where product_name like CONCAT('%',#{search},'%') -->
+<!-- 			</if> -->
+<!--         </if> -->
+<!--         </if> -->
+        order by rel_schedule_cd desc 
+        limit #{startRow}, #{pageSize}   	
+    </select>
+<!-- 	<select id="getInstMap" resultMap="map2"> -->
+<!-- 		select emp_name from employees -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="getInstMap" resultMap="map2"> -->
+<!-- 		select product_name from product -->
+<!-- 	</select> -->
+	
+	
+<!-- 	페이징 -->
+	<select id="getRelCount" resultType="java.lang.Integer">
+        select count(*) from release_schedule
+<!--         <if test="search != null"> -->
+<!--         <if test="select != null"> -->
+<!--         	<if test="select == 'wh_name'.toString()"> -->
+<!--         		where wh_name like CONCAT('%',#{search},'%') -->
+<!--         	</if> -->
+        	
+<!--         	<if test="select == 'wh_addr'.toString()"> -->
+<!--         		where wh_addr like CONCAT('%',#{search},'%') -->
+<!--         	</if> -->
+        	
+<!--         </if> -->
+<!--         </if>  -->
+    </select>
+	
+<!--     <delete id="deletewh"> -->
+<!--     delete from warehouse -->
+<!--     where wh_cd = #{wh_cd}        -->
+<!--     </delete>  -->
+    
+<!--     <select id="getwh" resultType="com.itwillbs.domain.WHDTO"> -->
+<!--         select * from warehouse -->
+<!--         where wh_cd = #{wh_cd} -->
+<!--     </select> -->
+    
+<!--      <update id="updatewh"> -->
+<!-- 	 	update warehouse set wh_name = #{wh_name}, wh_dv = #{wh_dv}, wh_addr = #{wh_addr},  -->
+<!-- 	 	                     wh_tel = #{wh_tel}, wh_use = #{wh_use}, remarks = #{remarks}  -->
+<!-- 	 	where wh_cd = #{wh_cd}                      -->
+<!--     </update> -->
+    
+<!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
+<!-- 		select * from members  -->
+<!-- 		where id = #{id} and pass = #{pass}  -->
+<!-- 	</select> -->
+
+<!-- 	<select id="selectBlog" parameterType="int" resultType="Blog"> -->
+<!--         select * from Blog where id = #{id} -->
+<!--     </select> -->
+    
+<!--     <insert id=""> -->
+<!--     </insert> -->
+    
+   
+    
+    
+    
+</mapper>
+
+
+

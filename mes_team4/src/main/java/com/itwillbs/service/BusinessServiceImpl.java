@@ -12,7 +12,10 @@ import com.itwillbs.domain.PageDTO;
 
 
 @Service
-public class BusinessServiceImpl implements BusinessService{
+public class BusinessServiceImpl{
+
+	
+
 
 	@Inject
 	private BusinessDAO businessDAO;
