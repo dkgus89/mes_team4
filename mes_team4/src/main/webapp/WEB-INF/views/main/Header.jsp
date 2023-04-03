@@ -65,7 +65,7 @@
 	        <ul class="submenu">
 	          <li><a href="${pageContext.request.contextPath}/product/prodpage">품목정보관리</a></li>
 	          <li><a href="${pageContext.request.contextPath}/consmpt/list">소요량관리</a></li>
-	          <li><a href="#">설비정보관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/line/line">설비정보관리</a></li>
 	          <li><a href="${pageContext.request.contextPath}/business/businessmain">거래처정보관리</a></li>
 	          <li><a href="wh/whpage">창고관리</a></li>
 	        </ul>
@@ -85,7 +85,7 @@
 	          <li><a href="#">생산계획</a></li>
 	          <li><a href="#">작업지시현황</a></li>
 	          <li><a href="#">실적등록</a></li>
-	          <li><a href="#">생산실적현황</a></li>
+	          <li><a href="${pageContext.request.contextPath}/perform/perform">생산실적현황</a></li>
 	          <li><a href="#">submenu05</a></li>
 	        </ul>
 	      </li>
