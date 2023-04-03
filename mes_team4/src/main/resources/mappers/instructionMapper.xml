@@ -16,7 +16,7 @@
 <!-- 		select max(emp_no) from employees -->
 <!-- 	</select> -->
 	
-	 <select id="getorderlist" resultType="com.itwillbs.domain.OMDTO">
+	 <select id="getorderlist" resultType="com.itwillbs.domain.OrderDTO">
     	select * from order_management
     	<if test="search != null">
     	where order_cd like CONCAT('%',#{search},'%')
@@ -31,7 +31,7 @@
     	</if>
     </select>
 
-    <select id="orderinfo" resultType="com.itwillbs.domain.OMDTO">
+    <select id="orderinfo" resultType="com.itwillbs.domain.OrderDTO">
         select *
         from order_management
         where order_cd = #{order_cd}

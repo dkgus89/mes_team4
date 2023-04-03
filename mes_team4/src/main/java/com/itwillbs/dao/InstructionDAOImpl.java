@@ -22,7 +22,7 @@ public class InstructionDAOImpl implements InstructionDAO {
 	public List<OrderDTO> getorderlist(PageDTO pageDTO) {
 		System.out.println("InstructionDAOImpl getorderlist()");
 		
-		return sqlSession.selectList(namespace +"getorderlist", pageDTO);
+		return sqlSession.selectList(namespace +".getorderlist", pageDTO);
 	}
 
 	@Override
