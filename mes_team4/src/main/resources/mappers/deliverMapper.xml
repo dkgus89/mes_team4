@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 파일이름 대신 namespace 이름을 불러서 사용 -->
+
+<mapper namespace="com.itwillbs.mappers.deliverMapper">
+	
+	<!-- ?대신 deliverDTO의 멤버변수명 사용 #{id}-->
+	<insert id="insertDeliver">
+		insert into shipment_management(deliver_cd, business_cd, product_cd, order_cd, deliver_date, deliver_count)
+							
+		values(#{deliver_cd},#{business_cd},#{product_cd}, #{order_cd},#{deliver_date},#{deliver_count})
+	</insert>
+	
+	
+	<select id="getDeliverList" resultType="com.itwillbs.domain.DeliverDTO">
+    	select * from shipment_management
+    	<if test="search != null">
+    		where deliver_cd like CONCAT('%',#{search},'%')
+    	</if>
+    	order by deliver_date asc
+    	limit #{startRow}, #{pageSize}
+    </select>
+    
+    <select id="getDeliver" resultType="com.itwillbs.domain.DeliverDTO">
+    select * from shipment_management
+    where deliver_cd = #{deliver_cd} 
+<!--     and business_cd=#{business_cd} and product_cd =#{product_cd} -->
+    
+    </select>
+	
+    <update id="updateDeliver">
+    	update shipment_management
+    	set deliver_cd = #{deliver_cd}, business_cd = #{business_cd}, product_cd = #{product_cd}, 
+    	order_cd = #{order_cd}, deliver_date = #{deliver_date}, deliver_count = #{deliver_count}
+    	where deliver_cd = #{deliver_cd}
+    </update>
+    
+    
+<!--      <update id="updateDeliver"> -->
+<!--     	update shipment_management -->
+<!--     	set deliver_count = #{deliver_count} -->
+<!--     	where deliver_cd = #{deliver_cd} -->
+<!--     </update> -->
+	
+	<select id="getDeliverCount" resultType="java.lang.Integer">
+    select count(*) from shipment_management
+    	<if test="search != null">
+    		where deliver_cd like CONCAT('%',#{search},'%')
+    	</if>
+
+    </select>
+    
+    <delete id="deleteDeliver">
+    delete from shipment_management
+    where deliver_cd = #{deliver_cd}
+    </delete>
+	
+	
+	
+	
+<!-- 	비즈니스 코드 갖고 오기 -->
+	<resultMap type="map" id="map1">
+		<result column="business_cd" property="business_cd"/>
+	</resultMap>
+	<select id="getInstMap" resultMap="map1">
+		select distinct business_cd from business;
+	</select>
+	
+	
+	
+<!-- 수주코드 갖고오기	 -->
+	<resultMap type="map" id="map2">
+		<result column="order_cd" property="order_cd"/>
+	</resultMap>
+	<select id="getInstMap2" resultMap="map2">
+		select distinct order_cd from order_management;
+	</select>
+	
+	
+	
+<!-- 품목코드 갖고오기 -->
+<resultMap type="map" id="map3">
+		<result column="product_cd" property="product_cd"/>
+	</resultMap>
+	<select id="getInstMap3" resultMap="map3">
+		select distinct product_cd from product;
+	</select>	
+	
+	
+	
+<!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
+<!-- 		select * from members  -->
+<!-- 		where id = #{id} and pass = #{pass}  -->
+<!-- 	</select> -->
+
+<!-- 	<select id="selectBlog" parameterType="int" resultType="Blog"> -->
+<!--         select * from Blog where id = #{id} -->
+<!--     </select> -->
+    
+<!--     <insert id=""> -->
+<!--     </insert> -->
+    
+    
+</mapper>
+
+
+
