@@ -2,7 +2,7 @@ package com.itwillbs.domain;
 
 public class ProductDTO {
 //	품목코드, 품목타입코드, 품목명, 제품코드, 제품구분, 거래처코드, 규격, 단위, 적요
-	private int product_cd;
+	private String product_cd;
 	private int product_type_cd;
 	private String product_dv;
 	private String product_name;
@@ -12,10 +12,10 @@ public class ProductDTO {
 	private String product_unit;
 	private String remarks;
 	
-	public int getProduct_cd() {
+	public String getProduct_cd() {
 		return product_cd;
 	}
-	public void setProduct_cd(int product_cd) {
+	public void setProduct_cd(String product_cd) {
 		this.product_cd = product_cd;
 	}
 	public int getProduct_type_cd() {
