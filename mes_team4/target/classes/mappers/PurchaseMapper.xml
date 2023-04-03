@@ -164,6 +164,13 @@
         </where> -->
 	</select>
 	
+	<select id="getPurchase_cd" resultType="java.lang.String">
+		select *  
+		from purchase_management
+		order by purchase_cd desc
+		limit 1
+	</select>
+	
 	<select id="getPurchaseDTO" resultType="com.itwillbs.domain.PurchaseDTO">
 		select *
 		from purchase_management

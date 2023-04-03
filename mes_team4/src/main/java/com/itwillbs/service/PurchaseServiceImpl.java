@@ -87,6 +87,13 @@ public class PurchaseServiceImpl implements PurchaseService{
 	}
 	
 	@Override
+	public String getPurchase_cd() {
+		System.out.println("ConsumptionServiceImpl getPurchase_cd()");
+		
+		return purchaseDAO.getPurchase_cd();
+	}
+	
+	@Override
 	public List<PurchaseDTO> getPurchaseList(PageDTO pageDTO) {
 		System.out.println("ConsumptionServiceImpl getCprConsmptList()");
 		

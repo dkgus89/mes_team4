@@ -23,6 +23,8 @@ public interface PurchaseService {
 	
 	public void insertPurchase(PurchaseDTO purchaseDTO);
 	
+	public String getPurchase_cd();
+	
 	public List<PurchaseDTO> getPurchaseList(PageDTO pageDTO);
 	
 	public int getPurchaseCount(PageDTO pageDTO);

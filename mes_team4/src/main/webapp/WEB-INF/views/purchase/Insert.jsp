@@ -138,20 +138,6 @@
 				</tr>
 			</tbody>
 		</table>
-		
-		<table id="purchase" class=" table table-striped">
-			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">
-					<th>발주코드(임시)</th>
-				</tr>
-			</thead>
-			
-			<tbody id="purchaseBody2">
-				<tr>
-					<td><input type="text" name="purchase_cd" value=""></td>
-				</tr>
-			</tbody>
-		</table>
 				
 	</form>
 	

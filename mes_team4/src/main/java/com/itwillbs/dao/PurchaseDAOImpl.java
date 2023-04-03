@@ -87,6 +87,13 @@ public class PurchaseDAOImpl implements PurchaseDAO{
 	}
 	
 	@Override
+	public String getPurchase_cd() {
+		System.out.println("ConsumptionDAOImpl getPurchase_cd()");
+		
+		return sqlSession.selectOne(namespace+".getPurchase_cd");
+	}
+	
+	@Override
 	public List<PurchaseDTO> getPurchaseList(PageDTO pageDTO) {
 		System.out.println("ConsumptionDAOImpl getCprConsmptList()");
 		

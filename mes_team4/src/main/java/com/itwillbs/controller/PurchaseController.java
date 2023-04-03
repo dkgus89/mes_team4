@@ -2,9 +2,13 @@ package com.itwillbs.controller;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -245,7 +249,49 @@ public class PurchaseController {
 		System.out.println("ConsumptionController insertPro()");
 		// 처리작업
 		
-		// 발주코드 및 발주상태 저장
+		// 발주코드 자동생성(PCHyyMMdd01) 및 저장 
+		// 기존 발주코드
+		String first_purchase_cd = purchaseService.getPurchase_cd();
+		String first_number_st = first_purchase_cd.substring(9);
+		int first_number = 0;
+		
+		// 새로운 발주코드
+		String new_purchase_cd = "발주코드";
+		String new_number_st = "스트링넘버";
+		int new_number = 0;
+		
+		// 메뉴코드 설정
+		String menu_code = "PCH";
+		
+		// 오늘날짜 설정
+		LocalDate now = LocalDate.now();
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
+	    String today = now.format(formatter);
+	    
+	    // 인덱스 설정
+	    if (first_purchase_cd.contains(today)) {
+	    	// 패턴&매치 정규식 이용 => 스트링넘버 앞 0 삭제(조건 : String length 2자 이상)
+	    	Pattern pattern = Pattern.compile("^0*([1-9][0-9]*)|0+$");
+			Matcher matcher = pattern.matcher(first_number_st);
+			
+			if (matcher.find()) { 
+			    first_number = Integer.parseInt(matcher.group(1)); 
+			} else {
+			    System.out.println("No match found.");
+			}
+			
+			// String 정규식 이용 => new_purchase_cd 생성
+			new_number = first_number+1;
+			new_number_st = String.valueOf(new_number).format("%02d", new_number);
+			new_purchase_cd = menu_code + today + new_number_st;
+			
+	    } else {
+	    	new_purchase_cd = menu_code + today + "01";
+	    }
+		
+	    purchaseDTO.setPurchase_cd(new_purchase_cd);
+	    
+		// 발주상태 저장
 		purchaseDTO.setPurchase_com("미완료");
 		
 		// String -> date 변환
