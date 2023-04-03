@@ -34,7 +34,7 @@
 		<div class="wrap">
 		  <button class="button" onclick="location.href='${pageContext.request.contextPath}/main/home'">홈</button>
 		  <button class="button">로그인</button>
-		  <button class="button">마이페이지</button>
+		  <button class="button" onclick="location.href='${pageContext.request.contextPath}/main/mypage'">마이페이지</button>
 		  <button class="button">로그아웃</button>
 		</div>
 
@@ -66,14 +66,14 @@
 	          <li><a href="#">품목정보관리</a></li>
 	          <li><a href="#">소요량관리</a></li>
 	          <li><a href="#">설비정보관리</a></li>
-	          <li><a href="#">거래처정보관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/business/businessmain">거래처정보관리</a></li>
 	        </ul>
 	      </li>
 	      <li>
 	        <a href="#">영업관리</a>
 	        <ul class="submenu">
 	          <li><a href="#">수주등록</a></li>
-	          <li><a href="#">수주관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/order/ordermain">수주관리</a></li>
 	          <li><a href="#">출하등록</a></li>
 	          <li><a href="#">출하관리</a></li>
 	        </ul>
