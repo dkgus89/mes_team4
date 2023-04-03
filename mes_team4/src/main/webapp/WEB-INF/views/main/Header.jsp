@@ -54,10 +54,10 @@
 	      <li>
 	        <a href="#">시스템관리</a>
 	        <ul class="submenu">
-	          <li><a href="home2.jsp">사용자관리</a></li>
-	          <li><a href="#">권한관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/system/membermain">사용자관리</a></li>
+	          <!-- <li><a href="#">권한관리</a></li>
 	          <li><a href="#">코드관리</a></li>
-	          <li><a href="#">정보관리</a></li>
+	          <li><a href="#">정보관리</a></li> -->
 	        </ul>
 	      </li>
 	      <li>
@@ -80,9 +80,9 @@
 	      <li>
 	        <a href="#">생산관리</a>
 	        <ul class="submenu">
-	          <li><a href="#">생산계획</a></li>
-	          <li><a href="#">작업지시현황</a></li>
-	          <li><a href="#">실적등록</a></li>
+	          <li><a href="#">생산계획-페이지X</a></li>
+	          <li><a href="${pageContext.request.contextPath}/instruction/instructionmain">작업지시현황</a></li>
+	          <li><a href="#">실적등록-페이지X</a></li>
 	          <li><a href="${pageContext.request.contextPath}/perform/perform">생산실적현황</a></li>
 	        </ul>
 	      </li>
@@ -91,7 +91,7 @@
 	        <ul class="submenu">
 	          <li><a href="${pageContext.request.contextPath}/receive/recpage">자재입고관리</a></li>
 	          <li><a href="${pageContext.request.contextPath}/rel/relpage">자재출고관리</a></li>
-	          <li><a href="#">자재재고현황</a></li>
+	          <li><a href="#">자재재고현황-페이지X</a></li>
 	          <li><a href="${pageContext.request.contextPath}/purchase/list">자재발주관리</a></li>
 	        </ul>
 	      </li>

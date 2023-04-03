@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 파일이름 대신 namespace 이름을 불러서 사용 -->
+
+<mapper namespace="com.itwillbs.mappers.instructionMapper">
+	
+	<!-- ?대신 memberDTO의 멤버변수명 사용 #{id}-->
+<!-- 	<insert id="memberinsertpro"> -->
+<!-- 		insert into employees(emp_no,dept_cd,grade_cd,priv_cd,emp_name,emp_pass)  -->
+<!-- 		values(#{emp_no},#{dept_cd},#{grade_cd},#{priv_cd},#{emp_name},#{emp_pass}) -->
+<!-- 	</insert> -->
+
+<!-- 	<select id="getMaxEmp_no" resultType="java.lang.Integer"> -->
+<!-- 		select max(emp_no) from employees -->
+<!-- 	</select> -->
+	
+	 <select id="getorderlist" resultType="com.itwillbs.domain.OMDTO">
+    	select * from order_management
+    	<if test="search != null">
+    	where order_cd like CONCAT('%',#{search},'%')
+    	</if>
+    	limit #{startRow},#{pageSize}	
+    </select>
+	
+	<select id="getordercount" resultType="java.lang.Integer">
+        select count(*) from order_management
+        <if test="search != null">
+    	where order_cd like CONCAT('%',#{search},'%')
+    	</if>
+    </select>
+
+    <select id="orderinfo" resultType="com.itwillbs.domain.OMDTO">
+        select *
+        from order_management
+        where order_cd = #{order_cd}
+    </select>
+    
+    <insert id="instructioninsertpro">
+        insert into instruction(instruction_code, order_cd, product_cd, instruction_qt, line_cd, instruction_date, instruction_state) 
+		values(#{instruction_code},#{order_cd},#{product_cd},#{instruction_qt},#{line_cd},#{instruction_date},#{instruction_state})
+    </insert>
+    
+    <select id="instructioninfo" resultType="com.itwillbs.domain.InstructionDTO">
+        select *
+        from instruction
+        where instruction_code = #{instruction_code}
+    </select>
+    
+     <update id="instructionupdatepro">
+     	update instruction set order_cd = #{order_cd}, product_cd = #{product_cd}, instruction_qt = #{instruction_qt}, line_cd = #{line_cd}, instruction_date = #{instruction_date}, instruction_state = #{instruction_state}
+     	where instruction_code = #{instruction_code}
+    </update>
+    
+    <delete id="instructiondelete">
+  		delete from instruction
+  		where instruction_code = #{instruction_code}
+    </delete>
+    
+ 	 <select id="instructionlist" resultType="com.itwillbs.domain.InstructionDTO">
+    	select * from instruction
+    	<if test="search != null">
+    	where order_cd like CONCAT('%',#{search},'%')
+    	</if>
+    	limit #{startRow},#{pageSize}	
+    </select>
+	
+	<select id="getinstructioncount" resultType="java.lang.Integer">
+        select count(*) from instruction
+        <if test="search != null">
+    	where order_cd like CONCAT('%',#{search},'%')
+    	</if>
+    </select>
+ 
+
+    
+<!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
+<!-- 		select * from members  -->
+<!-- 		where id = #{id} and pass = #{pass}  -->
+<!-- 	</select> -->
+
+<!-- 	<select id="selectBlog" parameterType="int" resultType="Blog">
+        select * from Blog where id = #{id}
+    </select>
+    
+    <insert id="">
+    </insert>
+    
+    <update id="">
+    </update>
+    
+    <delete id="">
+    </delete> -->
+    
+</mapper>
