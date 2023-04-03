@@ -108,7 +108,7 @@ function rst(){
 document.PerformInsert.reset();
 }
 $(document).ready(function () {
-// 	alert($("#inst").val());
+	alert($("#inst").val());
 		$.ajax({
 			url:'${pageContext.request.contextPath}/perform/callcd',
 			data:{'ic':$("#inst").val()},
