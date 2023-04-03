@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.mappers.OrderMapper">
+
+
+<select id="getMaxNum" resultType="java.lang.Integer">
+	select max(SUBSTR(order_cd, 3)) from order_management
+</select>
+
+	 <insert id="insertOrder">
+    	insert into order_management(order_cd, business_cd, emp_no, product_cd, order_date, deliver_date, order_count) 
+    	values(#{order_cd},#{business_cd},#{emp_no},#{product_cd},#{order_date},#{deliver_date},#{order_count})
+    </insert>
+    
+    <select id="getOrderCount" resultType="java.lang.Integer">
+    select count(*) from order_management
+    	<if test="search != null">
+   			where product_cd like CONCAT('%',#{search},'%')
+   			or con like CONCAT('%',#{search},'%')
+   		</if>
+    </select>
+    
+    <select id="getOrderList" resultType="com.itwillbs.domain.OrderDTO">
+    select * from order_management
+    	<if test="search != null">
+   			where business_cd like CONCAT('%',#{search},'%')
+   			or con like CONCAT('%',#{search},'%')
+   		</if>
+    order by order_cd desc
+    limit #{startRow} , #{pageSize}
+    </select>
+    
+    <delete id="deleteOrder">
+    delete from order_management
+    where order_cd = #{cd}
+    </delete>
+    
+    <select id="getOrder" resultType="com.itwillbs.domain.OrderDTO">
+    	select * from order_management
+    	where order_cd = #{cd}
+    </select>
+    
+    <update id="updateOrder">
+    update order_management
+    set business_cd = #{business_cd}, emp_no = #{emp_no}, product_cd = #{product_cd},
+    order_date = #{order_date} , deliver_date = #{deliver_date}, order_count = #{order_count}
+    where order_cd = #{order_cd}
+    </update>
+
+</mapper>
