@@ -17,7 +17,7 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 	@Inject
 	private SqlSession sqlSession;
 	
-	private static final String namespace="com.itwillbs.mappers.relMapper";
+	private static final String namespace="com.itwillbs.mappers.releaseMapper";
 	
 	@Override
 	public int getRelCount(PageDTO pageDTO) {
@@ -74,6 +74,20 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 		System.out.println("ReleaseDAOImpl getPInstMap()");
 		
 		return sqlSession.selectList(namespace+".getPInstMap");
+	}
+
+	@Override
+	public ReleaseDTO getrel(String rel_schedule_cd) {
+		System.out.println("ReleaseDAOImpl updaterel()");
+		
+		return sqlSession.selectOne(namespace+".getrel",rel_schedule_cd);
+	}
+
+	@Override
+	public void updaterel(ReleaseDTO releaseDTO) {
+		System.out.println("ReleaseDAOImpl updaterel()");
+		
+		sqlSession.update(namespace+".updaterel", releaseDTO);
 	}
 
 

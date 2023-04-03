@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.ReleaseDAO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ReleaseDTO;
+import com.itwillbs.domain.WHDTO;
 
 @Service
 public class ReleaseServiceImpl implements ReleaseService{
@@ -80,6 +81,25 @@ public class ReleaseServiceImpl implements ReleaseService{
 		
 		return releaseDAO.getPInstMap();
 	}
+
+
+	@Override
+	public ReleaseDTO getrel(String rel_schedule_cd) {
+		System.out.println("ReleaseServiceImpl getrel()");
+		
+		return releaseDAO.getrel(rel_schedule_cd);
+	}
+
+
+	@Override
+	public void updaterel(ReleaseDTO releaseDTO) {
+		System.out.println("ReleaseServiceImpl updaterel()");
+		
+		releaseDAO.updaterel(releaseDTO);
+	}
+
+
+	
 
 
 

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ReleaseDTO;
+import com.itwillbs.domain.WHDTO;
 
 public interface ReleaseService {
 	
@@ -19,6 +20,12 @@ public interface ReleaseService {
 	public List<Map<String, Object>> getWInstMap();
 
 	public List<Map<String, Object>> getPInstMap();
+
+	public ReleaseDTO getrel(String rel_schedule_cd);
+
+	public void updaterel(ReleaseDTO releaseDTO);
+
+	
 
 
 

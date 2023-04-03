@@ -24,6 +24,10 @@ public interface ReleaseDAO {
 
 	public List<Map<String, Object>> getPInstMap();
 
+	public ReleaseDTO getrel(String rel_schedule_cd);
+
+	public void updaterel(ReleaseDTO releaseDTO);
+
 
 
 
