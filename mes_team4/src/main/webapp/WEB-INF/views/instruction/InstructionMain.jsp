@@ -64,8 +64,8 @@ function instructiondelete(b) {
 						<td>${instructionDTO.line_cd}</td>
 						<td>${instructionDTO.instruction_date}</td>
 						<td>${instructionDTO.instruction_state}</td>
-						<td><button onclick="orderupdate('${instructionDTO.instruction_code}');">수정</button></td>
-						<td><button onclick="orderdelete('${instructionDTO.instruction_code}');">삭제</button></td></tr>
+						<td><button onclick="instructionupdate('${instructionDTO.instruction_code}');">수정</button></td>
+						<td><button onclick="instructiondelete('${instructionDTO.instruction_code}');">삭제</button></td></tr>
 				</c:forEach>
 			</tbody>
 		</table>
