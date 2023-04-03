@@ -19,7 +19,7 @@
 	}
 
 	function updatePopup(cd){
-    	window.open("${pageContext.request.contextPath}/wh/whupdate?wh_cd="+cd,"수정","width=1000, height=500, top=200, left=200");
+    	window.open("${pageContext.request.contextPath}/rel/relupdate?rel_schedule_cd="+cd,"수정","width=1000, height=500, top=200, left=200");
 	}
 
 // 	체크
@@ -36,7 +36,7 @@
 	
 // 	삭제
 	function deleteValue(){
-		var url = "/wh/whdelete"; // controller로 보내고자 하는 url
+		var url = "/rel/reldelete"; // controller로 보내고자 하는 url
 		var valueArr = new Array();
 		var whList = $("input[name='rowcheck']");
 		for(var i=0; i<whList.length; i++){
@@ -50,7 +50,7 @@
 			var chk = confirm("정말 삭제하시겠습니까?");
 			
 			$.ajax({
-				url :'${pageContext.request.contextPath}/wh/whdelete', 		//전송url
+				url :'${pageContext.request.contextPath}/rel/reldelete', 		//전송url
 				type : 'GET',	// post방식 ,,나는 겟하니까 돌아간다!!...
 				traditional : true,
 				data : {
@@ -72,7 +72,7 @@
 
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
-	<h2>창고</h2><br>
+	<h2>자재출고</h2><br>
 	
 	
 <!--     <div class="search"> -->
@@ -120,7 +120,7 @@
 			<tbody>
 			<c:forEach var="dto" items="${relList }">
 				<tr>
-					<td><input type="checkbox" id="checkbox" name="rowcheck" value="${releaseDTO.rel_schedule_cd }"></td>
+					<td><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.rel_schedule_cd }"></td>
 					<td>${dto.rel_schedule_cd}</td>
 					<td>${dto.business_name}</td>
 <%-- 					<td>${dto.emp_name}</td> --%>
@@ -131,7 +131,7 @@
 					<td>${dto.out_complete}</td>
 					<td>${dto.remarks}</td>
 					<td>
-					<button class="button2" onclick="updatePopup('${releaseDTO.rel_schedule_cd}');">수정</button>
+					<button class="button2" onclick="updatePopup('${dto.rel_schedule_cd}');">수정</button>
 					</td>
 				</tr>
 			</c:forEach>			

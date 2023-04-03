@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ReleaseDTO;
+import com.itwillbs.domain.WHDTO;
 import com.itwillbs.service.ReleaseService;
 
 @Controller
@@ -90,6 +91,25 @@ public class ReleaseController {
 		return "redirect:/rel/relpage";
 	}
 
+	@RequestMapping(value = "/rel/relupdate", method = RequestMethod.GET)
+	public String relupdate(HttpServletRequest request, Model model) {
+		System.out.println("ReleaseController relupdate()");
+		
+		String rel_schedule_cd=request.getParameter("rel_schedule_cd");
+		ReleaseDTO relDTO=relService.getrel(rel_schedule_cd);
+		
+		model.addAttribute("relDTO", relDTO);
+		
+		return "release/RelUpdate";
+	}
 	
+	@RequestMapping(value = "/rel/relupdatePro", method = RequestMethod.POST)
+	public String relupdatePro(ReleaseDTO releaseDTO) {
+		System.out.println("ReleaseController relupdatePro()");
+		
+		relService.updaterel(releaseDTO);
+		
+		return "redirect:/rel/relpage";
+	}
 	
 }
