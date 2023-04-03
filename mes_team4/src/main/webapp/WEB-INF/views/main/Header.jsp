@@ -67,7 +67,7 @@
 	          <li><a href="${pageContext.request.contextPath}/consmpt/list">소요량관리</a></li>
 	          <li><a href="${pageContext.request.contextPath}/line/line">설비정보관리</a></li>
 	          <li><a href="${pageContext.request.contextPath}/business/businessmain">거래처정보관리</a></li>
-	          <li><a href="wh/whpage">창고관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/wh/whpage">창고관리</a></li>
 	        </ul>
 	      </li>
 	      <li>
