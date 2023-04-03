@@ -80,9 +80,7 @@
 	      <li>
 	        <a href="#">생산관리</a>
 	        <ul class="submenu">
-	          <li><a href="#">생산계획-페이지X</a></li>
 	          <li><a href="${pageContext.request.contextPath}/instruction/instructionmain">작업지시현황</a></li>
-	          <li><a href="#">실적등록-페이지X</a></li>
 	          <li><a href="${pageContext.request.contextPath}/perform/perform">생산실적현황</a></li>
 	        </ul>
 	      </li>
@@ -91,7 +89,7 @@
 	        <ul class="submenu">
 	          <li><a href="${pageContext.request.contextPath}/receive/recpage">자재입고관리</a></li>
 	          <li><a href="${pageContext.request.contextPath}/rel/relpage">자재출고관리</a></li>
-	          <li><a href="#">자재재고현황-페이지X</a></li>
+	          <li><a href="${pageContext.request.contextPath}/stock/stock">자재재고현황</a></li>
 	          <li><a href="${pageContext.request.contextPath}/purchase/list">자재발주관리</a></li>
 	        </ul>
 	      </li>
