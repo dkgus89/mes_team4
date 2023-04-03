@@ -12,7 +12,7 @@ import com.itwillbs.domain.PageDTO;
 
 
 @Service
-public class BusinessServiceImpl{
+public class BusinessServiceImpl implements BusinessService{
 
 	
 
