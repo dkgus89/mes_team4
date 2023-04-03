@@ -64,7 +64,7 @@
 	        <a href="#">기준정보관리</a>
 	        <ul class="submenu">
 	          <li><a href="#">품목정보관리</a></li>
-	          <li><a href="#">소요량관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/consmpt/list">소요량관리</a></li>
 	          <li><a href="#">설비정보관리</a></li>
 	          <li><a href="${pageContext.request.contextPath}/business/businessmain">거래처정보관리</a></li>
 	        </ul>
@@ -94,7 +94,7 @@
 	          <li><a href="#">자재입고관리</a></li>
 	          <li><a href="#">자재출고관리</a></li>
 	          <li><a href="#">자재재고현황</a></li>
-	          <li><a href="#">자재발주관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/purchase/list">자재발주관리</a></li>
 	          <li><a href="#">submenu05</a></li>
 	        </ul>
 	      </li>
