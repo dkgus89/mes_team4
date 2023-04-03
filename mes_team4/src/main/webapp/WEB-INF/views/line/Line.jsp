@@ -23,18 +23,20 @@ function chdelete(){
 	document.linelist.action="${pageContext.request.contextPath}/line/linedelete";
 	document.linelist.submit();
 }
-function allCheck2(){
+function allCheck(){
+	
 	var ac = document.linelist.allcheck;
 	var rc = document.linelist.rowcheck;
 	if(ac.checked == true){
 		for(i=0; i<rc.length; i++){
 			rc[i].checked=true;}
+		rc.checked=true;
 	}else {
 		for(i=0;i<rc.length;i++){
 			rc[i].checked=false;}
+		rc.checked=false;
 	} 
 }
-	
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -70,13 +72,13 @@ function allCheck2(){
 			</form>
 		</div>
 		<br>
-	<div class="wrap2">		
+	<div class="wrap2" style="float: left;">	
 	  <button class="button2" onclick="showPopup();">추가</button>
 	  <button class="button2" onclick="chdelete();">삭제</button>
 	  
 	 </div><br>
 	 <br>
-	 
+	 <div>전체 ${pageDTO.count }건</div>
 	 
 	<form name="linelist">
 		<input type="hidden" value="">
@@ -84,7 +86,7 @@ function allCheck2(){
 		<table id="vendortable" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">					
-					<th><input type="checkbox" name="allcheck" onClick='allCheck2()'></th>
+					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
 					<th>번호</th>
 					<th>라인코드</th>
 					<th>라인명</th>
@@ -96,7 +98,9 @@ function allCheck2(){
 			</thead>
 			
 			<tbody>
-				<c:forEach var="LineDTO" items="${LineList }"  varStatus="status">
+			<c:choose>
+			<c:when test="${not empty LineList}">
+				<c:forEach var="LineDTO" items="${LineList}"  varStatus="status">
 
 				<tr>				
 				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${LineDTO.line_cd}"></td>
@@ -113,7 +117,14 @@ function allCheck2(){
     			<td><button class="button2" onclick="showPopup2('${LineDTO.line_cd}');">수정</button></td>
     			</tr>
    			 
-				</c:forEach>			
+				</c:forEach>	
+			</c:when>		
+			<c:otherwise>
+				<tr>
+				<td colspan="8" style="text-align: center;">등록된 데이터가 없습니다.</td>
+				</tr>
+			</c:otherwise>
+			</c:choose>			
 			</tbody>			
 		</table>		
 		<div id="array"></div>	

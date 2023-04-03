@@ -14,9 +14,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-	// jQuery 준비 => 대상.함수()
-//  	$(document).ready(function(){
+// 	jQuery 준비 => 대상.함수()
+ 	$(document).ready(function(){
 //  		alert("준비");
+
+		// 원자재 리스트 팝업
+		$(document).on('click', '#rpListBtn', function() {
+			var trIndex = $(this).parent().parent().index();
+			var product_dv = 'rp';
+			
+			var link = '${pageContext.request.contextPath}/consmpt/prlist?trIndex='+trIndex+'&product_dv='+product_dv;     
+			var popupWidth = 500;
+			var popupHeight = 700;
+			var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
+			var popupY= (window.screen.height/2) - (popupHeight/2);
+			
+		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+		});
+		
 		//submit 버튼을 클릭했을때 전송되어지면 이벤트 onsubmit()
 		// id="join" 폼태그 표시 => 전송
 // 		$('#PI').submit(function(){
@@ -67,7 +82,7 @@
 // 				return false;
 // 			}
 //  		});
-//  	});
+ 	});
 function sub(){
 	$(document).ready(function(){
 // 	alert("준비");
@@ -97,6 +112,7 @@ function sub(){
 			return false;
 		}
 		
+		
 	window.opener.name = "parentPage";
 	document.PerformInsert.target="parentPage";
 	document.PerformInsert.action="${pageContext.request.contextPath}/perform/performinsertpro";
@@ -107,42 +123,42 @@ function sub(){
 function rst(){
 document.PerformInsert.reset();
 }
-$(document).ready(function () {
-	alert($("#inst").val());
-		$.ajax({
-			url:'${pageContext.request.contextPath}/perform/callcd',
-			data:{'ic':$("#inst").val()},
-			success:function(result){
-				  $('#line_cd').val(result);
-			}
-		});
+// $(document).ready(function () {
+// // 	alert($("#inst").val());
+// 		$.ajax({
+// 			url:'${pageContext.request.contextPath}/perform/callcd',
+// 			data:{'ic':$("#inst").val()},
+// 			success:function(result){
+// 				  $('#line_cd').val(result);
+// 			}
+// 		});
 		
-		$.ajax({
-			url:'${pageContext.request.contextPath}/perform/callcd2',
-			data:{'ic':$("#inst").val()},
-			success:function(result){
-				  $('#product_cd').val(result);
-			}
-		});
+// 		$.ajax({
+// 			url:'${pageContext.request.contextPath}/perform/callcd2',
+// 			data:{'ic':$("#inst").val()},
+// 			success:function(result){
+// 				  $('#product_cd').val(result);
+// 			}
+// 		});
 		
-		$("#inst").on("change", function(){
-			$.ajax({
-				url:'${pageContext.request.contextPath}/perform/callcd',
-				data:{'ic':$("#inst").val()},
-				success:function(result){
-					  $('#line_cd').val(result);			
-				}
-			});
+// 		$("#inst").on("change", function(){
+// 			$.ajax({
+// 				url:'${pageContext.request.contextPath}/perform/callcd',
+// 				data:{'ic':$("#inst").val()},
+// 				success:function(result){
+// 					  $('#line_cd').val(result);			
+// 				}
+// 			});
 			
-			$.ajax({
-				url:'${pageContext.request.contextPath}/perform/callcd2',
-				data:{'ic':$("#inst").val()},
-				success:function(result){
-					$('#product_cd').val(result);			
-				}
-			});			
-		});
-});
+// 			$.ajax({
+// 				url:'${pageContext.request.contextPath}/perform/callcd2',
+// 				data:{'ic':$("#inst").val()},
+// 				success:function(result){
+// 					$('#product_cd').val(result);			
+// 				}
+// 			});			
+// 		});
+// });
 </script>
 
 </head>
@@ -175,13 +191,16 @@ $(document).ready(function () {
 			
 			<tbody>
 				<tr>
-					<td><select name="instruction_code" id="inst">
-							<c:forEach var="dto" items="${instMap}">					
-								<option value="${dto.instruction_code}">${dto.instruction_code}</option>							
-							</c:forEach>
-      				</select></td>
-    				<td><input type="text" name="line_cd" id="line_cd"></td>
-    				<td><input type="text" name="product_cd" id="product_cd"></td>
+				<td><button type="button" id="rpListBtn">추가</button></td>
+				<td></td>
+				<td></td>
+<!-- 					<td><select name="instruction_code" id="inst"> -->
+<%-- 							<c:forEach var="dto" items="${instMap}">					 --%>
+<%-- 								<option value="${dto.instruction_code}">${dto.instruction_code}</option>							 --%>
+<%-- 							</c:forEach> --%>
+<!--       				</select></td>      				 -->
+<!--     				<td><input type="text" name="line_cd" id="line_cd"></td> -->
+<!--     				<td><input type="text" name="product_cd" id="product_cd"></td> -->
     			</tr>
 
 			</tbody>

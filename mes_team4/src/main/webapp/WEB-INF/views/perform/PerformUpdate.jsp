@@ -15,12 +15,41 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 function sub(){
+	$(document).ready(function(){
+// 	 	alert("준비");
+			if($('#line_cd').val()==""){
+				alert("라인코드를 입력하세요");
+				$('#line_cd').focus();
+				return false;
+			}
+			if($('#product_cd').val()==""){
+				alert("품목코드를 입력하세요");
+				$('#product_cd').focus();
+				return false;
+			}
+			if($('#perform_date').val()==""){
+				alert("실적일자를 입력하세요");
+				$('#perform_date').focus();
+				return false;
+			}
+			if($('#fair_prod').val()==""){
+				alert("양품 수량을 입력하세요");
+				$('#fair_prod').focus();
+				return false;
+			}
+			if($('#defect_prod').val()==""){
+				alert("불량 수량을 입력하세요");
+				$('#defect_prod').focus();
+				return false;
+			}
+	
 	window.opener.name = "parentPage";
 	document.PerformUpdate.target="parentPage";
 	document.PerformUpdate.action="${pageContext.request.contextPath}/perform/performupdatepro";
 	document.PerformUpdate.submit();
 	self.close();
-	}
+	});
+}
 	function rst(){
 	document.PerformUpdate.reset();
 	}
@@ -79,12 +108,12 @@ function sub(){
 	 
 	 
 	<form name="PerformUpdate" method="post">
-		<input type="hidden" value="">
+		<input type="hidden" name="perform_cd" value="${perform.perform_cd}">
 		
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>실적코드</th>
+<!-- 					<th>실적코드</th> -->
 					<th>작업지시코드</th>
 					<th>라인코드</th>
 					<th>품목코드</th>				
@@ -93,7 +122,7 @@ function sub(){
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="perform_cd" value="${perform.perform_cd}" readonly></td>
+					
 					<td><select name="instruction_code"  id="inst">
 							<option value="${perform.instruction_code}" selected>${perform.instruction_code}</option>
 								<c:forEach var="dto" items="${instMap}">
@@ -124,11 +153,11 @@ function sub(){
 			
 			<tbody>
 				<tr>
-    				<td><input type="date" name="perform_date" value="${perform.perform_date}"></td>
-    				<td><input type="text" name="fair_prod" value="${perform.fair_prod}"></td>
-    				<td><input type="text" name="defect_prod" value="${perform.defect_prod}"></td>
-    				<td><input type="text" name="defect_remarks" value="${perform.defect_remarks}"></td>
-    				<td><input type="text" name="remarks" value="${perform.remarks}"></td>
+    				<td><input type="date" name="perform_date" id="perform_date" value="${perform.perform_date}"></td>
+    				<td><input type="text" name="fair_prod" id="fair_prod" value="${perform.fair_prod}"></td>
+    				<td><input type="text" name="defect_prod" id="defect_prod" value="${perform.defect_prod}"></td>
+    				<td><input type="text" name="defect_remarks" id="defect_remarks" value="${perform.defect_remarks}"></td>
+    				<td><input type="text" name="remarks" id="remarks" value="${perform.remarks}"></td>
 				</tr>
 
 			</tbody>

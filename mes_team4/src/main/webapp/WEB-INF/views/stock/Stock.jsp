@@ -30,9 +30,11 @@ function allCheck(){
 	if(ac.checked == true){
 		for(i=0; i<rc.length; i++){
 			rc[i].checked=true;}
+		rc.checked=true;
 	}else {
 		for(i=0;i<rc.length;i++){
 			rc[i].checked=false;}
+		rc.checked=false;
 	} 
 }
 </script>
@@ -87,7 +89,7 @@ function allCheck(){
 	  
 	 </div><br>
 	 <br>
-	 
+	 <div>전체 ${pageDTO.count }건</div>
 	 
 	<form name="stocklist">
 		<input type="hidden" value="">
@@ -110,6 +112,8 @@ function allCheck(){
 			</thead>
 			
 			<tbody>
+			<c:choose>
+			<c:when test="${not empty StockMap}">
 				<c:forEach var="dto" items="${StockMap}" varStatus="status">
 
 				<tr>				
@@ -126,7 +130,14 @@ function allCheck(){
     			<td><button class="button2" onclick="showPopup2('${dto.stock_cd}');">수정</button></td>
     			</tr>
    			 
-				</c:forEach>	
+				</c:forEach>
+				</c:when>		
+			<c:otherwise>
+				<tr>
+				<td colspan="11" style="text-align: center;">등록된 데이터가 없습니다.</td>
+				</tr>
+			</c:otherwise>
+			</c:choose>		
 			</tbody>
 		</table>		
 		<div id="array"></div>	
