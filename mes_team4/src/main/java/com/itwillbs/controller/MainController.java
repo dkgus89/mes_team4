@@ -39,7 +39,7 @@ public class MainController {
 	public String home() {
 		
 		// 가상주소 유지
-		return "main/homemain";
+		return "main/Home";
 	}
 	
 }//class
