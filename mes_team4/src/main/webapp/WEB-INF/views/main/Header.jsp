@@ -73,10 +73,8 @@
 	      <li>
 	        <a href="#">영업관리</a>
 	        <ul class="submenu">
-	          <li><a href="#">수주등록</a></li>
 	          <li><a href="${pageContext.request.contextPath}/order/ordermain">수주관리</a></li>
-	          <li><a href="#">출하등록</a></li>
-	          <li><a href="#">출하관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/deliver/list">출하관리</a></li>
 	        </ul>
 	      </li>
 	      <li>
@@ -86,7 +84,6 @@
 	          <li><a href="#">작업지시현황</a></li>
 	          <li><a href="#">실적등록</a></li>
 	          <li><a href="${pageContext.request.contextPath}/perform/perform">생산실적현황</a></li>
-	          <li><a href="#">submenu05</a></li>
 	        </ul>
 	      </li>
 	      <li>
@@ -96,7 +93,6 @@
 	          <li><a href="${pageContext.request.contextPath}/rel/relpage">자재출고관리</a></li>
 	          <li><a href="#">자재재고현황</a></li>
 	          <li><a href="${pageContext.request.contextPath}/purchase/list">자재발주관리</a></li>
-	          <li><a href="#">submenu05</a></li>
 	        </ul>
 	      </li>
 	    </ul>
