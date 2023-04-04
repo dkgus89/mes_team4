@@ -19,5 +19,9 @@ public interface OrderService {
 
 	public void updateOrder(OrderDTO orderDTO);
 	
+	public int getPCount();
+	
+	public int getFCount();
+	
 
 }

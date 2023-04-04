@@ -74,4 +74,16 @@ public class OrderServiceImpl implements OrderService{
 		
 	}
 
+	@Override
+	public int getPCount() {
+		System.out.println("OrderServiceImpl getPCount()");
+		return orderDAO.getPCount();
+	}
+
+	@Override
+	public int getFCount() {
+		System.out.println("OrderServiceImpl getFCount()");
+		return orderDAO.getFCount();
+	}
+
 }

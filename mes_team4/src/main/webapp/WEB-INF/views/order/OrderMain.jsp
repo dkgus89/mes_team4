@@ -71,7 +71,9 @@
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>수주현황</h2><br>
+	<h2>수주현황</h2>
+	<h4>전체 ${pageDTO.count}건 / <span style="color:red">생산전 ${pageDTO.pcount}건</span> /  <span style="color:blue">생산완료 ${pageDTO.fcount}건</span></h4>
+	
 	<div class="wrap2">
 	  <button class="button2" onclick="showPopup();">추가</button>
 	  <button class="button2" onclick="deleteValue();">생산현황?</button>
@@ -110,7 +112,13 @@
 			<td>${orderDTO.order_date}</td>
 			<td>${orderDTO.deliver_date}</td>
 			<td>${orderDTO.emp_no}</td>
-			<td><span style="color:red">${orderDTO.con}</span></td>
+			
+			<c:choose>
+			<c:when test="${orderDTO.con eq '생산전'}"><td><span style="color:red">${orderDTO.con}</span></td> </c:when>
+			<c:when test="${orderDTO.con eq '생산완료'}"><td><span style="color:blue">${orderDTO.con}</span></td></c:when>
+			<c:otherwise> ... </c:otherwise>
+			</c:choose>
+			
 			<td><input type="button" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
 			</tr>
 			</c:forEach>

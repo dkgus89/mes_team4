@@ -47,5 +47,15 @@
     order_date = #{order_date} , deliver_date = #{deliver_date}, order_count = #{order_count}
     where order_cd = #{order_cd}
     </update>
-
+    
+     <select id="getPCount" resultType="java.lang.Integer">
+    select count(*) from order_management
+    where con like "생산전"
+  
+    </select>
+    
+     <select id="getFCount" resultType="java.lang.Integer">
+    select count(*) from order_management
+    where con like "생산완료"
+    </select>
 </mapper>

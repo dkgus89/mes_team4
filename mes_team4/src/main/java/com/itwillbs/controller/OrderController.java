@@ -52,6 +52,10 @@ public class OrderController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
 		
+		//생산 전,완료 개수 구하기
+		pageDTO.setPcount(orderService.getPCount());
+		pageDTO.setFcount(orderService.getFCount());
+		
 		// 검색어 가져오기
 		String search = request.getParameter("search");
 		// 검색어를 pageDTO에 담아줌 

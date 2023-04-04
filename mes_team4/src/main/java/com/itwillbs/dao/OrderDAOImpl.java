@@ -69,6 +69,18 @@ public class OrderDAOImpl implements OrderDAO{
 		sqlSession.update(namespace+".updateOrder",orderDTO);
 	}
 
+	@Override
+	public int getPCount() {
+		System.out.println("OrderDAOImpl getPCount()");
+		return sqlSession.selectOne(namespace+".getPCount");
+	}
+
+	@Override
+	public int getFCount() {
+		System.out.println("OrderDAOImpl getFCount()");
+		return sqlSession.selectOne(namespace+".getFCount");
+	}
+
 	
 
 }

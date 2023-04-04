@@ -20,5 +20,9 @@ public interface OrderDAO {
 	public OrderDTO getOrder(String cd);
 	
 	public void updateOrder(OrderDTO orderDTO);
+	
+	public int getPCount();
+	
+	public int getFCount();
 
 }
