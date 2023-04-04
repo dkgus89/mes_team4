@@ -20,6 +20,21 @@ public class PageDTO {
 	private int endPage; // 페이징 끝 번호
 	private int count; // 게시판의 모든 행 개수
 	
+	private int pcount; // 생산미완료 개수
+	private int fcount; // 생산완료 개수
+	
+	public int getPcount() {
+		return pcount;
+	}
+	public void setPcount(int pcount) {
+		this.pcount = pcount;
+	}
+	public int getFcount() {
+		return fcount;
+	}
+	public void setFcount(int fcount) {
+		this.fcount = fcount;
+	}
 	// 테이블 병합처리 멤버변수
 	private List<Integer> rowcolsTd; // td의 rowcols 수 
 	private List<Integer> showTd; // td를 나타낼 위치
