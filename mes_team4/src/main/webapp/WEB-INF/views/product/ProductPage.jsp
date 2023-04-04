@@ -41,7 +41,7 @@ function updatePopup(cd) {
 				<option value="product_cd_name">제품코드</option>
 				<option value="product_name">제품명</option>
 			</select>
-			<input type="text" name="search" class="button2">
+			<input type="text" name="search" class="button2" >
 			<input type="submit" class="button2" value="검색">
 		</form>
 	</div>
@@ -55,21 +55,21 @@ function updatePopup(cd) {
 	 
 	<form name="productList">
 		<input type="hidden" value="">
-		<table id="vendortable" class=" table table-striped">
+		<table id="vendortable" class=" table table-striped" style="width:1100px;">
 		
 			<thead>
 				<tr style="text-align:center; font-size: 0.9rem">
-					<th style="text-align:center">선택</th>
-					<th style="text-align:center">번호</th>
-					<th style="text-align:center">품목코드</th>
-					<th style="text-align:center">제품구분</th>
-					<th style="text-align:center">제품코드</th>
-					<th style="text-align:center">제품명</th>
-					<th style="text-align:center">거래처코드</th>
-					<th style="text-align:center">거래처명</th>
-					<th style="text-align:center">재고단위</th>
-					<th style="text-align:center">적요</th>
-					<th style="text-align:center">수정</th>
+					<th>선택</th>
+					<th>번호</th>
+					<th>품목코드</th>
+					<th>제품구분</th>
+					<th>제품코드</th>
+					<th>제품명</th>
+					<th>거래처코드</th>
+					<th>거래처명</th>
+					<th>재고단위</th>
+					<th>적요</th>
+					<th>수정</th>
 				</tr>
 			</thead>
 
@@ -87,7 +87,7 @@ function updatePopup(cd) {
 					<td>${productDTO.business_name }</td>
 					<td>${productDTO.product_unit }</td>
 					<td>${productDTO.remarks }</td>
-					<td><button class="button2" onclick="updatePopup('${productDTO.product_cd_name}');">수정</button></td>
+					<td><input type="button" value="수정" onclick="updatePopup('${productDTO.product_cd_name}');"></td>
 				</tr>
 					</c:forEach>
 			</c:if>
