@@ -33,43 +33,47 @@ function setChildValue(instruction_code,line_cd,product_cd,instruction_qt){
 }
 function sub(){
 	$(document).ready(function(){
-// 	 	alert("준비");
-		if($('#instruction_code').val()==""){
-			alert("작업지시코드를 선택하세요");
-			$('#instruction_code').focus();
+		// submit 유효성 검사
+		var result = confirm("수정사항을 등록하시겠습니까?");
+		if (result == true){   			
+			if($('#instruction_code').val()==""){
+				alert("작업지시코드를 선택하세요");
+				$('#instruction_code').focus();
+				return false;
+			}
+			if($('#line_cd').val()==""){
+				alert("라인코드를 입력하세요");
+				$('#line_cd').focus();
+				return false;
+			}
+			if($('#product_cd').val()==""){
+				alert("품목코드를 입력하세요");
+				$('#product_cd').focus();
+				return false;
+			}
+			if($('#perform_date').val()==""){
+				alert("실적일자를 입력하세요");
+				$('#perform_date').focus();
+				return false;
+			}
+			if($('#fair_prod').val()==""){
+				alert("양품 수량을 입력하세요");
+				$('#fair_prod').focus();
+				return false;
+			}
+			if($('#defect_prod').val()==""){
+				alert("불량품 수량을 입력하세요");
+				$('#defect_prod').focus();
+				return false;
+			}
+			window.opener.name = "parentPage";
+			document.PerformUpdate.target="parentPage";
+			document.PerformUpdate.action="${pageContext.request.contextPath}/perform/performupdatepro";
+			document.PerformUpdate.submit();
+			self.close();
+		} else {
 			return false;
 		}
-		if($('#line_cd').val()==""){
-			alert("라인코드를 입력하세요");
-			$('#line_cd').focus();
-			return false;
-		}
-		if($('#product_cd').val()==""){
-			alert("품목코드를 입력하세요");
-			$('#product_cd').focus();
-			return false;
-		}
-		if($('#perform_date').val()==""){
-			alert("실적일자를 입력하세요");
-			$('#perform_date').focus();
-			return false;
-		}
-		if($('#fair_prod').val()==""){
-			alert("양품 수량을 입력하세요");
-			$('#fair_prod').focus();
-			return false;
-		}
-		if($('#defect_prod').val()==""){
-			alert("불량품 수량을 입력하세요");
-			$('#defect_prod').focus();
-			return false;
-		}
-	
-	window.opener.name = "parentPage";
-	document.PerformUpdate.target="parentPage";
-	document.PerformUpdate.action="${pageContext.request.contextPath}/perform/performupdatepro";
-	document.PerformUpdate.submit();
-	self.close();
 	});
 }
 function rst(){
