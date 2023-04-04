@@ -145,9 +145,11 @@ public class ReleaseController {
 		System.out.println("ReleaseController relupdate()");
 		
 		String rel_schedule_cd=request.getParameter("rel_schedule_cd");
-		ReleaseDTO relDTO=relService.getrel(rel_schedule_cd);
 		
-		model.addAttribute("relDTO", relDTO);
+		Map<String, Object> rec=relService.getrec(rel_schedule_cd);
+		
+		
+		model.addAttribute("rec", rec);
 		
 		return "release/RelUpdate";
 	}

@@ -15,8 +15,8 @@
 
 <script type="text/javascript">
 function sub(){
-document.updateform.action="${pageContext.request.contextPath}/wh/whupdatePro";
-document.updateform.submit();
+document.updaterel.action="${pageContext.request.contextPath}/wh/whupdatePro";
+document.updaterel.submit();
 setTimeout(function() { 
 	opener.parent.location.reload();
 	window.close();
@@ -25,7 +25,7 @@ setTimeout(function() {
 
 
 function rst(){
-document.updateform.reset();
+document.updaterel.reset();
 }
 </script>
 
@@ -42,7 +42,7 @@ document.updateform.reset();
 	 </div><br>
 	 <br>
 	
-	<form action="${pageContext.request.contextPath}/wh/whupdatePro" name="updateform" method="post" >
+	<form action="${pageContext.request.contextPath}/wh/whupdatePro" name="updaterel" method="post" >
 	<input type="hidden" value="${whDTO.wh_cd }" name="wh_cd">
 	
 		<table id="vendortable" class="table table-striped" style="width:1000px;">

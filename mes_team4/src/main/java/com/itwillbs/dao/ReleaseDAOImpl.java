@@ -85,6 +85,14 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 		return sqlSession.selectOne(namespace+".getRel_cd");
 	}
 
+	@Override
+	public Map<String, Object> getrec(String rel_schedule_cd) {
+		System.out.println("ReleaseDAOImpl getrec()");
+		
+		return sqlSession.selectOne(namespace+".getrec",rel_schedule_cd);
+	}
+
+
 
 
 
