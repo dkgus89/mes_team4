@@ -74,7 +74,7 @@
 
 	<h2>거래처 관리</h2>
 	<h4>* 거래처명 클릭시 상세정보 확인가능</h4>
-	
+	<h4>* 코드 클릭시 해당 거래처 수주현황</h4>
 	<div class="wrap2">
 	  <button class="button2" onclick="showPopup();">추가</button>
 	  <button class="button2" onclick="deleteValue();">삭제</button>
@@ -87,6 +87,7 @@
 		<thead>
 			<tr style="text-align: center; font-size: 0.9rem">
 			<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
+			<th> </th>
 			<th>코드</th>
 			<th>구분</th>
 			<th>업종유형</th>
@@ -100,13 +101,13 @@
 		<tbody>			
 		<c:choose>
 		<c:when test="${not empty businessList}">
-		<c:forEach var="businessDTO" items="${businessList}">
+		<c:forEach var="businessDTO" items="${businessList}" varStatus="sts">
 			<tr>
 			<td><input type="checkbox" id="checkbox" name="rowcheck" value="${businessDTO.business_cd}"></td>
-			<td>${businessDTO.business_cd}</td>
+			<td>${pageDTO.startRow+1 + sts.index}</td>
+			<td onclick="location.href='${pageContext.request.contextPath}/order/ordermainB?cd=${businessDTO.business_cd}'">${businessDTO.business_cd}</td>
 			<td>${businessDTO.business_dv}</td>
 			<td>${businessDTO.business_type}</td>
-			
 			<td>
 <!-- 		모달창에 출력될 내용 (반복문 돌려!!! ) -->
 			<div id="ex1" class="modal">

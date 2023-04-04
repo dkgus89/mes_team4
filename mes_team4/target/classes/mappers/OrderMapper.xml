@@ -49,14 +49,33 @@
     where order_cd = #{order_cd}
     </update>
     
-     <select id="getPCount" resultType="java.lang.Integer">
+    <select id="getPCount" resultType="java.lang.Integer">
+  	 select count(*) from order_management
+   		<where>
+      	<choose>
+        	<when test="search != null">
+           	AND (business_cd like #{search} and con like '생산전')
+         	</when>
+        	<otherwise>
+            AND con like '생산전'
+         	</otherwise>
+      	</choose>
+   		</where>
+	</select>
+    
+    
+    <select id="getFCount" resultType="java.lang.Integer">
     select count(*) from order_management
-    where con like "생산전"
-  
+  		<where>
+    	<choose>
+    		<when test="search != null">
+    		AND (business_cd like #{search} and con like '생산완료')
+    		</when>
+   		 	<otherwise>
+    		AND con like '생산완료'
+    		</otherwise>
+    	</choose>
+   	    </where>
     </select>
     
-     <select id="getFCount" resultType="java.lang.Integer">
-    select count(*) from order_management
-    where con like "생산완료"
-    </select>
 </mapper>

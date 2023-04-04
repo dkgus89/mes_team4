@@ -282,3 +282,8 @@
 		color: #F90;
 		text-decoration: underline;
 	}
+	
+	table tbody tr:hover {
+       	background-color: lightgray;
+        cursor:pointer;
+     }

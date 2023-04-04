@@ -37,8 +37,10 @@ public class OrderController {
 	
 	@RequestMapping(value = "/order/ordermain", method = RequestMethod.GET)
 	public String ordermain(HttpServletRequest request, Model model) {
+				
 		// 한 화면에 보여줄 글 개수 설정
 		int pageSize=5;
+		
 		// 현페이지 번호 가져오기
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null) {
@@ -78,12 +80,65 @@ public class OrderController {
 		pageDTO.setStartPage(startPage);
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
-		
+
 		model.addAttribute("orderList", orderList);
 		model.addAttribute("pageDTO", pageDTO);
 		
 		// 가상주소 유지
 		return "order/OrderMain";
+	}
+	
+	@RequestMapping(value = "/order/ordermainB", method = RequestMethod.GET)
+	public String ordermainB(HttpServletRequest request, Model model) {
+				
+		// 한 화면에 보여줄 글 개수 설정
+		int pageSize=5;
+		
+		// 현페이지 번호 가져오기
+		String pageNum=request.getParameter("pageNum");
+		if(pageNum==null) {
+			pageNum="1";
+		}
+		// 페이지번호를 => 정수형 변경
+		int currentPage=Integer.parseInt(pageNum);
+		
+		PageDTO pageDTO=new PageDTO();
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		
+		String search = request.getParameter("cd");
+		System.out.println("search값이다!!!!"+search);
+		// 검색어를 pageDTO에 담아줌 
+		pageDTO.setSearch(search);
+		
+		//생산 전,완료 개수 구하기
+		pageDTO.setPcount(orderService.getPCount(pageDTO));
+		pageDTO.setFcount(orderService.getFCount(pageDTO));
+		
+		List<OrderDTO> orderList = orderService.getOrderList(pageDTO);
+		
+		//페이징 처리
+		int count = orderService.getOrderCount();
+		int pageBlock=10;
+		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+		int endPage=startPage+pageBlock-1;
+		int pageCount=count/pageSize+(count%pageSize==0?0:1);
+		if(endPage > pageCount){
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(count);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		model.addAttribute("orderList", orderList);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		// 가상주소 유지
+		return "order/OrderMainB";
 	}
 	
 	@RequestMapping(value = "/order/orderinsert", method = RequestMethod.GET)
@@ -151,5 +206,6 @@ public class OrderController {
 
 		return "redirect:/order/ordermain";
 	}
+	
 	
 }
