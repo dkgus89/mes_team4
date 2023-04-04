@@ -47,7 +47,6 @@ function rst(){
 					<th>제품코드 </th>
 					<th>제품명 </th>
 					<th>거래처명 </th>
-					<th>규격 </th>
 					<th>재고단위  </th>
 					<th>적요</th>
 				</tr>
@@ -78,7 +77,6 @@ function rst(){
 							<option value="${dto.business_cd }">${dto.business_cd } </option>
 						</c:forEach>
 					</select></td>
-					<td><input type="tel" name="product_unit"></td>
 					<td><input type="text" name="product_unit"></td>
 					<td><input type="text"  class="remarks" name="remarks" ></td>
 				</tr>

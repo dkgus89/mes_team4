@@ -25,8 +25,6 @@
 	<h2> 입고 예정 목록 </h2><br>
 	<div class="wrap2">
 	  <button class="button2">추가</button>
-<!-- 	  <button class="button2">수정</button> -->
-<!-- 	  <button class="button2">저장</button> -->
 	  <button class="button2">삭제</button>
 	  
 	 </div><br>
@@ -40,11 +38,10 @@
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>선택</th>
-					<th>입고코드</th>
-					<th>거래처명</th>
-					<th>담당자</th>
+					<th>입고예정코드</th>
 					<th>입고창고</th>
-					<th>입고품목명</th>
+					<th>발주/수주코드</th>
+					<th>제품코드</th>
 					<th>입고일자</th>
 					<th>입고수량</th>
 					<th>진행상태</th>
@@ -56,7 +53,6 @@
 				<tr>
 					<td><input type="checkbox" id="checkbox"></td>
 					<td><input type="text" value="test1-1"></td>
-					<td><input type="text" value="test1-2"></td>
 					<td><input type="text" value="test1-3"></td>
 					<td><input type="text" value="test1-4"></td>
 					<td><input type="text" value="test1-4"></td>
