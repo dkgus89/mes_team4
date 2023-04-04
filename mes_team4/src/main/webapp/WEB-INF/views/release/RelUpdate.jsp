@@ -104,11 +104,11 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
 
 <div id="contents">	
 <!-- 본문HTML 입력 시작-->
-<h2 class="inserttitle">자재출고 등록</h2><br>
+<h2 class="inserttitle">자재출고 수정</h2><br>
 	
 	<div class="wrap2">
 	  <button class="button2" id="resetBtn">초기화</button>
-	  <button class="button2" onclick="insertBtn();">등록</button>
+	  <button class="button2" onclick="updateBtn();">수정</button>
 	  <button class="button2" onclick="window.close();">닫기</button>
 	 </div>
 	 <br>
@@ -118,7 +118,7 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
 
 	<form id="move" action="${pageContext.request.contextPath}/rel/relupdatetPro" method="post" >
 	
-	<input type="hidden" value="${releaseDTO.rel_schedule_cd }" name="rel_schedule_cd">
+	<input type="hidden" name="rel_schedule_cd" value="${relDTO.rel_schedule_cd }" >
 	
 		<table id="vendortable" class="table table-striped" style="width:1000px;">		
 			<thead>
@@ -132,11 +132,11 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="text" name="rec_schedule_cd" value="${receiveDTO.rec_schedule_cd}"></td>
-					<td><input type="text" name="wh_cd" value="${receiveDTO.wh_cd}"></td>
-					<td><input type="text" name="product_cd_name" value="${receiveDTO.product_cd_name}"></td>
-					<td><input type="text" name="rec_count" value="${receiveDTO.rec_count}"></td>
-					<td><input type="text" name="pchor_cd" value="${receiveDTO.pchor_cd}"></td>
+					<td><input type="text" name="rec_schedule_cd" id="rec_schedule_cd" value="${relDTO.rec_schedule_cd}"></td>
+					<td><input type="text" name="wh_cd" id="wh_cd" value="${relDTO.wh_cd}"></td>
+					<td><input type="text" name="product_cd_name" id="product_cd_name" value="${relDTO.product_cd_name}"></td>
+					<td><input type="text" name="rec_count" id="rec_count" value="${relDTO.rec_count}"></td>
+					<td><input type="text" name="pchor_cd" id="pchor_cd" value="${relDTO.pchor_cd}"></td>
 
 				</tr>
 			</tbody>	
@@ -150,9 +150,9 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="date" name="rel_date" value="${releaseDTO.rel_date }">></td>
-					<td><input type="text" name="rel_count" value="${releaseDTO.rel_count }"></td>
-					<td><input type="text"  class="remarks" name="remarks" size=40  value="${releaseDTO.remarks }"></td>
+					<td><input type="date" name="rel_date" id="rel_date" value="${relDTO.rel_date }">></td>
+					<td><input type="text" name="rel_count" id="rel_count" value="${relDTO.rel_count }"></td>
+					<td><input type="text"  class="remarks" id="remarks" name="remarks" size=40  value="${relDTO.remarks }"></td>
 				</tr>
 			</tbody>				
 		</table>
