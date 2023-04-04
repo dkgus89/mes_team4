@@ -16,18 +16,22 @@ import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.InstructionService;
+import com.itwillbs.service.OrderService;
 
 @Controller
 public class InstructionController {
 	@Inject
 	private InstructionService instructionService;
 	
-	@RequestMapping(value = "/instruction/instructionmain", method = RequestMethod.GET)
-	public String instructionmain(HttpServletRequest request, Model model) {
-			System.out.println("InstructionController instructionmain()");
+	@Inject
+	private OrderService orderService;
+	
+	@RequestMapping(value = "/inst/instmain", method = RequestMethod.GET)
+	public String instmain(HttpServletRequest request, Model model) {
+			System.out.println("InstructionController instmain()");
 			String search =request.getParameter("search");
 //			한 화면에 보여줄 글의 개수 설정
-			int pageSize =10;
+			int pageSize =5;
 //			현재 페이지 번호 가져오기
 			String pageNum = request.getParameter("pageNum");
 			if(pageNum == null) {
@@ -65,113 +69,129 @@ public class InstructionController {
 			model.addAttribute("instructionList", instructionList);
 			model.addAttribute("pageDTO", pageDTO);
 			
-			return "instruction/InstructionMain";
+			return "inst/InstMain";
 
 	}
 	
-	@RequestMapping(value = "/instruction/instructioninsertform", method = RequestMethod.GET)
-	public String instructioninsertform(HttpServletRequest request, Model model) {
-			System.out.println("InstructionController instructioninsertform()");
-			String search =request.getParameter("search");
-//			한 화면에 보여줄 글의 개수 설정
-			int pageSize =10;
-//			현재 페이지 번호 가져오기
-			String pageNum = request.getParameter("pageNum");
-			if(pageNum == null) {
-//				pageNum이 없으면 1페이지로 설정
-				pageNum = "1";
-			} 
-			int currentPage = Integer.parseInt(pageNum);
-			
-			PageDTO pageDTO = new PageDTO();
-			pageDTO.setPageSize(pageSize);
-			pageDTO.setPageNum(pageNum);
-			pageDTO.setCurrentPage(currentPage);
-			pageDTO.setSearch(search);
-			
-			List<Map<String, Object>> orderList = instructionService.getorderlist(pageDTO);
-			
-//			페이징처리
-			int count = instructionService.getordercount(pageDTO);
-			int pageBlock = 10;
-			int startPage = (currentPage-1)/pageBlock * pageBlock + 1;  
-			int endPage = startPage + pageBlock - 1;
-			int pageCount = count/pageSize + (count%pageSize==0?0:1);
-			if (endPage > pageCount){
-				endPage = pageCount;
-				}
-			
-			pageDTO.setCount(count);
-			pageDTO.setPageBlock(pageBlock);
-			pageDTO.setStartPage(startPage);
-			pageDTO.setEndPage(endPage);
-			pageDTO.setPageCount(pageCount);
-			
-			model.addAttribute("orderList", orderList);
-			model.addAttribute("pageDTO", pageDTO);
-			
-			return "instruction/InstructionInsertForm";
-
-	}
-	
-	
-	
-	@RequestMapping(value = "/instruction/instructioninsert", method = RequestMethod.GET)
+	@RequestMapping(value = "/inst/instinsert", method = RequestMethod.GET)
 	public String instructioninsert(HttpServletRequest request, Model model) {
 		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
-		System.out.println("InstructionController instructioninsert()");
-		String order_cd = request.getParameter("order_cd");
-		List<Map<String, Object>> consList = instructionService.conslist(order_cd);
-		OrderDTO orderDTO = instructionService.orderinfo(order_cd);
-		model.addAttribute("orderDTO", orderDTO);
-		model.addAttribute("consList", consList);
-		return "instruction/InstructionInsert";
+		List<Map<String, Object>> instMap
+	     = instructionService.getInstMap();
+	//model 담아서 이동
+	model.addAttribute("instMap", instMap);
+		return "inst/InstInsert";
 	}
 	
-	@RequestMapping(value = "/instruction/instructioninsertpro", method = RequestMethod.POST)
-	public String instructioninsertpro(InstructionDTO instructionDTO) {
-		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
-		System.out.println("InstructionController instructioninsertpro()");
-		String order_cd = instructionDTO.getOrder_cd();
-		
-		// MemberService memberService = new MemberServiceImpl();
-		instructionService.instructioninsertpro(instructionDTO);
-		
-		// 가상주소에서 주소변경 하면서 이동
-		return "redirect:/instruction/instructionmain";
-	}
+//	@RequestMapping(value = "/instruction/instructioninsertpro", method = RequestMethod.POST)
+//	public String instructioninsertpro(InstructionDTO instructionDTO) {
+//		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
+//		System.out.println("InstructionController instructioninsertpro()");
+//		String order_cd = instructionDTO.getOrder_cd();
+//		
+//		// MemberService memberService = new MemberServiceImpl();
+//		instructionService.instructioninsertpro(instructionDTO);
+//		
+//		// 가상주소에서 주소변경 하면서 이동
+//		return "redirect:/instruction/instructionmain";
+//	}
 	
-	@RequestMapping(value = "/instruction/instructionupdate", method = RequestMethod.GET)
-	public String instructionupdate(HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/inst/instupdate", method = RequestMethod.GET)
+	public String instupdate(HttpServletRequest request, Model model) {
 		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
-		System.out.println("InstructionController instructionupdate()");
+		System.out.println("InstructionController instupdate()");
 		String instruction_code = request.getParameter("instruction_code");
-		InstructionDTO instructionDTO = instructionService.instructioninfo(instruction_code);
-		model.addAttribute("instructionDTO", instructionDTO);
-		System.out.println(instructionDTO.getInstruction_code());
-		return "/instruction/InstructionUpdate";
-	}
+	
 
-	@RequestMapping(value = "/instruction/instructiondelete", method = RequestMethod.GET)
-	public String instructiondelete(HttpServletRequest request) {
-		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
-		System.out.println("InstructionController instructiondelete()");
-		String instruction_code = request.getParameter("instruction_code");
-		instructionService.instructiondelete(instruction_code);
-
-		 return "redirect:/instruction/instructionmain";
+		//메서드 호출
+		List<Map<String, Object>> instMap
+		     =instructionService.getInstMap();
+		//model 담아서 이동
+		model.addAttribute("instMap", instMap);
+		
+		//메서드 호출
+		Map<String, Object> inst
+		     = instructionService.getInst(instruction_code);
+		
+		//model 담아서 이동
+		model.addAttribute("inst", inst);
+		
+		return "/inst/InstUpdate";
 	}
 	
-	@RequestMapping(value = "/instruction/instructionupdatepro", method = RequestMethod.POST)
+	@RequestMapping(value = "/inst/instupdatepro", method = RequestMethod.POST)
 	public String instructionupdatepro(InstructionDTO instructionDTO) {
 		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
 		System.out.println("InstructionController instructionupdatepro()");
 
-		instructionService.instructionupdatepro(instructionDTO);
+		instructionService.instupdatepro(instructionDTO);
 		
 		// 가상주소에서 주소변경 하면서 이동
-		return "redirect:/instruction/instructionmain";
+		return "redirect:/inst/instmain";
 	}
 
+	@RequestMapping(value = "/inst/instdelete", method = RequestMethod.GET)
+	public String instdelete(HttpServletRequest request) {
+		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
+		System.out.println("InstructionController instdelete()");
+		String chbox[]=request.getParameterValues("rowcheck");
+		String instruction_code = null;
+		if(chbox!=null){
+			  for(int i=0;i<chbox.length;i++){
+				  instruction_code=chbox[i];
+				  instructionService.deletePerform(instruction_code);
+			  }
+	       }			
+		
+		// 주소변경 하면서 이동
+		return "redirect:/inst/instmain";
+	}
+	
+	
+	@RequestMapping(value = "/inst/orderlist", method = RequestMethod.GET)
+	public String orderlist(HttpServletRequest request, Model model) {
+		
+//		한 화면에 보여줄 글의 개수 설정
+		int pageSize =5;
+//		현재 페이지 번호 가져오기
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) {
+//			pageNum이 없으면 1페이지로 설정
+			pageNum = "1";
+		} 
+		int currentPage = Integer.parseInt(pageNum);
+		
+		PageDTO pageDTO = new PageDTO();
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		
+		List<OrderDTO> orderList=orderService.getOrderList(pageDTO);
+		
+//		페이징처리
+		int count = orderService.getOrderCount();
+		int pageBlock = 10;
+		int startPage = (currentPage-1)/pageBlock * pageBlock + 1;  
+		int endPage = startPage + pageBlock - 1;
+		int pageCount = count/pageSize + (count%pageSize==0?0:1);
+		if (endPage > pageCount){
+			endPage = pageCount;
+			}
+		
+		pageDTO.setCount(count);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+
+		model.addAttribute("orderList", orderList);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		// 주소변경 없이 이동
+		// /WEB-INF/views/perform/InstList.jsp
+		return "inst/OrderList";
+	}
+	
 	
 }

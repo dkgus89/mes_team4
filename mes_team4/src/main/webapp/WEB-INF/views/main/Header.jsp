@@ -80,7 +80,7 @@
 	      <li>
 	        <a href="#">생산관리</a>
 	        <ul class="submenu">
-	          <li><a href="${pageContext.request.contextPath}/instruction/instructionmain">작업지시현황</a></li>
+	          <li><a href="${pageContext.request.contextPath}/inst/instmain">작업지시현황</a></li>
 	          <li><a href="${pageContext.request.contextPath}/perform/perform">생산실적현황</a></li>
 	        </ul>
 	      </li>

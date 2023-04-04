@@ -70,28 +70,43 @@ public class InstructionDAOImpl implements InstructionDAO {
 	}
 
 	@Override
-	public void instructiondelete(String instruction_code) {
-		System.out.println("InstructionDAOImpl instructiondelete()");
-		
-		sqlSession.delete(namespace + ".instructiondelete", instruction_code);
-		
-	}
-
-	@Override
-	public void instructionupdatepro(InstructionDTO instructionDTO) {
-		System.out.println("InstructionDAOImpl instructionupdatepro()");
-		
-		sqlSession.update(namespace + ".instructionupdatepro", instructionDTO);
-		
-	}
-
-	@Override
 	public List<Map<String, Object>> conslist(String order_cd) {
 		System.out.println("InstructionDAOImpl conslist()");
 		
 		return sqlSession.selectList(namespace +".conslist", order_cd);
 	}
 
+	@Override
+	public List<Map<String, Object>> getInstMap() {
+		System.out.println("InstructionDAOImpl getInstMap()");
+		
+		return sqlSession.selectList(namespace +".getInstMap");
+	}
+
+	@Override
+	public Map<String, Object> getInst(String instruction_code) {
+		System.out.println("InstructionDAOImpl getInst()");
+		
+		return sqlSession.selectOne(namespace +".getInst", instruction_code);
+	}
+
+	@Override
+	public void instupdatepro(InstructionDTO instructionDTO) {
+		System.out.println("InstructionDAOImpl instupdatepro()");
+		
+		sqlSession.update(namespace +".instupdatepro", instructionDTO);
+		
+	}
+
+	@Override
+	public void deletePerform(String instruction_code) {
+		System.out.println("InstructionDAOImpl deletePerform()");
+		
+		sqlSession.delete(namespace +".deletePerform", instruction_code);
+		
+	}
+	
+	
 	
 	
 }

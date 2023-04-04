@@ -24,11 +24,15 @@ public interface InstructionService {
 
 	public InstructionDTO instructioninfo(String instruction_code);
 
-	public void instructiondelete(String instruction_code);
-
-	public void instructionupdatepro(InstructionDTO instructionDTO);
-
 	public List<Map<String, Object>> conslist(String order_cd);
+
+	public List<Map<String, Object>> getInstMap();
+
+	public Map<String, Object> getInst(String instruction_code);
+
+	public void instupdatepro(InstructionDTO instructionDTO);
+
+	public void deletePerform(String instruction_code);
 
 	
 

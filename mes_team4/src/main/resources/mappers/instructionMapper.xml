@@ -50,7 +50,7 @@
         where order_cd = #{order_cd}
     </select>
     
-    <insert id="instructioninsertpro">
+    <insert id="instinsertpro">
         insert into instruction(instruction_code, order_cd, product_cd, instruction_qt, line_cd, instruction_date, instruction_state) 
 		values(#{instruction_code},#{order_cd},#{product_cd},#{instruction_qt},#{line_cd},#{instruction_date},#{instruction_state})
     </insert>
@@ -61,7 +61,7 @@
         where instruction_code = #{instruction_code}
     </select>
     
-     <update id="instructionupdatepro">
+     <update id="instupdatepro">
      	update instruction set order_cd = #{order_cd}, product_cd = #{product_cd}, instruction_qt = #{instruction_qt}, line_cd = #{line_cd}, instruction_date = #{instruction_date}, instruction_state = #{instruction_state}
      	where instruction_code = #{instruction_code}
     </update>
@@ -99,9 +99,19 @@
 		where o.order_cd = #{order_cd}
 	</select>
  
- 
- 
+ 	<resultMap type="map" id="map1">
+		<result column="order_cd" property="order_cd"/>
+		<result column="product_cd" property="product_cd"/>
+	</resultMap>
 
+    <select id="getInstMap" resultMap="map1">
+    	select order_cd, product_cd from instruction
+    </select>
+ 
+	<select id="getInst" resultMap="map1">
+    	select order_cd, product_cd from instruction
+    	where instruction_code = #{instruction_code}
+    </select>
 
 
     

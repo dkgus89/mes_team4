@@ -75,26 +75,40 @@ public class InstructionServiceImpl implements InstructionService{
 	}
 
 	@Override
-	public void instructiondelete(String instruction_code) {
-		System.out.println("InstructionServiceImpl instructiondelete()");
-		
-		instructionDAO.instructiondelete(instruction_code);
-		
-	}
-
-	@Override
-	public void instructionupdatepro(InstructionDTO instructionDTO) {
-		System.out.println("InstructionServiceImpl instructionupdatepro()");
-		
-		instructionDAO.instructionupdatepro(instructionDTO);
-		
-	}
-
-	@Override
 	public List<Map<String, Object>> conslist(String order_cd) {
 		System.out.println("InstructionServiceImpl instructioninfo()");
 		
 		return instructionDAO.conslist(order_cd);
+	}
+
+	@Override
+	public List<Map<String, Object>> getInstMap() {
+		System.out.println("InstructionServiceImpl getInstMap()");
+		
+		return instructionDAO.getInstMap();
+	}
+
+	@Override
+	public Map<String, Object> getInst(String instruction_code) {
+		System.out.println("InstructionServiceImpl getInst()");
+		
+		return instructionDAO.getInst(instruction_code);
+	}
+
+	@Override
+	public void instupdatepro(InstructionDTO instructionDTO) {
+		System.out.println("InstructionServiceImpl instupdatepro()");
+		
+		instructionDAO.instupdatepro(instructionDTO);
+		
+	}
+
+	@Override
+	public void deletePerform(String instruction_code) {
+		System.out.println("InstructionServiceImpl deletePerform()");
+		
+		instructionDAO.deletePerform(instruction_code);
+		
 	}
 	
 	
