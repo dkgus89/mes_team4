@@ -101,6 +101,14 @@ public class PurchaseDAOImpl implements PurchaseDAO{
 	}
 	
 	@Override
+	public List<Map<String, Object>> getPurchaseMapList(PageDTO pageDTO) {
+		System.out.println("ConsumptionServiceImpl getPurchaseMapList()");
+		
+		
+		return sqlSession.selectList(namespace+".getPurchaseMapList", pageDTO);
+	}
+	
+	@Override
 	public int getPurchaseCount(PageDTO pageDTO) {
 		System.out.println("ConsumptionDAOImpl getCprConsmptCount()");
 		
