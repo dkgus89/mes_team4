@@ -14,6 +14,15 @@
 <!-- 자바스크립트 입력 시작-->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
+window.onload = function() {
+	today = new Date();
+	console.log("today.toISOString() >>>" + today.toISOString());
+	today = today.toISOString().slice(0, 10);
+	console.log("today >>>> " + today);
+	bir = document.getElementById("today");
+	bir.value = today;
+};
+
 $(document).ready(function(){
   
 	$('#update').submit(function(){
@@ -75,7 +84,7 @@ $(document).ready(function(){
 					<input type="hidden" name="instruction_date" class="instruction_date" value="${instructionDTO.instruction_date}">
 					<div>
 					<label>생산지시일자</label><br>
-					<input type="date" name="instruction_date" class="instruction_date" ><br><br>
+					<input type="date" name="instruction_date" class="instruction_date" id="today"><br><br>
 					</div>
 					<div>
 					<label>작업지시상태</label><br>
