@@ -9,7 +9,7 @@
 	<!-- ?대신 productDTO의 멤버변수명 사용 #{id}-->
 	<insert id="insertReceive">
 		insert into receive_schedule
-		values(#{rec_schedule_cd},#{wh_cd},#{pchor_cd},#{product_cd_name},#{rec_date},#{rec_count},#{in_complete})
+		values(#{rec_schedule_cd},#{wh_cd},#{pchor_cd},#{product_cd_name},#{rec_count},#{rec_date},#{in_complete})
 	</insert>
 	
 	<select id="getReceiveList" resultType="com.itwillbs.domain.ReceiveDTO">

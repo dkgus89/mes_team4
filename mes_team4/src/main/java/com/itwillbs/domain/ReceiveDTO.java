@@ -1,10 +1,11 @@
 package com.itwillbs.domain;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class ReceiveDTO {
 	private String rec_schedule_cd;
-	private Timestamp rec_date;
+	private Date rec_date;
 	private String remarks;
 	private String in_complete;
 	private int rec_count;
@@ -36,10 +37,11 @@ public class ReceiveDTO {
 	public void setRec_schedule_cd(String rec_schedule_cd) {
 		this.rec_schedule_cd = rec_schedule_cd;
 	}
-	public Timestamp getRec_date() {
+
+	public Date getRec_date() {
 		return rec_date;
 	}
-	public void setRec_date(Timestamp rec_date) {
+	public void setRec_date(Date rec_date) {
 		this.rec_date = rec_date;
 	}
 	public String getRemarks() {
