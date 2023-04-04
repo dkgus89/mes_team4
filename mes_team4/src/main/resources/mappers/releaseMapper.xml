@@ -84,7 +84,7 @@
     </select>
     
      <update id="updaterel">
-	 	update release_schedule set business_cd = #{business_cd}, wh_cd = #{wh_cd}, product_cd = #{product_cd}, 
+	 	update release_schedule set rec_schedule_cd = #{rec_schedule_cd},wh_cd = #{wh_cd}, product_cd_name = #{product_cd_name}, pchor_cd = #{pchor_cd}, 
 	 	                            rel_date = #{rel_date}, remarks = #{remarks}, out_complete = #{out_complete},
 	 	                            rel_count = #{rel_count}
 	 	where rel_schedule_cd = #{rel_schedule_cd}                     

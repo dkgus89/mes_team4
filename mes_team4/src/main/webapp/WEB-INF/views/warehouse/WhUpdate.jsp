@@ -23,6 +23,7 @@ setTimeout(function() {
 	}, 200);
 }
 
+
 function rst(){
 document.updateform.reset();
 }

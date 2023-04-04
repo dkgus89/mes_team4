@@ -129,8 +129,10 @@ public class ReleaseController {
 //					new_number_st = String.valueOf(new_number).format("%02d", new_number);
 //					new_release_schedule_cd = menu_code + today + new_number_st;
 //					
+//					releaseDTO.setOut_complete("진행중");
 //			    } else {
 //			    	new_release_schedule_cd = menu_code + today + "01";
+//			    	releaseDTO.setOut_complete("진행중");
 //			    }
 		
 		relService.insertrel(releaseDTO);
