@@ -84,10 +84,12 @@
 
 	<resultMap type="map" id="map1">
 		<result column="instruction_code" property="instruction_code"/>
+		<result column="line_cd" property="line_cd"/>
+		<result column="product_cd" property="product_cd"/>
 	</resultMap>
 
     <select id="getInstMap" resultMap="map1">
-    	select distinct instruction_code from instruction
+    	select distinct instruction_code, line_cd, product_cd from instruction
     </select>
     
     <resultMap type="map" id="map2">

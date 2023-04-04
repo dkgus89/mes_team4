@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PerformDTO;
+import com.itwillbs.service.InstructionService;
 import com.itwillbs.service.PerformService;
 
 @Controller
@@ -23,6 +25,8 @@ public class PerformController {
 		// 스프링 객체생성 방식 => 의존관계주입(DI : Dependency Injection)
 		@Inject
 		private PerformService performService;
+		@Inject
+		private InstructionService instructionService;
 			
 		@RequestMapping(value = "/perform/perform", method = RequestMethod.GET)
 		public String perform(HttpServletRequest request, Model model) {
@@ -85,13 +89,21 @@ public class PerformController {
 		}
 		
 		@RequestMapping(value = "/perform/performinsert", method = RequestMethod.GET)
-		public String performInsert(Model model) {
+		public String performInsert(HttpServletRequest request, Model model) {
 			
 			//메서드 호출
 			List<Map<String, Object>> instMap
 			     =performService.getInstMap();
 			//model 담아서 이동
 			model.addAttribute("instMap", instMap);
+			
+//			String instruction_code=request.getParameter("instruction_code");
+//			String product_cd=request.getParameter("product_cd");
+//			String line_cd=request.getParameter("line_cd");
+			
+//			model.addAttribute("instruction_code", instruction_code);
+//			model.addAttribute("product_cd", product_cd);
+//			model.addAttribute("line_cd", line_cd);
 			
 			// 주소변경 없이 이동
 			// /WEB-INF/views/perform/PerformInsert.jsp
@@ -215,4 +227,51 @@ public class PerformController {
 								
 				return result;
 			}
+			
+			@RequestMapping(value = "/perform/instlist", method = RequestMethod.GET)
+			public String instList(HttpServletRequest request, Model model) {
+				
+//				한 화면에 보여줄 글의 개수 설정
+				int pageSize =5;
+//				현재 페이지 번호 가져오기
+				String pageNum = request.getParameter("pageNum");
+				if(pageNum == null) {
+//					pageNum이 없으면 1페이지로 설정
+					pageNum = "1";
+				} 
+				int currentPage = Integer.parseInt(pageNum);
+				
+				PageDTO pageDTO = new PageDTO();
+				pageDTO.setPageSize(pageSize);
+				pageDTO.setPageNum(pageNum);
+				pageDTO.setCurrentPage(currentPage);
+				
+				List<InstructionDTO> instructionList=instructionService.instructionlist(pageDTO);
+				
+//				페이징처리
+				int count = instructionService.getinstructioncount(pageDTO);
+				int pageBlock = 10;
+				int startPage = (currentPage-1)/pageBlock * pageBlock + 1;  
+				int endPage = startPage + pageBlock - 1;
+				int pageCount = count/pageSize + (count%pageSize==0?0:1);
+				if (endPage > pageCount){
+					endPage = pageCount;
+					}
+				
+				pageDTO.setCount(count);
+				pageDTO.setPageBlock(pageBlock);
+				pageDTO.setStartPage(startPage);
+				pageDTO.setEndPage(endPage);
+				pageDTO.setPageCount(pageCount);
+				
+				
+				
+				model.addAttribute("instructionList", instructionList);
+				model.addAttribute("pageDTO", pageDTO);
+				
+				// 주소변경 없이 이동
+				// /WEB-INF/views/perform/InstList.jsp
+				return "perform/InstList";
+			}
+			
 }
