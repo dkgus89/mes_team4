@@ -66,8 +66,10 @@
     </select>
         
     <select id="getPerform_cd" resultType="java.lang.String">
-        select max(perform_cd)
-        from performance
+        select *  
+		from performance
+		order by perform_cd desc
+		limit 1
     </select>
     
     <update id="updatePerform">

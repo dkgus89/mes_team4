@@ -14,9 +14,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-function input1(instruction_code,line_cd,product_cd){
+function input1(instruction_code,line_cd,product_cd,instruction_qt){
 	
-	opener.setChildValue(instruction_code,line_cd,product_cd);
+	opener.setChildValue(instruction_code,line_cd,product_cd,instruction_qt);
 
 	window.close();
 	
@@ -66,7 +66,7 @@ function input1(instruction_code,line_cd,product_cd){
 						<td>${instructionDTO.line_cd}</td>
 						<td>${instructionDTO.instruction_date}</td>
 						<td>${instructionDTO.instruction_state}</td>
-						<td><button class="button2" onClick="input1('${instructionDTO.instruction_code}','${instructionDTO.line_cd}','${instructionDTO.product_cd}');">선택</button></td>
+						<td><button class="button2" onClick="input1('${instructionDTO.instruction_code}','${instructionDTO.line_cd}','${instructionDTO.product_cd}','${instructionDTO.instruction_qt}');">선택</button></td>
 				</c:forEach>
 
 			</tbody>

@@ -12,13 +12,33 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-<script type="text/javascript">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<script>
 function sub(){
+	$(document).ready(function(){
+//	 	alert("준비");
+			if($('#line_cd').val()==""){
+				alert("라인코드를 선택하세요");
+				$('#line_cd').focus();
+				return false;
+			}
+			if($('#line_name').val()==""){
+				alert("라인명를 입력하세요");
+				$('#line_name').focus();
+				return false;
+			}
+			if($('#line_process').val()==""){
+				alert("공정을 입력하세요");
+				$('#line_process').focus();
+				return false;
+			}
+			
 window.opener.name = "parentPage";
 document.LineInsert.target="parentPage";
 document.LineInsert.action="${pageContext.request.contextPath}/line/lineinsertpro";
 document.LineInsert.submit();
 self.close();
+	});
 }
 function rst(){
 document.LineInsert.reset();
@@ -57,9 +77,9 @@ document.LineInsert.reset();
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="line_cd" value=""></td>
-					<td><input type="text" name="line_name" value=""></td>
-					<td><input type="text" name="line_process" value=""></td>
+					<td><input type="text" name="line_cd" id="line_cd" value=""></td>
+					<td><input type="text" name="line_name" id="line_name" value=""></td>
+					<td><input type="text" name="line_process" id="line_process" value=""></td>
 					<td><select name="line_status">
 							<option value="1">가동중</option>
 							<option value="2" selected>대기중</option>
