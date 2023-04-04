@@ -15,93 +15,28 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 function showPopup(){
-    window.open("${pageContext.request.contextPath}/perform/instlist",'_blank',"instlist","width=1100, height=200, top=200, left=200");
-//     self.close();
-// 	   location.replace('${pageContext.request.contextPath}/perform/instlist');
-// 	   location.href='${pageContext.request.contextPath}/perform/instlist';
-}
-function setChildValue(instruction_code,line_cd,product_cd){
+	var link = "${pageContext.request.contextPath}/perform/instlist";     
+	var popupWidth = 1050;
+	var popupHeight = 500;
+	var popupX = (window.screen.width/2) - (popupWidth/2);
+	var popupY= (window.screen.height/2) - (popupHeight/2);
 	
-    document.getElementById("inst").value = instruction_code;
+  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+}
+function setChildValue(instruction_code,line_cd,product_cd,instruction_qt){
+	
+    document.getElementById("instruction_code").value = instruction_code;
     document.getElementById("line_cd").value = line_cd;
     document.getElementById("product_cd").value = product_cd;
+    document.getElementById("instruction_qt").value = instruction_qt;
 
 }
-// 	jQuery 준비 => 대상.함수()
-//  	$(document).ready(function(){
-//  		alert("준비");
-
-		// 원자재 리스트 팝업
-// 		$(document).on('click', '#rpListBtn', function() {
-// 			var trIndex = $(this).parent().parent().index();
-// 			var product_dv = 'rp';
-			
-// 			var link = '${pageContext.request.contextPath}/consmpt/prlist?trIndex='+trIndex+'&product_dv='+product_dv;     
-// 			var popupWidth = 500;
-// 			var popupHeight = 700;
-// 			var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
-// 			var popupY= (window.screen.height/2) - (popupHeight/2);
-			
-// 		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
-// 		});
-		
-		//submit 버튼을 클릭했을때 전송되어지면 이벤트 onsubmit()
-		// id="join" 폼태그 표시 => 전송
-// 		$('#PI').submit(function(){
-// 			alert("전송");
-// 		// class="id" 표시 대상.함수()
-// 			if($('#line_cd').val()==""){
-// 				alert("라인코드를 입력하세요");
-// 				$('#line_cd').focus();
-// 				//대상 지정 * 전체, h1 태그, id=이름 #이름, class=이름 .
-// // 				$('*').css('color','red');
-// // 				$('form').css('color','blue');
-// 				return false;
-// 			}
-// 		//class="pass"
-// 			if($('.pass').val()==""){
-// 				alert("비밀번호 입력하세요")
-// 				$('.pass').focus();
-// 				return false;
-// 			}
-// 			if($('.pass2').val()==""){
-// 				alert("비밀번호2 입력하세요")
-// 				$('.pass2').focus();
-// 				return false;
-// 			}
-// 			if($('.pass').val() != $('.pass2').val()){
-// 				alert("비밀번호 틀림");
-// 				$('.pass2').focus();
-// 				return false;		
-// 			}
-// 			if($('.name').val()==""){
-// 				alert("이름 입력하세요")
-// 				$('.name').focus();
-// 				return false;
-// 			}
-// 			if($('.email').val()==""){
-// 				alert("이메일 입력하세요")
-// 				$('.email').focus();
-// 				return false;
-// 			}
-// 			if($('.email').val() != $('.email2').val()){
-// 				alert("이메일 틀림");
-// 				$('.email2').focus();
-// 				return false;		
-// 			}
-// 			if($('.email2').val()==""){
-// 				alert("이메일2 입력하세요")
-// 				$('.email2').focus();
-// 				return false;
-// 			}
-//  		});
-//  	});
 function sub(){
 	$(document).ready(function(){
 // 	alert("준비");
-		if($('#inst').val()==""){
+		if($('#instruction_code').val()==""){
 			alert("작업지시코드를 선택하세요");
-			$('#inst').focus();
+			$('#instruction_code').focus();
 			return false;
 		}
 		if($('#line_cd').val()==""){
@@ -125,7 +60,7 @@ function sub(){
 			return false;
 		}
 		if($('#defect_prod').val()==""){
-			alert("불량 수량을 입력하세요");
+			alert("불량품 수량을 입력하세요");
 			$('#defect_prod').focus();
 			return false;
 		}
@@ -141,42 +76,42 @@ function sub(){
 function rst(){
 document.PerformInsert.reset();
 }
-$(document).ready(function () {
-// 	alert($("#inst").val());
-		$.ajax({
-			url:'${pageContext.request.contextPath}/perform/callcd',
-			data:{'ic':$("#inst").val()},
-			success:function(result){
-				  $('#line_cd').val(result);
-			}
-		});
+// $(document).ready(function () {
+// // 	alert($("#inst").val());
+// 		$.ajax({
+// 			url:'${pageContext.request.contextPath}/perform/callcd',
+// 			data:{'ic':$("#inst").val()},
+// 			success:function(result){
+// 				  $('#line_cd').val(result);
+// 			}
+// 		});
 		
-		$.ajax({
-			url:'${pageContext.request.contextPath}/perform/callcd2',
-			data:{'ic':$("#inst").val()},
-			success:function(result){
-				  $('#product_cd').val(result);
-			}
-		});
+// 		$.ajax({
+// 			url:'${pageContext.request.contextPath}/perform/callcd2',
+// 			data:{'ic':$("#inst").val()},
+// 			success:function(result){
+// 				  $('#product_cd').val(result);
+// 			}
+// 		});
 		
-		$("#inst").on("change", function(){
-			$.ajax({
-				url:'${pageContext.request.contextPath}/perform/callcd',
-				data:{'ic':$("#inst").val()},
-				success:function(result){
-					  $('#line_cd').val(result);			
-				}
-			});
+// 		$("#inst").on("change", function(){
+// 			$.ajax({
+// 				url:'${pageContext.request.contextPath}/perform/callcd',
+// 				data:{'ic':$("#inst").val()},
+// 				success:function(result){
+// 					  $('#line_cd').val(result);			
+// 				}
+// 			});
 			
-			$.ajax({
-				url:'${pageContext.request.contextPath}/perform/callcd2',
-				data:{'ic':$("#inst").val()},
-				success:function(result){
-					$('#product_cd').val(result);			
-				}
-			});			
-		});
-});
+// 			$.ajax({
+// 				url:'${pageContext.request.contextPath}/perform/callcd2',
+// 				data:{'ic':$("#inst").val()},
+// 				success:function(result){
+// 					$('#product_cd').val(result);			
+// 				}
+// 			});			
+// 		});
+// });
 </script>
 
 </head>
@@ -197,7 +132,7 @@ $(document).ready(function () {
 	 
 	 
 	<form action="${pageContext.request.contextPath}/perform/performinsertpro" name="PerformInsert" id="PI" method="post">
-		<input type="hidden" value="">
+		<input type="hidden" id="instruction_qt" value="">
 		
 		<table id="vendortable" class="table table-striped">
 			<thead>
@@ -210,7 +145,7 @@ $(document).ready(function () {
 			
 			<tbody>
 				<tr>				
-					<td><input type="text" name="instruction_code" id="inst"></td>
+					<td><input type="text" name="instruction_code" id="instruction_code"></td>
 <!-- 						<option value="" selected>선택</option> -->
 <%-- 						<c:if test="${instruction_code != null}"> --%>
 <%-- 						<option value="${instruction_code}" selected>${instruction_code}</option> --%>

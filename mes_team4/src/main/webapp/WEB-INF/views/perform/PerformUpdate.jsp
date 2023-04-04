@@ -14,34 +14,56 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
+function showPopup(){
+	var link = "${pageContext.request.contextPath}/perform/instlist";     
+	var popupWidth = 1050;
+	var popupHeight = 500;
+	var popupX = (window.screen.width/2) - (popupWidth/2);
+	var popupY= (window.screen.height/2) - (popupHeight/2);
+	
+  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+}
+function setChildValue(instruction_code,line_cd,product_cd,instruction_qt){
+	
+    document.getElementById("instruction_code").value = instruction_code;
+    document.getElementById("line_cd").value = line_cd;
+    document.getElementById("product_cd").value = product_cd;
+    document.getElementById("instruction_qt").value = instruction_qt;
+
+}
 function sub(){
 	$(document).ready(function(){
 // 	 	alert("준비");
-			if($('#line_cd').val()==""){
-				alert("라인코드를 입력하세요");
-				$('#line_cd').focus();
-				return false;
-			}
-			if($('#product_cd').val()==""){
-				alert("품목코드를 입력하세요");
-				$('#product_cd').focus();
-				return false;
-			}
-			if($('#perform_date').val()==""){
-				alert("실적일자를 입력하세요");
-				$('#perform_date').focus();
-				return false;
-			}
-			if($('#fair_prod').val()==""){
-				alert("양품 수량을 입력하세요");
-				$('#fair_prod').focus();
-				return false;
-			}
-			if($('#defect_prod').val()==""){
-				alert("불량 수량을 입력하세요");
-				$('#defect_prod').focus();
-				return false;
-			}
+		if($('#instruction_code').val()==""){
+			alert("작업지시코드를 선택하세요");
+			$('#instruction_code').focus();
+			return false;
+		}
+		if($('#line_cd').val()==""){
+			alert("라인코드를 입력하세요");
+			$('#line_cd').focus();
+			return false;
+		}
+		if($('#product_cd').val()==""){
+			alert("품목코드를 입력하세요");
+			$('#product_cd').focus();
+			return false;
+		}
+		if($('#perform_date').val()==""){
+			alert("실적일자를 입력하세요");
+			$('#perform_date').focus();
+			return false;
+		}
+		if($('#fair_prod').val()==""){
+			alert("양품 수량을 입력하세요");
+			$('#fair_prod').focus();
+			return false;
+		}
+		if($('#defect_prod').val()==""){
+			alert("불량품 수량을 입력하세요");
+			$('#defect_prod').focus();
+			return false;
+		}
 	
 	window.opener.name = "parentPage";
 	document.PerformUpdate.target="parentPage";
@@ -54,7 +76,7 @@ function sub(){
 	document.PerformUpdate.reset();
 	}
 	
-	$(document).ready(function () {
+// 	$(document).ready(function () {
 //	 	alert($("#inst").val());
 // 			$.ajax({
 // 				url:'${pageContext.request.contextPath}/perform/callcd',
@@ -72,24 +94,24 @@ function sub(){
 // 				}
 // 			});
 			
-			$("#inst").on("change", function(){
-				$.ajax({
-					url:'${pageContext.request.contextPath}/perform/callcd',
-					data:{'ic':$("#inst").val()},
-					success:function(result){
-						  $('#line_cd').val(result);			
-					}
-				});
+// 			$("#inst").on("change", function(){
+// 				$.ajax({
+// 					url:'${pageContext.request.contextPath}/perform/callcd',
+// 					data:{'ic':$("#inst").val()},
+// 					success:function(result){
+// 						  $('#line_cd').val(result);			
+// 					}
+// 				});
 				
-				$.ajax({
-					url:'${pageContext.request.contextPath}/perform/callcd2',
-					data:{'ic':$("#inst").val()},
-					success:function(result){
-						$('#product_cd').val(result);			
-					}
-				});			
-			});
-	});
+// 				$.ajax({
+// 					url:'${pageContext.request.contextPath}/perform/callcd2',
+// 					data:{'ic':$("#inst").val()},
+// 					success:function(result){
+// 						$('#product_cd').val(result);			
+// 					}
+// 				});			
+// 			});
+// 	});
 </script>
 
 
@@ -102,13 +124,15 @@ function sub(){
 	<h2 class="inserttitle">생산실적 수정 </h2><br>
 <!-- 	<div class="wrap2"> -->
 	<button class="button2" onclick="sub()">등록</button>
-	<button class="button2" onclick="rst()">초기화</button>	  
+	<button class="button2" onclick="rst()">초기화</button>	 	
+	<button class="button2" onclick="showPopup();" style="width:200px">작업지시현황</button>
 <!-- 	 </div><br> -->
 	 <br><br>
 	 
 	 
 	<form name="PerformUpdate" method="post">
 		<input type="hidden" name="perform_cd" value="${perform.perform_cd}">
+		<input type="hidden" id="instruction_qt" value="">
 		
 		<table id="vendortable" class="table table-striped">
 			<thead>
@@ -123,14 +147,15 @@ function sub(){
 			<tbody>
 				<tr>
 					
-					<td><select name="instruction_code"  id="inst">
-							<option value="${perform.instruction_code}" selected>${perform.instruction_code}</option>
-								<c:forEach var="dto" items="${instMap}">
-									<c:if test="${dto.instruction_code != perform.instruction_code}">											
-									<option value="${dto.instruction_code}">${dto.instruction_code}</option>	
-									</c:if>						
-								</c:forEach>
-      					</select></td>
+<!-- 					<td><select name="instruction_code"  id="inst"> -->
+<%-- 							<option value="${perform.instruction_code}" selected>${perform.instruction_code}</option> --%>
+<%-- 								<c:forEach var="dto" items="${instMap}"> --%>
+<%-- 									<c:if test="${dto.instruction_code != perform.instruction_code}">											 --%>
+<%-- 									<option value="${dto.instruction_code}">${dto.instruction_code}</option>	 --%>
+<%-- 									</c:if>						 --%>
+<%-- 								</c:forEach> --%>
+<!--       					</select></td> -->
+					<td><input type="text" name="instruction_code" id="instruction_code" value="${perform.instruction_code}"></td>
     				<td><input type="text" name="line_cd" id="line_cd" value="${perform.line_cd}"></td>
     				<td><input type="text" name="product_cd" id="product_cd" value="${perform.product_cd}"></td>			
 				</tr>
