@@ -8,9 +8,10 @@ public class PageDTO {
 	private int startRow; // 테이블에서 가져올 시작 글번호
 	private int endRow; // 끝 글번호
 	private String search; // 페이지 검색어
+	private String search_option; // 검색어 옵션
+	private String search_date; // 날짜 구분
 	private String select; // 검색어 옵션
 	private String product_dv; // 품목 구분
-	private String select_date; // 날짜 구분
 	private String start_date; // 시작일
 	private String end_date; // 마감일
 	
@@ -31,11 +32,17 @@ public class PageDTO {
 	private List<Integer> showTd; // td를 나타낼 위치
 	
 	
-	public String getSelect_date() {
-		return select_date;
+	public String getSearch_option() {
+		return search_option;
 	}
-	public void setSelect_date(String select_date) {
-		this.select_date = select_date;
+	public void setSearch_option(String search_option) {
+		this.search_option = search_option;
+	}
+	public String getSearch_date() {
+		return search_date;
+	}
+	public void setSearch_date(String search_date) {
+		this.search_date = search_date;
 	}
 	public String getStart_date() {
 		return start_date;

@@ -38,13 +38,16 @@ public class PurchaseController {
 		System.out.println("ConsumptionController list()");
 		// 처리작업
 		
-		// 검색어 설정
-		String search= request.getParameter("search");
-		pageDTO.setSearch(search);		
-		
-		// 품목구분 설정
-		String product_dv = request.getParameter("product_dv");
-		pageDTO.setProduct_dv(product_dv);
+		// 검색어 처리작업
+		if (pageDTO.getSearch() != null && pageDTO.getSearch().equals("")) {
+			pageDTO.setSearch(null);
+		}
+		if (pageDTO.getStart_date() != null && pageDTO.getStart_date().equals("")) {
+			pageDTO.setStart_date(null);
+		}
+		if (pageDTO.getEnd_date() != null && pageDTO.getEnd_date().equals("")) {
+			pageDTO.setEnd_date(null);
+		}
 		
 		// 한 화면에 보여줄 글의 개수
 		int pageSize = 5;

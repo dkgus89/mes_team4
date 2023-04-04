@@ -111,7 +111,7 @@
 		<form action="${pageContext.request.contextPath}/consmpt/list?search=${pageDTO.search}&product_dv=${pageDTO.product_dv}" method="get">
 			<input id= "product_dv" name="product_dv" type="hidden" value="all">
 			<select id="select" class="button2">
-			<option value="all">전체</option>
+			<option value="all">전체품목</option>
 			<option value="cp">완제품</option>
 			<option value="rp">원자재</option>
 			</select> 
