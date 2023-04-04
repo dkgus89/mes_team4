@@ -71,7 +71,7 @@ public class DeliverDAOImpl implements DeliverDAO  {
 	public void deleteDeliver(String deliver_cd) {
 		System.out.println("DeliverDAOImpl deleteDeliver()");
 		
-		sqlSession.delete(namespace+".deletDeliver", deliver_cd);
+		sqlSession.delete(namespace+".deleteDeliver", deliver_cd);
 		
 	}
 

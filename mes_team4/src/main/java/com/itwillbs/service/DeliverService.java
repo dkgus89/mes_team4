@@ -21,13 +21,14 @@ public interface DeliverService {
 	
 	int getDeliverCount(PageDTO pageDTO);
 
-	public void deleteDeliver(String deliver_cd);
 
 	public List<Map<String, Object>> getInstMap();
 
 	public List<Map<String, Object>> getInstMap2();
 
 	public List<Map<String, Object>> getInstMap3();
+
+	public void deleteDeliver(String deliver_cd);
 
 	
 

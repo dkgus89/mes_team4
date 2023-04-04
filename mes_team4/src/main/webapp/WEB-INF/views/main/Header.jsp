@@ -34,7 +34,7 @@
 		<div class="wrap">
 		  <button class="button" onclick="location.href='${pageContext.request.contextPath}/home'">홈</button>
 		  <button class="button" onclick="location.href='${pageContext.request.contextPath}/system/memberlogin'">로그인</button>
-		  <button class="button" onclick="location.href='${pageContext.request.contextPath}/main/mypage'">마이페이지</button>
+		  <button class="button" onclick="location.href='${pageContext.request.contextPath}/system/mypageform'">마이페이지</button>
 		  <button class="button" onclick="location.href='${pageContext.request.contextPath}/system/memberlogout'">로그아웃</button>
 		</div>
 

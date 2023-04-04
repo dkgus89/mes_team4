@@ -72,10 +72,10 @@ public class DeliverServiceImpl implements DeliverService{
 
 
 	@Override
-	public void deleteDeliver(String deliver_cd) {
+	public void deleteDeliver(String checkValue) {
 		System.out.println("DeliverServiceImpl deleteDeliver()");
 		
-		deliverDAO.deleteDeliver(deliver_cd);
+		deliverDAO.deleteDeliver(checkValue);
 		
 	}
 
