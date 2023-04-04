@@ -71,7 +71,7 @@
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>수주현황</h2>
+	<h2 onclick="location.href='${pageContext.request.contextPath}/order/ordermain'">수주현황</h2>
 	<h4>전체 ${pageDTO.count}건 / <span style="color:red">생산전 ${pageDTO.pcount}건</span> /  <span style="color:blue">생산완료 ${pageDTO.fcount}건</span></h4>
 	
 	<div class="wrap2">
@@ -87,6 +87,7 @@
 		<thead>
 			<tr style="text-align: center; font-size: 0.9rem">
 			<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
+			<th> </th>
 			<th>수주코드</th>
 			<th>거래처</th>
 			<th>제품코드</th>
@@ -102,9 +103,10 @@
 		<tbody>
 		<c:choose>
 			<c:when test="${not empty orderList}">
-			<c:forEach var="orderDTO" items="${orderList}">
+			<c:forEach var="orderDTO" items="${orderList}" varStatus="sts">
 			<tr>
 			<td><input type="checkbox" id="checkbox" name="rowcheck" value="${orderDTO.order_cd}"></td>
+			<td>${pageDTO.startRow+1 + sts.index}</td>
 			<td>${orderDTO.order_cd}</td>
 			<td>${orderDTO.business_cd}</td>
 			<td>${orderDTO.product_cd}</td>

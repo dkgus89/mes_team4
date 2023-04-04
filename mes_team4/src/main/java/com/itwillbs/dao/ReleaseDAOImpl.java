@@ -55,26 +55,6 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 		return sqlSession.selectList(namespace+".getRelList", pageDTO);
 	}
 
-	@Override
-	public List<Map<String, Object>> getBInstMap() {
-		System.out.println("ReleaseDAOImpl getBInstMap()");
-		
-		return sqlSession.selectList(namespace+".getBInstMap");
-	}
-
-	@Override
-	public List<Map<String, Object>> getWInstMap() {
-		System.out.println("ReleaseDAOImpl getWInstMap()");
-		
-		return sqlSession.selectList(namespace+".getWInstMap");
-	}
-
-	@Override
-	public List<Map<String, Object>> getPInstMap() {
-		System.out.println("ReleaseDAOImpl getPInstMap()");
-		
-		return sqlSession.selectList(namespace+".getPInstMap");
-	}
 
 	@Override
 	public ReleaseDTO getrel(String rel_schedule_cd) {
@@ -89,6 +69,23 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 		
 		sqlSession.update(namespace+".updaterel", releaseDTO);
 	}
+
+	@Override
+	public void deleterel(String rel_schedule_cd) {
+		System.out.println("ReleaseDAOImpl deleterel()");
+		
+		sqlSession.delete(namespace+".deleterel",rel_schedule_cd);
+		
+	}
+
+	@Override
+	public String getRel_cd() {
+		System.out.println("ReleaseDAOImpl getRel_cd()");
+		
+		return sqlSession.selectOne(namespace+".getRel_cd");
+	}
+
+
 
 
 	

@@ -65,7 +65,7 @@
 			});
 		}
 	}
-	
+
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -77,12 +77,16 @@
 	
     <div class="search">
     <form action="${pageContext.request.contextPath}/wh/whpage" method="get">
-       <select name="select" class="button2">
+      
+       <select name="select" class="button2" onChange="goChange(this.value)">
        		<option value="wh_name">이름</option>
        		<option value="wh_addr">지역</option>
+       		<option value="wh_use">사용여부</option>
        </select>
+       
        <input type="text" name="search" class="button2">
        <input type="submit" class="button2" value="검색" >
+       
      </form>  
     </div>
 

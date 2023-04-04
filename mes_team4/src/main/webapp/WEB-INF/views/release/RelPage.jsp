@@ -59,7 +59,7 @@
 				success : function(jdata){
 					if(jdata = 1){
 						alert("삭제하였습니다");
-						location.replace("${pageContext.request.contextPath}/wh/whpage")
+						location.replace("${pageContext.request.contextPath}/rel/relpage")
 					} else {alert("삭제실패");}
 				}
 			});
@@ -75,16 +75,17 @@
 	<h2>자재출고</h2><br>
 	
 	
-<!--     <div class="search"> -->
-<%--     <form action="${pageContext.request.contextPath}/wh/whpage" method="get"> --%>
-<!--        <select name="search_option" class="button2"> -->
-<!--        		<option value="wh_name">이름</option> -->
-<!--        		<option value="wh_addr">지역</option> -->
-<!--        </select> -->
-<!--        <input type="text" name="search" class="button2"> -->
-<!--        <input type="submit" class="button2" value="검색" > -->
-<!--      </form>   -->
-<!--     </div> -->
+    <div class="search">
+    <form action="${pageContext.request.contextPath}/rel/relpage" method="get">
+       <select name="search_option" class="button2">
+       		<option value="business_name">거래처명</option>
+       		<option value="wh_name">창고명</option>
+       		<option value="product_name">출고품목명</option>
+       </select>
+       <input type="text" name="search" class="button2">
+       <input type="submit" class="button2" value="검색" >
+     </form>  
+    </div>
 
 	
 	<div class="wrap2">
@@ -105,8 +106,6 @@
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
 					<th>출고코드</th>
-					<th>거래처명</th>
-<!-- 					<th>담당자</th> -->
 					<th>창고</th>
 					<th>출고품목명</th>
 					<th>출고일자</th>
@@ -122,8 +121,6 @@
 				<tr>
 					<td><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.rel_schedule_cd }"></td>
 					<td>${dto.rel_schedule_cd}</td>
-					<td>${dto.business_name}</td>
-<%-- 					<td>${dto.emp_name}</td> --%>
 					<td>${dto.wh_name}</td>
 					<td>${dto.product_name}</td>
 					<td>${dto.rel_date}</td>

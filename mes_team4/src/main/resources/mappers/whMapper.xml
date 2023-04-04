@@ -35,6 +35,10 @@
         	<if test="select == 'wh_addr'.toString()">
         		where wh_addr like CONCAT('%',#{search},'%')
         	</if>
+        	
+        	<if test="select == 'wh_use'.toString()">
+        		where wh_use like CONCAT('%',#{search},'%')
+        	</if>
         </if>
         </if>
         order by wh_cd desc 
@@ -50,6 +54,10 @@
         	</if>
         	
         	<if test="select == 'wh_addr'.toString()">
+        		where wh_addr like CONCAT('%',#{search},'%')
+        	</if>
+        	
+        	<if test="select == 'wh_use'.toString()">
         		where wh_addr like CONCAT('%',#{search},'%')
         	</if>
         	

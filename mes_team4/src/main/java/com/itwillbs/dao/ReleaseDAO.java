@@ -18,15 +18,14 @@ public interface ReleaseDAO {
 	
 	public List<Map<String, Object>> getRelList(PageDTO pageDTO);
 
-	public List<Map<String, Object>> getBInstMap();
-
-	public List<Map<String, Object>> getWInstMap();
-
-	public List<Map<String, Object>> getPInstMap();
-
 	public ReleaseDTO getrel(String rel_schedule_cd);
 
 	public void updaterel(ReleaseDTO releaseDTO);
+
+	public void deleterel(String rel_schedule_cd);
+
+	public String getRel_cd();
+
 
 
 

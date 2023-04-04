@@ -16,7 +16,9 @@
 <script>
 function sub(){
 	$(document).ready(function(){
-//	 	alert("준비");
+		// submit 유효성 검사
+		var result = confirm("생산설비를 등록하시겠습니까?");
+		if (result == true){   
 			if($('#line_cd').val()==""){
 				alert("라인코드를 선택하세요");
 				$('#line_cd').focus();
@@ -32,16 +34,24 @@ function sub(){
 				$('#line_process').focus();
 				return false;
 			}
-			
-window.opener.name = "parentPage";
-document.LineInsert.target="parentPage";
-document.LineInsert.action="${pageContext.request.contextPath}/line/lineinsertpro";
-document.LineInsert.submit();
-self.close();
+			window.opener.name = "parentPage";
+			document.LineInsert.target="parentPage";
+			document.LineInsert.action="${pageContext.request.contextPath}/line/lineinsertpro";
+			document.LineInsert.submit();
+			self.close();
+		} else {
+			return false;
+		}		
 	});
 }
 function rst(){
-document.LineInsert.reset();
+	// 초기화 유효성 검사
+	var result = confirm("초기화 하시겠습니까?");
+	if (result == true){    
+		document.LineInsert.reset();
+	} else {
+		return false;
+	}
 }
 
 </script>
@@ -55,7 +65,7 @@ document.LineInsert.reset();
 
 	<h2 class="inserttitle">생산설비 추가 </h2><br>
 <!-- 	<div class="wrap2"> -->
-	<button class="button2" onclick="sub()">등록</button>
+	<button class="button2" id="sub" onclick="sub()">등록</button>
 	<button class="button2" onclick="rst()">초기화</button>	  
 <!-- 	 </div><br> -->
 	 <br><br>

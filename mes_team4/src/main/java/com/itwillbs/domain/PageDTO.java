@@ -10,6 +10,9 @@ public class PageDTO {
 	private String search; // 페이지 검색어
 	private String select; // 검색어 옵션
 	private String product_dv; // 품목 구분
+	private String select_date; // 날짜 구분
+	private String start_date; // 시작일
+	private String end_date; // 마감일
 	
 	// 페이징처리 계산 멤버변수
 	private String pageNum; // 현재 화면의 페이지번호 String
@@ -23,6 +26,29 @@ public class PageDTO {
 	private int pcount; // 생산미완료 개수
 	private int fcount; // 생산완료 개수
 	
+	// 테이블 병합처리 멤버변수
+	private List<Integer> rowcolsTd; // td의 rowcols 수 
+	private List<Integer> showTd; // td를 나타낼 위치
+	
+	
+	public String getSelect_date() {
+		return select_date;
+	}
+	public void setSelect_date(String select_date) {
+		this.select_date = select_date;
+	}
+	public String getStart_date() {
+		return start_date;
+	}
+	public void setStart_date(String start_date) {
+		this.start_date = start_date;
+	}
+	public String getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
+	}
 	public int getPcount() {
 		return pcount;
 	}
@@ -34,11 +60,7 @@ public class PageDTO {
 	}
 	public void setFcount(int fcount) {
 		this.fcount = fcount;
-	}
-	// 테이블 병합처리 멤버변수
-	private List<Integer> rowcolsTd; // td의 rowcols 수 
-	private List<Integer> showTd; // td를 나타낼 위치
-			
+	}		
 	public List<Integer> getRowcolsTd() {
 		return rowcolsTd;
 	}

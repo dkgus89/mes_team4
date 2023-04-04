@@ -72,16 +72,13 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public OrderDTO getOrder(String cd) {
 		System.out.println("OrderServiceImpl getOrder()");
-		
 		return orderDAO.getOrder(cd);
 	}
 
 	@Override
 	public void updateOrder(OrderDTO orderDTO) {
-		System.out.println("OrderServiceImpl updateOrder()");
-		
+		System.out.println("OrderServiceImpl updateOrder()");	
 		orderDAO.updateOrder(orderDTO);
-		
 	}
 
 	@Override
@@ -94,6 +91,18 @@ public class OrderServiceImpl implements OrderService{
 	public int getFCount() {
 		System.out.println("OrderServiceImpl getFCount()");
 		return orderDAO.getFCount();
+	}
+
+	@Override
+	public int getPCount(PageDTO pageDTO) {
+		System.out.println("orderService search있는 p갯수구함");
+		return orderDAO.getPCount(pageDTO);
+	}
+
+	@Override
+	public int getFCount(PageDTO pageDTO) {
+		System.out.println("orderService search있는 f갯수구함");
+		return orderDAO.getFCount(pageDTO);
 	}
 
 }
