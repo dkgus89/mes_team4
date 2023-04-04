@@ -1,5 +1,7 @@
 package com.itwillbs.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -20,12 +22,20 @@ public class OrderServiceImpl implements OrderService{
 	public void insertOrder(OrderDTO orderDTO) {
 		System.out.println("OrderServiceImpl insertORder()");
 		
-		if(orderDAO.getMaxNum()==null) {
+		LocalDate now = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
+		String today = now.format(formatter);
+		
+		System.out.println("오늘날짜:"+today);
+		
+		if(orderDAO.getMaxNum(today)==null) {
 			
-			orderDTO.setOrder_cd("OR1000");
+			orderDTO.setOrder_cd("OR"+today+"01");
 		}else {
-			int num = orderDAO.getMaxNum()+1;
-			String str = "OR" + num;
+			
+			int num = orderDAO.getMaxNum(today)+1;
+			String new_num = String.valueOf(num).format("%02d", num);
+			String str = "OR" + today + new_num;
 			orderDTO.setOrder_cd(str);
 		}
 		orderDAO.insertOrder(orderDTO);

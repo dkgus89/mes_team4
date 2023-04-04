@@ -9,7 +9,7 @@ public interface OrderDAO {
 
 	void insertOrder(OrderDTO orderDTO);
 	
-	public Integer getMaxNum();
+	public Integer getMaxNum(String today);
 	
 	public List<OrderDTO> getOrderList(PageDTO pageDTO);
 	

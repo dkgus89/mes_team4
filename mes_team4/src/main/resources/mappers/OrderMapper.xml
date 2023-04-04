@@ -5,7 +5,8 @@
 
 
 <select id="getMaxNum" resultType="java.lang.Integer">
-	select max(SUBSTR(order_cd, 3)) from order_management
+	select max(SUBSTR(order_cd, 9)) from order_management 
+	where SUBSTR(order_cd,3,6) = #{today};
 </select>
 
 	 <insert id="insertOrder">
