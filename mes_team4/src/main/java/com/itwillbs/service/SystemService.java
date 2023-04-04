@@ -21,6 +21,7 @@ public interface SystemService {
 
 	public SystemDTO userCheck(SystemDTO systemDTO);
 
+	public void mypagePro(SystemDTO systemDTO);
 	
 
 }

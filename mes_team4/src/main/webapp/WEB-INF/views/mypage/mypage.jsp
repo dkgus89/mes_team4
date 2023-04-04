@@ -46,7 +46,7 @@ $(function(){
 
 	<h2>마이페이지</h2><br>
 	 	 
-<form method="post" id="myform" action="${pageContext.request.contextPath}/member/update?num=emp_no">
+<form method="post" id="myform" action="${pageContext.request.contextPath}/system/mypagepro?num=emp_no">
 
 <div class="wrap2">
 		<input type="submit" class="button2" value="저장">
@@ -55,16 +55,16 @@ $(function(){
 	<table >	
 	<thead><th colspan="2" style="text-align: center; height:35px; font-size: 1.3rem ">사용자정보 (비밀번호 변경가능)</th></thead>
 	<tr style="text-align: center; font-size: 1rem">
-	<td>이름</td><td>김이름</td></tr>
+	<td>이름</td><td>${systemDTO.emp_name}</td></tr>
 	<tr style="text-align: center; font-size: 1rem">
-	<td>사원번호</td><td>1010101</td></tr>
+	<td>사원번호</td><td>${systemDTO.emp_no}</td></tr>
 	<tr style="text-align: center; font-size: 1rem">
-	<td>부서번호</td><td>DP101</td></tr>
+	<td>부서번호</td><td>${systemDTO.dept_cd}</td></tr>
 	<tr style="text-align: center; font-size: 1rem">
-	<td>비밀번호</td><td><input type="password" name="pass" class="pass" size=40  style="height:20px;"><br>
+	<td>비밀번호</td><td><input type="password" name="emp_pass" class="pass" size=40  style="height:20px;"><br>
 						비밀번호는 <span style="color:red">숫자 *자리</span>를 입력하세요</td></tr>
 	<tr style="text-align: center; font-size: 1rem">
-	<td>비밀번호확인</td><td><input type="password" name="pass2" class="pass2" size=40 style="height:20px;"><br>
+	<td>비밀번호확인</td><td><input type="password" name="emp_pass2" class="pass2" size=40 style="height:20px;"><br>
 						비밀번호를 다시한번 입력하세요</td></tr>
 	</table>		
 </form>

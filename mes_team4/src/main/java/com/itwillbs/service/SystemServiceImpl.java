@@ -80,11 +80,13 @@ public class SystemServiceImpl implements SystemService{
 		return systemDAO.userCheck(systemDTO);
 	}
 
+	@Override
+	public void mypagePro(SystemDTO systemDTO) {
+		System.out.println("systemserviceImpl mypagePro");
+	
+		systemDAO.mypagePro(systemDTO);
+	}
 
-
-	
-	
-	
 	
 	
 }

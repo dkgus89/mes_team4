@@ -42,12 +42,11 @@ function rst(){
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>품목타입코드</th>
-					<th>제품구분 </th>
+					<th>제품구분</th>
+					<th>품목타입 </th>
 					<th>제품코드 </th>
 					<th>제품명 </th>
 					<th>거래처명 </th>
-					<th>규격 </th>
 					<th>재고단위  </th>
 					<th>적요</th>
 				</tr>
@@ -55,6 +54,14 @@ function rst(){
 			
 			<tbody>
 				<tr>
+					<td>
+					<select  name="product_dv">
+						<option value="">선택해주세요</option>
+						<option value="완제품">완제품</option>
+						<option value="원자재">원자재</option>
+					</select>
+					</td>
+					
 					<td>
 					<select  name="product_type_cd">
 						<option value="">선택해주세요</option>
@@ -64,13 +71,7 @@ function rst(){
 						<option value="4">4 포장자재</option>
 					</select>
 					</td>
-					<td>
-					<select  name="product_dv">
-						<option value="">선택해주세요</option>
-						<option value="완제품">완제품</option>
-						<option value="원자재">원자재</option>
-					</select>
-					</td>
+					
 					<td><input type="text" name="product_cd_name"></td>
 					<td><input type="text" name="product_name"></td>
 					<td><select name ="business_cd">
@@ -78,8 +79,11 @@ function rst(){
 							<option value="${dto.business_cd }">${dto.business_cd } </option>
 						</c:forEach>
 					</select></td>
-					<td><input type="tel" name="product_unit"></td>
-					<td><input type="text" name="product_unit"></td>
+					<td><select  name="product_unit">
+						<option value="">선택해주세요</option>
+						<option value="완제품">EA</option>
+						<option value="원자재">kg</option>
+					</select></td>
 					<td><input type="text"  class="remarks" name="remarks" ></td>
 				</tr>
 			</tbody>				

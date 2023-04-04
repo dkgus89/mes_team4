@@ -72,4 +72,11 @@
     <delete id="">
     </delete> -->
     
+     
+    <update id="mypagePro">
+    	update employees 
+    	set emp_pass = #{emp_pass}
+    	where emp_no = #{emp_no}	
+    </update>
+    
 </mapper>

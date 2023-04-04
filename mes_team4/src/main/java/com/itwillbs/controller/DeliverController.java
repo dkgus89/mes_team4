@@ -52,7 +52,7 @@ public class DeliverController {
 			String search = request.getParameter("search");
 			
 				// 한 화면에 보여줄 글 개수 설정
-				int pageSize = 8;
+				int pageSize = 5;
 			
 			//현 페이지 번호가져오기
 			String pageNum=request.getParameter("pageNum");
@@ -226,24 +226,22 @@ public class DeliverController {
 		
 		
 		
-		@RequestMapping(value = "/deliver/delete", method = RequestMethod.GET)
-		public String delete(HttpServletRequest request) {
+		@RequestMapping(value = "/deliver/deliverdelete", method = RequestMethod.GET)
+		public String deliverdelete(HttpServletRequest request) {
 		//	System.out.println("DeliverController delete()");
 			String chbox[]=request.getParameterValues("rowcheck");
 			String deliver_cd = null;
 			if(chbox!=null) {
 				for(int i=0; i<chbox.length; i++) {
 					deliver_cd=chbox[i];
+					System.out.println(deliver_cd);
 					deliverService.deleteDeliver(deliver_cd);
 				}
 			}
 			
 			
-		
-			
-			
 			// 주소줄 변경하면서 이동
-			return "redirect:/deliver/Deliver";
+			return "redirect:/deliver/list";
 		}	
 		
 		

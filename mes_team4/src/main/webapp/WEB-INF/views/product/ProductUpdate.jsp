@@ -50,7 +50,6 @@ function sub(){
 					<th style="text-align:center">제품코드</th>
 					<th style="text-align:center">제품명</th>
 					<th style="text-align:center">거래처코드</th>
-					<th style="text-align:center">규격</th>
 					<th style="text-align:center">재고단위</th>
 					<th style="text-align:center">적요</th>
 				</tr>
@@ -68,7 +67,6 @@ function sub(){
 					<td><input type="text" name="product_cd_name" value="${productDTO.product_cd_name }" readonly></td>
 					<td><input type="text" name="product_name" value="${productDTO.product_name }" ></td>
 					<td><input type="text" name="business_cd" value="${productDTO.business_cd }" ></td>
-					<td><input type="text" name="product_size" value="${productDTO.product_size }" ></td>
 					<td><input type="text" name="product_unit" value="${productDTO.product_unit }"></td>
 					<td><input type="text" name="remarks" value="${productDTO.remarks }"></td>
 				</tr>
