@@ -128,6 +128,7 @@
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" id="allCheck" onclick="allChecking();"></th>
+					<th> </th>
 					<th>완제품코드</th>
 					<th>품목명</th>
 					
@@ -147,17 +148,18 @@
 			<c:when test="${not empty rprConsmptList}">
 			
 				<c:set var="count" value="-1" />
-				<c:set var="current" value="-1" />
 			
-				<c:forEach var="dto" items="${rprConsmptList }"> 
-					<c:set var="current" value="${current+1 }" />
+				<c:forEach var="dto" items="${rprConsmptList }" varStatus="sts"> 
 							
 			  		<tr>
-			  		<c:if test="${fn:contains(pageDTO.showTd, current)}">
+			  		<c:if test="${fn:contains(pageDTO.showTd, sts.index)}">
 	  					<c:set var="count" value="${count+1 }" />
+	  					
 	        			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><input type="checkbox" name="rowCheck" value="${dto.cproduct_cd_name }"></td>
+	    				<td rowspan="${pageDTO.rowcolsTd.get(count) }">${pageDTO.startRow+1+count }</td>
 	    				<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.cproduct_cd_name}</td>
 	    				<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.cproduct_name}</td>
+	    				
 	    			</c:if>
 	    			
 		    			<td>${dto.rproduct_cd_name}</td>
@@ -165,7 +167,7 @@
 		    			<td>${dto.consumption}</td>
 		    			<td>${dto.consumption_unit}</td> 
 		    			
-		    		<c:if test="${fn:contains(pageDTO.showTd, current)}">
+		    		<c:if test="${fn:contains(pageDTO.showTd, sts.index)}">
 		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><fmt:formatDate value="${dto.insert_date}" pattern="yyyy-MM-dd HH:mm" /></td>
 		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><fmt:formatDate value="${dto.update_date}" pattern="yyyy-MM-dd HH:mm" /></td>
 		    			<td rowspan="${pageDTO.rowcolsTd.get(count)}"><button class="button2" id="updateBtn" onclick="updateFn('${dto.cproduct_cd_name}')">수정</button></td>

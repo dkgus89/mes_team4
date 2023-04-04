@@ -128,13 +128,14 @@
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" id="allCheck" onclick="allChecking();"></th>
+					<th> </th>
 					<th>발주코드</th>
-					<th>거래처</th>
+					<th>거래처코드</th>
 					<th>원자재코드</th>
 					<th>발주량</th>
 					<th>발주일자</th>
 					<th>납품예정일</th>
-					<th>담당자</th>
+					<th>담당자코드</th>
 					<th>진행상황</th>
 					<th></th>
 				</tr>
@@ -144,10 +145,11 @@
 			<c:choose>
 			<c:when test="${not empty purchaseList}">
 			
-				<c:forEach var="dto" items="${purchaseList }"> 
+				<c:forEach var="dto" items="${purchaseList }" varStatus="sts"> 
 	
 			  		<tr>
 	        		<td><input type="checkbox" name="rowCheck" value="${dto.purchase_cd }"></td>
+	        		<td>${pageDTO.startRow+1+sts.index }</td>
 	    			<td>${dto.purchase_cd}</td>
 	    			<td>${dto.business_cd}</td>
 		    		<td>${dto.rproduct_cd_name}</td>
