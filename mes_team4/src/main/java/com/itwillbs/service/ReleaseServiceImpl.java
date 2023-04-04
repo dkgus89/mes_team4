@@ -61,26 +61,7 @@ public class ReleaseServiceImpl implements ReleaseService{
 		return releaseDAO.getRelList(pageDTO);
 	}
 
-	@Override
-	public List<Map<String, Object>> getBInstMap() {
-		System.out.println("ReleaseServiceImpl getBInstMap()");
-		
-		return releaseDAO.getBInstMap();
-	}
 
-	@Override
-	public List<Map<String, Object>> getWInstMap() {
-		System.out.println("ReleaseServiceImpl getWInstMap()");
-		
-		return releaseDAO.getWInstMap();
-	}
-
-	@Override
-	public List<Map<String, Object>> getPInstMap() {
-		System.out.println("ReleaseServiceImpl getPInstMap()");
-		
-		return releaseDAO.getPInstMap();
-	}
 
 
 	@Override
@@ -98,6 +79,30 @@ public class ReleaseServiceImpl implements ReleaseService{
 		releaseDAO.updaterel(releaseDTO);
 	}
 
+
+	@Override
+	public void deleterel(String rel_schedule_cd) {
+		System.out.println("ReleaseServiceImpl deleterel()");
+		
+		releaseDAO.deleterel(rel_schedule_cd);
+		
+	}
+
+
+	@Override
+	public String getRel_cd() {
+		System.out.println("ReleaseServiceImpl getRel_cd()");
+		
+		return releaseDAO.getRel_cd();
+	}
+
+
+
+
+
+
+
+	
 
 	
 

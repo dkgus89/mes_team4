@@ -12,23 +12,23 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 <script type="text/javascript">
-function sub(){
-document.insertform.action="${pageContext.request.contextPath}/wh/whinsertPro";
-document.insertform.submit();
-setTimeout(function() { 
-	opener.parent.location.reload();
-	window.close();
-	}, 300);
-}
-
-function goSubmit(){
-// 	window.opener.name="paretPage";
-	document.insertform.target="parentPage";
-	document.insertform.action="${pageContext.request.contextPath}/wh/whinsertPro";
-	document.insertform.submit();
-	self.close();
+function insertBtn(){
+	// submit 전 제한 사항
+	
+	// 내용 제한 넘길 시 submit 진행
+	var result = confirm("게시글을 등록하시겠습니까?");
+	if (result == true){    
+		document.getElementById('move').submit(); 
+		alert("등록");
+		setTimeout(function() { 
+			opener.parent.location.reload();
+			window.close();
+			}, 300);
+	} else {
+		return false;
+	}
 }
 
 function rst(){
@@ -44,13 +44,14 @@ document.insertform.reset();
 <!-- 본문HTML 입력 시작-->
 <h2 class="inserttitle">창고 등록</h2><br>
 
-	
-	<form action="${pageContext.request.contextPath}/wh/whinsertPro" name="insertform" method="post" >
-	<div class="wrap2">
-		<input type="submit" class="button2" value="등록" onclick="sub()">
+<div class="wrap2">
+		<input type="submit" class="button2" value="등록" onclick="insertBtn()">
 		<input type="reset" class="button2" value="초기화" onclick="rst()">
 	 </div><br>
 	 <br>
+	
+	<form id="move" action="${pageContext.request.contextPath}/wh/whinsertPro" name="insertform" method="post" >
+	
 	
 	
 		<input type="hidden" value="">
@@ -70,7 +71,7 @@ document.insertform.reset();
 			<tbody>
 				<tr>
 					<td>
-					<select  name="wh_dv">
+					<select  name="wh_dv" class="wh_dv">
 						<option value="">선택해주세요</option>
 						<option value="완제품">완제품</option>
 						<option value="원자재">원자재</option>
