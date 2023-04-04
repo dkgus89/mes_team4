@@ -66,11 +66,11 @@ $(document).ready(function(){
 					</div>
 					<div>
 					<label>라인코드</label><br>
-						<input type="radio" name="line_cd" class="line_cd" value="fl001" ${instructionDTO.line_cd eq 'fl001' ? 'checked':''}/> 1라인
-						<input type="radio" name="line_cd" class="line_cd" value="fl002" ${instructionDTO.line_cd eq 'fl002' ? 'checked':''}/> 2라인
-						<input type="radio" name="line_cd" class="line_cd" value="fl003" ${instructionDTO.line_cd eq 'fl003' ? 'checked':''}/> 3라인
-						<input type="radio" name="line_cd" class="line_cd" value="fl004" ${instructionDTO.line_cd eq 'fl004' ? 'checked':''}/> 4라인
-						<input type="radio" name="line_cd" class="line_cd" value="fl005" ${instructionDTO.line_cd eq 'fl005' ? 'checked':''}/> 5라인
+						<input type="radio" name="line_cd" class="line_cd" value="FL001" ${instructionDTO.line_cd eq 'FL001' ? 'checked':''}/> 1라인
+						<input type="radio" name="line_cd" class="line_cd" value="FL002" ${instructionDTO.line_cd eq 'FL002' ? 'checked':''}/> 2라인
+						<input type="radio" name="line_cd" class="line_cd" value="FL003" ${instructionDTO.line_cd eq 'FL003' ? 'checked':''}/> 3라인
+						<input type="radio" name="line_cd" class="line_cd" value="FL004" ${instructionDTO.line_cd eq 'FL004' ? 'checked':''}/> 4라인
+						<input type="radio" name="line_cd" class="line_cd" value="FL005" ${instructionDTO.line_cd eq 'FL005' ? 'checked':''}/> 5라인
 					</div><br>
 					<input type="hidden" name="instruction_date" class="instruction_date" value="${instructionDTO.instruction_date}">
 					<div>

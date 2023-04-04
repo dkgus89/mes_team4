@@ -147,6 +147,7 @@ public class InstructionController {
 		String instruction_code = request.getParameter("instruction_code");
 		InstructionDTO instructionDTO = instructionService.instructioninfo(instruction_code);
 		model.addAttribute("instructionDTO", instructionDTO);
+		System.out.println(instructionDTO.getInstruction_code());
 		return "/instruction/InstructionUpdate";
 	}
 
