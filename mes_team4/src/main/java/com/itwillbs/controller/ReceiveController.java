@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ReceiveDTO;
 import com.itwillbs.domain.WHDTO;
+import com.itwillbs.service.PurchaseService;
 import com.itwillbs.service.ReceiveService;
 import com.itwillbs.service.WHService;
 
@@ -24,6 +25,8 @@ public class ReceiveController {
 	private ReceiveService receiveService;
 	@Inject
 	private WHService whService;
+	@Inject 
+	private PurchaseService purchaseService;
 	
 	@RequestMapping(value = "/receive/recpage", method = RequestMethod.GET)
 	public String recpage(HttpServletRequest request, Model model) {
@@ -127,5 +130,47 @@ public class ReceiveController {
 				model.addAttribute("pageDTO", pageDTO);
 				
 		return "receive/warehouse";
+	}
+	@RequestMapping(value = "/receive/purchase", method = RequestMethod.GET)
+	public String list(HttpServletRequest request, PageDTO pageDTO, Model model) {
+				
+		// 한 화면에 보여줄 글의 개수
+		int pageSize = 5;
+		
+		// 현재페이지 번호 설정
+		String pageNum= request.getParameter("pageNum");
+		if(pageNum == null) {
+			pageNum = "1";
+		} 
+		int CurrentPage = Integer.parseInt(pageNum);
+		
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(CurrentPage);
+		
+		List<Map<String, Object>> purchaseMapList = purchaseService.getPurchaseMapList(pageDTO);
+		
+		int count = purchaseService.getPurchaseCount(pageDTO);
+		
+		// 페이징 처리
+		int pageBlock = 5;
+		int startPage = (CurrentPage-1)/pageBlock*pageBlock+1;
+		int endPage = startPage+pageBlock-1;
+		int pageCount = count/pageSize+(count%pageSize==0?0:1);
+		if(endPage > pageCount){
+		 	endPage = pageCount;
+		}
+		
+		pageDTO.setCount(count);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		// 서버단 처리 결과 전달
+		model.addAttribute("purchaseMapList", purchaseMapList); 
+		model.addAttribute("pageDTO", pageDTO);
+		
+		return "receive/purchase";
 	}
 }

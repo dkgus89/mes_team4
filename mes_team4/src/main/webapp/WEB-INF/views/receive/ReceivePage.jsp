@@ -43,8 +43,8 @@ function showPopup() {
 					<th>입고창고</th>
 					<th>발주/수주코드</th>
 					<th>제품코드</th>
-					<th>입고수량</th>
 					<th>입고일자</th>
+					<th>입고수량</th>
 					<th>진행상태</th>
 				</tr>
 			</thead>
