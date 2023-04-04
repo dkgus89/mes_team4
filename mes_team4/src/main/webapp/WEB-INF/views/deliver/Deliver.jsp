@@ -38,6 +38,7 @@ function allcheck() {
 		}else {
 			for(i=0; i<rc.length; i++){
 				rc[i].checked=false;}
+			rc.checked=false;
 		}	
 	}
 
@@ -59,13 +60,13 @@ function allcheck() {
 	 <br>
 	 
 	 
-	<form >
+	<form name="deliverlist" >
 		<input type="hidden" value="">
 		
 		<table id="vendortable" class=" table table-striped">
 			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">
-					<th><input type="checkbox" name="allcheck" onClick='alCheck()'></th>
+				<tr style="text-align: center; font-size: 0.8rem">
+					<th><input type="checkbox" name="allcheck" onClick="allcheck()"></th>
 					<th>번호</th>
 <!-- 					//<th>선택</th> -->
 					<th>출하코드</th>
@@ -96,7 +97,7 @@ function allcheck() {
 				<c:forEach var="DeliverDTO" items="${deliverList}" varStatus="status">
 
 				<tr style="text-align: center; font-size: 0.9rem">
-				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.deliver_cd }"></td> 
+				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${DeliverDTO.deliver_cd}"></td> 
 				<td>${status.count + ((pageDTO.pageNum -1) * pageDTO.pageSize) }</td>
 				
 					
