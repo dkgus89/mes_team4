@@ -96,5 +96,12 @@ public class ProductServiceImpl implements ProductService{
 		return productDAO.getProduct_cd();
 	}
 
+	@Override
+	public List<ProductDTO> getProductList() {
+		System.out.println("ProductServiceImpl getProductList()");
+
+		return productDAO.getProductList();
+	}
+
 
 }

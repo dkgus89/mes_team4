@@ -3,6 +3,7 @@ package com.itwillbs.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
 
@@ -31,6 +32,7 @@ public interface ProductDAO {
 
 	public String getProduct_cd();
 
+	public List<ProductDTO> getProductList();
 
 
 

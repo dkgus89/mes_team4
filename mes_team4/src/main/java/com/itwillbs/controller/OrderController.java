@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.ProductDTO;
+import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.BusinessService;
 import com.itwillbs.service.OrderService;
+import com.itwillbs.service.ProductService;
+import com.itwillbs.service.SystemService;
 
 @Controller
 public class OrderController {
@@ -24,6 +28,12 @@ public class OrderController {
 	
 	@Inject
 	private OrderService orderService;
+	
+	@Inject
+	private ProductService productService;
+	
+	@Inject
+	private SystemService systemService;
 	
 	@RequestMapping(value = "/order/ordermain", method = RequestMethod.GET)
 	public String ordermain(HttpServletRequest request, Model model) {
@@ -76,8 +86,12 @@ public class OrderController {
 	public String businessinsert(Model model) {
 			
 		List<BusinessDTO> businessList = businessService.getBusinessList();
+		List<ProductDTO> productList = productService.getProductList();
+//		List<SystemDTO> systemList = systemService.getSystemlist();
 		
 		model.addAttribute("businessList",businessList);
+		model.addAttribute("productList",productList);
+//		model.addAttribute("systemList",systemList);
 		
 		// 가상주소 유지
 		return "order/OrderInsert";

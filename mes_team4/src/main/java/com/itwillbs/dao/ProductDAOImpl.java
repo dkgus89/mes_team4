@@ -93,6 +93,14 @@ public class ProductDAOImpl implements ProductDAO{
 		return sqlSession.selectOne(namespace+".getProduct_cd");
 	}
 
+	@Override
+	public List<ProductDTO> getProductList() {
+		System.out.println("productDAOImpl getproductlist()");
+		
+		
+		return sqlSession.selectList(namespace+".getProductforor");
+	}
+
 
 
 }

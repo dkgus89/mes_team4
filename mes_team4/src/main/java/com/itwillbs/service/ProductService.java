@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
 
@@ -31,5 +32,7 @@ public interface ProductService {
 	public int getProductCount2();
 
 	public String getProduct_cd();
+	
+	public List<ProductDTO> getProductList();
 	
 }

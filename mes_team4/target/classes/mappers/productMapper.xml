@@ -102,6 +102,11 @@
     	where product_cd_name = #{product_cd_name}   
     </update>
     
+<select id="getProductforor" resultType="com.itwillbs.domain.ProductDTO">
+	select * from product
+	where product_dv like "완제품"
+	order by product_cd asc 
+</select>
 
     
 </mapper>
