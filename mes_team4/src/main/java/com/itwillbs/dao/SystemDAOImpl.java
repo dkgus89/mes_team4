@@ -68,6 +68,14 @@ public class SystemDAOImpl implements SystemDAO {
 		
 		return sqlSession.selectOne(namespace + ".userCheck", systemDTO);
 	}
+	@Override
+	public void mypagePro(SystemDTO systemDTO) {
+		System.out.println("SystemDAOImpl mypagePro()");
+		System.out.println(systemDTO.getEmp_no());
+		System.out.println(systemDTO.getEmp_pass());
+		
+		sqlSession.update(namespace + ".mypagePro", systemDTO);
+	}
 
 
 	

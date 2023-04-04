@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.SystemService;
@@ -155,5 +156,31 @@ public class SystemController {
 //		주소줄 변경하면서 이동
 		return "redirect:/home";
 	}
+	
+	@RequestMapping(value = "/system/mypageform", method = RequestMethod.GET)
+	public String businessupdate(HttpSession session, Model model) {
+		System.out.println("SystemController mypageForm()");
+		
+		int emp_no = (Integer)session.getAttribute("enp_no");
+		System.out.println(emp_no);
+		SystemDTO systemDTO = systemService.memberinfo(emp_no);
+		
+		model.addAttribute("systemDTO",systemDTO);
+		
+		
+		// 가상주소 유지
+		return "mypage/mypage";
+	}
+	
+	@RequestMapping(value = "/system/mypagepro", method = RequestMethod.POST)
+	public String updatePro(SystemDTO systemDTO, HttpSession session) {
+		System.out.println("systemController mypagePro()");
+		int emp_no = (Integer)session.getAttribute("enp_no");
+		systemDTO.setEmp_no(emp_no);
+		systemService.mypagePro(systemDTO);
+
+		return "mypage/msg";
+	}
+	
 	
 }
