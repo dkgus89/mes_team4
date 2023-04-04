@@ -14,12 +14,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
 <script>
-    function goSubmit(){
-    	window.opener.name="parentPage";
-    	document.insertform.target="parentPage";
-    	document.insertform.action="${pageContext.request.contextPath}/receive/recinsertpro";
-    	document.insertform.submit();
-    	self.close();
+function sub(){
+	document.recinsert.action="${pageContext.request.contextPath}/receive/recinsertPro";
+	document.recinsert.submit();
+	setTimeout(function() { 
+		opener.parent.location.reload();
+		window.close();
+		}, 200);
+	}
+    function showPopup(){
+    	var link = "${pageContext.request.contextPath}/receive/warehouse";     
+    	var popupWidth = 700;
+    	var popupHeight = 800;
+    	var popupX = (window.screen.width/2) - (popupWidth/2);
+    	var popupY= (window.screen.height/2) - (popupHeight/2);
+    	
+      	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+        
+    }
+    function setChildValue(wh_cd){
+    	
+        document.getElementById("wh_cd").value = wh_cd;
+
     }
 </script>
 
@@ -31,15 +47,15 @@
 
 	<h2 class="inserttitle">입고등록 </h2><br>
 	
-		<form  name="insertform" method="post" >
+	<button class="button2" onclick="showPopup();" style="width:100px">창고</button>
 	
 	<div class="wrap2">
-		<input type="submit" class="button2" value="등록" onclick="goSubmit()">
-		<input type="reset" class="button2" value="초기화">
+	<button class="button2" id="sub" onclick="sub()">등록</button>
+	<button class="button2" onclick="rst()">초기화</button>
 	 </div><br>
 	 <br>
 	 
-	 
+	 <form action="${pageContext.request.contextPath}/receive/recinsertPro" name="recinsert" method="post" >
 		<input type="hidden" value="">
 		
 		<table id="vendortable" class="table table-striped">
@@ -47,6 +63,7 @@
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>입고창고</th>
 					<th>발주/수주코드</th>
+					<th>수량</th>
 					<th>입고일자</th>
 					<th>진행상태</th>
 				</tr>
@@ -54,10 +71,11 @@
 			
 			<tbody>
 				<tr>
-					<td><input type="text"></td>
-					<td><input type="text" ></td>
-					<td><input type="text" ></td>
-					<td><input type="text" ></td>
+					<td><input type="text" name="wh_cd" id="wh_cd"></td>
+					<td><input type="text" name="pchor_cd" id="pchor_cd"></td>
+					<td><input type="text" name="rec_count" id="rec_count"></td>
+					<td><input type="date" name="rec_date" id="rec_date" value=""></td>
+					<td><input type="text" name="in_complete" id="in_complete"></td>
 				</tr>
 
 			</tbody>

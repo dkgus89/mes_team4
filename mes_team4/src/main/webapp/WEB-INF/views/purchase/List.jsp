@@ -136,6 +136,7 @@
 					<th>발주일자</th>
 					<th>납품예정일</th>
 					<th>담당자코드</th>
+					<th>담당자</th>
 					<th>진행상황</th>
 					<th></th>
 				</tr>
@@ -143,9 +144,9 @@
 			
 			<tbody>
 			<c:choose>
-			<c:when test="${not empty purchaseList}">
+			<c:when test="${not empty purchaseMapList}">
 			
-				<c:forEach var="dto" items="${purchaseList }" varStatus="sts"> 
+				<c:forEach var="dto" items="${purchaseMapList }" varStatus="sts"> 
 	
 			  		<tr>
 	        		<td><input type="checkbox" name="rowCheck" value="${dto.purchase_cd }"></td>
@@ -157,6 +158,7 @@
 		    		<td>${dto.purchase_date}</td>
 		    		<td>${dto.purchase_due}</td> 
 		    		<td>${dto.emp_no}</td>
+		    		<td>${dto.emp_name}</td>
 		    		<td>${dto.purchase_com}</td>
 		    		<td><button class="button2" id="updateBtn" onclick="updateFn('${dto.purchase_cd}')">수정</button></td>
 	  				</tr>
@@ -166,7 +168,7 @@
 			</c:when>
 			<c:otherwise>
 				<tr>
-				<td colspan="10" style="text-align: center;">등록된 데이터가 없습니다.</td>
+				<td colspan="11" style="text-align: center;">등록된 데이터가 없습니다.</td>
 				</tr>
 			</c:otherwise>
 			</c:choose>

@@ -19,10 +19,10 @@ public class OrderDAOImpl implements OrderDAO{
 	private static final String namespace="com.itwillbs.mappers.OrderMapper";
 	
 	@Override
-	public Integer getMaxNum() {
+	public Integer getMaxNum(String today) {
 		System.out.println("OrderDAOImpl getMaxNum()");
-
-		return sqlSession.selectOne(namespace+".getMaxNum");
+		System.out.println(today);
+		return sqlSession.selectOne(namespace+".getMaxNum",today);
 	}
 
 	@Override

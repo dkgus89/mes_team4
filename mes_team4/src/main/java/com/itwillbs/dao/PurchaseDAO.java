@@ -27,6 +27,8 @@ public interface PurchaseDAO {
 	
 	public List<PurchaseDTO> getPurchaseList(PageDTO pageDTO);
 	
+	public List<Map<String, Object>> getPurchaseMapList(PageDTO pageDTO);
+	
 	public int getPurchaseCount(PageDTO pageDTO);
 	
 	public PurchaseDTO getPurchaseDTO(String purchase_cd);

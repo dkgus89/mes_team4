@@ -161,6 +161,7 @@
 	</form>
 	</div>
 		
+	<div id="pagingControl">
 	<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 	<a href="${pageContext.request.contextPath}/business/businessmain?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
 	</c:if>
@@ -172,7 +173,7 @@
 	<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 	<a href="${pageContext.request.contextPath}/business/businessmain?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
 	</c:if>
-
+	</div>
 	
 <!-- 본문HTML 입력 끝-->
 	</div>

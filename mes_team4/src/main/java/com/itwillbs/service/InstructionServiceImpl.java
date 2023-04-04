@@ -2,6 +2,7 @@ package com.itwillbs.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -18,8 +19,14 @@ public class InstructionServiceImpl implements InstructionService{
 	private InstructionDAO instructionDAO;
 
 	@Override
-	public List<OrderDTO> getorderlist(PageDTO pageDTO) {
+	public List<Map<String, Object>> getorderlist(PageDTO pageDTO) {
 		System.out.println("InstructionServiceImpl getorderlist()");
+		
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize();
+		int endRow = startRow + pageDTO.getPageSize()-1;
+		
+		pageDTO.setStartRow(startRow);  
+		pageDTO.setEndRow(endRow);
 		
 		return instructionDAO.getorderlist(pageDTO);
 	}
@@ -81,6 +88,13 @@ public class InstructionServiceImpl implements InstructionService{
 		
 		instructionDAO.instructionupdatepro(instructionDTO);
 		
+	}
+
+	@Override
+	public List<Map<String, Object>> conslist(String order_cd) {
+		System.out.println("InstructionServiceImpl instructioninfo()");
+		
+		return instructionDAO.conslist(order_cd);
 	}
 	
 	
