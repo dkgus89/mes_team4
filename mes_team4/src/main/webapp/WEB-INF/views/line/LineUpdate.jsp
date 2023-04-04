@@ -12,15 +12,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-<script type="text/javascript">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<script>
 function sub(){
 	$(document).ready(function(){
-//	 	alert("준비");
-			if($('#line_cd').val()==""){
-				alert("라인코드를 선택하세요");
-				$('#line_cd').focus();
-				return false;
-			}
+		// submit 유효성 검사
+		var result = confirm("수정사항을 등록하시겠습니까?");
+		if (result == true){   			
 			if($('#line_name').val()==""){
 				alert("라인명를 입력하세요");
 				$('#line_name').focus();
@@ -31,16 +29,24 @@ function sub(){
 				$('#line_process').focus();
 				return false;
 			}
-	
-	window.opener.name = "parentPage";
-	document.LineUpdate.target="parentPage";
-	document.LineUpdate.action="${pageContext.request.contextPath}/line/lineupdatepro";
-	document.LineUpdate.submit();
-	self.close();
+			window.opener.name = "parentPage";
+			document.LineUpdate.target="parentPage";
+			document.LineUpdate.action="${pageContext.request.contextPath}/line/lineupdatepro";
+			document.LineUpdate.submit();
+			self.close();
+		} else {
+			return false;
+		}
 	});
 }
 function rst(){
-document.LineUpdate.reset();
+	// 초기화 유효성 검사
+	var result = confirm("초기화 하시겠습니까?");
+	if (result == true){    
+		document.LineUpdate.reset();
+	} else {
+		return false;
+	}
 }
 </script>
 
@@ -60,7 +66,7 @@ document.LineUpdate.reset();
 	 
 	 
 	<form name="LineUpdate" method="post">
-		<input type="hidden" value="">
+		<input type="hidden" name="line_cd" id="line_cd" value="${LineDTO.line_cd}">
 		
 		<table id="vendortable" class="table table-striped">
 			<thead>
@@ -74,7 +80,7 @@ document.LineUpdate.reset();
 			</thead>
 			
 			<tbody>
-				<tr><td><input type="text" name="line_cd" id="line_cd" value="${LineDTO.line_cd}"></td>
+				<tr><td>${LineDTO.line_cd}</td>
 					<td><input type="text" name="line_name" id="line_name" value="${LineDTO.line_name}"></td>
 					<td><input type="text" name="line_process" id="line_process" value="${LineDTO.line_process}"></td>
 						

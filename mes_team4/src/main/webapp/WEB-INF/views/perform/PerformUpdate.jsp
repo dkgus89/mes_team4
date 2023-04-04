@@ -72,9 +72,15 @@ function sub(){
 	self.close();
 	});
 }
-	function rst(){
-	document.PerformUpdate.reset();
+function rst(){
+	// 초기화 유효성 검사
+	var result = confirm("초기화 하시겠습니까?");
+	if (result == true){    
+		document.PerformUpdate.reset();
+	} else {
+		return false;
 	}
+}
 	
 // 	$(document).ready(function () {
 //	 	alert($("#inst").val());
