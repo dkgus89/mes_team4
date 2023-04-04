@@ -161,7 +161,7 @@ public class ReceiveController {
 		
 		receiveService.insertReceive(receiveDTO);
 		
-		return "redirect:/receive/ReceivePage";
+		return "redirect:/receive/recpage";
 	}
 	
 	@RequestMapping(value = "/receive/warehouse", method = RequestMethod.GET)

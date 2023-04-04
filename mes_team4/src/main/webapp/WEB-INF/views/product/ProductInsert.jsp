@@ -22,6 +22,7 @@ function sub(){
 		window.close();
 		}, 200);
 	}
+	
 function rst(){
 	document.prodinsert.reset();
 	}
@@ -99,8 +100,3 @@ function rst(){
 	
 <!-- 본문HTML 입력 끝-->
 	</div>
-</div>
-
-<!-- 푸터 들어가는 곳 -->
-<jsp:include page="../main/Footer.jsp" />
-<!-- 푸터 들어가는 곳 -->
