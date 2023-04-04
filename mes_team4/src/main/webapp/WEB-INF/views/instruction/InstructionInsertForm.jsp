@@ -14,7 +14,7 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 function instructioninsert(a){
-	var win = window.open("${pageContext.request.contextPath }instruction/instructioninsert?order_cd=" + a, "_blank", "width=570, height=570, top=200, left=200");
+	var win = window.open("${pageContext.request.contextPath }/instruction/instructioninsert?order_cd=" + a, "_blank", "width=570, height=570, top=200, left=200");
 }
 
 </script>
@@ -58,7 +58,7 @@ function instructioninsert(a){
 <!-- 		조건걸기: 1. (기본)수주가 완료된 상황 = omList.om_com이 1 -->
 <!-- 		2. 수주량>지시수량일때 omList.order_count > instrution_qt의 합 -->
 <!-- 			일 때 작업지시 추가버튼이 보이게 함 -->
-						<td><button class="button2" onclick="instructioninsert(${orderDTO.order_cd})">추가</button></td>
+						<td><button class="button2" onclick="instructioninsert('${orderDTO.order_cd}')">추가</button></td>
 			  	</c:forEach>
 			</tbody>
 		</table>

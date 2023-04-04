@@ -13,9 +13,9 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
-function instructioninsert(){
-	var win = window.open("${pageContext.request.contextPath }/instruction/instructioninsertform", "_blank", "width=570, height=570, top=200, left=200");
-}
+// function instructioninsert(){
+// 	var win = window.open("${pageContext.request.contextPath }/instruction/instructioninsertform", "_blank", "width=570, height=570, top=200, left=200");
+// }
 function instructionupdate(b) {
 	var win = window.open("${pageContext.request.contextPath }/instruction/instructionupdate?instruction_code=" + b, "_blank", "width=570, height=570, top=200, left=200");
 }
@@ -30,7 +30,7 @@ function instructiondelete(b) {
 
 	<h2>작업지시관리</h2>
 	<div class="wrap2">
-	<button class="button2" onclick="instructioninsert()">추가</button>
+	<button class="button2" onclick="location.href='${pageContext.request.contextPath }/instruction/instructioninsertform'">추가</button>
 	 </div><br><br>
 
 		<input type="hidden" value="">
