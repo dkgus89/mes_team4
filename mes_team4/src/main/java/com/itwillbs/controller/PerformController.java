@@ -1,7 +1,11 @@
 package com.itwillbs.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -113,31 +117,77 @@ public class PerformController {
 		@RequestMapping(value = "/perform/performinsertpro", method = RequestMethod.POST)
 		public String performInsertPro(HttpServletRequest request, PerformDTO performDTO) {
 			System.out.println("PerformController performInsertPro()");
-			if(performService.getPerformCount2()==0) {
-				performDTO.setPerform_cd("MPF00001");
-			}else {
-				String maxpc=performService.getPerform_cd();
-				maxpc=maxpc.substring(3);
-				int tpc=Integer.parseInt(maxpc);
-				tpc=tpc+1;
-				maxpc=String.valueOf(tpc);
-				if(maxpc.length()==1) {
-				maxpc="0000".concat(maxpc);
-				maxpc="MPF".concat(maxpc);
-				}else if(maxpc.length()==2) {
-					maxpc="000".concat(maxpc);
-					maxpc="MPF".concat(maxpc);
-				}else if(maxpc.length()==3) {
-					maxpc="00".concat(maxpc);
-					maxpc="MPF".concat(maxpc);
-				}else if(maxpc.length()==4) {
-					maxpc="0".concat(maxpc);
-					maxpc="MPF".concat(maxpc);
-				}else if(maxpc.length()==5) {
-					maxpc="MPF".concat(maxpc);
+//			if(performService.getPerformCount2()==0) {
+//				performDTO.setPerform_cd("MPF00001");
+//			}else {
+//				String maxpc=performService.getPerform_cd();
+//				maxpc=maxpc.substring(3);
+//				int tpc=Integer.parseInt(maxpc);
+//				tpc=tpc+1;
+//				maxpc=String.valueOf(tpc);
+//				if(maxpc.length()==1) {
+//				maxpc="0000".concat(maxpc);
+//				maxpc="MPF".concat(maxpc);
+//				}else if(maxpc.length()==2) {
+//					maxpc="000".concat(maxpc);
+//					maxpc="MPF".concat(maxpc);
+//				}else if(maxpc.length()==3) {
+//					maxpc="00".concat(maxpc);
+//					maxpc="MPF".concat(maxpc);
+//				}else if(maxpc.length()==4) {
+//					maxpc="0".concat(maxpc);
+//					maxpc="MPF".concat(maxpc);
+//				}else if(maxpc.length()==5) {
+//					maxpc="MPF".concat(maxpc);
+//				}
+//				performDTO.setPerform_cd(maxpc);
+//			}
+			
+			// 실적코드 자동생성(PCHyyMMdd01) 및 저장 
+			// 기존 실적코드
+			String first_perform_cd = "기존실적코드";
+			String first_number_st = "기존스트링넘버";
+			int first_number = 0;
+			
+			if (performService.getPerform_cd() != null) {
+				first_perform_cd = performService.getPerform_cd();
+				first_number_st = first_perform_cd.substring(9);
+			}	
+			
+			// 새로운 실적코드
+			String new_perform_cd = "실적코드";
+			String new_number_st = "스트링넘버";
+			int new_number = 0;
+			
+			// 메뉴코드 설정
+			String menu_code = "MPF";
+			
+			// 오늘날짜 설정
+			LocalDate now = LocalDate.now();
+		    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
+		    String today = now.format(formatter);
+		    
+		    // 인덱스 설정
+		    if ( !(first_perform_cd.equals("기존실적코드")) && first_perform_cd.contains(today)) {
+		    	// 패턴&매치 정규식 이용 => 스트링넘버 앞 0 삭제(조건 : String length 2자 이상)
+		    	Pattern pattern = Pattern.compile("^0*([1-9][0-9]*)|0+$");
+				Matcher matcher = pattern.matcher(first_number_st);
+				
+				if (matcher.find()) { 
+				    first_number = Integer.parseInt(matcher.group(1)); 
+				} else {
+				    System.out.println("No match found.");
 				}
-				performDTO.setPerform_cd(maxpc);
-			}
+				
+				// String 정규식 이용 => new_perform_cd 생성
+				new_number = first_number+1;
+				new_number_st = String.valueOf(new_number).format("%02d", new_number);
+				new_perform_cd = menu_code + today + new_number_st;
+				
+		    } else {
+		    	new_perform_cd = menu_code + today + "01";
+		    }
+		    performDTO.setPerform_cd(new_perform_cd);
 			
 			//글쓰기 작업 메서드 호출
 			performService.insertPerform(performDTO);

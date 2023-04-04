@@ -75,6 +75,7 @@ function rst(){
 					<td><input type="text" name="product_cd_name"></td>
 					<td><input type="text" name="product_name"></td>
 					<td><select name ="business_cd">
+					<option value="">선택해주세요</option>
 						<c:forEach var="dto" items="${instMap}">
 							<option value="${dto.business_cd }">${dto.business_cd } </option>
 						</c:forEach>

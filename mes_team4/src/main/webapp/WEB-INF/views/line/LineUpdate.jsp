@@ -14,15 +14,34 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript">
 function sub(){
+	$(document).ready(function(){
+//	 	alert("준비");
+			if($('#line_cd').val()==""){
+				alert("라인코드를 선택하세요");
+				$('#line_cd').focus();
+				return false;
+			}
+			if($('#line_name').val()==""){
+				alert("라인명를 입력하세요");
+				$('#line_name').focus();
+				return false;
+			}
+			if($('#line_process').val()==""){
+				alert("공정을 입력하세요");
+				$('#line_process').focus();
+				return false;
+			}
+	
 	window.opener.name = "parentPage";
 	document.LineUpdate.target="parentPage";
 	document.LineUpdate.action="${pageContext.request.contextPath}/line/lineupdatepro";
 	document.LineUpdate.submit();
 	self.close();
-	}
-	function rst(){
-	document.LineUpdate.reset();
-	}
+	});
+}
+function rst(){
+document.LineUpdate.reset();
+}
 </script>
 
 
@@ -55,9 +74,9 @@ function sub(){
 			</thead>
 			
 			<tbody>
-				<tr><td><input type="text" name="line_cd" value="${LineDTO.line_cd}" readonly></td>
-					<td><input type="text" name="line_name" value="${LineDTO.line_name}"></td>
-					<td><input type="text" name="line_process" value="${LineDTO.line_process}"></td>
+				<tr><td><input type="text" name="line_cd" id="line_cd" value="${LineDTO.line_cd}"></td>
+					<td><input type="text" name="line_name" id="line_name" value="${LineDTO.line_name}"></td>
+					<td><input type="text" name="line_process" id="line_process" value="${LineDTO.line_process}"></td>
 						
 						<c:if test="${LineDTO.line_status==1}"><td><select name="line_status">
 							<option value="1" selected>가동중</option>

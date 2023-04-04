@@ -23,6 +23,20 @@ function chdelete() {
 function updatePopup(cd) {
 	 window.open("${pageContext.request.contextPath}/product/produpdate?product_cd_name="+cd,"produpdate","width=1400, height=300, top=200, left=200");
 }
+function allCheck(){
+	
+	var ac = document.productList.allcheck;
+	var rc = document.productList.rowcheck;
+	if(ac.checked == true){
+		for(i=0; i<rc.length; i++){
+			rc[i].checked=true;}
+		rc.checked=true;
+	}else {
+		for(i=0;i<rc.length;i++){
+			rc[i].checked=false;}
+		rc.checked=false;
+	} 
+}
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -41,7 +55,7 @@ function updatePopup(cd) {
 				<option value="product_cd_name">제품코드</option>
 				<option value="product_name">제품명</option>
 			</select>
-			<input type="text" name="search" class="button2" >
+			<input type="text" name="search" class="button2" style="width:200px">
 			<input type="submit" class="button2" value="검색">
 		</form>
 	</div>
@@ -51,7 +65,7 @@ function updatePopup(cd) {
 	  <button class="button2" onclick="chdelete();">삭제</button>
 	 </div><br>
 	 <br>
-	 
+	 <div>전체 ${pageDTO.count }건</div>
 	 
 	<form name="productList">
 		<input type="hidden" value="">
@@ -59,17 +73,17 @@ function updatePopup(cd) {
 		
 			<thead>
 				<tr style="text-align:center; font-size: 0.9rem">
-					<th>선택</th>
-					<th> </th>
+					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
+					<th></th>
 					<th>품목코드</th>
 					<th>제품구분</th>
 					<th>제품코드</th>
 					<th>제품명</th>
 					<th>거래처코드</th>
 					<th>거래처명</th>
-					<th>재고단위</th>
+					<th>단위</th>
 					<th>적요</th>
-					<th>수정</th>
+					<th></th>
 				</tr>
 			</thead>
 
@@ -77,7 +91,7 @@ function updatePopup(cd) {
 			<c:if test="${pageDTO.count != 0 }">
 					<c:forEach var="productDTO" items="${productList }" varStatus="status">
 				<tr style="text-align:center; font-size: 0.9rem">
-					<td><input type="checkbox" name="chbox" value="${productDTO.product_cd_name}"></td>
+					<td><input type="checkbox" id="checkbox" name="rowcheck" value="${productDTO.product_cd_name}"></td>
 					<td>${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
 					<td>${productDTO.product_cd }</td>
 					<td>${productDTO.product_dv }</td>

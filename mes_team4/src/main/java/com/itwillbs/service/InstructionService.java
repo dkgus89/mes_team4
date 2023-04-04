@@ -1,6 +1,7 @@
 package com.itwillbs.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.OrderDTO;
@@ -9,7 +10,7 @@ import com.itwillbs.domain.PageDTO;
 
 public interface InstructionService {
 	
-	public List<OrderDTO> getorderlist(PageDTO pageDTO);
+	public List<Map<String, Object>> getorderlist(PageDTO pageDTO);
 
 	public int getordercount(PageDTO pageDTO);
 
@@ -27,7 +28,7 @@ public interface InstructionService {
 
 	public void instructionupdatepro(InstructionDTO instructionDTO);
 
-	
+	public List<Map<String, Object>> conslist(String order_cd);
 
 	
 

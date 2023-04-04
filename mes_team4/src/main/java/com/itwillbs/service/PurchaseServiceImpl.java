@@ -107,6 +107,19 @@ public class PurchaseServiceImpl implements PurchaseService{
 	}
 	
 	@Override
+	public List<Map<String, Object>> getPurchaseMapList(PageDTO pageDTO) {
+		System.out.println("ConsumptionServiceImpl getPurchaseMapList()");
+		
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize();
+		int endRow = startRow + pageDTO.getPageSize()-1;
+		
+		pageDTO.setStartRow(startRow);  
+		pageDTO.setEndRow(endRow);
+		
+		return purchaseDAO.getPurchaseMapList(pageDTO);
+	}
+	
+	@Override
 	public int getPurchaseCount(PageDTO pageDTO) {
 		System.out.println("ConsumptionServiceImpl getCprConsmptCount()");
 		

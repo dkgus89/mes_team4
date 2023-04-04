@@ -60,7 +60,8 @@ public class PurchaseController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(CurrentPage);
 		
-		List<PurchaseDTO> purchaseList = purchaseService.getPurchaseList(pageDTO);
+		List<Map<String, Object>> purchaseMapList = purchaseService.getPurchaseMapList(pageDTO);
+		
 		int count = purchaseService.getPurchaseCount(pageDTO);
 		
 		// 페이징 처리
@@ -79,7 +80,7 @@ public class PurchaseController {
 		pageDTO.setPageCount(pageCount);
 		
 		// 서버단 처리 결과 전달
-		model.addAttribute("purchaseList", purchaseList); 
+		model.addAttribute("purchaseMapList", purchaseMapList); 
 		model.addAttribute("pageDTO", pageDTO);
 		
 		return "purchase/List";
@@ -255,7 +256,7 @@ public class PurchaseController {
 		String first_number_st = "기존스트링넘버";
 		int first_number = 0;
 		
-		if (purchaseService.getPurchase_cd() != null) {
+		if (purchaseService.getPurchase_cd() != null) { // -> 이 줄만 수정해서 사용하세요.
 			first_purchase_cd = purchaseService.getPurchase_cd(); // -> 이 줄만 수정해서 사용하세요.
 			first_number_st = first_purchase_cd.substring(9);
 		}	

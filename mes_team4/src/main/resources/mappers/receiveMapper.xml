@@ -7,11 +7,19 @@
 <mapper namespace="com.itwillbs.mappers.receiveMapper">
 	
 	<!-- ?대신 productDTO의 멤버변수명 사용 #{id}-->
-<!-- 	<insert id="insertProduct"> -->
-<!-- 		insert into product(product_cd_name,product_name,product_dv,business_cd,product_size,product_unit,remarks)  -->
-<!-- 		values(#{product_cd_name},#{product_name},#{product_dv},#{business_cd},#{product_size},#{product_unit},#{remarks}) -->
-<!-- 	</insert> -->
+	<insert id="insertReceive">
+		insert into receive_schedule(rec_schedule_cd,wh_cd,pchor_cd,product_cd_name,rec_date,rec_count,in_complete) 
+		values(#{rec_schedule_cd},#{wh_cd},#{pchor_cd},#{product_cd_name},#{rec_date},#{rec_count},#{in_complete})
+	</insert>
 	
+	<select id="getReceiveList" resultType="com.itwillbs.domain.ReceiveDTO">
+        select * from receive_schedule
+        order by rec_schedule_cd    	
+    </select>
+	
+	<select id="getReceiveCount" resultType="java.lang.Integer">
+        select count(*) from receive_schedule 
+    </select>
 <!-- 	<resultMap type="map" id="map1"> -->
 <!-- 		<result column="business_cd" property="business_cd"/> -->
 <!-- 	</resultMap> -->

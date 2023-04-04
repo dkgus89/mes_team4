@@ -2,6 +2,7 @@
 package com.itwillbs.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -88,7 +89,7 @@ public class InstructionController {
 			pageDTO.setCurrentPage(currentPage);
 			pageDTO.setSearch(search);
 			
-			List<OrderDTO> orderList=instructionService.getorderlist(pageDTO);
+			List<Map<String, Object>> orderList = instructionService.getorderlist(pageDTO);
 			
 //			페이징처리
 			int count = instructionService.getordercount(pageDTO);
@@ -120,9 +121,10 @@ public class InstructionController {
 		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
 		System.out.println("InstructionController instructioninsert()");
 		String order_cd = request.getParameter("order_cd");
+		List<Map<String, Object>> consList = instructionService.conslist(order_cd);
 		OrderDTO orderDTO = instructionService.orderinfo(order_cd);
 		model.addAttribute("orderDTO", orderDTO);
-
+		model.addAttribute("consList", consList);
 		return "instruction/InstructionInsert";
 	}
 	
@@ -131,7 +133,6 @@ public class InstructionController {
 		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
 		System.out.println("InstructionController instructioninsertpro()");
 		String order_cd = instructionDTO.getOrder_cd();
-		
 		
 		// MemberService memberService = new MemberServiceImpl();
 		instructionService.instructioninsertpro(instructionDTO);

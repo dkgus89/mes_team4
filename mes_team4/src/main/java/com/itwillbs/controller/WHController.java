@@ -29,7 +29,7 @@ public class WHController {
 		String select = request.getParameter("select");
 				
 				// 한 화면에 보여줄 글 개수 설정
-				int pageSize=10;
+				int pageSize=5;
 				// 현페이지 번호 가져오기
 				String pageNum=request.getParameter("pageNum");
 				if(pageNum==null) {
