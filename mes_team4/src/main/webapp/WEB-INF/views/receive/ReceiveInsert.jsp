@@ -15,15 +15,14 @@
 
 <script>
 function sub(){
+	window.opener.name = "parentPage";
+	document.recinsert.target="parentPage";
 	document.recinsert.action="${pageContext.request.contextPath}/receive/recinsertPro";
 	document.recinsert.submit();
-	setTimeout(function() { 
-		opener.parent.location.reload();
-		window.close();
-		}, 200);
+	self.close();
 	}
 	
-    function showPopup(){
+function showPopup(){
     	var link = "${pageContext.request.contextPath}/receive/warehouse";     
     	var popupWidth = 700;
     	var popupHeight = 800;
@@ -31,27 +30,44 @@ function sub(){
     	var popupY= (window.screen.height/2) - (popupHeight/2);
     	
       	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
-        
     }
     function setChildValue(wh_cd){
         document.getElementById("wh_cd").value = wh_cd;
     }
     
-    function showPopup2(){
+function showPopup2(){
     	var link = "${pageContext.request.contextPath}/receive/purchase";     
-    	var popupWidth = 700;
+    	var popupWidth = 800;
     	var popupHeight = 800;
     	var popupX = (window.screen.width/2) - (popupWidth/2);
     	var popupY= (window.screen.height/2) - (popupHeight/2);
     	
       	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
-        
     }
     function setChildValue2(purchase_cd,rproduct_cd_name,purchase_count){
         document.getElementById("pchor_cd").value = purchase_cd;
         document.getElementById("product_cd_name").value = rproduct_cd_name;
         document.getElementById("rec_count").value = purchase_count;
     }
+    
+function showPopup3(){
+    	var link = "${pageContext.request.contextPath}/receive/order";     
+    	var popupWidth = 800;
+    	var popupHeight = 800;
+    	var popupX = (window.screen.width/2) - (popupWidth/2);
+    	var popupY= (window.screen.height/2) - (popupHeight/2);
+    	
+      	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+    }
+    function setChildValue3(order_cd,product_cd,order_count){
+        document.getElementById("pchor_cd").value = order_cd;
+        document.getElementById("product_cd_name").value = product_cd;
+        document.getElementById("rec_count").value = order_count;
+    }
+    
+function rst(){
+    	document.recinsert.reset();
+    	}    
 </script>
 
 </head>
@@ -64,11 +80,9 @@ function sub(){
 	
 	<button class="button2" onclick="showPopup();" style="width:100px">창고</button>
 	<button class="button2" onclick="showPopup2();" style="width:100px">발주</button>
-	
-	<div class="wrap2">
-	<button class="button2" id="sub" onclick="sub()">등록</button>
-	<button class="button2" onclick="rst()">초기화</button>
-	 </div><br>
+	<button class="button2" onclick="showPopup3();" style="width:100px">수주</button>
+
+	 <br>
 	 <br>
 	 
 	 <form action="${pageContext.request.contextPath}/receive/recinsertPro" name="recinsert" method="post" >
@@ -106,7 +120,9 @@ function sub(){
 		</table>
 	
 	</form>
-	
+	<br>
+	<button class="button2" onclick="sub()">등록</button>
+	<button class="button2" onclick="rst()">초기화</button>
 	
 <!-- 본문HTML 입력 끝-->
 	</div>

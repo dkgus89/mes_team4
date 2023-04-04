@@ -15,8 +15,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 
-function input1(purchase_cd,rproduct_cd_name,purchase_count){
-	opener.setChildValue2(purchase_cd,rproduct_cd_name,purchase_count);
+function input1(order_cd,product_cd,order_count){
+	opener.setChildValue3(order_cd,product_cd,order_count);
 	window.close();
 }
 
@@ -26,39 +26,39 @@ function input1(purchase_cd,rproduct_cd_name,purchase_count){
 
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
-	<h2>발주목록</h2><br>
+	<h2>수주목록</h2><br>
 	<div class="wrap2">
 	
 	 </div><br>
 	 <br>
 	 
 	 
-	<form name="whlist" method="get">
+	<form name="orderList" method="get">
 <!-- 		<input type="hidden" value=""> -->
 		
 		<table id="vendortable" class=" table table-striped" style="width:700px">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>발주코드</th>
-					<th>원자재코드</th>
-					<th>발주량</th>
-					<th>발주일자</th>
-					<th>납품예정일</th>
-					<th> </th>
+			<th>수주코드</th>
+			<th>제품코드</th>
+			<th>주문량</th>
+			<th>수주등록날짜</th>
+			<th>출하예정날짜</th>
+			<th> </th>
 				</tr>
 			</thead>
 			
 			<tbody>
-			<c:forEach var="dto" items="${purchaseMapList }" varStatus="sts">
+			<c:forEach var="orderDTO" items="${orderList}">
 				<tr>
-	    			<td>${dto.purchase_cd}</td>
-		    		<td>${dto.rproduct_cd_name}</td>
-		    		<td>${dto.purchase_count}</td>
-		    		<td>${dto.purchase_date}</td>
-		    		<td>${dto.purchase_due}</td> 
-					<td>
-					<button class="button2" onClick="input1('${dto.purchase_cd}','${dto.rproduct_cd_name}','${dto.purchase_count}');">선택</button>
-					</td>
+			<td>${orderDTO.order_cd}</td>
+			<td>${orderDTO.product_cd}</td>
+			<td>${orderDTO.order_count}</td>
+			<td>${orderDTO.order_date}</td>
+			<td>${orderDTO.deliver_date}</td>
+			<td>
+				<button class="button2" onClick="input1('${orderDTO.order_cd}','${orderDTO.product_cd}','${orderDTO.order_count}');">선택</button>
+			</td>
 				</tr>
 			</c:forEach>			
 			</tbody>
