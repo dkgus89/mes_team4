@@ -5,7 +5,8 @@
 
 
 <select id="getMaxNum" resultType="java.lang.Integer">
-	select max(SUBSTR(order_cd, 3)) from order_management
+	select max(SUBSTR(order_cd, 9)) from order_management 
+	where SUBSTR(order_cd,3,6) = #{today};
 </select>
 
 	 <insert id="insertOrder">
@@ -27,7 +28,7 @@
    			where business_cd like CONCAT('%',#{search},'%')
    			or con like CONCAT('%',#{search},'%')
    		</if>
-    order by order_cd desc
+    order by con desc, deliver_date asc
     limit #{startRow} , #{pageSize}
     </select>
     

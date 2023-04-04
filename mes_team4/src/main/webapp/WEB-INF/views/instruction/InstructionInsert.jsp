@@ -14,8 +14,14 @@
 <!-- 자바스크립트 입력 시작-->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
-
-document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;
+window.onload = function() {
+	today = new Date();
+	console.log("today.toISOString() >>>" + today.toISOString());
+	today = today.toISOString().slice(0, 10);
+	console.log("today >>>> " + today);
+	bir = document.getElementById("today");
+	bir.value = today;
+};
 
 $(document).ready(function(){
 //	alert("준비");
@@ -46,8 +52,8 @@ setTimeout(function() {
 	
 	<form action="${pageContext.request.contextPath }/instruction/instructioninsertpro" name="insert" id="insert" method="post">
 		
-<fieldset style="width:500px; height:450px; padding-left:20px; padding-right: 20px;">
-<h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >사용자추가</h2>
+<fieldset style="width:500px; height:500px; padding-left:20px; padding-right: 20px;">
+<h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >작업지시추가</h2>
 		
 					<div>
 					<label>수주코드</label>
@@ -59,8 +65,32 @@ setTimeout(function() {
 					</div>
 					<div>
 					<label>지시수량</label>
-					<input type="text" name="instruction_qt" class="instruction_qt" style="width:150px;height:30px;font-size:18px;"><br><br>
+					<input type="text" name="instruction_qt" class="instruction_qt" style="width:150px;height:30px;font-size:18px;" value="${orderDTO.order_count}"><br><br>
 					</div>
+					
+					<table id="vendortable" class=" table table-striped">
+			<thead>
+				<tr style="text-align: center; font-size: 0.9rem">
+
+					<th>품목이름</th>
+					<th>원자재코드</th>
+					<th>분류</th>
+					<th>소요량</th>
+					<th>단위</th>
+				</tr>
+			</thead>
+				<c:forEach var ="dto" items="${consList}">
+					<tr><td>${dto.prnm}</td>
+						<td>${dto.prcdnm}</td>
+						<td>${dto.rpnm}</td>
+						<td>${dto.cons}</td>
+						<td>${dto.consun}</td></tr>
+				</c:forEach>
+			</tbody>
+		</table><br>
+					
+					
+					
 					<div>
 					<label>라인코드</label><br>
 						<input type="radio" name="line_cd" class="line_cd" value="fl001" checked="checked"/> 1라인
@@ -71,7 +101,7 @@ setTimeout(function() {
 					</div><br>
 					<div>
 					<label>생산지시일자</label>
-					<input type="date" name="instruction_date" class="instruction_date" style="width:150px;height:30px;font-size:18px;" id="currentDate"><br><br>
+					<input type="date" name="instruction_date" class="instruction_date" style="width:150px;height:30px;font-size:18px;" id ="today"><br><br>
 					</div>
 					<div>
 					<label>작업지시상태</label><br>

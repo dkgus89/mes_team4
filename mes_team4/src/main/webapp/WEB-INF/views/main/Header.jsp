@@ -42,7 +42,7 @@
 
 	<div id="header">
 		
-		<h1 class="main">의약품 생산 MES<img src="${pageContext.request.contextPath}/resources/image/robot.png"></h1>
+		<h1 class="main" onclick="location.href='${pageContext.request.contextPath}/home';">의약품 생산 MES<img src="${pageContext.request.contextPath}/resources/image/robot.png"></h1>
 	</div> 
 </div>
 

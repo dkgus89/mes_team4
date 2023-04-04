@@ -164,6 +164,85 @@
         </where> -->
 	</select>
 	
+	<resultMap type="map" id="purchaseListMap">
+		<!-- column="DB의 열이름" property="해당 DB열에 대해 저장할 변수이름"-->
+		<result column="purchase_cd" property="purchase_cd"/>
+		<result column="business_cd" property="business_cd"/>
+		<result column="business_name" property="business_name"/>
+		<result column="business_type" property="business_type"/>
+		<result column="rproduct_cd_name" property="rproduct_cd_name"/>
+		<result column="product_name" property="rproduct_name"/>
+		<result column="product_type_name" property="product_type_name"/>
+		<result column="purchase_count" property="purchase_count"/>
+		<result column="purchase_date" property="purchase_date"/>
+		<result column="purchase_due" property="purchase_due"/>
+		<result column="emp_no" property="emp_no"/>
+		<result column="dept_name" property="dept_name"/>
+		<result column="grade_name" property="grade_name"/>
+		<result column="emp_name" property="emp_name"/>
+	</resultMap>
+	
+	<select id="getPurchaseMapList" resultMap="purchaseListMap">
+		select pch.purchase_cd, pch.business_cd, b.business_name, b.business_type, pch.rproduct_cd_name, p.product_name, pt.product_type_name,pch.purchase_count, pch.purchase_date, pch.purchase_due,pch.emp_no, ed.dept_name, eg.grade_name, e.emp_name
+		from purchase_management pch join business b
+		on pch.business_cd = b.business_cd
+		join product p 
+		on pch.rproduct_cd_name = p.product_cd_name
+		join product_type pt
+		on p.product_type_cd = pt.product_type_cd
+		join employees e
+		on pch.emp_no = e.emp_no 
+		join employees_dept ed
+		on e.dept_cd = ed.dept_cd
+		join employees_grade eg
+		on e.grade_cd = eg.grade_cd
+		<!-- <where>
+            <choose>
+            	<when test='search != null and product_dv.equals("all")'>
+                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or rproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+                <when test='search != null and product_dv.equals("cp")'>
+                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+                <when test='search != null and product_dv.equals("rp")'>
+                    and (rproduct_cd_name like CONCAT('%',#{search},'%') or rproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+            </choose>
+        </where> -->
+        order by purchase_cd
+		limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getPurchaseListMapCount" resultType="java.lang.Integer">
+		select count(*)
+		from purchase_management pch join business b
+		on pch.business_cd = b.business_cd
+		join product p 
+		on pch.rproduct_cd_name = p.product_cd_name
+		join product_type pt
+		on p.product_type_cd = pt.product_type_cd
+		join employees e
+		on pch.emp_no = e.emp_no 
+		join employees_dept ed
+		on e.dept_cd = ed.dept_cd
+		join employees_grade eg
+		on e.grade_cd = eg.grade_cd;
+		<!-- <where>
+            <choose>
+            	<when test='search != null and product_dv.equals("all")'>
+                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or rproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+                <when test='search != null and product_dv.equals("cp")'>
+                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+                <when test='search != null and product_dv.equals("rp")'>
+                    and (rproduct_cd_name like CONCAT('%',#{search},'%') or rproduct_name like CONCAT('%',#{search},'%'))
+                </when>
+            </choose>
+        </where> -->
+		limit #{startRow},#{pageSize}
+	</select>
+	
 	<select id="getPurchase_cd" resultType="java.lang.String">
 		select *  
 		from purchase_management
