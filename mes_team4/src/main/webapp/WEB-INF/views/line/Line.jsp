@@ -20,8 +20,14 @@ function showPopup2(cd){
     window.open("${pageContext.request.contextPath}/line/lineupdate?line_cd="+cd,"lineupdate","width=1000, height=250, top=200, left=200");
 }
 function chdelete(){
-	document.linelist.action="${pageContext.request.contextPath}/line/linedelete";
-	document.linelist.submit();
+	// 삭제 유효성 검사
+	var result = confirm("삭제하시겠습니까?");
+	if (result == true){    
+		document.linelist.action="${pageContext.request.contextPath}/line/linedelete";
+		document.linelist.submit();
+	} else {
+		return false;
+	}
 }
 function allCheck(){
 	

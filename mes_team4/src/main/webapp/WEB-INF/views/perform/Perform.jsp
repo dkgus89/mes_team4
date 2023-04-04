@@ -20,8 +20,14 @@ function showPopup2(cd){
     window.open("${pageContext.request.contextPath}/perform/performupdate?perform_cd="+cd,"performupdate","width=1100, height=350, top=200, left=200");
 }
 function chdelete(){
-	document.performlist.action="${pageContext.request.contextPath}/perform/performdelete";
-	document.performlist.submit();
+	// 삭제 유효성 검사
+	var result = confirm("삭제하시겠습니까?");
+	if (result == true){    
+		document.performlist.action="${pageContext.request.contextPath}/perform/performdelete";
+		document.performlist.submit();
+	} else {
+		return false;
+	}
 }
 function allCheck(){
 	
