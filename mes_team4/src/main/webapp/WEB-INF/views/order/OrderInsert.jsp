@@ -63,11 +63,10 @@
 					
 					</td>
 					<td>
-					<input type="text" name="product_cd">
 					<select id="select1"  name="product_cd" >
 						<option value="">코드 : 제품명</option>
 					<c:forEach var="productList" items="${productList}">
-<%-- 						<option value="${businessList.business_cd}"  name="${businessList.business_cd}">${businessList.business_cd} : ${businessList.business_name}</option> --%>
+						<option value="${productList.product_cd}"  name="${productList.product_cd}">${productList.product_cd} : ${productList.product_name}</option>
 					</c:forEach>
 					</select>
 					</td>
@@ -75,11 +74,10 @@
 					<td><input type="date" name="order_date"></td>
 					<td><input type="date" name="deliver_date"></td>
 					<td>
-					<input type="text" name="emp_no">
 					<select id="select1"  name="emp_no" >
 						<option value="">담당직원</option>
 					<c:forEach var="systemList" items="${systemList}">
-<%-- 						<option value="${businessList.business_cd}"  name="${businessList.business_cd}">${businessList.business_cd} : ${businessList.business_name}</option> --%>
+						<option value="${systemList.emp_no}"  name="${systemList.emp_no}">${systemList.emp_no} : ${systemList.emp_name}</option>
 					</c:forEach>
 					</select>
 					</td>	

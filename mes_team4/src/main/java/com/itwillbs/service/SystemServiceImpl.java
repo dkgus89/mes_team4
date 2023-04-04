@@ -87,6 +87,14 @@ public class SystemServiceImpl implements SystemService{
 		systemDAO.mypagePro(systemDTO);
 	}
 
+	@Override
+	public List<SystemDTO> getMemberList() {
+		System.out.println("systemserviceImpl getmemberlist()");
+		
+		
+		return systemDAO.getMemberList();
+	}
+
 	
 	
 }

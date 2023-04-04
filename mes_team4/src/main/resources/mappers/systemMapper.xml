@@ -79,4 +79,10 @@
     	where emp_no = #{emp_no}	
     </update>
     
+
+    <select id="getMemberforor" resultType="com.itwillbs.domain.SystemDTO">
+	select * from employees
+	order by emp_no asc 
+	</select>
+    
 </mapper>

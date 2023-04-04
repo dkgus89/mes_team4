@@ -76,6 +76,11 @@ public class SystemDAOImpl implements SystemDAO {
 		
 		sqlSession.update(namespace + ".mypagePro", systemDTO);
 	}
+	@Override
+	public List<SystemDTO> getMemberList() {
+		System.out.println("SystemDAOImpl getmemberList()");
+		return sqlSession.selectList(namespace+".getMemberforor");
+	}
 
 
 	

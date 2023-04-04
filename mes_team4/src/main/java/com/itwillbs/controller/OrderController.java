@@ -87,11 +87,11 @@ public class OrderController {
 			
 		List<BusinessDTO> businessList = businessService.getBusinessList();
 		List<ProductDTO> productList = productService.getProductList();
-//		List<SystemDTO> systemList = systemService.getSystemlist();
+		List<SystemDTO> systemList = systemService.getMemberList();
 		
 		model.addAttribute("businessList",businessList);
 		model.addAttribute("productList",productList);
-//		model.addAttribute("systemList",systemList);
+		model.addAttribute("systemList",systemList);
 		
 		// 가상주소 유지
 		return "order/OrderInsert";

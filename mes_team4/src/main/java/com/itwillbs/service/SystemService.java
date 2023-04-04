@@ -3,6 +3,7 @@ package com.itwillbs.service;
 import java.util.List;
 
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.SystemDTO;
 
 public interface SystemService {
@@ -22,6 +23,8 @@ public interface SystemService {
 	public SystemDTO userCheck(SystemDTO systemDTO);
 
 	public void mypagePro(SystemDTO systemDTO);
+	
+	public List<SystemDTO> getMemberList();
 	
 
 }
