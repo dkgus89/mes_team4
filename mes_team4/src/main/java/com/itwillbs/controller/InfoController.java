@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.LineDTO;
 import com.itwillbs.domain.PageDTO;
@@ -132,5 +134,27 @@ public class InfoController {
 			
 			// 주소변경 하면서 이동
 			return "redirect:/line/line";
+		}
+		
+		@ResponseBody
+		@RequestMapping(value = "/line/linecdcheck", method = RequestMethod.GET)
+		public String linecdcheck(HttpServletRequest request, Model model) {
+			// request 파라미터 
+			String line_cd=request.getParameter("cd");
+//			System.out.println(line_cd);
+			String result=null;
+			
+////			// 메서드 호출
+			int linecdcheck
+			     =infoService.getlinecdcheck(line_cd);
+////			System.out.println(linecdcheck);
+			if(linecdcheck==0) {
+				result="0";
+			}else {
+				result="1";
+			}
+			
+//			System.out.println(result);
+			return result;
 		}
 }

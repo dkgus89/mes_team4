@@ -17,8 +17,30 @@
 function sub(){
 	$(document).ready(function(){
 		// submit 유효성 검사
+		
+		var rt = null;
 		var result = confirm("생산설비를 등록하시겠습니까?");
-		if (result == true){   
+		if (result == true){
+			$.ajax({
+				type:"GET",
+	 			url:'${pageContext.request.contextPath}/line/linecdcheck',
+	 			async: false,
+	 			data:{'cd':$('#line_cd').val()},
+	 			success:function(result){
+// 	 				if(result=="중복"){
+// 	 					self.close();
+// 	 				}
+// 	 				$('#line_cd').val(result);
+	 				 if(result!=0) {
+	 		              alert("이미 존재하는 라인코드입니다.");
+	 		             $('#line_cd').focus();
+	 		              rt=1;
+	 		          }
+	 			}
+	 		});
+			if(rt==1){
+				return false;
+			}
 			if($('#line_cd').val()==""){
 				alert("라인코드를 선택하세요");
 				$('#line_cd').focus();
@@ -95,7 +117,7 @@ function rst(){
 							<option value="2" selected>대기중</option>
 							<option value="3">고장</option>
       					</select></td>
-					<td><input type="text" name="remarks" value=""></td>
+					<td><input type="text" name="remarks" id="remarks" value=""></td>
 				</tr>
 
 			</tbody>

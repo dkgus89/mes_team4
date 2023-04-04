@@ -116,5 +116,12 @@ public class PerformServiceImpl implements PerformService{
 				
 				return performDAO.getPerform_cd();
 			}
+
+			@Override
+			public int getinstcheck(String instruction_code) {
+				System.out.println("PerformServiceImpl getinstcheck()");
+				
+				return performDAO.getinstcheck(instruction_code);
+			}
 									
 }

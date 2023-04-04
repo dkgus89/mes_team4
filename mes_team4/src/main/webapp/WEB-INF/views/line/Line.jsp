@@ -13,14 +13,22 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
+// 생산설비 등록 팝업
 function showPopup(){
     window.open("${pageContext.request.contextPath}/line/lineinsert","lineinsert","width=1000, height=250, top=200, left=200");
 }
+// 생산설비 수정 팝업
 function showPopup2(cd){
     window.open("${pageContext.request.contextPath}/line/lineupdate?line_cd="+cd,"lineupdate","width=1000, height=250, top=200, left=200");
 }
+// 삭제 처리
 function chdelete(){
 	// 삭제 유효성 검사
+	var a = $('input:checkbox[name=rowcheck]:checked').length;
+	if(a==0){
+		alert("체크된 값이 없습니다.");
+		return false;
+	}
 	var result = confirm("삭제하시겠습니까?");
 	if (result == true){    
 		document.linelist.action="${pageContext.request.contextPath}/line/linedelete";

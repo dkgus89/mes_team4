@@ -1,6 +1,7 @@
 package com.itwillbs.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -63,6 +64,13 @@ public class InfoServiceImpl implements InfoService{
 			System.out.println("InfoServiceImpl deleteLine()");
 			
 			infoDAO.deleteLine(line_cd);
+		}
+
+		@Override
+		public int getlinecdcheck(String line_cd) {
+			System.out.println("InfoServiceImpl getlinecdcheck()");
+			
+			return infoDAO.getlinecdcheck(line_cd);
 		}
 
 }

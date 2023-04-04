@@ -137,7 +137,7 @@
         limit #{startRow} , #{pageSize}
     </select>
     
-    	<resultMap type="map" id="map3">
+    <resultMap type="map" id="map3">
 		<result column="line_cd" property="line_cd"/>
 		<result column="product_cd" property="product_cd"/>
 	</resultMap>
@@ -146,6 +146,13 @@
     	select line_cd, product_cd
     	from instruction
     	where instruction_code = #{ic}
+    </select>
+    
+    <select id="getinstcheck" resultType="java.lang.Integer">
+    	select count(*)
+    	from(select instruction_code
+    	from performance
+    	where instruction_code = #{instruction_code}) a
     </select>
 	    
 </mapper>

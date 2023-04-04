@@ -61,6 +61,13 @@
     	delete from line
     	where line_cd = #{line_cd}
     </delete>
+    
+    <select id="getlinecdcheck" resultType="java.lang.Integer">
+    	select count(*)
+    	from(select line_cd
+    	from line
+    	where line_cd = #{line_cd}) a
+    </select>
 	    
 </mapper>
 

@@ -21,6 +21,11 @@ function showPopup2(cd){
 }
 function chdelete(){
 	// 삭제 유효성 검사
+	var a = $('input:checkbox[name=rowcheck]:checked').length;
+	if(a==0){
+		alert("체크된 값이 없습니다.");
+		return false;
+	}
 	var result = confirm("삭제하시겠습니까?");
 	if (result == true){    
 		document.performlist.action="${pageContext.request.contextPath}/perform/performdelete";

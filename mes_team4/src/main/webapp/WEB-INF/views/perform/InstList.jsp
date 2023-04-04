@@ -15,11 +15,38 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 function input1(instruction_code,line_cd,product_cd,instruction_qt){
-	
-	opener.setChildValue(instruction_code,line_cd,product_cd,instruction_qt);
-
-	window.close();
-	
+	$(document).ready(function(){
+	// 선택 유효성 검사
+		
+		var rt = null;
+		$.ajax({
+			type:"GET",
+ 			url:'${pageContext.request.contextPath}/perform/instcheck',
+ 			async: false,
+ 			data:{'inst':instruction_code},
+ 			success:function(result){
+//	 				if(result=="중복"){
+//	 					self.close();
+//	 				}
+//	 				$('#line_cd').val(result);
+ 				 if(result!=0) {
+ 		              alert("이전에 이미 선택되었던 작업지시입니다.");
+ 		              rt=1;
+ 		          }
+ 			}
+ 		});
+		if(rt==1){
+			return false;
+		}else{
+			  var result = confirm("이 행을 선택 하시겠습니까?");
+			  if (result == true){
+			  	  opener.setChildValue(instruction_code,line_cd,product_cd,instruction_qt);
+				  window.close();
+			  } else {
+			  return false;
+			  }
+		}
+	});
 }
 
 </script>

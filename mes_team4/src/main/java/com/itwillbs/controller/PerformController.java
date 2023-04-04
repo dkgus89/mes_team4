@@ -324,4 +324,24 @@ public class PerformController {
 				return "perform/InstList";
 			}
 			
+			@ResponseBody
+			@RequestMapping(value = "/perform/instcheck", method = RequestMethod.GET)
+			public String instcheck(HttpServletRequest request, Model model) {
+				// request 파라미터 
+				String instruction_code=request.getParameter("inst");
+				String result=null;
+				
+				// 메서드 호출
+				int instcheck
+			     =performService.getinstcheck(instruction_code);
+				if(instcheck==0) {
+					result="0";
+				}else {
+					result="1";
+				}			
+								
+				return result;
+			}
+
+			
 }

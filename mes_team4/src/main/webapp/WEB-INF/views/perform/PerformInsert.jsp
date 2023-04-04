@@ -32,23 +32,47 @@ function setChildValue(instruction_code,line_cd,product_cd,instruction_qt){
 
 }
 function sub(){
+	
 	$(document).ready(function(){
 		// submit 유효성 검사
+		var rt = null;
+		var fp = document.getElementById("fair_prod").value;
+		var dp = document.getElementById("defect_prod").value;
+		var qt = document.getElementById("instruction_qt").value;
+		var int_fp = Number(fp);
+		var int_dp = Number(dp);
+		var int_qt = Number(qt);
 		var result = confirm("생산실적을 등록하시겠습니까?");
-		if (result == true){   
+		if (result == true){
+			$.ajax({
+				type:"GET",
+	 			url:'${pageContext.request.contextPath}/perform/instcheck',
+	 			async: false,
+	 			data:{'inst':$('#instruction_code').val()},
+	 			success:function(result){
+// 	 				if(result=="중복"){
+// 	 					self.close();
+// 	 				}
+// 	 				$('#line_cd').val(result);
+	 				 if(result!=0) {
+	 		              alert("이전에 이미 선택되었던 작업지시입니다.");
+	 		              rt=1;
+	 		          }
+	 			}
+	 		});
+			if(rt==1){
+				return false;
+			}
 			if($('#instruction_code').val()==""){
-				alert("작업지시코드를 선택하세요");
-				$('#instruction_code').focus();
+				alert("작업지시현황에서 가져올 행을 선택하세요.");
 				return false;
 			}
 			if($('#line_cd').val()==""){
-				alert("라인코드를 입력하세요");
-				$('#line_cd').focus();
+				alert("작업지시현황에서 가져올 행을 선택하세요.");
 				return false;
 			}
 			if($('#product_cd').val()==""){
-				alert("품목코드를 입력하세요");
-				$('#product_cd').focus();
+				alert("작업지시현황에서 가져올 행을 선택하세요.");
 				return false;
 			}
 			if($('#perform_date').val()==""){
@@ -64,6 +88,20 @@ function sub(){
 			if($('#defect_prod').val()==""){
 				alert("불량품 수량을 입력하세요");
 				$('#defect_prod').focus();
+				return false;
+			}
+			if(int_fp > int_qt){
+				alert("양품 수량이 지시수량을 초과했습니다.");
+				$('#fair_prod').focus();
+				return false;
+			}
+			if(int_dp > int_qt){
+				alert("불량품 수량이 지시수량을 초과했습니다.");
+				$('#defect_prod').focus();
+				return false;
+			}
+			if((int_fp + int_dp) > int_qt){
+				alert("총 생산량이 지시수량을 초과했습니다.");
 				return false;
 			}
 			window.opener.name = "parentPage";
@@ -141,7 +179,7 @@ function rst(){
 	 
 	 
 	<form action="${pageContext.request.contextPath}/perform/performinsertpro" name="PerformInsert" id="PI" method="post">
-		<input type="hidden" id="instruction_qt" value="">
+		
 		
 		<table id="vendortable" class="table table-striped">
 			<thead>
@@ -149,12 +187,13 @@ function rst(){
 					<th>작업지시코드</th>
 					<th>라인코드</th>
 					<th>품목코드</th>
+					<th>지시수량</th>
 				</tr>
 			</thead>
 			
 			<tbody>
 				<tr>				
-					<td><input type="text" name="instruction_code" id="instruction_code"></td>
+					<td><input type="text" name="instruction_code" id="instruction_code" readonly></td>
 <!-- 						<option value="" selected>선택</option> -->
 <%-- 						<c:if test="${instruction_code != null}"> --%>
 <%-- 						<option value="${instruction_code}" selected>${instruction_code}</option> --%>
@@ -165,7 +204,7 @@ function rst(){
 <%-- 								</c:if>						 --%>
 <%-- 							</c:forEach> --%>
 <!--       				</select></td>       -->
-      				<td><input type="text" name="line_cd" id="line_cd"></td>	
+      				<td><input type="text" name="line_cd" id="line_cd" readonly></td>	
 <!--       				<option value="" selected>선택</option> -->
 <%--       				<option value="${line_cd}" selected>${line_cd}</option> --%>
 <%--       						<c:forEach var="dto" items="${instMap}">		 --%>
@@ -174,7 +213,7 @@ function rst(){
 <%-- 								</c:if>						 --%>
 <%-- 							</c:forEach>		 --%>
 <!--       				</select></td> -->
-      				<td><input type="text" name="product_cd" id="product_cd"></td>
+      				<td><input type="text" name="product_cd" id="product_cd" readonly></td>
 <!--       				<option value="" selected>선택</option> -->
 <%--       				<option value="${product_cd}" selected>${product_cd}</option> --%>
 <%--       						<c:forEach var="dto" items="${instMap}">		 --%>
@@ -183,6 +222,7 @@ function rst(){
 <%-- 								</c:if>						 --%>
 <%-- 							</c:forEach>		 --%>
 <!--       				</select></td> -->
+					 <td><input type="text" name="instruction_qt" id="instruction_qt" readonly></td>
     			</tr>
 
 			</tbody>

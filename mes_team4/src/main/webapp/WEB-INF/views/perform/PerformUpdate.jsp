@@ -34,8 +34,34 @@ function setChildValue(instruction_code,line_cd,product_cd,instruction_qt){
 function sub(){
 	$(document).ready(function(){
 		// submit 유효성 검사
+		var rt = null;
+		var fp = document.getElementById("fair_prod").value;
+		var dp = document.getElementById("defect_prod").value;
+		var qt = document.getElementById("instruction_qt").value;
+		var int_fp = Number(fp);
+		var int_dp = Number(dp);
+		var int_qt = Number(qt);
 		var result = confirm("수정사항을 등록하시겠습니까?");
-		if (result == true){   			
+		if (result == true){   		
+			$.ajax({
+				type:"GET",
+	 			url:'${pageContext.request.contextPath}/perform/instcheck',
+	 			async: false,
+	 			data:{'inst':$('#instruction_code').val()},
+	 			success:function(result){
+// 	 				if(result=="중복"){
+// 	 					self.close();
+// 	 				}
+// 	 				$('#line_cd').val(result);
+	 				 if(result!=0) {
+	 		              alert("이전에 이미 선택되었던 작업지시입니다.");
+	 		              rt=1;
+	 		          }
+	 			}
+	 		});
+			if(rt==1){
+				return false;
+			}
 			if($('#instruction_code').val()==""){
 				alert("작업지시코드를 선택하세요");
 				$('#instruction_code').focus();
@@ -64,6 +90,20 @@ function sub(){
 			if($('#defect_prod').val()==""){
 				alert("불량품 수량을 입력하세요");
 				$('#defect_prod').focus();
+				return false;
+			}
+			if(int_fp > int_qt){
+				alert("양품 수량이 지시수량을 초과했습니다.");
+				$('#fair_prod').focus();
+				return false;
+			}
+			if(int_dp > int_qt){
+				alert("불량품 수량이 지시수량을 초과했습니다.");
+				$('#defect_prod').focus();
+				return false;
+			}
+			if((int_fp + int_dp) > int_qt){
+				alert("총 생산량이 지시수량을 초과했습니다.");
 				return false;
 			}
 			window.opener.name = "parentPage";
@@ -142,7 +182,7 @@ function rst(){
 	 
 	<form name="PerformUpdate" method="post">
 		<input type="hidden" name="perform_cd" value="${perform.perform_cd}">
-		<input type="hidden" id="instruction_qt" value="">
+		
 		
 		<table id="vendortable" class="table table-striped">
 			<thead>
@@ -150,7 +190,8 @@ function rst(){
 <!-- 					<th>실적코드</th> -->
 					<th>작업지시코드</th>
 					<th>라인코드</th>
-					<th>품목코드</th>				
+					<th>품목코드</th>		
+					<th>지시수량</th>		
 				</tr>
 			</thead>
 			
@@ -165,9 +206,10 @@ function rst(){
 <%-- 									</c:if>						 --%>
 <%-- 								</c:forEach> --%>
 <!--       					</select></td> -->
-					<td><input type="text" name="instruction_code" id="instruction_code" value="${perform.instruction_code}"></td>
-    				<td><input type="text" name="line_cd" id="line_cd" value="${perform.line_cd}"></td>
-    				<td><input type="text" name="product_cd" id="product_cd" value="${perform.product_cd}"></td>			
+					<td><input type="text" name="instruction_code" id="instruction_code" value="${perform.instruction_code}" readonly></td>
+    				<td><input type="text" name="line_cd" id="line_cd" value="${perform.line_cd}" readonly></td>
+    				<td><input type="text" name="product_cd" id="product_cd" value="${perform.product_cd}" readonly></td>			
+					<td><input type="text" name="instruction_qt" id="instruction_qt" value="${perform.instruction_qt}" readonly></td>
 				</tr>
 								
 			</tbody>

@@ -32,4 +32,6 @@ public interface PerformService {
 	public String getPerform_cd();
 	
 	public Map<String, Object> getcallcdMap(String ic);
+
+	public int getinstcheck(String instruction_code);
 }

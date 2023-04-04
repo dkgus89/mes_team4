@@ -1,6 +1,7 @@
 package com.itwillbs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -63,6 +64,13 @@ public class InfoDAOImpl implements InfoDAO {
 			System.out.println("InfoDAOImpl deleteLine()");
 			
 			sqlSession.delete(namespace+".deleteLine", line_cd);
+		}
+
+		@Override
+		public int getlinecdcheck(String line_cd) {
+			System.out.println("InfoDAOImpl getlinecdcheck()");
+			
+			return sqlSession.selectOne(namespace+".getlinecdcheck", line_cd);
 		}
 
 }

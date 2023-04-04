@@ -32,4 +32,6 @@ public interface PerformDAO {
 	public int getPerformCount2();
 
 	public String getPerform_cd();
+
+	public int getinstcheck(String instruction_code);
 }

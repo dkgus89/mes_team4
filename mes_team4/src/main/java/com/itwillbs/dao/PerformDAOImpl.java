@@ -111,5 +111,12 @@ public class PerformDAOImpl implements PerformDAO {
 			
 			return sqlSession.selectOne(namespace+".getPerform_cd");
 		}
+
+		@Override
+		public int getinstcheck(String instruction_code) {
+			System.out.println("InfoDAOImpl getinstcheck()");
+			
+			return sqlSession.selectOne(namespace+".getinstcheck", instruction_code);
+		}
 		
 }
