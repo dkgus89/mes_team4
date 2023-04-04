@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
+//작업지시현황 팝업
 function showPopup(){
 	var link = "${pageContext.request.contextPath}/perform/instlist";     
 	var popupWidth = 1050;
@@ -23,6 +24,7 @@ function showPopup(){
 	
   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 }
+//작업지시현황 팝업에서 선택한 값 받아오기
 function setChildValue(instruction_code,line_cd,product_cd,instruction_qt){
 	
     document.getElementById("instruction_code").value = instruction_code;
@@ -31,9 +33,10 @@ function setChildValue(instruction_code,line_cd,product_cd,instruction_qt){
     document.getElementById("instruction_qt").value = instruction_qt;
 
 }
+// 실적현황 등록
 function sub(){
 	
-	$(document).ready(function(){
+	$(document).ready(function(){ //Jquery 시작
 		// submit 유효성 검사
 		var rt = null;
 		var fp = document.getElementById("fair_prod").value;
@@ -44,22 +47,18 @@ function sub(){
 		var int_qt = Number(qt);
 		var result = confirm("생산실적을 등록하시겠습니까?");
 		if (result == true){
-			$.ajax({
+			$.ajax({ //ajax 시작
 				type:"GET",
 	 			url:'${pageContext.request.contextPath}/perform/instcheck',
 	 			async: false,
 	 			data:{'inst':$('#instruction_code').val()},
 	 			success:function(result){
-// 	 				if(result=="중복"){
-// 	 					self.close();
-// 	 				}
-// 	 				$('#line_cd').val(result);
 	 				 if(result!=0) {
 	 		              alert("이전에 이미 선택되었던 작업지시입니다.");
 	 		              rt=1;
 	 		          }
 	 			}
-	 		});
+	 		}); //ajax 끝
 			if(rt==1){
 				return false;
 			}
@@ -104,6 +103,7 @@ function sub(){
 				alert("총 생산량이 지시수량을 초과했습니다.");
 				return false;
 			}
+			// 유효성 검사 통과시 submit
 			window.opener.name = "parentPage";
 			document.PerformInsert.target="parentPage";
 			document.PerformInsert.action="${pageContext.request.contextPath}/perform/performinsertpro";
@@ -112,8 +112,9 @@ function sub(){
 		} else {
 			return false;
 		}	
-	});
+	}); //Jquery 끝
 }
+//초기화 기능
 function rst(){
 	// 초기화 유효성 검사
 	var result = confirm("초기화 하시겠습니까?");
@@ -123,42 +124,6 @@ function rst(){
 		return false;
 	}
 }
-// $(document).ready(function () {
-// // 	alert($("#inst").val());
-// 		$.ajax({
-// 			url:'${pageContext.request.contextPath}/perform/callcd',
-// 			data:{'ic':$("#inst").val()},
-// 			success:function(result){
-// 				  $('#line_cd').val(result);
-// 			}
-// 		});
-		
-// 		$.ajax({
-// 			url:'${pageContext.request.contextPath}/perform/callcd2',
-// 			data:{'ic':$("#inst").val()},
-// 			success:function(result){
-// 				  $('#product_cd').val(result);
-// 			}
-// 		});
-		
-// 		$("#inst").on("change", function(){
-// 			$.ajax({
-// 				url:'${pageContext.request.contextPath}/perform/callcd',
-// 				data:{'ic':$("#inst").val()},
-// 				success:function(result){
-// 					  $('#line_cd').val(result);			
-// 				}
-// 			});
-			
-// 			$.ajax({
-// 				url:'${pageContext.request.contextPath}/perform/callcd2',
-// 				data:{'ic':$("#inst").val()},
-// 				success:function(result){
-// 					$('#product_cd').val(result);			
-// 				}
-// 			});			
-// 		});
-// });
 </script>
 
 </head>
@@ -169,7 +134,6 @@ function rst(){
 
 	<h2 class="inserttitle">생산실적 추가 </h2><br>
 <!-- 	<div class="wrap2"> -->
-<!-- 	<button class="button2" id="aj">ajax</button> -->
 	<button class="button2" id="sub" onclick="sub()">등록</button>
 	<button class="button2" onclick="rst()">초기화</button>
 	<button class="button2" onclick="showPopup();" style="width:200px">작업지시현황</button>
@@ -194,37 +158,10 @@ function rst(){
 			<tbody>
 				<tr>				
 					<td><input type="text" name="instruction_code" id="instruction_code" readonly></td>
-<!-- 						<option value="" selected>선택</option> -->
-<%-- 						<c:if test="${instruction_code != null}"> --%>
-<%-- 						<option value="${instruction_code}" selected>${instruction_code}</option> --%>
-<%-- 						</c:if> --%>
-<%-- 							<c:forEach var="dto" items="${instMap}">		 --%>
-<%-- 								<c:if test="${dto.instruction_code != instruction_code}">			 --%>
-<%-- 									<option value="${dto.instruction_code}">${dto.instruction_code}</option>	 --%>
-<%-- 								</c:if>						 --%>
-<%-- 							</c:forEach> --%>
-<!--       				</select></td>       -->
-      				<td><input type="text" name="line_cd" id="line_cd" readonly></td>	
-<!--       				<option value="" selected>선택</option> -->
-<%--       				<option value="${line_cd}" selected>${line_cd}</option> --%>
-<%--       						<c:forEach var="dto" items="${instMap}">		 --%>
-<%-- 								<c:if test="${dto.instruction_code != instruction_code}">			 --%>
-<%-- 									<option value="${dto.line_cd}">${dto.line_cd}</option>	 --%>
-<%-- 								</c:if>						 --%>
-<%-- 							</c:forEach>		 --%>
-<!--       				</select></td> -->
+					<td><input type="text" name="line_cd" id="line_cd" readonly></td>	
       				<td><input type="text" name="product_cd" id="product_cd" readonly></td>
-<!--       				<option value="" selected>선택</option> -->
-<%--       				<option value="${product_cd}" selected>${product_cd}</option> --%>
-<%--       						<c:forEach var="dto" items="${instMap}">		 --%>
-<%-- 								<c:if test="${dto.instruction_code != instruction_code}">			 --%>
-<%-- 									<option value="${dto.product_cd}">${dto.product_cd}</option>	 --%>
-<%-- 								</c:if>						 --%>
-<%-- 							</c:forEach>		 --%>
-<!--       				</select></td> -->
-					 <td><input type="text" name="instruction_qt" id="instruction_qt" readonly></td>
+				    <td><input type="text" name="instruction_qt" id="instruction_qt" readonly></td>
     			</tr>
-
 			</tbody>
 		</table>
 		

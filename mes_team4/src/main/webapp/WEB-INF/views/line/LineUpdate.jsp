@@ -15,12 +15,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 function sub(){
-	$(document).ready(function(){
+	$(document).ready(function(){ //Jquery 시작
 		// submit 유효성 검사
 		var result = confirm("수정사항을 등록하시겠습니까?");
 		if (result == true){   			
 			if($('#line_name').val()==""){
-				alert("라인명를 입력하세요");
+				alert("라인명을 입력하세요");
 				$('#line_name').focus();
 				return false;
 			}
@@ -29,6 +29,7 @@ function sub(){
 				$('#line_process').focus();
 				return false;
 			}
+			// 유효성 검사 통과시 submit
 			window.opener.name = "parentPage";
 			document.LineUpdate.target="parentPage";
 			document.LineUpdate.action="${pageContext.request.contextPath}/line/lineupdatepro";
@@ -37,8 +38,9 @@ function sub(){
 		} else {
 			return false;
 		}
-	});
+	}); //Jquery 끝
 }
+//초기화 기능
 function rst(){
 	// 초기화 유효성 검사
 	var result = confirm("초기화 하시겠습니까?");

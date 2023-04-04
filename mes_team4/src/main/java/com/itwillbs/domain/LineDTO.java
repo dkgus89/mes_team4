@@ -1,7 +1,7 @@
 package com.itwillbs.domain;
 
 public class LineDTO {
-
+	//생산설비
 	private String line_cd;
 	private String line_name;
 	private String line_process;

@@ -20,6 +20,13 @@ public interface PerformDAO {
 	
 	public void deletePerform(String perform_cd);
 	
+
+	public int getPerformCount2();
+
+	public String getPerform_cd();
+
+	public int getinstcheck(String instruction_code);
+	
 	//map
 	public List<Map<String, Object>> getInstMap();
 
@@ -29,9 +36,4 @@ public interface PerformDAO {
 
 	public Map<String, Object> getcallcdMap(String ic);
 
-	public int getPerformCount2();
-
-	public String getPerform_cd();
-
-	public int getinstcheck(String instruction_code);
 }

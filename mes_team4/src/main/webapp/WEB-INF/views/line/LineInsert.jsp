@@ -15,29 +15,24 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 function sub(){
-	$(document).ready(function(){
-		// submit 유효성 검사
-		
+	$(document).ready(function(){ //Jquery 시작
+		// submit 유효성 검사		
 		var rt = null;
 		var result = confirm("생산설비를 등록하시겠습니까?");
 		if (result == true){
-			$.ajax({
+			$.ajax({ //ajax 시작
 				type:"GET",
 	 			url:'${pageContext.request.contextPath}/line/linecdcheck',
 	 			async: false,
 	 			data:{'cd':$('#line_cd').val()},
 	 			success:function(result){
-// 	 				if(result=="중복"){
-// 	 					self.close();
-// 	 				}
-// 	 				$('#line_cd').val(result);
 	 				 if(result!=0) {
 	 		              alert("이미 존재하는 라인코드입니다.");
 	 		             $('#line_cd').focus();
 	 		              rt=1;
 	 		          }
 	 			}
-	 		});
+	 		}); //ajax 끝
 			if(rt==1){
 				return false;
 			}
@@ -56,6 +51,7 @@ function sub(){
 				$('#line_process').focus();
 				return false;
 			}
+			// 유효성 검사 통과시 submit
 			window.opener.name = "parentPage";
 			document.LineInsert.target="parentPage";
 			document.LineInsert.action="${pageContext.request.contextPath}/line/lineinsertpro";
@@ -64,8 +60,9 @@ function sub(){
 		} else {
 			return false;
 		}		
-	});
+	}); //Jquery 끝
 }
+//초기화 기능
 function rst(){
 	// 초기화 유효성 검사
 	var result = confirm("초기화 하시겠습니까?");

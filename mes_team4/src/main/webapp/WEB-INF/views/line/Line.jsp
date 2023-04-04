@@ -37,8 +37,8 @@ function chdelete(){
 		return false;
 	}
 }
+//페이지 전체 체크
 function allCheck(){
-	
 	var ac = document.linelist.allcheck;
 	var rc = document.linelist.rowcheck;
 	if(ac.checked == true){
@@ -62,6 +62,7 @@ function allCheck(){
 	<h2> 설비관리 </h2><br>
 	<div id="table_search">
 			<form action="${pageContext.request.contextPath}/line/line" method="get">
+				<!-- 				검색 메뉴 선택 -->
 				<select name="select">
 				<c:choose>						
 						<c:when test="${pageDTO.select == 'line_name'.toString()}">
@@ -87,11 +88,13 @@ function allCheck(){
 		</div>
 		<br>
 	<div class="wrap2" style="float: left;">	
+<!-- 		추가, 삭제 버튼 -->
 	  <button class="button2" onclick="showPopup();">추가</button>
 	  <button class="button2" onclick="chdelete();">삭제</button>
 	  
 	 </div><br>
 	 <br>
+<!-- 	 글 개수 표시 -->
 	 <div>전체 ${pageDTO.count }건</div>
 	 
 	<form name="linelist">

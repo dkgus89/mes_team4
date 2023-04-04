@@ -3,7 +3,7 @@ package com.itwillbs.domain;
 import java.sql.Date;
 
 public class PerformDTO {
-	
+	//생산실적
 	private String perform_cd;
 	private String instruction_code;
 	private String line_cd;

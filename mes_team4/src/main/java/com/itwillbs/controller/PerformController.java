@@ -83,8 +83,6 @@ public class PerformController {
 			
 			//model 담아서 이동
 			model.addAttribute("PerformMap", PerformMap);
-			
-//			model.addAttribute("PerformList", PerformList);
 			model.addAttribute("pageDTO", pageDTO);			
 			
 			// 주소변경 없이 이동
@@ -224,6 +222,7 @@ public class PerformController {
 		@RequestMapping(value = "/perform/performupdatepro", method = RequestMethod.POST)
 		public String performUpdatePro(PerformDTO performDTO) {
 			
+			//글 수정 메서드 호출
 			performService.updatePerform(performDTO);
 			
 			// 주소변경 하면서 이동
@@ -232,6 +231,7 @@ public class PerformController {
 		
 		@RequestMapping(value = "/perform/performdelete", method = RequestMethod.GET)
 		public String performDelete(HttpServletRequest request) {
+			//체크 된 값들 가져와서 삭제
 			String chbox[]=request.getParameterValues("rowcheck");
 			String perform_cd = null;
 			if(chbox!=null){
@@ -254,9 +254,11 @@ public class PerformController {
 				// 메서드 호출
 				Map<String, Object> callcdMap
 				     =performService.getcallcdMap(ic);
-												
+				
+				// 보낼 값 result에 저장
 				String result=(String) callcdMap.get("line_cd");
-								
+				
+				// result 값 리턴
 				return result;
 			}
 			
@@ -270,11 +272,10 @@ public class PerformController {
 				Map<String, Object> callcdMap
 				     =performService.getcallcdMap(ic);
 				
-//				int a=(int) callcdMap.get("product_cd");
-//				String result=Integer.toString(a);
-				
+				// 보낼 값 result에 저장
 				String result=(String) callcdMap.get("product_cd");
 								
+				// result 값 리턴
 				return result;
 			}
 			
@@ -289,6 +290,7 @@ public class PerformController {
 //					pageNum이 없으면 1페이지로 설정
 					pageNum = "1";
 				} 
+				// 페이지번호를 => 정수형 변경
 				int currentPage = Integer.parseInt(pageNum);
 				
 				PageDTO pageDTO = new PageDTO();
@@ -296,6 +298,7 @@ public class PerformController {
 				pageDTO.setPageNum(pageNum);
 				pageDTO.setCurrentPage(currentPage);
 				
+				// 메서드 호출
 				List<InstructionDTO> instructionList=instructionService.instructionlist(pageDTO);
 				
 //				페이징처리
@@ -315,7 +318,7 @@ public class PerformController {
 				pageDTO.setPageCount(pageCount);
 				
 				
-				
+				//model 담아서 이동
 				model.addAttribute("instructionList", instructionList);
 				model.addAttribute("pageDTO", pageDTO);
 				
@@ -334,12 +337,15 @@ public class PerformController {
 				// 메서드 호출
 				int instcheck
 			     =performService.getinstcheck(instruction_code);
+					
+				// if문으로 result에 저장 할 값 설정
 				if(instcheck==0) {
 					result="0";
 				}else {
 					result="1";
 				}			
-								
+						
+				// result 값 리턴
 				return result;
 			}
 

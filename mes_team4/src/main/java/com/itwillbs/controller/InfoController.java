@@ -52,7 +52,7 @@ public class InfoController {
 			pageDTO.setSearch(search);
 			pageDTO.setSelect(select);
 			
-			
+			// 메서드 호출
 			List<LineDTO> LineList=infoService.getLineList(pageDTO);
 			
 			
@@ -71,7 +71,7 @@ public class InfoController {
 			pageDTO.setStartPage(startPage);
 			pageDTO.setEndPage(endPage);
 			pageDTO.setPageCount(pageCount);
-			
+			//model 담아서 이동
 			model.addAttribute("LineList", LineList);
 			model.addAttribute("pageDTO", pageDTO);
 			
@@ -101,9 +101,12 @@ public class InfoController {
 		
 		@RequestMapping(value = "/line/lineupdate", method = RequestMethod.GET)
 		public String lineupdate(HttpServletRequest request, Model model) {
+			// request 파라미터
 			String line_cd=request.getParameter("line_cd");
+			//메서드 호출
 			LineDTO lineDTO=infoService.getLine(line_cd);
 			
+			//model 담아서 이동
 			model.addAttribute("LineDTO", lineDTO);
 			
 			// 주소변경 없이 이동
@@ -113,7 +116,7 @@ public class InfoController {
 		
 		@RequestMapping(value = "/line/lineupdatepro", method = RequestMethod.POST)
 		public String lineUpdatePro(LineDTO lineDTO) {
-			
+			//글 수정 메서드 호출
 			infoService.updateLine(lineDTO);
 			
 			// 주소변경 하면서 이동
@@ -122,6 +125,7 @@ public class InfoController {
 		
 		@RequestMapping(value = "/line/linedelete", method = RequestMethod.GET)
 		public String lineDelete(HttpServletRequest request) {
+			//체크 된 값들 가져와서 삭제
 			String chbox[]=request.getParameterValues("rowcheck");
 			String line_cd = null;
 			if(chbox!=null){
@@ -141,20 +145,21 @@ public class InfoController {
 		public String linecdcheck(HttpServletRequest request, Model model) {
 			// request 파라미터 
 			String line_cd=request.getParameter("cd");
-//			System.out.println(line_cd);
+			// result 변수 선언
 			String result=null;
 			
-////			// 메서드 호출
+			// 메서드 호출
 			int linecdcheck
 			     =infoService.getlinecdcheck(line_cd);
-////			System.out.println(linecdcheck);
+			
+			// if문으로 result에 저장 할 값 설정
 			if(linecdcheck==0) {
 				result="0";
 			}else {
 				result="1";
 			}
-			
-//			System.out.println(result);
+
+			// result 값 리턴
 			return result;
 		}
 }

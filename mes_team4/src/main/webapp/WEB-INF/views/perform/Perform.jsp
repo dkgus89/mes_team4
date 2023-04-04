@@ -13,12 +13,15 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
+//생산실적 등록 팝업
 function showPopup(){
     window.open("${pageContext.request.contextPath}/perform/performinsert","performinsert","width=1100, height=350, top=200, left=200");
 }
+//생산실적 수정 팝업
 function showPopup2(cd){
     window.open("${pageContext.request.contextPath}/perform/performupdate?perform_cd="+cd,"performupdate","width=1100, height=350, top=200, left=200");
 }
+//삭제 처리
 function chdelete(){
 	// 삭제 유효성 검사
 	var a = $('input:checkbox[name=rowcheck]:checked').length;
@@ -34,8 +37,8 @@ function chdelete(){
 		return false;
 	}
 }
+//페이지 전체 체크
 function allCheck(){
-	
 	var ac = document.performlist.allcheck;
 	var rc = document.performlist.rowcheck;
 	if(ac.checked == true){
@@ -61,6 +64,7 @@ function allCheck(){
 	<h2> 생산실적 </h2><br>
 	<div id="table_search">
 			<form action="${pageContext.request.contextPath}/perform/perform" method="get">
+				<!-- 				검색 메뉴 선택 -->
 				<select name="select">
 				<c:choose>						
 						<c:when test="${pageDTO.select == 'instruction_code'.toString()}">
@@ -101,6 +105,7 @@ function allCheck(){
 	  <br>
 	 </div><br>
 	 <br>
+<!-- 	 글 개수 표시 -->
 	 <div>전체 ${pageDTO.count }건</div>
 	 
 	<form name="performlist">
