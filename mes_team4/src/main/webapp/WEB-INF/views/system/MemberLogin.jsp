@@ -4,7 +4,7 @@
 <%@ page session="false"%>
 
 <!-- 헤더파일들어가는 곳 -->
-<%-- <jsp:include page="../main/Header.jsp" /> --%>
+<jsp:include page="../main/Header.jsp" />
 <!-- 헤더파일들어가는 곳 -->
 
 <!-- 본문적용 CSS들어가는 곳 -->
@@ -49,8 +49,9 @@ setTimeout(function() {
 	
 	<form action="${pageContext.request.contextPath }/system/memberloginpro" name="login" id="login" method="post">
 		
-<fieldset style="width:300px; height:200px; padding-left:20px; padding-right: 20px;">
-<h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >로그인</h2>
+	<fieldset style="width:300px; height:200px; padding-left:20px; padding-right: 20px; margin: 80px auto;">
+	
+	<h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >로그인</h2>
 					<div>
 					<label>사원번호</label>
 					<input type="text" name="emp_no" class="emp_no" style="width:150px;height:30px;font-size:18px;" autofocus="autofocus"><br><br>
@@ -59,11 +60,12 @@ setTimeout(function() {
 					<label>비밀번호</label>
 					<input type="password" name="emp_pass" class="emp_pass" style="width:150px;height:30px;font-size:18px;"><br><br>
 					</div>
-						
+		</fieldset>
 		<div style="text-align:center">
+		
 		<button class="button2" form="login" onclick="submit">로그인</button>
 	  	</div>
-			</fieldset>
+			
 		
 	</form>
 		
@@ -73,5 +75,5 @@ setTimeout(function() {
 
 
 <!-- 푸터 들어가는 곳 -->
-<%-- <jsp:include page="../main/Footer.jsp" /> --%>
+<jsp:include page="../main/Footer.jsp" />
 <!-- 푸터 들어가는 곳 -->
