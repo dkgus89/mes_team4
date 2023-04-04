@@ -60,7 +60,7 @@ function updatePopup(cd) {
 			<thead>
 				<tr style="text-align:center; font-size: 0.9rem">
 					<th>선택</th>
-					<th>번호</th>
+					<th> </th>
 					<th>품목코드</th>
 					<th>제품구분</th>
 					<th>제품코드</th>

@@ -51,7 +51,7 @@ function showPopup() {
 			
 			<tbody>
 			<c:if test="${pageDTO.count != 0 }">
-			<<c:forEach var="dto" items="${receiveList }" varStatus="status">
+			<c:forEach var="dto" items="${receiveList }" varStatus="status">
 				<tr style="text-align:center; font-size: 0.9rem">
 					<td><input type="checkbox" name="chbox" value="${dto.rec_schedule_cd}"></td>
 					<td>${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
@@ -68,9 +68,6 @@ function showPopup() {
 			</tbody>
 		</table>
 		
-		<div id="array"></div>
-	
-	
 	</form>
 	
 		<div id="pagingControl">
