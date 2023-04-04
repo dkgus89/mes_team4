@@ -7,10 +7,12 @@ import com.itwillbs.domain.ReceiveDTO;
 
 public interface ReceiveDAO {
 
-	public void insertReceive(ReceiveDAO receiveDAO);
+	public void insertReceive(ReceiveDTO receiveDTO);
 
 	public List<ReceiveDTO> getReciveList(PageDTO pageDTO);
 
 	public int getReceiveCount(PageDTO pageDTO);
+
+	public Integer getCNum();
 
 }

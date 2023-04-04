@@ -18,8 +18,19 @@ public class ReceiveServiceImpl implements ReceiveService{
 	
 	@Override
 	public void insertReceive(ReceiveDTO receiveDTO) {
+		System.out.println("insertReceive()");
+		if(receiveDAO.getCNum()==null) {
+			//출고품목 없음
+			receiveDTO.setRec_schedule_cd("C001");
+		}else{
+			System.out.println("LNum 출력 : "+receiveDAO.getCNum());
+			int num = receiveDAO.getCNum()+1;
+			String str = "C00" + num;
+			
+			receiveDTO.setRec_schedule_cd(str);
+		}
 		
-		receiveDAO.insertReceive(receiveDAO);
+		receiveDAO.insertReceive(receiveDTO);
 	}
 
 	@Override

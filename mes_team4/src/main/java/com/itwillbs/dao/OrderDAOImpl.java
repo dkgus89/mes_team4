@@ -81,6 +81,20 @@ public class OrderDAOImpl implements OrderDAO{
 		return sqlSession.selectOne(namespace+".getFCount");
 	}
 
+	@Override
+	public int getPCount(PageDTO pageDTO) {
+		System.out.println("OrderDAOImpl search있는 p개수구함");
+		
+		return sqlSession.selectOne(namespace+".getPCount",pageDTO);
+	}
+
+	@Override
+	public int getFCount(PageDTO pageDTO) {
+		System.out.println("OrderDAOImpl search있는 f개수구함");
+		
+		return sqlSession.selectOne(namespace+".getFCount",pageDTO);
+	}
+
 	
 
 }

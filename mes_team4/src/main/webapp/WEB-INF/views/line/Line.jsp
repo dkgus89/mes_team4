@@ -86,14 +86,14 @@ function allCheck(){
 		<table id="vendortable" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">					
-					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
-					<th>번호</th>
-					<th>라인코드</th>
-					<th>라인명</th>
-					<th>공정</th>
-					<th>가동상태</th>
-					<th>적요</th>
-					<th>수정</th>
+					<th style="text-align: center;"><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
+					<th style="text-align: center;">번호</th>
+					<th style="text-align: center;">라인코드</th>
+					<th style="text-align: center;">라인명</th>
+					<th style="text-align: center;">공정</th>
+					<th style="text-align: center;">가동상태</th>
+					<th style="text-align: center;">적요</th>
+					<th style="text-align: center;">수정</th>
 				</tr>
 			</thead>
 			
@@ -103,18 +103,18 @@ function allCheck(){
 				<c:forEach var="LineDTO" items="${LineList}"  varStatus="status">
 
 				<tr>				
-				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${LineDTO.line_cd}"></td>
-				<td>${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
-				<td>${LineDTO.line_cd}</td>
-    			<td>${LineDTO.line_name}</td>
-    			<td>${LineDTO.line_process}</td>
-    			<td>
+				<td style="text-align: center;"><input type="checkbox" id="checkbox" name="rowcheck" value="${LineDTO.line_cd}"></td>
+				<td style="text-align: center;">${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
+				<td style="text-align: center;">${LineDTO.line_cd}</td>
+    			<td style="text-align: center;">${LineDTO.line_name}</td>
+    			<td style="text-align: center;">${LineDTO.line_process}</td>
+    			<td style="text-align: center;">
 				<c:if test="${LineDTO.line_status==1}">가동중</c:if>
     			<c:if test="${LineDTO.line_status==2}">대기중</c:if>
     			<c:if test="${LineDTO.line_status==3}">고장</c:if>
     			</td>
-    			<td>${LineDTO.remarks}</td>
-    			<td><button class="button2" onclick="showPopup2('${LineDTO.line_cd}');">수정</button></td>
+    			<td style="text-align: center;">${LineDTO.remarks}</td>
+    			<td style="text-align: center;"><button class="button2" onclick="showPopup2('${LineDTO.line_cd}');">수정</button></td>
     			</tr>
    			 
 				</c:forEach>	

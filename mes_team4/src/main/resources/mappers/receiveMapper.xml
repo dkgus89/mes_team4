@@ -8,7 +8,7 @@
 	
 	<!-- ?대신 productDTO의 멤버변수명 사용 #{id}-->
 	<insert id="insertReceive">
-		insert into receive_schedule(rec_schedule_cd,wh_cd,pchor_cd,product_cd_name,rec_date,rec_count,in_complete) 
+		insert into receive_schedule
 		values(#{rec_schedule_cd},#{wh_cd},#{pchor_cd},#{product_cd_name},#{rec_date},#{rec_count},#{in_complete})
 	</insert>
 	
@@ -20,6 +20,11 @@
 	<select id="getReceiveCount" resultType="java.lang.Integer">
         select count(*) from receive_schedule 
     </select>
+    
+    <!-- 	입고코드번호 -->
+	<select id="getCNum" resultType="java.lang.Integer">
+	select max(SUBSTR(rec_schedule_cd, 2)) from receive_schedule where rec_schedule_cd like 'C%'
+	</select>
 <!-- 	<resultMap type="map" id="map1"> -->
 <!-- 		<result column="business_cd" property="business_cd"/> -->
 <!-- 	</resultMap> -->

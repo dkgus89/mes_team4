@@ -14,7 +14,7 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 function showPopup() {
-	window.open("recinsert","입고팝업","width=1400, height=300, top=200, left=200");
+	window.open("recinsert","입고팝업","width=1200, height=300, top=200, left=200");
 }
 </script>
 <!-- 자바스크립트 입력 끝-->
@@ -43,8 +43,8 @@ function showPopup() {
 					<th>입고창고</th>
 					<th>발주/수주코드</th>
 					<th>제품코드</th>
-					<th>입고일자</th>
 					<th>입고수량</th>
+					<th>입고일자</th>
 					<th>진행상태</th>
 				</tr>
 			</thead>
@@ -59,8 +59,8 @@ function showPopup() {
 					<td>${dto.wh_cd } </td>
 					<td>${dto.pchor_cd }</td>
 					<td>${dto.product_cd_name }</td>
-					<td>${dto.rec_date }</td>
 					<td>${dto.rec_count}</td>
+					<td>${dto.rec_date }</td>
 					<td>${dto.in_complete }</td>
 				</tr>
 				</c:forEach>

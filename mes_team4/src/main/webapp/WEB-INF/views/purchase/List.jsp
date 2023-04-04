@@ -16,11 +16,14 @@
 <script>
 	$(document).ready(function() { // j쿼리 시작
 		// 셀렉트박스 선택 시 value 저장
-		$("#select").on("change", function(){
-			let product_dv = $("option:selected", this).val();
-			$("#product_dv").val(product_dv);
+		$("#select-date").on("change", function(){
+			let select_date = $("option:selected", this).val();
+			$("#select_date").val(select_date);
 		});
-
+		$("#select-menu").on("change", function(){
+			let select = $("option:selected", this).val();
+			$("#select").val(select);
+		});
 	}); // j쿼리 끝
 	
 	// 발주 등록 팝업
@@ -92,6 +95,7 @@
 	    }
 	}
 	
+	document.getElementById('today').valueAsDate = new Date();
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -107,18 +111,29 @@
 	</div><br>
 	<br>
 	
+	<fieldset>
 	<div class ="wrap2" id="table_search">
-		<form action="${pageContext.request.contextPath}/purchase/list?search=${pageDTO.search}" method="get">
-			<input id= "product_dv" name="product_dv" type="hidden" value="all">
-			<select id="select" class="button2">
-			<option value="all">전체</option>
-			<option value="cp">완제품</option>
-			<option value="rp">원자재</option>
+		<form action="${pageContext.request.contextPath}/purchase/list?search=${pageDTO.search}&select=${pageDTO.select}&select_date=${pageDTO.select_date}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}" method="get">
+			<input id="select_date" name="select_date" type="hidden" value="pch_date">
+			<select id="select-date" class="button2">
+			<option value="pch_date">발주일자</option>
+			<option value="pch_due">납품예정일</option>
+			<input type="date" name="start_date" value=""> ~ <input type="date" name="end_date" value="">
 			</select> 
+			
+			<input id="select" name="select" type="hidden" value="all">
+			<select id="select-menu" class="button2">
+			<option value="all">전체</option>
+			<option value="bs">거래처</option>
+			<option value="rp">원자재</option>
+			<option value="em">담당자</option>
+			</select> 
+			
 			<input type="text" name="search" class="input_box" placeholder="품목명 또는 코드를 입력하세요." value="" size=60>
 			<input type="submit" value="search" class="button2">
 		</form>
 	</div>
+	</fieldset>
 	<br>
 	<br>
 	<div>전체 ${pageDTO.count }건</div>
@@ -178,15 +193,15 @@
 	
 	<div id="pagingControl">
 		<c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
-			<a href="${pageContext.request.contextPath}/purchase/list?pageNum=${pageDTO.startPage-pageDTO.pageBlock}&search=${pageDTO.search}">Prev</a>
+			<a href="${pageContext.request.contextPath}/purchase/list?pageNum=${pageDTO.startPage-pageDTO.pageBlock}search=${pageDTO.search}&select=${pageDTO.select}&select_date=${pageDTO.select_date}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}">Prev</a>
 		</c:if>
 		
 		<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-			<a href="${pageContext.request.contextPath}/purchase/list?pageNum=${i}&search=${pageDTO.search}">${i}</a> 
+			<a href="${pageContext.request.contextPath}/purchase/list?pageNum=${i}search=${pageDTO.search}&select=${pageDTO.select}&select_date=${pageDTO.select_date}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}">${i}</a> 
 		</c:forEach> 
 		
 		<c:if test="${pageDTO.endPage < pageDTO.pageCount}">
-			<a href="${pageContext.request.contextPath}/purchase/list?pageNum=${pageDTO.startPage+pageDTO.pageBlock}&search=${pageDTO.search}">Next</a>
+			<a href="${pageContext.request.contextPath}/purchase/list?pageNum=${pageDTO.startPage+pageDTO.pageBlock}search=${pageDTO.search}&select=${pageDTO.select}&select_date=${pageDTO.select_date}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}">Next</a>
 		</c:if>
 	</div>
 	

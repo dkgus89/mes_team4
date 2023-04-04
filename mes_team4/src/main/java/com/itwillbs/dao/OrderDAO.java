@@ -24,5 +24,9 @@ public interface OrderDAO {
 	public int getPCount();
 	
 	public int getFCount();
+	
+public int getPCount(PageDTO pageDTO);
+	
+	public int getFCount(PageDTO pageDTO);
 
 }
