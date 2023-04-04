@@ -137,9 +137,11 @@
 	<br>
 	
 	<div class ="wrap2" id="table_search">
+	
 	<form action="${pageContext.request.contextPath}/order/ordermain" method="get">
 	<input type="text" name="search" class="input_box" placeholder="거래처코드 또는 진행상황을 검색하세요" size=60>
 	<input type="submit" value="search" class="button2">
+	<h4>* 생산 미완료, 출하예정일 빠른순으로 정렬됩니다</h4>
 	</form>
 	</div>
 	
