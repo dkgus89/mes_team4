@@ -32,7 +32,7 @@ function showPopup() {
 	 <br>
 	 
 	 
-	<form method="receiveList">
+	<form name="receiveList">
 		<input type="hidden" value="">
 		<table id="vendortable" class=" table table-striped">
 			<thead>
@@ -56,7 +56,7 @@ function showPopup() {
 					<td><input type="checkbox" name="chbox" value="${dto.rec_schedule_cd}"></td>
 					<td>${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
 					<td>${dto.rec_schedule_cd }</td>
-					<td>${dto.wh_cd }</td>
+					<td>${dto.wh_cd } </td>
 					<td>${dto.pchor_cd }</td>
 					<td>${dto.product_cd_name }</td>
 					<td>${dto.rec_date }</td>
@@ -70,7 +70,6 @@ function showPopup() {
 		
 	</form>
 	
-		<div id="pagingControl">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 <a href="${pageContext.request.contextPath}/receive/recpage?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">Prev</a>
 </c:if>
@@ -84,7 +83,6 @@ function showPopup() {
 </c:if>
 	
 <!-- 본문HTML 입력 끝-->
-	</div>
 </div>
 
 <!-- 푸터 들어가는 곳 -->

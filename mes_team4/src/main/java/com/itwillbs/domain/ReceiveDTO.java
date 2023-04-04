@@ -8,7 +8,28 @@ public class ReceiveDTO {
 	private String remarks;
 	private String in_complete;
 	private int rec_count;
+	private String pchor_cd;
+	private String wh_cd;
+	private String product_cd_name;
 	
+	public String getWh_cd() {
+		return wh_cd;
+	}
+	public void setWh_cd(String wh_cd) {
+		this.wh_cd = wh_cd;
+	}
+	public String getProduct_cd_name() {
+		return product_cd_name;
+	}
+	public void setProduct_cd_name(String product_cd_name) {
+		this.product_cd_name = product_cd_name;
+	}
+	public String getPchor_cd() {
+		return pchor_cd;
+	}
+	public void setPchor_cd(String pchor_cd) {
+		this.pchor_cd = pchor_cd;
+	}
 	public String getRec_schedule_cd() {
 		return rec_schedule_cd;
 	}
