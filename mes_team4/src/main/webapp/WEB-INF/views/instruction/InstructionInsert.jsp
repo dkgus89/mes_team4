@@ -15,7 +15,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 
-document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;
+
 
 $(document).ready(function(){
 //	alert("준비");
