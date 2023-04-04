@@ -14,7 +14,7 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 function instructioninsert(a){
-	var win = window.open("${pageContext.request.contextPath }/instruction/instructioninsert?order_cd=" + a, "_blank", "width=570, height=570, top=200, left=200");
+	var win = window.open("${pageContext.request.contextPath }/instruction/instructioninsert?order_cd=" + a, "_blank", "width=570, height=620, top=200, left=200");
 }
 
 </script>

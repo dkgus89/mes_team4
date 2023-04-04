@@ -52,7 +52,7 @@ setTimeout(function() {
 	
 	<form action="${pageContext.request.contextPath }/instruction/instructioninsertpro" name="insert" id="insert" method="post">
 		
-<fieldset style="width:500px; height:450px; padding-left:20px; padding-right: 20px;">
+<fieldset style="width:500px; height:500px; padding-left:20px; padding-right: 20px;">
 <h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >작업지시추가</h2>
 		
 					<div>
@@ -67,6 +67,30 @@ setTimeout(function() {
 					<label>지시수량</label>
 					<input type="text" name="instruction_qt" class="instruction_qt" style="width:150px;height:30px;font-size:18px;" value="${orderDTO.order_count}"><br><br>
 					</div>
+					
+					<table id="vendortable" class=" table table-striped">
+			<thead>
+				<tr style="text-align: center; font-size: 0.9rem">
+
+					<th>품목이름</th>
+					<th>원자재코드</th>
+					<th>분류</th>
+					<th>소요량</th>
+					<th>단위</th>
+				</tr>
+			</thead>
+				<c:forEach var ="dto" items="${consList}">
+					<tr><td>${dto.prnm}</td>
+						<td>${dto.prcdnm}</td>
+						<td>${dto.rpnm}</td>
+						<td>${dto.cons}</td>
+						<td>${dto.consun}</td></tr>
+				</c:forEach>
+			</tbody>
+		</table><br>
+					
+					
+					
 					<div>
 					<label>라인코드</label><br>
 						<input type="radio" name="line_cd" class="line_cd" value="fl001" checked="checked"/> 1라인

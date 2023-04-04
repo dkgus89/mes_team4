@@ -1,6 +1,7 @@
 package com.itwillbs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -19,7 +20,7 @@ public class InstructionDAOImpl implements InstructionDAO {
 	static String namespace="com.itwillbs.mappers.instructionMapper";
 
 	@Override
-	public List<OrderDTO> getorderlist(PageDTO pageDTO) {
+	public List<Map<String, Object>> getorderlist(PageDTO pageDTO) {
 		System.out.println("InstructionDAOImpl getorderlist()");
 		
 		return sqlSession.selectList(namespace +".getorderlist", pageDTO);
@@ -84,5 +85,13 @@ public class InstructionDAOImpl implements InstructionDAO {
 		
 	}
 
+	@Override
+	public List<Map<String, Object>> conslist(String order_cd) {
+		System.out.println("InstructionDAOImpl conslist()");
+		
+		return sqlSession.selectList(namespace +".conslist", order_cd);
+	}
+
+	
 	
 }

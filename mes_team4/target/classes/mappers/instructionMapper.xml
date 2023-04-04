@@ -15,6 +15,19 @@
 <!-- 	<select id="getMaxEmp_no" resultType="java.lang.Integer"> -->
 <!-- 		select max(emp_no) from employees -->
 <!-- 	</select> -->
+	 <resultMap type="map" id="consListMap">
+		<!-- column="DB의 열이름" property="해당 DB열에 대해 저장할 변수이름"-->
+		<result column="order_cd" property="orcd"/>
+		<result column="product_cd" property="prcd"/>
+		<result column="product_cd_name" property="prcdnm"/>
+		<result column="product_name" property="prnm"/>
+		<result column="rproduct_cd_name" property="prcdnm"/>
+		<result column="rproduct_name" property="rpnm"/>
+		<result column="consumption" property="cons"/>
+		<result column="consumption_unit" property="consun"/>
+	</resultMap>
+	
+	
 	
 	 <select id="getorderlist" resultType="com.itwillbs.domain.OrderDTO">
     	select * from order_management
@@ -73,6 +86,23 @@
     	</if>
     </select>
  
+
+	<select id="conslist" resultMap="consListMap">
+		SELECT o.order_cd, o.product_cd, p.product_cd_name, p.product_name, c.rproduct_cd_name, c.rproduct_name, c.consumption, c.consumption_unit
+		FROM order_management o 
+		JOIN product p ON o.product_cd = p.product_cd
+			RIGHT JOIN (
+    					SELECT cproduct_cd_name, rproduct_cd_name, rproduct_name, consumption, consumption_unit
+    					FROM consumption_management 
+													) c 
+		ON p.product_cd_name = c.cproduct_cd_name
+		where o.order_cd = #{order_cd}
+	</select>
+ 
+ 
+ 
+
+
 
     
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
