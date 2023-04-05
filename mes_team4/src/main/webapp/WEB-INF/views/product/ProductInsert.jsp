@@ -15,13 +15,12 @@
 
 <script>
 function sub(){
+	window.opener.name = "parentPage";
+	document.prodinsert.target="parentPage";
 	document.prodinsert.action="${pageContext.request.contextPath}/product/prodinsertPro";
 	document.prodinsert.submit();
-	setTimeout(function() { 
-		opener.parent.location.reload();
-		window.close();
-		}, 200);
-	}
+	self.close();
+}
 	
 function rst(){
 	document.prodinsert.reset();
