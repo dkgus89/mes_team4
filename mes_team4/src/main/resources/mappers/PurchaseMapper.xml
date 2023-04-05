@@ -307,7 +307,7 @@
 	</delete>
 	
 	<select id="getPurchaseListB" resultType="com.itwillbs.domain.PurchaseDTO">
-		select *  
+		select *
 		from purchase_management
 			<if test="cd != null">
    			where business_cd like CONCAT('%',#{cd},'%')
@@ -316,6 +316,8 @@
 		limit #{startRow},#{pageSize}
 	</select>
 </mapper>
+
+
 
 
 

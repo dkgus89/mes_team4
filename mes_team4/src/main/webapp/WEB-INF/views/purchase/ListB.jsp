@@ -171,9 +171,9 @@
 			
 			<tbody>
 			<c:choose>
-			<c:when test="${not empty purchaseMapList}">
+			<c:when test="${not empty purchaseList}">
 			
-				<c:forEach var="dto" items="${purchaseMapList }" varStatus="sts"> 
+				<c:forEach var="dto" items="${purchaseList}" varStatus="sts"> 
 	
 			  		<tr>
 	        		<td><input type="checkbox" name="rowCheck" value="${dto.purchase_cd }"></td>
