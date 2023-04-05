@@ -25,6 +25,18 @@
 	<select id="getCNum" resultType="java.lang.Integer">
 	select max(SUBSTR(rec_schedule_cd, 2)) from receive_schedule where rec_schedule_cd like 'C%'
 	</select>
+	
+	<update id="updateReceive">
+	 	update receive_schedule 
+	 	set wh_cd = #{wh_cd}, pchor_cd = #{pchor_cd}, product_cd_name = #{product_cd_name}, rec_date = #{rec_date}, in_complete = #{in_complete}
+	 	where pchor_cd = #{pchor_cd}                     
+    </update>
+    
+    <select id="getReceive" resultType="com.itwillbs.domain.ReceiveDTO">
+        select * from receive_schedule
+        where rec_schedule_cd = #{rec_schedule_cd}
+    </select>
+    
 <!-- 	<resultMap type="map" id="map1"> -->
 <!-- 		<result column="business_cd" property="business_cd"/> -->
 <!-- 	</resultMap> -->

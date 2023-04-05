@@ -175,6 +175,18 @@ public class ReleaseController {
 		return "redirect:/rel/relpage";
 	}
 	
+	@RequestMapping(value = "/rel/relfinish", method = RequestMethod.GET)
+	public String relfinish(HttpServletRequest request) {
+		System.out.println("ReleaseController relfinish()");
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+			relService.finishrel(ajaxMsg[i]);
+		}
+		
+		return "redirect:/rel/relpage";
+	}
+	
 	@RequestMapping(value = "/rel/reclist", method = RequestMethod.GET)
 	public String instList(HttpServletRequest request, Model model) {
 		

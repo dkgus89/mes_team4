@@ -14,6 +14,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
 <script>
+
+// 창고현황
 function sub(){
 	window.opener.name = "parentPage";
 	document.recinsert.target="parentPage";
@@ -34,7 +36,8 @@ function showPopup(){
     function setChildValue(wh_cd){
         document.getElementById("wh_cd").value = wh_cd;
     }
-    
+
+// 발주현황
 function showPopup2(){
     	var link = "${pageContext.request.contextPath}/receive/purchase";     
     	var popupWidth = 800;
@@ -49,7 +52,8 @@ function showPopup2(){
         document.getElementById("product_cd_name").value = rproduct_cd_name;
         document.getElementById("rec_count").value = purchase_count;
     }
-    
+
+// 수주현황
 function showPopup3(){
     	var link = "${pageContext.request.contextPath}/receive/order";     
     	var popupWidth = 800;

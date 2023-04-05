@@ -145,7 +145,7 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="date" name="rel_date" id="rel_date" value="${rec.rel_date }">></td>
+					<td><input type="date" name="rel_date" id="rel_date" value="${rec.rel_date }"></td>
 					<td><input type="text" name="rel_count" id="rel_count" value="${rec.rel_count }"></td>
 					<td><input type="text"  class="remarks" id="remarks" name="remarks" size=40  value="${rec.remarks }"></td>
 				</tr>
