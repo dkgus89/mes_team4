@@ -414,7 +414,7 @@ public class PurchaseController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(CurrentPage);
 		
-		List<Map<String, Object>> purchaseList = purchaseService.getPrList(pageDTO);
+		List<Map<String, Object>> PurchaseListB = purchaseService.getPurchaseListB(pageDTO);
 		
 		int count = purchaseService.getPurchaseCount(pageDTO);
 		
@@ -434,7 +434,7 @@ public class PurchaseController {
 		pageDTO.setPageCount(pageCount);
 		
 		// 서버단 처리 결과 전달
-		model.addAttribute("purchaseList", purchaseList); 
+		model.addAttribute("PurchaseListB", PurchaseListB); 
 		model.addAttribute("pageDTO", pageDTO);
 		
 		return "purchase/ListB";
