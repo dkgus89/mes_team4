@@ -88,7 +88,7 @@ public class ProductController {
 	@RequestMapping(value = "/product/prodinsertPro", method = RequestMethod.POST)
 	public String prodinsertPro(HttpServletRequest request, ProductDTO productDTO) {
 		System.out.println("ProductController prodinsertPro()");
-		
+				
 		if(productService.getProductCount2()==0) {
 			productDTO.setProduct_cd("P0001");
 		}else {
@@ -114,6 +114,7 @@ public class ProductController {
 			System.out.println(maxpc);
 		}
 		
+		productService.insertStock(productDTO);
 		productService.insertProduct(productDTO);
 //		주소줄 변경하면서 이동
 		return "redirect:/product/prodpage";

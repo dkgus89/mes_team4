@@ -33,6 +33,7 @@ function input1(order_cd, product_name, order_count, rproduct_name, consumption,
  				 if(result==0) {
  		              alert("이전에 이미 선택되었던 수주입니다.");
  		              rt=1;
+ 		             
  		          }
  			}
  		}); //ajax 끝

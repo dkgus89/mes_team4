@@ -13,30 +13,30 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
-function showPopup(){
-    window.open("${pageContext.request.contextPath}/stock/stockinsert","stockinsert","width=1000, height=250, top=200, left=200");
-}
-function showPopup2(cd){
-    window.open("${pageContext.request.contextPath}/stock/stockupdate?stock_cd="+cd,"stockupdate","width=1000, height=250, top=200, left=200");
-}
-function chdelete(){
-	document.stocklist.action="${pageContext.request.contextPath}/stock/stockdelete";
-	document.stocklist.submit();
-}
-function allCheck(){
+// function showPopup(){
+//     window.open("${pageContext.request.contextPath}/stock/stockinsert","stockinsert","width=1000, height=250, top=200, left=200");
+// }
+// function showPopup2(cd){
+//     window.open("${pageContext.request.contextPath}/stock/stockupdate?stock_cd="+cd,"stockupdate","width=1000, height=250, top=200, left=200");
+// }
+// function chdelete(){
+// 	document.stocklist.action="${pageContext.request.contextPath}/stock/stockdelete";
+// 	document.stocklist.submit();
+// }
+// function allCheck(){
 	
-	var ac = document.stocklist.allcheck;
-	var rc = document.stocklist.rowcheck;
-	if(ac.checked == true){
-		for(i=0; i<rc.length; i++){
-			rc[i].checked=true;}
-		rc.checked=true;
-	}else {
-		for(i=0;i<rc.length;i++){
-			rc[i].checked=false;}
-		rc.checked=false;
-	} 
-}
+// 	var ac = document.stocklist.allcheck;
+// 	var rc = document.stocklist.rowcheck;
+// 	if(ac.checked == true){
+// 		for(i=0; i<rc.length; i++){
+// 			rc[i].checked=true;}
+// 		rc.checked=true;
+// 	}else {
+// 		for(i=0;i<rc.length;i++){
+// 			rc[i].checked=false;}
+// 		rc.checked=false;
+// 	} 
+// }
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -48,31 +48,15 @@ function allCheck(){
 	<h2> 재고현황 </h2><br>
 	<div id="table_search">
 		<form action="${pageContext.request.contextPath}/stock/stock" method="get">
-				<select name="select">
+				<select name="select" class="button2">
 				<c:choose>
-						<c:when test="${pageDTO.select == 'wh_cd'.toString()}">
+						<c:when test="${pageDTO.select == 'product_cd_name'.toString()}">
 							<option value="stock_cd">재고번호</option>
-							<option value="wh_cd" selected>창고코드</option>
-							<option value="rec_schedule_cd">입고예정코드</option>
-							<option value="product_cd">품목코드</option>
-						</c:when>
-						<c:when test="${pageDTO.select == 'rec_schedule_cd'.toString()}">
-							<option value="stock_cd">재고번호</option>
-							<option value="wh_cd">창고코드</option>
-							<option value="rec_schedule_cd" selected>입고예정코드</option>
-							<option value="product_cd">품목코드</option>
-						</c:when>
-						<c:when test="${pageDTO.select == 'product_cd'.toString()}">
-							<option value="stock_cd">재고번호</option>
-							<option value="wh_cd">창고코드</option>
-							<option value="rec_schedule_cd">입고예정코드</option>
-							<option value="product_cd" selected>품목코드</option>
+							<option value="product_cd_name" selected>제품코드</option>
 						</c:when>			
 						<c:otherwise>
 							<option value="stock_cd" selected>재고번호</option>
-							<option value="wh_cd">창고코드</option>
-							<option value="rec_schedule_cd">입고예정코드</option>
-							<option value="product_cd">품목코드</option>
+							<option value="product_cd_name">제품코드</option>
 						</c:otherwise>
 				</c:choose>			
       			</select>
@@ -84,8 +68,8 @@ function allCheck(){
 	
 	<div class="wrap2" style="float: left;">
 	
-	  <button class="button2" onclick="showPopup();">추가</button>
-	  <button class="button2"  onclick="chdelete();">삭제</button>
+<!-- 	  <button class="button2" onclick="showPopup();">추가</button> -->
+<!-- 	  <button class="button2"  onclick="chdelete();">삭제</button> -->
 	  
 	 </div><br>
 	 <br>
@@ -97,17 +81,11 @@ function allCheck(){
 		<table id="vendortable" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
-					<th style="text-align: center; width: 25px;">번호</th>
+					<th style="text-align: center; width: 50px;">번호</th>
 					<th>재고번호</th>
-					<th>창고코드</th>
-					<th>창고이름</th>
-					<th>입고예정코드</th>
-					<th>입고예정일</th>
-					<th>품목코드</th>
+					<th>제품코드</th>
 					<th>품목명</th>
 					<th>재고수량</th>
-					<th>수정</th>
 				</tr>
 			</thead>
 			
@@ -117,24 +95,20 @@ function allCheck(){
 				<c:forEach var="dto" items="${StockMap}" varStatus="status">
 
 				<tr>				
-				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.stock_cd}"></td>
+<%-- 				<td><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.stock_cd}"></td> --%>
 				<td style="text-align: center;">${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
 				<td>${dto.stock_cd}</td>
-				<td>${dto.wh_cd}</td>
-				<td>${dto.wh_name}</td>
-				<td>${dto.rec_schedule_cd}</td>
-				<td>${dto.rec_date}</td>
-				<td>${dto.product_cd}</td>
+				<td>${dto.product_cd_name}</td>
 				<td>${dto.product_name}</td>
 				<td>${dto.stock_count}</td>    			
-    			<td><button class="button2" onclick="showPopup2('${dto.stock_cd}');">수정</button></td>
+<%--     			<td><button class="button2" onclick="showPopup2('${dto.stock_cd}');">수정</button></td> --%>
     			</tr>
    			 
 				</c:forEach>
 				</c:when>		
 			<c:otherwise>
 				<tr>
-				<td colspan="11" style="text-align: center;">등록된 데이터가 없습니다.</td>
+				<td colspan="5" style="text-align: center;">등록된 데이터가 없습니다.</td>
 				</tr>
 			</c:otherwise>
 			</c:choose>		

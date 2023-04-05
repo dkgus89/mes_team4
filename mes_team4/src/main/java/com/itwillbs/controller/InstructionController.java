@@ -84,18 +84,17 @@ public class InstructionController {
 		return "inst/InstInsert";
 	}
 	
-//	@RequestMapping(value = "/instruction/instructioninsertpro", method = RequestMethod.POST)
-//	public String instructioninsertpro(InstructionDTO instructionDTO) {
-//		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
-//		System.out.println("InstructionController instructioninsertpro()");
-//		String order_cd = instructionDTO.getOrder_cd();
-//		
-//		// MemberService memberService = new MemberServiceImpl();
-//		instructionService.instructioninsertpro(instructionDTO);
-//		
-//		// 가상주소에서 주소변경 하면서 이동
-//		return "redirect:/instruction/instructionmain";
-//	}
+	@RequestMapping(value = "/inst/instinsertpro", method = RequestMethod.POST)
+	public String instinsertpro(InstructionDTO instructionDTO) {
+		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
+		System.out.println("InstructionController instinsertpro()");
+		
+		// MemberService memberService = new MemberServiceImpl();
+		instructionService.instinsertpro(instructionDTO);
+		
+		// 가상주소에서 주소변경 하면서 이동
+		return "redirect:/inst/instmain";
+	}
 	
 	@RequestMapping(value = "/inst/instupdate", method = RequestMethod.GET)
 	public String instupdate(HttpServletRequest request, Model model) {

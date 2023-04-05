@@ -55,11 +55,10 @@ public class InstructionDAOImpl implements InstructionDAO {
 	}
 
 	@Override
-	public void instructioninsertpro(InstructionDTO instructionDTO) {
-		System.out.println("InstructionDAOImpl instructioninsertpro()");
+	public void instinsertpro(InstructionDTO instructionDTO) {
+		System.out.println("InstructionDAOImpl instinsertpro()");
 		
-		sqlSession.insert(namespace + ".instructioninsertpro", instructionDTO);
-		
+		sqlSession.insert(namespace + ".instinsertpro", instructionDTO);
 	}
 
 	@Override

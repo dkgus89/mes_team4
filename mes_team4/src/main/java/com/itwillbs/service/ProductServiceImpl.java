@@ -103,5 +103,12 @@ public class ProductServiceImpl implements ProductService{
 		return productDAO.getProductList();
 	}
 
+	@Override
+	public void insertStock(ProductDTO productDTO) {
+		System.out.println("ProductServiceImpl insertStock()");
+		
+		productDAO.insertStock(productDTO);
+	}
+
 
 }
