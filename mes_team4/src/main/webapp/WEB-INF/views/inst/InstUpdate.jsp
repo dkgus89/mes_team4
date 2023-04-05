@@ -23,13 +23,12 @@ function showPopup(){
 	
   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 }
-function setChildValue(order_cd, product_name, order_count, rproduct_name, consumption, deliver_date){
+function setChildValue(order_cd, product_cd, product_name, order_count, deliver_date){
 	 	
 		document.getElementById("order_cd").value = order_cd;
+		document.getElementById("product_cd").value = product_cd;
 	    document.getElementById("product_name").value = product_name;
 	    document.getElementById("order_count").value = order_count;
-	    document.getElementById("rproduct_name").value = rproduct_name;
-	    document.getElementById("consumption").value = consumption;
 	    document.getElementById("deliver_date").value = deliver_date;
 }
 function sub(){

@@ -26,6 +26,7 @@
     	</if>
     	limit #{startRow},#{pageSize}	
     </select>
+	
 
 		 <resultMap type="map" id="map2">
 		<!-- column="DB의 열이름" property="해당 DB열에 대해 저장할 변수이름"-->
@@ -37,18 +38,13 @@
 		<result column="rproduct_name" property="rproduct_name"/>
 		<result column="consumption" property="consumption"/>
 		<result column="consumption_unit" property="consun"/>
-		<result column="deliver_date" property="deliver_date"/>
 		<result column="consumption_unit" property="consumption_unit"/>
 		<result column="business_cd" property="business_cd"/>
+		<result column="order_count" property="order_count"/>
 		<result column="order_date" property="order_date"/>
+		<result column="deliver_date" property="deliver_date"/>
 		<result column="emp_no" property="emp_no"/>
 		<result column="con" property="con"/>
-		
-<!-- 		<result column="business_cd" property="business_cd"/> -->
-<!-- 		<result column="order_count" property="order_count"/> -->
-<!-- 		<result column="order_date" property="order_date"/> -->
-<!-- 		<result column="emp_no" property="emp_no"/> -->
-<!-- 		<result column="con" property="con"/> -->
 	</resultMap>
 
 	<select id="getOrderListMap" resultMap="map2">
@@ -79,8 +75,8 @@
     </select>
     
     <insert id="instinsertpro">
- 		insert into instruction (instruction_code, line_cd, product_cd, order_cd, instruction_state, instruction_date, instruction_qt)
-		values (instruction_code=#{instruction_code},line_cd=#{line_cd},product_cd=#{product_cd},order_cd=#{order_cd},instruction_state=#{instruction_state},instruction_date=#{instruction_date},instruction_qt=#{instruction_qt})
+ 		insert into instruction(instruction_code, line_cd, product_cd, order_cd, instruction_state, instruction_date, instruction_qt)
+		values(instruction_code=#{instruction_code},line_cd=#{line_cd},product_cd=#{product_cd},order_cd=#{order_cd},instruction_state=#{instruction_state},instruction_date=#{instruction_date},instruction_qt=#{instruction_qt})
     </insert>
     
     <select id="instructioninfo" resultType="com.itwillbs.domain.InstructionDTO">
