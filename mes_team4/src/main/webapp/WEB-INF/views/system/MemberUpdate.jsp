@@ -88,7 +88,7 @@ $('#update').submit(function(){
 	
 	<form action="${pageContext.request.contextPath }/system/memberupdatepro" name="update" id="update" method="post">
 		
-<fieldset style="width:500px; height:450px; padding-left:20px; padding-right: 20px;">
+<fieldset style="width:500px; height:570px; padding-left:20px; padding-right: 20px;">
 <h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >사용자수정</h2>
 					<input type="hidden" name="emp_no" class="emp_no" value="${systemDTO.emp_no}">
 					<div>
@@ -109,28 +109,44 @@ $('#update').submit(function(){
 					</div>
 					<label>부서</label><br>
 					<div>
-						<input type="radio" name="dept_cd" class="dept_cd" value="총무부" ${systemDTO.dept_cd eq '총무부' ? 'checked':''}/> 총무부
-						<input type="radio" name="dept_cd" class="dept_cd" value="인사부" ${systemDTO.dept_cd eq '인사부' ? 'checked':''}/> 인사부
-						<input type="radio" name="dept_cd" class="dept_cd" value="영업부" ${systemDTO.dept_cd eq '영업부' ? 'checked':''}/> 영업부
-						<input type="radio" name="dept_cd" class="dept_cd" value="생산부" ${systemDTO.dept_cd eq '생산부' ? 'checked':''}/> 생산부
-						<input type="radio" name="dept_cd" class="dept_cd" value="자재관리부" ${systemDTO.dept_cd eq '자재관리부' ? 'checked':''}/> 자재관리부	
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP001" ${systemDTO.dept_cd eq 'MDP001' ? 'checked':''}/> 영업부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP002" ${systemDTO.dept_cd eq 'MDP002' ? 'checked':''}/> 인사부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP003" ${systemDTO.dept_cd eq 'MDP003' ? 'checked':''}/> 생산부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP004" ${systemDTO.dept_cd eq 'MDP004' ? 'checked':''}/> 총무부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP005" ${systemDTO.dept_cd eq 'MDP005' ? 'checked':''}/> 기획부	
 					</div><br>
 					<label>직급</label><br>
 					<div>
-						<input type="radio" name="grade_cd" class="grade_cd" value="대표" ${systemDTO.grade_cd eq '대표' ? 'checked':''}/> 대표
-						<input type="radio" name="grade_cd" class="grade_cd" value="이사" ${systemDTO.grade_cd eq '이사' ? 'checked':''}/> 이사
-						<input type="radio" name="grade_cd" class="grade_cd" value="부장" ${systemDTO.grade_cd eq '부장' ? 'checked':''}/> 부장
-						<input type="radio" name="grade_cd" class="grade_cd" value="과장" ${systemDTO.grade_cd eq '과장' ? 'checked':''}/> 과장
-						<input type="radio" name="grade_cd" class="grade_cd" value="대리" ${systemDTO.grade_cd eq '대리' ? 'checked':''}/> 대리	
-						<input type="radio" name="grade_cd" class="grade_cd" value="사원" ${systemDTO.grade_cd eq '사원' ? 'checked':''}/> 사원	
-					</div><br>
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD001" ${systemDTO.grade_cd eq 'MGD001' ? 'checked':''}/> 사원
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD002" ${systemDTO.grade_cd eq 'MGD002' ? 'checked':''}/> 주임
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD003" ${systemDTO.grade_cd eq 'MGD003' ? 'checked':''}/> 대리
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD004" ${systemDTO.grade_cd eq 'MGD004' ? 'checked':''}/> 과장
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD005" ${systemDTO.grade_cd eq 'MGD005' ? 'checked':''}/> 차장	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD006" ${systemDTO.grade_cd eq 'MGD006' ? 'checked':''}/> 부장<BR>	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD007" ${systemDTO.grade_cd eq 'MGD007' ? 'checked':''}/> 이사	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD008" ${systemDTO.grade_cd eq 'MGD008' ? 'checked':''}/> 상무	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD009" ${systemDTO.grade_cd eq 'MGD009' ? 'checked':''}/> 전무	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD010" ${systemDTO.grade_cd eq 'MGD010' ? 'checked':''}/> 부사장	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD011" ${systemDTO.grade_cd eq 'MGD011' ? 'checked':''}/> 사장
+					</div><br>			
 					<label>권한</label><br>
 					<div>
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="0" ${systemDTO.priv_cd.contains("0") ? 'checked':''}/> 기본등록
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="1" ${systemDTO.priv_cd.contains("1") ? 'checked':''}/> 사원조회
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="2" ${systemDTO.priv_cd.contains("2") ? 'checked':''}/> 사원관리
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="3" ${systemDTO.priv_cd.contains("3") ? 'checked':''}/> 재고조회
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="4" ${systemDTO.priv_cd.contains("4") ? 'checked':''}/> 재고관리 
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="A" ${systemDTO.priv_cd.contains("A") ? 'checked':''}/> 사원조회
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="B" ${systemDTO.priv_cd.contains("B") ? 'checked':''}/> 사원관리
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="C" ${systemDTO.priv_cd.contains("C") ? 'checked':''}/> 재고조회
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="D" ${systemDTO.priv_cd.contains("D") ? 'checked':''}/> 재고관리
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="E" ${systemDTO.priv_cd.contains("E") ? 'checked':''}/> 생산조회<BR>
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="F" ${systemDTO.priv_cd.contains("F") ? 'checked':''}/> 생산관리 
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="G" ${systemDTO.priv_cd.contains("G") ? 'checked':''}/> 수주조회 
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="H" ${systemDTO.priv_cd.contains("H") ? 'checked':''}/> 수주관리
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="I" ${systemDTO.priv_cd.contains("I") ? 'checked':''}/> 발주조회 
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="J" ${systemDTO.priv_cd.contains("J") ? 'checked':''}/> 발주관리 <BR>
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="K" ${systemDTO.priv_cd.contains("K") ? 'checked':''}/> 출하조회 
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="L" ${systemDTO.priv_cd.contains("L") ? 'checked':''}/> 출하관리 
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="M" ${systemDTO.priv_cd.contains("M") ? 'checked':''}/> 기준정보조회
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="N" ${systemDTO.priv_cd.contains("N") ? 'checked':''}/> 기준정보관리<BR>
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="O" ${systemDTO.priv_cd.contains("O") ? 'checked':''}/> 시스템관리 
+
 					</div>
 
 			</fieldset>

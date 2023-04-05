@@ -9,7 +9,7 @@
 <body>
 <script>
 
-alert("비밀번호 틀림");
+alert("비밀번호가 일치하지 않습니다.");
 location.replace("${pageContext.request.contextPath}/home");
 </script>
 

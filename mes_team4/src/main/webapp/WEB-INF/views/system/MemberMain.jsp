@@ -14,10 +14,10 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 function memberinsert(){
-	var win = window.open("${pageContext.request.contextPath }/system/memberinsert", "_blank", "width=570, height=570, top=200, left=200");
+	var win = window.open("${pageContext.request.contextPath }/system/memberinsert", "_blank", "width=600, height=680, top=200, left=200");
 }
 function memberupdate(a) {
-	var win = window.open("${pageContext.request.contextPath }/system/memberupdate?emp_no=" + a, "_blank", "width=570, height=570, top=200, left=200");
+	var win = window.open("${pageContext.request.contextPath }/system/memberupdate?emp_no=" + a, "_blank", "width=580, height=680, top=200, left=200");
 }
 function memberdelete(a) {
 	location.href = '${pageContext.request.contextPath }/system/memberdelete?emp_no=' + a; 

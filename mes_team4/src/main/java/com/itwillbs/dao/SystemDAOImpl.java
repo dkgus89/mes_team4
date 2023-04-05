@@ -14,8 +14,8 @@ import com.itwillbs.domain.SystemDTO;
 public class SystemDAOImpl implements SystemDAO {
 	@Inject
 	private SqlSession sqlSession;
+	private static final String namespace="com.itwillbs.mappers.systemMapper";
 
-	static String namespace="com.itwillbs.mappers.systemMapper";
 	@Override
 	public void memberinsertpro(SystemDTO systemDTO) {
 		System.out.println("SystemDAOImpl memberinsertpro()");
@@ -66,7 +66,7 @@ public class SystemDAOImpl implements SystemDAO {
 	public SystemDTO userCheck(SystemDTO systemDTO) {
 		System.out.println("SystemDAOImpl userCheck()");
 		
-		return sqlSession.selectOne(namespace + ".userCheck", systemDTO);
+		return sqlSession.selectOne(namespace+".userCheck", systemDTO);
 	}
 	@Override
 	public void mypagePro(SystemDTO systemDTO) {
