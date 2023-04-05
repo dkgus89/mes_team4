@@ -23,10 +23,16 @@ function showPopup(){
 	
   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 }
-function setChildValue(order_cd,product_cd){
+function setChildValue(order_cd, product_name, order_count, rproduct_name, consumption, deliver_date){
 	
     document.getElementById("order_cd").value = order_cd;
-    document.getElementById("product_cd").value = product_cd;
+    document.getElementById("product_name").value = product_name;
+    document.getElementById("order_count").value = order_count;
+    document.getElementById("rproduct_name").value = rproduct_name;
+    document.getElementById("consumption").value = consumption;
+    document.getElementById("deliver_date").value = deliver_date;
+
+   
 
 }
 function sub(){
@@ -132,7 +138,7 @@ function rst(){
 <!-- 	<button class="button2" id="aj">ajax</button> -->
 	<button class="button2" id="sub" onclick="sub()">등록</button>
 	<button class="button2" onclick="rst()">초기화</button>
-	<button class="button2" onclick="showPopup();" style="width:200px">작업지시현황</button>
+	<button class="button2" onclick="showPopup();" style="width:200px">수주현황</button>
 	
 <!-- 	 </div><br> -->
 	 <br><br>
@@ -145,41 +151,22 @@ function rst(){
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">					
 					<th>수주코드</th>
-					<th>물품코드</th>
+					<th>품목이름</th>
+					<th>수주량</th>
+					<th>원자재이름</th>
+					<th>소요량</th>
+					<th>출하예정일</th>
 				</tr>
 			</thead>
 			
 			<tbody>
 				<tr>				
 					<td><input type="text" name="order_cd" id="order_cd"></td>
-<!-- 						<option value="" selected>선택</option> -->
-<%-- 						<c:if test="${instruction_code != null}"> --%>
-<%-- 						<option value="${instruction_code}" selected>${instruction_code}</option> --%>
-<%-- 						</c:if> --%>
-<%-- 							<c:forEach var="dto" items="${instMap}">		 --%>
-<%-- 								<c:if test="${dto.instruction_code != instruction_code}">			 --%>
-<%-- 									<option value="${dto.instruction_code}">${dto.instruction_code}</option>	 --%>
-<%-- 								</c:if>						 --%>
-<%-- 							</c:forEach> --%>
-<!--       				</select></td>       -->
-<!--       				<td><input type="text" name="line_cd" id="line_cd"></td>	 -->
-<!--       				<option value="" selected>선택</option> -->
-<%--       				<option value="${line_cd}" selected>${line_cd}</option> --%>
-<%--       						<c:forEach var="dto" items="${instMap}">		 --%>
-<%-- 								<c:if test="${dto.instruction_code != instruction_code}">			 --%>
-<%-- 									<option value="${dto.line_cd}">${dto.line_cd}</option>	 --%>
-<%-- 								</c:if>						 --%>
-<%-- 							</c:forEach>		 --%>
-<!--       				</select></td> -->
-      				<td><input type="text" name="product_cd" id="product_cd"></td>
-<!--       				<option value="" selected>선택</option> -->
-<%--       				<option value="${product_cd}" selected>${product_cd}</option> --%>
-<%--       						<c:forEach var="dto" items="${instMap}">		 --%>
-<%-- 								<c:if test="${dto.instruction_code != instruction_code}">			 --%>
-<%-- 									<option value="${dto.product_cd}">${dto.product_cd}</option>	 --%>
-<%-- 								</c:if>						 --%>
-<%-- 							</c:forEach>		 --%>
-<!--       				</select></td> -->
+					<td><input type="text" name="product_name" id="product_name"></td>
+					<td><input type="text" name="order_count" id="order_count"></td>
+      				<td><input type="text" name="rproduct_name" id="rproduct_name"></td>
+					<td><input type="text" name="consumption" id="consumption"></td>	
+					<td><input type="text" name="deliver_date" id="deliver_date"></td>	
     			</tr>
 
 			</tbody>

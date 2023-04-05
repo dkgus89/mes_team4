@@ -35,6 +35,8 @@ public interface InstructionDAO {
 
 	public int getordercheck(String order_cd);
 
+	public List<Map<String, Object>> getOrderListMap(PageDTO pageDTO);
+
 
 	
 

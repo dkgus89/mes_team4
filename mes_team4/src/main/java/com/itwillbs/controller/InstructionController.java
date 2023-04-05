@@ -167,7 +167,9 @@ public class InstructionController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
 		
-		List<OrderDTO> orderList=orderService.getOrderList(pageDTO);
+		List<Map<String, Object>> orderListMap
+	     =instructionService.getOrderListMap(pageDTO);
+//		List<OrderDTO> orderList=orderService.getOrderList(pageDTO);
 		
 //		페이징처리
 		int count = orderService.getOrderCount();
@@ -186,7 +188,7 @@ public class InstructionController {
 		pageDTO.setPageCount(pageCount);
 		
 
-		model.addAttribute("orderList", orderList);
+		model.addAttribute("orderListMap", orderListMap);
 		model.addAttribute("pageDTO", pageDTO);
 		
 		// 주소변경 없이 이동

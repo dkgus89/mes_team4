@@ -14,7 +14,7 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 function showPopup(){
-    window.open("${pageContext.request.contextPath}/inst/instinsert","instinsert","width=1100, height=350, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/inst/instinsert","instinsert","width=1400, height=350, top=200, left=200");
 }
 function showPopup2(cd){
     window.open("${pageContext.request.contextPath}/inst/instupdate?instruction_code="+cd,"instupdate","width=1100, height=350, top=200, left=200");
