@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.BusinessDTO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.SystemService;
@@ -127,26 +128,30 @@ public class SystemController {
 		// 가상주소에서 주소변경 없이 이동
 		return "system/MemberLogin";
 	}
+	
 
 	@RequestMapping(value = "/system/memberloginpro", method = RequestMethod.POST)
 	public String loginPro(SystemDTO systemDTO, HttpSession session) {
 		System.out.println("MemberController loginPro()");
+		
+		System.out.println(systemDTO.getEmp_no()+ systemDTO.getEmp_pass()+"되니1?!?!?");
+		
 		// 리턴할형 MemberDTO userCheck(MemberDTO memberDTO) 메서드 정의
 		// 메서드 호출
 		SystemDTO systemDTO2=systemService.userCheck(systemDTO);
+		System.out.println("DTO2 되냐고!!!! " + systemDTO2.getEmp_no() + systemDTO2.getEmp_pass());
+		
 		if(systemDTO2!=null) {
-			//아이디 비밀번호 일치
-			//세션값 생성 "id",값
-			session.setAttribute("enp_no", systemDTO.getEmp_no());
-//			주소줄 변경하면서 이동
+
+			session.setAttribute("emp_no", systemDTO.getEmp_no());
+			System.out.println("출력해바!!!!!!!!"+systemDTO.getEmp_no());
 			return "redirect:/home";
 		}else {
-			//아이디 비밀번호 틀림  뒤로이동  member/msg
-//			주소줄 변경없이 이동
-//			/WEB-INF/views/member/msg.jsp
-			return "redirect:/home";
+			System.out.println("안되노..");
+			
+			return "system/msg";
 		}
-	}
+	}	
 	
 	@RequestMapping(value = "/system/memberlogout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
@@ -161,7 +166,7 @@ public class SystemController {
 	public String businessupdate(HttpSession session, Model model) {
 		System.out.println("SystemController mypageForm()");
 		
-		int emp_no = (Integer)session.getAttribute("enp_no");
+		int emp_no = (Integer)session.getAttribute("emp_no");
 		System.out.println(emp_no);
 		SystemDTO systemDTO = systemService.memberinfo(emp_no);
 		
@@ -175,7 +180,7 @@ public class SystemController {
 	@RequestMapping(value = "/system/mypagepro", method = RequestMethod.POST)
 	public String updatePro(SystemDTO systemDTO, HttpSession session) {
 		System.out.println("systemController mypagePro()");
-		int emp_no = (Integer)session.getAttribute("enp_no");
+		int emp_no = (Integer)session.getAttribute("emp_no");
 		systemDTO.setEmp_no(emp_no);
 		systemService.mypagePro(systemDTO);
 
