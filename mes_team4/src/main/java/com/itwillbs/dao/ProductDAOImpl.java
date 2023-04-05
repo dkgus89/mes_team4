@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
+import com.itwillbs.domain.StockDTO;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO{
@@ -102,10 +103,17 @@ public class ProductDAOImpl implements ProductDAO{
 	}
 
 	@Override
-	public void insertStock(ProductDTO productDTO) {
+	public String getStock_cd() {
+		System.out.println("productDAOImpl getStock_cd()");
+		
+		return sqlSession.selectOne(namespace+".getStock_cd");
+	}
+
+	@Override
+	public void insertStock(StockDTO stockDTO) {
 		System.out.println("productDAOImpl insertStock()");
 		
-		sqlSession.insert(namespace+".insertStock", productDTO);
+		sqlSession.insert(namespace+".insertStock", stockDTO);
 	}
 
 

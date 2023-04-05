@@ -79,8 +79,8 @@
     </select>
     
     <insert id="instinsertpro">
- 		insert into instruction (instruction_code, line_cd, product_cd, order_cd, instruction_state, instruction_date, instruction_qt
-		values (instruction_code=#{instruction_code},line_cd=#{line_cd},product_cd=#{product_cd},order_cd=#{order_cd},instruction_state=#{instruction_state},instruction_date=#{instruction_date},,instruction_qt=#{instruction_qt})
+ 		insert into instruction (instruction_code, line_cd, product_cd, order_cd, instruction_state, instruction_date, instruction_qt)
+		values (instruction_code=#{instruction_code},line_cd=#{line_cd},product_cd=#{product_cd},order_cd=#{order_cd},instruction_state=#{instruction_state},instruction_date=#{instruction_date},instruction_qt=#{instruction_qt})
     </insert>
     
     <select id="instructioninfo" resultType="com.itwillbs.domain.InstructionDTO">

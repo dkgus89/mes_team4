@@ -12,6 +12,13 @@
 		values(#{product_type_cd},#{product_cd},#{product_cd_name},#{product_name},#{product_dv},#{business_cd},#{product_unit},#{remarks})
 	</insert>
 	
+	<select id="getStock_cd" resultType="java.lang.String">
+        select *  
+		from stock
+		order by stock_cd desc
+		limit 1
+    </select>
+	
 	<insert id="insertStock">
 		insert into stock(stock_cd,product_cd_name)
 		values(#{stock_cd},#{product_cd_name})

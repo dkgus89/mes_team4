@@ -6,6 +6,7 @@ import java.util.Map;
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
+import com.itwillbs.domain.StockDTO;
 
 public interface ProductDAO {
 
@@ -34,7 +35,9 @@ public interface ProductDAO {
 
 	public List<ProductDTO> getProductList();
 
-	public void insertStock(ProductDTO productDTO);
+	public String getStock_cd();
+
+	public void insertStock(StockDTO stockDTO);
 
 
 
