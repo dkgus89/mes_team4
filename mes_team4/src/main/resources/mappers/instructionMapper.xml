@@ -15,17 +15,7 @@
 <!-- 	<select id="getMaxEmp_no" resultType="java.lang.Integer"> -->
 <!-- 		select max(emp_no) from employees -->
 <!-- 	</select> -->
-	 <resultMap type="map" id="consListMap">
-		<!-- column="DB의 열이름" property="해당 DB열에 대해 저장할 변수이름"-->
-		<result column="order_cd" property="orcd"/>
-		<result column="product_cd" property="prcd"/>
-		<result column="product_cd_name" property="prcdnm"/>
-		<result column="product_name" property="prnm"/>
-		<result column="rproduct_cd_name" property="prcdnm"/>
-		<result column="rproduct_name" property="rpnm"/>
-		<result column="consumption" property="cons"/>
-		<result column="consumption_unit" property="consun"/>
-	</resultMap>
+
 	
 	
 	
@@ -36,6 +26,43 @@
     	</if>
     	limit #{startRow},#{pageSize}	
     </select>
+
+		 <resultMap type="map" id="map2">
+		<!-- column="DB의 열이름" property="해당 DB열에 대해 저장할 변수이름"-->
+		<result column="order_cd" property="order_cd"/>
+		<result column="product_cd" property="product_cd"/>
+		<result column="product_cd_name" property="product_cd_name"/>
+		<result column="product_name" property="product_name"/>
+		<result column="rproduct_cd_name" property="rproduct_cd_name"/>
+		<result column="rproduct_name" property="rproduct_name"/>
+		<result column="consumption" property="consumption"/>
+		<result column="consumption_unit" property="consun"/>
+		<result column="deliver_date" property="deliver_date"/>
+		<result column="consumption_unit" property="consumption_unit"/>
+		<result column="business_cd" property="business_cd"/>
+		<result column="order_date" property="order_date"/>
+		<result column="emp_no" property="emp_no"/>
+		<result column="con" property="con"/>
+		
+<!-- 		<result column="business_cd" property="business_cd"/> -->
+<!-- 		<result column="order_count" property="order_count"/> -->
+<!-- 		<result column="order_date" property="order_date"/> -->
+<!-- 		<result column="emp_no" property="emp_no"/> -->
+<!-- 		<result column="con" property="con"/> -->
+	</resultMap>
+
+	<select id="getOrderListMap" resultMap="map2">
+    	SELECT o.order_cd, o.product_cd, p.product_cd_name, p.product_name, c.rproduct_cd_name, c.rproduct_name, c.consumption, c.consumption_unit, o.deliver_date, o.order_count, o.business_cd, o.order_date, o.emp_no, o.con
+		FROM order_management o 
+		JOIN product p ON o.product_cd = p.product_cd
+		RIGHT JOIN (
+    	SELECT cproduct_cd_name, rproduct_cd_name, rproduct_name, consumption, consumption_unit
+    	FROM consumption_management 
+									) c 
+		ON p.product_cd_name = c.cproduct_cd_name
+		where o.order_cd is not null	
+    </select>
+
 	
 	<select id="getordercount" resultType="java.lang.Integer">
         select count(*) from order_management
@@ -87,18 +114,6 @@
     </select>
  
 
-	<select id="conslist" resultMap="consListMap">
-		SELECT o.order_cd, o.product_cd, p.product_cd_name, p.product_name, c.rproduct_cd_name, c.rproduct_name, c.consumption, c.consumption_unit
-		FROM order_management o 
-		JOIN product p ON o.product_cd = p.product_cd
-			RIGHT JOIN (
-    					SELECT cproduct_cd_name, rproduct_cd_name, rproduct_name, consumption, consumption_unit
-    					FROM consumption_management 
-													) c 
-		ON p.product_cd_name = c.cproduct_cd_name
-		where o.order_cd = #{order_cd}
-	</select>
- 
  	<resultMap type="map" id="map1">
 		<result column="order_cd" property="order_cd"/>
 		<result column="product_cd" property="product_cd"/>
@@ -119,6 +134,11 @@
     	from order_management
     	where order_cd = #{order_cd}) a
     </select>
+    
+    
+    
+    
+    
     
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
 <!-- 		select * from members  -->

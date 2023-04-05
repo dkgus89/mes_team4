@@ -23,20 +23,45 @@ function showPopup(){
 	
   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 }
-function setChildValue(order_cd,product_cd){
-	
-    document.getElementById("order_cd").value = order_cd;
-    document.getElementById("product_cd").value = product_cd;
-
+function setChildValue(order_cd, product_name, order_count, rproduct_name, consumption, deliver_date){
+	 	
+		document.getElementById("order_cd").value = order_cd;
+	    document.getElementById("product_name").value = product_name;
+	    document.getElementById("order_count").value = order_count;
+	    document.getElementById("rproduct_name").value = rproduct_name;
+	    document.getElementById("consumption").value = consumption;
+	    document.getElementById("deliver_date").value = deliver_date;
 }
 function sub(){
-	$(document).ready(function(){
+	$(document).ready(function(){ //Jquery 시작
 		// submit 유효성 검사
+		var rt = null;
+		var fp = document.getElementById("fair_prod").value;
+		var dp = document.getElementById("defect_prod").value;
+		var qt = document.getElementById("instruction_qt").value;
+		var int_fp = Number(fp);
+		var int_dp = Number(dp);
+		var int_qt = Number(qt);
 		var result = confirm("수정사항을 등록하시겠습니까?");
-		if (result == true){   			
-			if($('#instruction_code').val()==""){
-				alert("작업지시코드를 선택하세요");
-				$('#instruction_code').focus();
+		if (result == true){   		
+			$.ajax({ //ajax 시작
+				type:"GET",
+	 			url:'${pageContext.request.contextPath}/inst/ordercheck',
+	 			async: false,
+	 			data:{'order':$('#order_cd').val()},
+	 			success:function(result){
+	 				 if(result!=0) {
+	 		              alert("이전에 이미 선택되었던 수주입니다.");
+	 		              rt=1;
+	 		          }
+	 			}
+	 		}); //ajax 끝
+			if(rt==1){
+				return false;
+			}
+			if($('#order_cd').val()==""){
+				alert("수주번호를 선택하세요");
+				$('#order_cd').focus();
 				return false;
 			}
 			if($('#line_cd').val()==""){
@@ -64,62 +89,41 @@ function sub(){
 				$('#defect_prod').focus();
 				return false;
 			}
+			if(int_fp > int_qt){
+				alert("양품 수량이 지시수량을 초과했습니다.");
+				$('#fair_prod').focus();
+				return false;
+			}
+			if(int_dp > int_qt){
+				alert("불량품 수량이 지시수량을 초과했습니다.");
+				$('#defect_prod').focus();
+				return false;
+			}
+			if((int_fp + int_dp) > int_qt){
+				alert("총 생산량이 지시수량을 초과했습니다.");
+				return false;
+			}
+			// 유효성 검사 통과시 submit
 			window.opener.name = "parentPage";
 			document.PerformUpdate.target="parentPage";
-			document.PerformUpdate.action="${pageContext.request.contextPath}/inst/instupdatepro";
+			document.PerformUpdate.action="${pageContext.request.contextPath}/perform/performupdatepro";
 			document.PerformUpdate.submit();
 			self.close();
 		} else {
 			return false;
 		}
-	});
+	}); //Jquery 끝
 }
+//초기화 기능
 function rst(){
 	// 초기화 유효성 검사
 	var result = confirm("초기화 하시겠습니까?");
 	if (result == true){    
-		document.instUpdate.reset();
+		document.PerformUpdate.reset();
 	} else {
 		return false;
 	}
 }
-	
-// 	$(document).ready(function () {
-//	 	alert($("#inst").val());
-// 			$.ajax({
-// 				url:'${pageContext.request.contextPath}/perform/callcd',
-// 				data:{'ic':$("#inst").val()},
-// 				success:function(result){
-// 					  $('#line_cd').val(result);
-// 				}
-// 			});
-			
-// 			$.ajax({
-// 				url:'${pageContext.request.contextPath}/perform/callcd2',
-// 				data:{'ic':$("#inst").val()},
-// 				success:function(result){
-// 					  $('#product_cd').val(result);
-// 				}
-// 			});
-			
-// 			$("#inst").on("change", function(){
-// 				$.ajax({
-// 					url:'${pageContext.request.contextPath}/perform/callcd',
-// 					data:{'ic':$("#inst").val()},
-// 					success:function(result){
-// 						  $('#line_cd').val(result);			
-// 					}
-// 				});
-				
-// 				$.ajax({
-// 					url:'${pageContext.request.contextPath}/perform/callcd2',
-// 					data:{'ic':$("#inst").val()},
-// 					success:function(result){
-// 						$('#product_cd').val(result);			
-// 					}
-// 				});			
-// 			});
-// 	});
 </script>
 
 
@@ -133,7 +137,7 @@ function rst(){
 <!-- 	<div class="wrap2"> -->
 	<button class="button2" onclick="sub()">등록</button>
 	<button class="button2" onclick="rst()">초기화</button>	 	
-	<button class="button2" onclick="showPopup();" style="width:200px">수주현황</button>
+<!-- 	<button class="button2" onclick="showPopup();" style="width:200px">수주현황</button> -->
 <!-- 	 </div><br> -->
 	 <br><br>
 	 

@@ -112,6 +112,13 @@ public class InstructionDAOImpl implements InstructionDAO {
 		
 		return sqlSession.selectOne(namespace +".getordercheck", order_cd);
 	}
+
+	@Override
+	public List<Map<String, Object>> getOrderListMap(PageDTO pageDTO) {
+		System.out.println("InstructionDAOImpl getOrderListMap()");
+		
+		return sqlSession.selectList(namespace +".getOrderListMap", pageDTO);
+	}
 	
 	
 	

@@ -117,6 +117,15 @@ public class InstructionServiceImpl implements InstructionService{
 		
 		return instructionDAO.getordercheck(order_cd);
 	}
+
+	@Override
+	public List<Map<String, Object>> getOrderListMap(PageDTO pageDTO) {
+		System.out.println("InstructionServiceImpl getOrderListMap()");
+		
+		return instructionDAO.getOrderListMap(pageDTO);
+	}
+
+	
 	
 	
 
