@@ -14,24 +14,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-   
-    
     function goSubmit(cd){
     	document.insertform1.target="parentPage";
     	document.insertform1.action="${pageContext.request.contextPath}/order/orderupdatepro?cd="+cd;
     	document.insertform1.submit();
     	self.close();
-    }
-  
-  
-    
+    } 
 </script>
 
 </head>
 <body>
 
 	<div id="contents">
-<!-- 본문HTML 입력 시작-->
+	<!-- 본문HTML 입력 시작-->
 
 	<h2 class="inserttitle">주문내역수정 </h2><br>
 	
@@ -73,12 +68,12 @@
 					<td>
 					<select id="select1"  name="product_cd">
 						<option value="">코드 : 제품명</option>
-						<c:forEach var="businessList" items="${businessList}">
-						<c:if test="${businessList.business_cd eq orderDTO.business_cd}">
-						<option value="${businessList.business_cd}" name="${businessList.business_cd}" 
-						selected>${businessList.business_cd} : ${businessList.business_name}</option>
+						<c:forEach var="productList" items="${productList}">
+						<c:if test="${productList.product_cd eq orderDTO.product_cd}">
+						<option value="${productList.product_cd}" name="${productList.product_cd}" 
+						selected>${productList.product_cd} : ${productList.product_name}</option>
 						</c:if>
-						<option value="${businessList.business_cd}" name="${businessList.business_cd}">${businessList.business_cd} : ${businessList.business_name}</option>
+						<option value="${productList.product_cd}" name="${productList.product_cd}">${productList.product_cd} : ${productList.product_name}</option>
 					</c:forEach>
 					</select>
 					</td>
@@ -88,19 +83,18 @@
 					<td>
 					<select id="select1"  name="emp_no">
 						<option value="">담당직원</option>
-						<c:forEach var="businessList" items="${businessList}">
-						<c:if test="${businessList.business_cd eq orderDTO.business_cd}">
-						<option value="${businessList.business_cd}" name="${businessList.business_cd}" 
-						selected>${businessList.business_cd} : ${businessList.business_name}</option>
+						<c:forEach var="systemList" items="${systemList}">
+						<c:if test="${systemList.emp_no eq orderDTO.emp_no}">
+						<option value="${systemList.emp_no}" name="${systemList.emp_no}" 
+						selected>${systemList.emp_no} : ${systemList.emp_name}</option>
 						</c:if>
-						<option value="${businessList.business_cd}" name="${businessList.business_cd}">${businessList.business_cd} : ${businessList.business_name}</option>
+						<option value="${systemList.emp_no}" name="${systemList.emp_no}">${systemList.emp_no} : ${systemList.emp_name}</option>
 					</c:forEach>
 					</select>
 					</td>	
 				</tr>
 			</tbody>
 		</table>
-
 	</form>
 	
 	

@@ -218,7 +218,7 @@
 				and purchase_date >= #{start_date}
 			</if>
 			<if test="end_date != null">
-				and purchase_date <![CDATA[<=]]> #{start_date}
+				and purchase_date <![CDATA[<=]]> #{end_date}
 			</if>
 			<if test="start_due_date != null">
 				and purchase_due >= #{start_due_date}
@@ -267,7 +267,7 @@
 				and purchase_date >= #{start_date}
 			</if>
 			<if test="end_date != null">
-				and purchase_date <![CDATA[<=]]> #{start_date}
+				and purchase_date <![CDATA[<=]]> #{end_date}
 			</if>
 			<if test="start_due_date != null">
 				and purchase_due >= #{start_due_date}
@@ -306,7 +306,33 @@
       </foreach>
 	</delete>
 	
+	<resultMap type="map" id="purchaseListBMap">
+		<result column="purchase_cd" property="purchase_cd"/>
+		<result column="business_cd" property="business_cd"/>
+		<result column="rproduct_cd_name" property="rproduct_cd_name"/>
+		<result column="purchase_count" property="purchase_count"/>
+		<result column="purchase_date" property="purchase_date"/>
+		<result column="purchase_due" property="purchase_due"/>
+		<result column="emp_no" property="emp_no"/> 
+		<result column="emp_name" property="emp_name"/>
+		<result column="purchase_com" property="purchase_com"/>
+	</resultMap>
+	
+	<select id="getPurchaseListB" resultMap="purchaseListBMap">
+		select p.purchase_cd, p.business_cd, p.emp_no, p.rproduct_cd_name, p.purchase_date,
+		p.purchase_due, p.purchase_count, p.purchase_com, e.emp_name
+		from purchase_management p join employees e
+		on p.emp_no = e.emp_no
+		<if test="cd != null">
+   			where business_cd like CONCAT('%',#{cd},'%')
+   		</if>
+		order by purchase_cd desc
+		limit #{startRow},#{pageSize}
+	</select>
 </mapper>
+
+
+
 
 
 

@@ -78,7 +78,6 @@
     <div class="search">
     <form action="${pageContext.request.contextPath}/rel/relpage" method="get">
        <select name="search_option" class="button2">
-       		<option value="business_name">거래처명</option>
        		<option value="wh_name">창고명</option>
        		<option value="product_name">출고품목명</option>
        </select>
