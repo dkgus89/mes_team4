@@ -19,4 +19,6 @@ public interface ReceiveDAO {
 
 	public void updateReceive(ReceiveDTO receiveDTO);
 
+	public void deleteReceive(String rec_schedule_cd);
+
 }

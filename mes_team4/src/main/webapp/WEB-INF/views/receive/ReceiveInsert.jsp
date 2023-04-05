@@ -114,8 +114,8 @@ function rst(){
 					<td>
 					<select  name="in_complete" id="in_complete">
 						<option value="">선택해주세요</option>
-						<option value="0">미완료</option>
-						<option value="1">완료</option>
+						<option value="미완료">미완료</option>
+						<option value="완료">완료</option>
 					</select>
 					</td>
 				</tr>

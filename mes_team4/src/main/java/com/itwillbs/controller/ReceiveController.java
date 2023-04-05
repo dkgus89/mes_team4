@@ -318,4 +318,17 @@ public class ReceiveController {
 		// 주소변경 하면서 이동
 		return "redirect:/receive/recpage";
 	}
+	
+	@RequestMapping(value = "/receive/recdelete", method = RequestMethod.GET)
+	public String recdelete(HttpServletRequest request) {
+		System.out.println("ReceiveController recdelete()");
+		
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+			receiveService.deleteReceive(ajaxMsg[i]);
+		}
+		
+		return "redirect:/receive/recpage";
+	}
 }

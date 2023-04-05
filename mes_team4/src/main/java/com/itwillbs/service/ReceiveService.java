@@ -16,4 +16,6 @@ public interface ReceiveService {
 	public ReceiveDTO getReceive(String rec_schedule_cd);
 
 	public void updateReceive(ReceiveDTO receiveDTO);
+
+	public void deleteReceive(String rec_schedule_cd);
 }

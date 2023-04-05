@@ -64,4 +64,11 @@ public class ReceiveServiceImpl implements ReceiveService{
 		receiveDAO.updateReceive(receiveDTO);
 	}
 
+	@Override
+	public void deleteReceive(String rec_schedule_cd) {
+		System.out.println("ReceiveServiceImpl deleteReceive()");
+		
+		receiveDAO.deleteReceive(rec_schedule_cd);
+	}
+
 }

@@ -37,6 +37,11 @@
         where rec_schedule_cd = #{rec_schedule_cd}
     </select>
     
+    <delete id="deleteReceive">
+    	delete from receive_schedule
+    	where rec_schedule_cd = #{rec_schedule_cd}
+    </delete>
+    
 <!-- 	<resultMap type="map" id="map1"> -->
 <!-- 		<result column="business_cd" property="business_cd"/> -->
 <!-- 	</resultMap> -->

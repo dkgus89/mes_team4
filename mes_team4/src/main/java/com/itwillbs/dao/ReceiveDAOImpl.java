@@ -51,5 +51,11 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 		
 		sqlSession.update(namespace+".updateReceive", receiveDTO);
 	}
+	@Override
+	public void deleteReceive(String rec_schedule_cd) {
+		System.out.println("ReceiveDAOImpl deleteReceive()");
+		
+		sqlSession.delete(namespace+".deleteReceive",rec_schedule_cd);
+	}
 
 }
