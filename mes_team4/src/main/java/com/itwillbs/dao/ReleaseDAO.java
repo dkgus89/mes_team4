@@ -28,6 +28,8 @@ public interface ReleaseDAO {
 
 	public Map<String, Object> getrec(String rel_schedule_cd);
 
+	public void finishrel(String rel_schedule_cd);
+
 
 
 

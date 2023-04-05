@@ -92,6 +92,14 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 		return sqlSession.selectOne(namespace+".getrec",rel_schedule_cd);
 	}
 
+	@Override
+	public void finishrel(String rel_schedule_cd) {
+		System.out.println("ReleaseDAOImpl finishrel()");
+		
+		sqlSession.delete(namespace+".finishrel",rel_schedule_cd);
+		
+	}
+
 
 
 

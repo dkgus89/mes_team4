@@ -109,6 +109,10 @@
 			limit 1
 		</select>
     
+    <update id="finishrel">
+	update release_schedule set out_complete = '완료'
+	where rel_schedule_cd = #{rel_schedule_cd}
+	</update>
    
     
     
