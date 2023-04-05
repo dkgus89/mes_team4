@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ReceiveDTO;
+import com.itwillbs.domain.StockDTO;
 
 @Repository
 public class ReceiveDAOImpl implements ReceiveDAO{
@@ -56,6 +57,18 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 		System.out.println("ReceiveDAOImpl deleteReceive()");
 		
 		sqlSession.delete(namespace+".deleteReceive",rec_schedule_cd);
+	}
+	@Override
+	public void updateStockcount(StockDTO stockDTO) {
+		System.out.println("ReceiveDAOImpl updateStockcount()");
+		
+		sqlSession.insert(namespace+".updateStockcount", stockDTO);
+	}
+	@Override
+	public int getStock_count(String product_cd_name) {
+		System.out.println("ReceiveDAOImpl getStock_count()");
+		
+		return sqlSession.selectOne(namespace+".getStock_count",product_cd_name);
 	}
 
 }

@@ -12,6 +12,18 @@
 		values(#{rec_schedule_cd},#{wh_cd},#{pchor_cd},#{product_cd_name},#{rec_count},#{rec_date},#{in_complete})
 	</insert>
 	
+	<update id="updateStockcount">
+		update stock
+		set stock_count=(#{stock_count})
+		where product_cd_name=(#{product_cd_name})
+	</update>
+	
+	<select id="getStock_count" resultType="java.lang.Integer">
+        select stock_count
+        from stock
+        where product_cd_name=(#{product_cd_name}) 	
+    </select>
+	
 	<select id="getReceiveList" resultType="com.itwillbs.domain.ReceiveDTO">
         select * from receive_schedule
         order by rec_schedule_cd    	

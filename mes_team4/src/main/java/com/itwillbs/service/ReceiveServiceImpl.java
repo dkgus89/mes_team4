@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.ReceiveDAO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ReceiveDTO;
+import com.itwillbs.domain.StockDTO;
 
 @Service
 public class ReceiveServiceImpl implements ReceiveService{
@@ -69,6 +70,20 @@ public class ReceiveServiceImpl implements ReceiveService{
 		System.out.println("ReceiveServiceImpl deleteReceive()");
 		
 		receiveDAO.deleteReceive(rec_schedule_cd);
+	}
+
+	@Override
+	public void updateStockcount(StockDTO stockDTO) {
+		System.out.println("ReceiveServiceImpl updateStockcount()");
+		
+		receiveDAO.updateStockcount(stockDTO);
+	}
+
+	@Override
+	public int getStock_count(String product_cd_name) {
+		System.out.println("ReceiveServiceImpl getStock_count()");
+		
+		return receiveDAO.getStock_count(product_cd_name);
 	}
 
 }

@@ -19,6 +19,7 @@ import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ReceiveDTO;
 import com.itwillbs.domain.ReleaseDTO;
+import com.itwillbs.domain.StockDTO;
 import com.itwillbs.service.ReceiveService;
 import com.itwillbs.service.ReleaseService;
 
@@ -90,7 +91,7 @@ public class ReleaseController {
 	}
 	
 	@RequestMapping(value = "/rel/relinsertPro", method = RequestMethod.POST)
-	public String relinsertPro(ReleaseDTO releaseDTO) {
+	public String relinsertPro(ReleaseDTO releaseDTO, StockDTO stockDTO) {
 		System.out.println("ReleaseController relinsertPro()");
 		
 //		// 출고코드 자동생성(PCHyyMMdd01) 및 저장 
@@ -134,7 +135,15 @@ public class ReleaseController {
 //			    	new_release_schedule_cd = menu_code + today + "01";
 //			    	releaseDTO.setOut_complete("진행중");
 //			    }
+		// 출고 수량에 따라 재고현황에 적용할 재소수량 stockDTO에 저장
+		String product_cd_name =  releaseDTO.getProduct_cd_name();
+		int Stock_count=receiveService.getStock_count(product_cd_name);
+		stockDTO.setStock_count(Stock_count-releaseDTO.getRel_count());
+		stockDTO.setProduct_cd_name(product_cd_name);
+		// 재고현황에 재고수량 적용 메서드 호출
+		receiveService.updateStockcount(stockDTO);
 		
+		// 출고등록 메서드 호출
 		relService.insertrel(releaseDTO);
 		
 		return "redirect:/rel/relpage";

@@ -20,6 +20,7 @@ import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.ReceiveDTO;
+import com.itwillbs.domain.StockDTO;
 import com.itwillbs.domain.WHDTO;
 import com.itwillbs.service.OrderService;
 import com.itwillbs.service.PurchaseService;
@@ -104,7 +105,7 @@ public class ReceiveController {
 	}
 	
 	@RequestMapping(value = "/receive/recinsertPro", method = RequestMethod.POST)
-	public String recinsertPro(ReceiveDTO receiveDTO) {
+	public String recinsertPro(ReceiveDTO receiveDTO, StockDTO stockDTO) {
 		System.out.println("ReceiveController insertPro()");
 		
 //		// 발주코드 자동생성(PCHyyMMdd01) 및 저장 
@@ -163,6 +164,15 @@ public class ReceiveController {
 //		purchaseDTO.setPurchase_date(purchase_date);
 //		purchaseDTO.setPurchase_due(purchase_due);
 		
+		// 입고 수량에 따라 재고현황에 적용할 재소수량 stockDTO에 저장
+		String product_cd_name =  receiveDTO.getProduct_cd_name();
+		int Stock_count=receiveService.getStock_count(product_cd_name);
+		stockDTO.setStock_count(Stock_count+receiveDTO.getRec_count());
+		stockDTO.setProduct_cd_name(product_cd_name);
+		// 재고현황에 재고수량 적용 메서드 호출
+		receiveService.updateStockcount(stockDTO);
+		
+		// 입고등록 메서드 호출
 		receiveService.insertReceive(receiveDTO);
 		
 		return "redirect:/receive/recpage";
