@@ -107,6 +107,15 @@ public class DeliverServiceImpl implements DeliverService{
 	}
 
 
+
+	@Override
+	public String getDeliver_cd() {
+		System.out.println("DeliverServiceImpl getDeliver_cd()");
+
+		return deliverDAO.getDeliver_cd();
+	}
+
+
 	
 	
 	

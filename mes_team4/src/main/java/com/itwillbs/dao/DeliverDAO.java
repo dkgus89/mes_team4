@@ -33,6 +33,9 @@ public interface DeliverDAO {
 		public List<Map<String, Object>> getInstMap3();
 
 
+		public String getDeliver_cd();
+
+
 
 
 

@@ -13,6 +13,14 @@
 		values(#{deliver_cd},#{business_cd},#{product_cd}, #{order_cd},#{deliver_date},#{deliver_count})
 	</insert>
 	
+	<select id="getDeliver_cd" resultType="java.lang.String">
+        select *  
+		from shipment_management
+		order by deliver_cd desc
+		limit 1
+    </select>
+	
+	
 	
 	<select id="getDeliverList" resultType="com.itwillbs.domain.DeliverDTO">
     	select * from shipment_management

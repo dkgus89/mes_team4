@@ -36,11 +36,11 @@ function setChildValue(business_cd,order_cd,product_cd){
 }
 
 //수주거 받아온거 등록??
- function  fun1(){
+ function fun1(){
 			window.opener.name ="parentPage";
-			document.deliverInsert.target="parentPage";
-			document.deliverInsert.action="${pageContext.request.contextPath}/deliver/deliverinsert";
-			document.deliverInsert.submit();
+			document.DeliverInsert.target="parentPage";
+			document.DeliverInsert.action="${pageContext.request.contextPath}/deliver/insertPro";
+			document.DeliverInsert.submit();
 			self.close();
 		}
 // 		$(document).ready(function(){
@@ -138,10 +138,10 @@ function setChildValue(business_cd,order_cd,product_cd){
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>출하코드</th>
+<!-- 					<th>출하코드</th> -->
 					<th>거래처코드</th>
-					<th>수주코드</th>
 					<th>품목코드</th>
+					<th>수주코드</th>
 					<th>출하일자</th>
 					<th>출하량</th>
 					
@@ -154,10 +154,10 @@ function setChildValue(business_cd,order_cd,product_cd){
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="deliver_cd" id="deliver_cd" ></td>
+<!-- 					<td><input type="text" name="deliver_cd" id="deliver_cd" ></td> -->
 					<td><input type="text" name="business_cd" id="business_cd"> 
-					<td><input type="text" name="order_cd" id="order_cd"> </td>
 					<td><input type="text" name="product_cd" id="product_cd"> </td>
+					<td><input type="text" name="order_cd" id="order_cd"> </td>
 					<td><input type="Date" name="deliver_date" ></td>
 					<td><input type="text" name="deliver_count" ></td>
 				</tr>

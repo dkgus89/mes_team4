@@ -77,7 +77,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd){
 			<c:when test="${orderDTO.con eq '생산완료'}"><td><span style="color:blue">${orderDTO.con}</span></td></c:when>
 			<c:otherwise> ... </c:otherwise>
 			</c:choose>
-    			<td><button class="button2" onclick="DeliverUpdate('${orderDTO.order_cd}','${orderDTO.business_cd}','${orderDTO.product_cd}');">선택</button></td>
+    			<td><button class="button2" onclick="DeliverUpdate('${orderDTO.business_cd}','${orderDTO.order_cd}','${orderDTO.product_cd}');">선택</button></td>
     			
    			 
 				</c:forEach>
