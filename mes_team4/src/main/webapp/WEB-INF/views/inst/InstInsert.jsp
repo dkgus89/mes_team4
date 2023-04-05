@@ -38,42 +38,38 @@ function setChildValue(order_cd, product_name, order_count, rproduct_name, consu
 function sub(){
 	$(document).ready(function(){
 		// submit 유효성 검사
-		var result = confirm("생산실적을 등록하시겠습니까?");
+		var result = confirm("작업을 등록하시겠습니까?");
 		if (result == true){   
-			if($('#instruction_code').val()==""){
-				alert("작업지시코드를 선택하세요");
-				$('#instruction_code').focus();
+			if($('#order_cd').val()==""){
+				alert("수주코드를 선택하세요");
+				$('#order_cd').focus();
 				return false;
 			}
+			
 			if($('#line_cd').val()==""){
-				alert("라인코드를 입력하세요");
+				alert("작업라인을 선택하세요");
 				$('#line_cd').focus();
 				return false;
 			}
-			if($('#product_cd').val()==""){
-				alert("품목코드를 입력하세요");
-				$('#product_cd').focus();
+			if($('#instruction_date').val()==""){
+				alert("작업지시일자를 입력하세요");
+				$('#instruction_date').focus();
 				return false;
 			}
-			if($('#perform_date').val()==""){
-				alert("실적일자를 입력하세요");
-				$('#perform_date').focus();
+			if($('#instruction_qt').val()==""){
+				alert("지시수량을 입력하세요");
+				$('#instruction_qt').focus();
 				return false;
 			}
-			if($('#fair_prod').val()==""){
-				alert("양품 수량을 입력하세요");
-				$('#fair_prod').focus();
-				return false;
-			}
-			if($('#defect_prod').val()==""){
-				alert("불량품 수량을 입력하세요");
-				$('#defect_prod').focus();
+			if($('#instruction_state').val()==""){
+				alert("지시상태를을 선택하세요");
+				$('#instruction_state').focus();
 				return false;
 			}
 			window.opener.name = "parentPage";
-			document.PerformInsert.target="parentPage";
-			document.PerformInsert.action="${pageContext.request.contextPath}/inst/instinsertpro";
-			document.PerformInsert.submit();
+			document.insert.target="parentPage";
+			document.insert.action="${pageContext.request.contextPath}/inst/instinsertpro";
+			document.insert.submit();
 			self.close();
 		} else {
 			return false;
@@ -84,47 +80,12 @@ function rst(){
 	// 초기화 유효성 검사
 	var result = confirm("초기화 하시겠습니까?");
 	if (result == true){    
-		document.instInsert.reset();
+		document.insert.reset();
 	} else {
 		return false;
 	}
 }
-// $(document).ready(function () {
-// // 	alert($("#inst").val());
-// 		$.ajax({
-// 			url:'${pageContext.request.contextPath}/perform/callcd',
-// 			data:{'ic':$("#inst").val()},
-// 			success:function(result){
-// 				  $('#line_cd').val(result);
-// 			}
-// 		});
-		
-// 		$.ajax({
-// 			url:'${pageContext.request.contextPath}/perform/callcd2',
-// 			data:{'ic':$("#inst").val()},
-// 			success:function(result){
-// 				  $('#product_cd').val(result);
-// 			}
-// 		});
-		
-// 		$("#inst").on("change", function(){
-// 			$.ajax({
-// 				url:'${pageContext.request.contextPath}/perform/callcd',
-// 				data:{'ic':$("#inst").val()},
-// 				success:function(result){
-// 					  $('#line_cd').val(result);			
-// 				}
-// 			});
-			
-// 			$.ajax({
-// 				url:'${pageContext.request.contextPath}/perform/callcd2',
-// 				data:{'ic':$("#inst").val()},
-// 				success:function(result){
-// 					$('#product_cd').val(result);			
-// 				}
-// 			});			
-// 		});
-// });
+
 </script>
 
 </head>
@@ -144,7 +105,7 @@ function rst(){
 	 <br><br>
 	 
 	 
-	<form action="${pageContext.request.contextPath}/inst/instinsertpro" name="instInsert" id="II" method="post">
+	<form action="${pageContext.request.contextPath}/inst/instinsertpro" name="insert" id="II" method="post">
 <!-- 		<input type="hidden" id="instruction_qt" value=""> -->
 		
 		<table id="vendortable" class="table table-striped">
@@ -160,7 +121,7 @@ function rst(){
 			</thead>
 			
 			<tbody>
-				<tr>				
+				<tr style="text-align: center; font-size: 0.9rem">				
 					<td><input type="text" name="order_cd" id="order_cd"></td>
 					<td><input type="text" name="product_name" id="product_name"></td>
 					<td><input type="text" name="order_count" id="order_count"></td>
@@ -174,34 +135,41 @@ function rst(){
 		
 		<br>
 		
-<!-- 		<table id="vendortable" class="table table-striped"> -->
-<!-- 			<thead> -->
-<!-- 				<tr style="text-align: center; font-size: 0.9rem"> -->
+		<table id="vendortable" class="table table-striped">
+			<thead>
+				<tr style="text-align: center; font-size: 0.9rem">
 					
-<!-- 					<th>실적일자</th> -->
-<!-- 					<th>양품</th> -->
-<!-- 					<th>불량</th> -->
-<!-- 					<th>불량사유</th> -->
-<!-- 					<th>적요</th> -->
-<!-- 				</tr> -->
-<!-- 			</thead> -->
+					<th>라인코드</th>
+					<th>지시일자</th>
+					<th>지시수량</th>
+					<th>지시상태</th>
+				</tr>
+			</thead>
 			
-<!-- 			<tbody> -->
-<!-- 				<tr> -->
-<!-- 					<td><input type="date" name="perform_date" id="perform_date" value=""></td> -->
-<!--     				<td><input type="text" name="fair_prod" id="fair_prod" value=""></td> -->
-<!--     				<td><input type="text" name="defect_prod" id="defect_prod" value=""></td> -->
-<!--     				<td><input type="text" name="defect_remarks" id="defect_remarks" value=""></td> -->
-<!--     				<td><input type="text" name="remarks" id="remarks" value=""></td> -->
-<!--     			</tr> -->
+			<tbody>
+				<tr style="text-align: center; font-size: 0.9rem">
+					<td><select name="line_cd">
+    					<option value="">--------</option>
+    					<option value="FL001">1라인</option>
+    					<option value="FL002">2라인</option>
+    					<option value="FL003">3라인</option>
+					</select></td>
+					<td><input type="date" name="instruction_date" id="instruction_date"></td>
+    				<td><input type="text" name="instruction_qt" id="instruction_qt"></td>
+    				<td><select name="instruction_state">
+    					<option value="">------------</option>
+    					<option value="0">대기</option>
+    					<option value="1">작업중</option>
+    					<option value="2">작업완료</option>
+					</select></td>
+    			</tr>
 
-<!-- 			</tbody> -->
-<!-- 		</table> -->
+			</tbody>
+		</table>
 	
 	</form>
 	
-	
-	
+
 <!-- 본문HTML 입력 끝-->
 	</div>
 	

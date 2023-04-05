@@ -33,8 +33,15 @@ public class PageDTO {
 	private List<Integer> rowcolsTd; // td의 rowcols 수 
 	private List<Integer> showTd; // td를 나타낼 위치
 	
+	private String cd;
 	
 	
+	public String getCd() {
+		return cd;
+	}
+	public void setCd(String cd) {
+		this.cd = cd;
+	}
 	public String getSearch_com() {
 		return search_com;
 	}

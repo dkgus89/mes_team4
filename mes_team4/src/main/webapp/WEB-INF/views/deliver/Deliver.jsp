@@ -51,7 +51,7 @@ function allCheck(){
 	<h2>출하 관리 </h2><br>
 	<div class="wrap2">
 	  <button class="button2" onclick="DeliverInsert();">추가</button>
-	  <button class="button2">저장</button>
+<!-- 	  <button class="button2">저장</button> -->
 	  <button class="button2" onclick="DeliverDelete1()">삭제</button>
 	  
 	 </div><br>
@@ -112,7 +112,7 @@ function allCheck(){
 			
 			</tbody>
 		</table>
-		<button type="button" id="test">테스트</button>
+<!-- 		<button type="button" id="test">테스트</button> -->
 		
 		<div id="array"></div>
 		

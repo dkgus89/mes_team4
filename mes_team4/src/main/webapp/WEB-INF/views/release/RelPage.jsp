@@ -24,8 +24,8 @@
 
 // 	체크
 	function allCheck(){
-		var ac = document.whlist.allcheck;
-		var rc = document.whlist.rowcheck;
+		var ac = document.rellist.allcheck;
+		var rc = document.rellist.rowcheck;
 		if(ac.checked == true){
 			for(i=0; i<rc.length; i++){
 				rc[i].checked=true;}
@@ -63,6 +63,39 @@
 					} else {alert("삭제실패");}
 				}
 			});
+			
+		}
+	}
+	
+// 	출고완료
+	function finishValue(){
+		var url = "/rel/relfinish"; // controller로 보내고자 하는 url
+		var valueArr = new Array();
+		var whList = $("input[name='rowcheck']");
+		for(var i=0; i<whList.length; i++){
+			if(whList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
+				valueArr.push(whList[i].value);
+			}
+		}
+		if(valueArr.length==0){
+			alert("출고완료할 목록을 선택하여주세요");
+		} else {
+			var chk = confirm("출고 처리하시겠습니까?");
+			
+			$.ajax({
+				url :'${pageContext.request.contextPath}/rel/relfinish', 		//전송url
+				type : 'GET',	// post방식 ,,나는 겟하니까 돌아간다!!...
+				traditional : true,
+				data : {
+					valueArr : valueArr // 보내고자하는 data 변수설정	
+				},
+				success : function(jdata){
+					if(jdata = 1){
+						alert("출고처리완료");
+						location.replace("${pageContext.request.contextPath}/rel/relpage")
+					} else {alert("출고실패");}
+				}
+			});
 		}
 	}
 	
@@ -78,7 +111,6 @@
     <div class="search">
     <form action="${pageContext.request.contextPath}/rel/relpage" method="get">
        <select name="search_option" class="button2">
-       		<option value="business_name">거래처명</option>
        		<option value="wh_name">창고명</option>
        		<option value="product_name">출고품목명</option>
        </select>
@@ -92,7 +124,7 @@
 	
 	  <button class="button2" onclick="insertPopup();">등록</button>
 	  <button class="button2"  onclick="deleteValue();">삭제</button>
-	  <button class="button2"">출고처리</button>
+	  <button class="button2" onclick="finishValue();">출고처리</button>
 	  
 	 </div><br>
 	 <br>

@@ -13,8 +13,14 @@ public class ReleaseDTO {
 	private String wh_cd;
 	private String product_cd_name;
 	private String pchor_cd;
+	private String rec_schedule_cd;
 	
-	
+	public String getRec_schedule_cd() {
+		return rec_schedule_cd;
+	}
+	public void setRec_schedule_cd(String rec_schedule_cd) {
+		this.rec_schedule_cd = rec_schedule_cd;
+	}
 	public String getWh_cd() {
 		return wh_cd;
 	}

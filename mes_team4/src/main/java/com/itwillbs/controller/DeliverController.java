@@ -2,8 +2,12 @@ package com.itwillbs.controller;
 
 
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -155,11 +159,60 @@ public class DeliverController {
 		public String insertPro(DeliverDTO deliverDTO) {
 			System.out.println("DeliverController insertPro()" );
 			
+			
+			// 실적코드 자동생성(PCHyyMMdd01) 및 저장 
+						// 기존 실적코드
+						String first_deliver_cd = "기존실적코드";
+						String first_number_st = "기존스트링넘버";
+						int first_number = 0;
+						
+						if (deliverService.getDeliver_cd() != null) {
+							first_deliver_cd = deliverService.getDeliver_cd();
+							first_number_st = first_deliver_cd.substring(9);
+						}	
+						
+						// 새로운 실적코드
+						String new_deliver_cd = "실적코드";
+						String new_number_st = "스트링넘버";
+						int new_number = 0;
+						
+						// 메뉴코드 설정
+						String menu_code = "SSS";
+						
+						// 오늘날짜 설정
+						LocalDate now = LocalDate.now();
+					    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
+					    String today = now.format(formatter);
+					    
+					    // 인덱스 설정
+					    if ( !(first_deliver_cd.equals("기존실적코드")) && first_deliver_cd.contains(today)) {
+					    	// 패턴&매치 정규식 이용 => 스트링넘버 앞 0 삭제(조건 : String length 2자 이상)
+					    	Pattern pattern = Pattern.compile("^0*([1-9][0-9]*)|0+$");
+							Matcher matcher = pattern.matcher(first_number_st);
+							
+							if (matcher.find()) { 
+							    first_number = Integer.parseInt(matcher.group(1)); 
+							} else {
+							    System.out.println("No match found.");
+							}
+							
+							// String 정규식 이용 => new_perform_cd 생성
+							new_number = first_number+1;
+							new_number_st = String.valueOf(new_number).format("%02d", new_number);
+							new_deliver_cd = menu_code + today + new_number_st;
+							
+					    } else {
+					    	new_deliver_cd = menu_code + today + "01";
+					    }
+					    deliverDTO.setDeliver_cd(new_deliver_cd);
+			
+			
+			
 			//글쓰기 작업 메소드 호출 = 출하 값 입력 작업 메소드 호출
 			deliverService.insertDeliver(deliverDTO);
 			
 			// 주소변경 하면서 이동.
-			return "redirect:/deliver/Deliver";
+			return "redirect:/deliver/list";
 		}//insertPro()
 	
 	
@@ -228,7 +281,7 @@ public class DeliverController {
 	//		System.out.println("후"+deliverDTO.getDeliver_count());
 			
 			// 주소변경하면서 이동
-			return "redirect:/deliver/Deliver";
+			return "redirect:/deliver/list";
 		}
 		
 		
@@ -255,6 +308,7 @@ public class DeliverController {
 		
 		@RequestMapping(value = "/deliver/deliverinstlist", method = RequestMethod.GET)
 		public String DeliverInstList(HttpServletRequest request, Model model) {
+			System.out.println("/deliver/deliverinstlist");
 			
 //			한 화면에 보여줄 글의 개수 설정
 			int pageSize =5;

@@ -98,6 +98,13 @@ public class DeliverDAOImpl implements DeliverDAO  {
 		return sqlSession.selectList(namespace+".getInstMap3");
 	}
 
+	@Override
+	public String getDeliver_cd() {
+		System.out.println("DeliverDAOImpl getDeliver_cd()");
+
+		return sqlSession.selectOne(namespace+".getDeliver_cd");
+	}
+
 	
 	
 	

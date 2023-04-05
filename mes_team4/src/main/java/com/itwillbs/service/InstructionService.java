@@ -20,8 +20,6 @@ public interface InstructionService {
 
 	public int getinstructioncount(PageDTO pageDTO);
 
-	public void instructioninsertpro(InstructionDTO instructionDTO);
-
 	public InstructionDTO instructioninfo(String instruction_code);
 
 	public List<Map<String, Object>> conslist(String order_cd);
@@ -37,6 +35,8 @@ public interface InstructionService {
 	public int getordercheck(String order_cd);
 
 	public List<Map<String, Object>> getOrderListMap(PageDTO pageDTO);
+
+	public void instinsertpro(InstructionDTO instructionDTO);
 
 
 	

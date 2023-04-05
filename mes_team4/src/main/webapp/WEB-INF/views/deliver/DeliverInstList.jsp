@@ -44,7 +44,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd){
 	<table id="vendortable" class=" table table-striped" style="width:1000px;">
 		<thead>
 			<tr style="text-align: center; font-size: 0.9rem">
-			<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
+<!-- 			<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th> -->
 			<th>수주코드</th>
 			<th>거래처</th>
 			<th>제품코드</th>
@@ -63,7 +63,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd){
 			<c:when test="${not empty orderList}">
 			<c:forEach var="orderDTO" items="${orderList}">
 			<tr>
-			<td><input type="checkbox" id="checkbox" name="rowcheck" value="${orderDTO.order_cd}"></td>
+<%-- 			<td><input type="checkbox" id="checkbox" name="rowcheck" value="${orderDTO.order_cd}"></td> --%>
 			<td>${orderDTO.order_cd}</td>
 			<td>${orderDTO.business_cd}</td>
 			<td>${orderDTO.product_cd}</td>
@@ -77,7 +77,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd){
 			<c:when test="${orderDTO.con eq '생산완료'}"><td><span style="color:blue">${orderDTO.con}</span></td></c:when>
 			<c:otherwise> ... </c:otherwise>
 			</c:choose>
-    			<td><button class="button2" onclick="DeliverUpdate('${DeliverDTO.deliver_cd}','${DeliverDTO.business_cd}','${DeliverDTO.product_cd}');">선택</button></td>
+    			<td><button class="button2" onclick="DeliverUpdate('${orderDTO.business_cd}','${orderDTO.order_cd}','${orderDTO.product_cd}');">선택</button></td>
     			
    			 
 				</c:forEach>

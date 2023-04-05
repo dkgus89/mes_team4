@@ -15,13 +15,13 @@
 <script>
 
 	function insertPopup(){
-    	window.open("whinsert","창고등록팝업","width=1000, height=500, top=200, left=200");
+    	window.open("whinsert","창고등록팝업","width=1200, height=500, top=200, left=200");
 	}
 
 	function updatePopup(cd){
-    	window.open("${pageContext.request.contextPath}/wh/whupdate?wh_cd="+cd,"수정","width=1000, height=500, top=200, left=200");
+    	window.open("${pageContext.request.contextPath}/wh/whupdate?wh_cd="+cd,"수정","width=1300, height=500, top=200, left=200");
 	}
-
+	
 // 	체크
 	function allCheck(){
 		var ac = document.whlist.allcheck;

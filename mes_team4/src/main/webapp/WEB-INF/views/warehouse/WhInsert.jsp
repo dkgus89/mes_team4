@@ -12,27 +12,47 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
-function insertBtn(){
-	// submit 전 제한 사항
-	
-	// 내용 제한 넘길 시 submit 진행
-	var result = confirm("게시글을 등록하시겠습니까?");
-	if (result == true){    
-		document.getElementById('move').submit(); 
-		alert("등록");
-		setTimeout(function() { 
-			opener.parent.location.reload();
-			window.close();
-			}, 300);
-	} else {
-		return false;
-	}
+function sub(){
+	$(document).ready(function(){
+		// submit 유효성 검사
+		var result = confirm("게시글을 등록하시겠습니까?");
+		if (result == true){   			
+			if($('#wh_name').val()==""){
+				alert("창고이름을 입력하세요");
+				$('#wh_name').focus();
+				return false;
+			}
+			if($('#wh_addr').val()==""){
+				alert("창고지역을 입력하세요");
+				$('#wh_addr').focus();
+				return false;
+			}
+			if($('#wh_tel').val()==""){
+				alert("창고연락처를 입력하세요");
+				$('#wh_tel').focus();
+				return false;
+			}
+			window.opener.name = "parentPage";
+			document.insertwh.target="parentPage";
+			document.insertwh.action="${pageContext.request.contextPath}/wh/whinsertPro";
+			document.insertwh.submit();
+			self.close();
+		} else {
+			return false;
+		}
+	});
 }
 
 function rst(){
-document.insertform.reset();
+	// 초기화 유효성 검사
+	var result = confirm("초기화 하시겠습니까?");
+	if (result == true){    
+		document.insertwh.reset();
+	} else {
+		return false;
+	}
 }
 </script>
 
@@ -44,13 +64,13 @@ document.insertform.reset();
 <!-- 본문HTML 입력 시작-->
 <h2 class="inserttitle">창고 등록</h2><br>
 
-<div class="wrap2">
-		<input type="submit" class="button2" value="등록" onclick="insertBtn()">
-		<input type="reset" class="button2" value="초기화" onclick="rst()">
-	 </div><br>
+	<div class="wrap2">
+	  <button class="button2" onclick="sub()">등록</button>
+	  <button class="button2" onclick="rst()">초기화</button>
+	 </div>
 	 <br>
 	
-	<form id="move" action="${pageContext.request.contextPath}/wh/whinsertPro" name="insertform" method="post" >
+	<form id="move" action="${pageContext.request.contextPath}/wh/whinsertPro" name="insertwh" method="post" >
 	
 	
 	
@@ -72,7 +92,7 @@ document.insertform.reset();
 				<tr>
 					<td>
 					<select  name="wh_dv" class="wh_dv">
-						<option value="">선택해주세요</option>
+<!-- 						<option value="">선택해주세요</option> -->
 						<option value="완제품">완제품</option>
 						<option value="원자재">원자재</option>
 					</select>

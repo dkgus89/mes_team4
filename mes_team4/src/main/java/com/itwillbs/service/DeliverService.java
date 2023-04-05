@@ -28,6 +28,8 @@ public interface DeliverService {
 	public List<Map<String, Object>> getInstMap2();
 
 	public List<Map<String, Object>> getInstMap3();
+
+	public String getDeliver_cd();
 	
 	
 

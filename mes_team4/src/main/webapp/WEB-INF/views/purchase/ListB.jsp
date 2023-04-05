@@ -148,7 +148,7 @@
 	
 	<br>
 	<br>
-	<div>전체 ${pageDTO.count }건</div>
+	<div>거래처 ${pageDTO.cd}현황</div>
 	
 		<table id="vendortable" class=" table table-striped" style="width:1000px;">
 			
@@ -171,10 +171,8 @@
 			
 			<tbody>
 			<c:choose>
-			<c:when test="${not empty purchaseMapList}">
-			
-				<c:forEach var="dto" items="${purchaseMapList }" varStatus="sts"> 
-	
+			<c:when test="${not empty PurchaseListB}">
+				<c:forEach var="dto" items="${PurchaseListB}" varStatus="sts"> 
 			  		<tr>
 	        		<td><input type="checkbox" name="rowCheck" value="${dto.purchase_cd }"></td>
 	        		<td>${pageDTO.startRow+1+sts.index }</td>
@@ -189,9 +187,7 @@
 		    		<td>${dto.purchase_com}</td>
 		    		<td><button class="button2" id="updateBtn" onclick="updateFn('${dto.purchase_cd}')">수정</button></td>
 	  				</tr>
-	  				
 				</c:forEach>
-			
 			</c:when>
 			<c:otherwise>
 				<tr>

@@ -35,6 +35,7 @@ public class ReceiveServiceImpl implements ReceiveService{
 
 	@Override
 	public List<ReceiveDTO> getReceiveList(PageDTO pageDTO) {
+		
 		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
 		int endRow = startRow+pageDTO.getPageSize()-1;
 			
@@ -47,6 +48,20 @@ public class ReceiveServiceImpl implements ReceiveService{
 	@Override
 	public int getReceiveCount(PageDTO pageDTO) {
 		return receiveDAO.getReceiveCount(pageDTO);
+	}
+
+	@Override
+	public ReceiveDTO getReceive(String rec_schedule_cd) {
+		System.out.println("ReceiveServiceImpl getReceive()");
+		
+		return receiveDAO.getReceive(rec_schedule_cd);
+	}
+
+	@Override
+	public void updateReceive(ReceiveDTO receiveDTO) {
+		System.out.println("updateReceive()");
+		
+		receiveDAO.updateReceive(receiveDTO);
 	}
 
 }

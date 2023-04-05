@@ -12,4 +12,8 @@ public interface ReceiveService {
 	public List<ReceiveDTO> getReceiveList(PageDTO pageDTO);
 
 	public int getReceiveCount(PageDTO pageDTO);
+
+	public ReceiveDTO getReceive(String rec_schedule_cd);
+
+	public void updateReceive(ReceiveDTO receiveDTO);
 }

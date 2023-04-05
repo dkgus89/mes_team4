@@ -14,67 +14,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-$(document).ready(function() { // j쿼리 시작
-	// 셀렉트박스 선택 시 value 저장
-	$(document).on('change', '.select-option', function(){
-		let consumption_unit = $("option:selected", this).val();
-		$(this).closest("td").find("#consumption_unit_arr").val(consumption_unit);
-	});
-	// 초기화 버튼
-	$(document).on('click', '#resetBtn', function() {
-		var cpListBtn = $('<button>').attr({
-		    'type': 'button',
-		    'id': 'cpListBtn'
-		}).text('추가');
-		 var rpListBtn = $('<button>').attr({
-			    'type': 'button',
-			    'id': 'rpListBtn'
-			}).text('추가');
-		 
-		var cpTableTr = $('#cproductBody tr');
-		cpTableTr.find('td:eq(0)').empty();
-		cpTableTr.find('td:eq(1)').empty();
-		cpTableTr.find('td:eq(0)').append(cpListBtn);
+// $(document).ready(function() { // j쿼리 시작
+// 	// 입고리스트 팝업
+// 	$(document).on('click', '#recListBtn', function() {
+// 		var trIndex = $(this).parent().parent().index();
+// 		var rec_schedule_cd = 'rec';
 		
-		var rpTableTr = $('#rproductBody tr');
-		rpTableTr.find('td:eq(0)').empty();
-		rpTableTr.find('td:eq(1)').empty();
-		rpTableTr.find('td:eq(0)').append(rpListBtn);
-		rpTableTr.find('input').val('');
-	});
-	
-	// 입고리스트 팝업
-	$(document).on('click', '#recListBtn', function() {
-		var trIndex = $(this).parent().parent().index();
-		var rec_schedule_cd = 'rec';
+// 		var link = '${pageContext.request.contextPath}/rel/reclist?trIndex='+trIndex+'&rec_schedule_cd='+rec_schedule_cd;     
+// 		var popupWidth = 500;
+// 		var popupHeight = 700;
+// 		var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
+// 		var popupY= (window.screen.height/2) - (popupHeight/2);
 		
-		var link = '${pageContext.request.contextPath}/rel/reclist?trIndex='+trIndex+'&rec_schedule_cd='+rec_schedule_cd;     
-		var popupWidth = 500;
-		var popupHeight = 700;
-		var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
-		var popupY= (window.screen.height/2) - (popupHeight/2);
-		
-	  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
-	});
+// 	  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+// 	});
 	
-}); // j쿼리 끝
-
-function insertBtn(){
-	// submit 전 제한 사항
-	
-	// 내용 제한 넘길 시 submit 진행
-	var result = confirm("게시글을 수정하시겠습니까?");
-	if (result == true){    
-		document.getElementById('move').submit(); 
-		alert("수정");
-		setTimeout(function() { 
-			opener.parent.location.reload();
-			window.close();
-			}, 300);
-	} else {
-		return false;
-	}
-}
+// }); // j쿼리 끝
 
 function recListBtn(){
 	var link = "${pageContext.request.contextPath}/rel/reclist";     
@@ -102,7 +57,7 @@ function sub(){
 				return false;
 			}
 			if($('#rel_count').val()==""){
-				alert("품목코드를 입력하세요");
+				alert("품목수량을 입력하세요");
 				$('#rel_count').focus();
 				return false;
 			}
@@ -116,6 +71,7 @@ function sub(){
 		}
 	});
 }
+
 function rst(){
 	// 초기화 유효성 검사
 	var result = confirm("초기화 하시겠습니까?");
@@ -147,7 +103,7 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
 <h2 class="updatetitle">자재출고 수정</h2><br>
 	
 	<div class="wrap2">
-	  <button class="button2" onclick="sub()">등록</button>
+	  <button class="button2" onclick="sub()">수정</button>
 	<button class="button2" onclick="rst()">초기화</button>
 	 </div>
 	 <br>
@@ -171,11 +127,11 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="text" name="rec_schedule_cd" id="rec_schedule_cd" value="${rec.rec_schedule_cd}"></td>
-					<td><input type="text" name="wh_cd" id="wh_cd" value="${rec.wh_cd}"></td>
-					<td><input type="text" name="product_cd_name" id="product_cd_name" value="${rec.product_cd_name}"></td>
-					<td><input type="text" name="rec_count" id="rec_count" value="${rec.rec_count}"></td>
-					<td><input type="text" name="pchor_cd" id="pchor_cd" value="${rec.pchor_cd}"></td>
+					<td><input type="text" name="rec_schedule_cd" id="rec_schedule_cd" value="${rec.rec_schedule_cd}" readonly></td>
+					<td><input type="text" name="wh_cd" id="wh_cd" value="${rec.wh_cd}" readonly></td>
+					<td><input type="text" name="product_cd_name" id="product_cd_name" value="${rec.product_cd_name}" readonly></td>
+					<td><input type="text" name="rec_count" id="rec_count" value="${rec.rec_count}" readonly></td>
+					<td><input type="text" name="pchor_cd" id="pchor_cd" value="${rec.pchor_cd}" readonly></td>
 
 				</tr>
 			</tbody>	
@@ -189,7 +145,7 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="date" name="rel_date" id="rel_date" value="${rec.rel_date }">></td>
+					<td><input type="date" name="rel_date" id="rel_date" value="${rec.rel_date }"></td>
 					<td><input type="text" name="rel_count" id="rel_count" value="${rec.rel_count }"></td>
 					<td><input type="text"  class="remarks" id="remarks" name="remarks" size=40  value="${rec.remarks }"></td>
 				</tr>
