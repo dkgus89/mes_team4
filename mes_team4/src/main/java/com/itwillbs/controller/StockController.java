@@ -110,29 +110,29 @@ public class StockController {
 	@RequestMapping(value = "/stock/stockinsertpro", method = RequestMethod.POST)
 	public String stockInsertPro(HttpServletRequest request, StockDTO stockDTO) {
 		System.out.println("StockController stockInsertPro()");
-		
-		if(stockService.getStockCount2()==0) {
-			stockDTO.setStock_cd("STC001");
-		}else {
-			String maxpc=stockService.getStock_cd();
-			System.out.println(maxpc);
-			maxpc=maxpc.substring(3);
-			int tpc=Integer.parseInt(maxpc);
-			tpc=tpc+1;
-			maxpc=String.valueOf(tpc);
-			if(maxpc.length()==1) {
-			maxpc="00".concat(maxpc);
-			maxpc="STC".concat(maxpc);
-			}else if(maxpc.length()==2) {
-				maxpc="0".concat(maxpc);
-				maxpc="STC".concat(maxpc);
-			}else if(maxpc.length()==3) {
-				maxpc="STC".concat(maxpc);
-			}
-			stockDTO.setStock_cd(maxpc);
-			System.out.println(maxpc);
-		}
-		
+//		
+//		if(stockService.getStockCount2()==0) {
+//			stockDTO.setStock_cd("STC001");
+//		}else {
+//			String maxpc=stockService.getStock_cd();
+//			System.out.println(maxpc);
+//			maxpc=maxpc.substring(3);
+//			int tpc=Integer.parseInt(maxpc);
+//			tpc=tpc+1;
+//			maxpc=String.valueOf(tpc);
+//			if(maxpc.length()==1) {
+//			maxpc="00".concat(maxpc);
+//			maxpc="STC".concat(maxpc);
+//			}else if(maxpc.length()==2) {
+//				maxpc="0".concat(maxpc);
+//				maxpc="STC".concat(maxpc);
+//			}else if(maxpc.length()==3) {
+//				maxpc="STC".concat(maxpc);
+//			}
+//			stockDTO.setStock_cd(maxpc);
+//			System.out.println(maxpc);
+//		}
+//		
 		
 		//글쓰기 작업 메서드 호출
 		stockService.insertStock(stockDTO);
@@ -176,9 +176,6 @@ public class StockController {
 	@RequestMapping(value = "/stock/stockupdatepro", method = RequestMethod.POST)
 	public String stockUpdatePro(StockDTO stockDTO) {
 		System.out.println(stockDTO.getStock_cd());
-		System.out.println(stockDTO.getWh_cd());
-		System.out.println(stockDTO.getRec_schedule_cd());
-		System.out.println(stockDTO.getProduct_cd());
 		System.out.println(stockDTO.getStock_count());
 		
 		stockService.updateStock(stockDTO);

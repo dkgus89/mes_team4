@@ -3,9 +3,7 @@ package com.itwillbs.domain;
 public class StockDTO {
 
 	private String stock_cd;
-	private String wh_cd;
-	private String rec_schedule_cd;
-	private String product_cd;
+	private String product_cd_name;
 	private int stock_count;
 	
 	
@@ -15,23 +13,11 @@ public class StockDTO {
 	public void setStock_cd(String stock_cd) {
 		this.stock_cd = stock_cd;
 	}
-	public String getWh_cd() {
-		return wh_cd;
+	public String getProduct_cd_name() {
+		return product_cd_name;
 	}
-	public void setWh_cd(String wh_cd) {
-		this.wh_cd = wh_cd;
-	}
-	public String getRec_schedule_cd() {
-		return rec_schedule_cd;
-	}
-	public void setRec_schedule_cd(String rec_schedule_cd) {
-		this.rec_schedule_cd = rec_schedule_cd;
-	}
-	public String getProduct_cd() {
-		return product_cd;
-	}
-	public void setProduct_cd(String product_cd) {
-		this.product_cd = product_cd;
+	public void setProduct_cd_name(String product_cd_name) {
+		this.product_cd_name = product_cd_name;
 	}
 	public int getStock_count() {
 		return stock_count;

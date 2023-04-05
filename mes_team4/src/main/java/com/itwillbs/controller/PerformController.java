@@ -348,6 +348,32 @@ public class PerformController {
 				// result 값 리턴
 				return result;
 			}
+			
+			@ResponseBody
+			@RequestMapping(value = "/perform/fpdp", method = RequestMethod.GET)
+			public int fpdp(HttpServletRequest request, Model model) {
+				// request 파라미터 
+				int fp=Integer.parseInt(request.getParameter("fp"));
+				int qt=Integer.parseInt(request.getParameter("qt"));
+				int result=qt-fp;			
+				
+										
+				// result 값 리턴
+				return result;
+			}
+			
+			@ResponseBody
+			@RequestMapping(value = "/perform/dpfp", method = RequestMethod.GET)
+			public int dpfp(HttpServletRequest request, Model model) {
+				// request 파라미터 
+				int dp=Integer.parseInt(request.getParameter("dp"));
+				int qt=Integer.parseInt(request.getParameter("qt"));
+				int result=qt-dp;			
+				
+										
+				// result 값 리턴
+				return result;
+			}
 
 			
 }

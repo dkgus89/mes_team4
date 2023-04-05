@@ -63,7 +63,7 @@ function allCheck(){
 	<div id="table_search">
 			<form action="${pageContext.request.contextPath}/line/line" method="get">
 				<!-- 				검색 메뉴 선택 -->
-				<select name="select">
+				<select name="select" class="button2">
 				<c:choose>						
 						<c:when test="${pageDTO.select == 'line_name'.toString()}">
 							<option value="line_cd">라인코드</option>

@@ -65,7 +65,7 @@ function allCheck(){
 	<div id="table_search">
 			<form action="${pageContext.request.contextPath}/perform/perform" method="get">
 				<!-- 				검색 메뉴 선택 -->
-				<select name="select">
+				<select name="select" class="button2">
 				<c:choose>						
 						<c:when test="${pageDTO.select == 'instruction_code'.toString()}">
 							<option value="perform_cd">실적코드</option>

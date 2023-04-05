@@ -14,10 +14,96 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
+$(document).ready(function(){ //Jquery 시작	
+	//작업지시현황 선택 안된상태에서 양품, 불량 선택못하게 하는 기능
+	$('#fair_prod').click(function(){
+		if($('#instruction_qt').val()==""){
+			alert("작업지시현황에서 가져올 행을 선택하세요.");
+			$('#fair_prod').blur();
+			return false;			
+		}		
+	});
+	$('#defect_prod').click(function(){
+		if($('#instruction_qt').val()==""){
+			alert("작업지시현황에서 가져올 행을 선택하세요.");
+			$('#defect_prod').blur();
+			return false;
+		}		
+	});
+	//이전 값 저장용 변수
+	var fpv;
+	var dpv;
+	//양품에 입력시 유효성 검사
+	$('#fair_prod').keyup(function() {	
+		if($.isNumeric( $('#fair_prod').val() ) == false){
+			$('#fair_prod').val(fpv);
+			alert("숫자만 입력하세요.");
+			return false;
+		}
+		var fp = document.getElementById("fair_prod").value;
+		var dp = document.getElementById("defect_prod").value;
+		var qt = document.getElementById("instruction_qt").value;
+		var int_fp = Number(fp);
+		var int_dp = Number(dp);
+		var int_qt = Number(qt);
+		var allData = { "fp": int_fp, "dp": int_dp, "qt": int_qt };
+		if(int_fp > int_qt){
+			alert("양품 수량이 지시수량을 초과했습니다.");
+			$('#fair_prod').val(fpv);
+			$('#fair_prod').focus();
+			return false;
+		}
+		$.ajax({ //ajax 시작
+				type:"GET",
+	 			url:'${pageContext.request.contextPath}/perform/fpdp',
+	 			async: false,
+	 			data: allData,
+	 			success:function(result){	
+	 				$('#defect_prod').val(result);
+	 				int_dp=$('#defect_prod').val(result);
+	 				fpv=$('#fair_prod').val();
+	 			}
+	 		}); //ajax 끝
+		
+	});
+	//불량에 입력시 유효성 검사
+	$('#defect_prod').keyup(function() {	
+		if($.isNumeric( $('#defect_prod').val() ) == false){
+			$('#defect_prod').val(dpv);
+			alert("숫자만 입력하세요.");
+			return false;
+		}
+		var fp = document.getElementById("fair_prod").value;
+		var dp = document.getElementById("defect_prod").value;
+		var qt = document.getElementById("instruction_qt").value;
+		var int_fp = Number(fp);
+		var int_dp = Number(dp);
+		var int_qt = Number(qt);
+		var allData = { "fp": int_fp, "dp": int_dp, "qt": int_qt };
+		if(int_dp > int_qt){
+			alert("불량품 수량이 지시수량을 초과했습니다.");
+			$('#defect_prod').val(dpv);
+			$('#defect_prod').focus();
+			return false;
+		}
+	 	$.ajax({ //ajax 시작
+			type:"GET",
+	 		url:'${pageContext.request.contextPath}/perform/dpfp',
+	 		async: false,
+	 		data: allData,
+	 		success:function(result){	 				 
+	 			$('#fair_prod').val(result); 
+	 			int_fp=$('#fair_prod').val(result);
+	 			dpv=$('#defect_prod').val();
+	 		}
+	 	}); //ajax 끝
+	});
+	
+}); //Jquery 끝
 //작업지시현황 팝업
 function showPopup(){
 	var link = "${pageContext.request.contextPath}/perform/instlist";     
-	var popupWidth = 1050;
+	var popupWidth = 1500;
 	var popupHeight = 500;
 	var popupX = (window.screen.width/2) - (popupWidth/2);
 	var popupY= (window.screen.height/2) - (popupHeight/2);
@@ -101,6 +187,10 @@ function sub(){
 			}
 			if((int_fp + int_dp) > int_qt){
 				alert("총 생산량이 지시수량을 초과했습니다.");
+				return false;
+			}
+			if((int_fp + int_dp) < int_qt){
+				alert("총 생산량이 지시수량보다 적습니다.");
 				return false;
 			}
 			// 유효성 검사 통과시 submit
