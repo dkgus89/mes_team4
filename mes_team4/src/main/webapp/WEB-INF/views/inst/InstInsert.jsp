@@ -23,13 +23,12 @@ function showPopup(){
 	
   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 }
-function setChildValue(order_cd, product_name, order_count, rproduct_name, consumption, deliver_date){
+function setChildValue(order_cd, product_cd, product_name, order_count, deliver_date){
 	
     document.getElementById("order_cd").value = order_cd;
+    document.getElementById("product_cd").value = product_cd;
     document.getElementById("product_name").value = product_name;
     document.getElementById("order_count").value = order_count;
-    document.getElementById("rproduct_name").value = rproduct_name;
-    document.getElementById("consumption").value = consumption;
     document.getElementById("deliver_date").value = deliver_date;
 
    
@@ -112,10 +111,9 @@ function rst(){
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">					
 					<th>수주코드</th>
+					<th>품목코드</th>
 					<th>품목이름</th>
 					<th>수주량</th>
-					<th>원자재이름</th>
-					<th>소요량</th>
 					<th>출하예정일</th>
 				</tr>
 			</thead>
@@ -123,11 +121,10 @@ function rst(){
 			<tbody>
 				<tr style="text-align: center; font-size: 0.9rem">				
 					<td><input type="text" name="order_cd" id="order_cd"></td>
+					<td><input type="text" name="product_cd" id="product_cd"></td>
 					<td><input type="text" name="product_name" id="product_name"></td>
 					<td><input type="text" name="order_count" id="order_count"></td>
-      				<td><input type="text" name="rproduct_name" id="rproduct_name"></td>
-					<td><input type="text" name="consumption" id="consumption"></td>	
-					<td><input type="text" name="deliver_date" id="deliver_date"></td>	
+					<td><input type="date" name="deliver_date" id="deliver_date"></td>	
     			</tr>
 
 			</tbody>
@@ -138,7 +135,6 @@ function rst(){
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					
 					<th>라인코드</th>
 					<th>지시일자</th>
 					<th>지시수량</th>
@@ -154,7 +150,8 @@ function rst(){
     					<option value="FL002">2라인</option>
     					<option value="FL003">3라인</option>
 					</select></td>
-					<td><input type="date" name="instruction_date" id="instruction_date"></td>
+	
+					<td><input type="date" name="instruction_date" id="instruction_date"></td>	
     				<td><input type="text" name="instruction_qt" id="instruction_qt"></td>
     				<td><select name="instruction_state" id="instruction_state">
     					<option value="">------------</option>
