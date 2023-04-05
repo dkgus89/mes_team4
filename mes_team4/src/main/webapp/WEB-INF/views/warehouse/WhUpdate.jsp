@@ -12,20 +12,42 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 function sub(){
-document.updaterel.action="${pageContext.request.contextPath}/wh/whupdatePro";
-document.updaterel.submit();
-setTimeout(function() { 
-	opener.parent.location.reload();
-	window.close();
-	}, 200);
+	$(document).ready(function(){
+		// submit 유효성 검사
+		var result = confirm("수정사항을 등록하시겠습니까?");
+		if (result == true){   			
+			if($('#wh_name').val()==""){
+				alert("창고이름을 입력하세요");
+				$('#wh_name').focus();
+				return false;
+			}
+			if($('#wh_tel').val()==""){
+				alert("창고연락처를 입력하세요");
+				$('#wh_tel').focus();
+				return false;
+			}
+			window.opener.name = "parentPage";
+			document.updatewh.target="parentPage";
+			document.updatewh.action="${pageContext.request.contextPath}/wh/whupdatePro";
+			document.updatewh.submit();
+			self.close();
+		} else {
+			return false;
+		}
+	});
 }
 
-
 function rst(){
-document.updaterel.reset();
+	// 초기화 유효성 검사
+	var result = confirm("초기화 하시겠습니까?");
+	if (result == true){    
+		document.updatewh.reset();
+	} else {
+		return false;
+	}
 }
 </script>
 
@@ -34,15 +56,15 @@ document.updaterel.reset();
 
 <div id="contents">	
 <!-- 본문HTML 입력 시작-->
-
 <h2 class="updatetitle">창고 수정</h2><br>
+
 	<div class="wrap2">
-		<input type="submit" class="button2" value="수정" onclick="sub()">
-		<input type="reset" class="button2" value="초기화">
-	 </div><br>
+	  <button class="button2" onclick="sub()">수정</button>
+	  <button class="button2" onclick="rst()">초기화</button>
+	 </div>
 	 <br>
 	
-	<form action="${pageContext.request.contextPath}/wh/whupdatePro" name="updaterel" method="post" >
+	<form id="move" action="${pageContext.request.contextPath}/wh/whupdatePro" name="updatewh" method="post" >
 	<input type="hidden" value="${whDTO.wh_cd }" name="wh_cd">
 	
 		<table id="vendortable" class="table table-striped" style="width:1000px;">
@@ -60,22 +82,6 @@ document.updaterel.reset();
 			
 			<tbody>
 				<tr>
-<%-- 				<c:if test="${whDTO.wh_dv=='완제품'}"> --%>
-<!-- 					<td> -->
-<!-- 					<select id="select1"  name="wh_dv"> -->
-<!-- 						<option value="완제품" selected>완제품</option> -->
-<!-- 						<option value="원자재">원자재</option> -->
-<!-- 					</select> -->
-<!-- 					</td> -->
-<%-- 					</c:if> --%>
-<%-- 					<c:if test="${whDTO.wh_dv=='원자재'}"> --%>
-<!-- 					<td> -->
-<!-- 					<select id="select1"  name="wh_dv"> -->
-<!-- 						<option value="완제품" >완제품</option> -->
-<!-- 						<option value="원자재" selected>원자재</option> -->
-<!-- 					</select> -->
-<!-- 					</td> -->
-<%-- 					</c:if> --%>
 					<td><input type="text" name="wh_dv" value="${whDTO.wh_dv }" readonly></td>
 					<td><input type="text" name="wh_name" value="${whDTO.wh_name }"></td>
 					<c:if test="${whDTO.wh_use=='사용'}">
