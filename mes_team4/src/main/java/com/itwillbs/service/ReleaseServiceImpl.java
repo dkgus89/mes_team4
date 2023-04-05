@@ -1,5 +1,7 @@
 package com.itwillbs.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -22,15 +24,19 @@ public class ReleaseServiceImpl implements ReleaseService{
 	public void insertrel(ReleaseDTO releaseDTO) {
 		System.out.println("ReleaseServiceImpl insertrel()");
 		
+		LocalDate now = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
+		String today = now.format(formatter);
+			
 		if(releaseDAO.getLNum()==null) {
 			//출고품목 없음
-			releaseDTO.setRel_schedule_cd("L001");
+			releaseDTO.setRel_schedule_cd("L"+today+"001");
 			releaseDTO.setOut_complete("진행중");
 		}else{
 			//출고품목 => max(num)+1
 			System.out.println("LNum 출력 : "+releaseDAO.getLNum());
 			int num = releaseDAO.getLNum()+1;
-			String str = "L00" + num;
+			String str = "L"+num;
 			
 			releaseDTO.setRel_schedule_cd(str);
 			releaseDTO.setOut_complete("진행중");
@@ -101,6 +107,15 @@ public class ReleaseServiceImpl implements ReleaseService{
 	public Map<String, Object> getrec(String rel_schedule_cd) {
 		System.out.println("ReleaseServiceImpl getrec()");
 		return releaseDAO.getrec(rel_schedule_cd);
+	}
+
+
+	@Override
+	public void finishrel(String rel_schedule_cd) {
+		System.out.println("ReleaseServiceImpl finishrel()");
+		
+		releaseDAO.finishrel(rel_schedule_cd);
+		
 	}
 
 
