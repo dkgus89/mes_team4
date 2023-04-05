@@ -218,7 +218,7 @@
 				and purchase_date >= #{start_date}
 			</if>
 			<if test="end_date != null">
-				and purchase_date <![CDATA[<=]]> #{start_date}
+				and purchase_date <![CDATA[<=]]> #{end_date}
 			</if>
 			<if test="start_due_date != null">
 				and purchase_due >= #{start_due_date}
@@ -267,7 +267,7 @@
 				and purchase_date >= #{start_date}
 			</if>
 			<if test="end_date != null">
-				and purchase_date <![CDATA[<=]]> #{start_date}
+				and purchase_date <![CDATA[<=]]> #{end_date}
 			</if>
 			<if test="start_due_date != null">
 				and purchase_due >= #{start_due_date}
@@ -307,8 +307,12 @@
 	</delete>
 	
 	<select id="getPurchaseListB" resultType="com.itwillbs.domain.PurchaseDTO">
-		select *
-		from purchase_management
+		select p.purchase_cd, p.business_cd, p.emp_no, p.rproduct_cd_name, p.purchase_date,
+		p.purchase_due, p.purchase_count, p.purchase_com, e.emp_name
+		from purchase_management p join employees e
+		on p.emp_no = e.emp_no
+<!-- 		select * -->
+<!-- 		from purchase_management -->
 			<if test="cd != null">
    			where business_cd like CONCAT('%',#{cd},'%')
    		</if>
@@ -316,6 +320,7 @@
 		limit #{startRow},#{pageSize}
 	</select>
 </mapper>
+
 
 
 
