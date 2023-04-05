@@ -66,6 +66,15 @@
 			alert("삭제 취소되었습니다.");}
 		}
 	}
+	
+	function management(business_cd){
+	    if(business_cd.substr(0,1) == "O"){
+	    	location.replace("${pageContext.request.contextPath}/order/ordermainB?cd="+business_cd)
+	    }else if(business_cd.substr(0,1) == "P"){
+	    	location.replace("${pageContext.request.contextPath}/purchase/listB?cd="+business_cd)
+	    } 
+	}
+	
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -105,7 +114,9 @@
 			<tr>
 			<td><input type="checkbox" id="checkbox" name="rowcheck" value="${businessDTO.business_cd}"></td>
 			<td>${pageDTO.startRow+1 + sts.index}</td>
-			<td onclick="location.href='${pageContext.request.contextPath}/order/ordermainB?cd=${businessDTO.business_cd}'">${businessDTO.business_cd}</td>
+			
+			<td onclick="management('${businessDTO.business_cd}')">${businessDTO.business_cd}</td>
+			
 			<td>${businessDTO.business_dv}</td>
 			<td>${businessDTO.business_type}</td>
 			<td>

@@ -186,7 +186,12 @@ public class OrderController {
 
 		OrderDTO orderDTO = orderService.getOrder(cd);
 		List<BusinessDTO> businessList = businessService.getBusinessList();
+		List<ProductDTO> productList = productService.getProductList();
+		List<SystemDTO> systemList = systemService.getMemberList();
 		
+
+		model.addAttribute("productList",productList);
+		model.addAttribute("systemList",systemList);
 		model.addAttribute("businessList",businessList);
 		model.addAttribute("orderDTO",orderDTO);
 		
