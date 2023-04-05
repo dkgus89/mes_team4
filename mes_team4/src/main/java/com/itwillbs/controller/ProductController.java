@@ -163,11 +163,12 @@ public class ProductController {
 	    } else {
 	    	new_stock_cd = menu_code + today + "01";
 	    }
-	    stockDTO.setStock_cd(new_stock_cd);
+	    stockDTO.setStock_cd(new_stock_cd);		
+		stockDTO.setProduct_cd_name(productDTO.getProduct_cd_name());				
 		
-		stockDTO.setProduct_cd_name(productDTO.getProduct_cd());
-		productService.insertStock(stockDTO);
+		// 등록 메서드 호출 (product + stock)
 		productService.insertProduct(productDTO);
+		productService.insertStock(stockDTO);
 //		주소줄 변경하면서 이동
 		return "redirect:/product/prodpage";
 	}
