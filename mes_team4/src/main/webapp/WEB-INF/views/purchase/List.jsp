@@ -16,14 +16,10 @@
 <script>
 	$(document).ready(function() { // j쿼리 시작
 		// 셀렉트박스 선택 시 value 저장
-		$("#select-date").on("change", function(){
-			let search_date = $("option:selected", this).val();
-			$("#search_date").val(search_date);
-		});
 		$("#select-menu").on("change", function(){
 			let search_option = $("option:selected", this).val();
 			$("#search_option").val(search_option);
-		});
+		});	
 	}); // j쿼리 끝
 	
 	// 발주 등록 팝업
@@ -95,7 +91,21 @@
 	    }
 	}
 	
-	document.getElementById('today').valueAsDate = new Date();
+	// 진행상태 체크박스 value 전달
+	function checkOnlyOne(element) {
+	  const checkboxes = document.getElementsByName("com_sts");
+	  
+		  checkboxes.forEach((cb) => {
+		      cb.checked = false;
+		  });
+		  
+		  element.checked = true;
+		  
+		  var checkedValue = element.value;
+		  var search_com = document.getElementById("search_com");
+		  search_com.value = checkedValue;   
+		  
+	} 
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -112,26 +122,26 @@
 	<br>
 	
 	
-	<div class ="wrap2" id="table_search">
-		<form action="${pageContext.request.contextPath}/purchase/list?search=${pageDTO.search}&search_option=${pageDTO.search_option}&search_date=${pageDTO.search_date}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}" method="get">		
-			
-			<input id="search_date" name="search_date" type="hidden" value="purchase_date">
-			<select id="select-date" class="button2">
-			<option value="purchase_date">발주일자</option>
-			<option value="purchase_due">납품예정일</option>
-			<input type="date" name="start_date" value=""> ~ <input type="date" name="end_date" value="">
-			</select> 
+	<div class ="search_wrap" id="table_search">
+		<form action="${pageContext.request.contextPath}/purchase/list?search=${pageDTO.search}&search_option=${pageDTO.search_option}&search_com=${pageDTO.search_com}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}&start_due_date=${pageDTO.start_due_date}&end_due_date=${pageDTO.end_due_date}" method="get">		
 			
 			<input id="search_option" name="search_option" type="hidden" value="all">
+			<input id="search_com" name="search_com" type="hidden" value="">
+			
+			발주일자 <input type="date" name="start_date" value=""> ~ <input type="date" name="end_date" value="">
+			
 			<select id="select-menu" class="button2">
 			<option value="all">통합검색</option>
 			<option value="bs">거래처</option>
 			<option value="rp">원자재</option>
-			<option value="em">담당자</option>
+			<option value="em">담당자</option>			
 			</select> 
-			
 			<input type="text" name="search" class="input_box" placeholder="품목명 또는 코드를 입력하세요." value="" size=60>
 			<input type="submit" value="search" class="button2">
+			
+			<br>
+			납품예정일 <input type="date" name="start_due_date" value=""> ~ <input type="date" name="end_due_date" value="">
+			진행상황 전체<input type="checkbox" id="comAllCheck" name="com_sts" onclick='checkOnlyOne(this)' value=""> 완료<input type="checkbox" id="comCheck" name="com_sts" onclick='checkOnlyOne(this)' value="완료"> 미완료<input type="checkbox" id="comNotCheck" name="com_sts" onclick='checkOnlyOne(this)' value="미완료">
 	
 		</form>
 	</div>
@@ -195,15 +205,15 @@
 	
 	<div id="pagingControl">
 		<c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
-			<a href="${pageContext.request.contextPath}/purchase/list?pageNum=${pageDTO.startPage-pageDTO.pageBlock}&search=${pageDTO.search}&search_option=${pageDTO.search_option}&search_date=${pageDTO.search_date}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}">Prev</a>
+			<a href="${pageContext.request.contextPath}/purchase/list?pageNum=${pageDTO.startPage-pageDTO.pageBlock}&search=${pageDTO.search}&search_option=${pageDTO.search_option}&search_com=${pageDTO.search_com}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}&start_due_date=${pageDTO.start_due_date}&end_due_date=${pageDTO.end_due_date}">Prev</a>
 		</c:if>
 		
 		<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-			<a href="${pageContext.request.contextPath}/purchase/list?pageNum=${i}&search=${pageDTO.search}&search_option=${pageDTO.search_option}&search_date=${pageDTO.search_date}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}">${i}</a> 
+			<a href="${pageContext.request.contextPath}/purchase/list?pageNum=${i}&search=${pageDTO.search}&search_option=${pageDTO.search_option}&search_com=${pageDTO.search_com}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}&start_due_date=${pageDTO.start_due_date}&end_due_date=${pageDTO.end_due_date}">${i}</a> 
 		</c:forEach> 
 		
 		<c:if test="${pageDTO.endPage < pageDTO.pageCount}">
-			<a href="${pageContext.request.contextPath}/purchase/list?pageNum=${pageDTO.startPage+pageDTO.pageBlock}&search=${pageDTO.search}&search_option=${pageDTO.search_option}&search_date=${pageDTO.search_date}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}">Next</a>
+			<a href="${pageContext.request.contextPath}/purchase/list?pageNum=${pageDTO.startPage-pageDTO.pageBlock}&search=${pageDTO.search}&search_option=${pageDTO.search_option}&search_com=${pageDTO.search_com}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}&start_due_date=${pageDTO.start_due_date}&end_due_date=${pageDTO.end_due_date}">Next</a>
 		</c:if>
 	</div>
 	

@@ -183,7 +183,7 @@
 	</resultMap>
 	
 	<select id="getPurchaseMapList" resultMap="purchaseListMap">
-		select pch.purchase_cd, pch.business_cd, b.business_name, b.business_type, pch.rproduct_cd_name, p.product_name, pt.product_type_name,pch.purchase_count, pch.purchase_date, pch.purchase_due, pch.emp_no, ed.dept_name, eg.grade_name, e.emp_name
+		select pch.purchase_cd, pch.business_cd, b.business_name, b.business_type, pch.rproduct_cd_name, p.product_name, pt.product_type_name,pch.purchase_count, pch.purchase_date, pch.purchase_due, pch.emp_no, ed.dept_name, eg.grade_name, e.emp_name, pch.purchase_com
 		from purchase_management pch join business b
 		on pch.business_cd = b.business_cd
 		join product p 
@@ -197,112 +197,36 @@
 		join employees_grade eg
 		on e.grade_cd = eg.grade_cd
 		<where>
-			<choose>
-				<when test="search != null"> 
-					<choose>
-						<when test="start_date == null and end_date == null">		
-				            <choose>
-				            	<when test='search_option.equals("all")'>
-				                    and (purchase_cd like CONCAT('%',#{search},'%') or pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%') or pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%') or purchase_count like CONCAT('%',#{search},'%'))
-				                </when>
-				                <when test='search_option.equals("bs")'>
-				                    and (pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%'))
-				                </when>
-				                <when test='search_option.equals("rp")'>
-				                    and (rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%'))
-				                </when>
-				                <when test='search_option.equals("em")'>
-				                    and (pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%'))
-				                </when>
-				            </choose>
-				        </when>
-				        <when test="start_date != null and end_date == null">		
-				            <choose>
-				            	<when test='search_option.equals("all")'>
-				                    and (${search_date} >= #{start_date} and(purchase_cd like CONCAT('%',#{search},'%') or pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%') or pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%') or purchase_count like CONCAT('%',#{search},'%')))
-				                </when>
-				                <when test='search_option.equals("bs")'>
-				                    and (${search_date} >= #{start_date} and(pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%')))
-				                </when>
-				                <when test='search_option.equals("rp")'>
-				                    and (${search_date} >= #{start_date} and(rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%')))
-				                </when>
-				                <when test='search_option.equals("em")'>
-				                    and (${search_date} >= #{start_date} and(pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%')))
-				                </when>
-				            </choose>
-				        </when>
-				        <when test="start_date == null and end_date != null">		
-				            <choose>				         
-				            	<when test='search_option.equals("all")'>
-				            	<![CDATA[
-				                    and (${search_date} <= #{end_date} and(purchase_cd like CONCAT('%',#{search},'%') or pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%') or pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%') or purchase_count like CONCAT('%',#{search},'%')))
-				                ]]>
-				                </when>
-				                <when test='search_option.equals("bs")'>
-				                <![CDATA[
-				                    and (${search_date} <= #{end_date} and(pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%')))
-				                ]]>
-				                </when>
-				                <when test='search_option.equals("rp")'>
-				                <![CDATA[
-				                    and (${search_date} <= #{end_date} and(rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%')))
-				                ]]>
-				                </when>
-				                <when test='search_option.equals("em")'>
-				                <![CDATA[
-				                    and (${search_date} <= #{end_date} and(pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%')))
-				                ]]>
-				                </when>			              
-				            </choose>
-				        </when>
-				        <when test="start_date != null and end_date != null">		
-				            <choose>
-				            	<when test='search_option.equals("all")'>
-				                    and (${search_date} between #{start_date} and #{end_date} and(purchase_cd like CONCAT('%',#{search},'%') or pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%') or pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%') or purchase_count like CONCAT('%',#{search},'%')))
-				                </when>
-				                <when test='search_option.equals("bs")'>
-				                    and (${search_date} between #{start_date} and #{end_date} and(pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%')))
-				                </when>
-				                <when test='search_option.equals("rp")'>
-				                    and (${search_date} between #{start_date} and #{end_date} and(rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%')))
-				                </when>
-				                <when test='search_option.equals("em")'>
-				                    and (${search_date} between #{start_date} and #{end_date} and(pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%')))
-				                </when>
-				            </choose>
-				        </when>
-					</choose>	
-	            </when>
-	            <when test="search == null">
-	           	<choose>					
-				        <when test="start_date != null and end_date == null">		
-				            <choose>
-				            	<when test="search_option != null">
-				                    and (${search_date} >= #{start_date})
-				                </when>				                
-				            </choose>
-				        </when>
-				        <when test="start_date == null and end_date != null">		
-				            <choose>				         
-				            	<when test="search_option != null">
-				            	<![CDATA[
-				                    and (${search_date} <= #{end_date})
-				                ]]>
-				                </when>				                         
-				            </choose>
-				        </when>
-				        <when test="start_date != null and end_date != null">		
-				            <choose>
-				            	<when test="search_option != null">
-				                    and (${search_date} between #{start_date} and #{end_date})
-				                </when>				           
-				            </choose>
-				        </when>
-					</choose>	
-	            </when> 
-            </choose>
-        </where>
+			<if test="search != null">
+		    	<if test='search_option.equals("all")'>
+                	and (purchase_cd like CONCAT('%',#{search},'%') or pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%') or pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%') or purchase_count like CONCAT('%',#{search},'%'))
+                </if>
+                <if test='search_option.equals("bs")'>
+                    and (pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%'))
+                </if>
+                <if test='search_option.equals("rp")'>
+                    and (rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%'))
+                </if>
+                <if test='search_option.equals("em")'>
+                    and (pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%'))
+                </if>	
+			</if>
+			<if test="search_com != null">
+				and purchase_com = #{search_com}
+			</if>
+			<if test="start_date != null">
+				and purchase_date >= #{start_date}
+			</if>
+			<if test="end_date != null">
+				and purchase_date <![CDATA[<=]]> #{start_date}
+			</if>
+			<if test="start_due_date != null">
+				and purchase_due >= #{start_due_date}
+			</if>
+			<if test="end_due_date != null">
+				and purchase_due <![CDATA[<=]]> #{end_due_date}
+			</if>
+		</where>
         order by purchase_cd desc
 		limit #{startRow},#{pageSize}
 	</select>
@@ -322,112 +246,36 @@
 		join employees_grade eg
 		on e.grade_cd = eg.grade_cd
 		<where>
-			<choose>
-				<when test="search != null"> 
-					<choose>
-						<when test="start_date == null and end_date == null">		
-				            <choose>
-				            	<when test='search_option.equals("all")'>
-				                    and (purchase_cd like CONCAT('%',#{search},'%') or pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%') or pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%') or purchase_count like CONCAT('%',#{search},'%'))
-				                </when>
-				                <when test='search_option.equals("bs")'>
-				                    and (pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%'))
-				                </when>
-				                <when test='search_option.equals("rp")'>
-				                    and (rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%'))
-				                </when>
-				                <when test='search_option.equals("em")'>
-				                    and (pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%'))
-				                </when>
-				            </choose>
-				        </when>
-				        <when test="start_date != null and end_date == null">		
-				            <choose>
-				            	<when test='search_option.equals("all")'>
-				                    and (${search_date} >= #{start_date} and(purchase_cd like CONCAT('%',#{search},'%') or pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%') or pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%') or purchase_count like CONCAT('%',#{search},'%')))
-				                </when>
-				                <when test='search_option.equals("bs")'>
-				                    and (${search_date} >= #{start_date} and(pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%')))
-				                </when>
-				                <when test='search_option.equals("rp")'>
-				                    and (${search_date} >= #{start_date} and(rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%')))
-				                </when>
-				                <when test='search_option.equals("em")'>
-				                    and (${search_date} >= #{start_date} and(pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%')))
-				                </when>
-				            </choose>
-				        </when>
-				        <when test="start_date == null and end_date != null">		
-				            <choose>				         
-				            	<when test='search_option.equals("all")'>
-				            	<![CDATA[
-				                    and (${search_date} <= #{end_date} and(purchase_cd like CONCAT('%',#{search},'%') or pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%') or pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%') or purchase_count like CONCAT('%',#{search},'%')))
-				                ]]>
-				                </when>
-				                <when test='search_option.equals("bs")'>
-				                <![CDATA[
-				                    and (${search_date} <= #{end_date} and(pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%')))
-				                ]]>
-				                </when>
-				                <when test='search_option.equals("rp")'>
-				                <![CDATA[
-				                    and (${search_date} <= #{end_date} and(rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%')))
-				                ]]>
-				                </when>
-				                <when test='search_option.equals("em")'>
-				                <![CDATA[
-				                    and (${search_date} <= #{end_date} and(pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%')))
-				                ]]>
-				                </when>			              
-				            </choose>
-				        </when>
-				        <when test="start_date != null and end_date == null">		
-				            <choose>
-				            	<when test='search_option.equals("all")'>
-				                    and (${search_date} between #{start_date} and #{end_date} and(purchase_cd like CONCAT('%',#{search},'%') or pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%') or pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%') or purchase_count like CONCAT('%',#{search},'%')))
-				                </when>
-				                <when test='search_option.equals("bs")'>
-				                    and (${search_date} between #{start_date} and #{end_date} and(pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%')))
-				                </when>
-				                <when test='search_option.equals("rp")'>
-				                    and (${search_date} between #{start_date} and #{end_date} and(rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%')))
-				                </when>
-				                <when test='search_option.equals("em")'>
-				                    and (${search_date} between #{start_date} and #{end_date} and(pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%')))
-				                </when>
-				            </choose>
-				        </when>
-					</choose>	
-	            </when>
-	            <when test="search == null">
-	           	<choose>					
-				        <when test="start_date != null and end_date == null">		
-				            <choose>
-				            	<when test="search_option != null">
-				                    and (${search_date} >= #{start_date})
-				                </when>				                
-				            </choose>
-				        </when>
-				        <when test="start_date == null and end_date != null">		
-				            <choose>				         
-				            	<when test="search_option != null">
-				            	<![CDATA[
-				                    and (${search_date} <= #{end_date})
-				                ]]>
-				                </when>				                         
-				            </choose>
-				        </when>
-				        <when test="start_date != null and end_date == null">		
-				            <choose>
-				            	<when test="search_option != null">
-				                    and (${search_date} between #{start_date})
-				                </when>				           
-				            </choose>
-				        </when>
-					</choose>	
-	            </when> 
-            </choose>
-        </where>
+			<if test="search != null">
+		    	<if test='search_option.equals("all")'>
+                	and (purchase_cd like CONCAT('%',#{search},'%') or pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%') or pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%') or purchase_count like CONCAT('%',#{search},'%'))
+                </if>
+                <if test='search_option.equals("bs")'>
+                    and (pch.business_cd like CONCAT('%',#{search},'%') or business_name like CONCAT('%',#{search},'%'))
+                </if>
+                <if test='search_option.equals("rp")'>
+                    and (rproduct_cd_name like CONCAT('%',#{search},'%') or product_name like CONCAT('%',#{search},'%'))
+                </if>
+                <if test='search_option.equals("em")'>
+                    and (pch.emp_no like CONCAT('%',#{search},'%') or emp_name like CONCAT('%',#{search},'%'))
+                </if>	
+			</if>
+			<if test="search_com != null">
+				and purchase_com = #{search_com}
+			</if>
+			<if test="start_date != null">
+				and purchase_date >= #{start_date}
+			</if>
+			<if test="end_date != null">
+				and purchase_date <![CDATA[<=]]> #{start_date}
+			</if>
+			<if test="start_due_date != null">
+				and purchase_due >= #{start_due_date}
+			</if>
+			<if test="end_due_date != null">
+				and purchase_due <![CDATA[<=]]> #{end_due_date}
+			</if>
+		</where>
 		limit #{startRow},#{pageSize}
 	</select>
 	

@@ -9,11 +9,13 @@ public class PageDTO {
 	private int endRow; // 끝 글번호
 	private String search; // 페이지 검색어
 	private String search_option; // 검색어 옵션
-	private String search_date; // 날짜 구분
+	private String search_com; // 완료 구분
 	private String select; // 검색어 옵션
 	private String product_dv; // 품목 구분
 	private String start_date; // 시작일
 	private String end_date; // 마감일
+	private String start_due_date; // 시작일
+	private String end_due_date; // 마감일
 	
 	// 페이징처리 계산 멤버변수
 	private String pageNum; // 현재 화면의 페이지번호 String
@@ -32,17 +34,30 @@ public class PageDTO {
 	private List<Integer> showTd; // td를 나타낼 위치
 	
 	
+	
+	public String getSearch_com() {
+		return search_com;
+	}
+	public void setSearch_com(String search_com) {
+		this.search_com = search_com;
+	}
+	public String getStart_due_date() {
+		return start_due_date;
+	}
+	public void setStart_due_date(String start_due_date) {
+		this.start_due_date = start_due_date;
+	}
+	public String getEnd_due_date() {
+		return end_due_date;
+	}
+	public void setEnd_due_date(String end_due_date) {
+		this.end_due_date = end_due_date;
+	}
 	public String getSearch_option() {
 		return search_option;
 	}
 	public void setSearch_option(String search_option) {
 		this.search_option = search_option;
-	}
-	public String getSearch_date() {
-		return search_date;
-	}
-	public void setSearch_date(String search_date) {
-		this.search_date = search_date;
 	}
 	public String getStart_date() {
 		return start_date;

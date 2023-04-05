@@ -42,11 +42,20 @@ public class PurchaseController {
 		if (pageDTO.getSearch() != null && pageDTO.getSearch().equals("")) {
 			pageDTO.setSearch(null);
 		}
+		if (pageDTO.getSearch_com() != null && pageDTO.getSearch_com().equals("")) {
+			pageDTO.setSearch_com(null);
+		}
 		if (pageDTO.getStart_date() != null && pageDTO.getStart_date().equals("")) {
 			pageDTO.setStart_date(null);
 		}
 		if (pageDTO.getEnd_date() != null && pageDTO.getEnd_date().equals("")) {
 			pageDTO.setEnd_date(null);
+		}
+		if (pageDTO.getStart_due_date() != null && pageDTO.getStart_due_date().equals("")) {
+			pageDTO.setStart_due_date(null);
+		}
+		if (pageDTO.getEnd_due_date() != null && pageDTO.getEnd_due_date().equals("")) {
+			pageDTO.setEnd_due_date(null);
 		}
 		
 		// 한 화면에 보여줄 글의 개수
