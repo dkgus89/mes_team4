@@ -185,7 +185,7 @@
 		    		<td>${dto.purchase_date}</td>
 		    		<td>${dto.purchase_due}</td> 
 		    		<td>${dto.emp_no}</td>
-<%-- 		    		<td>${dto.emp_name}</td> --%>
+		    		<td>${dto.emp_name}</td>
 		    		<td>${dto.purchase_com}</td>
 		    		<td><button class="button2" id="updateBtn" onclick="updateFn('${dto.purchase_cd}')">수정</button></td>
 	  				</tr>

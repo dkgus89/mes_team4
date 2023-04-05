@@ -414,9 +414,7 @@ public class PurchaseController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(CurrentPage);
 		
-		
-		List<PurchaseDTO> purchaseList = purchaseService.getPurchaseListB(pageDTO);
-		
+		List<Map<String, Object>> purchaseList = purchaseService.getPrList(pageDTO);
 		
 		int count = purchaseService.getPurchaseCount(pageDTO);
 		

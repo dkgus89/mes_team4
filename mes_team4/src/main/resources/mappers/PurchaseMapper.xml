@@ -306,7 +306,7 @@
       </foreach>
 	</delete>
 	
-	<select id="getPurchaseListB" resultType="com.itwillbs.domain.PurchaseDTO">
+	<select id="getPurchaseListB" resultType="getPurchaseListBMap">
 		select p.purchase_cd, p.business_cd, p.emp_no, p.rproduct_cd_name, p.purchase_date,
 		p.purchase_due, p.purchase_count, p.purchase_com, e.emp_name
 		from purchase_management p join employees e

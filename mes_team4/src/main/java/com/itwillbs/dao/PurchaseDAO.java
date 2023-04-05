@@ -37,6 +37,6 @@ public interface PurchaseDAO {
 	
 	public void updatePurchase(PurchaseDTO purchaseDTO);
 	
-	public List<PurchaseDTO> getPurchaseListB(PageDTO pageDTO);
+	public List<Map<String, Object>> getPurchaseListB(PageDTO pageDTO);
 	
 }// class

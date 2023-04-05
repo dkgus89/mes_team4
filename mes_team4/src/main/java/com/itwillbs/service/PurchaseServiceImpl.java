@@ -148,7 +148,7 @@ public class PurchaseServiceImpl implements PurchaseService{
 	}
 
 	@Override
-	public List<PurchaseDTO> getPurchaseListB(PageDTO pageDTO) {
+	public List<Map<String, Object>> getPurchaseListB(PageDTO pageDTO) {
 		System.out.println("purchaseserviceImpl getpurchaseListB");
 		
 		return purchaseDAO.getPurchaseListB(pageDTO);
