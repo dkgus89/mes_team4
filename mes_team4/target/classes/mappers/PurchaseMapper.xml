@@ -306,19 +306,19 @@
       </foreach>
 	</delete>
 	
-	<select id="getPurchaseListB" resultType="getPurchaseListBMap">
-		select p.purchase_cd, p.business_cd, p.emp_no, p.rproduct_cd_name, p.purchase_date,
-		p.purchase_due, p.purchase_count, p.purchase_com, e.emp_name
-		from purchase_management p join employees e
-		on p.emp_no = e.emp_no
-<!-- 		select * -->
-<!-- 		from purchase_management -->
-			<if test="cd != null">
-   			where business_cd like CONCAT('%',#{cd},'%')
-   		</if>
-		order by purchase_cd desc
-		limit #{startRow},#{pageSize}
-	</select>
+<!-- 	<select id="getPurchaseListB" resultType="getPurchaseListBMap"> -->
+<!-- 		select p.purchase_cd, p.business_cd, p.emp_no, p.rproduct_cd_name, p.purchase_date, -->
+<!-- 		p.purchase_due, p.purchase_count, p.purchase_com, e.emp_name -->
+<!-- 		from purchase_management p join employees e -->
+<!-- 		on p.emp_no = e.emp_no -->
+<!--  		select * --> 
+<!--  		from purchase_management --> 
+<!-- 			<if test="cd != null"> -->
+<!--    			where business_cd like CONCAT('%',#{cd},'%') -->
+<!--    		</if> -->
+<!-- 		order by purchase_cd desc -->
+<!-- 		limit #{startRow},#{pageSize} -->
+<!-- 	</select> -->
 </mapper>
 
 
