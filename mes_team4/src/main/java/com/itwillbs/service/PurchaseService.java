@@ -36,4 +36,7 @@ public interface PurchaseService {
 	public void deletePurchase(String[] checkedValue);
 	
 	public void updatePurchase(PurchaseDTO purchaseDTO);
+	
+	public List<PurchaseDTO> getPurchaseListB(PageDTO pageDTO);
+	
 }// class

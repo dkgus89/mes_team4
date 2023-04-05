@@ -146,5 +146,12 @@ public class PurchaseServiceImpl implements PurchaseService{
 		
 		purchaseDAO.updatePurchase(purchaseDTO);
 	}
+
+	@Override
+	public List<PurchaseDTO> getPurchaseListB(PageDTO pageDTO) {
+		System.out.println("purchaseserviceImpl getpurchaseListB");
+		
+		return purchaseDAO.getPurchaseListB(pageDTO);
+	}
 	
 }// class

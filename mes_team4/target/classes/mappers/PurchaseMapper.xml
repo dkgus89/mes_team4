@@ -306,6 +306,15 @@
       </foreach>
 	</delete>
 	
+	<select id="getPurchaseListB" resultType="com.itwillbs.domain.PurchaseDTO">
+		select *  
+		from purchase_management
+			<if test="cd != null">
+   			where business_cd like CONCAT('%',#{cd},'%')
+   		</if>
+		order by purchase_cd desc
+		limit #{startRow},#{pageSize}
+	</select>
 </mapper>
 
 

@@ -135,5 +135,12 @@ public class PurchaseDAOImpl implements PurchaseDAO{
 		
 		sqlSession.update(namespace+".updatePurchase", purchaseDTO);
 	}
+
+	@Override
+	public List<PurchaseDTO> getPurchaseListB(PageDTO pageDTO) {
+		System.out.println("purchaseDAOImpl getpurchaseListB()");
+		
+		return sqlSession.selectList(namespace+".getPurchaseListB", pageDTO);
+	}
 	
 }// class
