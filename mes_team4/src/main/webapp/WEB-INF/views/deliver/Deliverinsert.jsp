@@ -36,7 +36,13 @@ function setChildValue(business_cd,order_cd,product_cd){
 }
 
 //수주거 받아온거 등록??
-function sub(){
+ function  fun1(){
+			window.opener.name ="parentPage";
+			document.deliverInsert.target="parentPage";
+			document.deliverInsert.action="${pageContext.request.contextPath}/deliver/deliverinsert";
+			document.deliverInsert.submit();
+			self.close();
+		}
 // 		$(document).ready(function(){
 // 			if($('#inst').val() == " "){
 // 				alert("비즈니스코드를 선택하세요.")
@@ -54,12 +60,6 @@ function sub(){
 // 				return false;
 // 			}
 			
-			window.opener.name ="parentPage";
-			document.deliverInsert.target="parentPage";
-			document.deliverInsert.action="${pageContext.request.contextPath}/deliver/deliverinsert";
-			document.deliverInsert.submit();
-			self.close();
-		}
 
 
 //초기화기능.

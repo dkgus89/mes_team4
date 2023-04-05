@@ -255,6 +255,7 @@ public class DeliverController {
 		
 		@RequestMapping(value = "/deliver/deliverinstlist", method = RequestMethod.GET)
 		public String DeliverInstList(HttpServletRequest request, Model model) {
+			System.out.println("/deliver/deliverinstlist");
 			
 //			한 화면에 보여줄 글의 개수 설정
 			int pageSize =5;
