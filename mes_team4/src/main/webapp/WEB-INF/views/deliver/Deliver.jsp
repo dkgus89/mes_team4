@@ -29,18 +29,16 @@ function DeliverDelete1() {
 	document.deliverlist.submit();
 }
 
-function allcheck() {
-	var ac = document.deliverlist.allcheck;
-	var rc = document.deliverlist.rowcheck;
+function allCheck(){
+	var ac = document.myform.allcheck;
+	var rc = document.myform.rowcheck;
 	if(ac.checked == true){
 		for(i=0; i<rc.length; i++){
-			rc[i].checked=ture;}
-		}else {
-			for(i=0; i<rc.length; i++){
-				rc[i].checked=false;}
-			rc.checked=false;
-		}	
-	}
+			rc[i].checked=true;}
+	}else {
+		for(i=0;i<rc.length;i++){
+			rc[i].checked=false;}
+	} }
 
 </script>
 <!-- 자바스크립트 입력 끝-->

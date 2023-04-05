@@ -83,8 +83,8 @@ function rst(){
 					</select></td>
 					<td><select  name="product_unit">
 						<option value="">선택해주세요</option>
-						<option value="완제품">EA</option>
-						<option value="원자재">kg</option>
+						<option value="EA">EA</option>
+						<option value="kg">kg</option>
 					</select></td>
 					<td><input type="text"  class="remarks" name="remarks" ></td>
 				</tr>
