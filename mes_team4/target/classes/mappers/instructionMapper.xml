@@ -60,7 +60,8 @@
     	FROM consumption_management 
 									) c 
 		ON p.product_cd_name = c.cproduct_cd_name
-		where o.order_cd is not null	
+		where o.order_cd is not null
+		group by o.order_cd
     </select>
 
 	
@@ -78,8 +79,8 @@
     </select>
     
     <insert id="instinsertpro">
-        insert into instruction(instruction_code, order_cd, product_cd, instruction_qt, line_cd, instruction_date, instruction_state) 
-		values(#{instruction_code},#{order_cd},#{product_cd},#{instruction_qt},#{line_cd},#{instruction_date},#{instruction_state})
+ 		insert into instruction (instruction_code, line_cd, product_cd, order_cd, instruction_state, instruction_date, instruction_qt
+		values (instruction_code=#{instruction_code},line_cd=#{line_cd},product_cd=#{product_cd},order_cd=#{order_cd},instruction_state=#{instruction_state},instruction_date=#{instruction_date},,instruction_qt=#{instruction_qt})
     </insert>
     
     <select id="instructioninfo" resultType="com.itwillbs.domain.InstructionDTO">
