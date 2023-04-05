@@ -65,7 +65,7 @@ $('#insert').submit(function(){
 	
 	<form action="${pageContext.request.contextPath }/system/memberinsertpro" name="insert" id="insert" method="post">
 		
-<fieldset style="width:500px; height:450px; padding-left:20px; padding-right: 20px;">
+<fieldset style="width:520px; height:580px; padding-left:20px; padding-right: 20px;">
 <h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >사용자추가</h2>
 					<div>
 					<label>사원명</label>
@@ -81,28 +81,43 @@ $('#insert').submit(function(){
 					</div>
 					<label>부서</label><br>
 					<div>
-						<input type="radio" name="dept_cd" class="dept_cd" id="11" value="11" checked="checked"/> 총무부
-						<input type="radio" name="dept_cd" class="dept_cd" id="22" value="22" /> 인사부
-						<input type="radio" name="dept_cd" class="dept_cd" id="33" value="33" /> 영업부
-						<input type="radio" name="dept_cd" class="dept_cd" id="44" value="44" /> 생산부
-						<input type="radio" name="dept_cd" class="dept_cd" id="55" value="55" /> 자재관리부	
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP001" checked="checked"/> 영업부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP002" /> 인사부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP003" /> 생산부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP004" /> 총무부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP005" /> 기획부
 					</div><br>
 					<label>직급</label><br>
 					<div>
-						<input type="radio" name="grade_cd" class="grade_cd" value="대표" /> 대표
-						<input type="radio" name="grade_cd" class="grade_cd" value="이사" /> 이사
-						<input type="radio" name="grade_cd" class="grade_cd" value="부장" /> 부장
-						<input type="radio" name="grade_cd" class="grade_cd" value="과장" /> 과장
-						<input type="radio" name="grade_cd" class="grade_cd" value="대리" /> 대리	
-						<input type="radio" name="grade_cd" class="grade_cd" value="사원" checked="checked"/> 사원	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD001" checked="checked"/> 사원
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD002" /> 주임
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD003" /> 대리
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD004" /> 과장
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD005" /> 차장	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD006" /> 부장<BR>	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD007" /> 이사	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD008" /> 상무	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD009" /> 전무	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD010" /> 부사장	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD011" /> 사장
 					</div><br>
 					<label>권한</label><br>
 					<div>
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="0" /> 기본등록
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="1" checked="checked"/> 사원조회
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="2" /> 사원관리
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="3" /> 재고조회
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="4" /> 재고관리 
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="A" checked="checked"/> 사원조회
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="B" /> 사원관리
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="C" /> 재고조회
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="D" /> 재고관리
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="E" /> 생산조회<BR>
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="F" /> 생산관리 
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="G" /> 수주조회 
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="H" /> 수주관리
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="I" /> 발주조회 
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="J" /> 발주관리 <BR>
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="K" /> 출하조회 
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="L" /> 출하관리 
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="M" /> 기준정보조회
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="N" /> 기준정보관리
+						<input type="checkbox" class="priv_cd" name="priv_cd" value="O" /> 시스템관리 
 					</div>
 					
 		

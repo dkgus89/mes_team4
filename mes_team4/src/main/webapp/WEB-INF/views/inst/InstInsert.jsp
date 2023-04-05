@@ -62,7 +62,7 @@ function sub(){
 				return false;
 			}
 			if($('#instruction_state').val()==""){
-				alert("지시상태를을 선택하세요");
+				alert("지시상태를 선택하세요");
 				$('#instruction_state').focus();
 				return false;
 			}
@@ -148,7 +148,7 @@ function rst(){
 			
 			<tbody>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<td><select name="line_cd">
+					<td><select name="line_cd" id="line_cd">
     					<option value="">--------</option>
     					<option value="FL001">1라인</option>
     					<option value="FL002">2라인</option>
@@ -156,7 +156,7 @@ function rst(){
 					</select></td>
 					<td><input type="date" name="instruction_date" id="instruction_date"></td>
     				<td><input type="text" name="instruction_qt" id="instruction_qt"></td>
-    				<td><select name="instruction_state">
+    				<td><select name="instruction_state" id="instruction_state">
     					<option value="">------------</option>
     					<option value="0">대기</option>
     					<option value="1">작업중</option>
