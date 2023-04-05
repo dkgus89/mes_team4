@@ -127,7 +127,7 @@ function rst(){
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2 class="inserttitle">생산실적 추가 </h2><br>
+	<h2 class="inserttitle">작업지시 추가</h2><br>
 <!-- 	<div class="wrap2"> -->
 <!-- 	<button class="button2" id="aj">ajax</button> -->
 	<button class="button2" id="sub" onclick="sub()">등록</button>

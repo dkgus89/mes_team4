@@ -14,13 +14,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-function input1(order_cd,product_cd){
-	
-	opener.setChildValue(order_cd,product_cd);
+// function input1(order_cd,product_cd){
+// 	opener.setChildValue(order_cd,product_cd);
+// 	window.close();
+// }
 
-	window.close();
-	
+function input1(order_cd,product_cd){
+	$(document).ready(function(){ //Jquery 시작
+	// 선택 유효성 검사		
+		var rt = null;
+		$.ajax({ //ajax 시작
+			type:"GET",
+ 			url:'${pageContext.request.contextPath}/inst/ordercheck',
+ 			async: false,
+ 			data:{'order':order_cd},
+ 			success:function(result){
+ 				 if(result!=0) {
+ 		              alert("이전에 이미 선택되었던 수주입니다.");
+ 		              rt=1;
+ 		          }
+ 			}
+ 		}); //ajax 끝
+		if(rt==1){
+			return false;
+		}else{
+	     	  // 유효성 검사 통과시 선택 진행
+			  var result = confirm("이 행을 선택 하시겠습니까?");
+			  if (result == true){
+			  	  opener.setChildValue(order_cd,product_cd);
+				  window.close();
+			  } else {
+			  return false;
+			  }
+		}
+	}); //Jquery 끝
 }
+
 
 </script>
 </head>
@@ -42,7 +71,7 @@ function input1(order_cd,product_cd){
 		<table id="vendortable" class=" table table-striped" style="width:1000px;">
 		<thead>
 			<tr style="text-align: center; font-size: 0.9rem">
-			<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
+<!-- 			<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th> -->
 			<th> </th>
 			<th>수주코드</th>
 			<th>거래처</th>
@@ -61,7 +90,7 @@ function input1(order_cd,product_cd){
 			<c:when test="${not empty orderList}">
 			<c:forEach var="orderDTO" items="${orderList}" varStatus="sts">
 			<tr>
-			<td><input type="checkbox" id="checkbox" name="rowcheck" value="${orderDTO.order_cd}"></td>
+<%-- 			<td><input type="checkbox" id="checkbox" name="rowcheck" value="${orderDTO.order_cd}"></td> --%>
 			<td>${pageDTO.startRow+1 + sts.index}</td>
 			<td>${orderDTO.order_cd}</td>
 			<td>${orderDTO.business_cd}</td>
@@ -77,7 +106,7 @@ function input1(order_cd,product_cd){
 			<c:otherwise> ... </c:otherwise>
 			</c:choose>
 			
-			<td><button class="button2" onClick="input1('${orderDTO.order_cd}','${orderDTO.product_cd}';">선택</button></td>
+			<td><button class="button2" onClick="input1('${orderDTO.order_cd}','${orderDTO.product_cd}');">선택</button></td>
 			</tr>
 			</c:forEach>
 			</c:when>

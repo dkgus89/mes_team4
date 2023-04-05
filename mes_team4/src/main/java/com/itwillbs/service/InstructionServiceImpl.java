@@ -110,6 +110,13 @@ public class InstructionServiceImpl implements InstructionService{
 		instructionDAO.deletePerform(instruction_code);
 		
 	}
+
+	@Override
+	public int getordercheck(String order_cd) {
+		System.out.println("InstructionServiceImpl getordercheck()");
+		
+		return instructionDAO.getordercheck(order_cd);
+	}
 	
 	
 

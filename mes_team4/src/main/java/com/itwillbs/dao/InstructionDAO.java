@@ -33,6 +33,8 @@ public interface InstructionDAO {
 
 	public void deletePerform(String instruction_code);
 
+	public int getordercheck(String order_cd);
+
 
 	
 

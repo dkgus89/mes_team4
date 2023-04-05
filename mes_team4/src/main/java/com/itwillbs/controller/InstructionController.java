@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.OrderDTO;
@@ -192,6 +193,29 @@ public class InstructionController {
 		// /WEB-INF/views/perform/InstList.jsp
 		return "inst/OrderList";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/inst/ordercheck", method = RequestMethod.GET)
+	public String ordercheck(HttpServletRequest request, Model model) {
+		// request 파라미터 
+		String order_cd=request.getParameter("order");
+		String result=null;
+		
+		// 메서드 호출
+		int ordercheck
+	     =instructionService.getordercheck(order_cd);
+			
+		// if문으로 result에 저장 할 값 설정
+		if(ordercheck==0) {
+			result="0";
+		}else {
+			result="1";
+		}			
+				
+		// result 값 리턴
+		return result;
+	}
+
 	
 	
 }

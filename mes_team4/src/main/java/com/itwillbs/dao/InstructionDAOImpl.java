@@ -105,6 +105,13 @@ public class InstructionDAOImpl implements InstructionDAO {
 		sqlSession.delete(namespace +".deletePerform", instruction_code);
 		
 	}
+
+	@Override
+	public int getordercheck(String order_cd) {
+		System.out.println("InstructionDAOImpl getordercheck()");
+		
+		return sqlSession.selectOne(namespace +".getordercheck", order_cd);
+	}
 	
 	
 	

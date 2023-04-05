@@ -129,7 +129,7 @@ function rst(){
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2 class="inserttitle">생산실적 수정 </h2><br>
+	<h2 class="inserttitle">작업지시 수정</h2><br>
 <!-- 	<div class="wrap2"> -->
 	<button class="button2" onclick="sub()">등록</button>
 	<button class="button2" onclick="rst()">초기화</button>	 	

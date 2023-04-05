@@ -113,7 +113,12 @@
     	where instruction_code = #{instruction_code}
     </select>
 
-
+	<select id="getordercheck" resultType="java.lang.Integer">
+    	select count(*)
+    	from(select order_cd
+    	from order_management
+    	where order_cd = #{order_cd}) a
+    </select>
     
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
 <!-- 		select * from members  -->

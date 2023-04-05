@@ -17,7 +17,7 @@ function showPopup(){
     window.open("${pageContext.request.contextPath}/inst/instinsert","instinsert","width=1100, height=350, top=200, left=200");
 }
 function showPopup2(cd){
-    window.open("${pageContext.request.contextPath}/inst/instupdate?perform_cd="+cd,"instupdate","width=1100, height=350, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/inst/instupdate?instruction_code="+cd,"instupdate","width=1100, height=350, top=200, left=200");
 }
 function chdelete(){
 	// 삭제 유효성 검사
@@ -53,7 +53,7 @@ function allCheck(){
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2> 생산실적 </h2><br>
+	<h2> 작업지시현황 </h2><br>
 	<div id="table_search">
 			<form action="${pageContext.request.contextPath}/inst/instmain" method="get">
 				<select name="select">
