@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-function input1(business_cd,order_cd,product_cd){
+function DeliverUpdate(business_cd,order_cd,product_cd){
 	
 	opener.setChildValue(business_cd,order_cd,product_cd);
 
@@ -32,14 +32,14 @@ function input1(business_cd,order_cd,product_cd){
 	<h2>수주현황</h2>
 	<h4>전체 ${pageDTO.count}건 / <span style="color:red">생산전 ${pageDTO.pcount}건</span> /  <span style="color:blue">생산완료 ${pageDTO.fcount}건</span></h4>
 	
-	<div class="wrap2">
-	  <button class="button2" onclick="showPopup();">추가</button>
-	  <button class="button2" onclick="deleteValue();">생산현황?</button>
-	  <button class="button2" onclick="deleteValue();">삭제</button>
-	 </div><br>
+<!-- 	<div class="wrap2"> -->
+<!-- 	  <button class="button2" onclick="showPopup();">추가</button> -->
+<!-- 	  <button class="button2" onclick="deleteValue();">생산현황?</button> -->
+<!-- 	  <button class="button2" onclick="deleteValue();">삭제</button> -->
+<!-- 	 </div><br> -->
 	 <br>
  
-	<form method="post" name="myform">
+	<form method="get" name="myform">
 <!-- 		<input type="hidden" value="">	 -->
 	<table id="vendortable" class=" table table-striped" style="width:1000px;">
 		<thead>
@@ -53,6 +53,7 @@ function input1(business_cd,order_cd,product_cd){
 			<th>출하예정날짜</th>
 			<th>담당자</th>
 			<th>진행상황</th>
+			<th>선택</th>
 			<th></th>
 			</tr>
 		</thead>	
@@ -70,6 +71,12 @@ function input1(business_cd,order_cd,product_cd){
 			<td>${orderDTO.order_date}</td>
 			<td>${orderDTO.deliver_date}</td>
 			<td>${orderDTO.emp_no}</td>
+			
+			<c:choose>
+			<c:when test="${orderDTO.con eq '생산전'}"><td><span style="color:red">${orderDTO.con}</span></td> </c:when>
+			<c:when test="${orderDTO.con eq '생산완료'}"><td><span style="color:blue">${orderDTO.con}</span></td></c:when>
+			<c:otherwise> ... </c:otherwise>
+			</c:choose>
     			<td><button class="button2" onclick="DeliverUpdate('${DeliverDTO.deliver_cd}','${DeliverDTO.business_cd}','${DeliverDTO.product_cd}');">선택</button></td>
     			
    			 
