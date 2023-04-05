@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.ReceiveDTO;
 import com.itwillbs.domain.WHDTO;
 import com.itwillbs.service.OrderService;
@@ -75,6 +76,9 @@ public class ReceiveController {
 		if(endPage > pageCount){
 			endPage = pageCount;
 		}
+		System.out.println(startPage);
+		System.out.println(endPage);
+		System.out.println(count);
 		
 		pageDTO.setCount(count);
 		pageDTO.setPageBlock(pageBlock);
@@ -293,5 +297,25 @@ public class ReceiveController {
 		
 		// 가상주소 유지
 		return "receive/order";
+	}
+	
+	@RequestMapping(value = "/receive/recupdate", method = RequestMethod.GET)
+	public String recupdate(HttpServletRequest request, Model model) {
+		System.out.println("ReceiveController recupdate()");
+		
+		String rec_schedule_cd =request.getParameter("rec_schedule_cd");
+		
+		ReceiveDTO receiveDTO=receiveService.getReceive(rec_schedule_cd );
+		System.out.println(rec_schedule_cd );
+		model.addAttribute("receiveDTO", receiveDTO);
+		// 주소변경 없이 이동
+		return "receive/ReceiveUpdate";
+	}
+	
+	@RequestMapping(value = "/receive/recupdatePro", method = RequestMethod.POST)
+	public String recupdatePro(ReceiveDTO receiveDTO) {
+		receiveService.updateReceive(receiveDTO);
+		// 주소변경 하면서 이동
+		return "redirect:/receive/recpage";
 	}
 }

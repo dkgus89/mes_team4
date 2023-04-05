@@ -39,7 +39,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd){
 <!-- 	 </div><br> -->
 	 <br>
  
-	<form method="get" name="myform">
+	<form method="get" name="orderList"  >
 <!-- 		<input type="hidden" value="">	 -->
 	<table id="vendortable" class=" table table-striped" style="width:1000px;">
 		<thead>
@@ -78,7 +78,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd){
 			<c:otherwise> ... </c:otherwise>
 			</c:choose>
     			<td><button class="button2" onclick="DeliverUpdate('${DeliverDTO.deliver_cd}','${DeliverDTO.business_cd}','${DeliverDTO.product_cd}');">선택</button></td>
-    			
+    			</tr>
    			 
 				</c:forEach>
 			</c:when>

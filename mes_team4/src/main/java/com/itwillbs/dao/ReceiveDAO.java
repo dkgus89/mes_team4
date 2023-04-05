@@ -15,4 +15,8 @@ public interface ReceiveDAO {
 
 	public Integer getCNum();
 
+	public ReceiveDTO getReceive(String rec_schedule_cd);
+
+	public void updateReceive(ReceiveDTO receiveDTO);
+
 }

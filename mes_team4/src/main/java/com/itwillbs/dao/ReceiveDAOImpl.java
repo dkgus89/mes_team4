@@ -25,17 +25,31 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 	}
 	@Override
 	public List<ReceiveDTO> getReciveList(PageDTO pageDTO) {
+		
 		pageDTO.setStartRow(pageDTO.getStartRow()-1);
 		return sqlSession.selectList(namespace+".getReceiveList", pageDTO);
 	}
 	@Override
 	public int getReceiveCount(PageDTO pageDTO) {
+		
 		return sqlSession.selectOne(namespace+".getReceiveCount",pageDTO);
 	}
 	@Override
 	public Integer getCNum() {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.selectOne(namespace+".getCNum");
+	}
+	@Override
+	public ReceiveDTO getReceive(String rec_schedule_cd) {
+		System.out.println("ReceiveDAOImpl getReceive()");
+		
+		return sqlSession.selectOne(namespace+".getReceive",rec_schedule_cd);
+	}
+	@Override
+	public void updateReceive(ReceiveDTO receiveDTO) {
+		System.out.println("ReceiveDAOImpl updateReceive()");
+		
+		sqlSession.update(namespace+".updateReceive", receiveDTO);
 	}
 
 }
