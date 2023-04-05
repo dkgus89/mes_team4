@@ -34,6 +34,8 @@ public interface ProductDAO {
 
 	public List<ProductDTO> getProductList();
 
+	public void insertStock(ProductDTO productDTO);
+
 
 
 }

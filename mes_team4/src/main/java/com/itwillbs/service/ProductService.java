@@ -34,5 +34,7 @@ public interface ProductService {
 	public String getProduct_cd();
 	
 	public List<ProductDTO> getProductList();
+
+	public void insertStock(ProductDTO productDTO);
 	
 }

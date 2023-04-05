@@ -133,25 +133,21 @@ public class SystemController {
 	@RequestMapping(value = "/system/memberloginpro", method = RequestMethod.POST)
 	public String loginPro(SystemDTO systemDTO, HttpSession session) {
 		System.out.println("MemberController loginPro()");
-		
-		System.out.println(systemDTO.getEmp_no()+ systemDTO.getEmp_pass()+"되니1?!?!?");
-		
+				
 		// 리턴할형 MemberDTO userCheck(MemberDTO memberDTO) 메서드 정의
 		// 메서드 호출
-		SystemDTO systemDTO2=systemService.userCheck(systemDTO);
-		System.out.println("DTO2 되냐고!!!! " + systemDTO2.getEmp_no() + systemDTO2.getEmp_pass());
+		 SystemDTO systemDTO2=systemService.userCheck(systemDTO);
 		
 		if(systemDTO2!=null) {
-
+			
 			session.setAttribute("emp_no", systemDTO.getEmp_no());
 			System.out.println("출력해바!!!!!!!!"+systemDTO.getEmp_no());
 			return "redirect:/home";
 		}else {
-			System.out.println("안되노..");
-			
+			//아이디 비밀번호 틀림  뒤로이동  member/msg
 			return "system/msg";
 		}
-	}	
+	}
 	
 	@RequestMapping(value = "/system/memberlogout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {

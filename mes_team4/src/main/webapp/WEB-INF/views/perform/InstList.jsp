@@ -62,24 +62,25 @@ function input1(instruction_code,line_cd,product_cd,instruction_qt){
 	<form name="instlist" method="get">
 		<input type="hidden" value="">
 		
-		<table id="vendortable" class="table table-striped">
+		<table id="vendortable" class="table table-striped"  style="width:1300px;">
 			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">
+				<tr style="text-align: center; font-size: 0.9rem;">
 					<th>수주코드</th>
-					<th>작업지시코드</th>
-					<th>품목코드</th>
-					<th>지시수량</th>
-					<th>소요량1</th>
-					<th>소요량2</th>
-					<th>라인코드</th>
-					<th>생산지시일자</th>
-					<th>작업지시상태</th>
+					<th style="width:150px;">작업지시코드</th>
+					<th style="width:100px;">품목코드</th>
+					<th style="width:150px;">지시수량</th>
+					<th style="width:150px;">소요량1</th>
+					<th style="width:150px;">소요량2</th>
+					<th style="width:100px;">라인코드</th>
+					<th style="width:150px;">생산지시일자</th>
+					<th style="width:200px;">작업지시상태</th>
 					<th>선택</th>
 				</tr>
 			</thead>
 			
 			<tbody>
 				<c:forEach var ="instructionDTO" items="${instructionList}">
+					<c:if test="${instructionDTO.instruction_state == 2}">
 					<tr><td>${instructionDTO.order_cd}</td>
 						<td>${instructionDTO.instruction_code}</td>
 						<td>${instructionDTO.product_cd}</td>
@@ -88,8 +89,13 @@ function input1(instruction_code,line_cd,product_cd,instruction_qt){
 						<td>"${instructionDTO.rpname2} : " + "${instructionDTO.consumption2}" </td>
 						<td>${instructionDTO.line_cd}</td>
 						<td>${instructionDTO.instruction_date}</td>
-						<td>${instructionDTO.instruction_state}</td>
+						<c:if test="${instructionDTO.instruction_state==2}">
+							<td>완료</td>
+						</c:if>
+<%-- 						<td>${instructionDTO.instruction_state}</td> --%>
 						<td><button class="button2" onClick="input1('${instructionDTO.instruction_code}','${instructionDTO.line_cd}','${instructionDTO.product_cd}','${instructionDTO.instruction_qt}');">선택</button></td>
+					</tr>
+					</c:if>
 				</c:forEach>
 
 			</tbody>

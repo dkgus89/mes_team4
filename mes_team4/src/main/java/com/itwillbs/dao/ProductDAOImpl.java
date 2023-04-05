@@ -101,6 +101,13 @@ public class ProductDAOImpl implements ProductDAO{
 		return sqlSession.selectList(namespace+".getProductforor");
 	}
 
+	@Override
+	public void insertStock(ProductDTO productDTO) {
+		System.out.println("productDAOImpl insertStock()");
+		
+		sqlSession.insert(namespace+".insertStock", productDTO);
+	}
+
 
 
 }
