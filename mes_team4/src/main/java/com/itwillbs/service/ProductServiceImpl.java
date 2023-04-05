@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.ProductDAO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
+import com.itwillbs.domain.StockDTO;
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -104,11 +105,19 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public void insertStock(ProductDTO productDTO) {
+	public String getStock_cd() {
+		System.out.println("ProductServiceImpl getStock_cd()");
+		
+		return productDAO.getStock_cd();
+	}
+
+	@Override
+	public void insertStock(StockDTO stockDTO) {
 		System.out.println("ProductServiceImpl insertStock()");
 		
-		productDAO.insertStock(productDTO);
+		productDAO.insertStock(stockDTO);
 	}
+
 
 
 }

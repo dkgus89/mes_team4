@@ -1,7 +1,11 @@
 package com.itwillbs.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
+import com.itwillbs.domain.StockDTO;
 import com.itwillbs.service.ProductService;
 
 @Controller
@@ -86,7 +91,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product/prodinsertPro", method = RequestMethod.POST)
-	public String prodinsertPro(HttpServletRequest request, ProductDTO productDTO) {
+	public String prodinsertPro(HttpServletRequest request, ProductDTO productDTO, StockDTO stockDTO) {
 		System.out.println("ProductController prodinsertPro()");
 				
 		if(productService.getProductCount2()==0) {
@@ -114,7 +119,54 @@ public class ProductController {
 			System.out.println(maxpc);
 		}
 		
-		productService.insertStock(productDTO);
+		// 재고코드 자동생성(PCHyyMMdd01) 및 저장 
+		// 기존 재고코드
+		String first_stock_cd = "기존재고코드";
+		String first_number_st = "기존스트링넘버";
+		int first_number = 0;
+		
+		if (productService.getStock_cd() != null) {
+			first_stock_cd = productService.getStock_cd();
+			first_number_st = first_stock_cd.substring(9);
+		}	
+		
+		// 새로운 재고코드
+		String new_stock_cd = "재고코드";
+		String new_number_st = "스트링넘버";
+		int new_number = 0;
+		
+		// 메뉴코드 설정
+		String menu_code = "SN";
+		
+		// 오늘날짜 설정
+		LocalDate now = LocalDate.now();
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
+	    String today = now.format(formatter);
+	    
+	    // 인덱스 설정
+	    if ( !(first_stock_cd.equals("기존재고코드")) && first_stock_cd.contains(today)) {
+	    	// 패턴&매치 정규식 이용 => 스트링넘버 앞 0 삭제(조건 : String length 2자 이상)
+	    	Pattern pattern = Pattern.compile("^0*([1-9][0-9]*)|0+$");
+			Matcher matcher = pattern.matcher(first_number_st);
+			
+			if (matcher.find()) { 
+			    first_number = Integer.parseInt(matcher.group(1)); 
+			} else {
+			    System.out.println("No match found.");
+			}
+			
+			// String 정규식 이용 => new_perform_cd 생성
+			new_number = first_number+1;
+			new_number_st = String.valueOf(new_number).format("%02d", new_number);
+			new_stock_cd = menu_code + today + new_number_st;
+			
+	    } else {
+	    	new_stock_cd = menu_code + today + "01";
+	    }
+	    stockDTO.setStock_cd(new_stock_cd);
+		
+		stockDTO.setProduct_cd_name(productDTO.getProduct_cd());
+		productService.insertStock(stockDTO);
 		productService.insertProduct(productDTO);
 //		주소줄 변경하면서 이동
 		return "redirect:/product/prodpage";

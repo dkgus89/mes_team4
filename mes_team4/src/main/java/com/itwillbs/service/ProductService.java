@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
+import com.itwillbs.domain.StockDTO;
 
 @Service
 public interface ProductService {
@@ -35,6 +36,9 @@ public interface ProductService {
 	
 	public List<ProductDTO> getProductList();
 
-	public void insertStock(ProductDTO productDTO);
+	public String getStock_cd();
+
+	public void insertStock(StockDTO stockDTO);
+
 	
 }
