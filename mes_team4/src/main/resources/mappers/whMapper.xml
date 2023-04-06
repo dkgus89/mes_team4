@@ -81,19 +81,13 @@
 	 	where wh_cd = #{wh_cd}                     
     </update>
     
-<!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
-<!-- 		select * from members  -->
-<!-- 		where id = #{id} and pass = #{pass}  -->
-<!-- 	</select> -->
-
-<!-- 	<select id="selectBlog" parameterType="int" resultType="Blog"> -->
-<!--         select * from Blog where id = #{id} -->
-<!--     </select> -->
+ 	<select id="getwhcheck" resultType="java.lang.Integer">
+    	select count(*)
+    	from(select wh_name
+    		 from warehouse
+    		 where wh_name = #{wh_name}) a
+    </select>
     
-<!--     <insert id=""> -->
-<!--     </insert> -->
-    
-   
     
     
     

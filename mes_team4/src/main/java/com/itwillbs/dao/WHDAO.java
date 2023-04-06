@@ -24,6 +24,10 @@ public interface WHDAO {
 	public WHDTO getwh(String wh_cd);
 
 	public void updatewh(WHDTO whDTO);
-	
+
+	public int getwhcheck(String wh_name);
+
+
+
 
 }

@@ -78,6 +78,7 @@ public class WHDAOImpl implements WHDAO{
 	@Override
 	public WHDTO getwh(String wh_cd) {
 		System.out.println("WHDAOImpl getwh()");
+		
 		return sqlSession.selectOne(namespace+".getwh",wh_cd);
 	}
 
@@ -87,6 +88,15 @@ public class WHDAOImpl implements WHDAO{
 		
 		sqlSession.update(namespace+".updatewh", whDTO);
 	}
+
+	@Override
+	public int getwhcheck(String wh_name) {
+		System.out.println("WHDAOImpl getwhcheck()");
+		
+		return sqlSession.selectOne(namespace+".getwhcheck",wh_name);
+	}
+
+	
 
 
 
