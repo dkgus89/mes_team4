@@ -146,23 +146,23 @@ public class StockController {
 		String stock_cd=request.getParameter("stock_cd");
 		StockDTO stockDTO=stockService.getStock(stock_cd);
 		
-		//메서드 호출
-		List<Map<String, Object>> whMap
-		     =stockService.getwhMap();
-		//model 담아서 이동
-		model.addAttribute("whMap", whMap);
-		
-		//메서드 호출
-		List<Map<String, Object>> recMap
-		     =stockService.getrecMap();
-		//model 담아서 이동
-		model.addAttribute("recMap", recMap);
-		
-		//메서드 호출
-		List<Map<String, Object>> prodMap
-		     =stockService.getprodMap();
-		//model 담아서 이동
-		model.addAttribute("prodMap", prodMap);	
+//		//메서드 호출
+//		List<Map<String, Object>> whMap
+//		     =stockService.getwhMap();
+//		//model 담아서 이동
+//		model.addAttribute("whMap", whMap);
+//		
+//		//메서드 호출
+//		List<Map<String, Object>> recMap
+//		     =stockService.getrecMap();
+//		//model 담아서 이동
+//		model.addAttribute("recMap", recMap);
+//		
+//		//메서드 호출
+//		List<Map<String, Object>> prodMap
+//		     =stockService.getprodMap();
+//		//model 담아서 이동
+//		model.addAttribute("prodMap", prodMap);	
 		
 		model.addAttribute("StockDTO", stockDTO);
 		
@@ -175,8 +175,6 @@ public class StockController {
 	
 	@RequestMapping(value = "/stock/stockupdatepro", method = RequestMethod.POST)
 	public String stockUpdatePro(StockDTO stockDTO) {
-		System.out.println(stockDTO.getStock_cd());
-		System.out.println(stockDTO.getStock_count());
 		
 		stockService.updateStock(stockDTO);
 		

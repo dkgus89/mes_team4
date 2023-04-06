@@ -80,7 +80,7 @@ function input1(instruction_code,line_cd,product_cd,instruction_qt){
 			
 			<tbody>
 				<c:forEach var ="instructionDTO" items="${instructionList}">
-					<c:if test="${instructionDTO.instruction_state == 2}">
+					<c:if test="${instructionDTO.instruction_state == '완료'}">
 					<tr><td>${instructionDTO.order_cd}</td>
 						<td>${instructionDTO.instruction_code}</td>
 						<td>${instructionDTO.product_cd}</td>
@@ -89,7 +89,7 @@ function input1(instruction_code,line_cd,product_cd,instruction_qt){
 						<td>"${instructionDTO.rpname2} : " + "${instructionDTO.consumption2}" </td>
 						<td>${instructionDTO.line_cd}</td>
 						<td>${instructionDTO.instruction_date}</td>
-						<c:if test="${instructionDTO.instruction_state==2}">
+						<c:if test="${instructionDTO.instruction_state== '완료'}">
 							<td>완료</td>
 						</c:if>
 <%-- 						<td>${instructionDTO.instruction_state}</td> --%>

@@ -49,7 +49,7 @@ $(document).ready(function(){ //Jquery 시작
 		var allData = { "fp": int_fp, "dp": int_dp, "qt": int_qt };
 		if(int_fp > int_qt){
 			alert("양품 수량이 지시수량을 초과했습니다.");
-			$('#fair_prod').val(fpv);
+			$('#fair_prod').val("");
 			$('#fair_prod').focus();
 			return false;
 		}
@@ -82,7 +82,7 @@ $(document).ready(function(){ //Jquery 시작
 		var allData = { "fp": int_fp, "dp": int_dp, "qt": int_qt };
 		if(int_dp > int_qt){
 			alert("불량품 수량이 지시수량을 초과했습니다.");
-			$('#defect_prod').val(dpv);
+			$('#defect_prod').val("");
 			$('#defect_prod').focus();
 			return false;
 		}

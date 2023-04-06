@@ -13,12 +13,11 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
-// function showPopup(){
-//     window.open("${pageContext.request.contextPath}/stock/stockinsert","stockinsert","width=1000, height=250, top=200, left=200");
-// }
-// function showPopup2(cd){
-//     window.open("${pageContext.request.contextPath}/stock/stockupdate?stock_cd="+cd,"stockupdate","width=1000, height=250, top=200, left=200");
-// }
+// 재고실사 페이지 팝업
+function showPopup2(cd){
+    window.open("${pageContext.request.contextPath}/stock/stockupdate?stock_cd="+cd,"stockupdate","width=1000, height=250, top=200, left=200");
+}
+
 // function chdelete(){
 // 	document.stocklist.action="${pageContext.request.contextPath}/stock/stockdelete";
 // 	document.stocklist.submit();
@@ -73,6 +72,7 @@
 	  
 	 </div><br>
 	 <br>
+<!-- 	 리스트 갯수 표시 -->
 	 <div>전체 ${pageDTO.count }건</div>
 	 
 	<form name="stocklist">
@@ -86,6 +86,7 @@
 					<th>제품코드</th>
 					<th>품목명</th>
 					<th>재고수량</th>
+					<th>재고실사</th>
 				</tr>
 			</thead>
 			
@@ -101,7 +102,7 @@
 				<td>${dto.product_cd_name}</td>
 				<td>${dto.product_name}</td>
 				<td>${dto.stock_count}</td>    			
-<%--     			<td><button class="button2" onclick="showPopup2('${dto.stock_cd}');">수정</button></td> --%>
+    			<td><button class="button2" onclick="showPopup2('${dto.stock_cd}');">재고실사</button></td>
     			</tr>
    			 
 				</c:forEach>
@@ -132,7 +133,6 @@
 	
 <!-- 본문HTML 입력 끝-->
 	</div>
-</div>
 
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="../main/Footer.jsp" />
