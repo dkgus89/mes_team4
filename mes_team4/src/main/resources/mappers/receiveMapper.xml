@@ -33,6 +33,11 @@
         select count(*) from receive_schedule 
     </select>
     
+    <select id="getPch_cd" resultType="com.itwillbs.domain.ReceiveDTO">
+        select * from receive_schedule
+        where rec_schedule_cd = #{rec_schedule_cd}  	
+    </select>
+    
     <!-- 	입고코드번호 -->
 	<select id="getCNum" resultType="java.lang.Integer">
 	select max(SUBSTR(rec_schedule_cd, 2)) from receive_schedule where rec_schedule_cd like 'C%'
@@ -48,6 +53,7 @@
         select * from receive_schedule
         where rec_schedule_cd = #{rec_schedule_cd}
     </select>
+
     
     <delete id="deleteReceive">
     	delete from receive_schedule

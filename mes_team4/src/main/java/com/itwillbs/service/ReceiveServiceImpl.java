@@ -33,7 +33,7 @@ public class ReceiveServiceImpl implements ReceiveService{
 		
 		receiveDAO.insertReceive(receiveDTO);
 	}
-
+	
 	@Override
 	public List<ReceiveDTO> getReceiveList(PageDTO pageDTO) {
 		
@@ -46,6 +46,12 @@ public class ReceiveServiceImpl implements ReceiveService{
 			return receiveDAO.getReciveList(pageDTO);
 	}
 
+	@Override
+	public ReceiveDTO getPch_cd(String pch) {
+		
+			return receiveDAO.getPch_cd(pch);
+	}
+	
 	@Override
 	public int getReceiveCount(PageDTO pageDTO) {
 		return receiveDAO.getReceiveCount(pageDTO);

@@ -31,6 +31,11 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 		return sqlSession.selectList(namespace+".getReceiveList", pageDTO);
 	}
 	@Override
+	public ReceiveDTO getPch_cd(String pch) {
+		
+		return sqlSession.selectOne(namespace+".getPch_cd", pch);
+	}
+	@Override
 	public int getReceiveCount(PageDTO pageDTO) {
 		
 		return sqlSession.selectOne(namespace+".getReceiveCount",pageDTO);
