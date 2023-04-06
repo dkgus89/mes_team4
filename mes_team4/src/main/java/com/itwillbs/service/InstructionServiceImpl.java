@@ -62,7 +62,6 @@ public class InstructionServiceImpl implements InstructionService{
 	@Override
 	public void instinsertpro(InstructionDTO instructionDTO) {
 		System.out.println("InstructionServiceImpl instinsertpro()");
-		instructionDTO.setInstruction_code("IS" + instructionDTO.getOrder_cd());
 		
 		instructionDAO.instinsertpro(instructionDTO);
 		

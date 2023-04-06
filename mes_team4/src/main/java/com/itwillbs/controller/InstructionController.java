@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -88,6 +89,15 @@ public class InstructionController {
 	public String instinsertpro(InstructionDTO instructionDTO) {
 		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
 		System.out.println("InstructionController instinsertpro()");
+		instructionDTO.setInstruction_code("IS" + instructionDTO.getOrder_cd());
+		
+		System.out.println("instruction_code :" + instructionDTO.getInstruction_code());
+		System.out.println("line_cd :" + instructionDTO.getLine_cd());
+		System.out.println("product_cd_name :" + instructionDTO.getProduct_cd_name());
+		System.out.println("order_cd :" + instructionDTO.getOrder_cd());
+		System.out.println("instruction_date :" + instructionDTO.getInstruction_date());
+		System.out.println("instruction_state :" + instructionDTO.getInstruction_state());
+		System.out.println("instruction_qt :" + instructionDTO.getInstruction_qt());
 		
 		// MemberService memberService = new MemberServiceImpl();
 		instructionService.instinsertpro(instructionDTO);
