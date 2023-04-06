@@ -83,10 +83,53 @@
 			
 		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 		});
+		
+		document.getElementById('today').valueAsDate = new Date();
+		
+		// 납품예정일 날짜 제한
+		$(document).on('change', '#dueday', function() {
+			var purchase_date = $('#today').val();
+		    var purchase_due = $(this).val();
+		    
+		    if (purchase_due < purchase_date) {
+		      alert("납품예정일을 " + purchase_date + " 날짜 이후로 선택해주세요.");
+		      $(this).val('');
+		    }
+		});
 	}); // j쿼리 끝
+	
 	function insertBtn(){
 		// submit 전 제한 사항
-		
+		var business_cd_check = document.getElementsByName("business_cd").length;
+		var rproduct_cd_name_check = document.getElementsByName("rproduct_cd_name").length;
+		var emp_no_check = document.getElementsByName("emp_no").length;
+		var purchase_date_check = document.getElementById("today").value.length;
+		var purchase_due_check = document.getElementById("dueday").value.length;
+		var purchase_count_check = document.getElementById("purchase_count").value.length;
+		if(business_cd_check == 0) {
+	    	alert("거래처를 선택해주세요.");
+	    	return false;
+	    }
+		if(rproduct_cd_name_check == 0) {
+	    	alert("원자재를 선택해주세요.");
+	    	return false;
+	    }
+		if(emp_no_check == 0) {
+	    	alert("사원번호을 선택해주세요.");
+	    	return false;
+	    }
+		if(purchase_date_check == 0) {
+	    	alert("발주일자를 입력해주세요.");
+	    	return false;
+	    }
+		if(purchase_due_check == 0) {
+	    	alert("납품예정일을 입력해주세요.");
+	    	return false;
+	    }
+		if(purchase_count_check == 0) {
+	    	alert("발주량을 입력해주세요.");
+	    	return false;
+	    }
 		// 내용 제한 넘길 시 submit 진행
 		var result = confirm("게시글을 등록하시겠습니까?");
 		if (result == true){    
@@ -133,9 +176,9 @@
 					<td><button type="button" id="bsListBtn">추가</button></td>
 					<td><button type="button" id="rpListBtn">추가</button></td>
 					<td><button type="button" id="emListBtn">추가</button></td>
-					<td><input type="date" name="purchase_date_st" value=""></td>
-					<td><input type="date" name="purchase_due_st" value=""></td>
-					<td><input type="text" name="purchase_count" value="" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
+					<td><input type="date" id="today" name="purchase_date_st" value="" readonly></td>
+					<td><input type="date" id="dueday" name="purchase_due_st" value=""></td>
+					<td><input type="text" id="purchase_count" name="purchase_count" value="" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
 				</tr>
 			</tbody>
 		</table>
