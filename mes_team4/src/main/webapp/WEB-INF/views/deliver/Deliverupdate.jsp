@@ -54,6 +54,7 @@
 					<th>품목코드</th>
 					<th>출하일자</th>
 					<th>출하량</th>
+					<th>출하담당자</th>
 					
 					
 				</tr>
@@ -91,6 +92,7 @@
 						</select> </td>
 					<td><input type="Date" name="deliver_date" value="${deliverDTO.deliver_date }"></td>
 					<td><input type="text" name="deliver_count" value="${deliverDTO.deliver_count }"></td>
+					<td><input type="text" name="deliver_emp_no" value="${deliverDTO.emp_no }"></td>
 				</tr>
 
 			</tbody>

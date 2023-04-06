@@ -26,7 +26,6 @@
 		<result column="product_cd_name"  property="product_cd_name"/>
 		<result column="rel_date"  property="rel_date"/>
 		<result column="rel_count"  property="rel_count"/>
-		<result column="rec_count"  property="rec_count"/>
 		<result column="remarks"  property="remarks"/>
 	</resultMap>
 

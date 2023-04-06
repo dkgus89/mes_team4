@@ -260,7 +260,7 @@ public class DeliverController {
 			model.addAttribute("instMap2", instMap2);
 			
 			
-			// 수주코드 갖고오기 메소드호출
+			// 품목코드 갖고오기 메소드호출
 			List<Map<String,Object >> instMap3= deliverService.getInstMap3();
 			model.addAttribute("instMap3", instMap3);
 			
