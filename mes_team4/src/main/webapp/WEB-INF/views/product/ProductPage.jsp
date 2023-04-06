@@ -16,26 +16,55 @@
 function showPopup() {
 	window.open("prodinsert","추가팝업","width=1400, height=300, top=200, left=200");
 }
-function chdelete() {
-	document.productList.action="${pageContext.request.contextPath}/product/proddelete";
-	document.productList.submit();
-}
 function updatePopup(cd) {
 	 window.open("${pageContext.request.contextPath}/product/produpdate?product_cd_name="+cd,"produpdate","width=1400, height=300, top=200, left=200");
 }
+
+//체크
 function allCheck(){
-	
 	var ac = document.productList.allcheck;
 	var rc = document.productList.rowcheck;
 	if(ac.checked == true){
 		for(i=0; i<rc.length; i++){
 			rc[i].checked=true;}
-		rc.checked=true;
 	}else {
 		for(i=0;i<rc.length;i++){
 			rc[i].checked=false;}
-		rc.checked=false;
 	} 
+}
+		
+//	삭제
+function deleteValue(){
+	var url = "/product/proddelete"; // controller로 보내고자 하는 url
+	var valueArr = new Array();
+	var productList = $("input[name='rowcheck']");
+	for(var i=0; i<productList.length; i++){
+		if(productList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
+			valueArr.push(productList[i].value);
+		}
+	}
+	if(valueArr.length==0){
+		alert("삭제할 글을 선택하여주세요");
+	} else {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if(chk){
+		$.ajax({
+			url :'${pageContext.request.contextPath}/product/proddelete', 		//전송url
+			type : 'GET',	// post방식 ,,나는 겟하니까 돌아간다!!...
+			traditional : true,
+			data : {
+				valueArr : valueArr // 보내고자하는 data 변수설정	
+			},
+			success : function(jdata){
+				if(jdata = 1){
+					alert("삭제하였습니다");
+					location.replace("${pageContext.request.contextPath}/product/prodpage")
+				} else {alert("삭제실패");}
+			}
+		});
+	}else {
+		alert("삭제 취소되었습니다.");}
+	}
 }
 </script>
 <!-- 자바스크립트 입력 끝-->
@@ -62,7 +91,7 @@ function allCheck(){
 	
 	<div class="wrap2">
 	  <button class="button2" onclick="showPopup();">추가</button>
-	  <button class="button2" onclick="chdelete();">삭제</button>
+	  <button class="button2" onclick="deleteValue();">삭제</button>
 	 </div><br>
 	 <br>
 	 <div>전체 ${pageDTO.count }건</div>
@@ -110,6 +139,7 @@ function allCheck(){
 	
 	</form>
 	
+<div id="pagingControl">		
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 <a href="${pageContext.request.contextPath}/product/prodpage?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">Prev</a>
 </c:if>
@@ -121,9 +151,9 @@ function allCheck(){
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 <a href="${pageContext.request.contextPath}/product/prodpage?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">Next</a>
 </c:if>
-
+</div>
 <!-- 본문HTML 입력 끝-->
-	</div>
+	
 </div>
 
 <!-- 푸터 들어가는 곳 -->

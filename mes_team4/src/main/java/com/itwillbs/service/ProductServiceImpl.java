@@ -21,11 +21,30 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public void insertProduct(ProductDTO productDTO) {
 		System.out.println("ProductServiceImpl insertProduct()");
-//		if(productDAO.getMaxNum()==null) {
-//		productDTO.setproduct_cd("1");
-//	}else {
-//		productDTO.setproduct_cd(productDAO.getMaxNum()+"1");
-//	}
+		
+//		만약 완제품이면 PP넘 찾고, 원자재이면 MM넘 찾음 
+		if(productDTO.getProduct_dv().equals("완제품")) {
+			System.out.println(productDTO.getProduct_dv());
+			
+			if(productDAO.getPPNum()==null) {
+				//수주거래처 없음
+				productDTO.setProduct_cd("PP101");
+			}else{
+				//수주 거래처 있음 => max(num)+1
+				System.out.println("pnum 출력 : "+productDAO.getPPNum());
+				int num = productDAO.getPPNum()+1;
+				String str = "PP" + num;
+				productDTO.setProduct_cd(str);
+			}
+		} else if(productDTO.getProduct_dv().equals("원자재")) {
+			if(productDAO.getMMNum() == null) {
+				productDTO.setProduct_cd("MM101");
+			}else{
+				int num = productDAO.getMMNum()+1;
+				String str = "MM" + num;
+				productDTO.setProduct_cd(str);
+			}
+		}
 		productDAO.insertProduct(productDTO);
 	}
 	

@@ -120,7 +120,14 @@
 		order by product_cd asc 
 	</select>
 
-    
+    <select id="getPPNum" resultType="java.lang.Integer">
+	select max(SUBSTR(product_cd, 3)) from product where product_cd like 'PP%'
+	</select>
+
+	<select id="getMMNum" resultType="java.lang.Integer"> 
+	select max(SUBSTR(product_cd, 3)) from product where product_cd like 'MM%'
+	</select>
+	
 </mapper>
 
 

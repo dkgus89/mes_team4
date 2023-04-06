@@ -39,6 +39,10 @@ public interface ProductDAO {
 
 	public void insertStock(StockDTO stockDTO);
 
+	public Integer getPPNum();
+
+	public Integer getMMNum();
+
 
 
 }

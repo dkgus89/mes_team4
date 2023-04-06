@@ -93,31 +93,7 @@ public class ProductController {
 	@RequestMapping(value = "/product/prodinsertPro", method = RequestMethod.POST)
 	public String prodinsertPro(HttpServletRequest request, ProductDTO productDTO, StockDTO stockDTO) {
 		System.out.println("ProductController prodinsertPro()");
-				
-		if(productService.getProductCount2()==0) {
-			productDTO.setProduct_cd("P0001");
-		}else {
-			String maxpc=productService.getProduct_cd();
-			System.out.println(maxpc);
-			maxpc=maxpc.substring(3); 
-			int tpc=Integer.parseInt(maxpc);
-			tpc=tpc+1;
-			maxpc=String.valueOf(tpc);
-			if(maxpc.length()==1) {
-			maxpc="000".concat(maxpc);
-			maxpc="P".concat(maxpc);
-			}else if(maxpc.length()==2) {
-				maxpc="00".concat(maxpc);
-				maxpc="P".concat(maxpc);
-			}else if(maxpc.length()==3) {
-				maxpc="0".concat(maxpc);
-				maxpc="P".concat(maxpc);
-			}else if(maxpc.length()==4) {
-				maxpc="P".concat(maxpc);
-			}
-			productDTO.setProduct_cd(maxpc);
-			System.out.println(maxpc);
-		}
+
 		
 		// 재고코드 자동생성(PCHyyMMdd01) 및 저장 
 		// 기존 재고코드
@@ -175,14 +151,13 @@ public class ProductController {
 	
 	@RequestMapping(value = "/product/proddelete", method = RequestMethod.GET)
 	public String proddelete(HttpServletRequest request) {
-		String chbox[]=request.getParameterValues("chbox");
-		String product_cd_name = null;
-		if(chbox!=null){
-			  for(int i=0;i<chbox.length;i++){
-				  product_cd_name=chbox[i];
-				productService.deleteProduct(product_cd_name);
-			  }
-	       }			
+		System.out.println("ReceiveController recdelete()");
+		
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+			productService.deleteProduct(ajaxMsg[i]);
+		}
 		// 주소변경 하면서 이동
 		return "redirect:/product/prodpage";
 	}

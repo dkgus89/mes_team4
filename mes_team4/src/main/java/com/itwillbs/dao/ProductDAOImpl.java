@@ -116,6 +116,20 @@ public class ProductDAOImpl implements ProductDAO{
 		sqlSession.insert(namespace+".insertStock", stockDTO);
 	}
 
+	@Override
+	public Integer getPPNum() {
+		System.out.println("productDAOImpl getPPNum()");
+		
+		return sqlSession.selectOne(namespace+".getPPNum");
+	}
+
+	@Override
+	public Integer getMMNum() {
+		System.out.println("productDAOImpl getMMNum()");
+		
+		return sqlSession.selectOne(namespace+".getMMNum");
+	}
+
 
 
 }
