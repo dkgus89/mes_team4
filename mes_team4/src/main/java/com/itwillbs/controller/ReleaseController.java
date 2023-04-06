@@ -148,6 +148,9 @@ public class ReleaseController {
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
 		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+			relService.deleterel(ajaxMsg[i]);
+		}
 		
 		for(int i=0; i<size; i++) {
 		// 삭제시 재고현황에 적용할 재소수량 stockDTO에 저장
@@ -160,10 +163,6 @@ public class ReleaseController {
 		// 재고현황에 재고수량 적용 메서드 호출
 		receiveService.updateStockcount(stockDTO);
 		}		
-		
-		for(int i=0; i<size; i++) {
-			relService.deleterel(ajaxMsg[i]);
-		}
 		
 		return "redirect:/rel/relpage";
 	}
