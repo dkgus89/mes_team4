@@ -11,6 +11,8 @@ public interface ReceiveDAO {
 	public void insertReceive(ReceiveDTO receiveDTO);
 
 	public List<ReceiveDTO> getReciveList(PageDTO pageDTO);
+	
+	public ReceiveDTO getPch_cd(String pch);
 
 	public int getReceiveCount(PageDTO pageDTO);
 

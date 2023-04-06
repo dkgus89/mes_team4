@@ -11,6 +11,8 @@ public interface ReceiveService {
 	public void insertReceive(ReceiveDTO receiveDTO);
 
 	public List<ReceiveDTO> getReceiveList(PageDTO pageDTO);
+	
+	public ReceiveDTO getPch_cd(String pch);
 
 	public int getReceiveCount(PageDTO pageDTO);
 

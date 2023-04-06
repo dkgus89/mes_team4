@@ -345,7 +345,7 @@ public class ReceiveController {
 	}
 	
 	@RequestMapping(value = "/receive/recdelete", method = RequestMethod.GET)
-	public String recdelete(HttpServletRequest request, StockDTO stockDTO) {
+	public String recdelete(HttpServletRequest request, ReceiveDTO receiveDTO, StockDTO stockDTO, PurchaseDTO purchaseDTO) {
 		System.out.println("ReceiveController recdelete()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
@@ -365,6 +365,18 @@ public class ReceiveController {
 		
 		for(int i=0; i<size; i++) {
 			receiveService.deleteReceive(ajaxMsg[i]);
+		}
+		
+		// 발주관리 완료 -> 미완료 변경
+		for(int i=0; i<size; i++) {
+			receiveDTO = receiveService.getPch_cd(ajaxMsg[i]);
+			String[] pch = new String[size];
+			pch[i] = receiveDTO.getPchor_cd();
+			if (pch[i].contains("PCH")) {
+				purchaseDTO = purchaseService.getPurchaseDTO(pch[i]);
+				purchaseDTO.setPurchase_com("완료");
+				purchaseService.updatePurchase(purchaseDTO);
+			}
 		}
 		
 		return "redirect:/receive/recpage";
