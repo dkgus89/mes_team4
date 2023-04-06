@@ -27,12 +27,13 @@
 		$(document).on('click', '#resetBtn', function() {
 			var cpListBtn = $('<button>').attr({
 			    'type': 'button',
-			    'id': 'cpListBtn'
+			    'id': 'cpListBtn',
 			}).text('추가');
-			 var rpListBtn = $('<button>').attr({
+			var rpListBtn = $('<button>').attr({
 				    'type': 'button',
-				    'id': 'rpListBtn'
-				}).text('추가');
+				    'id': 'rpListBtn',
+				    'name': 'rpListBtn'
+			}).text('추가');
 			 
 			var cpTableTr = $('#cproductBody tr');
 			cpTableTr.find('td:eq(0)').empty();
@@ -44,6 +45,7 @@
 			rpTableTr.find('td:eq(1)').empty();
 			rpTableTr.find('td:eq(0)').append(rpListBtn);
 			rpTableTr.find('input').val('');
+			rpTableTr.find('select').val('');
 		});
 		
 		// 원자재 행 추가
@@ -101,7 +103,33 @@
 	}); // j쿼리 끝
 	function insertBtn(){
 		// submit 전 제한 사항
-		
+		var cproduct_check = document.getElementsByName("cproduct_cd_name").length;
+		var rproduct_check = document.getElementsByName("rproduct_cd_name_arr").length;
+		var rpListBtn_check = document.getElementsByName("rpListBtn").length;
+		var consumption = document.getElementById("consumption_arr").value.length;
+		var consumption_unit = document.getElementById("select-option").value.length;
+		console.log(rpListBtn_check);
+		console.log(rproduct_check);
+		if(cproduct_check == 0) {
+	    	alert("완제품을 선택해주세요.");
+	    	return false;
+	    }
+		if(rproduct_check == 0) {
+	    	alert("원자재를 선택해주세요.");
+	    	return false;
+	    }
+		if(rpListBtn_check > rproduct_check) {
+			alert("원자재를 선택해주세요.");
+			return false;
+		}
+		if(consumption < 1) {
+	    	alert("소요량을 입력해주세요.");
+	    	return false;
+	    }
+		if(consumption_unit < 1) {
+	    	alert("단위를 선택해주세요.");
+	    	return false;
+	    }
 		// 내용 제한 넘길 시 submit 진행
 		var result = confirm("게시글을 등록하시겠습니까?");
 		if (result == true){    
@@ -161,11 +189,11 @@
 			
 			<tbody id="rproductBody">
 				<tr>
-					<td><button type="button" id="rpListBtn">추가</button></td>
+					<td><button type="button" id="rpListBtn" name="rpListBtn">추가</button></td>
 					<td></td>
-					<td><input type="text" name="consumption_arr" value="" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
+					<td><input type="text" id="consumption_arr" name="consumption_arr" value="" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
 					<td><input type="hidden" id="consumption_unit_arr" name="consumption_unit_arr" value="">
-					<select class="select-option">
+					<select id="select-option" class="select-option">
 						<option value="">단위를 선택하세요.</option>
 						<c:forEach var="unit" items="${unit}">
 							<option value="${unit}">${unit}</option>

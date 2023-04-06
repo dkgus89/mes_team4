@@ -40,6 +40,7 @@
 			pcTableTr.find('td:eq(0)').append(bsListBtn);
 			pcTableTr.find('td:eq(1)').append(rpListBtn);
 			pcTableTr.find('td:eq(2)').append(emListBtn);
+			pcTableTr.find('input').val('');
 
 		});
 		

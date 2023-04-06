@@ -291,3 +291,12 @@
        	background-color: lightgray;
         cursor:pointer;
      }
+     
+    input[type="text"] {
+	padding: 5px;
+	}
+	
+	select {
+	padding: 5px;
+	}
+	

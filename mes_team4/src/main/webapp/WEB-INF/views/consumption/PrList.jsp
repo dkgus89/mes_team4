@@ -55,8 +55,13 @@
 								    'name': 'cproduct_name',
 								    'readonly': true
 								}).val(tdArr[1]);
+								var cpListBtn = $('<button>').attr({
+								    'type': 'button',
+								    'id': 'cpListBtn',							    
+								}).text('추가');
 								
 								parentWindowTr.find('td:eq(0)').append(input0);
+								parentWindowTr.find('td:eq(0)').append(cpListBtn);
 								parentWindowTr.find('td:eq(1)').append(input1);
 
 								window.close();
@@ -98,8 +103,14 @@
 						    'name': 'rproduct_name_arr',
 						    'readonly': true
 						}).val(tdArr[1]);
+						var rpListBtn = $('<button>').attr({
+						    'type': 'button',
+						    'id': 'rpListBtn',
+						    'name': 'rpListBtn'
+						}).text('추가');
 						
 						parentWindowTr.find('td:eq(0)').append(input0);
+						parentWindowTr.find('td:eq(0)').append(rpListBtn);
 						parentWindowTr.find('td:eq(1)').append(input1);
 						
 						window.close();

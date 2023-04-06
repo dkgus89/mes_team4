@@ -125,7 +125,6 @@
 					<th>발주일자</th>
 					<th>납품예정일</th>
 					<th>발주량</th>
-					<th>진행상황</th>
 				</tr>
 			</thead>
 			
@@ -137,7 +136,6 @@
 					<td><input type="date" name="purchase_date_st" value="${purchaseDTO.purchase_date }"></td>
 					<td><input type="date" name="purchase_due_st" value="${purchaseDTO.purchase_due }"></td>
 					<td><input type="text" name="purchase_count" value="${purchaseDTO.purchase_count }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
-					<td><input type="text" name="purchase_com" value="${purchaseDTO.purchase_com }"></td>
 				</tr>
 			</tbody>
 		</table>
