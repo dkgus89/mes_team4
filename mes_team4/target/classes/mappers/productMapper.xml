@@ -64,7 +64,7 @@
         </if>
         </if>
         
-        order by product_cd  
+        order by product_dv  
         limit #{startRow}, #{pageSize}   	
     </select>
     

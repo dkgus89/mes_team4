@@ -111,7 +111,6 @@ function deleteValue(){
 					<th>제품코드</th>
 					<th>입고수량</th>
 					<th>입고일자</th>
-					<th>진행상태</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -129,7 +128,6 @@ function deleteValue(){
 					<td>${dto.product_cd_name }</td>
 					<td>${dto.rec_count}</td>
 					<td>${dto.rec_date }</td>
-					<td>${dto.in_complete }</td>
 					<td><input type="button" value="수정" onclick="updatePopup('${dto.rec_schedule_cd}');"></td>
 				</tr>
 				

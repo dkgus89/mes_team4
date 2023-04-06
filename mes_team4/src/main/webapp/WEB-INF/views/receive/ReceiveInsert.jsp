@@ -100,7 +100,6 @@ function rst(){
 					<th>제품코드</th>
 					<th>수량</th>
 					<th>입고일자</th>
-					<th>진행상태</th>
 				</tr>
 			</thead>
 			
@@ -111,13 +110,6 @@ function rst(){
 					<td><input type="text" name="product_cd_name" id="product_cd_name"></td>
 					<td><input type="text" name="rec_count" id="rec_count"></td>
 					<td><input type="date" name="rec_date" id="rec_date" value=""></td>
-					<td>
-					<select  name="in_complete" id="in_complete">
-						<option value="">선택해주세요</option>
-						<option value="미완료">미완료</option>
-						<option value="완료">완료</option>
-					</select>
-					</td>
 				</tr>
 
 			</tbody>

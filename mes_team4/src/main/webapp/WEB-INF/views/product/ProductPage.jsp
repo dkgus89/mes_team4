@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="../main/Header.jsp" />
 <!-- 헤더파일들어가는 곳 -->
@@ -10,7 +10,8 @@
 <!-- 본문적용 CSS들어가는 곳 -->
 
 <!-- 본문적용 CSS들어가는 곳 -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <!-- 자바스크립트 입력 시작-->
 <script>
 function showPopup() {
@@ -76,24 +77,13 @@ function deleteValue(){
 
 	<h2>품목정보관리</h2><br>
 	
-	<div class="search">
-		<form action="${pageContext.request.contextPath}/product/prodpage" method="get" >
-			<select name="select" class="button2">
-			<option value="" style="text-align:center">선택</option>
-				<option value="product_dv">제품구분</option>
-				<option value="product_cd_name">제품코드</option>
-				<option value="product_name">제품명</option>
-			</select>
-			<input type="text" name="search" class="button2" style="width:200px">
-			<input type="submit" class="button2" value="검색">
-		</form>
-	</div>
+
 	
 	<div class="wrap2">
 	  <button class="button2" onclick="showPopup();">추가</button>
 	  <button class="button2" onclick="deleteValue();">삭제</button>
 	 </div><br>
-	 <br>
+
 	 <div>전체 ${pageDTO.count }건</div>
 	 
 	<form name="productList">
@@ -105,7 +95,7 @@ function deleteValue(){
 					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
 					<th></th>
 					<th>품목코드</th>
-					<th>제품구분</th>
+					<th>품목구분</th>
 					<th>제품코드</th>
 					<th>제품명</th>
 					<th>거래처코드</th>
@@ -138,7 +128,19 @@ function deleteValue(){
 		</table>
 	
 	</form>
-	
+	<br>
+		<div class="search" style="text-align:right;">
+		<form action="${pageContext.request.contextPath}/product/prodpage" method="get" >
+			<select name="select" class="button2">
+			<option value="" style="text-align:center">선택</option>
+				<option value="product_dv">제품구분</option>
+				<option value="product_cd_name">제품코드</option>
+				<option value="product_name">제품명</option>
+			</select>
+			<input type="text" name="search" class="input_box" style="width:300px">
+			<input type="submit" class="button2" value="검색">
+		</form>
+	</div>
 <div id="pagingControl">		
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 <a href="${pageContext.request.contextPath}/product/prodpage?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">Prev</a>
