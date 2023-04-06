@@ -14,10 +14,12 @@ import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
+import com.itwillbs.domain.StockDTO;
 import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.BusinessService;
 import com.itwillbs.service.OrderService;
 import com.itwillbs.service.ProductService;
+import com.itwillbs.service.ReceiveService;
 import com.itwillbs.service.SystemService;
 
 @Controller
@@ -34,6 +36,9 @@ public class OrderController {
 	
 	@Inject
 	private SystemService systemService;
+	
+	@Inject
+	private ReceiveService receiveService;
 	
 	@RequestMapping(value = "/order/ordermain", method = RequestMethod.GET)
 	public String ordermain(HttpServletRequest request, Model model) {
@@ -166,11 +171,26 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/order/delete")
-	public String delete(HttpServletRequest request) {
+	public String delete(HttpServletRequest request, StockDTO stockDTO) {
 		System.out.println("OrderController delete()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
 		int size = ajaxMsg.length;
+		
+		for(int i=0; i<size; i++) {
+			// 삭제시 재고현황에 적용할 재소수량 stockDTO에 저장
+				String order_cd=ajaxMsg[i];
+				String product_cd_name =orderService.getProduct_cd_name(order_cd);
+				int sumrelcount=orderService.getSumRelCount(order_cd);
+				int bforcount=orderService.getbfOr_count(order_cd);
+				int Stock_count=receiveService.getStock_count(product_cd_name);
+				stockDTO.setStock_count((Stock_count-bforcount)+sumrelcount);
+				stockDTO.setProduct_cd_name(product_cd_name);
+			// 재고현황에 재고수량 적용 메서드 호출
+			receiveService.updateStockcount(stockDTO);
+		}
+		
+		
 		for(int i=0; i<size; i++) {
 			orderService.deleteOrder(ajaxMsg[i]);
 		}
@@ -200,12 +220,21 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/order/orderupdatepro", method = RequestMethod.POST)
-	public String updatePro(OrderDTO orderDTO, HttpServletRequest request) {
+	public String updatePro(OrderDTO orderDTO, StockDTO stockDTO, HttpServletRequest request) {
 		System.out.println("OrderController orderupdatePro()");
 		
 		String cd = request.getParameter("cd");
 		orderDTO.setOrder_cd(cd);
 		System.out.println("order cd값 : "+ orderDTO.getOrder_cd());
+		
+		// 수정시 재고현황에 적용할 재소수량 stockDTO에 저장
+		String product_cd_name =orderService.getProduct_cd_name(cd);
+		int bforcount=orderService.getbfOr_count(cd);
+		int Stock_count=receiveService.getStock_count(product_cd_name);
+		stockDTO.setStock_count((Stock_count-bforcount)+orderDTO.getOrder_count());
+		stockDTO.setProduct_cd_name(product_cd_name);
+		// 재고현황에 재고수량 적용 메서드 호출
+		receiveService.updateStockcount(stockDTO);		
 
 		orderService.updateOrder(orderDTO);
 

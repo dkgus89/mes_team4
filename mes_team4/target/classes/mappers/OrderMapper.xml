@@ -78,5 +78,23 @@
    	    </where>
     </select>
     
+    <select id="getProduct_cd_name" resultType="java.lang.String">
+  	 	select product_cd_name
+  		from order_management
+  		where order_cd = #{order_cd}
+	</select>
+	
+	<select id="getSumRelCount" resultType="java.lang.Integer">
+		select sum(rel_count)
+		from release_schedule
+		where pchor_cd = #{order_cd}
+	</select>
+	
+	<select id="getbfOr_count" resultType="java.lang.Integer">
+		select order_count
+		from order_management
+		where order_cd = #{order_cd}
+	</select>
+    
     
 </mapper>
