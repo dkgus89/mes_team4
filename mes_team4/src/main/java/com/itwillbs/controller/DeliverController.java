@@ -58,7 +58,7 @@ public class DeliverController {
 			
 		@RequestMapping(value = "/deliver/list", method = RequestMethod.GET)
 		public String list(HttpServletRequest request, Model model) {
-			System.out.println("리스트"+"/deliver/list()");
+			System.out.println("리스트"+"/deliver/list");
 			
 			//검색어 가져오기
 			String search = request.getParameter("search");

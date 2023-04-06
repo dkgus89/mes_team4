@@ -36,7 +36,7 @@
 	<h2 class="inserttitle">출하 수정 페이지</h2><br>
 	<div class="wrap2">
 	  <button class="button2" onclick="sub()">등록</button>
-	  <button class="button2" onclick="ret()">입력값리셋</button>
+<!-- 	  <button class="button2" onclick="ret()">입력값리셋</button> -->
 	  
 	 </div><br>
 	 <br>
@@ -71,7 +71,7 @@
 <%-- 					<td><input type="text" name="product_cd" value="${deliverDTO.product_cd }"></td> --%>
 						<td><select name="business_cd"> 
 							<c:forEach var="dto" items="${instMap }">
-								<option value="${dto.business_cd}" >${dto.business_cd} </option>
+								<option value="${dto.business_cd}">${dto.business_cd} </option>
 							 </c:forEach>	
 						</select></td>		
 							
@@ -87,7 +87,7 @@
 					
 					<td><select name="product_cd_name">
 						<c:forEach var="dto" items="${instMap3 }">
-							<option value="${dto.product_cd_name }" > ${dto.product_cd_name } </option>
+							<option value="${dto.product_cd_name}" > ${dto.product_cd_name} </option>
 						</c:forEach>
 						</select> </td>
 					<td><input type="Date" name="deliver_date" value="${deliverDTO.deliver_date }"></td>
