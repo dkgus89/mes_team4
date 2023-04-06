@@ -50,7 +50,7 @@ function deleteValue(){
 		if(chk){
 		$.ajax({
 			url :'${pageContext.request.contextPath}/receive/recdelete', 		//전송url
-			type : 'POST',	// post방식 ,,나는 겟하니까 돌아간다!!...
+			type : 'GET',	// post방식 ,,나는 겟하니까 돌아간다!!...
 			traditional : true,
 			data : {
 				valueArr : valueArr // 보내고자하는 data 변수설정	

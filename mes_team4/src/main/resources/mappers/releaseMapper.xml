@@ -107,8 +107,20 @@
 			order by rel_schedule_cd desc
 			limit 1
 		</select>
+		
+<!-- 		재고 현황 관련 -->
+		
+		<select id="getbfRel_count" resultType="java.lang.Integer">
+			select rel_count
+			from release_schedule
+			where product_cd_name = #{product_cd_name}
+		</select>
     
-   
+   		<select id="getProduct_cd_name2" resultType="java.lang.String">
+			select product_cd_name
+			from release_schedule
+			where rel_schedule_cd = #{rel_schedule_cd}
+		</select>
     
     
     
