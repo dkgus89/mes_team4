@@ -14,9 +14,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-function DeliverUpdate(business_cd,order_cd,product_cd){
+function DeliverUpdate(business_cd,order_cd,product_cd_name){
 	
-	opener.setChildValue(business_cd,order_cd,product_cd);
+	opener.setChildValue(business_cd,order_cd,product_cd_name);
 
 	window.close();
 	
@@ -66,7 +66,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd){
 <%-- 			<td><input type="checkbox" id="checkbox" name="rowcheck" value="${orderDTO.order_cd}"></td> --%>
 			<td>${orderDTO.order_cd}</td>
 			<td>${orderDTO.business_cd}</td>
-			<td>${orderDTO.product_cd}</td>
+			<td>${orderDTO.product_cd_name}</td>
 			<td>${orderDTO.order_count}</td>
 			<td>${orderDTO.order_date}</td>
 			<td>${orderDTO.deliver_date}</td>
@@ -77,7 +77,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd){
 			<c:when test="${orderDTO.con eq '생산완료'}"><td><span style="color:blue">${orderDTO.con}</span></td></c:when>
 			<c:otherwise> ... </c:otherwise>
 			</c:choose>
-    			<td><button class="button2" onclick="DeliverUpdate('${orderDTO.business_cd}','${orderDTO.order_cd}','${orderDTO.product_cd}');">선택</button></td>
+    			<td><button class="button2" onclick="DeliverUpdate('${orderDTO.business_cd}','${orderDTO.order_cd}','${orderDTO.product_cd_name}');">선택</button></td>
     			
    			 
 				</c:forEach>
