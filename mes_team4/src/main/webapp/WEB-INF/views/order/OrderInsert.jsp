@@ -22,6 +22,29 @@
 	});
 	
     function goSubmit(){
+    	
+    	if($("select[name=business_cd]").val() == ""){
+    	    alert("거래처를 선택하세요.");
+    	    $("#select1").focus();
+    	    return false;
+    	}
+    	if($("select[name=product_cd_name]").val() == ""){
+    	    alert("제품을 선택하세요.");
+    	    $("#select2").focus();
+    	    return false;
+    	}
+    	if($('.order_count').val() == ""){
+    	    alert("주문량을 입력하세요.");
+    	    $('.order_count').focus();
+    	    return false;
+    	}
+    	if($("select[name=emp_no]").val() == ""){
+    	    alert("거래처를 선택하세요.");
+    	    $("#select3").focus();
+    	    return false;
+    	}
+    
+    	
  
     	if($('.order_date').val() > $('.deliver_date').val()){
     		alert("출하예정일을 주문날짜 이후로 설정해주세요.");
@@ -79,18 +102,18 @@
 					
 					</td>
 					<td>
-					<select id="select1"  name="product_cd_name" >
+					<select id="select2"  name="product_cd_name" >
 						<option value="">코드 : 제품명</option>
 					<c:forEach var="productList" items="${productList}">
 						<option value="${productList.product_cd_name}"  name="${productList.product_cd_name}">${productList.product_cd_name} : ${productList.product_name}</option>
 					</c:forEach>
 					</select>
 					</td>
-					<td><input type="text" name="order_count" size=8;></td>	
+					<td><input type="text" name="order_count" size=8; class="order_count"></td>	
 					<td><input type="date" name="order_date" class="order_date" id="today"></td>
 					<td><input type="date" name="deliver_date" class="deliver_date"></td>
 					<td>
-					<select id="select1"  name="emp_no" >
+					<select id="select3"  name="emp_no" >
 						<option value="">담당직원</option>
 					<c:forEach var="systemList" items="${systemList}">
 						<option value="${systemList.emp_no}"  name="${systemList.emp_no}">${systemList.emp_no} : ${systemList.emp_name}</option>

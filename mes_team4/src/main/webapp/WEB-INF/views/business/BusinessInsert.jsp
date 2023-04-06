@@ -75,6 +75,53 @@
     	}
     
     function goSubmit(){
+    	
+    	
+    	if($("select[name=business_dv]").val() == ""){
+    	    alert("수주/발주 구분을 선택하세요.");
+    	    $("#select1").focus();
+    	    return false;
+    	}
+    	
+    	if($("select[name=business_type]").val() == ""){
+    	    alert("업종유형을 선택하세요.");
+    	    $("#select2").focus();
+    	    return false;
+    	}
+    	
+    	if($('.business_name').val() == ""){
+    	    alert("거래처명을 입력하세요.");
+    	    $('.business_name').focus();
+    	    return false;
+    	}
+    	if($('.business_ceo').val() == ""){
+    	    alert("대표명을 입력하세요.");
+    	    $('.business_ceo').focus();
+    	    return false;
+    	}
+    	if($('.business_tel').val() == ""){
+    	    alert("전화번호를 입력하세요.");
+    	    $('.business_tel').focus();
+    	    return false;
+    	}
+    	if($('.business_email').val() == ""){
+    	    alert("이메일을 입력하세요.");
+    	    $('.business_email').focus();
+    	    return false;
+    	}
+    	if($('.zonecode').val() == ""){
+    	    alert("우편번호를 입력하세요.");
+    	    $('.zonecode').focus();
+    	    return false;
+    	}
+    	if($('.address').val() == ""){
+    	    alert("주소를 입력하세요.");
+    	    $('.address').focus();
+    	    return false;
+    	}
+    	
+    	
+    	
     	opener.name="parentPage";
     	document.insertform.target="parentPage";
     	document.insertform.action="${pageContext.request.contextPath}/business/businessinsertpro";
@@ -95,7 +142,7 @@
 	<form  name="insertform" method="post" >
 	
 	<div class="wrap2">
-		<input type="submit" class="button2" value="등록" onclick="goSubmit()">
+		<input type="submit" class="button2" value="등록" onclick="return goSubmit(this)">
 		<input type="reset" class="button2" value="초기화">
 	 </div><br>
 	 <br>
@@ -115,7 +162,7 @@
 			<tbody>
 				<tr>
 					<td>
-					<select id="select1"  name="business_dv" onchange="itemChange()">
+					<select id="select1"  name="business_dv" onchange="itemChange()" >
 						<option value="">선택해주세요</option>
 						<option value="수주">수주</option>
 						<option value="발주">발주</option>
@@ -128,8 +175,8 @@
 					</select>
 					</td>
 					
-					<td><input type="text" name="business_name"></td>
-					<td><input type="text" name="business_ceo"></td>	
+					<td><input type="text" name="business_name" class="business_name"></td>
+					<td><input type="text" name="business_ceo" class="business_ceo"></td>	
 				</tr>
 			</tbody>
 			<thead>
@@ -143,8 +190,8 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="text" name="business_tel"></td>
-					<td><input type="text" name="business_email"></td>
+					<td><input type="text" name="business_tel" class="business_tel"></td>
+					<td><input type="text" name="business_email" class="business_email"></td>
 					<td><input type="text"  class="zonecode" name="business_post"></td>
 					<td><input type="text"  class="address" name="business_addr" size=40></td>
 					
