@@ -146,6 +146,12 @@
 			from receive_schedule
 			where rec_schedule_cd = #{rec_schedule_cd}
 		</select>
+		
+		<select id="getPchor_cd" resultType="java.lang.String">
+			select pchor_cd
+			from receive_schedule
+			where rec_schedule_cd = #{rec_schedule_cd}
+		</select>
     
 </mapper>
 

@@ -355,9 +355,11 @@ public class ReceiveController {
 			// 삭제시 재고현황에 적용할 재소수량 stockDTO에 저장
 				String rec_schedule_cd=ajaxMsg[i];
 				String product_cd_name =receiveService.getProduct_cd_name2(rec_schedule_cd);
+				String pchor_cd=receiveService.getPchor_cd(rec_schedule_cd);
+				int sumrelcount=orderService.getSumRelCount(pchor_cd);
 				int bfreccount=receiveService.getbfRec_count(product_cd_name);
 				int Stock_count=receiveService.getStock_count(product_cd_name);
-				stockDTO.setStock_count(Stock_count-bfreccount);
+				stockDTO.setStock_count((Stock_count-bfreccount)+sumrelcount);
 				stockDTO.setProduct_cd_name(product_cd_name);
 			// 재고현황에 재고수량 적용 메서드 호출
 			receiveService.updateStockcount(stockDTO);

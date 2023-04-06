@@ -32,4 +32,6 @@ public interface ReceiveDAO {
 
 	public String getProduct_cd_name2(String rec_schedule_cd);
 
+	public String getPchor_cd(String rec_schedule_cd);
+
 }
