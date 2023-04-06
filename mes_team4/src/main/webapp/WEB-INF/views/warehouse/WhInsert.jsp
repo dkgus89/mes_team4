@@ -19,8 +19,25 @@ function sub(){
 	$(document).ready(function(){
 		// submit 유효성 검사
 		var telCheck=RegExp(/^[0-9]{9,11}$/);
+		var rt = null;
 		var result = confirm("게시글을 등록하시겠습니까?");
 		if (result == true){ 
+			$.ajax({ //ajax 시작
+				type:"GET",
+	 			url:'${pageContext.request.contextPath}/wh/whcheck',
+	 			async: false,
+	 			data:{'wh':$('#wh_name').val()},
+	 			success:function(result){
+	 				 if(result!=0) {
+	 		              alert("이미 존재하는 창고이름입니다.");
+	 		             $('#wh_name').focus();
+	 		              rt=1;
+	 		          }
+	 			}
+	 		}); //ajax 끝
+			if(rt==1){
+				return false;
+			}	
 			if($('#wh_dv').val()==""){
 				alert("창고구분을 입력하세요");
 				$('#wh_dv').focus();
@@ -61,7 +78,9 @@ function sub(){
 			return false;
 		}
 	});
+	
 }
+
 // 초기화
 function rst(){
 	// 초기화 유효성 검사
@@ -116,7 +135,10 @@ function rst(){
 						<option value="원자재">원자재</option>
 					</select>
 					</td>
-					<td><input type="text" name="wh_name" id="wh_name"></td>
+					<td>
+					<input type="text" name="wh_name" id="wh_name">
+<!-- 					<input type="button" value="중복체크" class="dup" onclick="check()"><br> -->
+<!-- 					<div class="divresult">창고이름 중복체크 결과</div><br></td> -->
 					<td>
 						<select name="wh_use" id="wh_use">
 						<option value="">선택해주세요</option>
@@ -126,7 +148,7 @@ function rst(){
 					</td>
 					<td><input type="tel" name="wh_tel" id="wh_tel" class="wh_tel" placeholder="숫자만 입력하세요"></td>
 					<td>
-						<select name="wh_addr" id="wh_addr">
+						<select name="wh_addr" id="wh_addr" >
 							<option value="" selected>지역을 선택하세요</option>
 							<option value='서울'>서울</option>
 				            <option value='부산'>부산</option>

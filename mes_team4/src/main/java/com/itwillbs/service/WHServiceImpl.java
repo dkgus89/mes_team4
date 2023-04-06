@@ -98,6 +98,14 @@ public class WHServiceImpl implements WHService{
 		whDAO.updatewh(whDTO);
 	}
 
+	@Override
+	public int getwhcheck(String wh_name) {
+		System.out.println("WHServiceImpl updatewh()");
+		
+		return whDAO.getwhcheck(wh_name);
+	}
+
+
 	
 
 	

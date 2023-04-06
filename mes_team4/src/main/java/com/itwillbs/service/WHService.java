@@ -19,5 +19,8 @@ public interface WHService {
 
 	public void updatewh(WHDTO whDTO);
 
+	public int getwhcheck(String wh_name);
+
+
 	
 }
