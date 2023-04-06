@@ -7,7 +7,6 @@ public class ReceiveDTO {
 	private String rec_schedule_cd;
 	private Date rec_date;
 	private String remarks;
-	private String in_complete;
 	private int rec_count;
 	private String pchor_cd;
 	private String wh_cd;
@@ -49,12 +48,6 @@ public class ReceiveDTO {
 	}
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
-	}
-	public String getIn_complete() {
-		return in_complete;
-	}
-	public void setIn_complete(String in_complete) {
-		this.in_complete = in_complete;
 	}
 	public int getRec_count() {
 		return rec_count;

@@ -35,38 +35,39 @@
 		} }
 	
 // 	삭제
-	function deleteValue(){
-		var url = "/rel/reldelete"; // controller로 보내고자 하는 url
-		var valueArr = new Array();
-		var whList = $("input[name='rowcheck']");
-		for(var i=0; i<whList.length; i++){
-			if(whList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
-				valueArr.push(whList[i].value);
-			}
-		}
-		if(valueArr.length==0){
-			alert("삭제할 글을 선택하여주세요");
-		} else {
-			var chk = confirm("정말 삭제하시겠습니까?");
-			
-			$.ajax({
-				url :'${pageContext.request.contextPath}/rel/reldelete', 		//전송url
-				type : 'GET',	// post방식 ,,나는 겟하니까 돌아간다!!...
-				traditional : true,
-				data : {
-					valueArr : valueArr // 보내고자하는 data 변수설정	
-				},
-				success : function(jdata){
-					if(jdata = 1){
-						alert("삭제하였습니다");
-						location.replace("${pageContext.request.contextPath}/rel/relpage")
-					} else {alert("삭제실패");}
-				}
-			});
-			
+function deleteValue(){
+	var url = "/rel/reldelete"; // controller로 보내고자 하는 url
+	var valueArr = new Array();
+	var relList = $("input[name='rowcheck']");
+	for(var i=0; i<relList.length; i++){
+		if(relList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
+			valueArr.push(receiveList[i].value);
 		}
 	}
-	
+	if(valueArr.length==0){
+		alert("삭제할 글을 선택하여주세요");
+	} else {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if(chk){
+		$.ajax({
+			url :'${pageContext.request.contextPath}/rel/reldelete', 		//전송url
+			type : 'GET',	// post방식 ,,나는 겟하니까 돌아간다!!...
+			traditional : true,
+			data : {
+				valueArr : valueArr // 보내고자하는 data 변수설정	
+			},
+			success : function(jdata){
+				if(jdata = 1){
+					alert("삭제하였습니다");
+					location.replace("${pageContext.request.contextPath}/rel/relpage")
+				} else {alert("삭제실패");}
+			}
+		});
+	}else {
+		alert("삭제 취소되었습니다.");}
+	}
+}
+
 // 	출고완료
 	function finishValue(){
 		var url = "/rel/relfinish"; // controller로 보내고자 하는 url

@@ -35,36 +35,38 @@
 		} }
 	
 // 	삭제
-	function deleteValue(){
-		var url = "/wh/whdelete"; // controller로 보내고자 하는 url
-		var valueArr = new Array();
-		var whList = $("input[name='rowcheck']");
-		for(var i=0; i<whList.length; i++){
-			if(whList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
-				valueArr.push(whList[i].value);
-			}
-		}
-		if(valueArr.length==0){
-			alert("삭제할 글을 선택하여주세요");
-		} else {
-			var chk = confirm("정말 삭제하시겠습니까?");
-			
-			$.ajax({
-				url :'${pageContext.request.contextPath}/wh/whdelete', 		//전송url
-				type : 'GET',	// post방식 ,,나는 겟하니까 돌아간다!!...
-				traditional : true,
-				data : {
-					valueArr : valueArr // 보내고자하는 data 변수설정	
-				},
-				success : function(jdata){
-					if(jdata = 1){
-						alert("삭제하였습니다");
-						location.replace("${pageContext.request.contextPath}/wh/whpage")
-					} else {alert("삭제실패");}
-				}
-			});
+function deleteValue(){
+	var url = "/wh/whdelete"; // controller로 보내고자 하는 url
+	var valueArr = new Array();
+	var whList = $("input[name='rowcheck']");
+	for(var i=0; i<whList.length; i++){
+		if(whList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
+			valueArr.push(whList[i].value);
 		}
 	}
+	if(valueArr.length==0){
+		alert("삭제할 글을 선택하여주세요");
+	} else {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if(chk){
+		$.ajax({
+			url :'${pageContext.request.contextPath}/wh/whdelete', 		//전송url
+			type : 'GET',	// post방식 ,,나는 겟하니까 돌아간다!!...
+			traditional : true,
+			data : {
+				valueArr : valueArr // 보내고자하는 data 변수설정	
+			},
+			success : function(jdata){
+				if(jdata = 1){
+					alert("삭제하였습니다");
+					location.replace("${pageContext.request.contextPath}/wh/whpage")
+				} else {alert("삭제실패");}
+			}
+		});
+	}else {
+		alert("삭제 취소되었습니다.");}
+	}
+}
 
 </script>
 <!-- 자바스크립트 입력 끝-->
@@ -94,10 +96,7 @@
 	<div class="wrap2">
 	
 	  <button class="button2" onclick="insertPopup();">등록</button>
-<!-- 	  <button class="button2" onclick="updatePopup();">수정</button> -->
 	  <button class="button2"  onclick="deleteValue();">삭제</button>
-<!-- 	  <button class="button2" onclick="searchPopup();">조회</button> -->
-	  
 	 </div><br>
 	 <br>
 	 

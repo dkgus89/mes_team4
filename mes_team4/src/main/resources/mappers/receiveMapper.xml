@@ -9,7 +9,7 @@
 	<!-- ?대신 productDTO의 멤버변수명 사용 #{id}-->
 	<insert id="insertReceive">
 		insert into receive_schedule
-		values(#{rec_schedule_cd},#{wh_cd},#{pchor_cd},#{product_cd_name},#{rec_count},#{rec_date},#{in_complete})
+		values(#{rec_schedule_cd},#{wh_cd},#{pchor_cd},#{product_cd_name},#{rec_count},#{rec_date})
 	</insert>
 	
 	<update id="updateStockcount">
@@ -40,7 +40,7 @@
 	
 	<update id="updateReceive">
 	 	update receive_schedule 
-	 	set wh_cd = #{wh_cd}, pchor_cd = #{pchor_cd}, product_cd_name = #{product_cd_name}, rec_date = #{rec_date}, in_complete = #{in_complete}
+	 	set wh_cd = #{wh_cd}, pchor_cd = #{pchor_cd}, product_cd_name = #{product_cd_name}, rec_date = #{rec_date}
 	 	where pchor_cd = #{pchor_cd}                     
     </update>
     

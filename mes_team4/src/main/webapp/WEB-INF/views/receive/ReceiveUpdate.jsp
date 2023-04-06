@@ -51,7 +51,6 @@ function sub(){
 					<th>제품코드</th>
 					<th>수량</th>
 					<th>입고일자</th>
-					<th>진행상태</th>
 				</tr>
 			</thead>
 			
@@ -62,13 +61,6 @@ function sub(){
 					<td><input type="text" name="product_cd_name" value="${receiveDTO.product_cd_name }" readonly></td>
 					<td><input type="text" name="rec_count" value="${receiveDTO.rec_count }" readonly></td>
 					<td><input type="date" name="rec_date" value="${receiveDTO.rec_date }"></td>
-					<td>
-					<select name="in_complete">
-						<option value="">선택해주세요</option>
-						<option value="미완료">미완료</option>
-						<option value="완료">완료</option>
-					</select>
-					</td>
 				</tr>
 
 			</tbody>

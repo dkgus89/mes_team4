@@ -12,70 +12,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
-$(document).ready(function() { // j쿼리 시작
-	// 셀렉트박스 선택 시 value 저장
-	$(document).on('change', '.select-option', function(){
-		let consumption_unit = $("option:selected", this).val();
-		$(this).closest("td").find("#consumption_unit_arr").val(consumption_unit);
-	});
-	// 초기화 버튼
-	$(document).on('click', '#resetBtn', function() {
-		var cpListBtn = $('<button>').attr({
-		    'type': 'button',
-		    'id': 'cpListBtn'
-		}).text('추가');
-		 var rpListBtn = $('<button>').attr({
-			    'type': 'button',
-			    'id': 'rpListBtn'
-			}).text('추가');
-		 
-		var cpTableTr = $('#cproductBody tr');
-		cpTableTr.find('td:eq(0)').empty();
-		cpTableTr.find('td:eq(1)').empty();
-		cpTableTr.find('td:eq(0)').append(cpListBtn);
-		
-		var rpTableTr = $('#rproductBody tr');
-		rpTableTr.find('td:eq(0)').empty();
-		rpTableTr.find('td:eq(1)').empty();
-		rpTableTr.find('td:eq(0)').append(rpListBtn);
-		rpTableTr.find('input').val('');
-	});
-	
-	// 입고리스트 팝업
-	$(document).on('click', '#recListBtn', function() {
-		var trIndex = $(this).parent().parent().index();
-		var rec_schedule_cd = 'rec';
-		
-		var link = '${pageContext.request.contextPath}/rel/reclist?trIndex='+trIndex+'&rec_schedule_cd='+rec_schedule_cd;     
-		var popupWidth = 500;
-		var popupHeight = 700;
-		var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
-		var popupY= (window.screen.height/2) - (popupHeight/2);
-		
-	  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
-	});
-	
-}); // j쿼리 끝
-
-function insertBtn(){
-	// submit 전 제한 사항
-	
-	// 내용 제한 넘길 시 submit 진행
-	var result = confirm("게시글을 등록하시겠습니까?");
-	if (result == true){    
-		document.getElementById('move').submit(); 
-		alert("등록");
-		setTimeout(function() { 
-			opener.parent.location.reload();
-			window.close();
-			}, 300);
-	} else {
-		return false;
-	}
-}
-
+//입고리스트 팝업
 function recListBtn(){
 	var link = "${pageContext.request.contextPath}/rel/reclist";     
 	var popupWidth = 1050;
@@ -86,6 +25,7 @@ function recListBtn(){
   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 }
 
+//입고리스트 팝업에서 선택한 값 받아오기
 function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd){
 	
     document.getElementById("rec_schedule_cd").value = rec_schedule_cd;
@@ -93,11 +33,76 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
     document.getElementById("product_cd_name").value = product_cd_name;
     document.getElementById("rec_count").value = rec_count;
     document.getElementById("pchor_cd").value = pchor_cd;
- 
+}
 
+//출고 등록
+function sub(){
+	$(document).ready(function(){ //Jquery 시작
+		// submit 유효성 검사
+		var fp = document.getElementById("rel_count").value;
+		var qt = document.getElementById("rec_count").value;
+		var int_fp = Number(fp);
+		var int_qt = Number(qt);
+		var result = confirm("출고를 등록하시겠습니까?");
+		if (result == true){
+			if($('#rec_schedule_cd').val()==""){
+				alert("입고목록을 조회해서 선택하세요");
+				return false;
+			}
+			if($('#wh_cd').val()==""){
+				alert("입고목록을 조회해서 선택하세요");
+				return false;
+			}
+			if($('#product_cd_name').val()==""){
+				alert("입고목록을 조회해서 선택하세요");
+				return false;
+			}
+			if($('#rec_count').val()==""){
+				alert("입고목록을 조회해서 선택하세요");
+				return false;
+			}
+			if($('#pchor_cd').val()==""){
+				alert("입고목록을 조회해서 선택하세요");
+				return false;
+			}
+			if($('#rel_date').val()==""){
+				alert("출고일자를 입력하세요");
+				$('#rel_date').focus();
+				return false;
+			}
+			if($('#rel_count').val()==""){
+				alert("출고수량을 입력하세요");
+				$('#rel_count').focus();
+				return false;
+			}
+			if(int_fp > int_qt){
+				alert("출고 수량이 입고 수량을 초과했습니다.");
+				$('#rel_count').focus();
+				return false;
+			}
+			
+			// 유효성 검사 통과시 submit
+			window.opener.name = "parentPage";
+			document.insertrel.target="parentPage";
+			document.insertrel.action="${pageContext.request.contextPath}/rel/relinsertPro";
+			document.insertrel.submit();
+			self.close();
+		} else {
+			return false;
+		}	
+	}); //Jquery 끝
+}
+//초기화 기능
+function rst(){
+	// 초기화 유효성 검사
+	var result = confirm("초기화 하시겠습니까?");
+	if (result == true){    
+		document.insertrel.reset();
+	} else {
+		return false;
+	}
 }
 </script>
-
 
 </head>
 <body>
@@ -107,8 +112,8 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
 <h2 class="inserttitle">자재출고 등록</h2><br>
 	
 	<div class="wrap2">
-	  <button class="button2" id="resetBtn">초기화</button>
-	  <button class="button2" onclick="insertBtn();">등록</button>
+	  <button class="button2" onclick="rst()">초기화</button>
+	  <button class="button2" onclick="sub()">등록</button>
 	  <button class="button2" onclick="window.close();">닫기</button>
 	 </div>
 	 <br>
@@ -116,7 +121,7 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
 	<button class="button2" onclick="recListBtn();" style="width:200px">입고목록</button>
 	<br>
 
-	<form id="move" action="${pageContext.request.contextPath}/rel/relinsertPro" name="insertrel" method="post" >
+	<form action="${pageContext.request.contextPath}/rel/relinsertPro" name="insertrel" method="post" >
 	
 		<table id="vendortable" class="table table-striped" style="width:1000px;">		
 			<thead>
@@ -148,8 +153,8 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="date" name="rel_date"></td>
-					<td><input type="text" name="rel_count" placeholder="숫자만 입력하세요"></td>
+					<td><input type="date" name="rel_date" id="rel_date"></td>
+					<td><input type="text" name="rel_count" id="rel_count"  placeholder="숫자만 입력하세요"></td>
 					<td><input type="text"  class="remarks" name="remarks" size=40></td>
 				</tr>
 			</tbody>				

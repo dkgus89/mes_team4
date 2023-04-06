@@ -94,47 +94,7 @@ public class ReleaseController {
 	public String relinsertPro(ReleaseDTO releaseDTO, StockDTO stockDTO) {
 		System.out.println("ReleaseController relinsertPro()");
 		
-//		// 출고코드 자동생성(PCHyyMMdd01) 및 저장 
-//				// 기존 출고코드
-//				String first_release_schedule_cd = relService.getRel_cd();
-//				String first_number_st = first_release_schedule_cd.substring(9);
-//				int first_number = 0;
-//				
-//				// 새로운 발주코드
-//				String new_release_schedule_cd = "출고코드";
-//				String new_number_st = "스트링넘버";
-//				int new_number = 0;
-//				
-//				// 메뉴코드 설정
-//				String menu_code = "REL";
-//				
-//				// 오늘날짜 설정
-//				LocalDate now = LocalDate.now();
-//			    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
-//			    String today = now.format(formatter);
-//			    
-//			    // 인덱스 설정
-//			    if (first_release_schedule_cd.contains(today)) {
-//			    	// 패턴&매치 정규식 이용 => 스트링넘버 앞 0 삭제(조건 : String length 2자 이상)
-//			    	Pattern pattern = Pattern.compile("^0*([1-9][0-9]*)|0+$");
-//					Matcher matcher = pattern.matcher(first_number_st);
-//					
-//					if (matcher.find()) { 
-//					    first_number = Integer.parseInt(matcher.group(1)); 
-//					} else {
-//					    System.out.println("No match found.");
-//					}
-//					
-//					// String 정규식 이용 => new_release_schedule_cd 생성
-//					new_number = first_number+1;
-//					new_number_st = String.valueOf(new_number).format("%02d", new_number);
-//					new_release_schedule_cd = menu_code + today + new_number_st;
-//					
-//					releaseDTO.setOut_complete("진행중");
-//			    } else {
-//			    	new_release_schedule_cd = menu_code + today + "01";
-//			    	releaseDTO.setOut_complete("진행중");
-//			    }
+
 		// 출고 수량에 따라 재고현황에 적용할 재소수량 stockDTO에 저장
 		String product_cd_name =  releaseDTO.getProduct_cd_name();
 		int Stock_count=receiveService.getStock_count(product_cd_name);
@@ -175,6 +135,7 @@ public class ReleaseController {
 	@RequestMapping(value = "/rel/reldelete", method = RequestMethod.GET)
 	public String reldelete(HttpServletRequest request) {
 		System.out.println("ReleaseController reldelete()");
+		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
 		int size = ajaxMsg.length;
 		for(int i=0; i<size; i++) {
@@ -184,17 +145,6 @@ public class ReleaseController {
 		return "redirect:/rel/relpage";
 	}
 	
-	@RequestMapping(value = "/rel/relfinish", method = RequestMethod.GET)
-	public String relfinish(HttpServletRequest request) {
-		System.out.println("ReleaseController relfinish()");
-		String[] ajaxMsg = request.getParameterValues("valueArr");
-		int size = ajaxMsg.length;
-		for(int i=0; i<size; i++) {
-			relService.finishrel(ajaxMsg[i]);
-		}
-		
-		return "redirect:/rel/relpage";
-	}
 	
 	@RequestMapping(value = "/rel/reclist", method = RequestMethod.GET)
 	public String instList(HttpServletRequest request, Model model) {

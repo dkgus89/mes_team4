@@ -14,23 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-// $(document).ready(function() { // j쿼리 시작
-// 	// 입고리스트 팝업
-// 	$(document).on('click', '#recListBtn', function() {
-// 		var trIndex = $(this).parent().parent().index();
-// 		var rec_schedule_cd = 'rec';
-		
-// 		var link = '${pageContext.request.contextPath}/rel/reclist?trIndex='+trIndex+'&rec_schedule_cd='+rec_schedule_cd;     
-// 		var popupWidth = 500;
-// 		var popupHeight = 700;
-// 		var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
-// 		var popupY= (window.screen.height/2) - (popupHeight/2);
-		
-// 	  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
-// 	});
-	
-// }); // j쿼리 끝
-
+//입고리스트 팝업
 function recListBtn(){
 	var link = "${pageContext.request.contextPath}/rel/reclist";     
 	var popupWidth = 1200;
@@ -52,7 +36,7 @@ function sub(){
 				return false;
 			}
 			if($('#rel_date').val()==""){
-				alert("라인코드를 입력하세요");
+				alert("출고일자를 입력하세요");
 				$('#rel_date').focus();
 				return false;
 			}

@@ -16,14 +16,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.StockDTO;
+import com.itwillbs.service.BusinessService;
 import com.itwillbs.service.ProductService;
 
 @Controller
 public class ProductController {
 	
+	@Inject
+	private BusinessService businessService;
 	@Inject
 	private ProductService productService;
 	
@@ -36,7 +40,7 @@ public class ProductController {
 		
 		String pageNum=request.getParameter("pageNum");
 		// 한 화면에 보여질 글의 개수 설정
-		int pageSize=6;
+		int pageSize=10;
 		// 현재 페이지번호 가져오기
 		if(pageNum==null) {
 			// pageNum없으면 1페이지로 설정
@@ -81,12 +85,12 @@ public class ProductController {
 	
 	@RequestMapping(value = "/product/prodinsert", method = RequestMethod.GET)
 	public String prodinsert(Model model) {
-		
+		List<BusinessDTO> businessList = businessService.getBusinessList();
 		List<Map<String, Object>> instMap
 			=productService.getInstMap();
 		// model에 담아서 이동
 		model.addAttribute("instMap", instMap);
-		
+		model.addAttribute("businessList",businessList);
 		return "product/ProductInsert";
 	}
 	

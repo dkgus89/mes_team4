@@ -14,19 +14,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
+// 등록
 function sub(){
 	$(document).ready(function(){
 		// submit 유효성 검사
+		var telCheck=RegExp(/^[0-9]{9,11}$/);
 		var result = confirm("게시글을 등록하시겠습니까?");
-		if (result == true){   			
+		if (result == true){ 
+			if($('#wh_dv').val()==""){
+				alert("창고구분을 입력하세요");
+				$('#wh_dv').focus();
+				return false;
+			}
 			if($('#wh_name').val()==""){
 				alert("창고이름을 입력하세요");
 				$('#wh_name').focus();
 				return false;
 			}
-			if($('#wh_addr').val()==""){
-				alert("창고지역을 입력하세요");
-				$('#wh_addr').focus();
+			if($('#wh_use').val()==""){
+				alert("창고사용여부를 입력하세요");
+				$('#wh_use').focus();
 				return false;
 			}
 			if($('#wh_tel').val()==""){
@@ -34,6 +41,17 @@ function sub(){
 				$('#wh_tel').focus();
 				return false;
 			}
+			if(!telCheck.test($('.wh_tel').val())){
+	        	  alert("9~11자 숫자만 입력하세요");
+	        	  $('.wh_tel').focus();
+	        	  return false;
+	          }
+			if($('#wh_addr').val()==""){
+				alert("창고지역을 입력하세요");
+				$('#wh_addr').focus();
+				return false;
+			}
+			
 			window.opener.name = "parentPage";
 			document.insertwh.target="parentPage";
 			document.insertwh.action="${pageContext.request.contextPath}/wh/whinsertPro";
@@ -44,7 +62,7 @@ function sub(){
 		}
 	});
 }
-
+// 초기화
 function rst(){
 	// 초기화 유효성 검사
 	var result = confirm("초기화 하시겠습니까?");
@@ -67,6 +85,7 @@ function rst(){
 	<div class="wrap2">
 	  <button class="button2" onclick="sub()">등록</button>
 	  <button class="button2" onclick="rst()">초기화</button>
+	  <button class="button2" onclick="window.close();">닫기</button>
 	 </div>
 	 <br>
 	
@@ -91,22 +110,23 @@ function rst(){
 			<tbody>
 				<tr>
 					<td>
-					<select  name="wh_dv" class="wh_dv">
-<!-- 						<option value="">선택해주세요</option> -->
+					<select  name="wh_dv" class="wh_dv" id="wh_dv">
+						<option value="">선택해주세요</option>
 						<option value="완제품">완제품</option>
 						<option value="원자재">원자재</option>
 					</select>
 					</td>
-					<td><input type="text" name="wh_name"></td>
+					<td><input type="text" name="wh_name" id="wh_name"></td>
 					<td>
-						<select name="wh_use">
+						<select name="wh_use" id="wh_use">
+						<option value="">선택해주세요</option>
 							<option value="사용">사용</option>
 							<option value="미사용">미사용</option>
 						</select>
 					</td>
-					<td><input type="tel" name="wh_tel"></td>
+					<td><input type="tel" name="wh_tel" id="wh_tel" class="wh_tel" placeholder="숫자만 입력하세요"></td>
 					<td>
-						<select name="wh_addr">
+						<select name="wh_addr" id="wh_addr">
 							<option value="" selected>지역을 선택하세요</option>
 							<option value='서울'>서울</option>
 				            <option value='부산'>부산</option>
