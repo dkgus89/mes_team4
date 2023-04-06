@@ -25,18 +25,27 @@
 		});
 		// 초기화 버튼
 		$(document).on('click', '#resetBtn', function() {
+			var cpListBtn = $('<button>').attr({
+			    'type': 'button',
+			    'id': 'cpListBtn',
+			}).text('추가');
 			var rpListBtn = $('<button>').attr({
 				    'type': 'button',
-				    'id': 'rpListBtn'
-				}).text('추가');
+				    'id': 'rpListBtn',
+				    'name': 'rpListBtn'
+			}).text('추가');
 			 
 			var cpTableTr = $('#cproductBody tr');
+			cpTableTr.find('td:eq(0)').empty();
+			cpTableTr.find('td:eq(1)').empty();
+			cpTableTr.find('td:eq(0)').append(cpListBtn);
 			
 			var rpTableTr = $('#rproductBody tr');
 			rpTableTr.find('td:eq(0)').empty();
 			rpTableTr.find('td:eq(1)').empty();
 			rpTableTr.find('td:eq(0)').append(rpListBtn);
 			rpTableTr.find('input').val('');
+			rpTableTr.find('select').val('');
 		});
 		
 		// 원자재 행 추가
@@ -44,14 +53,17 @@
 		    var newRow = $('#rproductBody tr:first').clone();
 		    var rpListBtn = $('<button>').attr({
 			    'type': 'button',
-			    'id': 'rpListBtn'
+			    'id': 'rpListBtn',
+			    'name': 'rpListBtn'
 			}).text('추가');
 		    
 		    $('#rproductBody').append(newRow);
 		    $('#rproductBody tr:last-child td:eq(0)').empty();
 		    $('#rproductBody tr:last-child td:eq(1)').empty();
 		    $('#rproductBody tr:last-child td:eq(0)').append(rpListBtn);
-		    
+		    $('#rproductBody tr:last-child').find('input').val('');
+		    $('#rproductBody tr:last-child').find('select').val('');
+			
 		});
 	
 		// 원자재 행 삭제
@@ -80,7 +92,39 @@
 	}); // j쿼리 끝
 	function updateBtn(){
 		// submit 전 제한 사항
-		
+		var cproduct_check = document.getElementsByName("cproduct_cd_name").length;
+		var rproduct_check = document.getElementsByName("rproduct_cd_name_arr").length;
+		var rpListBtn_check = document.getElementsByName("rpListBtn").length;
+		if(cproduct_check == 0) {
+	    	alert("완제품을 선택해주세요.");
+	    	return false;
+	    }
+		if(rproduct_check == 0) {
+	    	alert("원자재를 선택해주세요.");
+	    	return false;
+	    }
+		if(rpListBtn_check > rproduct_check) {
+			alert("원자재를 선택해주세요.");
+			return false;
+		}
+		if(true) {
+			for(let i = 1; i < rpListBtn_check; i++ ) {
+				var consumption_check = document.getElementsByName("consumption_arr")[i].value.length;
+				if(consumption_check < 1) {
+			    	alert("소요량을 입력해주세요.");
+			    	return false;
+			    }
+			}
+		}
+		if(true) {
+			for(let i = 1; i < rpListBtn_check; i++ ) {
+				var consumption_unit_check = document.getElementsByName("consumption_unit_arr")[i].value.length;
+				if(consumption_unit_check < 1) {
+			    	alert("단위를 선택해주세요.");
+			    	return false;
+			    }
+			}
+		}
 		// 내용 제한 넘길 시 submit 진행
 		var result = confirm("게시글을 수정하시겠습니까?");
 		if (result == true){    
