@@ -138,7 +138,7 @@
          
         <c:otherwise>
             <tr>
-            <td colspan="10" style="text-align: center;">등록된 데이터가 없습니다.</td>
+            <td colspan="11" style="text-align: center;">등록된 데이터가 없습니다.</td>
             </tr>
         </c:otherwise>	
 		</c:choose>
