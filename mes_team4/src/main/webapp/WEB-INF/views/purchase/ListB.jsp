@@ -9,7 +9,7 @@
 <!-- 헤더파일들어가는 곳 -->
 
 <!-- 본문적용 CSS들어가는 곳 -->
-<link href="${pageContext.request.contextPath}/resources/css/Consumption.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/MainFront.css" rel="stylesheet" type="text/css">
 <!-- 본문적용 CSS들어가는 곳 -->
 
 <!-- 자바스크립트 입력 시작-->
