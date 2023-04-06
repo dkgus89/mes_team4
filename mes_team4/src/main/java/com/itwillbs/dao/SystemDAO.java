@@ -27,6 +27,7 @@ public interface SystemDAO {
 	
 	public List<SystemDTO> getMemberList();
 
+
 	
 
 }
