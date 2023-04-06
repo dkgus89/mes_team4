@@ -6,10 +6,9 @@ public class SystemDTO {
 	private int emp_no;
 	private String emp_name;
 	private String emp_pass;
-	private String newemp_pass;
 	private String dept_cd;
 	private String grade_cd;
-	private String priv_cd;
+	private String emp_priv;
 
 	
 	public int getEmp_no() {
@@ -30,12 +29,6 @@ public class SystemDTO {
 	public void setEmp_pass(String emp_pass) {
 		this.emp_pass = emp_pass;
 	}
-	public String getNewemp_pass() {
-		return newemp_pass;
-	}
-	public void setNewemp_pass(String newemp_pass) {
-		this.newemp_pass = newemp_pass;
-	}
 
 	public String getDept_cd() {
 		return dept_cd;
@@ -49,11 +42,11 @@ public class SystemDTO {
 	public void setGrade_cd(String grade_cd) {
 		this.grade_cd = grade_cd;
 	}
-	public String getPriv_cd() {
-		return priv_cd;
+	public String getEmp_priv() {
+		return emp_priv;
 	}
-	public void setPriv_cd(String priv_cd) {
-		this.priv_cd = priv_cd;
+	public void setEmp_priv(String emp_priv) {
+		this.emp_priv = emp_priv;
 	}
 
 	

@@ -11,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.itwillbs.domain.BusinessDTO;
-import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.SystemService;
@@ -80,11 +78,10 @@ public class SystemController {
 	public String memberinsertpro(SystemDTO systemDTO) {
 		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
 		System.out.println("SystemController memberinsertpro()");
-		
-		
+
 		// MemberService memberService = new MemberServiceImpl();
 		systemService.memberinsertpro(systemDTO);
-		
+
 		// 가상주소에서 주소변경 하면서 이동
 		return "redirect:/system/membermain";
 	}
@@ -104,7 +101,7 @@ public class SystemController {
 	public String memberupdatepro(SystemDTO systemDTO) {
 		System.out.println("SystemController memberupdatepro()");
 		// 디비 수정 처리 => 처리 => 디비 자바 메서드 호출
-
+			
 			systemService.memberupdatepro(systemDTO);
 			// 주소 변경되면서 로그인 페이지로 이동 
 			// response.sendRedirect("/member/main");
