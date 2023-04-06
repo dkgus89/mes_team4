@@ -46,12 +46,12 @@ function sub(){
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th style="text-align:center">제품구분</th>
-					<th style="text-align:center">제품코드</th>
-					<th style="text-align:center">제품명</th>
-					<th style="text-align:center">거래처코드</th>
-					<th style="text-align:center">재고단위</th>
-					<th style="text-align:center">적요</th>
+					<th>제품구분 </th>
+					<th>제품코드 </th>
+					<th>제품명</th>
+					<th>거래처코드</th>
+					<th>재고단위</th>
+					<th>적요</th>
 				</tr>
 			</thead>
 			
@@ -64,7 +64,7 @@ function sub(){
 						<option value="원자재">원자재</option>
 					</select>
 					</td>
-					<td><input type="text" name="product_cd_name" value="${productDTO.product_cd_name }" readonly></td>
+					<td >${productDTO.product_cd_name }</td>
 					<td><input type="text" name="product_name" value="${productDTO.product_name }" ></td>
 					<td><input type="text" name="business_cd" value="${productDTO.business_cd }" ></td>
 					<td><input type="text" name="product_unit" value="${productDTO.product_unit }"></td>
