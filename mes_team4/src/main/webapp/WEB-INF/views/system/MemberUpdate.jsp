@@ -103,25 +103,25 @@ $('#update').submit(function(){
 					</div>
 					<label>부서</label><br>
 					<div>
-						<input type="radio" name="dept_cd" class="dept_cd" value="MDP001" ${systemDTO.dept_cd eq 'MDP001' ? 'checked':''}/> 영업부
-						<input type="radio" name="dept_cd" class="dept_cd" value="MDP002" ${systemDTO.dept_cd eq 'MDP002' ? 'checked':''}/> 인사부
-						<input type="radio" name="dept_cd" class="dept_cd" value="MDP003" ${systemDTO.dept_cd eq 'MDP003' ? 'checked':''}/> 생산부
-						<input type="radio" name="dept_cd" class="dept_cd" value="MDP004" ${systemDTO.dept_cd eq 'MDP004' ? 'checked':''}/> 총무부
-						<input type="radio" name="dept_cd" class="dept_cd" value="MDP005" ${systemDTO.dept_cd eq 'MDP005' ? 'checked':''}/> 기획부	
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP001" ${systemDTO.dept_cd eq 'MDP001' ? 'checked':''}/> 1.영업부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP002" ${systemDTO.dept_cd eq 'MDP002' ? 'checked':''}/> 2.인사부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP003" ${systemDTO.dept_cd eq 'MDP003' ? 'checked':''}/> 3.생산부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP004" ${systemDTO.dept_cd eq 'MDP004' ? 'checked':''}/> 4.총무부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP005" ${systemDTO.dept_cd eq 'MDP005' ? 'checked':''}/> 5.기획부	
 					</div><br>
 					<label>직급</label><br>
 					<div>
-						<input type="radio" name="grade_cd" class="grade_cd" value="MGD001" ${systemDTO.grade_cd eq 'MGD001' ? 'checked':''}/> 사원
-						<input type="radio" name="grade_cd" class="grade_cd" value="MGD002" ${systemDTO.grade_cd eq 'MGD002' ? 'checked':''}/> 주임
-						<input type="radio" name="grade_cd" class="grade_cd" value="MGD003" ${systemDTO.grade_cd eq 'MGD003' ? 'checked':''}/> 대리
-						<input type="radio" name="grade_cd" class="grade_cd" value="MGD004" ${systemDTO.grade_cd eq 'MGD004' ? 'checked':''}/> 과장
-						<input type="radio" name="grade_cd" class="grade_cd" value="MGD005" ${systemDTO.grade_cd eq 'MGD005' ? 'checked':''}/> 차장	
-						<input type="radio" name="grade_cd" class="grade_cd" value="MGD006" ${systemDTO.grade_cd eq 'MGD006' ? 'checked':''}/> 부장<BR>	
-						<input type="radio" name="grade_cd" class="grade_cd" value="MGD007" ${systemDTO.grade_cd eq 'MGD007' ? 'checked':''}/> 이사	
-						<input type="radio" name="grade_cd" class="grade_cd" value="MGD008" ${systemDTO.grade_cd eq 'MGD008' ? 'checked':''}/> 상무	
-						<input type="radio" name="grade_cd" class="grade_cd" value="MGD009" ${systemDTO.grade_cd eq 'MGD009' ? 'checked':''}/> 전무	
-						<input type="radio" name="grade_cd" class="grade_cd" value="MGD010" ${systemDTO.grade_cd eq 'MGD010' ? 'checked':''}/> 부사장	
-						<input type="radio" name="grade_cd" class="grade_cd" value="MGD011" ${systemDTO.grade_cd eq 'MGD011' ? 'checked':''}/> 사장
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD001" ${systemDTO.grade_cd eq 'MGD001' ? 'checked':''}/> 1.사원
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD002" ${systemDTO.grade_cd eq 'MGD002' ? 'checked':''}/> 2.주임
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD003" ${systemDTO.grade_cd eq 'MGD003' ? 'checked':''}/> 3.대리
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD004" ${systemDTO.grade_cd eq 'MGD004' ? 'checked':''}/> 4.과장
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD005" ${systemDTO.grade_cd eq 'MGD005' ? 'checked':''}/> 5.차장	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD006" ${systemDTO.grade_cd eq 'MGD006' ? 'checked':''}/> 6.부장<BR>	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD007" ${systemDTO.grade_cd eq 'MGD007' ? 'checked':''}/> 7.이사	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD008" ${systemDTO.grade_cd eq 'MGD008' ? 'checked':''}/> 8.상무	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD009" ${systemDTO.grade_cd eq 'MGD009' ? 'checked':''}/> 9.전무	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD010" ${systemDTO.grade_cd eq 'MGD010' ? 'checked':''}/> 10.부사장	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD011" ${systemDTO.grade_cd eq 'MGD011' ? 'checked':''}/> 11.사장
 					</div><br>			
 					<label>권한(다수 선택가능)</label><br>
 					<div>
