@@ -34,18 +34,13 @@
 				    'id': 'rpListBtn',
 				    'name': 'rpListBtn'
 			}).text('추가');
-			 
-			var cpTableTr = $('#cproductBody tr');
-			cpTableTr.find('td:eq(0)').empty();
-			cpTableTr.find('td:eq(1)').empty();
-			cpTableTr.find('td:eq(0)').append(cpListBtn);
-			
+
 			var rpTableTr = $('#rproductBody tr');
 			rpTableTr.find('td:eq(0)').empty();
 			rpTableTr.find('td:eq(1)').empty();
 			rpTableTr.find('td:eq(0)').append(rpListBtn);
-			rpTableTr.find('input').val('');
-			rpTableTr.find('select').val('');
+			rpTableTr.children('td').children('input').val('');
+			rpTableTr.children('td').children('select').val('');
 		});
 		
 		// 원자재 행 추가
@@ -92,13 +87,10 @@
 	}); // j쿼리 끝
 	function updateBtn(){
 		// submit 전 제한 사항
-		var cproduct_check = document.getElementsByName("cproduct_cd_name").length;
 		var rproduct_check = document.getElementsByName("rproduct_cd_name_arr").length;
 		var rpListBtn_check = document.getElementsByName("rpListBtn").length;
-		if(cproduct_check == 0) {
-	    	alert("완제품을 선택해주세요.");
-	    	return false;
-	    }
+		console.log(rproduct_check);
+		console.log(rpListBtn_check);
 		if(rproduct_check == 0) {
 	    	alert("원자재를 선택해주세요.");
 	    	return false;
@@ -189,7 +181,7 @@
 			<tbody id="rproductBody">
 				<c:forEach var="dto" items="${consmptList }">
 				<tr>
-					<td><input type="text" name="rproduct_cd_name_arr" value="${dto.rproduct_cd_name }" readonly></td>
+					<td><input type="text" name="rproduct_cd_name_arr" value="${dto.rproduct_cd_name }" readonly><button type="button" id="rpListBtn" name="rpListBtn">추가</button></td>
 					<td><input type="text" name="rproduct_name_arr" value="${dto.rproduct_name }" readonly></td>
 					<td><input type="text" name="consumption_arr" value="${dto.consumption }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
 					<td><input type="hidden" id="consumption_unit_arr" name="consumption_unit_arr" value="${dto.consumption_unit }">
