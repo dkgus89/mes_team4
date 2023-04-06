@@ -177,7 +177,7 @@ public class DeliverController {
 						int new_number = 0;
 						
 						// 메뉴코드 설정
-						String menu_code = "SSS";
+						String menu_code = "DEL";
 						
 						// 오늘날짜 설정
 						LocalDate now = LocalDate.now();

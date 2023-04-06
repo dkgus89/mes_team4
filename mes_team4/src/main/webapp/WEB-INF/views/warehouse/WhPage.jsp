@@ -68,6 +68,25 @@ function deleteValue(){
 	}
 }
 
+function itemChange(){
+	var select2a = ["서울", "부산", "대구"];
+	var select2b = ["사용","미사용"];
+	
+	$('#select2').empty();
+	$('#select2').append("<option value=''>선택하세요</option>");
+	
+	var str = $('#select1').val();
+	if(str=="수주"){    		
+ 		for(i=0; i<select2a.length; i++){
+
+			$('#select2').append("<option value='"+select2a[i]+"'>"+select2a[i]+"</option>");
+ 		}
+		}else if(str=="발주"){
+		for(i=0; i<select2b.length; i++){
+			$('#select2').append("<option value='"+select2b[i]+"'>"+select2b[i]+"</option>");
+ 			}
+		}
+	}
 </script>
 <!-- 자바스크립트 입력 끝-->
 

@@ -41,7 +41,7 @@ function deleteValue(){
 	var relList = $("input[name='rowcheck']");
 	for(var i=0; i<relList.length; i++){
 		if(relList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
-			valueArr.push(receiveList[i].value);
+			valueArr.push(relList[i].value);
 		}
 	}
 	if(valueArr.length==0){

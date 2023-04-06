@@ -32,20 +32,20 @@ public class WHServiceImpl implements WHService{
 			
 			if(whDAO.getMNum()==null) {
 				//원자재 없음
-				whDTO.setWh_cd("M001");
+				whDTO.setWh_cd("M100");
 			}else{
 				//원자재 있음 => max(num)+1
 				System.out.println("mnum 출력 : "+whDAO.getMNum());
 				int num = whDAO.getMNum()+1;
-				String str = "M00" + num;
+				String str = "M" + num;
 				whDTO.setWh_cd(str);
 			}
 		} else if(whDTO.getWh_dv().equals("완제품")) {
 			if(whDAO.getPNum() == null) {
-				whDTO.setWh_cd("P001");
+				whDTO.setWh_cd("P100");
 			}else{
 				int num = whDAO.getPNum()+1;
-				String str = "P00" + num;
+				String str = "P" + num;
 				whDTO.setWh_cd(str);
 			}
 		}

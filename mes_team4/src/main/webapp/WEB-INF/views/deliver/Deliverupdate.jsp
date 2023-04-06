@@ -84,9 +84,9 @@
 					
 					
 					
-					<td><select name="product_cd">
+					<td><select name="product_cd_name">
 						<c:forEach var="dto" items="${instMap3 }">
-							<option value="${dto.product_cd }" > ${dto.product_cd } </option>
+							<option value="${dto.product_cd_name }" > ${dto.product_cd_name } </option>
 						</c:forEach>
 						</select> </td>
 					<td><input type="Date" name="deliver_date" value="${deliverDTO.deliver_date }"></td>
