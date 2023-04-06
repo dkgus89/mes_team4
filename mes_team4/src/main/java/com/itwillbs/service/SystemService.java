@@ -25,6 +25,7 @@ public interface SystemService {
 	public void mypagePro(SystemDTO systemDTO);
 	
 	public List<SystemDTO> getMemberList();
+
 	
 
 }

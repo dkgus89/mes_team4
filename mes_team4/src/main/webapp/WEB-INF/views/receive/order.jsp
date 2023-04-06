@@ -15,8 +15,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 
-function input1(order_cd,product_cd,order_count){
-	opener.setChildValue3(order_cd,product_cd,order_count);
+function input1(order_cd,product_cd_name,order_count){
+	opener.setChildValue3(order_cd,product_cd_name,order_count);
 	window.close();
 }
 
@@ -52,12 +52,12 @@ function input1(order_cd,product_cd,order_count){
 			<c:forEach var="orderDTO" items="${orderList}">
 				<tr>
 			<td>${orderDTO.order_cd}</td>
-			<td>${orderDTO.product_cd}</td>
+			<td>${orderDTO.product_cd_name}</td>
 			<td>${orderDTO.order_count}</td>
 			<td>${orderDTO.order_date}</td>
 			<td>${orderDTO.deliver_date}</td>
 			<td>
-				<button class="button2" onClick="input1('${orderDTO.order_cd}','${orderDTO.product_cd}','${orderDTO.order_count}');">선택</button>
+				<button class="button2" onClick="input1('${orderDTO.order_cd}','${orderDTO.product_cd_name}','${orderDTO.order_count}');">선택</button>
 			</td>
 				</tr>
 			</c:forEach>			

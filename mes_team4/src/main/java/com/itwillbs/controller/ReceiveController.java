@@ -77,9 +77,6 @@ public class ReceiveController {
 		if(endPage > pageCount){
 			endPage = pageCount;
 		}
-		System.out.println(startPage);
-		System.out.println(endPage);
-		System.out.println(count);
 		
 		pageDTO.setCount(count);
 		pageDTO.setPageBlock(pageBlock);
