@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
+import com.itwillbs.domain.PurchaseDTO;
 import com.itwillbs.domain.ReceiveDTO;
 import com.itwillbs.domain.StockDTO;
 import com.itwillbs.domain.WHDTO;
@@ -102,7 +103,7 @@ public class ReceiveController {
 	}
 	
 	@RequestMapping(value = "/receive/recinsertPro", method = RequestMethod.POST)
-	public String recinsertPro(ReceiveDTO receiveDTO, StockDTO stockDTO) {
+	public String recinsertPro(ReceiveDTO receiveDTO, StockDTO stockDTO, PurchaseDTO purchaseDTO) {
 		System.out.println("ReceiveController insertPro()");
 		
 //		// 발주코드 자동생성(PCHyyMMdd01) 및 저장 
@@ -171,6 +172,13 @@ public class ReceiveController {
 		
 		// 입고등록 메서드 호출
 		receiveService.insertReceive(receiveDTO);
+		
+		// 발주관리 미완료 -> 완료 변경
+		if (receiveDTO.getPchor_cd().contains("PCH")) {
+			purchaseDTO = purchaseService.getPurchaseDTO(receiveDTO.getPchor_cd());
+			purchaseDTO.setPurchase_com("완료");
+			purchaseService.updatePurchase(purchaseDTO);
+		}
 		
 		return "redirect:/receive/recpage";
 	}
