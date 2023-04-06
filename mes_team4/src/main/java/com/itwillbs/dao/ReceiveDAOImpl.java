@@ -32,6 +32,7 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 	}
 	@Override
 	public ReceiveDTO getPch_cd(String pch) {
+		System.out.println("sql "+pch);
 		
 		return sqlSession.selectOne(namespace+".getPch_cd", pch);
 	}
