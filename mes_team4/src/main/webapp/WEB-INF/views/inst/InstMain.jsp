@@ -62,25 +62,25 @@ function allCheck(){
 							<option value="order_cd">수주코드</option>
 							<option value="instruction_code" selected>작업지시코드</option>
 							<option value="line_cd">라인코드</option>
-							<option value="product_cd">품목코드</option>
+							<option value="product_cd_name">품목코드</option>
 						</c:when>
 						<c:when test="${pageDTO.select == 'line_cd'.toString()}">
 							<option value="order_cd">수주코드</option>
 							<option value="instruction_code">작업지시코드</option>
 							<option value="line_cd" selected>라인코드</option>
-							<option value="product_cd">품목코드</option>
+							<option value="product_cd_name">품목코드</option>
 						</c:when>
-						<c:when test="${pageDTO.select == 'product_cd'.toString()}">
+						<c:when test="${pageDTO.select == 'product_cd_name'.toString()}">
 							<option value="order_cd">수주코드</option>
 							<option value="instruction_code">작업지시코드</option>
 							<option value="line_cd">라인코드</option>
-							<option value="product_cd" selected>품목코드</option>
+							<option value="product_cd_name" selected>품목코드</option>
 						</c:when>
 						<c:otherwise>
 							<option value="order_cd" selected>수주코드</option>
 							<option value="instruction_code">작업지시코드</option>
 							<option value="line_cd">라인코드</option>
-							<option value="product_cd">품목코드</option>
+							<option value="product_cd_name">품목코드</option>
 						</c:otherwise>
 				</c:choose>
       			</select>
@@ -126,7 +126,7 @@ function allCheck(){
 				<td style="text-align: center;"><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.instruction_code}"></td>
 				<td style="text-align: center;">${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
 				<td style="text-align: center;">${dto.instruction_code}</td>
-				<td style="text-align: center;">${dto.product_cd}</td>
+				<td style="text-align: center;">${dto.product_cd_name}</td>
     			<td style="text-align: center;">${dto.instruction_qt}</td>
     			<td style="text-align: center;">${dto.consumption1}</td>
     			<td style="text-align: center;">${dto.line_cd}</td>

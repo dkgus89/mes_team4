@@ -66,8 +66,8 @@
     </select>
     
     <insert id="instinsertpro">
- 		insert into instruction(instruction_code, line_cd, product_cd, order_cd, instruction_state, instruction_date, instruction_qt)
-		values(instruction_code=#{instruction_code},line_cd=#{line_cd},product_cd=#{product_cd},order_cd=#{order_cd},instruction_state=#{instruction_state},instruction_date=#{instruction_date},instruction_qt=#{instruction_qt})
+ 		insert into instruction(instruction_code, line_cd, product_cd_name, order_cd, instruction_state, instruction_date, instruction_qt)
+		values(instruction_code=#{instruction_code},line_cd=#{line_cd},product_cd_name=#{product_cd_name},order_cd=#{order_cd},instruction_state=#{instruction_state},instruction_date=#{instruction_date},instruction_qt=#{instruction_qt})
     </insert>
     
     <select id="instructioninfo" resultType="com.itwillbs.domain.InstructionDTO">
@@ -77,7 +77,7 @@
     </select>
     
      <update id="instupdatepro">
-     	update instruction set order_cd = #{order_cd}, product_cd = #{product_cd}, instruction_qt = #{instruction_qt}, line_cd = #{line_cd}, instruction_date = #{instruction_date}, instruction_state = #{instruction_state}
+     	update instruction set order_cd = #{order_cd}, product_cd_name = #{product_cd_name}, instruction_qt = #{instruction_qt}, line_cd = #{line_cd}, instruction_date = #{instruction_date}, instruction_state = #{instruction_state}
      	where instruction_code = #{instruction_code}
     </update>
     
@@ -104,15 +104,15 @@
 
  	<resultMap type="map" id="map1">
 		<result column="order_cd" property="order_cd"/>
-		<result column="product_cd" property="product_cd"/>
+		<result column="product_cd_name" property="product_cd_name"/>
 	</resultMap>
 
     <select id="getInstMap" resultMap="map1">
-    	select order_cd, product_cd from instruction
+    	select order_cd, product_cd_name from instruction
     </select>
  
 	<select id="getInst" resultMap="map1">
-    	select order_cd, product_cd from instruction
+    	select order_cd, product_cd_name from instruction
     	where instruction_code = #{instruction_code}
     </select>
 

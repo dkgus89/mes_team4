@@ -23,11 +23,10 @@ function showPopup(){
 	
   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 }
-function setChildValue(order_cd, product_cd, product_name, order_count, deliver_date){
+function setChildValue(order_cd, product_cd_name, order_count, deliver_date){
 	
     document.getElementById("order_cd").value = order_cd;
-    document.getElementById("product_cd").value = product_cd;
-    document.getElementById("product_name").value = product_name;
+    document.getElementById("product_cd_name").value = product_cd_name;
     document.getElementById("order_count").value = order_count;
     document.getElementById("deliver_date").value = deliver_date;
 
@@ -112,7 +111,6 @@ function rst(){
 				<tr style="text-align: center; font-size: 0.9rem">					
 					<th>수주코드</th>
 					<th>품목코드</th>
-					<th>품목이름</th>
 					<th>수주량</th>
 					<th>출하예정일</th>
 				</tr>
@@ -121,8 +119,7 @@ function rst(){
 			<tbody>
 				<tr style="text-align: center; font-size: 0.9rem">				
 					<td><input type="text" name="order_cd" id="order_cd"></td>
-					<td><input type="text" name="product_cd" id="product_cd"></td>
-					<td><input type="text" name="product_name" id="product_name"></td>
+					<td><input type="text" name="product_cd_name" id="product_cd_name"></td>
 					<td><input type="text" name="order_count" id="order_count"></td>
 					<td><input type="date" name="deliver_date" id="deliver_date"></td>	
     			</tr>
