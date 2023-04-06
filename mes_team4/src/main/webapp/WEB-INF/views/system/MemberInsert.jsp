@@ -18,44 +18,50 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript">
-$(document).ready(function(){
-//	alert("준비");
-//submit 버튼을 클릭했을때 폼태그 전송되어지면 이벤트 onsubmit()
-// id="join" 폼태그 표시 => 전송
-  
-$('#insert').submit(function(){
+	$(document).ready(function() {
+		//	alert("준비");
+		//submit 버튼을 클릭했을때 폼태그 전송되어지면 이벤트 onsubmit()
+		// id="join" 폼태그 표시 => 전송
 
-	if($('.emp_name').val()==""){
-		alert("사원명을 입력하세요");
-		$('.emp_name').focus();
-		return false;
-	}
-  //class="pass"
-    if($('.emp_pass').val()==""){
-    	alert("비밀번호를 입력하세요");
-		$('.emp_pass').focus();
-		return false;
-    }
-  
-    if($('.emp_pass2').val()==""){
-    	alert("비밀번호2 입력하세요");
-		$('.emp_pass2').focus();
-		return false;
-    }
-    
-    if($('.emp_pass').val() != $('.emp_pass2').val()){
-    	alert("비밀번호 틀림");
-		$('.emp_pass2').focus();
-		return false;
-    }
-    else{
-  	  setTimeout(function(){
-  	  opener.parent.location.reload();
-  	  window.close();
-  	  },500);
-    }
-});//
-});
+		$('#insert').submit(function() {
+
+			if ($('.emp_name').val() == "") {
+				alert("사원명을 입력하세요");
+				$('.emp_name').focus();
+				return false;
+			}
+			//class="pass"
+			if ($('.emp_pass').val() == "") {
+				alert("비밀번호를 입력하세요");
+				$('.emp_pass').focus();
+				return false;
+			}
+
+			if ($('.emp_pass2').val() == "") {
+				alert("비밀번호2 입력하세요");
+				$('.emp_pass2').focus();
+				return false;
+			}
+
+			if ($('.emp_pass').val() != $('.emp_pass2').val()) {
+				alert("비밀번호 틀림");
+				$('.emp_pass2').focus();
+				return false;
+			}
+			if ($('.emp_priv').val() == "") {
+				alert("권한을 선택해주세요");
+				$('.emp_priv').focus();
+				return false;
+			}
+
+			else {
+				setTimeout(function() {
+					opener.parent.location.reload();
+					window.close();
+				}, 500);
+			}
+		});//
+	});
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -65,7 +71,7 @@ $('#insert').submit(function(){
 	
 	<form action="${pageContext.request.contextPath }/system/memberinsertpro" name="insert" id="insert" method="post">
 		
-<fieldset style="width:520px; height:520px; padding-left:20px; padding-right: 20px;">
+<fieldset style="width:520px; height:600px; padding-left:20px; padding-right: 20px;">
 <h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >사용자추가</h2>
 					<div>
 					<label>사원명</label>
@@ -101,14 +107,14 @@ $('#insert').submit(function(){
 						<input type="radio" name="grade_cd" class="grade_cd" value="MGD010" /> 부사장	
 						<input type="radio" name="grade_cd" class="grade_cd" value="MGD011" /> 사장
 					</div><br>
-					<label>권한</label><br>
+					<label>권한(다수 선택가능)</label><br>
 					<div>
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="A" checked="checked"/> 시스템관리
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="B" /> 사원관리
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="C" /> 기준정보관리<BR>
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="D" /> 영업관리
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="E" /> 생산조회
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="F" /> 재고관리
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="A" /> A.시스템관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="B" /> B.사원관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="C" /> C.기준정보관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="D" /> D.영업관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="E" /> E.생산조회<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="F" /> F.재고관리<br>
 
 					</div>
 	

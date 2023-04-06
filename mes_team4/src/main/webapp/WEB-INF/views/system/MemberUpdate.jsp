@@ -85,7 +85,7 @@ $('#update').submit(function(){
 	
 	<form action="${pageContext.request.contextPath }/system/memberupdatepro" name="update" id="update" method="post">
 		
-<fieldset style="width:500px; height:520px; padding-left:20px; padding-right: 20px;">
+<fieldset style="width:500px; height:600px; padding-left:20px; padding-right: 20px;">
 <h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >사용자수정</h2>
 				
 					<input type="hidden" name="emp_no" class="emp_no" value="${systemDTO.emp_no}">
@@ -123,14 +123,14 @@ $('#update').submit(function(){
 						<input type="radio" name="grade_cd" class="grade_cd" value="MGD010" ${systemDTO.grade_cd eq 'MGD010' ? 'checked':''}/> 부사장	
 						<input type="radio" name="grade_cd" class="grade_cd" value="MGD011" ${systemDTO.grade_cd eq 'MGD011' ? 'checked':''}/> 사장
 					</div><br>			
-					<label>권한</label><br>
+					<label>권한(다수 선택가능)</label><br>
 					<div>
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="A" ${systemDTO.emp_priv.contains("A") ? 'checked':''}/> 시스템관리
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="B" ${systemDTO.emp_priv.contains("B") ? 'checked':''}/> 사원관리
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="C" ${systemDTO.emp_priv.contains("C") ? 'checked':''}/> 기준정보관리<br>
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="D" ${systemDTO.emp_priv.contains("D") ? 'checked':''}/> 영업관리
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="E" ${systemDTO.emp_priv.contains("E") ? 'checked':''}/> 생산조회
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="F" ${systemDTO.emp_priv.contains("F") ? 'checked':''}/> 재고관리
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="A" ${systemDTO.emp_priv.contains("A") ? 'checked':''}/> A.시스템관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="B" ${systemDTO.emp_priv.contains("B") ? 'checked':''}/> B.사원관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="C" ${systemDTO.emp_priv.contains("C") ? 'checked':''}/> C.기준정보관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="D" ${systemDTO.emp_priv.contains("D") ? 'checked':''}/> D.영업관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="E" ${systemDTO.emp_priv.contains("E") ? 'checked':''}/> E.생산조회<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="F" ${systemDTO.emp_priv.contains("F") ? 'checked':''}/> F.재고관리<br>
 
 
 					</div>
