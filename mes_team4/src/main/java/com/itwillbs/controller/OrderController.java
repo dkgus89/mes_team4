@@ -188,6 +188,7 @@ public class OrderController {
 				stockDTO.setProduct_cd_name(product_cd_name);
 			// 재고현황에 재고수량 적용 메서드 호출
 			receiveService.updateStockcount(stockDTO);
+			
 		}
 		
 		
