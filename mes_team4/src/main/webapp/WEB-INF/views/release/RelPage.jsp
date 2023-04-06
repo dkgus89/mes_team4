@@ -34,7 +34,8 @@
 				rc[i].checked=false;}
 		} }
 	
-// 	삭제
+
+//	삭제
 function deleteValue(){
 	var url = "/rel/reldelete"; // controller로 보내고자 하는 url
 	var valueArr = new Array();
@@ -50,7 +51,7 @@ function deleteValue(){
 		var chk = confirm("정말 삭제하시겠습니까?");
 		if(chk){
 		$.ajax({
-			url :'${pageContext.request.contextPath}/rel/reldelete', 		//전송url
+			url :'${pageContext.request.contextPath}//rel/reldelete', 		//전송url
 			type : 'GET',	// post방식 ,,나는 겟하니까 돌아간다!!...
 			traditional : true,
 			data : {
@@ -68,7 +69,6 @@ function deleteValue(){
 	}
 }
 
-	
 </script>
 <!-- 자바스크립트 입력 끝-->
 

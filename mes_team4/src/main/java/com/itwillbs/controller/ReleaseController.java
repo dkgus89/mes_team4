@@ -91,7 +91,7 @@ public class ReleaseController {
 	}
 	
 	@RequestMapping(value = "/rel/relinsertPro", method = RequestMethod.POST)
-	public String relinsertPro(ReleaseDTO releaseDTO, StockDTO stockDTO) {
+	public String relinsertPro(ReleaseDTO releaseDTO, StockDTO stockDTO, ReceiveDTO receiveDTO) {
 		System.out.println("ReleaseController relinsertPro()");
 		
 
@@ -102,6 +102,12 @@ public class ReleaseController {
 		stockDTO.setProduct_cd_name(product_cd_name);
 		// 재고현황에 재고수량 적용 메서드 호출
 		receiveService.updateStockcount(stockDTO);
+		
+		// 출고수량 등록 -> 등록한 만큼 입고수량 줄어듬 ,,, 
+		receiveDTO.setRec_count(receiveDTO.getRec_count()-releaseDTO.getRel_count());
+		
+		
+		System.out.println("rec:"+receiveDTO.getRec_count()+", rel:"+releaseDTO.getRel_count());
 		
 		// 출고등록 메서드 호출
 		relService.insertrel(releaseDTO);
