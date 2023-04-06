@@ -25,7 +25,7 @@ public class SystemController {
 			System.out.println("SystemController membermain()");
 			String search =request.getParameter("search");
 //			한 화면에 보여줄 글의 개수 설정
-			int pageSize =10;
+			int pageSize =5;
 //			현재 페이지 번호 가져오기
 			String pageNum = request.getParameter("pageNum");
 			if(pageNum == null) {
@@ -98,10 +98,9 @@ public class SystemController {
 	}
 
 	@RequestMapping(value = "/system/memberupdatepro", method = RequestMethod.POST)
-	public String memberupdatepro(SystemDTO systemDTO) {
+	public String memberupdatepro(SystemDTO systemDTO,HttpServletRequest request) {
 		System.out.println("SystemController memberupdatepro()");
 		// 디비 수정 처리 => 처리 => 디비 자바 메서드 호출
-			
 			systemService.memberupdatepro(systemDTO);
 			// 주소 변경되면서 로그인 페이지로 이동 
 			// response.sendRedirect("/member/main");

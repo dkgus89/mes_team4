@@ -14,9 +14,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-function DeliverUpdate(business_cd,order_cd,product_cd_name){
+function DeliverUpdate(business_cd,order_cd,product_cd_name, emp_no){
 	
-	opener.setChildValue(business_cd,order_cd,product_cd_name);
+	opener.setChildValue(business_cd,order_cd,product_cd_name, emp_no);
 
 	window.close();
 	
@@ -77,7 +77,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd_name){
 			<c:when test="${orderDTO.con eq '생산완료'}"><td><span style="color:blue">${orderDTO.con}</span></td></c:when>
 			<c:otherwise> ... </c:otherwise>
 			</c:choose>
-    			<td><button class="button2" onclick="DeliverUpdate('${orderDTO.business_cd}','${orderDTO.order_cd}','${orderDTO.product_cd_name}');">선택</button></td>
+    			<td><button class="button2" onclick="DeliverUpdate('${orderDTO.business_cd}','${orderDTO.order_cd}','${orderDTO.product_cd_name}','${orderDTO.emp_no}');">선택</button></td>
     			
    			 
 				</c:forEach>

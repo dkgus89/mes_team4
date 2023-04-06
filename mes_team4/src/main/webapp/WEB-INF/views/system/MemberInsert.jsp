@@ -48,12 +48,12 @@ $('#insert').submit(function(){
 		$('.emp_pass2').focus();
 		return false;
     }
-    
-    setTimeout(function() {
-	  	 opener.parent.location.reload();
-	 	 window.close();
-	  }, 1000);
-
+    else{
+  	  setTimeout(function(){
+  	  opener.parent.location.reload();
+  	  window.close();
+  	  },500);
+    }
 });//
 });
 </script>
@@ -65,7 +65,7 @@ $('#insert').submit(function(){
 	
 	<form action="${pageContext.request.contextPath }/system/memberinsertpro" name="insert" id="insert" method="post">
 		
-<fieldset style="width:520px; height:580px; padding-left:20px; padding-right: 20px;">
+<fieldset style="width:520px; height:520px; padding-left:20px; padding-right: 20px;">
 <h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >사용자추가</h2>
 					<div>
 					<label>사원명</label>
@@ -103,29 +103,19 @@ $('#insert').submit(function(){
 					</div><br>
 					<label>권한</label><br>
 					<div>
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="A" checked="checked"/> 사원조회
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="B" /> 사원관리
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="C" /> 재고조회
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="D" /> 재고관리
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="E" /> 생산조회<BR>
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="F" /> 생산관리 
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="G" /> 수주조회 
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="H" /> 수주관리
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="I" /> 발주조회 
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="J" /> 발주관리 <BR>
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="K" /> 출하조회 
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="L" /> 출하관리 
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="M" /> 기준정보조회
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="N" /> 기준정보관리
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="O" /> 시스템관리 
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="A" checked="checked"/> 시스템관리
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="B" /> 사원관리
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="C" /> 기준정보관리<BR>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="D" /> 영업관리
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="E" /> 생산조회
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="F" /> 재고관리
+
 					</div>
-					
-		
-					
+	
 			</fieldset>
 		
 	</form>
-<div style="text-align:center">
+<div style="margin-left: 170px">
 		<button class="button2" form="insert" onclick="submit">사용자추가</button>
 	  	<button class="button2" onclick="window.close()">창닫기</button>
 	  	</div>

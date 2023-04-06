@@ -11,7 +11,14 @@ public class DeliverDTO {
 	private String product_cd;  //품목코드
 	private Date deliver_date; //출하일자
 	private int deliver_count;     //출하량
+	private int emp_no;   //출하담당자갖고오는것?
 	
+	public int getEmp_no() {
+		return emp_no;
+	}
+	public void setEmp_no(int emp_no) {
+		this.emp_no = emp_no;
+	}
 	public String getDeliver_cd() {
 		return deliver_cd;
 	}
@@ -49,6 +56,7 @@ public class DeliverDTO {
 	public void setDeliver_count(int deliver_count) {
 		this.deliver_count = deliver_count;
 	}
+	
 	
 	
 	

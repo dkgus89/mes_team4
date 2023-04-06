@@ -69,19 +69,19 @@ function deleteValue(){
 }
 
 function itemChange(){
-	var select2a = ["서울", "부산", "대구"];
+	var select2a = ["서울", "부산", "대구","인천", "광주", "대전","울산", "강원", "경기", "경남", "경북", "전남","전북", "제주", "충남", "충북"];
 	var select2b = ["사용","미사용"];
 	
 	$('#select2').empty();
 	$('#select2').append("<option value=''>선택하세요</option>");
 	
 	var str = $('#select1').val();
-	if(str=="수주"){    		
+	if(str=="지역"){    		
  		for(i=0; i<select2a.length; i++){
 
 			$('#select2').append("<option value='"+select2a[i]+"'>"+select2a[i]+"</option>");
  		}
-		}else if(str=="발주"){
+		}else if(str=="사용여부"){
 		for(i=0; i<select2b.length; i++){
 			$('#select2').append("<option value='"+select2b[i]+"'>"+select2b[i]+"</option>");
  			}
@@ -95,14 +95,14 @@ function itemChange(){
 <!-- 본문HTML 입력 시작-->
 	<h2>창고</h2><br>
 	
-	
+<!-- 	onChange="goChange(this.value)" -->
     <div class="search">
     <form action="${pageContext.request.contextPath}/wh/whpage" method="get">
       
-       <select name="select" class="button2" onChange="goChange(this.value)">
+       <select name="select" class="button2" onchange="itemChange()">
        		<option value="wh_name">이름</option>
-       		<option value="wh_addr">지역</option>
-       		<option value="wh_use">사용여부</option>
+       		<option value="wh_addr" >지역</option>
+<!--        		<option value="wh_use">사용여부</option> -->
        </select>
        
        <input type="text" name="search" class="button2">

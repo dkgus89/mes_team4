@@ -127,7 +127,19 @@
 <!--     	where product_cd_name = #{product_cd_name}    -->
 <!--     </update> -->
     
-
+<!-- 		재고 현황 관련 -->
+		
+		<select id="getbfRec_count" resultType="java.lang.Integer">
+			select rec_count
+			from receive_schedule
+			where product_cd_name = #{product_cd_name}
+		</select>
+		
+		<select id="getProduct_cd_name2" resultType="java.lang.String">
+			select product_cd_name
+			from receive_schedule
+			where rec_schedule_cd = #{rec_schedule_cd}
+		</select>
     
 </mapper>
 

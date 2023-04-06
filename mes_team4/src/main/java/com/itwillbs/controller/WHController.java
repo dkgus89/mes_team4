@@ -6,11 +6,15 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.WHDTO;
 import com.itwillbs.service.WHService;
@@ -116,18 +120,28 @@ public class WHController {
 			whService.deletewh(ajaxMsg[i]);
 		}
 		
-//		String chbox[]=request.getParameterValues("chbox");
-//		String wh_cd = null;
-//		if(chbox!=null){
-//			  for(int i=0;i<chbox.length;i++){
-//		   
-//				wh_cd=chbox[i];
-//				whService.deletewh(wh_cd);
-//			  }
-//	       }
-		
 		return "redirect:/wh/whpage";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/wh/whcheck", method = RequestMethod.GET)
+	public String whcheck(HttpServletRequest request, Model model) {
+		// request 파라미터 
+		String wh_name=request.getParameter("wh");
+		String result=null;
+		
+		// 메서드 호출
+		int whcheck=whService.getwhcheck(wh_name);
+			
+		// if문으로 result에 저장 할 값 설정
+		if(whcheck==0) {
+			result="0";
+		}else {
+			result="1";
+		}			
+				
+		// result 값 리턴
+		return result;
+	}
 	
 }

@@ -70,5 +70,17 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 		
 		return sqlSession.selectOne(namespace+".getStock_count",product_cd_name);
 	}
+	@Override
+	public int getbfRec_count(String product_cd_name) {
+		System.out.println("ReceiveDAOImpl getbfRec_count()");
+		
+		return sqlSession.selectOne(namespace+".getbfRec_count",product_cd_name);
+	}
+	@Override
+	public String getProduct_cd_name2(String rec_schedule_cd) {
+		System.out.println("ReceiveDAOImpl getProduct_cd_name2()");
+		
+		return sqlSession.selectOne(namespace+".getProduct_cd_name2",rec_schedule_cd);
+	}
 
 }
