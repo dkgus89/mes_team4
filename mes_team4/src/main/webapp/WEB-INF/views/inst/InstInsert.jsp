@@ -39,32 +39,32 @@ function sub(){
 		// submit 유효성 검사
 		var result = confirm("작업을 등록하시겠습니까?");
 		if (result == true){   
-			if($('#order_cd').val()==""){
-				alert("수주코드를 선택하세요");
-				$('#order_cd').focus();
-				return false;
-			}
+// 			if($('#order_cd').val()==""){
+// 				alert("수주코드를 선택하세요");
+// 				$('#order_cd').focus();
+// 				return false;
+// 			}
 			
-			if($('#line_cd').val()==""){
-				alert("작업라인을 선택하세요");
-				$('#line_cd').focus();
-				return false;
-			}
-			if($('#instruction_date').val()==""){
-				alert("작업지시일자를 입력하세요");
-				$('#instruction_date').focus();
-				return false;
-			}
-			if($('#instruction_qt').val()==""){
-				alert("지시수량을 입력하세요");
-				$('#instruction_qt').focus();
-				return false;
-			}
-			if($('#instruction_state').val()==""){
-				alert("지시상태를 선택하세요");
-				$('#instruction_state').focus();
-				return false;
-			}
+// 			if($('#line_cd').val()==""){
+// 				alert("작업라인을 선택하세요");
+// 				$('#line_cd').focus();
+// 				return false;
+// 			}
+// 			if($('#instruction_date').val()==""){
+// 				alert("작업지시일자를 입력하세요");
+// 				$('#instruction_date').focus();
+// 				return false;
+// 			}
+// 			if($('#instruction_qt').val()==""){
+// 				alert("지시수량을 입력하세요");
+// 				$('#instruction_qt').focus();
+// 				return false;
+// 			}
+// 			if($('#instruction_state').val()==""){
+// 				alert("지시상태를 선택하세요");
+// 				$('#instruction_state').focus();
+// 				return false;
+// 			}
 			window.opener.name = "parentPage";
 			document.insert.target="parentPage";
 			document.insert.action="${pageContext.request.contextPath}/inst/instinsertpro";
