@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%-- <%@ page session="false" %> --%>
 
 <!DOCTYPE html>
 <html>
@@ -30,29 +30,23 @@
 
 <div id="topcontainer">
 	<div id ="head">
-	
 		<div class="wrap">
 		  <button class="button" onclick="location.href='${pageContext.request.contextPath}/home'">홈</button>
-		  <button class="button" onclick="location.href='${pageContext.request.contextPath}/system/memberlogin'">로그인</button>
-		  
+		  <c:if test="${empty sessionScope.emp_no}">
+		  <button class="button" onclick="location.href='${pageContext.request.contextPath}/system/memberlogin'">로그인 </button>
+		  </c:if>
 		<c:if test="${!empty sessionScope.emp_no}">
 			<button class="button" onclick="location.href='${pageContext.request.contextPath}/system/mypageform'">마이페이지</button>
-		  	<button class="button" onclick="location.href='${pageContext.request.contextPath}/system/memberlogout'">로그아웃</button>
-		</c:if>
-		  
-		  
-		 
+		  	<button class="button" onclick="location.href='${pageContext.request.contextPath}/system/memberlogout'">로그아웃</button><br>
 		</div>
-
+		<b><span style="color : red;"> ${sessionScope.emp_no}</span>님, 접속완료</b>
+		</c:if>		
 	</div>
 
-	<div id="header">
-		
+	<div id="header">		
 		<h1 class="main" onclick="location.href='${pageContext.request.contextPath}/home';">의약품 생산 MES<img src="${pageContext.request.contextPath}/resources/image/robot.png"></h1>
-	</div> 
+	</div> 	
 </div>
-
-
 
 <div id="container">
 	<div id="sidebar1">
@@ -102,6 +96,5 @@
 	      </li>
 	    </ul>
 	</div>
-	
-	
-	<div id="contents">
+
+<div id="contents">
