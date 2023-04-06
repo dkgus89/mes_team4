@@ -32,7 +32,7 @@
 			td.each(function(i){
                 tdArr.push(td.eq(i).text());
             });
-
+			
 			var parentWindowTr = window.opener.$('#purchaseBody tr').eq(trIndex);
 			
 			parentWindowTr.find('td:eq(0)').empty();
@@ -42,8 +42,13 @@
 			    'name': 'business_cd',
 			    'readonly': true
 			}).val(tdArr[0]);
+			var bsListBtn = $('<button>').attr({
+			    'type': 'button',
+			    'id': 'bsListBtn'
+			}).text('추가');
 			
 			parentWindowTr.find('td:eq(0)').append(input);
+			parentWindowTr.find('td:eq(0)').append(bsListBtn);
 			
 			window.close(); 
 		});

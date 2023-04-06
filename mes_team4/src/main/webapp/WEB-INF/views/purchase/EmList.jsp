@@ -42,8 +42,13 @@
 			    'name': 'emp_no',
 			    'readonly': true
 			}).val(tdArr[0]);
+			var emListBtn = $('<button>').attr({
+			    'type': 'button',
+			    'id': 'emListBtn'
+			}).text('추가');
 			
 			parentWindowTr.find('td:eq(2)').append(input);
+			parentWindowTr.find('td:eq(2)').append(emListBtn);
 			
 			window.close();
 		});

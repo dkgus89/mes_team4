@@ -44,8 +44,13 @@
 				    'name': 'rproduct_cd_name',
 				    'readonly': true
 				}).val(tdArr[0]);
+				var rpListBtn = $('<button>').attr({
+					'type': 'button',
+					'id': 'rpListBtn'
+				}).text('추가');
 				
 				parentWindowTr.find('td:eq(1)').append(input);
+				parentWindowTr.find('td:eq(1)').append(rpListBtn);
 				
 				window.close();
 			} 
