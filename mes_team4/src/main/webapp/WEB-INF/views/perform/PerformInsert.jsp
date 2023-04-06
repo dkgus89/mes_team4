@@ -14,7 +14,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
+
 $(document).ready(function(){ //Jquery 시작	
+	document.getElementById('perform_date').valueAsDate = new Date();
 	//작업지시현황 선택 안된상태에서 양품, 불량 선택못하게 하는 기능
 	$('#fair_prod').click(function(){
 		if($('#instruction_qt').val()==""){

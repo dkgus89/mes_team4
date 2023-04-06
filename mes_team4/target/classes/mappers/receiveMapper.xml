@@ -35,7 +35,7 @@
     
     <select id="getPch_cd" resultType="com.itwillbs.domain.ReceiveDTO">
         select * from receive_schedule
-        where rec_schedule_cd = #{rec_schedule_cd}  	
+        where rec_schedule_cd = #{pch}
     </select>
     
     <!-- 	입고코드번호 -->
@@ -143,6 +143,12 @@
 		
 		<select id="getProduct_cd_name2" resultType="java.lang.String">
 			select product_cd_name
+			from receive_schedule
+			where rec_schedule_cd = #{rec_schedule_cd}
+		</select>
+		
+		<select id="getPchor_cd" resultType="java.lang.String">
+			select pchor_cd
 			from receive_schedule
 			where rec_schedule_cd = #{rec_schedule_cd}
 		</select>

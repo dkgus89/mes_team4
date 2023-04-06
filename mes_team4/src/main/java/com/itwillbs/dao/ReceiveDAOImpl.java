@@ -32,6 +32,7 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 	}
 	@Override
 	public ReceiveDTO getPch_cd(String pch) {
+		System.out.println("sql "+pch);
 		
 		return sqlSession.selectOne(namespace+".getPch_cd", pch);
 	}
@@ -86,6 +87,12 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 		System.out.println("ReceiveDAOImpl getProduct_cd_name2()");
 		
 		return sqlSession.selectOne(namespace+".getProduct_cd_name2",rec_schedule_cd);
+	}
+	@Override
+	public String getPchor_cd(String rec_schedule_cd) {
+		System.out.println("ReceiveDAOImpl getPchor_cd()");
+		
+		return sqlSession.selectOne(namespace+".getPchor_cd",rec_schedule_cd);
 	}
 
 }

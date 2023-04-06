@@ -29,4 +29,6 @@ public interface ReceiveService {
 	public int getbfRec_count(String product_cd_name);
 
 	public String getProduct_cd_name2(String rec_schedule_cd);
+
+	public String getPchor_cd(String rec_schedule_cd);
 }

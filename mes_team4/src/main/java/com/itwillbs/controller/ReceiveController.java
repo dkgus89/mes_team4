@@ -345,7 +345,7 @@ public class ReceiveController {
 	}
 	
 	@RequestMapping(value = "/receive/recdelete", method = RequestMethod.GET)
-	public String recdelete(HttpServletRequest request, ReceiveDTO receiveDTO, StockDTO stockDTO, PurchaseDTO purchaseDTO) {
+	public String recdelete(HttpServletRequest request, StockDTO stockDTO, PurchaseDTO purchaseDTO, ReceiveDTO receiveDTO) {
 		System.out.println("ReceiveController recdelete()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
@@ -355,28 +355,32 @@ public class ReceiveController {
 			// 삭제시 재고현황에 적용할 재소수량 stockDTO에 저장
 				String rec_schedule_cd=ajaxMsg[i];
 				String product_cd_name =receiveService.getProduct_cd_name2(rec_schedule_cd);
+				String pchor_cd=receiveService.getPchor_cd(rec_schedule_cd);
+				int sumrelcount=orderService.getSumRelCount(pchor_cd);
 				int bfreccount=receiveService.getbfRec_count(product_cd_name);
 				int Stock_count=receiveService.getStock_count(product_cd_name);
-				stockDTO.setStock_count(Stock_count-bfreccount);
+				stockDTO.setStock_count((Stock_count-bfreccount)+sumrelcount);
 				stockDTO.setProduct_cd_name(product_cd_name);
 			// 재고현황에 재고수량 적용 메서드 호출
 			receiveService.updateStockcount(stockDTO);
 		}
 		
-		for(int i=0; i<size; i++) {
-			receiveService.deleteReceive(ajaxMsg[i]);
-		}
-		
 		// 발주관리 완료 -> 미완료 변경
+		String[] pch = new String[size];
 		for(int i=0; i<size; i++) {
 			receiveDTO = receiveService.getPch_cd(ajaxMsg[i]);
-			String[] pch = new String[size];
+			System.out.println(receiveDTO);
 			pch[i] = receiveDTO.getPchor_cd();
 			if (pch[i].contains("PCH")) {
 				purchaseDTO = purchaseService.getPurchaseDTO(pch[i]);
 				purchaseDTO.setPurchase_com("미완료");
 				purchaseService.updatePurchase(purchaseDTO);
 			}
+		}
+		
+		for(int i=0; i<size; i++) {
+			System.out.println("check");
+			receiveService.deleteReceive(ajaxMsg[i]);
 		}
 		
 		return "redirect:/receive/recpage";

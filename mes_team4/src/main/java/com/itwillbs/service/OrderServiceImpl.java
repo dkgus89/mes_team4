@@ -105,4 +105,25 @@ public class OrderServiceImpl implements OrderService{
 		return orderDAO.getFCount(pageDTO);
 	}
 
+	@Override
+	public String getProduct_cd_name(String order_cd) {
+		System.out.println("OrderServiceImpl getProduct_cd_name()");
+		
+		return orderDAO.getProduct_cd_name(order_cd);
+	}
+
+	@Override
+	public int getSumRelCount(String order_cd) {
+		System.out.println("OrderServiceImpl getSumRelCount()");
+		
+		return orderDAO.getSumRelCount(order_cd);
+	}
+
+	@Override
+	public int getbfOr_count(String order_cd) {
+		System.out.println("OrderServiceImpl getbfOr_count()");
+		
+		return orderDAO.getbfOr_count(order_cd);
+	}
+
 }

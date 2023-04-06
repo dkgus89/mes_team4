@@ -106,4 +106,11 @@ public class ReceiveServiceImpl implements ReceiveService{
 		return receiveDAO.getProduct_cd_name2(rec_schedule_cd);
 	}
 
+	@Override
+	public String getPchor_cd(String rec_schedule_cd) {
+		System.out.println("ReceiveServiceImpl getPchor_cd()");
+		
+		return receiveDAO.getPchor_cd(rec_schedule_cd);
+	}
+
 }

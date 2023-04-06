@@ -26,16 +26,23 @@ function recListBtn(){
 }
 
 //입고리스트 팝업에서 선택한 값 받아오기
-function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd){
+function setChildValue(rec_schedule_cd,wh_cd,product_cd_name, rec_date, rec_count,pchor_cd){
 	
     document.getElementById("rec_schedule_cd").value = rec_schedule_cd;
     document.getElementById("wh_cd").value = wh_cd;
     document.getElementById("product_cd_name").value = product_cd_name;
+    document.getElementById("rec_date").value = rec_date;
     document.getElementById("rec_count").value = rec_count;
     document.getElementById("pchor_cd").value = pchor_cd;
 }
 
 //출고 등록
+	$(document).ready(function(){
+
+	document.getElementById('today').valueAsDate = new Date();
+	
+	});
+
 function sub(){
 	$(document).ready(function(){ //Jquery 시작
 		// submit 유효성 검사
@@ -80,6 +87,11 @@ function sub(){
 				$('#rel_count').focus();
 				return false;
 			}
+			if($('#rec_date').val() > $('.rel_date').val()){
+	    		alert("출고일을 입고일이후로 설정해주세요.");
+	    		$('.rel_date').focus();
+	    		return false;
+	    	}
 			
 			// 유효성 검사 통과시 submit
 			window.opener.name = "parentPage";
@@ -122,13 +134,14 @@ function rst(){
 	<br>
 
 	<form action="${pageContext.request.contextPath}/rel/relinsertPro" name="insertrel" method="post" >
-	
+			
 		<table id="vendortable" class="table table-striped" style="width:1000px;">		
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>입고코드</th>
 					<th>입고창고</th>
 					<th>입고제품</th>
+					<th>입고일</th>
 					<th>입고수량</th>
 					<th>발주/수주코드</th>
 				</tr>
@@ -138,6 +151,7 @@ function rst(){
 					<td><input type="text" name="rec_schedule_cd" id="rec_schedule_cd"></td>
 					<td><input type="text" name="wh_cd" id="wh_cd"></td>
 					<td><input type="text" name="product_cd_name" id="product_cd_name"></td>
+					<td><input type="date" name="rec_date" id="rec_date"></td>
 					<td><input type="text" name="rec_count" id="rec_count"></td>
 					<td><input type="text" name="pchor_cd" id="pchor_cd"></td>
 
@@ -153,7 +167,7 @@ function rst(){
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="date" name="rel_date" id="rel_date"></td>
+					<td><input type="date" name="rel_date" id="today" class="rel_date"></td>
 					<td><input type="text" name="rel_count" id="rel_count"  placeholder="숫자만 입력하세요"></td>
 					<td><input type="text"  class="remarks" name="remarks" size=40></td>
 				</tr>

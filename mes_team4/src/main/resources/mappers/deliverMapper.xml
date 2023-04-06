@@ -8,9 +8,9 @@
 	
 	<!-- ?대신 deliverDTO의 멤버변수명 사용 #{id}-->
 	<insert id="insertDeliver">
-		insert into shipment_management(deliver_cd, business_cd, product_cd, order_cd, deliver_date, deliver_count)
+		insert into shipment_management(deliver_cd, business_cd, product_cd, order_cd, deliver_date, deliver_count,emp_no)
 							
-		values(#{deliver_cd},#{business_cd},#{product_cd}, #{order_cd},#{deliver_date},#{deliver_count})
+		values(#{deliver_cd},#{business_cd},#{product_cd}, #{order_cd},#{deliver_date},#{deliver_count},#{emp_no})
 	</insert>
 	
 	<select id="getDeliver_cd" resultType="java.lang.String">
@@ -90,10 +90,10 @@
 	
 <!-- 품목코드 갖고오기 -->
 <resultMap type="map" id="map3">
-		<result column="product_cd" property="product_cd"/>
+		<result column="product_cd_name" property="product_cd_name"/>
 	</resultMap>
 	<select id="getInstMap3" resultMap="map3">
-		select distinct product_cd from product;
+		select distinct product_cd_name from product;
 	</select>	
 	
 	

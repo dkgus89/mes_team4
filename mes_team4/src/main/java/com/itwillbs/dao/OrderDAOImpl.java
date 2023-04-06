@@ -95,6 +95,27 @@ public class OrderDAOImpl implements OrderDAO{
 		return sqlSession.selectOne(namespace+".getFCount",pageDTO);
 	}
 
+	@Override
+	public String getProduct_cd_name(String order_cd) {
+		System.out.println("OrderDAOImpl getProduct_cd_name()");
+		
+		return sqlSession.selectOne(namespace+".getProduct_cd_name",order_cd);
+	}
+
+	@Override
+	public int getSumRelCount(String order_cd) {
+		System.out.println("OrderDAOImpl getSumRelCount()");
+		
+		return sqlSession.selectOne(namespace+".getSumRelCount",order_cd);
+	}
+
+	@Override
+	public int getbfOr_count(String order_cd) {
+		System.out.println("OrderDAOImpl getbfOr_count()");
+		
+		return sqlSession.selectOne(namespace+".getbfOr_count",order_cd);
+	}
+
 	
 
 }

@@ -29,4 +29,10 @@ public int getPCount(PageDTO pageDTO);
 	
 	public int getFCount(PageDTO pageDTO);
 
+	public String getProduct_cd_name(String order_cd);
+
+	public int getSumRelCount(String order_cd);
+
+	public int getbfOr_count(String order_cd);
+
 }
