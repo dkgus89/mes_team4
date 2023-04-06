@@ -152,7 +152,7 @@ public class InstructionController {
 	public String orderlist(HttpServletRequest request, Model model) {
 		
 //		한 화면에 보여줄 글의 개수 설정
-		int pageSize =5;
+		int pageSize =10;
 //		현재 페이지 번호 가져오기
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) {
@@ -172,7 +172,7 @@ public class InstructionController {
 		
 //		페이징처리
 		int count = orderService.getOrderCount();
-		int pageBlock = 10;
+		int pageBlock = 5;
 		int startPage = (currentPage-1)/pageBlock * pageBlock + 1;  
 		int endPage = startPage + pageBlock - 1;
 		int pageCount = count/pageSize + (count%pageSize==0?0:1);

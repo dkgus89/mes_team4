@@ -320,18 +320,41 @@ public class ReceiveController {
 	}
 	
 	@RequestMapping(value = "/receive/recupdatePro", method = RequestMethod.POST)
-	public String recupdatePro(ReceiveDTO receiveDTO) {
+	public String recupdatePro(ReceiveDTO receiveDTO, StockDTO stockDTO) {
+		
+		// 입고수량 수정에 따라 재고현황에 적용할 재소수량 stockDTO에 저장
+		String product_cd_name =  receiveDTO.getProduct_cd_name();
+		int Stock_count=receiveService.getStock_count(product_cd_name);
+		int bfreccount=receiveService.getbfRec_count(product_cd_name);
+		stockDTO.setStock_count((Stock_count-bfreccount)+receiveDTO.getRec_count());
+		stockDTO.setProduct_cd_name(product_cd_name);
+		// 재고현황에 재고수량 적용 메서드 호출
+		receiveService.updateStockcount(stockDTO);
+		
 		receiveService.updateReceive(receiveDTO);
 		// 주소변경 하면서 이동
 		return "redirect:/receive/recpage";
 	}
 	
 	@RequestMapping(value = "/receive/recdelete", method = RequestMethod.GET)
-	public String recdelete(HttpServletRequest request) {
+	public String recdelete(HttpServletRequest request, StockDTO stockDTO) {
 		System.out.println("ReceiveController recdelete()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
 		int size = ajaxMsg.length;
+		
+		for(int i=0; i<size; i++) {
+			// 삭제시 재고현황에 적용할 재소수량 stockDTO에 저장
+				String rec_schedule_cd=ajaxMsg[i];
+				String product_cd_name =receiveService.getProduct_cd_name2(rec_schedule_cd);
+				int bfreccount=receiveService.getbfRec_count(product_cd_name);
+				int Stock_count=receiveService.getStock_count(product_cd_name);
+				stockDTO.setStock_count(Stock_count-bfreccount);
+				stockDTO.setProduct_cd_name(product_cd_name);
+			// 재고현황에 재고수량 적용 메서드 호출
+			receiveService.updateStockcount(stockDTO);
+		}
+		
 		for(int i=0; i<size; i++) {
 			receiveService.deleteReceive(ajaxMsg[i]);
 		}

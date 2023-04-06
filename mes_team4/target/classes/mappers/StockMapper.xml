@@ -44,21 +44,21 @@
 <!--        			      	 on s.product_cd=p.product_cd) a -->
 <!--     </select> -->
 
-<!-- 	<select id="getStock" resultType="com.itwillbs.domain.StockDTO"> -->
-<!--         select * from stock -->
-<!--         where stock_cd = #{stock_cd} -->
-<!--     </select> -->
+	<select id="getStock" resultType="com.itwillbs.domain.StockDTO">
+        select * from stock
+        where stock_cd = #{stock_cd}
+    </select>
     
 <!--      <select id="getStock_cd" resultType="java.lang.String"> -->
 <!--         select max(stock_cd) -->
 <!--         from stock -->
 <!--     </select> -->
     
-<!--     <update id="updateStock"> -->
-<!--     	update stock -->
-<!--     	set wh_cd = #{wh_cd}, rec_schedule_cd = #{rec_schedule_cd}, product_cd=#{product_cd}, stock_count = #{stock_count} -->
-<!--     	where stock_cd = #{stock_cd} -->
-<!--     </update> -->
+    <update id="updateStock">
+    	update stock
+    	set stock_count = #{stock_count}
+    	where stock_cd = #{stock_cd}
+    </update>
     
 <!--     <delete id="deleteStock"> -->
 <!--     	delete from stock -->

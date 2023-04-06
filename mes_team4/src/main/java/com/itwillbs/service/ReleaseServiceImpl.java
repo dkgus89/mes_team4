@@ -117,6 +117,22 @@ public class ReleaseServiceImpl implements ReleaseService{
 	}
 
 
+	@Override
+	public int getbfRel_count(String product_cd_name) {
+		System.out.println("ReleaseServiceImpl getbfRel_count()");
+		
+		return releaseDAO.getbfRel_count(product_cd_name);
+	}
+
+
+	@Override
+	public String getProduct_cd_name2(String rel_schedule_cd) {
+		System.out.println("ReleaseServiceImpl getProduct_cd_name2()");
+		
+		return releaseDAO.getProduct_cd_name2(rel_schedule_cd);
+	}
+
+
 
 
 }

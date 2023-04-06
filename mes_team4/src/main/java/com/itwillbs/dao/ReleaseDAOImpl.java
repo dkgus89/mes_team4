@@ -100,6 +100,20 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 		
 	}
 
+	@Override
+	public int getbfRel_count(String product_cd_name) {
+		System.out.println("ReleaseDAOImpl getbfRel_count()");
+		
+		return sqlSession.selectOne(namespace+".getbfRel_count", product_cd_name);
+	}
+
+	@Override
+	public String getProduct_cd_name2(String rel_schedule_cd) {
+		System.out.println("ReleaseDAOImpl getProduct_cd_name2()");
+		
+		return sqlSession.selectOne(namespace+".getProduct_cd_name2", rel_schedule_cd);
+	}
+
 
 
 

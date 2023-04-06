@@ -137,7 +137,7 @@ public class SystemController {
 		if(systemDTO2!=null) {
 			
 			session.setAttribute("emp_no", systemDTO.getEmp_no());
-			System.out.println("출력해바!!!!!!!!"+systemDTO.getEmp_no());
+			System.out.println("출력해바!!!!!!!!"+session.getAttribute("emp_no"));
 			return "redirect:/home";
 		}else {
 			//아이디 비밀번호 틀림  뒤로이동  member/msg
