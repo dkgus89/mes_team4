@@ -17,10 +17,10 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 	function showPopup(){
-	    window.open("businessinsert","거래처팝업","width=900, height=400, top=200, left=200");
+	    window.open("businessinsert","거래처팝업","width=950, height=400, top=200, left=200");
 	}
 	function updatePopup(business_cd){
-	    window.open("businessupdate?cd="+business_cd,"거래처수정팝업","width=900, height=400, top=200, left=200");
+	    window.open("businessupdate?cd="+business_cd,"거래처수정팝업","width=950, height=400, top=200, left=200");
 	}
 	
 	function allCheck(){

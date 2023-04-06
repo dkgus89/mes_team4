@@ -10,7 +10,7 @@ public class OrderDTO {
 	
 	private String business_cd;
 	private int emp_no;
-	private String product_cd;
+	private String product_cd_name;
 
 	public String getOrder_cd() {
 		return order_cd;
@@ -54,12 +54,13 @@ public class OrderDTO {
 	public void setEmp_no(int emp_no) {
 		this.emp_no = emp_no;
 	}
-	public String getProduct_cd() {
-		return product_cd;
+	public String getProduct_cd_name() {
+		return product_cd_name;
 	}
-	public void setProduct_cd(String product_cd) {
-		this.product_cd = product_cd;
+	public void setProduct_cd_name(String product_cd_name) {
+		this.product_cd_name = product_cd_name;
 	}
+
 
 	
 }

@@ -61,6 +61,7 @@
 	        <a href="#">시스템관리</a>
 	        <ul class="submenu">
 	          <li><a href="${pageContext.request.contextPath}/system/membermain">사용자관리</a></li>
+	           <li><a href="${pageContext.request.contextPath}/system/mypageform">비밀번호변경</a></li>
 	          <!-- <li><a href="#">권한관리</a></li>
 	          <li><a href="#">코드관리</a></li>
 	          <li><a href="#">정보관리</a></li> -->

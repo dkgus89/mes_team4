@@ -128,7 +128,7 @@
 					
 					<td>
 					<select id="select2"  name="business_type">
-						<option value="">${businessDTO.business_type}</option>
+						<option value="" selected>${businessDTO.business_type}</option>
 						
 					</select>
 					</td>

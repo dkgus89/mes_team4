@@ -66,14 +66,16 @@
 					
 					</td>
 					<td>
-					<select id="select1"  name="product_cd">
+					<select id="select1"  name="product_cd_name">
 						<option value="">코드 : 제품명</option>
 						<c:forEach var="productList" items="${productList}">
-						<c:if test="${productList.product_cd eq orderDTO.product_cd}">
-						<option value="${productList.product_cd}" name="${productList.product_cd}" 
-						selected>${productList.product_cd} : ${productList.product_name}</option>
+						
+						<c:if test="${productList.product_cd_name eq orderDTO.product_cd_name}">
+						<option value="${productList.product_cd_name}" name="${productList.product_cd_name}" 
+						selected>${productList.product_cd_name} : ${productList.product_name}</option>
 						</c:if>
-						<option value="${productList.product_cd}" name="${productList.product_cd}">${productList.product_cd} : ${productList.product_name}</option>
+						<option value="${productList.product_cd_name}" name="${productList.product_cd_name}" selected>${productList.product_cd_name} : ${productList.product_name}</option>
+
 					</c:forEach>
 					</select>
 					</td>
