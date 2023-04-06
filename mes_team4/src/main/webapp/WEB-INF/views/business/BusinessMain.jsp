@@ -89,6 +89,15 @@
 	  <button class="button2" onclick="deleteValue();">삭제</button>
 	 </div><br>
 	 <br>
+	 
+	 <div class ="wrap2" id="table_search">
+	<form action="${pageContext.request.contextPath}/business/businessmain" method="get">
+	<input type="text" name="search" class="input_box" placeholder="구분 또는 거래처명을 검색하세요" size=60>
+	<input type="submit" value="search" class="button2">
+	</form>
+	</div>
+	<br>
+	<br>
  
 	<form method="post" name="myform">
 <!-- <input type="hidden" value="">	 -->	
@@ -166,12 +175,7 @@
 	</form>	
 	<br>
 	
-	<div class ="wrap2" id="table_search">
-	<form action="${pageContext.request.contextPath}/business/businessmain" method="get">
-	<input type="text" name="search" class="input_box" placeholder="구분 또는 거래처명을 검색하세요" size=60>
-	<input type="submit" value="search" class="button2">
-	</form>
-	</div>
+	
 		
 	<div id="pagingControl">
 	<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">

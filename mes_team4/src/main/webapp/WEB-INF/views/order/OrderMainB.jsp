@@ -72,7 +72,6 @@
 <!-- 본문HTML 입력 시작-->
 
 	<h2 onclick="location.href='${pageContext.request.contextPath}/order/ordermain'">수주현황</h2>
-	<h4>거래처 ${pageDTO.search} 현황 :<span style="color:red">생산전 ${pageDTO.pcount}건</span> /  <span style="color:blue">생산완료 ${pageDTO.fcount}건</span></h4>
 	
 	<div class="wrap2">
 	  <button class="button2" onclick="showPopup();">추가</button>
@@ -80,7 +79,18 @@
 	  <button class="button2" onclick="deleteValue();">삭제</button>
 	 </div><br>
 	 <br>
- 
+	 
+	 <div class ="wrap2" id="table_search">
+	<form action="${pageContext.request.contextPath}/order/ordermain" method="get">
+	<input type="text" name="search" class="input_box" placeholder="거래처코드 또는 진행상황을 검색하세요" size=60>
+	<input type="submit" value="search" class="button2">
+	<h4 style="text-align: right;">* 생산 미완료, 출하예정일 빠른순으로 정렬됩니다</h4>
+	</form>
+	</div>
+	<br>
+	<br>
+ 	<h4>거래처 ${pageDTO.search} 현황 :<span style="color:red">생산전 ${pageDTO.pcount}건</span> /  <span style="color:blue">생산완료 ${pageDTO.fcount}건</span></h4>
+	
 	<form method="post" name="myform">
 <!-- 		<input type="hidden" value="">	 -->
 	<table id="vendortable" class=" table table-striped" style="width:1000px;">
@@ -137,15 +147,7 @@
 	</table>	
 	</form>	
 	<br>
-	
-	<div class ="wrap2" id="table_search">
-	
-	<form action="${pageContext.request.contextPath}/order/ordermain" method="get">
-	<input type="text" name="search" class="input_box" placeholder="거래처코드 또는 진행상황을 검색하세요" size=60>
-	<input type="submit" value="search" class="button2">
-	<h4>* 생산 미완료, 출하예정일 빠른순으로 정렬됩니다</h4>
-	</form>
-	</div>
+
 	
 	<div id="pagingControl">
 	<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">

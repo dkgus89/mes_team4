@@ -17,17 +17,33 @@
 
 $(function(){	
 	$("#myform").submit(function(){
+		
+		var passCheck = RegExp(/^[0-9]{5,10}$/)
+		
+		
         if($('.pass').val()==""){
         	alert("비밀번호 입력하세요");
 			$('.pass').focus();
 			return false;
         }
+		
+		 if(!passCheck.test($('.pass').val())){
+       	  alert("비밀번호 형식을 확인해주세요");
+       	  $('.pass').focus();
+       	  return false;
+         }
       
         if($('.pass2').val()==""){
         	alert("비밀번호 확인란을 입력하세요");
 			$('.pass2').focus();
 			return false;
         }
+        
+        if(!passCheck.test($('.pass2').val())){
+        	  alert("비밀번호확인란의 형식을 확인해주세요");
+        	  $('.pass2').focus();
+        	  return false;
+          }
         
         if($('.pass').val() != $('.pass2').val()){
         	alert("비밀번호가 일치하지 않습니다");
@@ -62,7 +78,7 @@ $(function(){
 	<td>부서번호</td><td>${systemDTO.dept_cd}</td></tr>
 	<tr style="text-align: center; font-size: 1rem">
 	<td>비밀번호</td><td><input type="password" name="emp_pass" class="pass" size=40  style="height:20px;"><br>
-						비밀번호는 <span style="color:red">숫자 *자리</span>를 입력하세요</td></tr>
+						비밀번호는 <span style="color:red">숫자 5~10자리</span>를 입력하세요</td></tr>
 	<tr style="text-align: center; font-size: 1rem">
 	<td>비밀번호확인</td><td><input type="password" name="emp_pass2" class="pass2" size=40 style="height:20px;"><br>
 						비밀번호를 다시한번 입력하세요</td></tr>
