@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
+// 수정
 function sub(){
 	$(document).ready(function(){
 		// submit 유효성 검사
@@ -39,7 +40,7 @@ function sub(){
 		}
 	});
 }
-
+//초기화
 function rst(){
 	// 초기화 유효성 검사
 	var result = confirm("초기화 하시겠습니까?");
@@ -83,7 +84,7 @@ function rst(){
 			<tbody>
 				<tr>
 					<td><input type="text" name="wh_dv" value="${whDTO.wh_dv }" readonly></td>
-					<td><input type="text" name="wh_name" value="${whDTO.wh_name }"></td>
+					<td><input type="text" name="wh_name" value="${whDTO.wh_name }" id="wh_name"></td>
 					<c:if test="${whDTO.wh_use=='사용'}">
 					<td>
 					<select name="wh_use">
@@ -102,7 +103,7 @@ function rst(){
 					</td>
 					</c:if>
 						
-					<td><input type="tel" name="wh_tel" value="${whDTO.wh_tel }"></td>
+					<td><input type="tel" name="wh_tel" value="${whDTO.wh_tel }" id="wh_tel" placeholder="숫자만 입력하세요"></td>
 					<c:if test ="${whDTO.wh_addr=='서울' }">
 					<td><input type="text" name="wh_addr" value="${whDTO.wh_addr }" readonly></td>
 				</c:if>

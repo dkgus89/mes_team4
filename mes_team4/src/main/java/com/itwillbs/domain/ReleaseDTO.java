@@ -7,7 +7,6 @@ public class ReleaseDTO {
 	private String rel_schedule_cd;
 	private Date rel_date;
 	private String remarks;
-	private String out_complete;
 	private int rel_count;
 	
 	private String wh_cd;
@@ -58,12 +57,6 @@ public class ReleaseDTO {
 	}
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
-	}
-	public String getOut_complete() {
-		return out_complete;
-	}
-	public void setOut_complete(String out_complete) {
-		this.out_complete = out_complete;
 	}
 	public int getRel_count() {
 		return rel_count;
