@@ -13,6 +13,10 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/MainFront.css" rel="stylesheet" type="text/css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript">
 $(document).ready(function(){
 //	alert("준비");
@@ -27,33 +31,23 @@ $('#update').submit(function(){
 		return false;
 	}
   //class="pass"
-  if($('.emp_pass').val()==""){
-    	alert("현재비밀번호를 입력하세요");
-		$('.emp_pass').focus();
-		return false;
-    }
-  
-  if($('.emp_pass').val() != ${systemDTO.emp_pass}){
-    	alert("현재비밀번호 틀림");
-		$('.emp_pass').focus();
-		return false;
-    }
+
     
-  if($('.newemp_pass').val()==""){
+  if($('.emp_pass').val()==""){
     	alert("새 비밀번호를 입력하세요");
 		$('.emp_pass').focus();
 		return false;
     }
     
-  if($('.newemp_pass2').val()==""){
+  if($('.emp_pass2').val()==""){
     	alert("새 비밀번호를 확인해주세요");
 		$('.emp_pass2').focus();
 		return false;
     }
     
-  if($('.newemp_pass').val() != $('.newemp_pass2').val()){
+  if($('.emp_pass').val() != $('.emp_pass2').val()){
     	alert("새 비밀번호 일치하지 않음");
-		$('.emp_pass2').focus();
+		$('.emp_pass').focus();
 		return false;
     }
     
@@ -67,15 +61,18 @@ $('#update').submit(function(){
 		return false;
     }
     
-  if($('.priv_cd').val()==""){
+  if($('.emp_priv').val()==""){
     	alert("권한을 체크하세요");
 		return false;
     } 
-  document.update.submit();
-  setTimeout(function() {
-	  	 opener.parent.location.reload();
-	 	 window.close();
-	  }, 1000);
+  else{
+	  setTimeout(function(){
+	  opener.parent.location.reload();
+	  window.close();
+	  },100);
+  }
+  
+  
 });//
 });
 
@@ -88,24 +85,21 @@ $('#update').submit(function(){
 	
 	<form action="${pageContext.request.contextPath }/system/memberupdatepro" name="update" id="update" method="post">
 		
-<fieldset style="width:500px; height:570px; padding-left:20px; padding-right: 20px;">
+<fieldset style="width:500px; height:520px; padding-left:20px; padding-right: 20px;">
 <h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >사용자수정</h2>
+				
 					<input type="hidden" name="emp_no" class="emp_no" value="${systemDTO.emp_no}">
 					<div>
 					<label>사원명</label>
 					<input type="text" name="emp_name" class="emp_name" style="width:150px;height:30px;font-size:18px;" value="${systemDTO.emp_name}" readonly><br><br>
 					</div>
 					<div>
-					<label>현재비밀번호</label>
+					<label>새 비밀번호</label>
 					<input type="password" name="emp_pass" class="emp_pass" style="width:150px;height:30px;font-size:18px;"><br><br>
 					</div>
 					<div>
-					<label>새 비밀번호</label>
-					<input type="password" name="newemp_pass" class="newemp_pass" style="width:150px;height:30px;font-size:18px;"><br><br>
-					</div>
-					<div>
 					<label>새 비밀번호확인</label>
-					<input type="password"  name="newemp_pass2" class="newemp_pass2" style="width:150px;height:30px;font-size:18px;"><br><br>
+					<input type="password"  name="emp_pass2" class="emp_pass2" style="width:150px;height:30px;font-size:18px;"><br><br>
 					</div>
 					<label>부서</label><br>
 					<div>
@@ -131,31 +125,25 @@ $('#update').submit(function(){
 					</div><br>			
 					<label>권한</label><br>
 					<div>
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="A" ${systemDTO.priv_cd.contains("A") ? 'checked':''}/> 사원조회
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="B" ${systemDTO.priv_cd.contains("B") ? 'checked':''}/> 사원관리
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="C" ${systemDTO.priv_cd.contains("C") ? 'checked':''}/> 재고조회
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="D" ${systemDTO.priv_cd.contains("D") ? 'checked':''}/> 재고관리
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="E" ${systemDTO.priv_cd.contains("E") ? 'checked':''}/> 생산조회<BR>
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="F" ${systemDTO.priv_cd.contains("F") ? 'checked':''}/> 생산관리 
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="G" ${systemDTO.priv_cd.contains("G") ? 'checked':''}/> 수주조회 
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="H" ${systemDTO.priv_cd.contains("H") ? 'checked':''}/> 수주관리
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="I" ${systemDTO.priv_cd.contains("I") ? 'checked':''}/> 발주조회 
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="J" ${systemDTO.priv_cd.contains("J") ? 'checked':''}/> 발주관리 <BR>
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="K" ${systemDTO.priv_cd.contains("K") ? 'checked':''}/> 출하조회 
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="L" ${systemDTO.priv_cd.contains("L") ? 'checked':''}/> 출하관리 
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="M" ${systemDTO.priv_cd.contains("M") ? 'checked':''}/> 기준정보조회
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="N" ${systemDTO.priv_cd.contains("N") ? 'checked':''}/> 기준정보관리<BR>
-						<input type="checkbox" class="priv_cd" name="priv_cd" value="O" ${systemDTO.priv_cd.contains("O") ? 'checked':''}/> 시스템관리 
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="A" ${systemDTO.emp_priv.contains("A") ? 'checked':''}/> 시스템관리
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="B" ${systemDTO.emp_priv.contains("B") ? 'checked':''}/> 사원관리
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="C" ${systemDTO.emp_priv.contains("C") ? 'checked':''}/> 기준정보관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="D" ${systemDTO.emp_priv.contains("D") ? 'checked':''}/> 영업관리
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="E" ${systemDTO.emp_priv.contains("E") ? 'checked':''}/> 생산조회
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="F" ${systemDTO.emp_priv.contains("F") ? 'checked':''}/> 재고관리
+
 
 					</div>
 
 			</fieldset>
 		
 	</form>
-<div style="text-align:center">
+
+	<div style="margin-left: 170px">
 		<button class="button2" form="update" onclick="submit">사용자수정</button>
 	  	<button class="button2" onclick="window.close()">창닫기</button>
 	  	</div>
+
 
 	<!-- 본문HTML 입력 끝-->
 </div>

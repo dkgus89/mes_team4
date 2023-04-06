@@ -40,7 +40,7 @@
     
     <update id="memberupdatepro">
     	update employees 
-    	set emp_name = #{emp_name}, emp_pass = #{newemp_pass}, dept_cd = #{dept_cd}, grade_cd = #{grade_cd}, emp_priv = #{emp_priv}
+    	set emp_name = #{emp_name}, emp_pass = #{emp_pass}, dept_cd = #{dept_cd}, grade_cd = #{grade_cd}, emp_priv = #{emp_priv}
     	where emp_no = #{emp_no}	
     </update>
  

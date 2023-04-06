@@ -13,11 +13,12 @@
 
 <!-- 자바스크립트 입력 시작-->
 <script>
+
 function memberinsert(){
-	var win = window.open("${pageContext.request.contextPath }/system/memberinsert", "_blank", "width=600, height=680, top=200, left=200");
+	var win = window.open("${pageContext.request.contextPath }/system/memberinsert", "_blank", "width=620, height=620, top=200, left=200");
 }
 function memberupdate(a) {
-	var win = window.open("${pageContext.request.contextPath }/system/memberupdate?emp_no=" + a, "_blank", "width=580, height=680, top=200, left=200");
+	var win = window.open("${pageContext.request.contextPath }/system/memberupdate?emp_no=" + a, "_blank", "width=600, height=620, top=200, left=200");
 }
 function memberdelete(a) {
 	location.href = '${pageContext.request.contextPath }/system/memberdelete?emp_no=' + a; 
@@ -50,8 +51,8 @@ function memberdelete(a) {
 					<th>부서</th>
 					<th>직급</th>
 					<th>권한</th>
-					<th>수정</th>
-					<th>삭제</th>
+					<th style="width:30px;">수정</th>
+					<th style="width:30px;">삭제</th>
 					
 				</tr>
 			</thead>
@@ -64,9 +65,9 @@ function memberdelete(a) {
 						<td>${systemDTO.emp_name}</td>
 						<td>${systemDTO.dept_cd}</td>
 						<td>${systemDTO.grade_cd}</td>
-						<td>${systemDTO.priv_cd}</td>
-						<td><button onclick="memberupdate('${systemDTO.emp_no}');">수정</button></td>
-						<td><button onclick="memberdelete('${systemDTO.emp_no}');">삭제</button></td></tr>
+						<td>${systemDTO.emp_priv}</td>
+						<td><button class="button2" onclick="memberupdate('${systemDTO.emp_no}');">수정</button></td>
+						<td><button class="button2" onclick="memberdelete('${systemDTO.emp_no}');">삭제</button></td></tr>
 
 			  	</c:forEach>
 			</tbody>
@@ -75,7 +76,7 @@ function memberdelete(a) {
 		<div id="array"></div>
 	<div id="table_search" style="text-align:right;">
 				<form action="${pageContext.request.contextPath}/system/membermain" method="get">
-					<input type="text" name="search" class="input_box"> 
+					<input type="text" name="search" class="input_box" placeholder="사원명을 입력하세요"> 
 					<button class="button2"	type="submit" value="search">검색</button>	
 				</form>
 			</div>
