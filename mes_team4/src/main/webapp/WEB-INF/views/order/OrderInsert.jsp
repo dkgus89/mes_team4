@@ -38,8 +38,15 @@
     	    $('.order_count').focus();
     	    return false;
     	}
+    	
+    	if($('.deliver_date').val() == ""){
+    	    alert("출하예정일을 선택하세요.");
+    	    $('.deliver_date').focus();
+    	    return false;
+    	}
+    	
     	if($("select[name=emp_no]").val() == ""){
-    	    alert("거래처를 선택하세요.");
+    	    alert("담당자를 선택하세요.");
     	    $("#select3").focus();
     	    return false;
     	}
