@@ -374,7 +374,7 @@ public class ReceiveController {
 			pch[i] = receiveDTO.getPchor_cd();
 			if (pch[i].contains("PCH")) {
 				purchaseDTO = purchaseService.getPurchaseDTO(pch[i]);
-				purchaseDTO.setPurchase_com("완료");
+				purchaseDTO.setPurchase_com("미완료");
 				purchaseService.updatePurchase(purchaseDTO);
 			}
 		}
