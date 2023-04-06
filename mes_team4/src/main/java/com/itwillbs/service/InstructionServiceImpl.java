@@ -104,14 +104,6 @@ public class InstructionServiceImpl implements InstructionService{
 	}
 
 	@Override
-	public void deletePerform(String instruction_code) {
-		System.out.println("InstructionServiceImpl deletePerform()");
-		
-		instructionDAO.deletePerform(instruction_code);
-		
-	}
-
-	@Override
 	public int getordercheck(String order_cd) {
 		System.out.println("InstructionServiceImpl getordercheck()");
 		
@@ -123,6 +115,14 @@ public class InstructionServiceImpl implements InstructionService{
 		System.out.println("InstructionServiceImpl getOrderListMap()");
 		
 		return instructionDAO.getOrderListMap(pageDTO);
+	}
+
+	@Override
+	public void instdelete(String instruction_code) {
+		System.out.println("InstructionServiceImpl instdelete()");
+		
+		instructionDAO.instdelete(instruction_code);
+		
 	}
 
 	

@@ -30,13 +30,13 @@ public interface InstructionService {
 
 	public void instupdatepro(InstructionDTO instructionDTO);
 
-	public void deletePerform(String instruction_code);
-
 	public int getordercheck(String order_cd);
 
 	public List<Map<String, Object>> getOrderListMap(PageDTO pageDTO);
 
 	public void instinsertpro(InstructionDTO instructionDTO);
+
+	public void instdelete(String instruction_code);
 
 
 	

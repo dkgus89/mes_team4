@@ -149,7 +149,7 @@ public class InstructionController {
 		if(chbox!=null){
 			  for(int i=0;i<chbox.length;i++){
 				  instruction_code=chbox[i];
-				  instructionService.deletePerform(instruction_code);
+				  instructionService.instdelete(instruction_code);
 			  }
 	       }			
 		

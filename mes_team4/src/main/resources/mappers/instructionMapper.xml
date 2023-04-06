@@ -81,9 +81,9 @@
      	where instruction_code = #{instruction_code}
     </update>
     
-    <delete id="instructiondelete">
-  		delete from instruction
-  		where instruction_code = #{instruction_code}
+     <delete id="instdelete">
+    	delete from instruction
+    	where instruction_code = #{instruction_code}
     </delete>
     
  	 <select id="instructionlist" resultType="com.itwillbs.domain.InstructionDTO">

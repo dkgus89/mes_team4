@@ -98,14 +98,6 @@ public class InstructionDAOImpl implements InstructionDAO {
 	}
 
 	@Override
-	public void deletePerform(String instruction_code) {
-		System.out.println("InstructionDAOImpl deletePerform()");
-		
-		sqlSession.delete(namespace +".deletePerform", instruction_code);
-		
-	}
-
-	@Override
 	public int getordercheck(String order_cd) {
 		System.out.println("InstructionDAOImpl getordercheck()");
 		
@@ -117,6 +109,14 @@ public class InstructionDAOImpl implements InstructionDAO {
 		System.out.println("InstructionDAOImpl getOrderListMap()");
 		
 		return sqlSession.selectList(namespace +".getOrderListMap", pageDTO);
+	}
+
+	@Override
+	public void instdelete(String instruction_code) {
+		System.out.println("InstructionDAOImpl instdelete()");
+		
+		sqlSession.delete(namespace +".instdelete", instruction_code);
+		
 	}
 	
 	
