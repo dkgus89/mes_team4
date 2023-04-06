@@ -15,10 +15,10 @@
 <script>
 
 function memberinsert(){
-	var win = window.open("${pageContext.request.contextPath }/system/memberinsert", "_blank", "width=620, height=620, top=200, left=200");
+	var win = window.open("${pageContext.request.contextPath }/system/memberinsert", "_blank", "width=620, height=700, top=200, left=200");
 }
 function memberupdate(a) {
-	var win = window.open("${pageContext.request.contextPath }/system/memberupdate?emp_no=" + a, "_blank", "width=600, height=620, top=200, left=200");
+	var win = window.open("${pageContext.request.contextPath }/system/memberupdate?emp_no=" + a, "_blank", "width=600, height=700, top=200, left=200");
 }
 function memberdelete(a) {
 	location.href = '${pageContext.request.contextPath }/system/memberdelete?emp_no=' + a; 
