@@ -25,11 +25,11 @@ function showPopup(){
   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 }
 //작업지시현황 팝업에서 선택한 값 받아오기
-function setChildValue(instruction_code,line_cd,product_cd,instruction_qt){
+function setChildValue(instruction_code,line_cd,product_cd_name,instruction_qt){
 	
     document.getElementById("instruction_code").value = instruction_code;
     document.getElementById("line_cd").value = line_cd;
-    document.getElementById("product_cd").value = product_cd;
+    document.getElementById("product_cd_name").value = product_cd_name;
     document.getElementById("instruction_qt").value = instruction_qt;
 
 }
@@ -71,9 +71,9 @@ function sub(){
 				$('#line_cd').focus();
 				return false;
 			}
-			if($('#product_cd').val()==""){
+			if($('#product_cd_name').val()==""){
 				alert("품목코드를 입력하세요");
-				$('#product_cd').focus();
+				$('#product_cd_name').focus();
 				return false;
 			}
 			if($('#perform_date').val()==""){
@@ -163,7 +163,7 @@ function rst(){
 				<tr>					
 					<td><input type="text" name="instruction_code" id="instruction_code" value="${perform.instruction_code}" readonly></td>
     				<td><input type="text" name="line_cd" id="line_cd" value="${perform.line_cd}" readonly></td>
-    				<td><input type="text" name="product_cd" id="product_cd" value="${perform.product_cd}" readonly></td>			
+    				<td><input type="text" name="product_cd_name" id="product_cd_name" value="${perform.product_cd_name}" readonly></td>			
 					<td><input type="text" name="instruction_qt" id="instruction_qt" value="${perform.instruction_qt}" readonly></td>
 				</tr>
 								

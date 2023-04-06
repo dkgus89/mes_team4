@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-function input1(instruction_code,line_cd,product_cd,instruction_qt){
+function input1(instruction_code,line_cd,product_cd_name,instruction_qt){
 	$(document).ready(function(){ //Jquery 시작
 	// 선택 유효성 검사		
 		var rt = null;
@@ -36,7 +36,7 @@ function input1(instruction_code,line_cd,product_cd,instruction_qt){
 	     	  // 유효성 검사 통과시 선택 진행
 			  var result = confirm("이 행을 선택 하시겠습니까?");
 			  if (result == true){
-			  	  opener.setChildValue(instruction_code,line_cd,product_cd,instruction_qt);
+			  	  opener.setChildValue(instruction_code,line_cd,product_cd_name,instruction_qt);
 				  window.close();
 			  } else {
 			  return false;
@@ -83,7 +83,7 @@ function input1(instruction_code,line_cd,product_cd,instruction_qt){
 					<c:if test="${instructionDTO.instruction_state == '완료'}">
 					<tr><td>${instructionDTO.order_cd}</td>
 						<td>${instructionDTO.instruction_code}</td>
-						<td>${instructionDTO.product_cd}</td>
+						<td>${instructionDTO.product_cd_name}</td>
 						<td>${instructionDTO.instruction_qt}</td>
 						<td>"${instructionDTO.rpname1} : " + "${instructionDTO.consumption1}" </td>
 						<td>"${instructionDTO.rpname2} : " + "${instructionDTO.consumption2}" </td>
@@ -93,7 +93,7 @@ function input1(instruction_code,line_cd,product_cd,instruction_qt){
 							<td>완료</td>
 						</c:if>
 <%-- 						<td>${instructionDTO.instruction_state}</td> --%>
-						<td><button class="button2" onClick="input1('${instructionDTO.instruction_code}','${instructionDTO.line_cd}','${instructionDTO.product_cd}','${instructionDTO.instruction_qt}');">선택</button></td>
+						<td><button class="button2" onClick="input1('${instructionDTO.instruction_code}','${instructionDTO.line_cd}','${instructionDTO.product_cd_name}','${instructionDTO.instruction_qt}');">선택</button></td>
 					</tr>
 					</c:if>
 				</c:forEach>

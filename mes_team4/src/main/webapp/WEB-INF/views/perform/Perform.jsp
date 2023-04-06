@@ -71,25 +71,25 @@ function allCheck(){
 							<option value="perform_cd">실적코드</option>
 							<option value="instruction_code" selected>작업지시코드</option>
 							<option value="line_cd">라인코드</option>
-							<option value="product_cd">품목코드</option>
+							<option value="product_cd_name">제품코드</option>
 						</c:when>
 						<c:when test="${pageDTO.select == 'line_cd'.toString()}">
 							<option value="perform_cd">실적코드</option>
 							<option value="instruction_code">작업지시코드</option>
 							<option value="line_cd" selected>라인코드</option>
-							<option value="product_cd">품목코드</option>
+							<option value="product_cd_name">제품코드</option>
 						</c:when>
-						<c:when test="${pageDTO.select == 'product_cd'.toString()}">
+						<c:when test="${pageDTO.select == 'product_cd_name'.toString()}">
 							<option value="perform_cd">실적코드</option>
 							<option value="instruction_code">작업지시코드</option>
 							<option value="line_cd">라인코드</option>
-							<option value="product_cd" selected>품목코드</option>
+							<option value="product_cd_name" selected>제품코드</option>
 						</c:when>
 						<c:otherwise>
 							<option value="perform_cd" selected>실적코드</option>
 							<option value="instruction_code">작업지시코드</option>
 							<option value="line_cd">라인코드</option>
-							<option value="product_cd">품목코드</option>
+							<option value="product_cd_name">제품코드</option>
 						</c:otherwise>
 				</c:choose>
       			</select>
@@ -120,7 +120,7 @@ function allCheck(){
 					<th style="text-align: center;">작업지시코드</th>
 					<th style="text-align: center;">라인코드</th>
 					<th style="text-align: center; width: 25px;">라인명</th>
-					<th style="text-align: center;">품목코드</th>
+					<th style="text-align: center;">제품코드</th>
 					<th style="text-align: center;">품목명</th>
 					<th style="text-align: center;">실적일자</th>
 					<th style="text-align: center;">지시수량</th>
@@ -144,7 +144,7 @@ function allCheck(){
     			<td style="text-align: center;">${dto.instruction_code}</td>
     			<td style="text-align: center;">${dto.line_cd}</td>
     			<td style="text-align: center;">${dto.line_name}</td>
-    			<td style="text-align: center;">${dto.product_cd}</td> 
+    			<td style="text-align: center;">${dto.product_cd_name}</td> 
     			<td style="text-align: center;">${dto.product_name}</td> 			
     			<td style="text-align: center;">${dto.perform_date}</td>
     			<td style="text-align: center;">${dto.instruction_qt}</td>

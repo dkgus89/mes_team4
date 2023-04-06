@@ -273,7 +273,7 @@ public class PerformController {
 				     =performService.getcallcdMap(ic);
 				
 				// 보낼 값 result에 저장
-				String result=(String) callcdMap.get("product_cd");
+				String result=(String) callcdMap.get("product_cd_name");
 								
 				// result 값 리턴
 				return result;

@@ -8,7 +8,7 @@
 	
 	<insert id="insertPerform">
     	insert into performance
-    	values(#{perform_cd},#{instruction_code},#{line_cd},#{product_cd},#{perform_date},#{fair_prod},#{defect_prod},#{defect_remarks},#{remarks})
+    	values(#{perform_cd},#{instruction_code},#{line_cd},#{product_cd_name},#{perform_date},#{fair_prod},#{defect_prod},#{defect_remarks},#{remarks})
     </insert>
 
 <!-- 	<select id="getPerformList" resultType="com.itwillbs.domain.PerformDTO" resultMap="map1"> -->
@@ -18,13 +18,13 @@
     
     <select id="getPerformCount" resultType="java.lang.Integer">
         select count(*)
-        from(select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
+        from(select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd_name, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
 		from performance p join line l
 							 on p.line_cd=l.line_cd
 						   join instruction o
 							 on p.instruction_code=o.instruction_code
 				   		   join product d
-                    		 on p.product_cd=d.product_cd
+                    		 on p.product_cd_name=d.product_cd_name
         <if test="search != null">
         <if test="select != null">
         	<if test="select == 'perform_cd'.toString()">
@@ -36,8 +36,8 @@
         	<if test="select == 'line_cd'.toString()">
         	where p.line_cd like CONCAT('%',#{search},'%')
         	</if>
-        	<if test="select == 'product_cd'.toString()">
-        	where p.product_cd like CONCAT('%',#{search},'%')
+        	<if test="select == 'product_cd_name'.toString()">
+        	where p.product_cd_name like CONCAT('%',#{search},'%')
         	</if>
         </if>
         </if>) a
@@ -45,23 +45,23 @@
     
     <select id="getPerformCount2" resultType="java.lang.Integer">
         select count(*)
-        from(select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
+        from(select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd_name, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
 		from performance p join line l
 							 on p.line_cd=l.line_cd
 						   join instruction o
 							 on p.instruction_code=o.instruction_code
 				   		   join product d
-                    		 on p.product_cd=d.product_cd) a
+                    		 on p.product_cd_name=d.product_cd_name) a
     </select>
 
 	<select id="getPerform" resultMap="map2">
-        select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
+        select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd_name, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
 		from performance p join line l
 							 on p.line_cd=l.line_cd
 						   join instruction o
 							 on p.instruction_code=o.instruction_code
 				   		   join product d
-                    		 on p.product_cd=d.product_cd
+                    		 on p.product_cd_name=d.product_cd_name
         where perform_cd = #{perform_cd}
     </select>
         
@@ -74,7 +74,7 @@
     
     <update id="updatePerform">
     	update performance
-    	set instruction_code = #{instruction_code}, line_cd = #{line_cd}, product_cd = #{product_cd}, perform_date = #{perform_date}, fair_prod = #{fair_prod}, defect_prod = #{defect_prod}, defect_remarks = #{defect_remarks}, remarks = #{remarks}
+    	set instruction_code = #{instruction_code}, line_cd = #{line_cd}, product_cd_name = #{product_cd_name}, perform_date = #{perform_date}, fair_prod = #{fair_prod}, defect_prod = #{defect_prod}, defect_remarks = #{defect_remarks}, remarks = #{remarks}
     	where perform_cd = #{perform_cd}
     </update>
     
@@ -87,11 +87,11 @@
 	<resultMap type="map" id="map1">
 		<result column="instruction_code" property="instruction_code"/>
 		<result column="line_cd" property="line_cd"/>
-		<result column="product_cd" property="product_cd"/>
+		<result column="product_cd_name" property="product_cd_name"/>
 	</resultMap>
 
     <select id="getInstMap" resultMap="map1">
-    	select distinct instruction_code, line_cd, product_cd from instruction
+    	select distinct instruction_code, line_cd, product_cd_name from instruction
     </select>
     
     <resultMap type="map" id="map2">
@@ -99,7 +99,7 @@
 		<result column="instruction_code" property="instruction_code"/>
 		<result column="line_cd" property="line_cd"/>
 		<result column="line_name" property="line_name"/>
-		<result column="product_cd" property="product_cd"/>
+		<result column="product_cd_name" property="product_cd_name"/>
 		<result column="product_name" property="product_name"/>
 		<result column="perform_date" property="perform_date"/>
 		<result column="instruction_qt" property="instruction_qt"/>
@@ -110,13 +110,13 @@
     </resultMap>
     
     <select id="getPerformMap" resultMap="map2">
-    	select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
+    	select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd_name, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
 		from performance p join line l
 							 on p.line_cd=l.line_cd
 						   join instruction o
 							 on p.instruction_code=o.instruction_code
 				   		   join product d
-                    		 on p.product_cd=d.product_cd
+                    		 on p.product_cd_name=d.product_cd_name
         <if test="search != null">
     	<if test="select != null">
     		<if test="select == 'perform_cd'.toString()">
@@ -128,8 +128,8 @@
         	<if test="select == 'line_cd'.toString()">
         	where p.line_cd like CONCAT('%',#{search},'%')
         	</if>
-        	<if test="select == 'product_cd'.toString()">
-        	where p.product_cd like CONCAT('%',#{search},'%')
+        	<if test="select == 'product_cd_name'.toString()">
+        	where p.product_cd_name like CONCAT('%',#{search},'%')
         	</if>
         </if>
         </if>
@@ -139,11 +139,11 @@
     
     <resultMap type="map" id="map3">
 		<result column="line_cd" property="line_cd"/>
-		<result column="product_cd" property="product_cd"/>
+		<result column="product_cd_name" property="product_cd_name"/>
 	</resultMap>
     
     <select id="getcallcdMap" resultMap="map3">
-    	select line_cd, product_cd
+    	select line_cd, product_cd_name
     	from instruction
     	where instruction_code = #{ic}
     </select>
