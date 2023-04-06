@@ -22,6 +22,7 @@ import com.itwillbs.domain.DeliverDTO;
 import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.DeliverService;
 import com.itwillbs.service.OrderService;
 
@@ -138,6 +139,10 @@ public class DeliverController {
 		List<Map<String,Object >> instMap3= deliverService.getInstMap3();
 		model.addAttribute("instMap3", instMap3);
 
+		
+//		//담당자 갖고오기
+//		List<SystemDTO> systemList = deliverService.getMemberList();
+//		model.addAttribute("systemList",systemList);
 		
 		
 		

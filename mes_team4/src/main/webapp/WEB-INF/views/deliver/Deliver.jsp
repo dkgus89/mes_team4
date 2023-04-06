@@ -73,6 +73,7 @@ function allCheck(){
 					<th>수주코드</th>
 					<th>출하일자</th>
 					<th>출하량</th>
+					<th>출하담당자</th>
 					<th>수정</th>
 				</tr>
 			</thead>
@@ -105,6 +106,8 @@ function allCheck(){
     			<td>${DeliverDTO.order_cd}</td>
     			<td>${DeliverDTO.deliver_date}</td>
     			<td>${DeliverDTO.deliver_count}</td>
+    			<td>${DeliverDTO.emp_no}</td>
+    			
     			<td><button class="button2" onclick="DeliverUpdate('${DeliverDTO.deliver_cd}','${DeliverDTO.business_cd}','${DeliverDTO.product_cd}');">수정</button></td>
     			
    			 
