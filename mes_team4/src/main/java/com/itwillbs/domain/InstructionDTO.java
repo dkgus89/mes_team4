@@ -1,18 +1,16 @@
 package com.itwillbs.domain;
 
-import java.util.Date;
-
 public class InstructionDTO {
 
 	private String order_cd;  // 수주코드
-	private String product_cd;   // 품목코드
+	private String product_cd_name;   // 품목코드
 	private int instruction_qt;  // 지시수량
 	private String rpname1; // 원재료1 이름
 	private int consumption1; // 원재료1 소요량
 	private String rpname2; // 원재료 2 이름
 	private int consumption2; // 원재료2 소요량
 	private String line_cd;  // 라인코드
-	private Date instruction_date;  // 작업지시일자
+	private String instruction_date;  // 작업지시일자
 	private String instruction_state;  // 작업지시상태
 	private String instruction_code;  // 작업지시코드
 	
@@ -22,12 +20,7 @@ public class InstructionDTO {
 	public void setOrder_cd(String order_cd) {
 		this.order_cd = order_cd;
 	}
-	public String getProduct_cd() {
-		return product_cd;
-	}
-	public void setProduct_cd(String product_cd) {
-		this.product_cd = product_cd;
-	}
+
 	public int getInstruction_qt() {
 		return instruction_qt;
 	}
@@ -64,10 +57,10 @@ public class InstructionDTO {
 	public void setLine_cd(String line_cd) {
 		this.line_cd = line_cd;
 	}
-	public Date getInstruction_date() {
+	public String getInstruction_date() {
 		return instruction_date;
 	}
-	public void setInstruction_date(Date instruction_date) {
+	public void setInstruction_date(String instruction_date) {
 		this.instruction_date = instruction_date;
 	}
 	public String getInstruction_state() {
@@ -81,6 +74,12 @@ public class InstructionDTO {
 	}
 	public void setInstruction_code(String instruction_code) {
 		this.instruction_code = instruction_code;
+	}
+	public String getProduct_cd_name() {
+		return product_cd_name;
+	}
+	public void setProduct_cd_name(String product_cd_name) {
+		this.product_cd_name = product_cd_name;
 	}
 	
 
