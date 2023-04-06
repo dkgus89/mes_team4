@@ -28,11 +28,12 @@ function showPopup(){
 	}
 
 //수주현황 받아오기
-function setChildValue(business_cd,order_cd,product_cd){
+function setChildValue(business_cd,order_cd,product_cd,emp_no){
 
 	document.getElementById("business_cd").value=business_cd;
 	document.getElementById("order_cd").value=order_cd;
 	document.getElementById("product_cd").value=product_cd;
+	document.getElementById("emp_no").value=emp_no;
 }
 
 //수주거 받아온거 등록??
@@ -144,7 +145,7 @@ function setChildValue(business_cd,order_cd,product_cd){
 					<th>수주코드</th>
 					<th>출하일자</th>
 					<th>출하량</th>
-					
+					<th>출하담당자</th>
 					
 				</tr>
 			</thead>
@@ -160,6 +161,7 @@ function setChildValue(business_cd,order_cd,product_cd){
 					<td><input type="text" name="order_cd" id="order_cd"> </td>
 					<td><input type="Date" name="deliver_date" ></td>
 					<td><input type="text" name="deliver_count" ></td>
+					<td><input type="text" name="emp_no" id="emp_no"></td>
 				</tr>
 
 			</tbody>

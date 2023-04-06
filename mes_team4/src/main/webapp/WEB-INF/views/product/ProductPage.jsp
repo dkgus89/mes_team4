@@ -15,10 +15,10 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 function showPopup() {
-	window.open("prodinsert","추가팝업","width=1400, height=300, top=200, left=200");
+	window.open("prodinsert","추가팝업","width=1300, height=300, top=200, left=200");
 }
 function updatePopup(cd) {
-	 window.open("${pageContext.request.contextPath}/product/produpdate?product_cd_name="+cd,"produpdate","width=1400, height=300, top=200, left=200");
+	 window.open("${pageContext.request.contextPath}/product/produpdate?product_cd_name="+cd,"produpdate","width=1450, height=300, top=200, left=200");
 }
 
 //체크

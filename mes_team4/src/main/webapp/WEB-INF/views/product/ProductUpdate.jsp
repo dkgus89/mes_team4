@@ -43,7 +43,7 @@ function sub(){
 	<form name="productUpdate" method="post">
 		<input type="hidden" value="">
 		
-		<table id="vendortable" class="table table-striped">
+		<table id="vendortable" class="table table-striped" style="width:1200px;">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>제품구분 </th>

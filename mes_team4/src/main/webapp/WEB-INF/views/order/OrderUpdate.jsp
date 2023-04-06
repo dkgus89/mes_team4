@@ -41,7 +41,7 @@
 		<table id="vendortable" class="table table-striped" style="width:1000px;">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>거래처</th>
+					<th >거래처</th>
 					<th>제품명</th>
 					<th>주문량</th>
 					<th>수주등록날짜</th>

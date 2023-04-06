@@ -14,10 +14,10 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 	function showPopup(){
-	    window.open("orderinsert","수주팝업","width=950, height=400, top=200, left=200");
+	    window.open("orderinsert","수주팝업","width=1050, height=400, top=200, left=200");
 	}
 	function updatePopup(order_cd){
-	    window.open("orderupdate?cd="+order_cd,"수주수정팝업","width=950, height=400, top=200, left=200");
+	    window.open("orderupdate?cd="+order_cd,"수주수정팝업","width=1050, height=400, top=200, left=200");
 	}
 	
 	function allCheck(){
