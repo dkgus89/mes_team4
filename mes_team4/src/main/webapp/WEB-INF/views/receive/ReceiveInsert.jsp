@@ -63,9 +63,9 @@ function showPopup3(){
     	
       	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
     }
-    function setChildValue3(order_cd,product_cd,order_count){
+    function setChildValue3(order_cd,product_cd_name,order_count){
         document.getElementById("pchor_cd").value = order_cd;
-        document.getElementById("product_cd_name").value = product_cd;
+        document.getElementById("product_cd_name").value = product_cd_name;
         document.getElementById("rec_count").value = order_count;
     }
     
