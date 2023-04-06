@@ -14,12 +14,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+
+	$(document).ready(function(){
+
+	document.getElementById('today').valueAsDate = new Date();
+	
+	});
+	
     function goSubmit(){
+ 
+    	if($('.order_date').val() > $('.deliver_date').val()){
+    		alert("출하예정일을 주문날짜 이후로 설정해주세요.");
+    		$('.deliver_date').focus();
+    		return false;
+    	}else {
+    	
     	window.opener.name="parentPage";
     	document.insertform1.target="parentPage";
     	document.insertform1.action="${pageContext.request.contextPath}/order/orderinsertpro";
     	document.insertform1.submit();
     	self.close();
+    	
+    	}
     }
 </script>
 
@@ -33,7 +49,7 @@
 	<form  name="insertform1" method="post" >
 	
 	<div class="wrap2">
-		<input type="submit" class="button2" value="등록" onclick="goSubmit()">
+		<input type="submit" class="button2" value="등록" onclick="return goSubmit(this)">
 		<input type="reset" class="button2" value="초기화">
 	 </div><br>
 	 <br>
@@ -71,8 +87,8 @@
 					</select>
 					</td>
 					<td><input type="text" name="order_count" size=8;></td>	
-					<td><input type="date" name="order_date"></td>
-					<td><input type="date" name="deliver_date"></td>
+					<td><input type="date" name="order_date" class="order_date" id="today"></td>
+					<td><input type="date" name="deliver_date" class="deliver_date"></td>
 					<td>
 					<select id="select1"  name="emp_no" >
 						<option value="">담당직원</option>
