@@ -124,7 +124,6 @@
 	
 	  <button class="button2" onclick="insertPopup();">등록</button>
 	  <button class="button2"  onclick="deleteValue();">삭제</button>
-	  <button class="button2" onclick="finishValue();">출고처리</button>
 	  
 	 </div><br>
 	 <br>
@@ -142,7 +141,6 @@
 					<th>출고품목명</th>
 					<th>출고일자</th>
 					<th>출고수량</th>
-					<th>출고진행상태</th>
 					<th>적요</th>
 					<th>수정</th>
 				</tr>
@@ -157,7 +155,6 @@
 					<td>${dto.product_name}</td>
 					<td>${dto.rel_date}</td>
 					<td>${dto.rel_count }</td>
-					<td>${dto.out_complete}</td>
 					<td>${dto.remarks}</td>
 					<td>
 					<button class="button2" onclick="updatePopup('${dto.rel_schedule_cd}');">수정</button>

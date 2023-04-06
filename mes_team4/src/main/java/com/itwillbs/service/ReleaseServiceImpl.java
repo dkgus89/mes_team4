@@ -31,7 +31,6 @@ public class ReleaseServiceImpl implements ReleaseService{
 		if(releaseDAO.getLNum()==null) {
 			//출고품목 없음
 			releaseDTO.setRel_schedule_cd("L"+today+"001");
-			releaseDTO.setOut_complete("진행중");
 		}else{
 			//출고품목 => max(num)+1
 			System.out.println("LNum 출력 : "+releaseDAO.getLNum());
@@ -39,7 +38,6 @@ public class ReleaseServiceImpl implements ReleaseService{
 			String str = "L"+num;
 			
 			releaseDTO.setRel_schedule_cd(str);
-			releaseDTO.setOut_complete("진행중");
 		}
 		
 		

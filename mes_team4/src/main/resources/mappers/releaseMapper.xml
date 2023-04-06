@@ -7,8 +7,8 @@
 <mapper namespace="com.itwillbs.mappers.releaseMapper">
 	
 	<insert id="insertrel">
-	insert into release_schedule(rel_schedule_cd, wh_cd, product_cd_name, rel_date, remarks, out_complete, rel_count,pchor_cd) 
-	values(#{rel_schedule_cd}, #{wh_cd}, #{product_cd_name}, #{rel_date},#{remarks}, #{out_complete}, #{rel_count}, #{pchor_cd})
+	insert into release_schedule(rel_schedule_cd, wh_cd, product_cd_name, rel_date, remarks, rel_count,pchor_cd) 
+	values(#{rel_schedule_cd}, #{wh_cd}, #{product_cd_name}, #{rel_date},#{remarks}, #{rel_count}, #{pchor_cd})
 	</insert>
 	
 <!-- 	출고코드번호 -->
@@ -53,12 +53,11 @@
 		<result column="product_name"  property="product_name"/>
 		<result column="rel_date"  property="rel_date"/>
 		<result column="rel_count"  property="rel_count"/>
-		<result column="out_complete"  property="out_complete"/>
 		<result column="remarks"  property="remarks"/>
 	</resultMap>
 	
 	<select id="getRelList" resultMap="map2">
-	select r.rel_schedule_cd, w.wh_name, p.product_name, r.rel_date, r.rel_count, r.out_complete, r.remarks
+	select r.rel_schedule_cd, w.wh_name, p.product_name, r.rel_date, r.rel_count, r.remarks
 		   from release_schedule as r
 		   left join product as p
 		   on r.product_cd_name = p.product_cd_name
@@ -109,10 +108,6 @@
 			limit 1
 		</select>
     
-    <update id="finishrel">
-	update release_schedule set out_complete = '완료'
-	where rel_schedule_cd = #{rel_schedule_cd}
-	</update>
    
     
     
