@@ -75,7 +75,7 @@ function deleteValue(){
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2> 자재입고관리 </h2><br>
+	<h2> 입고관리 </h2><br>
 	
 		<div class="search">
 		<form action="${pageContext.request.contextPath}/receive/recpage" method="get" >

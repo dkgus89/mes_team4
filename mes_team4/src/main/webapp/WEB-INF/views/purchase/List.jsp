@@ -114,7 +114,7 @@
 <div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>원자재 발주 관리 </h2><br>
+	<h2>원자재 발주현황 </h2><br>
 	<div class="wrap2">
 	  <button class="button2" id="insertBtn" onclick="insertFn();">추가</button>
 	  <button class="button2" id="deleteBtn" onclick="deleteFn();">삭제</button>
@@ -162,7 +162,6 @@
 					<th>발주량</th>
 					<th>발주일자</th>
 					<th>납품예정일</th>
-					<th>담당자코드</th>
 					<th>담당자</th>
 					<th>진행상황</th>
 					<th></th>
@@ -184,7 +183,6 @@
 		    		<td>${dto.purchase_count}</td>
 		    		<td>${dto.purchase_date}</td>
 		    		<td>${dto.purchase_due}</td> 
-		    		<td>${dto.emp_no}</td>
 		    		<td>${dto.emp_name}</td>
 		    		<td>${dto.purchase_com}</td>
 		    		<td><button class="button2" id="updateBtn" onclick="updateFn('${dto.purchase_cd}')">수정</button></td>

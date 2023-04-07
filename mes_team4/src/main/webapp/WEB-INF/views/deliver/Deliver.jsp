@@ -48,7 +48,7 @@ function allCheck(){
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>출하 관리 </h2><br>
+	<h2>완제품 출하현황 </h2><br>
 	<div class="wrap2">
 	  <button class="button2" onclick="DeliverInsert();">추가</button>
 <!-- 	  <button class="button2">저장</button> -->

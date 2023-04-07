@@ -75,7 +75,7 @@ function deleteValue(){
 
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
-	<h2>자재출고</h2><br>
+	<h2>출고관리</h2><br>
 	
 	
     <div class="search">

@@ -74,6 +74,7 @@
 	      <li>
 	        <a href="#">영업관리</a>
 	        <ul class="submenu">
+	          <li><a href="${pageContext.request.contextPath}/purchase/list">발주관리</a></li>
 	          <li><a href="${pageContext.request.contextPath}/order/ordermain">수주관리</a></li>
 	          <li><a href="${pageContext.request.contextPath}/deliver/list">출하관리</a></li>
 	        </ul>
@@ -86,12 +87,11 @@
 	        </ul>
 	      </li>
 	      <li>
-	        <a href="#">자재관리</a>
+	        <a href="#">재고관리</a>
 	        <ul class="submenu">
-	          <li><a href="${pageContext.request.contextPath}/receive/recpage">자재입고관리</a></li>
-	          <li><a href="${pageContext.request.contextPath}/rel/relpage">자재출고관리</a></li>
-	          <li><a href="${pageContext.request.contextPath}/stock/stock">자재재고현황</a></li>
-	          <li><a href="${pageContext.request.contextPath}/purchase/list">자재발주관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/receive/recpage">입고관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/rel/relpage">출고관리</a></li>
+	          <li><a href="${pageContext.request.contextPath}/stock/stock">재고현황</a></li>
 	        </ul>
 	      </li>
 	    </ul>

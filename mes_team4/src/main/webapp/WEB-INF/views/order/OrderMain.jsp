@@ -71,7 +71,7 @@
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2 onclick="location.href='${pageContext.request.contextPath}/order/ordermain'">수주현황</h2>
+	<h2 onclick="location.href='${pageContext.request.contextPath}/order/ordermain'">완제품 수주현황</h2>
 	
 	<div class="wrap2">
 	  <button class="button2" onclick="showPopup();">추가</button>
