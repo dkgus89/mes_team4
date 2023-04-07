@@ -22,9 +22,12 @@ import com.itwillbs.domain.DeliverDTO;
 import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.ReceiveDTO;
 import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.DeliverService;
 import com.itwillbs.service.OrderService;
+import com.itwillbs.service.ReceiveService;
+
 
 
 
@@ -40,6 +43,8 @@ public class DeliverController {
 		@Inject
 		private OrderService orderService;
 	
+		@Inject
+		private ReceiveService receiveService;
 
 //		//가상주소???!!!???? 영업관리=> 출하등록 화면에서 " 출하등록 및 리스트가 되어야하는곳..."
 //		@RequestMapping(value = "/deliver/deliver", method = RequestMethod.GET)
@@ -356,7 +361,49 @@ public class DeliverController {
 		}
 
 		
-		
+		@RequestMapping(value = "/deliver/deliverinstlist2", method = RequestMethod.GET)
+		public String instList(HttpServletRequest request, Model model) {
+			
+//			한 화면에 보여줄 글의 개수 설정
+			int pageSize =5;
+//			현재 페이지 번호 가져오기
+			String pageNum = request.getParameter("pageNum");
+			if(pageNum == null) {
+//				pageNum이 없으면 1페이지로 설정
+				pageNum = "1";
+			} 
+			int currentPage = Integer.parseInt(pageNum);
+			
+			PageDTO pageDTO = new PageDTO();
+			pageDTO.setPageSize(pageSize);
+			pageDTO.setPageNum(pageNum);
+			pageDTO.setCurrentPage(currentPage);
+			
+			List<ReceiveDTO> receiveList=receiveService.getReceiveList(pageDTO);
+			
+//			페이징처리
+			int count = receiveService.getReceiveCount(pageDTO);
+			int pageBlock = 10;
+			int startPage = (currentPage-1)/pageBlock * pageBlock + 1;  
+			int endPage = startPage + pageBlock - 1;
+			int pageCount = count/pageSize + (count%pageSize==0?0:1);
+			if (endPage > pageCount){
+				endPage = pageCount;
+				}
+			
+			pageDTO.setCount(count);
+			pageDTO.setPageBlock(pageBlock);
+			pageDTO.setStartPage(startPage);
+			pageDTO.setEndPage(endPage);
+			pageDTO.setPageCount(pageCount);
+			
+			
+			
+			model.addAttribute("receiveList", receiveList);
+			model.addAttribute("pageDTO", pageDTO);
+			
+			return "deliver/DeliverInstList2";
+		}
 		
 	
 }// DeliverController

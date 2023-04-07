@@ -44,6 +44,44 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
 			document.DeliverInsert.submit();
 			self.close();
 		}
+		
+		
+		
+		
+//출고량현황 팝업창
+ function showPopup2(){
+ 	var link = "${pageContext.request.contextPath}/deliver/deliverinstlist2";     
+//  	var link = "${pageContext.request.contextPath}/rel/relpage";
+ 	var popupWidth = 1050;
+ 	var popupHeight = 500;
+ 	var popupX = (window.screen.width/2) - (popupWidth/2);
+ 	var popupY= (window.screen.height/2) - (popupHeight/2);
+ 	
+   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+ 	}		
+		
+		
+//출고량 받아오기
+ function setChildValue2(rec_count){
+
+ 	document.getElementById("rec_count").value=rec_count;
+ 	
+ }
+
+ //출고량 받아온거 등록??
+  function fun2(){
+ 			window.opener.name ="parentPage";
+ 			document.DeliverInsert.target="parentPage";
+ 			document.DeliverInsert.action="${pageContext.request.contextPath}/deliver/insertPro";
+ 			document.DeliverInsert.submit();
+ 			self.close();
+ 		}		
+		
+		
+		
+		
+		
+		
 // 		$(document).ready(function(){
 // 			if($('#inst').val() == " "){
 // 				alert("비즈니스코드를 선택하세요.")
@@ -131,7 +169,7 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
 	  <button class="button2" onclick="fun1()">등록</button>
 	  <button class="button2">초기화</button>
 	  <button class="button2" onclick="showPopup()" style="width:220px">수주등록현황</button>
-	  
+	  <button class="button2" onclick="showPopup2()" style="width:220px">출고량불러오기</button>
 	 </div><br>
 	 <br>
 	 
@@ -163,7 +201,7 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
 					<td><input type="text" name="product_cd_name" id="product_cd_name"> </td>
 					<td><input type="text" name="order_cd" id="order_cd"> </td>
 					<td><input type="Date" name="deliver_date" ></td>
-					<td><input type="text" name="deliver_count" ></td>
+					<td><input type="text" name="deliver_count" id="rec_count" ></td>
 					<td><input type="text" name="emp_no" id="emp_no"></td>
 				</tr>
 

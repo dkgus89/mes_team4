@@ -45,6 +45,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd_name, emp_no){
 		<thead>
 			<tr style="text-align: center; font-size: 0.9rem">
 <!-- 			<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th> -->
+			<th>번호</th>
 			<th>수주코드</th>
 			<th>거래처</th>
 			<th>제품코드</th>
@@ -53,7 +54,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd_name, emp_no){
 			<th>출하예정날짜</th>
 			<th>담당자</th>
 			<th>진행상황</th>
-			<th>선택</th>
+			<th></th>
 			<th></th>
 			</tr>
 		</thead>	
@@ -64,6 +65,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd_name, emp_no){
 			<c:forEach var="orderDTO" items="${orderList}">
 			<tr>
 <%-- 			<td><input type="checkbox" id="checkbox" name="rowcheck" value="${orderDTO.order_cd}"></td> --%>
+			<td>${pageDTO.startRow+1 + sts.index}</td>
 			<td>${orderDTO.order_cd}</td>
 			<td>${orderDTO.business_cd}</td>
 			<td>${orderDTO.product_cd_name}</td>
@@ -74,6 +76,8 @@ function DeliverUpdate(business_cd,order_cd,product_cd_name, emp_no){
 			
 			<c:choose>
 			<c:when test="${orderDTO.con eq '생산전'}"><td><span style="color:red">${orderDTO.con}</span></td> </c:when>
+			<c:when test="${orderDTO.con eq '생산대기'}"><td><span style="color:red">${orderDTO.con}</span></td></c:when>
+			<c:when test="${orderDTO.con eq '생산중'}"><td><span style="color:red">${orderDTO.con}</span></td></c:when>
 			<c:when test="${orderDTO.con eq '생산완료'}"><td><span style="color:blue">${orderDTO.con}</span></td></c:when>
 			<c:otherwise> ... </c:otherwise>
 			</c:choose>
