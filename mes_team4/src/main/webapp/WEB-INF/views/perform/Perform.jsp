@@ -15,11 +15,11 @@
 <script>
 //생산실적 등록 팝업
 function showPopup(){
-    window.open("${pageContext.request.contextPath}/perform/performinsert","performinsert","width=1100, height=350, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/perform/performinsert","performinsert","width=1120, height=350, top=200, left=200");
 }
 //생산실적 수정 팝업
 function showPopup2(cd){
-    window.open("${pageContext.request.contextPath}/perform/performupdate?perform_cd="+cd,"performupdate","width=1100, height=350, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/perform/performupdate?perform_cd="+cd,"performupdate","width=1120, height=350, top=200, left=200");
 }
 //삭제 처리
 function chdelete(){
@@ -183,7 +183,6 @@ function allCheck(){
 	
 <!-- 본문HTML 입력 끝-->
 	</div>
-</div>
 
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="../main/Footer.jsp" />

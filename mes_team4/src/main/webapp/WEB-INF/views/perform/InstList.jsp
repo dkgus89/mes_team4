@@ -14,7 +14,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-function input1(instruction_code,line_cd,product_cd_name,instruction_qt){
+function input1(instruction_code,line_cd,product_cd_name,instruction_qt,instruction_date){
+
 	$(document).ready(function(){ //Jquery 시작
 	// 선택 유효성 검사		
 		var rt = null;
@@ -31,12 +32,17 @@ function input1(instruction_code,line_cd,product_cd_name,instruction_qt){
  			}
  		}); //ajax 끝
 		if(rt==1){
-			return false;
-		}else{
+			return false;		
+		}
+//  		if($('#instruction_code').val() == bfinstruction_code){
+// 			alert("이미 선택되어 있는 작업지시 입니다.");
+// 			return false;
+// 		}
+		else{
 	     	  // 유효성 검사 통과시 선택 진행
 			  var result = confirm("이 행을 선택 하시겠습니까?");
 			  if (result == true){
-			  	  opener.setChildValue(instruction_code,line_cd,product_cd_name,instruction_qt);
+			  	  opener.setChildValue(instruction_code,line_cd,product_cd_name,instruction_qt,instruction_date);
 				  window.close();
 			  } else {
 			  return false;
@@ -65,36 +71,32 @@ function input1(instruction_code,line_cd,product_cd_name,instruction_qt){
 		<table id="vendortable" class="table table-striped"  style="width:1300px;">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem;">
-					<th>수주코드</th>
 					<th style="width:150px;">작업지시코드</th>
 					<th style="width:100px;">품목코드</th>
 					<th style="width:150px;">지시수량</th>
-					<th style="width:150px;">소요량1</th>
-					<th style="width:150px;">소요량2</th>
+					<th style="width:150px;">소요량</th>
 					<th style="width:100px;">라인코드</th>
 					<th style="width:150px;">생산지시일자</th>
 					<th style="width:200px;">작업지시상태</th>
 					<th>선택</th>
+<%-- 					<th>${bfinstruction_code}</th> --%>
 				</tr>
 			</thead>
 			
 			<tbody>
 				<c:forEach var ="instructionDTO" items="${instructionList}">
-					<c:if test="${instructionDTO.instruction_state == '완료'}">
-					<tr><td>${instructionDTO.order_cd}</td>
-						<td>${instructionDTO.instruction_code}</td>
+					<c:if test="${instructionDTO.instruction_state == 2}">
+					<tr><td>${instructionDTO.instruction_code}</td>
 						<td>${instructionDTO.product_cd_name}</td>
 						<td>${instructionDTO.instruction_qt}</td>
-						<td>"${instructionDTO.rpname1} : " + "${instructionDTO.consumption1}" </td>
-						<td>"${instructionDTO.rpname2} : " + "${instructionDTO.consumption2}" </td>
+						<td>${instructionDTO.consumption1}</td>
 						<td>${instructionDTO.line_cd}</td>
 						<td>${instructionDTO.instruction_date}</td>
-						<c:if test="${instructionDTO.instruction_state== '완료'}">
+						<c:if test="${instructionDTO.instruction_state== 2}">
 							<td>완료</td>
 						</c:if>
-<%-- 						<td>${instructionDTO.instruction_state}</td> --%>
-						<td><button class="button2" onClick="input1('${instructionDTO.instruction_code}','${instructionDTO.line_cd}','${instructionDTO.product_cd_name}','${instructionDTO.instruction_qt}');">선택</button></td>
-					</tr>
+						<td><button class="button2" onClick="input1('${instructionDTO.instruction_code}','${instructionDTO.line_cd}','${instructionDTO.product_cd_name}','${instructionDTO.instruction_qt}','${instructionDTO.instruction_date}');">선택</button></td>
+						</tr>
 					</c:if>
 				</c:forEach>
 

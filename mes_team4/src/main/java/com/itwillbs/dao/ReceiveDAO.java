@@ -34,4 +34,8 @@ public interface ReceiveDAO {
 
 	public String getPchor_cd(String rec_schedule_cd);
 
+	public int getSumRelCount(String pchor_cd);
+
+	public int getRel_count(String pchor_cd);
+
 }

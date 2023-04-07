@@ -31,4 +31,8 @@ public interface ReceiveService {
 	public String getProduct_cd_name2(String rec_schedule_cd);
 
 	public String getPchor_cd(String rec_schedule_cd);
+
+	public int getSumRelCount(String pchor_cd);
+
+	public int getRel_count(String pchor_cd);
 }

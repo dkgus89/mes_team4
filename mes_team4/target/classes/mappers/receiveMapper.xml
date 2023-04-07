@@ -152,6 +152,19 @@
 			from receive_schedule
 			where rec_schedule_cd = #{rec_schedule_cd}
 		</select>
+		
+		<select id="getSumRelCount" resultType="java.lang.Integer">
+			select sum(rel_count)
+			from release_schedule
+			where pchor_cd = #{pchor_cd}
+		</select>
+		
+		<select id="getRel_count" resultType="java.lang.Integer">
+			select count(*)
+			from(select *
+			from release_schedule
+			where pchor_cd = #{pchor_cd}) a
+		</select>
     
 </mapper>
 

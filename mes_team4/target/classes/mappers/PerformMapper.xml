@@ -55,7 +55,7 @@
     </select>
 
 	<select id="getPerform" resultMap="map2">
-        select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd_name, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
+        select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd_name, d.product_name, p.perform_date, o.instruction_qt, o.instruction_date, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
 		from performance p join line l
 							 on p.line_cd=l.line_cd
 						   join instruction o
@@ -103,6 +103,7 @@
 		<result column="product_name" property="product_name"/>
 		<result column="perform_date" property="perform_date"/>
 		<result column="instruction_qt" property="instruction_qt"/>
+		<result column="instruction_date" property="instruction_date"/>
 		<result column="fair_prod" property="fair_prod"/>
 		<result column="defect_prod" property="defect_prod"/>
 		<result column="defect_remarks" property="defect_remarks"/>

@@ -113,4 +113,18 @@ public class ReceiveServiceImpl implements ReceiveService{
 		return receiveDAO.getPchor_cd(rec_schedule_cd);
 	}
 
+	@Override
+	public int getSumRelCount(String pchor_cd) {
+		System.out.println("ReceiveServiceImpl getSumRelCount()");
+		
+		return receiveDAO.getSumRelCount(pchor_cd);
+	}
+
+	@Override
+	public int getRel_count(String pchor_cd) {
+		System.out.println("ReceiveServiceImpl getRel_count()");
+		
+		return receiveDAO.getRel_count(pchor_cd);
+	}
+
 }
