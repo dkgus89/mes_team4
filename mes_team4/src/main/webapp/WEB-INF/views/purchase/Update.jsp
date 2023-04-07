@@ -40,7 +40,8 @@
 			pcTableTr.find('td:eq(0)').append(bsListBtn);
 			pcTableTr.find('td:eq(1)').append(rpListBtn);
 			pcTableTr.find('td:eq(2)').append(emListBtn);
-
+			pcTableTr.find('input').val('');
+		
 		});
 		
 		// 거래처 리스트 팝업
@@ -81,6 +82,18 @@
 			var popupY= (window.screen.height/2) - (popupHeight/2);
 			
 		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+		});
+		// 발주일자 날짜 제한
+		$(document).on('change', '#today', function() {
+			var purchase_due = $('#dueday').val();
+		    var purchase_date = $(this).val();
+		    
+		    console.log("check"+purchase_due);
+		    
+		    if (purchase_due && purchase_due < purchase_date) {
+		      alert("발주일자를 " + purchase_due + " 날짜 이전으로 선택해주세요.");
+		      $(this).val('');
+		    }
 		});
 		
 		// 납품예정일 날짜 제한
@@ -173,7 +186,7 @@
 					<td><input type="text" name="business_cd" value="${purchaseDTO.business_cd }"><button type="button" id="bsListBtn">추가</button></td>
 					<td><input type="text" name="rproduct_cd_name" value="${purchaseDTO.rproduct_cd_name }"><button type="button" id="rpListBtn">추가</button></td>
 					<td><input type="text" name="emp_no" value="${purchaseDTO.emp_no }"><button type="button" id="emListBtn">추가</button></td>
-					<td><input type="date" id="today" name="purchase_date_st" value="${purchaseDTO.purchase_date }" readonly></td>
+					<td><input type="date" id="today" name="purchase_date_st" value="${purchaseDTO.purchase_date }"></td>
 					<td><input type="date" id="dueday" name="purchase_due_st" value="${purchaseDTO.purchase_due }"></td>
 					<td><input type="text" id="purchase_count" name="purchase_count" value="${purchaseDTO.purchase_count }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
 				</tr>

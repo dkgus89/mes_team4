@@ -86,6 +86,19 @@
 		
 		document.getElementById('today').valueAsDate = new Date();
 		
+		// 발주일자 날짜 제한
+		$(document).on('change', '#today', function() {
+			var purchase_due = $('#dueday').val();
+		    var purchase_date = $(this).val();
+		    
+		    console.log("check"+purchase_due);
+		    
+		    if (purchase_due && purchase_due < purchase_date) {
+		      alert("발주일자를 " + purchase_due + " 날짜 이전으로 선택해주세요.");
+		      $(this).val('');
+		    }
+		});
+		
 		// 납품예정일 날짜 제한
 		$(document).on('change', '#dueday', function() {
 			var purchase_date = $('#today').val();
@@ -176,7 +189,7 @@
 					<td><button type="button" id="bsListBtn">추가</button></td>
 					<td><button type="button" id="rpListBtn">추가</button></td>
 					<td><button type="button" id="emListBtn">추가</button></td>
-					<td><input type="date" id="today" name="purchase_date_st" value="" readonly></td>
+					<td><input type="date" id="today" name="purchase_date_st" value=""></td>
 					<td><input type="date" id="dueday" name="purchase_due_st" value=""></td>
 					<td><input type="text" id="purchase_count" name="purchase_count" value="" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
 				</tr>

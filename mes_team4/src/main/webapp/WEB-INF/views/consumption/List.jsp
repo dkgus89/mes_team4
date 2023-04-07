@@ -168,8 +168,8 @@
 		    			<td>${dto.consumption_unit}</td> 
 		    			
 		    		<c:if test="${fn:contains(pageDTO.showTd, sts.index)}">
-		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><fmt:formatDate value="${dto.insert_date}" pattern="yyyy-MM-dd HH:mm" /></td>
-		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><fmt:formatDate value="${dto.update_date}" pattern="yyyy-MM-dd HH:mm" /></td>
+		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><fmt:formatDate value="${dto.insert_date}" pattern="yyyy-MM-dd" /></td>
+		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><fmt:formatDate value="${dto.update_date}" pattern="yyyy-MM-dd" /></td>
 		    			<td rowspan="${pageDTO.rowcolsTd.get(count)}"><button class="button2" id="updateBtn" onclick="updateFn('${dto.cproduct_cd_name}')">수정</button></td>
 		    		</c:if>
 	  				</tr>
