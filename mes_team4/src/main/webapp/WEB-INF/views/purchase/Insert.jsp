@@ -23,15 +23,15 @@
 			var bsListBtn = $('<button>').attr({
 			    'type': 'button',
 			    'id': 'bsListBtn'
-			}).text('추가');
+			}).text('➕');
 			var rpListBtn = $('<button>').attr({
 				'type': 'button',
 				'id': 'rpListBtn'
-			}).text('추가');
+			}).text('➕');
 			var emListBtn = $('<button>').attr({
 			    'type': 'button',
 			    'id': 'emListBtn'
-			}).text('추가');
+			}).text('➕');
 			 
 			var pcTableTr = $('#purchaseBody tr');
 			pcTableTr.find('td:eq(0)').empty();
@@ -51,7 +51,7 @@
 			var link = '${pageContext.request.contextPath}/purchase/bslist?trIndex='+trIndex;     
 			var popupWidth = 500;
 			var popupHeight = 700;
-			var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
+			var popupX = (window.screen.width/2) - (popupWidth/2) - 250;
 			var popupY= (window.screen.height/2) - (popupHeight/2);
 			
 		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
@@ -65,7 +65,7 @@
 			var link = '${pageContext.request.contextPath}/purchase/prlist?trIndex='+trIndex+'&product_dv='+product_dv;     
 			var popupWidth = 500;
 			var popupHeight = 700;
-			var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
+			var popupX = (window.screen.width/2) - (popupWidth/2) - 100;
 			var popupY= (window.screen.height/2) - (popupHeight/2);
 			
 		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
@@ -78,7 +78,7 @@
 			var link = '${pageContext.request.contextPath}/purchase/emlist?trIndex='+trIndex;     
 			var popupWidth = 500;
 			var popupHeight = 700;
-			var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
+			var popupX = (window.screen.width/2) - (popupWidth/2) + 60;
 			var popupY= (window.screen.height/2) - (popupHeight/2);
 			
 		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
@@ -184,9 +184,9 @@
 			
 			<tbody id="purchaseBody">
 				<tr>
-					<td><button type="button" id="bsListBtn">추가</button></td>
-					<td><button type="button" id="rpListBtn">추가</button></td>
-					<td><button type="button" id="emListBtn">추가</button></td>
+					<td><button type="button" id="bsListBtn">➕</button></td>
+					<td><button type="button" id="rpListBtn">➕</button></td>
+					<td><button type="button" id="emListBtn">➕</button></td>
 					<td><input type="date" id="today" name="purchase_date_st" value=""></td>
 					<td><input type="date" id="dueday" name="purchase_due_st" value=""></td>
 					<td><input type="text" id="purchase_count" name="purchase_count" value="" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
