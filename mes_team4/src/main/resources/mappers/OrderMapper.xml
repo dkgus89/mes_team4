@@ -95,6 +95,11 @@
 		from order_management
 		where order_cd = #{order_cd}
 	</select>
+	
+	<select id="getCon" resultType="java.lang.Integer">
+		 select count(*) from instruction
+        where order_cd = #{cd}
+	</select>
     
     
 </mapper>

@@ -25,7 +25,7 @@ public interface OrderDAO {
 	
 	public int getFCount();
 	
-public int getPCount(PageDTO pageDTO);
+	public int getPCount(PageDTO pageDTO);
 	
 	public int getFCount(PageDTO pageDTO);
 
@@ -34,5 +34,7 @@ public int getPCount(PageDTO pageDTO);
 	public int getSumRelCount(String order_cd);
 
 	public int getbfOr_count(String order_cd);
+	
+	public Integer getCon(String cd);
 
 }

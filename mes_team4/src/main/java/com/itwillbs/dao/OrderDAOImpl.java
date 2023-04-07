@@ -116,6 +116,14 @@ public class OrderDAOImpl implements OrderDAO{
 		return sqlSession.selectOne(namespace+".getbfOr_count",order_cd);
 	}
 
+	@Override
+	public Integer getCon(String cd) {
+		System.out.println("OrderDAOImpl getCOn()");
+		System.out.println("cd이름 : "+cd);
+		
+		return sqlSession.selectOne(namespace+".getCon",cd);
+	}
+
 	
 
 }

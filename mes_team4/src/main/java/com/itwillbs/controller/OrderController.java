@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwillbs.dao.OrderDAO;
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
@@ -30,6 +32,9 @@ public class OrderController {
 	
 	@Inject
 	private OrderService orderService;
+	
+	@Inject
+	private OrderDAO orderDAO;
 	
 	@Inject
 	private ProductService productService;
@@ -170,32 +175,25 @@ public class OrderController {
 		return "redirect:/order/ordermain";		
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/order/delete")
-	public String delete(HttpServletRequest request, StockDTO stockDTO) {
+	public String delete(HttpServletRequest request) {
 		System.out.println("OrderController delete()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
+		String jdata = "0";
 		int size = ajaxMsg.length;
-		
 		for(int i=0; i<size; i++) {
-			// 삭제시 재고현황에 적용할 재소수량 stockDTO에 저장
-				String order_cd=ajaxMsg[i];
-				String product_cd_name =orderService.getProduct_cd_name(order_cd);
-				int sumrelcount=orderService.getSumRelCount(order_cd);
-				int bforcount=orderService.getbfOr_count(order_cd);
-				int Stock_count=receiveService.getStock_count(product_cd_name);
-				stockDTO.setStock_count((Stock_count-bforcount)+sumrelcount);
-				stockDTO.setProduct_cd_name(product_cd_name);
-			// 재고현황에 재고수량 적용 메서드 호출
-			receiveService.updateStockcount(stockDTO);
+			
+			System.out.println("수주지우기 getCon값 : "+orderDAO.getCon(ajaxMsg[i]));
+			if(orderDAO.getCon(ajaxMsg[i])==0) {
+				orderService.deleteOrder(ajaxMsg[i]);
+				jdata = "1";
+			}
 			
 		}
-		
-		
-		for(int i=0; i<size; i++) {
-			orderService.deleteOrder(ajaxMsg[i]);
-		}
-		return "redirect:/order/ordermain";
+		System.out.println("jdata값!!!!!!!!!!" + jdata);
+		return jdata;
 	}
 	
 	@RequestMapping(value = "/order/orderupdate", method = RequestMethod.GET)
@@ -221,25 +219,35 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/order/orderupdatepro", method = RequestMethod.POST)
-	public String updatePro(OrderDTO orderDTO, StockDTO stockDTO, HttpServletRequest request) {
+	public String updatePro(OrderDTO orderDTO, HttpServletRequest request) {
 		System.out.println("OrderController orderupdatePro()");
 		
 		String cd = request.getParameter("cd");
 		orderDTO.setOrder_cd(cd);
 		System.out.println("order cd값 : "+ orderDTO.getOrder_cd());
 		
-		// 수정시 재고현황에 적용할 재소수량 stockDTO에 저장
-		String product_cd_name =orderService.getProduct_cd_name(cd);
-		int bforcount=orderService.getbfOr_count(cd);
-		int Stock_count=receiveService.getStock_count(product_cd_name);
-		stockDTO.setStock_count((Stock_count-bforcount)+orderDTO.getOrder_count());
-		stockDTO.setProduct_cd_name(product_cd_name);
-		// 재고현황에 재고수량 적용 메서드 호출
-		receiveService.updateStockcount(stockDTO);		
+//		// 수정시 재고현황에 적용할 재소수량 stockDTO에 저장
+//		String product_cd_name =orderService.getProduct_cd_name(cd);
+//		int bforcount=orderService.getbfOr_count(cd);
+//		int Stock_count=receiveService.getStock_count(product_cd_name);
+//		stockDTO.setStock_count((Stock_count-bforcount)+orderDTO.getOrder_count());
+//		stockDTO.setProduct_cd_name(product_cd_name);
+//		// 재고현황에 재고수량 적용 메서드 호출
+//		receiveService.updateStockcount(stockDTO);		
 
-		orderService.updateOrder(orderDTO);
+		int jdata = orderDAO.getCon(cd);
+		if(jdata == 0) {
+			orderService.updateOrder(orderDTO);
+			return "redirect:/order/ordermain";
+		}else {
+			
+			return "order/msg";
+		}
+		
+		
+		
 
-		return "redirect:/order/ordermain";
+		
 	}
 	
 	
