@@ -63,14 +63,15 @@
 	
 <!-- 본문HTML 입력 시작-->
 	
-	<div id="selectList_wrap">
+<div id="selectList_wrap">
 	
 	<h2>거래처 목록</h2>
-	<div class="wrap2">
+	
+	<div class="Btn_wrap">
 	  <button class="button2" onclick="window.close();">닫기</button>
 	</div>
-		<table id="cproduct" class=" table table-striped">
-		
+	
+	<table id="cproduct" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>거래처코드</th>
@@ -88,8 +89,7 @@
 				</tr>
 				</c:forEach>
 			</tbody>
-			
-		</table>
+	</table>
 	
 	<div id="pagingControl">
 		<c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
@@ -105,7 +105,7 @@
 		</c:if>
 	</div>
 	
-	</div>
+</div>
 	
 <!-- 본문HTML 입력 끝-->
 </body>

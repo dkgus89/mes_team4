@@ -158,20 +158,20 @@
 	
 <!-- 본문HTML 입력 시작-->
 
-	<div id="List_wrap">
+<div id="List_wrap">
 
 	<h2>원자재 발주 등록</h2>
-	<div class="wrap2">
+	
+	<div class="Btn_wrap">
 	  <button class="button2" id="resetBtn">초기화</button>
 	  <button class="button2" onclick="insertBtn();">등록</button>
 	  <button class="button2" onclick="window.close();">닫기</button>
 	</div>
-	<br>
 
 	<form id="move" action="${pageContext.request.contextPath}/purchase/insertPro" method="post">		
-	<input type="hidden" value="">
 	
-		<br>
+		<input type="hidden" value="">
+	
 		<table id="purchase" class=" table table-striped" style="table-layout : fixed">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
@@ -206,7 +206,7 @@
 				
 	</form>
 	
-	</div>
+</div>
 	
 <!-- 본문HTML 입력 끝-->
 </body>

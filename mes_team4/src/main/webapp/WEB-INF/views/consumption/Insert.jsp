@@ -28,12 +28,12 @@
 			var cpListBtn = $('<button>').attr({
 			    'type': 'button',
 			    'id': 'cpListBtn',
-			}).text('추가');
+			}).text('➕');
 			var rpListBtn = $('<button>').attr({
 				    'type': 'button',
 				    'id': 'rpListBtn',
 				    'name': 'rpListBtn'
-			}).text('추가');
+			}).text('➕');
 			 
 			var cpTableTr = $('#cproductBody tr');
 			cpTableTr.find('td:eq(0)').empty();
@@ -156,18 +156,19 @@
 	
 <!-- 본문HTML 입력 시작-->
 	
-	<div id="List_wrap">
+<div id="List_wrap">
 	
 	<h2>소요량 등록</h2>
-	<div class="wrap2">
+	
+	<div class="Btn_wrap">
 	  <button class="button2" id="resetBtn">초기화</button>
 	  <button class="button2" onclick="insertBtn();">등록</button>
 	  <button class="button2" onclick="window.close();">닫기</button>
 	</div>
-	<br>
 
-	<form id="move" action="${pageContext.request.contextPath}/consmpt/insertPro" method="post">		
-	<input type="hidden" value="">
+	<form id="move" action="${pageContext.request.contextPath}/consmpt/insertPro" method="post">	
+		
+		<input type="hidden" value="">
 	
 		<div>제품 등록</div>
 		<table id="cproduct" class=" table table-striped" style="table-layout : fixed">
@@ -213,14 +214,13 @@
 					<td><button type="button" id="deleteRowBtn">삭제</button></td>
 				</tr>
 			</tbody>
-			
 		</table>
 			
 	</form>
 	
 	<button id="addRowBtn">원자재 추가</button>
 	
-	</div>
+</div>
 	
 <!-- 본문HTML 입력 끝-->
 </body>
