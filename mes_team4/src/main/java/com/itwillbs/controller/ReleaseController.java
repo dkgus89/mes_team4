@@ -37,8 +37,9 @@ public class ReleaseController {
 		
 		//검색어 가져오기
 		String search=request.getParameter("search");
-		// 검색어 옵션
+		// 검색옵션
 		String select = request.getParameter("select");
+		
 		
 		// 한 화면에 보여줄 글 개수 설정
 		int pageSize=5;
@@ -58,7 +59,6 @@ public class ReleaseController {
 		//검색어
 		pageDTO.setSearch(search);
 		pageDTO.setSelect(select);
-		
 		List<Map<String, Object>> relList=relService.getRelList(pageDTO);
 		
 		//페이징 처리
@@ -104,10 +104,8 @@ public class ReleaseController {
 		receiveService.updateStockcount(stockDTO);
 		
 		// 출고수량 등록 -> 등록한 만큼 입고수량 줄어듬 ,,, 
-		receiveDTO.setRec_count(receiveDTO.getRec_count()-releaseDTO.getRel_count());
-		
-		
-		System.out.println("rec:"+receiveDTO.getRec_count()+", rel:"+releaseDTO.getRel_count());
+//		receiveDTO.setRec_count(receiveDTO.getRec_count()-releaseDTO.getRel_count());
+//		System.out.println("rec:"+receiveDTO.getRec_count()+", rel:"+releaseDTO.getRel_count());
 		
 		// 출고등록 메서드 호출
 		relService.insertrel(releaseDTO);

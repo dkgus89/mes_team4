@@ -22,6 +22,7 @@
     	window.open("${pageContext.request.contextPath}/wh/whupdate?wh_cd="+cd,"수정","width=1300, height=500, top=200, left=200");
 	}
 	
+	
 // 	체크
 	function allCheck(){
 		var ac = document.whlist.allcheck;
@@ -69,24 +70,41 @@ function deleteValue(){
 }
 
 function itemChange(){
-	var select2a = ["서울", "부산", "대구","인천", "광주", "대전","울산", "강원", "경기", "경남", "경북", "전남","전북", "제주", "충남", "충북"];
-	var select2b = ["사용","미사용"];
+	var search2a = ["서울", "부산", "대구","인천", "광주", "대전","울산", "강원", "경기", "경남", "경북", "전남","전북", "제주", "충남", "충북"];
+	var search2b = ["원자재","완제품"];
 	
-	$('#select2').empty();
-	$('#select2').append("<option value=''>선택하세요</option>");
+	$('#search2').empty();
+	$('#search2').append("<option value=''>선택하세요</option>");
 	
-	var str = $('#select1').val();
-	if(str=="지역"){    		
- 		for(i=0; i<select2a.length; i++){
+	var str = $('#select').val();
+	if(str=="wh_addr"){    		
+ 		for(i=0; i<search2a.length; i++){
 
-			$('#select2').append("<option value='"+select2a[i]+"'>"+select2a[i]+"</option>");
+			$('#search2').append("<option value='"+search2a[i]+"'>"+search2a[i]+"</option>");
  		}
-		}else if(str=="사용여부"){
-		for(i=0; i<select2b.length; i++){
-			$('#select2').append("<option value='"+select2b[i]+"'>"+select2b[i]+"</option>");
+		}else if(str=="wh_dv"){
+		for(i=0; i<search2b.length; i++){
+			$('#search2').append("<option value='"+search2b[i]+"'>"+search2b[i]+"</option>");
  			}
 		}
 	}
+	
+$(function(){
+    //직접입력 인풋박스 기존에는 숨어있다가
+$("#search1").hide();
+
+$("#select").change(function() {
+              //직접입력을 누를 때 나타남
+		if($("#select").val() == "wh_name") {
+			$("#search1").show();
+			$("#search2").hide();
+		}  else {
+			$("#search1").hide();
+			$("#search2").show();
+		}
+	}) 
+});
+
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -95,17 +113,28 @@ function itemChange(){
 <!-- 본문HTML 입력 시작-->
 	<h2>창고</h2><br>
 	
-<!-- 	onChange="goChange(this.value)" -->
+<!-- 	검색창 -->
     <div class="search">
     <form action="${pageContext.request.contextPath}/wh/whpage" method="get">
       
-       <select name="select" class="button2" onchange="itemChange()">
-       		<option value="wh_name">이름</option>
-       		<option value="wh_addr" >지역</option>
-<!--        		<option value="wh_use">사용여부</option> -->
-       </select>
-       
-       <input type="text" name="search" class="button2">
+       <select id="select" name="select" onchange="itemChange()" >
+			<option value="">선택하세요</option>
+			<option value="wh_name">이름</option>
+			<option value="wh_addr">지역</option>
+			<option value="wh_dv">창고유형</option>
+		</select>
+		
+	
+		<!-- 		wh_name 선택했을때 -->
+		<input type="text" id="search1" name="search" />
+		
+
+<!-- 		wh_addr, wh_dv선택했을때 -->
+		<select id="search2" name="search_option" >
+			<option value="">구분을 선택하세요</option>
+		</select>
+		
+<!-- 	   검색버튼 -->
        <input type="submit" class="button2" value="검색" >
        
      </form>  
@@ -129,7 +158,7 @@ function itemChange(){
 					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
 					<th>창고코드</th>
 					<th>창고명</th>
-					<th>창고구분</th>
+					<th>창고유형</th>
 					<th>창고지역</th>
 					<th>창고연락처</th>
 					<th>창고사용여부</th>

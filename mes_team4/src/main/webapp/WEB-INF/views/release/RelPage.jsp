@@ -98,7 +98,7 @@ function deleteValue(){
 	 </div><br>
 	 <br>
 	 
-	 
+	<div>전체 ${pageDTO.count }건</div>
 	<form name="rellist">
 <!-- 		<input type="hidden" value=""> -->
 		
@@ -130,9 +130,8 @@ function deleteValue(){
 					<button class="button2" onclick="updatePopup('${dto.rel_schedule_cd}');">수정</button>
 					</td>
 				</tr>
-			</c:forEach>			
+			</c:forEach>
 			</tbody>
-
 		</table>
 		
 	</form>

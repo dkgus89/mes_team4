@@ -28,17 +28,24 @@
         select * from warehouse
         <if test="search != null">
         <if test="select != null">
+        <if test="search_option != null">
         	<if test="select == 'wh_name'.toString()">
         		where wh_name like CONCAT('%',#{search},'%')
         	</if>
         	
-        	<if test="select == 'wh_addr'.toString()">
-        		where wh_addr like CONCAT('%',#{search},'%')
+        	<if test="select == 'wh_dv'.toString()">
+        		where wh_dv  = #{search_option}
         	</if>
         	
-        	<if test="select == 'wh_use'.toString()">
-        		where wh_use like CONCAT('%',#{search},'%')
+        	<if test="select == 'wh_addr'.toString()">
+        		where wh_addr = #{search_option}
         	</if>
+        	
+<!--         	<if test="select == 'wh_use'.toString()"> -->
+<!--         		where wh_use like CONCAT('%',#{search},'%') -->
+<!--         	</if> -->
+        	
+        </if>
         </if>
         </if>
         order by wh_cd desc 
@@ -53,12 +60,12 @@
         		where wh_name like CONCAT('%',#{search},'%')
         	</if>
         	
-        	<if test="select == 'wh_addr'.toString()">
-        		where wh_addr like CONCAT('%',#{search},'%')
+        	<if test="select == 'wh_dv'.toString()">
+        		where wh_dv  = #{search_option}
         	</if>
         	
-        	<if test="select == 'wh_use'.toString()">
-        		where wh_addr like CONCAT('%',#{search},'%')
+        	<if test="select == 'wh_addr'.toString()">
+        		where wh_addr = #{search_option}
         	</if>
         	
         </if>
