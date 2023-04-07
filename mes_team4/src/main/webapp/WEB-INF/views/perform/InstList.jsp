@@ -19,6 +19,11 @@ function input1(instruction_code,line_cd,product_cd_name,instruction_qt,instruct
 	$(document).ready(function(){ //Jquery 시작
 	// 선택 유효성 검사		
 		var rt = null;
+		var bfinst = opener.document.getElementById("instruction_code").value;
+		if(instruction_code == bfinst){
+			alert("현재 선택되어 있는 작업지시 입니다.");
+			return false;
+		}
 		$.ajax({ //ajax 시작
 			type:"GET",
  			url:'${pageContext.request.contextPath}/perform/instcheck',
@@ -26,18 +31,14 @@ function input1(instruction_code,line_cd,product_cd_name,instruction_qt,instruct
  			data:{'inst':instruction_code},
  			success:function(result){
  				 if(result!=0) {
- 		              alert("이전에 이미 선택되었던 작업지시입니다.");
+ 		              alert("이전에 이미 실적등록이 된 작업지시입니다.");
  		              rt=1;
  		          }
  			}
  		}); //ajax 끝
 		if(rt==1){
 			return false;		
-		}
-//  		if($('#instruction_code').val() == bfinstruction_code){
-// 			alert("이미 선택되어 있는 작업지시 입니다.");
-// 			return false;
-// 		}
+		} 		
 		else{
 	     	  // 유효성 검사 통과시 선택 진행
 			  var result = confirm("이 행을 선택 하시겠습니까?");
@@ -66,7 +67,7 @@ function input1(instruction_code,line_cd,product_cd_name,instruction_qt,instruct
 	 
 	 
 	<form name="instlist" method="get">
-		<input type="hidden" value="">
+		<input type="hidden" id="bfinstruction_code" value="${bfinstruction_code}">		
 		
 		<table id="vendortable" class="table table-striped"  style="width:1300px;">
 			<thead>
@@ -78,22 +79,21 @@ function input1(instruction_code,line_cd,product_cd_name,instruction_qt,instruct
 					<th style="width:100px;">라인코드</th>
 					<th style="width:150px;">생산지시일자</th>
 					<th style="width:200px;">작업지시상태</th>
-					<th>선택</th>
-<%-- 					<th>${bfinstruction_code}</th> --%>
+					<th>선택</th>					
 				</tr>
 			</thead>
 			
 			<tbody>
 				<c:forEach var ="instructionDTO" items="${instructionList}">
-					<c:if test="${instructionDTO.instruction_state == 2}">
+					<c:if test="${instructionDTO.instruction_state == '생산완료'}">
 					<tr><td>${instructionDTO.instruction_code}</td>
 						<td>${instructionDTO.product_cd_name}</td>
 						<td>${instructionDTO.instruction_qt}</td>
 						<td>${instructionDTO.consumption1}</td>
 						<td>${instructionDTO.line_cd}</td>
 						<td>${instructionDTO.instruction_date}</td>
-						<c:if test="${instructionDTO.instruction_state== 2}">
-							<td>완료</td>
+						<c:if test="${instructionDTO.instruction_state== '생산완료'}">
+							<td>생산완료</td>
 						</c:if>
 						<td><button class="button2" onClick="input1('${instructionDTO.instruction_code}','${instructionDTO.line_cd}','${instructionDTO.product_cd_name}','${instructionDTO.instruction_qt}','${instructionDTO.instruction_date}');">선택</button></td>
 						</tr>

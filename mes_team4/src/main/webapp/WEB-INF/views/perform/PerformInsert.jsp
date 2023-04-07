@@ -111,7 +111,7 @@ $(document).ready(function(){ //Jquery 시작
 }); //Jquery 끝
 //작업지시현황 팝업
 function showPopup(){
-	var link = "${pageContext.request.contextPath}/perform/instlist?instruction_code="+$('#instruction_code').val();    
+	var link = "${pageContext.request.contextPath}/perform/instlist";    
 	var popupWidth = 1500;
 	var popupHeight = 500;
 	var popupX = (window.screen.width/2) - (popupWidth/2);

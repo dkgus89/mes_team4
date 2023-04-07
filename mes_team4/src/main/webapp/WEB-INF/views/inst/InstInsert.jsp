@@ -154,9 +154,9 @@ function rst(){
     				<td><input type="text" name="instruction_qt" id="instruction_qt"></td>
     				<td><select name="instruction_state" id="instruction_state">
     					<option value="">------------</option>
-    					<option value="0">대기</option>
-    					<option value="1">작업중</option>
-    					<option value="2">작업완료</option>
+    					<option value="생산대기">생산대기</option>
+    					<option value="생산중">생산중</option>
+    					<option value="생산완료">생산완료</option>
 					</select></td>
     			</tr>
 
