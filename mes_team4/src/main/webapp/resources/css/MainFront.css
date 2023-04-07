@@ -216,8 +216,9 @@
 	#table_search .input_box{
 	height: 30px; width: 300px;
 	border-radius:10px;
-	/* background-color: #FEFDED; */
-	border: 1px solid #333}
+	border: 1px solid #333
+	
+	}
 	
 	body {
 	  color: #666;
@@ -292,8 +293,12 @@
        	background-color: lightgray;
         cursor:pointer;
      }
+    
+    input[name="search"] {
+		padding: 5px;
+	}
      
-    input[type="text"] {
+    input[type="text"]:not([name="search"]) {
 		padding: 5px;
 		text-align: center;
 	}
@@ -309,10 +314,10 @@
 	}
 	
 	input[type=checkbox] {
-		zoom: 1.5;
 		cursor: pointer;
-		border : 1px gray;
 	}
+	
+/* 소요량, 발주 전용 CSS	 */
 	
 	#bsListBtn, #cpListBtn, #emListBtn, #rpListBtn {
 	  -webkit-appearance: none;
@@ -368,3 +373,10 @@
 		font-family: 'Gowun Dodum', sans-serif;
 		
 	}
+	
+	.change-tr {
+	  background-color: lightgray;
+      cursor:pointer;
+	}
+	
+/* 소요량, 발주 전용 CSS	 */
