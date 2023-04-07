@@ -16,8 +16,8 @@
 <script>
 //작업지시현황 팝업
 function showPopup(){
-	var link = "${pageContext.request.contextPath}/perform/instlist";     
-	var popupWidth = 1050;
+	var link = "${pageContext.request.contextPath}/perform/instlist?instruction_code="+$('#instruction_code').val();
+	var popupWidth = 1500;
 	var popupHeight = 500;
 	var popupX = (window.screen.width/2) - (popupWidth/2);
 	var popupY= (window.screen.height/2) - (popupHeight/2);
@@ -37,7 +37,7 @@ function setChildValue(instruction_code,line_cd,product_cd_name,instruction_qt){
 function sub(){
 	$(document).ready(function(){ //Jquery 시작
 		// submit 유효성 검사
-		var rt = null;
+// 		var rt = null;
 		var fp = document.getElementById("fair_prod").value;
 		var dp = document.getElementById("defect_prod").value;
 		var qt = document.getElementById("instruction_qt").value;
@@ -45,22 +45,22 @@ function sub(){
 		var int_dp = Number(dp);
 		var int_qt = Number(qt);
 		var result = confirm("수정사항을 등록하시겠습니까?");
-		if (result == true){   		
-			$.ajax({ //ajax 시작
-				type:"GET",
-	 			url:'${pageContext.request.contextPath}/perform/instcheck',
-	 			async: false,
-	 			data:{'inst':$('#instruction_code').val()},
-	 			success:function(result){
-	 				 if(result!=0) {
-	 		              alert("이전에 이미 선택되었던 작업지시입니다.");
-	 		              rt=1;
-	 		          }
-	 			}
-	 		}); //ajax 끝
-			if(rt==1){
-				return false;
-			}
+		if (result == true){   	
+// 			$.ajax({ //ajax 시작
+// 				type:"GET",
+// 	 			url:'${pageContext.request.contextPath}/perform/instcheck',
+// 	 			async: false,
+// 	 			data:{'inst':$('#instruction_code').val()},
+// 	 			success:function(result){
+// 	 				 if(result!=0) {
+// 	 		              alert("이전에 이미 선택되었던 작업지시입니다.");
+// 	 		              rt=1;
+// 	 		          }
+// 	 			}
+// 	 		}); //ajax 끝
+// 			if(rt==1){
+// 				return false;
+// 			}
 			if($('#instruction_code').val()==""){
 				alert("작업지시코드를 선택하세요");
 				$('#instruction_code').focus();
@@ -72,7 +72,7 @@ function sub(){
 				return false;
 			}
 			if($('#product_cd_name').val()==""){
-				alert("품목코드를 입력하세요");
+				alert("제품코드를 입력하세요");
 				$('#product_cd_name').focus();
 				return false;
 			}
@@ -154,8 +154,9 @@ function rst(){
 <!-- 					<th>실적코드</th> -->
 					<th>작업지시코드</th>
 					<th>라인코드</th>
-					<th>품목코드</th>		
-					<th>지시수량</th>		
+					<th>제품코드</th>		
+					<th>지시수량</th>						
+					<th>지시일자</th>						
 				</tr>
 			</thead>
 			
@@ -164,7 +165,8 @@ function rst(){
 					<td><input type="text" name="instruction_code" id="instruction_code" value="${perform.instruction_code}" readonly></td>
     				<td><input type="text" name="line_cd" id="line_cd" value="${perform.line_cd}" readonly></td>
     				<td><input type="text" name="product_cd_name" id="product_cd_name" value="${perform.product_cd_name}" readonly></td>			
-					<td><input type="text" name="instruction_qt" id="instruction_qt" value="${perform.instruction_qt}" readonly></td>
+					<td><input type="text" name="instruction_qt" id="instruction_qt" value="${perform.instruction_qt}" readonly></td>					
+				    <td><input type="text" name="instruction_date" id="instruction_date" value="${perform.instruction_date}" readonly></td>
 				</tr>
 								
 			</tbody>

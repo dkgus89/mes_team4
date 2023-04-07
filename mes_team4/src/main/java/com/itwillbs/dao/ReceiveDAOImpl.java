@@ -94,5 +94,17 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 		
 		return sqlSession.selectOne(namespace+".getPchor_cd",rec_schedule_cd);
 	}
+	@Override
+	public int getSumRelCount(String pchor_cd) {
+		System.out.println("ReceiveDAOImpl getSumRelCount()");
+		
+		return sqlSession.selectOne(namespace+".getSumRelCount",pchor_cd);
+	}
+	@Override
+	public int getRel_count(String pchor_cd) {
+		System.out.println("ReceiveDAOImpl getRel_count()");
+		
+		return sqlSession.selectOne(namespace+".getRel_count",pchor_cd);
+	}
 
 }

@@ -281,7 +281,6 @@ public class PerformController {
 			
 			@RequestMapping(value = "/perform/instlist", method = RequestMethod.GET)
 			public String instList(HttpServletRequest request, Model model) {
-				
 //				한 화면에 보여줄 글의 개수 설정
 				int pageSize =5;
 //				현재 페이지 번호 가져오기
@@ -317,10 +316,11 @@ public class PerformController {
 				pageDTO.setEndPage(endPage);
 				pageDTO.setPageCount(pageCount);
 				
-				
+//				String bfinstruction_code=request.getParameter("instruction_code");
 				//model 담아서 이동
 				model.addAttribute("instructionList", instructionList);
 				model.addAttribute("pageDTO", pageDTO);
+//				model.addAttribute("bfinstruction_code", bfinstruction_code);
 				
 				// 주소변경 없이 이동
 				// /WEB-INF/views/perform/InstList.jsp

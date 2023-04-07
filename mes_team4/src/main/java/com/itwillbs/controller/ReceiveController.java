@@ -370,11 +370,18 @@ public class ReceiveController {
 				String rec_schedule_cd=ajaxMsg[i];
 				String product_cd_name =receiveService.getProduct_cd_name2(rec_schedule_cd);
 				String pchor_cd=receiveService.getPchor_cd(rec_schedule_cd);
-				int sumrelcount=orderService.getSumRelCount(pchor_cd);
+				if(receiveService.getRel_count(pchor_cd)>0) {
+				int sumrelcount=receiveService.getSumRelCount(pchor_cd);
 				int bfreccount=receiveService.getbfRec_count(product_cd_name);
 				int Stock_count=receiveService.getStock_count(product_cd_name);
 				stockDTO.setStock_count((Stock_count-bfreccount)+sumrelcount);
 				stockDTO.setProduct_cd_name(product_cd_name);
+				}else {
+					int bfreccount=receiveService.getbfRec_count(product_cd_name);
+					int Stock_count=receiveService.getStock_count(product_cd_name);
+					stockDTO.setStock_count(Stock_count-bfreccount);
+					stockDTO.setProduct_cd_name(product_cd_name);
+				}
 			// 재고현황에 재고수량 적용 메서드 호출
 			receiveService.updateStockcount(stockDTO);
 		}

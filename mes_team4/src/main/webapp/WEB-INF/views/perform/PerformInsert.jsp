@@ -17,17 +17,24 @@
 
 $(document).ready(function(){ //Jquery 시작	
 	document.getElementById('perform_date').valueAsDate = new Date();
-	//작업지시현황 선택 안된상태에서 양품, 불량 선택못하게 하는 기능
+	//작업지시현황 선택 안된상태에서 양품, 불량, 실적일자 선택못하게 하는 기능
 	$('#fair_prod').click(function(){
 		if($('#instruction_qt').val()==""){
-			alert("작업지시현황에서 가져올 행을 선택하세요.");
+			alert("완료된 작업지시에서 가져올 행을 먼저 선택하세요.");
 			$('#fair_prod').blur();
 			return false;			
 		}		
 	});
 	$('#defect_prod').click(function(){
 		if($('#instruction_qt').val()==""){
-			alert("작업지시현황에서 가져올 행을 선택하세요.");
+			alert("완료된 작업지시에서 가져올 행을 먼저 선택하세요.");
+			$('#defect_prod').blur();
+			return false;
+		}		
+	});
+	$('#perform_date').click(function(){
+		if($('#instruction_date').val()==""){
+			alert("완료된 작업지시에서 가져올 행을 먼저 선택하세요.");
 			$('#defect_prod').blur();
 			return false;
 		}		
@@ -104,7 +111,7 @@ $(document).ready(function(){ //Jquery 시작
 }); //Jquery 끝
 //작업지시현황 팝업
 function showPopup(){
-	var link = "${pageContext.request.contextPath}/perform/instlist";     
+	var link = "${pageContext.request.contextPath}/perform/instlist?instruction_code="+$('#instruction_code').val();    
 	var popupWidth = 1500;
 	var popupHeight = 500;
 	var popupX = (window.screen.width/2) - (popupWidth/2);
@@ -113,12 +120,13 @@ function showPopup(){
   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 }
 //작업지시현황 팝업에서 선택한 값 받아오기
-function setChildValue(instruction_code,line_cd,product_cd_name,instruction_qt){
+function setChildValue(instruction_code,line_cd,product_cd_name,instruction_qt,instruction_date){
 	
     document.getElementById("instruction_code").value = instruction_code;
     document.getElementById("line_cd").value = line_cd;
     document.getElementById("product_cd_name").value = product_cd_name;
     document.getElementById("instruction_qt").value = instruction_qt;
+    document.getElementById("instruction_date").value = instruction_date;
 
 }
 // 실적현황 등록
@@ -126,7 +134,7 @@ function sub(){
 	
 	$(document).ready(function(){ //Jquery 시작
 		// submit 유효성 검사
-		var rt = null;
+// 		var rt = null;
 		var fp = document.getElementById("fair_prod").value;
 		var dp = document.getElementById("defect_prod").value;
 		var qt = document.getElementById("instruction_qt").value;
@@ -135,21 +143,21 @@ function sub(){
 		var int_qt = Number(qt);
 		var result = confirm("생산실적을 등록하시겠습니까?");
 		if (result == true){
-			$.ajax({ //ajax 시작
-				type:"GET",
-	 			url:'${pageContext.request.contextPath}/perform/instcheck',
-	 			async: false,
-	 			data:{'inst':$('#instruction_code').val()},
-	 			success:function(result){
-	 				 if(result!=0) {
-	 		              alert("이전에 이미 선택되었던 작업지시입니다.");
-	 		              rt=1;
-	 		          }
-	 			}
-	 		}); //ajax 끝
-			if(rt==1){
-				return false;
-			}
+// 			$.ajax({ //ajax 시작
+// 				type:"GET",
+// 	 			url:'${pageContext.request.contextPath}/perform/instcheck',
+// 	 			async: false,
+// 	 			data:{'inst':$('#instruction_code').val()},
+// 	 			success:function(result){
+// 	 				 if(result!=0) {
+// 	 		              alert("이전에 이미 선택되었던 작업지시입니다.");
+// 	 		              rt=1;
+// 	 		          }
+// 	 			}
+// 	 		}); //ajax 끝
+// 			if(rt==1){
+// 				return false;
+// 			}
 			if($('#instruction_code').val()==""){
 				alert("작업지시현황에서 가져올 행을 선택하세요.");
 				return false;
@@ -163,17 +171,22 @@ function sub(){
 				return false;
 			}
 			if($('#perform_date').val()==""){
-				alert("실적일자를 입력하세요");
+				alert("실적일자를 입력하세요.");
 				$('#perform_date').focus();
 				return false;
 			}
+			if($('#perform_date').val() < $('#instruction_date').val()){
+				alert("실적일자가 작업지시일 이전입니다.");
+				$('#perform_date').focus();
+				return false;
+			}			
 			if($('#fair_prod').val()==""){
-				alert("양품 수량을 입력하세요");
+				alert("양품 수량을 입력하세요.");
 				$('#fair_prod').focus();
 				return false;
 			}
 			if($('#defect_prod').val()==""){
-				alert("불량품 수량을 입력하세요");
+				alert("불량품 수량을 입력하세요.");
 				$('#defect_prod').focus();
 				return false;
 			}
@@ -228,7 +241,7 @@ function rst(){
 <!-- 	<div class="wrap2"> -->
 	<button class="button2" id="sub" onclick="sub()">등록</button>
 	<button class="button2" onclick="rst()">초기화</button>
-	<button class="button2" onclick="showPopup();" style="width:200px">작업지시현황</button>
+	<button class="button2" onclick="showPopup();" style="width:200px">완료된 작업지시</button>
 	
 <!-- 	 </div><br> -->
 	 <br><br>
@@ -242,8 +255,9 @@ function rst(){
 				<tr style="text-align: center; font-size: 0.9rem">					
 					<th>작업지시코드</th>
 					<th>라인코드</th>
-					<th>품목코드</th>
+					<th>제품코드</th>
 					<th>지시수량</th>
+					<th>지시일자</th>
 				</tr>
 			</thead>
 			
@@ -253,6 +267,7 @@ function rst(){
 					<td><input type="text" name="line_cd" id="line_cd" readonly></td>	
       				<td><input type="text" name="product_cd_name" id="product_cd_name" readonly></td>
 				    <td><input type="text" name="instruction_qt" id="instruction_qt" readonly></td>
+				    <td><input type="text" name="instruction_date" id="instruction_date" readonly></td>
     			</tr>
 			</tbody>
 		</table>

@@ -62,5 +62,11 @@ public class PerformDTO {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	public String getProduct_cd_name() {
+		return product_cd_name;
+	}
+	public void setProduct_cd_name(String product_cd_name) {
+		this.product_cd_name = product_cd_name;
+	}
 		
 }
