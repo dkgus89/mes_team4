@@ -33,7 +33,7 @@
 				    'type': 'button',
 				    'id': 'rpListBtn',
 				    'name': 'rpListBtn'
-			}).text('추가');
+			}).text('➕');
 
 			var rpTableTr = $('#rproductBody tr');
 			rpTableTr.find('td:eq(0)').empty();
@@ -50,7 +50,7 @@
 			    'type': 'button',
 			    'id': 'rpListBtn',
 			    'name': 'rpListBtn'
-			}).text('추가');
+			}).text('➕');
 		    
 		    $('#rproductBody').append(newRow);
 		    $('#rproductBody tr:last-child td:eq(0)').empty();
@@ -153,8 +153,8 @@
 		<table id="cproduct" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>제품코드(+)</th>
-					<th>품목명</th>
+					<th width="50%">제품코드(+)</th>
+					<th width="50%">품목명</th>
 				</tr>
 			</thead>
 			

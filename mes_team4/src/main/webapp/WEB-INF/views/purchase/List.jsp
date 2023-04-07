@@ -25,8 +25,8 @@
 	// 발주 등록 팝업
 	function insertFn(){
 	var link = "${pageContext.request.contextPath}/purchase/insert";     
-	var popupWidth = 1300;
-	var popupHeight = 260;
+	var popupWidth = 980;
+	var popupHeight = 300;
 	var popupX = (window.screen.width/2) - (popupWidth/2);
 	var popupY= (window.screen.height/2) - (popupHeight/2);
 	
@@ -36,8 +36,8 @@
 	// 발주 수정 팝업
 	function updateFn(purchase_cd){
 	var link = "${pageContext.request.contextPath}/purchase/update?purchase_cd="+purchase_cd;     
-	var popupWidth = 1300;
-	var popupHeight = 260;
+	var popupWidth = 980;
+	var popupHeight = 300;
 	var popupX = (window.screen.width/2) - (popupWidth/2);
 	var popupY= (window.screen.height/2) - (popupHeight/2);
 	

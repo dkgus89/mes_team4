@@ -128,6 +128,8 @@
 	
 <!-- 본문HTML 입력 시작-->
 	
+	<div id="selectList_wrap">
+	
 	<c:choose>
 	  <c:when test="${pageDTO.product_dv eq 'cp'}">
 	    <h2>완제품 목록</h2>
@@ -175,6 +177,7 @@
 		</c:if>
 	</div>
 	
+	</div>
 	
 <!-- 본문HTML 입력 끝-->
 </body>
