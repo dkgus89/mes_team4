@@ -59,28 +59,20 @@ function allCheck(){
 				<select name="select">
 				<c:choose>						
 						<c:when test="${pageDTO.select == 'instruction_code'.toString()}">
-							<option value="order_cd">수주코드</option>
 							<option value="instruction_code" selected>작업지시코드</option>
 							<option value="line_cd">라인코드</option>
-							<option value="product_cd_name">품목코드</option>
+							<option value="product_cd_name">제품코드</option>
 						</c:when>
 						<c:when test="${pageDTO.select == 'line_cd'.toString()}">
-							<option value="order_cd">수주코드</option>
 							<option value="instruction_code">작업지시코드</option>
 							<option value="line_cd" selected>라인코드</option>
-							<option value="product_cd_name">품목코드</option>
+							<option value="product_cd_name">제품코드</option>
 						</c:when>
-						<c:when test="${pageDTO.select == 'product_cd_name'.toString()}">
-							<option value="order_cd">수주코드</option>
-							<option value="instruction_code">작업지시코드</option>
-							<option value="line_cd">라인코드</option>
-							<option value="product_cd_name" selected>품목코드</option>
-						</c:when>
+
 						<c:otherwise>
-							<option value="order_cd" selected>수주코드</option>
 							<option value="instruction_code">작업지시코드</option>
 							<option value="line_cd">라인코드</option>
-							<option value="product_cd_name">품목코드</option>
+							<option value="product_cd_name" selected>제품코드</option>
 						</c:otherwise>
 				</c:choose>
       			</select>
@@ -107,7 +99,7 @@ function allCheck(){
 					<th style="text-align: center;"><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
 					<th style="text-align: center; width: 25px;">번호</th>
 					<th style="text-align: center;">작업지시코드</th>
-					<th style="text-align: center;">품목코드</th>
+					<th style="text-align: center;">제품코드명</th>
 					<th style="text-align: center;">지시수량</th>		
 					<th style="text-align: center;">소요량</th>
 					<th style="text-align: center;">라인코드</th>

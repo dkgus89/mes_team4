@@ -18,7 +18,7 @@
 // 	window.close();
 // }
 
-function input1(order_cd, product_cd_name, order_count, deliver_date){
+function input1(order_cd, product_cd_name, product_name, order_count, deliver_date){
 	$(document).ready(function(){ //Jquery 시작
 	// 선택 유효성 검사		
 		var rt = null;
@@ -42,7 +42,7 @@ function input1(order_cd, product_cd_name, order_count, deliver_date){
 	     	  // 유효성 검사 통과시 선택 진행
 			  var result = confirm("이 행을 선택 하시겠습니까?");
 			  if (result == true){
-			  	  opener.setChildValue(order_cd, product_cd_name, order_count, deliver_date);
+			  	  opener.setChildValue(order_cd, product_cd_name, product_name, order_count, deliver_date);
 				  window.close();
 			  } else {
 			  return false;
@@ -77,6 +77,7 @@ function input1(order_cd, product_cd_name, order_count, deliver_date){
 			<th>수주코드</th>
 			<th>거래처</th>
 			<th>제품코드</th>
+			<th>제품명</th>
 			<th>주문량</th>
 			<th>수주등록날짜</th>
 			<th>출하예정날짜</th>
@@ -95,12 +96,13 @@ function input1(order_cd, product_cd_name, order_count, deliver_date){
 			<td>${dto.order_cd}</td>
 			<td>${dto.business_cd}</td>
 			<td>${dto.product_cd_name}</td>
+			<td>${dto.product_name}</td>
 			<td>${dto.order_count}</td>
 			<td>${dto.order_date}</td>
 			<td>${dto.deliver_date}</td>
 			<td>${dto.emp_no}</td>
 			
-			<td><button class="button2" onClick="input1('${dto.order_cd}','${dto.product_cd_name}','${dto.order_count}','${dto.deliver_date}');">선택</button></td>
+			<td><button class="button2" onClick="input1('${dto.order_cd}','${dto.product_cd_name}','${dto.product_name}','${dto.order_count}','${dto.deliver_date}');">선택</button></td>
 			</tr>
 			</c:forEach>
 			</c:when>
