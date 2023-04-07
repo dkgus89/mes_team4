@@ -114,13 +114,16 @@
 <div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>원자재 발주현황 </h2><br>
+	<h2>원자재 발주현황 </h2>
+	<br>
+	
 	<div class="wrap2">
 	  <button class="button2" id="insertBtn" onclick="insertFn();">추가</button>
 	  <button class="button2" id="deleteBtn" onclick="deleteFn();">삭제</button>
-	</div><br>
-	<br>
+	</div>
 	
+	<br>
+	<br>
 	
 	<div class ="search_wrap" id="table_search">
 		<form action="${pageContext.request.contextPath}/purchase/list?search=${pageDTO.search}&search_option=${pageDTO.search_option}&search_com=${pageDTO.search_com}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}&start_due_date=${pageDTO.start_due_date}&end_due_date=${pageDTO.end_due_date}" method="get">		
@@ -148,6 +151,7 @@
 	
 	<br>
 	<br>
+	
 	<div>전체 ${pageDTO.count }건</div>
 	
 		<table id="vendortable" class=" table table-striped" style="width:1000px;">

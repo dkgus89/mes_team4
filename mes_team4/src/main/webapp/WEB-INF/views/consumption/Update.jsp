@@ -28,7 +28,7 @@
 			var cpListBtn = $('<button>').attr({
 			    'type': 'button',
 			    'id': 'cpListBtn',
-			}).text('추가');
+			}).text('➕');
 			var rpListBtn = $('<button>').attr({
 				    'type': 'button',
 				    'id': 'rpListBtn',
@@ -134,20 +134,21 @@
 	
 <!-- 본문HTML 입력 시작-->
 	
-	<div id="List_wrap">
+<div id="List_wrap">
 	
 	<h2>소요량 수정</h2>
-	<div class="wrap2">
+	
+	<div class="Btn_wrap">
 	  <button class="button2" id="resetBtn">초기화</button>
 	  <button class="button2" onclick="updateBtn();">수정</button>
 	  <button class="button2" onclick="window.close();">닫기</button>
 	</div>
-	<br>
 
-	<form id="move" action="${pageContext.request.contextPath}/consmpt/updatePro" method="post">		
-	<c:forEach var="dto" items="${consmptList}" begin="0" end="0">
-	<input type="hidden" name="insert_date_st" value="${dto.insert_date }">
-	</c:forEach>
+	<form id="move" action="${pageContext.request.contextPath}/consmpt/updatePro" method="post">
+			
+		<c:forEach var="dto" items="${consmptList}" begin="0" end="0">
+			<input type="hidden" name="insert_date_st" value="${dto.insert_date }">
+		</c:forEach>
 	
 		<div>제품 등록</div>
 		<table id="cproduct" class=" table table-striped">
@@ -198,14 +199,13 @@
 				</tr>
 				</c:forEach>
 			</tbody>
-			
 		</table>
 			
 	</form>
 	
 	<button id="addRowBtn">원자재 추가</button>
 	
-	</div>
+</div>
 	
 <!-- 본문HTML 입력 끝-->
 </body>

@@ -379,4 +379,11 @@
       cursor:pointer;
 	}
 	
+	.Btn_wrap {	
+		display: flex;
+		justify-content: flex-end;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+	
 /* 소요량, 발주 전용 CSS	 */

@@ -63,35 +63,35 @@
 	
 <!-- 본문HTML 입력 시작-->
 	
-	<div id="selectList_wrap">
+<div id="selectList_wrap">
 	
 	<h2>사원 목록</h2>
-	<div class="wrap2">
+	
+	<div class="Btn_wrap">
 	  <button class="button2" onclick="window.close();">닫기</button>
 	</div>
-		<table id="cproduct" class=" table table-striped">
+	
+	<table id="cproduct" class=" table table-striped">
+		<thead>
+			<tr style="text-align: center; font-size: 0.9rem">
+				<th>사원코드</th>
+				<th>부서</th>
+				<th>직급</th>
+				<th>사원명</th>
+			</tr>
+		</thead>
 		
-			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">
-					<th>사원코드</th>
-					<th>부서</th>
-					<th>직급</th>
-					<th>사원명</th>
-				</tr>
-			</thead>
-			
-			<tbody id="cproductBody">
-				<c:forEach var="dto" items="${emList }">
-				<tr>
-					<td>${dto.emCdName }</td>
-					<td>${dto.emDeptName }</td>
-					<td>${dto.emGradeName }</td>
-					<td>${dto.emName }</td>
-				</tr>
-				</c:forEach>
-			</tbody>
-			
-		</table>
+		<tbody id="cproductBody">
+			<c:forEach var="dto" items="${emList }">
+			<tr>
+				<td>${dto.emCdName }</td>
+				<td>${dto.emDeptName }</td>
+				<td>${dto.emGradeName }</td>
+				<td>${dto.emName }</td>
+			</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 	
 	<div id="pagingControl">
 		<c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
@@ -107,7 +107,7 @@
 		</c:if>
 	</div>
 	
-	</div>
+</div>
 	
 <!-- 본문HTML 입력 끝-->
 </body>

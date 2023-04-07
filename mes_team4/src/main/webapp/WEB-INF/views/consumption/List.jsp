@@ -99,11 +99,14 @@
 <div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>소요량 관리 </h2><br>
+	<h2>소요량 관리 </h2>
+	<br>
+	
 	<div class="wrap2">
 	  <button class="button2" id="insertBtn" onclick="insertFn();">추가</button>
 	  <button class="button2" id="deleteBtn" onclick="deleteFn();">삭제</button>
-	</div><br>
+	</div>
+	<br>
 	<br>
 	
 	<div class ="wrap2" id="table_search">
@@ -118,12 +121,13 @@
 			<input type="submit" value="search" class="button2">
 		</form>
 	</div>
+	
 	<br>
 	<br>
+	
 	<div>전체 ${pageDTO.count }건</div>
 	
 		<table id="vendortable" class=" table table-striped" style="width:1000px;">
-			
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" id="allCheck" onclick="allChecking();"></th>
@@ -173,7 +177,7 @@
 		    		</c:if>
 	  				</tr>
 				</c:forEach>
-			
+				
 			</c:when>
 			<c:otherwise>
 				<tr>
