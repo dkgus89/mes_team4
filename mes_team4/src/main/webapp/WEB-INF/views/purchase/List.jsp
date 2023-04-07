@@ -71,7 +71,7 @@
 							window.location.reload(true);
 							alert("삭제 되었습니다.");
 						} else {
-							alert("실패");
+							alert("입고관리에 등록된 발주번호가 포함되어있습니다.\n해당 발주번호를 제외하고 선택하세요.");
 						}
 					}
 				});// ajex end

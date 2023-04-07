@@ -231,19 +231,12 @@ public class DeliverController {
 		public String update(HttpServletRequest request, Model model) {
 			System.out.println("업데이트"+"/deliver/update");
 			String deliver_cd =  request.getParameter("deliver_cd");
-//			String business_cd =  request.getParameter("business_cd");
-//			String product_cd =  request.getParameter("product_cd");
 			
-		//	System.out.println(deliver_cd);
 			
 			DeliverDTO deliverDTO= new DeliverDTO();
 			deliverDTO.setDeliver_cd(deliver_cd);
-//			deliverDTO2.setBusiness_cd(business_cd);
-//			deliverDTO2.setProduct_cd(product_cd);
-			
-			//System.out.println(deliverDTO.getDeliver_cd());	
-			
-			 deliverDTO=deliverService.getDeliver(deliverDTO);
+			System.out.println(deliverDTO.getDeliver_cd());
+			deliverDTO=deliverService.getDeliver(deliverDTO);
 		
 			model.addAttribute("deliverDTO", deliverDTO);
 			
@@ -280,11 +273,15 @@ public class DeliverController {
 		@RequestMapping(value = "/deliver/updatePro", method = RequestMethod.POST)
 		public String updatePro(DeliverDTO deliverDTO) {
 			System.out.println("updatepro부분"+"/deliver/updatePro");
-			System.out.println("전"+deliverDTO.getDeliver_count());
+			System.out.println(deliverDTO.getDeliver_cd());
+			System.out.println(deliverDTO.getBusiness_cd());
+			System.out.println(deliverDTO.getOrder_cd());
+			System.out.println(deliverDTO.getProduct_cd_name());
+			System.out.println(deliverDTO.getDeliver_date());
+			System.out.println(deliverDTO.getDeliver_count());
+			System.out.println(deliverDTO.getEmp_no());
+		
 			deliverService.updateDeliver(deliverDTO);
-			
-	//		System.out.println("후"+deliverDTO.getDeliver_count());
-			
 			// 주소변경하면서 이동
 			return "redirect:/deliver/list";
 		}

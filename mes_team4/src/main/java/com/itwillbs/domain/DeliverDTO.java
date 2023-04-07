@@ -8,7 +8,7 @@ public class DeliverDTO {
 	private String deliver_cd;  //출하코드
 	private String business_cd; //거래처코드
 	private String order_cd;	//수주코드
-	private String product_cd;  //품목코드
+	private String product_cd_name;  //품목코드
 	private Date deliver_date; //출하일자
 	private int deliver_count;     //출하량
 	private int emp_no;   //출하담당자갖고오는것?
@@ -37,11 +37,11 @@ public class DeliverDTO {
 	public void setOrder_cd(String order_cd) {
 		this.order_cd = order_cd;
 	}
-	public String getProduct_cd() {
-		return product_cd;
+	public String getProduct_cd_name() {
+		return product_cd_name;
 	}
-	public void setProduct_cd(String product_cd) {
-		this.product_cd = product_cd;
+	public void setProduct_cd_name(String product_cd_name) {
+		this.product_cd_name = product_cd_name;
 	}
 
 	public Date getDeliver_date() {

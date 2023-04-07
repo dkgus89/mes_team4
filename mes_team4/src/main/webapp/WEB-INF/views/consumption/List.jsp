@@ -55,7 +55,6 @@
 				checkedValue.push(checkList[i].value);
 			}
 		}
-		
 		if (checkedValue.length==0) {
 			alert("선택한 행이 없습니다.\n삭제할 행을 선택 후 삭제 버튼을 눌러주세요.");
 			return false;

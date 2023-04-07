@@ -21,7 +21,7 @@ function DeliverInsert(){
 function DeliverUpdate(deliver_cd){
 //     window.open("${pageContext.request.contextPath}/deliver/update?deliver_cd=deliver_cd","출하 수정","width=1200, height=300, top=200, left=200");
     window.open("${pageContext.request.contextPath}/deliver/update?deliver_cd="+deliver_cd,"출하 수정","width=1200, height=300, top=200, left=200");
-//     "&business_cd="+business_cd+"&product_cd="+product_cd,
+//     "&business_cd="+business_cd+"&product_cd_name="+product_cd_name,
 }
 
 function DeliverDelete1() {
@@ -48,7 +48,7 @@ function allCheck(){
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>완제품 출하현황 </h2><br>
+	<h2>출하 관리 </h2><br>
 	<div class="wrap2">
 	  <button class="button2" onclick="DeliverInsert();">추가</button>
 <!-- 	  <button class="button2">저장</button> -->
@@ -102,13 +102,13 @@ function allCheck(){
 					
     			<td>${DeliverDTO.deliver_cd}</td>
 				<td>${DeliverDTO.business_cd}</td>
-    			<td>${DeliverDTO.product_cd}</td>
+    			<td>${DeliverDTO.product_cd_name}</td>
     			<td>${DeliverDTO.order_cd}</td>
     			<td>${DeliverDTO.deliver_date}</td>
     			<td>${DeliverDTO.deliver_count}</td>
     			<td>${DeliverDTO.emp_no}</td>
     			
-    			<td><button class="button2" onclick="DeliverUpdate('${DeliverDTO.deliver_cd}','${DeliverDTO.business_cd}','${DeliverDTO.product_cd}');">수정</button></td>
+    			<td><button class="button2" onclick="DeliverUpdate('${DeliverDTO.deliver_cd}','${DeliverDTO.business_cd}','${DeliverDTO.product_cd_name}');">수정</button></td>
     			
    			 
 				</c:forEach>

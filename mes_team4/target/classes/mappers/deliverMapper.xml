@@ -8,9 +8,9 @@
 	
 	<!-- ?대신 deliverDTO의 멤버변수명 사용 #{id}-->
 	<insert id="insertDeliver">
-		insert into shipment_management(deliver_cd, business_cd, product_cd, order_cd, deliver_date, deliver_count,emp_no)
+		insert into shipment_management(deliver_cd, business_cd, product_cd_name, order_cd, deliver_date, deliver_count,emp_no)
 							
-		values(#{deliver_cd},#{business_cd},#{product_cd}, #{order_cd},#{deliver_date},#{deliver_count},#{emp_no})
+		values(#{deliver_cd},#{business_cd},#{product_cd_name}, #{order_cd},#{deliver_date},#{deliver_count},#{emp_no})
 	</insert>
 	
 	<select id="getDeliver_cd" resultType="java.lang.String">
@@ -34,16 +34,25 @@
     <select id="getDeliver" resultType="com.itwillbs.domain.DeliverDTO">
     select * from shipment_management
     where deliver_cd = #{deliver_cd} 
-<!--     and business_cd=#{business_cd} and product_cd =#{product_cd} -->
+<!--     and business_cd=#{business_cd} and product_cd_name =#{product_cd_name} -->
     
     </select>
 	
     <update id="updateDeliver">
     	update shipment_management
-    	set deliver_cd = #{deliver_cd}, business_cd = #{business_cd}, product_cd = #{product_cd}, 
-    	order_cd = #{order_cd}, deliver_date = #{deliver_date}, deliver_count = #{deliver_count}
+    	set deliver_cd = #{deliver_cd}, business_cd = #{business_cd}, product_cd_name = #{product_cd_name}, 
+    	order_cd = #{order_cd}, deliver_date = #{deliver_date}, deliver_count = #{deliver_count}, emp_no = #{emp_no}
     	where deliver_cd = #{deliver_cd}
     </update>
+    
+    
+<!--     모르겠네. -->
+<!--     <update id="updateDeliver"> -->
+<!--     update order_management -->
+<!--     set con = '생산완료' -->
+<!--     where deliver_cd = #{deliver_cd} -->
+<!--     </update> -->
+    
     
     
 <!--      <update id="updateDeliver"> -->

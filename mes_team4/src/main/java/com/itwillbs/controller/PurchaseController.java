@@ -356,17 +356,28 @@ public class PurchaseController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/purchase/delete", method = RequestMethod.POST)
-	public String delete(HttpServletRequest request) {
+	public String delete(HttpServletRequest request, PurchaseDTO purchaseDTO) {
 		System.out.println("ConsumptionController delete()");
 		// 처리작업
 		String response = "delete";
 		
+		// 발주코드 저장
 		String[] checkedValue = request.getParameterValues("checkedValue");
-		if(checkedValue == null) {
-			response = "false";
+		int length = checkedValue.length;
+		
+		// 진행상황 체크
+		List<String> purchase_com_arr = new ArrayList<String>(length);
+		for(int i = 0; i < length; i++) {
+			purchaseDTO = purchaseService.getPurchaseDTO(checkedValue[i]); 
+			purchase_com_arr.add(purchaseDTO.getPurchase_com());
 		}
 		
-		purchaseService.deletePurchase(checkedValue);
+		// 진행상황에 따른 삭제처리
+		if (purchase_com_arr.contains("완료")) {
+			response = "notDelete";
+		} else {
+			purchaseService.deletePurchase(checkedValue);
+		}
 		
 		return response;
 	}

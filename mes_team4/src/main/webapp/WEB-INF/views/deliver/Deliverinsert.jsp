@@ -28,11 +28,11 @@ function showPopup(){
 	}
 
 //수주현황 받아오기
-function setChildValue(business_cd,order_cd,product_cd,emp_no){
+function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
 
 	document.getElementById("business_cd").value=business_cd;
 	document.getElementById("order_cd").value=order_cd;
-	document.getElementById("product_cd").value=product_cd;
+	document.getElementById("product_cd_name").value=product_cd_name;
 	document.getElementById("emp_no").value=emp_no;
 }
 
@@ -55,9 +55,9 @@ function setChildValue(business_cd,order_cd,product_cd,emp_no){
 // 				$('#inst').focus();
 // 				return false;
 // 			}
-// 			if($('#product_cd').val() == " "){
+// 			if($('#product_cd_name').val() == " "){
 // 				alert("품목코드를 입력하세요.")
-// 				$('#product_cd').focus();
+// 				$('#product_cd_name').focus();
 // 				return false;
 // 			}
 			
@@ -90,7 +90,7 @@ function setChildValue(business_cd,order_cd,product_cd,emp_no){
 // 					url:'${pageContext.request.contextPath}/deliver/callcd',
 // 					data:{'ic':$("#inst").val()},
 // 					success:function(result){
-// 						  $('#product_cd').val(result);			
+// 						  $('#product_cd_name').val(result);			
 // 					}
 // 				});
 				
@@ -98,7 +98,7 @@ function setChildValue(business_cd,order_cd,product_cd,emp_no){
 // 					url:'${pageContext.request.contextPath}/perform/callcd2',
 // 					data:{'ic':$("#inst").val()},
 // 					success:function(result){
-// 						$('#product_cd').val(result);			
+// 						$('#product_cd_name').val(result);			
 // 					}
 // 				});			
 // 			});
@@ -114,6 +114,9 @@ function setChildValue(business_cd,order_cd,product_cd,emp_no){
 // 	}
 	
 	
+	
+	
+
 
 </script>
 
@@ -157,7 +160,7 @@ function setChildValue(business_cd,order_cd,product_cd,emp_no){
 				<tr>
 <!-- 					<td><input type="text" name="deliver_cd" id="deliver_cd" ></td> -->
 					<td><input type="text" name="business_cd" id="business_cd"> 
-					<td><input type="text" name="product_cd" id="product_cd"> </td>
+					<td><input type="text" name="product_cd_name" id="product_cd_name"> </td>
 					<td><input type="text" name="order_cd" id="order_cd"> </td>
 					<td><input type="Date" name="deliver_date" ></td>
 					<td><input type="text" name="deliver_count" ></td>
@@ -190,7 +193,7 @@ function setChildValue(business_cd,order_cd,product_cd,emp_no){
 <!-- 			<tbody> -->
 <!-- 				<tr> -->
 					
-<!-- 					<td><input type="text" name="product_cd2"></td> -->
+<!-- 					<td><input type="text" name="product_cd_name"></td> -->
 <!-- 					<td><input type="date" name="deliver_date"></td> -->
 <!-- 					<td><input type="text" name="deliver_count"></td> -->
 <!-- 				</tr> -->
