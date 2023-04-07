@@ -22,11 +22,19 @@ public interface OrderService {
 	public int getPCount();
 	
 	public int getFCount();
-
+	
 	public int getPCount(PageDTO pageDTO);
 	
 	public int getFCount(PageDTO pageDTO);
 
+	public int getICount();
+	
+	public int getWCount();
+	
+	public int getICount(PageDTO pageDTO);
+	
+	public int getWCount(PageDTO pageDTO);
+	
 	public String getProduct_cd_name(String order_cd);
 
 	public int getSumRelCount(String order_cd);

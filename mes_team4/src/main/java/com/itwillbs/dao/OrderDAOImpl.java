@@ -131,6 +131,32 @@ public class OrderDAOImpl implements OrderDAO{
 		sqlSession.update(namespace+".updateCon",cd);
 	}
 
+	@Override
+	public int getICount() {
+		System.out.println("OrderDAOImpl getICount()");
+		return sqlSession.selectOne(namespace+".getICount");
+	}
+
+	@Override
+	public int getWCount() {
+		System.out.println("OrderDAOImpl getWCount()");
+		return sqlSession.selectOne(namespace+".getWCount");
+	}
+
+	@Override
+	public int getICount(PageDTO pageDTO) {
+		System.out.println("OrderDAOImpl search있는 i개수구함");
+		
+		return sqlSession.selectOne(namespace+".getICount",pageDTO);
+	}
+
+	@Override
+	public int getWCount(PageDTO pageDTO) {
+		System.out.println("OrderDAOImpl search있는 w개수구함");
+		
+		return sqlSession.selectOne(namespace+".getWCount",pageDTO);
+	}
+
 	
 
 }

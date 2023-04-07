@@ -135,4 +135,30 @@ public class OrderServiceImpl implements OrderService{
 		
 	}
 
+	@Override
+	public int getICount() {
+		System.out.println("OrderServiceImpl getICount()");
+		return orderDAO.getICount();
+	}
+
+	@Override
+	public int getWCount() {
+		System.out.println("OrderServiceImpl getWCount()");
+		return orderDAO.getWCount();
+	}
+
+	@Override
+	public int getICount(PageDTO pageDTO) {
+		System.out.println("orderService search있는 i갯수구함");
+		return orderDAO.getICount(pageDTO);
+	}
+
+	@Override
+	public int getWCount(PageDTO pageDTO) {
+		System.out.println("orderService search있는 w갯수구함");
+		return orderDAO.getWCount(pageDTO);
+	}
+
+
+
 }

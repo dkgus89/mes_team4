@@ -89,8 +89,8 @@
 	</div>
 	<br>
 	<br>
- <h4>전체 ${pageDTO.count}건 / <span style="color:red">생산전 ${pageDTO.pcount}건 </span>/ <span style="color:red">생산대기 ${pageDTO.pcount}건 </span>
- / <span style="color:red">생산중 ${pageDTO.pcount}건 </span>/ <span style="color:blue">생산완료 ${pageDTO.fcount}건</span>
+ <h4>전체 ${pageDTO.count}건 / <span style="color:red">생산전 ${pageDTO.pcount}건 </span>/ <span style="color:red">생산대기 ${pageDTO.wcount}건 </span>
+ / <span style="color:red">생산중 ${pageDTO.icount}건 </span>/ <span style="color:blue">생산완료 ${pageDTO.fcount}건</span>
  </h4>
 	
 	<form method="post" name="myform">

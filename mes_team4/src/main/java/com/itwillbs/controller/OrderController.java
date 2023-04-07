@@ -67,6 +67,8 @@ public class OrderController {
 		//생산 전,완료 개수 구하기
 		pageDTO.setPcount(orderService.getPCount());
 		pageDTO.setFcount(orderService.getFCount());
+		pageDTO.setIcount(orderService.getICount());
+		pageDTO.setWcount(orderService.getWCount());
 		
 		// 검색어 가져오기
 		String search = request.getParameter("search");
@@ -125,6 +127,8 @@ public class OrderController {
 		//생산 전,완료 개수 구하기
 		pageDTO.setPcount(orderService.getPCount(pageDTO));
 		pageDTO.setFcount(orderService.getFCount(pageDTO));
+		pageDTO.setIcount(orderService.getICount(pageDTO));
+		pageDTO.setWcount(orderService.getWCount(pageDTO));
 		
 		List<OrderDTO> orderList = orderService.getOrderList(pageDTO);
 		

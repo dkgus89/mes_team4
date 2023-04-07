@@ -71,7 +71,7 @@
 	<div id="contents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2 onclick="location.href='${pageContext.request.contextPath}/order/ordermain'">수주현황</h2>
+	<h2 onclick="location.href='${pageContext.request.contextPath}/order/ordermain'">완제품 수주현황</h2>
 	
 	<div class="wrap2">
 	  <button class="button2" onclick="showPopup();">추가</button>
@@ -89,8 +89,9 @@
 	</div>
 	<br>
 	<br>
- 	<h4>거래처 ${pageDTO.search} 현황 :<span style="color:red">생산전 ${pageDTO.pcount}건</span> /  <span style="color:blue">생산완료 ${pageDTO.fcount}건</span></h4>
-	
+ 	<h4>거래처 ${pageDTO.search} 현황 :<span style="color:red">생산전 ${pageDTO.pcount}건 </span>/ <span style="color:red">생산대기 ${pageDTO.wcount}건 </span>
+ / <span style="color:red">생산중 ${pageDTO.icount}건 </span>/ <span style="color:blue">생산완료 ${pageDTO.fcount}건</span>
+ </h4>
 	<form method="post" name="myform">
 <!-- 		<input type="hidden" value="">	 -->
 	<table id="vendortable" class=" table table-striped" style="width:1000px;">
@@ -127,6 +128,8 @@
 			
 			<c:choose>
 			<c:when test="${orderDTO.con eq '생산전'}"><td><span style="color:red">${orderDTO.con}</span></td> </c:when>
+			<c:when test="${orderDTO.con eq '생산대기'}"><td><span style="color:red">${orderDTO.con}</span></td></c:when>
+			<c:when test="${orderDTO.con eq '생산중'}"><td><span style="color:red">${orderDTO.con}</span></td></c:when>
 			<c:when test="${orderDTO.con eq '생산완료'}"><td><span style="color:blue">${orderDTO.con}</span></td></c:when>
 			<c:otherwise> ... </c:otherwise>
 			</c:choose>
