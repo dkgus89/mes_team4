@@ -23,10 +23,11 @@ function showPopup(){
 	
   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 }
-function setChildValue(order_cd, product_cd_name, order_count, deliver_date){
+function setChildValue(order_cd,  product_cd_name, product_name, order_count, deliver_date){
 	 	
 		document.getElementById("order_cd").value = order_cd;
 		document.getElementById("product_cd_name").value = product_cd_name;
+		document.getElementById("product_name").value = product_name;
 	    document.getElementById("order_count").value = order_count;
 	    document.getElementById("deliver_date").value = deliver_date;
 }
