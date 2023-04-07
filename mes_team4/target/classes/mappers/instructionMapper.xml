@@ -144,7 +144,45 @@
     where instruction_code = #{cd}
     </update>
     
+    <select id="getInstDate" resultType="java.lang.String">
+       select instruction_date
+		from instruction
+		where instruction_code = #{instruction_code}
+    </select>
     
+    <select id="getInstCount" resultType="java.lang.Integer">
+       select instruction_qt
+		from instruction
+		where instruction_code = #{instruction_code}
+    </select>
+    
+     <select id="getInstCdname" resultType="java.lang.String">
+       select product_cd_name
+		from instruction
+		where instruction_code = #{instruction_code}
+    </select>
+    
+    <select id="getInstPch" resultType="java.lang.String">
+       select pchor_cd
+		from receive_schedule
+		where product_cd_name = #{product_cd_name}
+    </select>
+    
+    <select id="getWh_cd" resultType="java.lang.String">
+       select wh_cd
+		from receive_schedule
+		where product_cd_name = #{product_cd_name}
+    </select>
+       
+<!--     <resultMap type="map" id="map9"> -->
+<!-- 		<result column="rproduct_cd_name" property="rproduct_cd_name"/> -->
+<!-- 	</resultMap> -->
+
+    <select id="getcountcons" resultType="String">
+    	select rproduct_cd_name
+		from consumption_management
+		where cproduct_cd_name = #{cdname}
+    </select>
     
     
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->

@@ -1,6 +1,7 @@
 package com.itwillbs.service;
 
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.InstructionDAO;
+import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
@@ -143,6 +145,48 @@ public class InstructionServiceImpl implements InstructionService{
 	public void updateCon3(String cd) {
 		System.out.println("InstructionServiceImpl updateCon3 생산완료로");
 		instructionDAO.updateCon3(cd);
+	}
+
+	@Override
+	public String getInstDate(String instruction_code) {
+		System.out.println("InstructionServiceImpl getInstDate()");
+		
+		return instructionDAO.getInstDate(instruction_code);
+	}
+
+	@Override
+	public int getInstCount(String instruction_code) {
+		System.out.println("InstructionServiceImpl getInstCount()");
+		
+		return instructionDAO.getInstCount(instruction_code);
+	}
+
+	@Override
+	public String getInstCdname(String instruction_code) {
+		System.out.println("InstructionServiceImpl getInstCdname()");
+		
+		return instructionDAO.getInstCdname(instruction_code);
+	}
+
+	@Override
+	public String getInstPch(String product_cd_name) {
+		System.out.println("InstructionServiceImpl getInstPch()");
+		
+		return instructionDAO.getInstPch(product_cd_name);
+	}
+
+	@Override
+	public String getWh_cd(String product_cd_name) {
+		System.out.println("InstructionServiceImpl getWh_cd()");
+		
+		return instructionDAO.getWh_cd(product_cd_name);
+	}
+
+	@Override
+	public List<String> getcountcons(String cdname) {
+		System.out.println("InstructionServiceImpl getcountcons()");
+		
+		return instructionDAO.getcountcons(cdname);
 	}
 
 

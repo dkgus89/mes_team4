@@ -1,5 +1,6 @@
 package com.itwillbs.dao;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
@@ -136,6 +138,48 @@ public class InstructionDAOImpl implements InstructionDAO {
 	public void updateCon3(String cd) {
 		System.out.println("InstructionDAOImpl updateCon3 생산완료로변경");
 		sqlSession.update(namespace+".updateCon3",cd);
+	}
+
+	@Override
+	public String getInstDate(String instruction_code) {
+		System.out.println("InstructionDAOImpl getInstDate()");
+		
+		return sqlSession.selectOne(namespace +".getInstDate", instruction_code);
+	}
+
+	@Override
+	public int getInstCount(String instruction_code) {
+		System.out.println("InstructionDAOImpl getInstDate()");
+		
+		return sqlSession.selectOne(namespace +".getInstCount", instruction_code);
+	}
+
+	@Override
+	public String getInstCdname(String instruction_code) {
+		System.out.println("InstructionDAOImpl getInstCdname()");
+		
+		return sqlSession.selectOne(namespace +".getInstCdname", instruction_code);
+	}
+
+	@Override
+	public String getInstPch(String product_cd_name) {
+		System.out.println("InstructionDAOImpl getInstPch()");
+		
+		return sqlSession.selectOne(namespace +".getInstPch", product_cd_name);
+	}
+
+	@Override
+	public String getWh_cd(String product_cd_name) {
+		System.out.println("InstructionDAOImpl getWh_cd()");
+		
+		return sqlSession.selectOne(namespace +".getWh_cd", product_cd_name);
+	}
+
+	@Override
+	public List<String> getcountcons(String cdname) {
+		System.out.println("InstructionDAOImpl getcountcons()");
+		
+		return sqlSession.selectList(namespace +".getcountcons", cdname);
 	}
 	
 	

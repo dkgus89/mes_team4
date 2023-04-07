@@ -1,8 +1,10 @@
 package com.itwillbs.service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
@@ -43,6 +45,18 @@ public interface InstructionService {
 	public void updateCon3(String cd); // 생산완료 전환
 
 	public List<Map<String, Object>> getConsListMap(String instruction_code);
+
+	public String getInstDate(String instruction_code);
+
+	public int getInstCount(String instruction_code);
+
+	public String getInstCdname(String instruction_code);
+
+	public String getInstPch(String product_cd_name);
+
+	public String getWh_cd(String product_cd_name);
+
+	public List<String> getcountcons(String cdname);
 
 
 	

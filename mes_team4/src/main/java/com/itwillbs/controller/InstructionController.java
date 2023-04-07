@@ -1,11 +1,16 @@
 
 package com.itwillbs.controller;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.text.DateFormatter;
 
 import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.springframework.stereotype.Controller;
@@ -14,11 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.ReleaseDTO;
 import com.itwillbs.service.InstructionService;
 import com.itwillbs.service.OrderService;
+import com.itwillbs.service.ReleaseService;
 
 @Controller
 public class InstructionController {
@@ -27,6 +35,9 @@ public class InstructionController {
 	
 	@Inject
 	private OrderService orderService;
+
+	@Inject
+	private ReleaseService relService;
 	
 	@RequestMapping(value = "/inst/instmain", method = RequestMethod.GET)
 	public String instmain(HttpServletRequest request, Model model) {
@@ -230,7 +241,7 @@ public class InstructionController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/inst/changeIng")
-	public String changeIng(HttpServletRequest request) {
+	public String changeIng(HttpServletRequest request, ReleaseDTO releaseDTO) {
 		System.out.println("InstructionController changIng()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
@@ -244,7 +255,37 @@ public class InstructionController {
 //				orderService.updateCon(ajaxMsg[i]);
 				jdata = "1";
 			}
+		
+		for(int i=0; i<size; i++) {
+			String instruction_code=ajaxMsg[i];
+			int count=instructionService.getInstCount(instruction_code);
+			String date=instructionService.getInstDate(instruction_code);
+			LocalDate localDate1 = LocalDate.parse(date);//	       
+	        Date date2 = java.sql.Date.valueOf(localDate1);
+			String cdname=instructionService.getInstCdname(instruction_code);
+			List<String> cons=instructionService.getcountcons(cdname);
+			for(int i2=0; i2<cons.size(); i2++) {
+				String product_cd_name=cons.get(i);
+				String wh_cd=instructionService.getWh_cd(product_cd_name);
+				releaseDTO.setWh_cd(wh_cd);
+				String pch=instructionService.getInstPch(product_cd_name);
+				releaseDTO.setRel_schedule_cd("L230407100");
+				releaseDTO.setRel_date(date2);
+				releaseDTO.setRel_count(count);
+				releaseDTO.setProduct_cd_name(product_cd_name);
+				releaseDTO.setPchor_cd(pch);
+				releaseDTO.setWh_cd(wh_cd);
+				// 출고등록 메서드 호출
+				relService.insertrel(releaseDTO);
+			}
 			
+			
+	        
+						
+			
+		}
+		
+		
 		
 		System.out.println("jdata값!!!!!!!!!!" + jdata);
 		return jdata;

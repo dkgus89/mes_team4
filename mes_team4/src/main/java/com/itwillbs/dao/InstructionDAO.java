@@ -1,11 +1,13 @@
 package com.itwillbs.dao;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
 import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.ConsumptionDTO;
 
 public interface InstructionDAO {
 
@@ -42,6 +44,18 @@ public interface InstructionDAO {
 	public void updateCon3(String cd);
 
 	public List<Map<String, Object>> getConsListMap(String instruction_code);
+
+	public String getInstDate(String instruction_code);
+
+	public int getInstCount(String instruction_code);
+
+	public String getInstCdname(String instruction_code);
+
+	public String getInstPch(String product_cd_name);
+
+	public String getWh_cd(String product_cd_name);
+
+	public List<String> getcountcons(String cdname);
 
 	
 
