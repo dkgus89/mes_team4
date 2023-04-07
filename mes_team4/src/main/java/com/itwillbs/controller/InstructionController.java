@@ -230,8 +230,8 @@ public class InstructionController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/inst/changeIng")
-	public String delete(HttpServletRequest request) {
-		System.out.println("OrderController delete()");
+	public String changeIng(HttpServletRequest request) {
+		System.out.println("InstructionController changIng()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
 		String jdata = "0";
@@ -249,7 +249,41 @@ public class InstructionController {
 		System.out.println("jdata값!!!!!!!!!!" + jdata);
 		return jdata;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/inst/changefin")
+	public String changefin(HttpServletRequest request) {
+		System.out.println("InstructionController changeFin()");
+		
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		String jdata = "0";
+		
+		System.out.println("배열0번지출력"+ajaxMsg[0]);
+		
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+				instructionService.updateCon3(ajaxMsg[i]);
+//				orderService.updateCon(ajaxMsg[i]);
+				jdata = "1";
+			}
+			
+		
+		System.out.println("jdata값!!!!!!!!!!" + jdata);
+		return jdata;
+	}
 
-	
-	
+	@RequestMapping(value = "/inst/instcontent", method = RequestMethod.GET)
+	public String instcontent(HttpServletRequest request, Model model, InstructionDTO instructionDTO) {
+		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
+		String instruction_code = request.getParameter("instruction_code");
+		List<Map<String, Object>> consListMap
+	     = instructionService.getConsListMap(instruction_code);
+		
+		InstructionDTO instructionDTO2 = instructionService.instructioninfo(instruction_code);
+	//model 담아서 이동
+	model.addAttribute("consListMap", consListMap);
+	model.addAttribute("instructionDTO", instructionDTO2);
+		return "/inst/InstContent";
+	}
+
 }

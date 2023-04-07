@@ -134,7 +134,7 @@
         	</if>
         </if>
         </if>
-        order by perform_cd
+        order by perform_date desc
         limit #{startRow} , #{pageSize}
     </select>
     

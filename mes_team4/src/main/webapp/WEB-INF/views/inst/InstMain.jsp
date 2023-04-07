@@ -19,6 +19,10 @@ function showPopup(){
 function showPopup2(cd){
     window.open("${pageContext.request.contextPath}/inst/instupdate?instruction_code="+cd,"instupdate","width=1100, height=350, top=200, left=200");
 }
+function showPopup3(ef){
+    window.open("${pageContext.request.contextPath}/inst/instcontent?instruction_code="+ef,"instcontent","width=1100, height=800, top=200, left=200");
+}
+
 function chdelete(){
 	// 삭제 유효성 검사
 	var result = confirm("삭제하시겠습니까?");
@@ -50,32 +54,58 @@ function changeIng(){
 	var orderList = $("input[name='rowcheck']");
 	for(var i=0; i<orderList.length; i++){
 		if(orderList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
-			valueArr.push(orderList[i].value);
-		}
+			valueArr.push(orderList[i].value);	}
 	}
 	if(valueArr.length==0){
 		alert("작업현황 변경할 번호를 선택하여주세요");
 	} else {
-		var chk = confirm("생산대기 -> 생산중으로 변경하시겠습니까?");
+		var chk = confirm("작업현황 : \n생산대기 -> 생산중으로 변경하시겠습니까?");
 		if(chk){
 		$.ajax({
 			url :'${pageContext.request.contextPath}/inst/changeIng', 		//전송url
 			type : 'POST',	// post방식
 			traditional : true,
-			data : {
-				valueArr : valueArr // 보내고자하는 data 변수설정	
-			},
+			data : { valueArr : valueArr // 보내고자하는 data 변수설정	
+				},
 			success : function(jdata){
 				if(jdata == '1'){
 					alert("변경하였습니다");
-					location.replace("${pageContext.request.contextPath}/inst/instmain")
+					location.replace("${pageContext.request.contextPath}/inst/instmain")}
 				}
-			}
 			});
 		}else {
-			alert("삭제 취소되었습니다.");
-		}
- }
+			alert("변경 취소되었습니다.");}
+ 		}
+	}
+	
+function changefin(){
+	var url = "/inst/changefin"; // controller로 보내고자 하는 url
+	var valueArr = new Array();
+	var orderList = $("input[name='rowcheck']");
+	for(var i=0; i<orderList.length; i++){
+		if(orderList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
+			valueArr.push(orderList[i].value);	}
+	}
+	if(valueArr.length==0){
+		alert("작업현황 변경할 번호를 선택하여주세요");
+	} else {
+		var chk = confirm("작업현황 : \n생산중 -> 생산완료 상태로 변경하시겠습니까?");
+		if(chk){
+		$.ajax({
+			url :'${pageContext.request.contextPath}/inst/changefin', 		//전송url
+			type : 'POST',	// post방식
+			traditional : true,
+			data : { valueArr : valueArr // 보내고자하는 data 변수설정	
+				},
+			success : function(jdata){
+				if(jdata == '1'){
+					alert("변경하였습니다");
+					location.replace("${pageContext.request.contextPath}/inst/instmain")}
+				}
+			});
+		}else {
+			alert("변경 취소되었습니다.");}
+ 		}
 	}
 	
 </script>
@@ -119,6 +149,7 @@ function changeIng(){
 	  <button class="button2" onclick="showPopup();">추가</button>
 	  <button class="button2" onclick="chdelete();">삭제</button>
 	   <button class="button2" onclick="changeIng();">작업전환:생산중</button>
+	   <button class="button2" onclick="changefin();">작업전환:생산완료</button>
 	  <br>
 	 </div><br>
 	 <br>
@@ -136,10 +167,10 @@ function changeIng(){
 					<th style="text-align: center;">작업지시코드</th>
 					<th style="text-align: center;">제품코드명</th>
 					<th style="text-align: center;">지시수량</th>		
-					<th style="text-align: center;">소요량</th>
 					<th style="text-align: center;">라인코드</th>
 					<th style="text-align: center;">생산지시일자</th>
 					<th style="text-align: center;">작업지시상태</th>
+					<th style="text-align: center;">상세확인</th>
 					<th style="text-align: center;">수정</th>
 				</tr>
 			</thead>
@@ -156,10 +187,10 @@ function changeIng(){
 				<td style="text-align: center;">${dto.instruction_code}</td>
 				<td style="text-align: center;">${dto.product_cd_name}</td>
     			<td style="text-align: center;">${dto.instruction_qt}</td>
-    			<td style="text-align: center;">${dto.consumption1}</td>
     			<td style="text-align: center;">${dto.line_cd}</td>
     			<td style="text-align: center;">${dto.instruction_date}</td> 
-    			<td style="text-align: center;">${dto.instruction_state}</td> 			
+    			<td style="text-align: center;">${dto.instruction_state}</td> 	
+    			<td style="text-align: center;"><button class="button2" onclick="showPopup3('${dto.instruction_code}');">상세정보</button></td>		
     			<td style="text-align: center;"><button class="button2" onclick="showPopup2('${dto.instruction_code}');">수정</button></td>
     			</tr>
    			 
