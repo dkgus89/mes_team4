@@ -133,7 +133,9 @@
 
 	
 <!-- 본문HTML 입력 시작-->
-
+	
+	<div id="List_wrap">
+	
 	<h2>소요량 수정</h2>
 	<div class="wrap2">
 	  <button class="button2" id="resetBtn">초기화</button>
@@ -181,7 +183,7 @@
 			<tbody id="rproductBody">
 				<c:forEach var="dto" items="${consmptList }">
 				<tr>
-					<td><input type="text" name="rproduct_cd_name_arr" value="${dto.rproduct_cd_name }" readonly><button type="button" id="rpListBtn" name="rpListBtn">추가</button></td>
+					<td><input type="text" name="rproduct_cd_name_arr" value="${dto.rproduct_cd_name }" readonly><button type="button" id="rpListBtn" name="rpListBtn">➕</button></td>
 					<td><input type="text" name="rproduct_name_arr" value="${dto.rproduct_name }" readonly></td>
 					<td><input type="text" name="consumption_arr" value="${dto.consumption }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
 					<td><input type="hidden" id="consumption_unit_arr" name="consumption_unit_arr" value="${dto.consumption_unit }">
@@ -203,7 +205,7 @@
 	
 	<button id="addRowBtn">원자재 추가</button>
 	
-	
+	</div>
 	
 <!-- 본문HTML 입력 끝-->
 </body>

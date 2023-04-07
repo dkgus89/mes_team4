@@ -26,8 +26,8 @@
 	// 소요량 등록 팝업
 	function insertFn(){
 	var link = "${pageContext.request.contextPath}/consmpt/insert";     
-	var popupWidth = 900;
-	var popupHeight = 700;
+	var popupWidth = 980;
+	var popupHeight = 500;
 	var popupX = (window.screen.width/2) - (popupWidth/2);
 	var popupY= (window.screen.height/2) - (popupHeight/2);
 	
@@ -37,8 +37,8 @@
 	// 소요량 수정 팝업
 	function updateFn(cproduct_cd_name){
 	var link = "${pageContext.request.contextPath}/consmpt/update?cproduct_cd_name="+cproduct_cd_name;     
-	var popupWidth = 900;
-	var popupHeight = 700;
+	var popupWidth = 980;
+	var popupHeight = 500;
 	var popupX = (window.screen.width/2) - (popupWidth/2);
 	var popupY= (window.screen.height/2) - (popupHeight/2);
 	

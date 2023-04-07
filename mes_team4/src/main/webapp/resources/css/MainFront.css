@@ -345,3 +345,13 @@
 	#cpListBtn:hover, #rpListBtn:hover, #bsListBtnL:hover, #emListBtn:hover {
 	  --button-bg-color: #6799FF;
 	}
+	
+	#List_wrap {
+		margin : 20px 20px;
+		width : 940px;
+		background-color: white;
+		border-style : solid 0.5px;
+		border-color: #E4E4E4;
+		font-family: 'Gowun Dodum', sans-serif;
+		
+	}

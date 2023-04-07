@@ -55,7 +55,7 @@
 			    'type': 'button',
 			    'id': 'rpListBtn',
 			    'name': 'rpListBtn'
-			}).text('추가');
+			}).text('➕');
 		    
 		    $('#rproductBody').append(newRow);
 		    $('#rproductBody tr:last-child td:eq(0)').empty();
@@ -155,7 +155,9 @@
 
 	
 <!-- 본문HTML 입력 시작-->
-
+	
+	<div id="List_wrap">
+	
 	<h2>소요량 등록</h2>
 	<div class="wrap2">
 	  <button class="button2" id="resetBtn">초기화</button>
@@ -218,7 +220,7 @@
 	
 	<button id="addRowBtn">원자재 추가</button>
 	
-	
+	</div>
 	
 <!-- 본문HTML 입력 끝-->
 </body>
