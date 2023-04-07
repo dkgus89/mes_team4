@@ -75,7 +75,7 @@
 	
 	<div class="wrap2">
 	  <button class="button2" onclick="showPopup();">추가</button>
-	  <button class="button2" onclick="deleteValue();">생산현황?</button>
+	  <button class="button2" onclick="location.href='${pageContext.request.contextPath}/inst/instmain'">작업현황</button>
 	  <button class="button2" onclick="deleteValue();">삭제</button>
 	 </div><br>
 	 <br>

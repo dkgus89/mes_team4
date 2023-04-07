@@ -26,7 +26,21 @@ public class PageDTO {
 	private int endPage; // 페이징 끝 번호
 	private int count; // 게시판의 모든 행 개수
 	
-	private int pcount; // 생산미완료 개수
+	private int pcount; // 생산전 개수
+	private int wcount; // 생산대기 개수
+	private int icount; // 생산중 개수
+	public int getWcount() {
+		return wcount;
+	}
+	public void setWcount(int wcount) {
+		this.wcount = wcount;
+	}
+	public int getIcount() {
+		return icount;
+	}
+	public void setIcount(int icount) {
+		this.icount = icount;
+	}
 	private int fcount; // 생산완료 개수
 	
 	// 테이블 병합처리 멤버변수
