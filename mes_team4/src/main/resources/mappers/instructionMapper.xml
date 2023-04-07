@@ -123,7 +123,11 @@
     	where order_cd = #{order_cd}) a
     </select>
     
-    
+     <update id="updateCon2">
+    update instruction
+    set instruction_state = "1"
+    where instruction_code = #{cd}
+    </update>
     
     
     

@@ -126,9 +126,9 @@ public class OrderDAOImpl implements OrderDAO{
 
 	@Override
 	public void updateCon(String cd) {
-		System.out.println("OrderDAOImpl updateCon()");
+		System.out.println("OrderDAOImpl updateCon() 생산대기->생산중으로");
 		
-		sqlSession.update(namespace+".updateCon",cd);
+		sqlSession.update(namespace+".updateCon2",cd);
 	}
 
 	

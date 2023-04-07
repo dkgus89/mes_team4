@@ -125,6 +125,13 @@ public class InstructionServiceImpl implements InstructionService{
 		
 	}
 
+	@Override
+	public void updateCon2(String cd) {
+		System.out.println("InstructionServiceImpl updateCon2 생산중으로");
+
+		instructionDAO.updateCon2(cd);
+	}
+
 	
 	
 	

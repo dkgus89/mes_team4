@@ -106,5 +106,10 @@
     set con = "생산대기"
     where order_cd = #{cd}
     </update>
-    
+
+	    <update id="updateCon2">
+    update order_management
+    set con = "생산중"
+    where order_cd = #{cd}
+    </update>
 </mapper>

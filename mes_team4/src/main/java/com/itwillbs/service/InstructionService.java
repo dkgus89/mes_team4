@@ -37,6 +37,8 @@ public interface InstructionService {
 	public void instinsertpro(InstructionDTO instructionDTO);
 
 	public void instdelete(String instruction_code);
+	
+	public void updateCon2(String cd);
 
 
 	

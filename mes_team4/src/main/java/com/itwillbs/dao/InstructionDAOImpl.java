@@ -118,6 +118,14 @@ public class InstructionDAOImpl implements InstructionDAO {
 		sqlSession.delete(namespace +".instdelete", instruction_code);
 		
 	}
+
+	@Override
+	public void updateCon2(String cd) {
+		System.out.println("InstructionDAOImpl updateCon2 생산중으로변경");
+		
+		sqlSession.update(namespace+".updateCon2",cd);
+		
+	}
 	
 	
 	

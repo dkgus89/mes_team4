@@ -227,6 +227,28 @@ public class InstructionController {
 		// result 값 리턴
 		return result;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/inst/changeIng")
+	public String delete(HttpServletRequest request) {
+		System.out.println("OrderController delete()");
+		
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		String jdata = "0";
+		
+		System.out.println("배열0번지출력"+ajaxMsg[0]);
+		
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+				instructionService.updateCon2(ajaxMsg[i]);
+//				orderService.updateCon(ajaxMsg[i]);
+				jdata = "1";
+			}
+			
+		
+		System.out.println("jdata값!!!!!!!!!!" + jdata);
+		return jdata;
+	}
 
 	
 	

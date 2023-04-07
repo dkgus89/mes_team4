@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="../main/Header.jsp" />
 <!-- 헤더파일들어가는 곳 -->
@@ -44,6 +44,39 @@ function allCheck(){
 	} 
 }
 	
+function changeIng(){
+	var url = "/inst/changeIng"; // controller로 보내고자 하는 url
+	var valueArr = new Array();
+	var orderList = $("input[name='rowcheck']");
+	for(var i=0; i<orderList.length; i++){
+		if(orderList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
+			valueArr.push(orderList[i].value);
+		}
+	}
+	if(valueArr.length==0){
+		alert("작업현황 변경할 번호를 선택하여주세요");
+	} else {
+		var chk = confirm("생산대기 -> 생산중으로 변경하시겠습니까?");
+		if(chk){
+		$.ajax({
+			url :'${pageContext.request.contextPath}/inst/changeIng', 		//전송url
+			type : 'POST',	// post방식
+			traditional : true,
+			data : {
+				valueArr : valueArr // 보내고자하는 data 변수설정	
+			},
+			success : function(jdata){
+				if(jdata == '1'){
+					alert("변경하였습니다");
+					location.replace("${pageContext.request.contextPath}/inst/instmain")
+				}
+			}
+			});
+		}else {
+			alert("삭제 취소되었습니다.");
+		}
+ }
+	}
 	
 </script>
 <!-- 자바스크립트 입력 끝-->
@@ -85,6 +118,7 @@ function allCheck(){
 		
 	  <button class="button2" onclick="showPopup();">추가</button>
 	  <button class="button2" onclick="chdelete();">삭제</button>
+	   <button class="button2" onclick="changeIng();">작업전환:생산중</button>
 	  <br>
 	 </div><br>
 	 <br>
