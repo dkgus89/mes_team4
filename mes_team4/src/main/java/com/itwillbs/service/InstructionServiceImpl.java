@@ -139,6 +139,12 @@ public class InstructionServiceImpl implements InstructionService{
 		return instructionDAO.getConsListMap(instruction_code);
 	}
 
+	@Override
+	public void updateCon3(String cd) {
+		System.out.println("InstructionServiceImpl updateCon3 생산완료로");
+		instructionDAO.updateCon3(cd);
+	}
+
 
 
 	

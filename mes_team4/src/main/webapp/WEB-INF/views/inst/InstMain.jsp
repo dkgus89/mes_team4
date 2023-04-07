@@ -54,32 +54,58 @@ function changeIng(){
 	var orderList = $("input[name='rowcheck']");
 	for(var i=0; i<orderList.length; i++){
 		if(orderList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
-			valueArr.push(orderList[i].value);
-		}
+			valueArr.push(orderList[i].value);	}
 	}
 	if(valueArr.length==0){
 		alert("작업현황 변경할 번호를 선택하여주세요");
 	} else {
-		var chk = confirm("생산대기 -> 생산중으로 변경하시겠습니까?");
+		var chk = confirm("작업현황 : \n생산대기 -> 생산중으로 변경하시겠습니까?");
 		if(chk){
 		$.ajax({
 			url :'${pageContext.request.contextPath}/inst/changeIng', 		//전송url
 			type : 'POST',	// post방식
 			traditional : true,
-			data : {
-				valueArr : valueArr // 보내고자하는 data 변수설정	
-			},
+			data : { valueArr : valueArr // 보내고자하는 data 변수설정	
+				},
 			success : function(jdata){
 				if(jdata == '1'){
 					alert("변경하였습니다");
-					location.replace("${pageContext.request.contextPath}/inst/instmain")
+					location.replace("${pageContext.request.contextPath}/inst/instmain")}
 				}
-			}
 			});
 		}else {
-			alert("삭제 취소되었습니다.");
-		}
- }
+			alert("변경 취소되었습니다.");}
+ 		}
+	}
+	
+function changefin(){
+	var url = "/inst/changefin"; // controller로 보내고자 하는 url
+	var valueArr = new Array();
+	var orderList = $("input[name='rowcheck']");
+	for(var i=0; i<orderList.length; i++){
+		if(orderList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
+			valueArr.push(orderList[i].value);	}
+	}
+	if(valueArr.length==0){
+		alert("작업현황 변경할 번호를 선택하여주세요");
+	} else {
+		var chk = confirm("작업현황 : \n생산중 -> 생산완료 상태로 변경하시겠습니까?");
+		if(chk){
+		$.ajax({
+			url :'${pageContext.request.contextPath}/inst/changefin', 		//전송url
+			type : 'POST',	// post방식
+			traditional : true,
+			data : { valueArr : valueArr // 보내고자하는 data 변수설정	
+				},
+			success : function(jdata){
+				if(jdata == '1'){
+					alert("변경하였습니다");
+					location.replace("${pageContext.request.contextPath}/inst/instmain")}
+				}
+			});
+		}else {
+			alert("변경 취소되었습니다.");}
+ 		}
 	}
 	
 </script>
@@ -123,6 +149,7 @@ function changeIng(){
 	  <button class="button2" onclick="showPopup();">추가</button>
 	  <button class="button2" onclick="chdelete();">삭제</button>
 	   <button class="button2" onclick="changeIng();">작업전환:생산중</button>
+	   <button class="button2" onclick="changefin();">작업전환:생산완료</button>
 	  <br>
 	 </div><br>
 	 <br>

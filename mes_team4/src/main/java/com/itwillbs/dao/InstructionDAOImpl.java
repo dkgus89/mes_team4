@@ -131,6 +131,12 @@ public class InstructionDAOImpl implements InstructionDAO {
 		
 		return sqlSession.selectList(namespace +".getConsListMap", instruction_code);
 	}
+
+	@Override
+	public void updateCon3(String cd) {
+		System.out.println("InstructionDAOImpl updateCon3 생산완료로변경");
+		sqlSession.update(namespace+".updateCon3",cd);
+	}
 	
 	
 	

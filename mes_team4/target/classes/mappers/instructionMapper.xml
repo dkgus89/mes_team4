@@ -134,7 +134,13 @@
     
      <update id="updateCon2">
     update instruction
-    set instruction_state = "1"
+    set instruction_state = "생산중"
+    where instruction_code = #{cd}
+    </update>
+    
+    <update id="updateCon3">
+    update instruction
+    set instruction_state = "생산완료"
     where instruction_code = #{cd}
     </update>
     

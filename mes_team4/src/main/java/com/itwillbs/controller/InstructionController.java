@@ -230,8 +230,8 @@ public class InstructionController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/inst/changeIng")
-	public String delete(HttpServletRequest request) {
-		System.out.println("OrderController delete()");
+	public String changeIng(HttpServletRequest request) {
+		System.out.println("InstructionController changIng()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
 		String jdata = "0";
@@ -241,6 +241,28 @@ public class InstructionController {
 		int size = ajaxMsg.length;
 		for(int i=0; i<size; i++) {
 				instructionService.updateCon2(ajaxMsg[i]);
+//				orderService.updateCon(ajaxMsg[i]);
+				jdata = "1";
+			}
+			
+		
+		System.out.println("jdata값!!!!!!!!!!" + jdata);
+		return jdata;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/inst/changefin")
+	public String changefin(HttpServletRequest request) {
+		System.out.println("InstructionController changeFin()");
+		
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		String jdata = "0";
+		
+		System.out.println("배열0번지출력"+ajaxMsg[0]);
+		
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+				instructionService.updateCon3(ajaxMsg[i]);
 //				orderService.updateCon(ajaxMsg[i]);
 				jdata = "1";
 			}

@@ -38,6 +38,8 @@ public interface InstructionDAO {
 	public void instdelete(String instruction_code);
 
 	public void updateCon2(String cd);
+	
+	public void updateCon3(String cd);
 
 	public List<Map<String, Object>> getConsListMap(String instruction_code);
 

@@ -38,7 +38,9 @@ public interface InstructionService {
 
 	public void instdelete(String instruction_code);
 	
-	public void updateCon2(String cd);
+	public void updateCon2(String cd); // 생산중 전환
+	
+	public void updateCon3(String cd); // 생산완료 전환
 
 	public List<Map<String, Object>> getConsListMap(String instruction_code);
 
