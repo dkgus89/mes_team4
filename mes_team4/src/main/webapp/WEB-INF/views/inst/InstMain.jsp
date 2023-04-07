@@ -98,6 +98,7 @@ function allCheck(){
 				<tr style="text-align: center; font-size: 0.8rem">
 					<th style="text-align: center;"><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
 					<th style="text-align: center; width: 25px;">번호</th>
+					<th style="text-align: center;">수주코드</th>
 					<th style="text-align: center;">작업지시코드</th>
 					<th style="text-align: center;">제품코드명</th>
 					<th style="text-align: center;">지시수량</th>		
@@ -117,6 +118,7 @@ function allCheck(){
 				<tr style="text-align: center; font-size: 0.8rem">
 				<td style="text-align: center;"><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.instruction_code}"></td>
 				<td style="text-align: center;">${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
+				<td style="text-align: center;">${dto.order_cd}</td>
 				<td style="text-align: center;">${dto.instruction_code}</td>
 				<td style="text-align: center;">${dto.product_cd_name}</td>
     			<td style="text-align: center;">${dto.instruction_qt}</td>
