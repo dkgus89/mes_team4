@@ -82,7 +82,7 @@
 			var product_dv = 'cp';
 			
 			var link = '${pageContext.request.contextPath}/consmpt/prlist?trIndex='+trIndex+'&product_dv='+product_dv;     
-			var popupWidth = 500;
+			var popupWidth = 540;
 			var popupHeight = 700;
 			var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
 			var popupY= (window.screen.height/2) - (popupHeight/2);
@@ -96,7 +96,7 @@
 			var product_dv = 'rp';
 			
 			var link = '${pageContext.request.contextPath}/consmpt/prlist?trIndex='+trIndex+'&product_dv='+product_dv;     
-			var popupWidth = 500;
+			var popupWidth = 540;
 			var popupHeight = 700;
 			var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
 			var popupY= (window.screen.height/2) - (popupHeight/2);
@@ -170,11 +170,11 @@
 	<input type="hidden" value="">
 	
 		<div>제품 등록</div>
-		<table id="cproduct" class=" table table-striped">
+		<table id="cproduct" class=" table table-striped" style="table-layout : fixed">
 			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">
-					<th>완제품코드(+)</th>
-					<th>품목명</th>
+				<tr style="text-align: center; font-size: 0.9rem;" >
+					<th width="50%">완제품코드(+)</th>
+					<th width="50%">품목명</th>
 				</tr>
 			</thead>
 			
@@ -187,14 +187,14 @@
 		</table>
 			
 		<div>원자재 등록</div>
-		<table id="rproduct" class=" table table-striped">
+		<table id="rproduct" class="table table-striped" style="table-layout : fixed">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>원자재코드(+)</th>
-					<th>품목명</th>
-					<th>소요량</th>
-					<th>단위</th>
-					<th>삭제</th>
+					<th width="28%">원자재코드(+)</th>
+					<th width="23.5%">품목명</th>
+					<th width="22.5%">소요량</th>
+					<th width="20%">단위</th>
+					<th width="6%">삭제</th>
 				</tr>
 			</thead>
 			

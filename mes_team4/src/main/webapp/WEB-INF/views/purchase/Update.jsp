@@ -23,15 +23,15 @@
 			var bsListBtn = $('<button>').attr({
 			    'type': 'button',
 			    'id': 'bsListBtn'
-			}).text('추가');
+			}).text('➕');
 			var rpListBtn = $('<button>').attr({
 				'type': 'button',
 				'id': 'rpListBtn'
-			}).text('추가');
+			}).text('➕');
 			var emListBtn = $('<button>').attr({
 			    'type': 'button',
 			    'id': 'emListBtn'
-			}).text('추가');
+			}).text('➕');
 			 
 			var pcTableTr = $('#purchaseBody tr');
 			pcTableTr.find('td:eq(0)').empty();
@@ -49,9 +49,9 @@
 			var trIndex = $(this).parent().parent().index();
 			
 			var link = '${pageContext.request.contextPath}/purchase/bslist?trIndex='+trIndex;     
-			var popupWidth = 500;
+			var popupWidth = 540;
 			var popupHeight = 700;
-			var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
+			var popupX = (window.screen.width/2) - (popupWidth/2);
 			var popupY= (window.screen.height/2) - (popupHeight/2);
 			
 		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
@@ -63,9 +63,9 @@
 			var product_dv = 'rp';
 			
 			var link = '${pageContext.request.contextPath}/purchase/prlist?trIndex='+trIndex+'&product_dv='+product_dv;     
-			var popupWidth = 500;
+			var popupWidth = 540;
 			var popupHeight = 700;
-			var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
+			var popupX = (window.screen.width/2) - (popupWidth/2);
 			var popupY= (window.screen.height/2) - (popupHeight/2);
 			
 		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
@@ -76,9 +76,9 @@
 			var trIndex = $(this).parent().parent().index();
 			
 			var link = '${pageContext.request.contextPath}/purchase/emlist?trIndex='+trIndex;     
-			var popupWidth = 500;
+			var popupWidth = 540;
 			var popupHeight = 700;
-			var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
+			var popupX = (window.screen.width/2) - (popupWidth/2);
 			var popupY= (window.screen.height/2) - (popupHeight/2);
 			
 		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
@@ -156,6 +156,8 @@
 	
 <!-- 본문HTML 입력 시작-->
 
+	<div id="List_wrap">
+
 	<h2>${purchaseDTO.purchase_cd } 발주 수정</h2>
 	<div class="wrap2">
 	  <button class="button2" id="resetBtn">초기화</button>
@@ -169,23 +171,30 @@
 	<input type="hidden" name="purchase_cd" value="${purchaseDTO.purchase_cd }">
 	
 		<br>
-		<table id="purchase" class=" table table-striped">
+		<table id="purchase" class=" table table-striped" style="table-layout : fixed">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>거래처코드</th>
-					<th>원자재코드</th>
-					<th>담당자코드</th>
-					<th>발주일자</th>
-					<th>납품예정일</th>
-					<th>발주량</th>
+					<th width="33.33%">거래처코드</th>
+					<th width="33.33%">원자재코드</th>
+					<th width="33.33%">담당자코드</th>				
 				</tr>
 			</thead>
-			
 			<tbody id="purchaseBody">
 				<tr>
-					<td><input type="text" name="business_cd" value="${purchaseDTO.business_cd }"><button type="button" id="bsListBtn">추가</button></td>
-					<td><input type="text" name="rproduct_cd_name" value="${purchaseDTO.rproduct_cd_name }"><button type="button" id="rpListBtn">추가</button></td>
-					<td><input type="text" name="emp_no" value="${purchaseDTO.emp_no }"><button type="button" id="emListBtn">추가</button></td>
+					<td><input type="text" name="business_cd" value="${purchaseDTO.business_cd }"><button type="button" id="bsListBtn">➕</button></td>
+					<td><input type="text" name="rproduct_cd_name" value="${purchaseDTO.rproduct_cd_name }"><button type="button" id="rpListBtn">➕</button></td>
+					<td><input type="text" name="emp_no" value="${purchaseDTO.emp_no }"><button type="button" id="emListBtn">➕</button></td>
+				</tr>
+			</tbody>
+			<thead>
+				<tr style="text-align: center; font-size: 0.9rem">
+					<th width="33.33%">발주일자</th>
+					<th width="33.33%">납품예정일</th>
+					<th width="33.33%">발주량</th>
+				</tr>
+			</thead>
+			<tbody id="purchaseBody">
+				<tr>
 					<td><input type="date" id="today" name="purchase_date_st" value="${purchaseDTO.purchase_date }"></td>
 					<td><input type="date" id="dueday" name="purchase_due_st" value="${purchaseDTO.purchase_due }"></td>
 					<td><input type="text" id="purchase_count" name="purchase_count" value="${purchaseDTO.purchase_count }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
@@ -194,6 +203,8 @@
 		</table>
 				
 	</form>
+	
+	</div>
 	
 <!-- 본문HTML 입력 끝-->
 </body>

@@ -295,14 +295,17 @@
      
     input[type="text"] {
 		padding: 5px;
+		text-align: center;
 	}
 	
 	input[type="date"] {
 		padding: 5px;
+		text-align: center;
 	}
 	
 	select {
 		padding: 5px;
+		text-align: center;
 	}
 	
 	input[type=checkbox] {
@@ -311,7 +314,7 @@
 		border : 1px gray;
 	}
 	
-	#cpListBtn, #rpListBtn, #bsListBtn, #emListBtn {
+	#bsListBtn, #cpListBtn, #emListBtn, #rpListBtn {
 	  -webkit-appearance: none;
 	  -moz-appearance: none;
 	  appearance: none;
@@ -342,13 +345,23 @@
 	  --button-bg-color: #D9E5FF;
 	}
 	
-	#cpListBtn:hover, #rpListBtn:hover, #bsListBtnL:hover, #emListBtn:hover {
+	#bsListBtn:hover, #cpListBtn:hover, #emListBtn:hover, #rpListBtn:hover  {
 	  --button-bg-color: #6799FF;
 	}
 	
 	#List_wrap {
 		margin : 20px 20px;
 		width : 940px;
+		background-color: white;
+		border-style : solid 0.5px;
+		border-color: #E4E4E4;
+		font-family: 'Gowun Dodum', sans-serif;
+		
+	}
+	
+	#selectList_wrap {
+		margin : 20px 20px;
+		width : 500px;
 		background-color: white;
 		border-style : solid 0.5px;
 		border-color: #E4E4E4;
