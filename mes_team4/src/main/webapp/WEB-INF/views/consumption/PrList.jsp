@@ -58,7 +58,7 @@
 								var cpListBtn = $('<button>').attr({
 								    'type': 'button',
 								    'id': 'cpListBtn',							    
-								}).text('추가');
+								}).text('➕');
 								
 								parentWindowTr.find('td:eq(0)').append(input0);
 								parentWindowTr.find('td:eq(0)').append(cpListBtn);
@@ -107,7 +107,7 @@
 						    'type': 'button',
 						    'id': 'rpListBtn',
 						    'name': 'rpListBtn'
-						}).text('추가');
+						}).text('➕');
 						
 						parentWindowTr.find('td:eq(0)').append(input0);
 						parentWindowTr.find('td:eq(0)').append(rpListBtn);

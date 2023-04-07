@@ -171,14 +171,14 @@
 		<table id="cproduct" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>제품코드(+)</th>
+					<th>완제품코드(+)</th>
 					<th>품목명</th>
 				</tr>
 			</thead>
 			
 			<tbody id="cproductBody">
 				<tr>
-					<td><button type="button" id="cpListBtn">추가</button></td>
+					<td><button type="button" id="cpListBtn">➕</button></td>
 					<td></td>
 				</tr>
 			</tbody>
@@ -198,7 +198,7 @@
 			
 			<tbody id="rproductBody">
 				<tr>
-					<td><button type="button" id="rpListBtn" name="rpListBtn">추가</button></td>
+					<td><button type="button" id="rpListBtn" name="rpListBtn">➕</button></td>
 					<td></td>
 					<td><input type="text" id="consumption_arr" name="consumption_arr" value="" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
 					<td><input type="hidden" id="consumption_unit_arr" name="consumption_unit_arr" value="">

@@ -45,7 +45,7 @@
 			var bsListBtn = $('<button>').attr({
 			    'type': 'button',
 			    'id': 'bsListBtn'
-			}).text('추가');
+			}).text('➕');
 			
 			parentWindowTr.find('td:eq(0)').append(input);
 			parentWindowTr.find('td:eq(0)').append(bsListBtn);

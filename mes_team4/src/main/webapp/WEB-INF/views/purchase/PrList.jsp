@@ -47,7 +47,7 @@
 				var rpListBtn = $('<button>').attr({
 					'type': 'button',
 					'id': 'rpListBtn'
-				}).text('추가');
+				}).text('➕');
 				
 				parentWindowTr.find('td:eq(1)').append(input);
 				parentWindowTr.find('td:eq(1)').append(rpListBtn);

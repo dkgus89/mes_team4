@@ -45,7 +45,7 @@
 			var emListBtn = $('<button>').attr({
 			    'type': 'button',
 			    'id': 'emListBtn'
-			}).text('추가');
+			}).text('➕');
 			
 			parentWindowTr.find('td:eq(2)').append(input);
 			parentWindowTr.find('td:eq(2)').append(emListBtn);
