@@ -101,6 +101,7 @@ public class InstructionController {
 		
 		// MemberService memberService = new MemberServiceImpl();
 		instructionService.instinsertpro(instructionDTO);
+		orderService.updateCon(instructionDTO.getOrder_cd());
 		
 		// 가상주소에서 주소변경 하면서 이동
 		return "redirect:/inst/instmain";

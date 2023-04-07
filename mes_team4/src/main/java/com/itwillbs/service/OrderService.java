@@ -33,5 +33,7 @@ public interface OrderService {
 
 	public int getbfOr_count(String order_cd);
 	
+	public void updateCon(String cd);
+	
 
 }

@@ -127,6 +127,7 @@
 			
 			<c:choose>
 			<c:when test="${orderDTO.con eq '생산전'}"><td><span style="color:red">${orderDTO.con}</span></td> </c:when>
+			<c:when test="${orderDTO.con eq '생산대기'}"><td><span style="color:red">${orderDTO.con}</span></td></c:when>
 			<c:when test="${orderDTO.con eq '생산완료'}"><td><span style="color:blue">${orderDTO.con}</span></td></c:when>
 			<c:otherwise> ... </c:otherwise>
 			</c:choose>

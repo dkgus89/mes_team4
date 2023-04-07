@@ -36,5 +36,8 @@ public interface OrderDAO {
 	public int getbfOr_count(String order_cd);
 	
 	public Integer getCon(String cd);
+	
+	public void updateCon(String cd);
+	
 
 }

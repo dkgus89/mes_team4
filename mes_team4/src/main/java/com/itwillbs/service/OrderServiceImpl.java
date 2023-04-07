@@ -126,4 +126,13 @@ public class OrderServiceImpl implements OrderService{
 		return orderDAO.getbfOr_count(order_cd);
 	}
 
+	@Override
+	public void updateCon(String cd) {
+		System.out.println("OrderServiceImpl updateCon()");	
+	
+		orderDAO.updateCon(cd);
+		
+		
+	}
+
 }

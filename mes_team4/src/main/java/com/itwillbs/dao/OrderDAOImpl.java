@@ -124,6 +124,13 @@ public class OrderDAOImpl implements OrderDAO{
 		return sqlSession.selectOne(namespace+".getCon",cd);
 	}
 
+	@Override
+	public void updateCon(String cd) {
+		System.out.println("OrderDAOImpl updateCon()");
+		
+		sqlSession.update(namespace+".updateCon",cd);
+	}
+
 	
 
 }

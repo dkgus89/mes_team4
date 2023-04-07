@@ -101,5 +101,10 @@
         where order_cd = #{cd}
 	</select>
     
+    <update id="updateCon">
+    update order_management
+    set con = "생산대기"
+    where order_cd = #{cd}
+    </update>
     
 </mapper>
