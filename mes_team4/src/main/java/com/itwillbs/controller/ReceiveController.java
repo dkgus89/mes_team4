@@ -351,6 +351,20 @@ public class ReceiveController {
 		String[] ajaxMsg = request.getParameterValues("valueArr");
 		int size = ajaxMsg.length;
 		
+		// 발주관리 완료 -> 미완료 변경
+		String[] pch = new String[size];
+		for(int i=0; i<size; i++) {
+			System.out.println("ajaxMsg[i] "+ajaxMsg[i]);
+			receiveDTO = receiveService.getPch_cd(ajaxMsg[i]);
+			System.out.println("Pch_cd "+receiveDTO);
+			pch[i] = receiveDTO.getPchor_cd();
+			if (pch[i].contains("PCH")) {
+				purchaseDTO = purchaseService.getPurchaseDTO(pch[i]);
+				purchaseDTO.setPurchase_com("미완료");
+				purchaseService.updatePurchase(purchaseDTO);
+			}
+		}
+		
 		for(int i=0; i<size; i++) {
 			// 삭제시 재고현황에 적용할 재소수량 stockDTO에 저장
 				String rec_schedule_cd=ajaxMsg[i];
@@ -363,19 +377,6 @@ public class ReceiveController {
 				stockDTO.setProduct_cd_name(product_cd_name);
 			// 재고현황에 재고수량 적용 메서드 호출
 			receiveService.updateStockcount(stockDTO);
-		}
-		
-		// 발주관리 완료 -> 미완료 변경
-		String[] pch = new String[size];
-		for(int i=0; i<size; i++) {
-			receiveDTO = receiveService.getPch_cd(ajaxMsg[i]);
-			System.out.println(receiveDTO);
-			pch[i] = receiveDTO.getPchor_cd();
-			if (pch[i].contains("PCH")) {
-				purchaseDTO = purchaseService.getPurchaseDTO(pch[i]);
-				purchaseDTO.setPurchase_com("미완료");
-				purchaseService.updatePurchase(purchaseDTO);
-			}
 		}
 		
 		for(int i=0; i<size; i++) {
