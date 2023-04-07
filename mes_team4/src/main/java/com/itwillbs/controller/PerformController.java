@@ -322,7 +322,7 @@ public class PerformController {
 				model.addAttribute("pageDTO", pageDTO);
 //				model.addAttribute("bfinstruction_code", bfinstruction_code);
 				
-				// 주소변경 없이 이동
+				// 주소변경 없이 이동\\\
 				// /WEB-INF/views/perform/InstList.jsp
 				return "perform/InstList";
 			}
