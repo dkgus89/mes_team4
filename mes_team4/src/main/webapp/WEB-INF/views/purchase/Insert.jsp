@@ -89,9 +89,7 @@
 		// 발주일자 날짜 제한
 		$(document).on('change', '#today', function() {
 			var purchase_due = $('#dueday').val();
-		    var purchase_date = $(this).val();
-		    
-		    console.log("check"+purchase_due);
+		    var purchase_date = $(this).val();		  
 		    
 		    if (purchase_due && purchase_due < purchase_date) {
 		      alert("발주일자를 " + purchase_due + " 날짜 이전으로 선택해주세요.");

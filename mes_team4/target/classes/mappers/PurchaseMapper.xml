@@ -129,19 +129,6 @@
 	<select id="getPurchaseList" resultType="com.itwillbs.domain.PurchaseDTO">
 		select *  
 		from purchase_management
-		<!-- <where>
-            <choose>
-            	<when test='search != null and product_dv.equals("all")'>
-                    and (lower(cproduct_cd_name) like CONCAT('%',lower(#{search}),'%') or lower(cproduct_name) like CONCAT('%',lower(#{search}),'%') or lower(rproduct_cd_name) like CONCAT('%',lower(#{search}),'%') or lower(rproduct_name) like CONCAT('%',lower(#{search}),'%'))
-                </when>
-                <when test='search != null and product_dv.equals("cp")'>
-                    and (lower(cproduct_cd_name) like CONCAT('%',lower(#{search}),'%') or lower(cproduct_name) like CONCAT('%',lower(#{search}),'%'))
-                </when>
-                <when test='search != null and product_dv.equals("rp")'>
-                    and (lower(rproduct_cd_name) like CONCAT('%',lower(#{search}),'%') or lower(rproduct_name) like CONCAT('%',lower(#{search}),'%'))
-                </when>
-            </choose>
-        </where> -->
 		order by purchase_cd desc
 		limit #{startRow},#{pageSize}
 	</select>
@@ -149,19 +136,6 @@
 	<select id="getPurchaseCount" resultType="java.lang.Integer">
 		select count(*)  
    		from purchase_management
-   		<!-- <where>
-            <choose>
-            	<when test='search != null and product_dv.equals("all")'>
-                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%') or rproduct_cd_name like CONCAT('%',#{search},'%') or rproduct_name like CONCAT('%',#{search},'%'))
-                </when>
-                <when test='search != null and product_dv.equals("cp")'>
-                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%'))
-                </when>
-                <when test='search != null and product_dv.equals("rp")'>
-                    and (rproduct_cd_name like CONCAT('%',#{search},'%') or rproduct_name like CONCAT('%',#{search},'%'))
-                </when>
-            </choose>
-        </where> -->
 	</select>
 	
 	<resultMap type="map" id="purchaseListMap">
