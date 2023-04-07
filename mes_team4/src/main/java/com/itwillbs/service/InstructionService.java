@@ -40,6 +40,8 @@ public interface InstructionService {
 	
 	public void updateCon2(String cd);
 
+	public List<Map<String, Object>> getConsListMap(String instruction_code);
+
 
 	
 

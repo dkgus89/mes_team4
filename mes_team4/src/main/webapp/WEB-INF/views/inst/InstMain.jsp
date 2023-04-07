@@ -19,6 +19,10 @@ function showPopup(){
 function showPopup2(cd){
     window.open("${pageContext.request.contextPath}/inst/instupdate?instruction_code="+cd,"instupdate","width=1100, height=350, top=200, left=200");
 }
+function showPopup3(ef){
+    window.open("${pageContext.request.contextPath}/inst/instcontent?instruction_code="+ef,"instcontent","width=1100, height=800, top=200, left=200");
+}
+
 function chdelete(){
 	// 삭제 유효성 검사
 	var result = confirm("삭제하시겠습니까?");
@@ -136,10 +140,10 @@ function changeIng(){
 					<th style="text-align: center;">작업지시코드</th>
 					<th style="text-align: center;">제품코드명</th>
 					<th style="text-align: center;">지시수량</th>		
-					<th style="text-align: center;">소요량</th>
 					<th style="text-align: center;">라인코드</th>
 					<th style="text-align: center;">생산지시일자</th>
 					<th style="text-align: center;">작업지시상태</th>
+					<th style="text-align: center;">상세확인</th>
 					<th style="text-align: center;">수정</th>
 				</tr>
 			</thead>
@@ -156,10 +160,10 @@ function changeIng(){
 				<td style="text-align: center;">${dto.instruction_code}</td>
 				<td style="text-align: center;">${dto.product_cd_name}</td>
     			<td style="text-align: center;">${dto.instruction_qt}</td>
-    			<td style="text-align: center;">${dto.consumption1}</td>
     			<td style="text-align: center;">${dto.line_cd}</td>
     			<td style="text-align: center;">${dto.instruction_date}</td> 
-    			<td style="text-align: center;">${dto.instruction_state}</td> 			
+    			<td style="text-align: center;">${dto.instruction_state}</td> 	
+    			<td style="text-align: center;"><button class="button2" onclick="showPopup3('${dto.instruction_code}');">상세정보</button></td>		
     			<td style="text-align: center;"><button class="button2" onclick="showPopup2('${dto.instruction_code}');">수정</button></td>
     			</tr>
    			 

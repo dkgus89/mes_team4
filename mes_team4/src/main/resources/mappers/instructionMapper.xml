@@ -31,18 +31,18 @@
 	<resultMap type="map" id="map2">
 		<!-- column="DB의 열이름" property="해당 DB열에 대해 저장할 변수이름"-->
 		<result column="order_cd" property="order_cd"/>
-		<result column="business_cd" property="business_cd"/>
-		<result column="product_cd_name" property="product_cd_name"/>
 		<result column="order_count" property="order_count"/>
 		<result column="order_date" property="order_date"/>
+		<result column="business_cd" property="business_cd"/>
 		<result column="deliver_date" property="deliver_date"/>
 		<result column="emp_no" property="emp_no"/>
-		<result column="cproduct_name" property="product_name"/>
+		<result column="product_cd_name" property="product_cd_name"/>
 		<result column="rproduct_cd_name" property="rproduct_cd_name"/>
 		<result column="rproduct_name" property="rproduct_name"/>
+		<result column="cproduct_name" property="product_name"/>
 		<result column="consumption" property="consumption"/>
 		<result column="consumption_unit" property="consumption_unit"/>
-		<result column="order_cd" property="order_cd"/>
+		<result column="instruction_qt" property="instruction_qt"/>
 	</resultMap>
 
 	<select id="getOrderListMap" resultMap="map2">
@@ -50,6 +50,14 @@
 		FROM order_management o right join consumption_management c 
 		ON o.product_cd_name = c.cproduct_cd_name
 		where o.order_cd is not null 
+<!-- 		and o.con = '생산전' -->
+    </select>
+    
+	<select id="getConsListMap" resultMap="map2">
+    	select c.rproduct_cd_name, c.rproduct_name, c.consumption, c.consumption_unit, i.instruction_qt
+		from consumption_management c join instruction i
+		on c.cproduct_cd_name = i.product_cd_name
+		where i.instruction_code = #{instruction_code}
 <!-- 		and o.con = '생산전' -->
     </select>
 	

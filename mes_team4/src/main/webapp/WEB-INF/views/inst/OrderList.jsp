@@ -18,6 +18,8 @@
 // 	window.close();
 // }
 
+
+
 function input1(order_cd, product_cd_name, product_name, order_count, deliver_date){
 	$(document).ready(function(){ //Jquery 시작
 	// 선택 유효성 검사		

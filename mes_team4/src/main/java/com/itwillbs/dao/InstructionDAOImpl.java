@@ -116,7 +116,6 @@ public class InstructionDAOImpl implements InstructionDAO {
 		System.out.println("InstructionDAOImpl instdelete()");
 		
 		sqlSession.delete(namespace +".instdelete", instruction_code);
-		
 	}
 
 	@Override
@@ -124,7 +123,13 @@ public class InstructionDAOImpl implements InstructionDAO {
 		System.out.println("InstructionDAOImpl updateCon2 생산중으로변경");
 		
 		sqlSession.update(namespace+".updateCon2",cd);
+	}
+
+	@Override
+	public List<Map<String, Object>> getConsListMap(String instruction_code) {
+		System.out.println("InstructionDAOImpl getConsListMap()");
 		
+		return sqlSession.selectList(namespace +".getConsListMap", instruction_code);
 	}
 	
 	

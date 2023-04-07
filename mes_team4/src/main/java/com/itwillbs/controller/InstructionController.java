@@ -250,6 +250,18 @@ public class InstructionController {
 		return jdata;
 	}
 
-	
-	
+	@RequestMapping(value = "/inst/instcontent", method = RequestMethod.GET)
+	public String instcontent(HttpServletRequest request, Model model, InstructionDTO instructionDTO) {
+		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
+		String instruction_code = request.getParameter("instruction_code");
+		List<Map<String, Object>> consListMap
+	     = instructionService.getConsListMap(instruction_code);
+		
+		InstructionDTO instructionDTO2 = instructionService.instructioninfo(instruction_code);
+	//model 담아서 이동
+	model.addAttribute("consListMap", consListMap);
+	model.addAttribute("instructionDTO", instructionDTO2);
+		return "/inst/InstContent";
+	}
+
 }
