@@ -118,9 +118,9 @@ function allCheck(){
 					<th style="text-align: center; width: 25px;">번호</th>
 					<th style="text-align: center;">실적코드</th>
 					<th style="text-align: center;">작업지시코드</th>
-					<th style="text-align: center;">라인코드</th>
-					<th style="text-align: center; width: 25px;">라인명</th>
-					<th style="text-align: center;">제품코드</th>
+<!-- 					<th style="text-align: center;">라인코드</th> -->
+					<th style="text-align: center; width: 50px;">라인명</th>
+<!-- 					<th style="text-align: center;">제품코드</th> -->
 					<th style="text-align: center;">품목명</th>
 					<th style="text-align: center;">실적일자</th>
 					<th style="text-align: center;">지시수량</th>
@@ -142,9 +142,9 @@ function allCheck(){
 				<td style="text-align: center;">${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
 				<td style="text-align: center;">${dto.perform_cd}</td>
     			<td style="text-align: center;">${dto.instruction_code}</td>
-    			<td style="text-align: center;">${dto.line_cd}</td>
+<%--     			<td style="text-align: center;">${dto.line_cd}</td> --%>
     			<td style="text-align: center;">${dto.line_name}</td>
-    			<td style="text-align: center;">${dto.product_cd_name}</td> 
+<%--     			<td style="text-align: center;">${dto.product_cd_name}</td>  --%>
     			<td style="text-align: center;">${dto.product_name}</td> 			
     			<td style="text-align: center;">${dto.perform_date}</td>
     			<td style="text-align: center;">${dto.instruction_qt}</td>
