@@ -152,8 +152,7 @@
 			
 				<c:set var="count" value="-1" />
 			
-				<c:forEach var="dto" items="${rprConsmptList }" varStatus="sts"> 
-							
+				<c:forEach var="dto" items="${rprConsmptList }" varStatus="sts"> 				
 			  		<tr>
 			  		<c:if test="${fn:contains(pageDTO.showTd, sts.index)}">
 	  					<c:set var="count" value="${count+1 }" />
