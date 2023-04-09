@@ -127,7 +127,7 @@
 	
 	<div>전체 ${pageDTO.count }건</div>
 	
-		<table id="vendortable" class=" table table-striped">
+		<table id="vendortable" class="table table-striped tbtr">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" id="allCheck" onclick="allChecking();"></th>
@@ -146,36 +146,39 @@
 				</tr>
 			</thead>
 			
-			<tbody>
 			<c:choose>
 			<c:when test="${not empty rprConsmptList}">
 			
-				<c:set var="count" value="-1" />
+			<c:set var="count" value="-1"></c:set>
 			
-				<c:forEach var="dto" items="${rprConsmptList }" varStatus="sts"> 				
-			  		<tr>
-			  		<c:if test="${fn:contains(pageDTO.showTd, sts.index)}">
-	  					<c:set var="count" value="${count+1 }" />
-	  					
-	        			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><input type="checkbox" name="rowCheck" value="${dto.cproduct_cd_name }"></td>
-	    				<td rowspan="${pageDTO.rowcolsTd.get(count) }">${pageDTO.startRow+1+count }</td>
-	    				<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.cproduct_cd_name}</td>
-	    				<td rowspan="${pageDTO.rowcolsTd.get(count) }">${dto.cproduct_name}</td>
-	    				
-	    			</c:if>
-	    			
-		    			<td>${dto.rproduct_cd_name}</td>
-		    			<td>${dto.rproduct_name}</td>
-		    			<td>${dto.consumption}</td>
-		    			<td>${dto.consumption_unit}</td> 
+				<c:forEach var="inRprList" items="${rprList }" varStatus="outSts"> 				
+			  		<tbody>
+			  		<c:forEach var="dto" items="${inRprList }" varStatus="inSts">
+			  			
+			  			<tr>
+				  		<c:if test="${inSts.index == '0'}">		 
+				  		<c:set var="count" value="${count+1 }" /> 					
+		        			<td rowspan="${pageDTO.rowcolsTd.get(outSts.index) }"><input type="checkbox" name="rowCheck" value="${dto.cproduct_cd_name }"></td>
+		    				<td rowspan="${pageDTO.rowcolsTd.get(outSts.index) }">${pageDTO.startRow+1+count }</td>
+		    				<td rowspan="${pageDTO.rowcolsTd.get(outSts.index) }">${dto.cproduct_cd_name}</td>
+		    				<td rowspan="${pageDTO.rowcolsTd.get(outSts.index) }">${dto.cproduct_name}</td>		
+		    			</c:if>
 		    			
-		    		<c:if test="${fn:contains(pageDTO.showTd, sts.index)}">
-		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><fmt:formatDate value="${dto.insert_date}" pattern="yyyy-MM-dd" /></td>
-		    			<td rowspan="${pageDTO.rowcolsTd.get(count) }"><fmt:formatDate value="${dto.update_date}" pattern="yyyy-MM-dd" /></td>
-		    			<td rowspan="${pageDTO.rowcolsTd.get(count)}"><button class="button2" id="updateBtn" onclick="updateFn('${dto.cproduct_cd_name}')">수정</button></td>
-		    		</c:if>
-	  				</tr>
-				</c:forEach>
+			    			<td>${dto.rproduct_cd_name}</td>
+			    			<td>${dto.rproduct_name}</td>
+			    			<td>${dto.consumption}</td>
+			    			<td>${dto.consumption_unit}</td> 
+			    			
+			    		<c:if test="${inSts.index == '0'}">
+			    			<td rowspan="${pageDTO.rowcolsTd.get(outSts.index) }"><fmt:formatDate value="${dto.insert_date}" pattern="yyyy-MM-dd" /></td>
+			    			<td rowspan="${pageDTO.rowcolsTd.get(outSts.index) }"><fmt:formatDate value="${dto.update_date}" pattern="yyyy-MM-dd" /></td>
+			    			<td rowspan="${pageDTO.rowcolsTd.get(outSts.index)}"><button class="button2" id="updateBtn" onclick="updateFn('${dto.cproduct_cd_name}')">수정</button></td>
+			    		</c:if>
+			    		</tr>
+			    		
+			    	</c:forEach>
+	  				</tbody>	
+				</c:forEach>				
 				
 			</c:when>
 			<c:otherwise>
@@ -184,10 +187,8 @@
 				</tr>
 			</c:otherwise>
 			</c:choose>
-			</tbody>
 		</table>
 		
-	
 	<div id="pagingControl">
 		<c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
 			<a href="${pageContext.request.contextPath}/consmpt/list?pageNum=${pageDTO.startPage-pageDTO.pageBlock}&search=${pageDTO.search}&product_dv=${pageDTO.product_dv}">Prev</a>

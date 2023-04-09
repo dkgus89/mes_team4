@@ -58,6 +58,7 @@ public class ConsumptionController {
 		
 		// 완제품 페이징 처리에 따른 원자재 저장
 		List<ConsumptionDTO> rprConsmptList = null;
+		List<List<ConsumptionDTO>> rprList = null;
 		
 		if(count != 0) {
 			String[] cprCdName = new String[cprConsmptList.size()];
@@ -70,6 +71,8 @@ public class ConsumptionController {
 			// 테이블 병합처리 변수 저장
 			List<Integer> rowcolsTd = consumptionService.getRowcolsTd(pageDTO);
 			pageDTO.setRowcolsTd(rowcolsTd);
+			int length = rowcolsTd.size();
+			for(int i : rowcolsTd) {System.out.print(i+" ");}
 			
 			List<Integer> showTd = new ArrayList<Integer>(rowcolsTd.size());
 			showTd.add(0);
@@ -81,6 +84,17 @@ public class ConsumptionController {
 				}
 			}
 			pageDTO.setShowTd(showTd);
+			
+			// 2차원 리스트 저장
+			int startNum = 0;
+			int endNum = rowcolsTd.get(0);
+			
+			rprList = new ArrayList<List<ConsumptionDTO>>(length);
+			for(int i = 0; i < length; i++) {				
+				rprList.add(rprConsmptList.subList(startNum, endNum));
+				startNum += rowcolsTd.get(i);	
+				if(i < length-1) {endNum += rowcolsTd.get(i+1);}
+			}
 		}
 		
 		// 페이징 처리
@@ -98,8 +112,10 @@ public class ConsumptionController {
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
 		
+		
 		// 서버단 처리 결과 전달
 		model.addAttribute("rprConsmptList", rprConsmptList); 
+		model.addAttribute("rprList",rprList);
 		model.addAttribute("pageDTO", pageDTO);
 		
 		return "consumption/List";
