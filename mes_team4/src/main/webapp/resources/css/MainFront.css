@@ -116,7 +116,17 @@
 	  transition-duration: 0.5s;
 	}
 	
-	.menu > li:hover .submenu {
+	.menu > .list2:hover .submenu {
+ 	  height: 100px; /*서브메뉴 li한개의 높이 50*5*/
+	  transition-duration: 0.5s;
+	  }
+	  
+	  .menu > .list3:hover .submenu {
+ 	  height: 150px; /*서브메뉴 li한개의 높이 50*5*/
+	  transition-duration: 0.5s;
+	  }
+	  
+	   .menu > .list5:hover .submenu {
  	  height: 250px; /*서브메뉴 li한개의 높이 50*5*/
 	  transition-duration: 0.5s;
 	  }

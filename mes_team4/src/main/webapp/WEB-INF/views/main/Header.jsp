@@ -51,7 +51,7 @@
 <div id="container">
 	<div id="sidebar1">
 	 <ul class="menu">
-	      <li>
+	      <li class="list2">
 	        <a href="#">시스템관리</a>
 	        <ul class="submenu">
 	          <li><a href="${pageContext.request.contextPath}/system/membermain">사용자관리</a></li>
@@ -61,7 +61,7 @@
 	          <li><a href="#">정보관리</a></li> -->
 	        </ul>
 	      </li>
-	      <li>
+	      <li class="list5">
 	        <a href="#">기준정보관리</a>
 	        <ul class="submenu">
 	          <li><a href="${pageContext.request.contextPath}/product/prodpage">품목정보관리</a></li>
@@ -71,7 +71,7 @@
 	          <li><a href="${pageContext.request.contextPath}/wh/whpage">창고관리</a></li>
 	        </ul>
 	      </li>
-	      <li>
+	      <li class="list3"> 
 	        <a href="#">영업관리</a>
 	        <ul class="submenu">
 	          <li><a href="${pageContext.request.contextPath}/purchase/list">발주관리</a></li>
@@ -79,14 +79,14 @@
 	          <li><a href="${pageContext.request.contextPath}/deliver/list">출하관리</a></li>
 	        </ul>
 	      </li>
-	      <li>
+	      <li class="list2">
 	        <a href="#">생산관리</a>
 	        <ul class="submenu">
 	          <li><a href="${pageContext.request.contextPath}/inst/instmain">작업지시현황</a></li>
 	          <li><a href="${pageContext.request.contextPath}/perform/perform">생산실적현황</a></li>
 	        </ul>
 	      </li>
-	      <li>
+	      <li class="list3">
 	        <a href="#">재고관리</a>
 	        <ul class="submenu">
 	          <li><a href="${pageContext.request.contextPath}/receive/recpage">입고관리</a></li>
