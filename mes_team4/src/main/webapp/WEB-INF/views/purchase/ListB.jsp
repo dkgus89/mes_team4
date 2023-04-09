@@ -154,7 +154,7 @@
 	
 	<div>거래처 ${pageDTO.cd}현황</div>
 	
-		<table id="vendortable" class=" table table-striped" style="width:1000px;">
+		<table id="vendortable" class=" table table-striped">
 			
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
@@ -195,7 +195,7 @@
 			</c:when>
 			<c:otherwise>
 				<tr>
-				<td colspan="11" style="text-align: center;">등록된 데이터가 없습니다.</td>
+				<td colspan="12" style="text-align: center;">등록된 데이터가 없습니다.</td>
 				</tr>
 			</c:otherwise>
 			</c:choose>
