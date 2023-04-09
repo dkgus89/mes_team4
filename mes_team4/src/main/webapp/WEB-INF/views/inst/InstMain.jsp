@@ -20,7 +20,7 @@ function showPopup2(cd){
     window.open("${pageContext.request.contextPath}/inst/instupdate?instruction_code="+cd,"instupdate","width=1100, height=350, top=200, left=200");
 }
 function showPopup3(ef){
-    window.open("${pageContext.request.contextPath}/inst/instcontent?instruction_code="+ef,"instcontent","width=1100, height=800, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/inst/instcontent?instruction_code="+ef,"instcontent","width=1200, height=800, top=200, left=200");
 }
 
 function chdelete(){
