@@ -36,7 +36,7 @@ public class PurchaseController {
 	
 	@RequestMapping(value = "/purchase/list", method = RequestMethod.GET)
 	public String list(HttpServletRequest request, PageDTO pageDTO, Model model) {
-		System.out.println("ConsumptionController list()");
+		System.out.println("PurchaseController list()");
 		// 처리작업
 		
 		// 검색어 처리작업
@@ -101,7 +101,7 @@ public class PurchaseController {
 	
 	@RequestMapping(value = "/purchase/prlist", method = RequestMethod.GET)
 	public String prlist(HttpServletRequest request, PageDTO pageDTO, Model model) {
-		System.out.println("ConsumptionController prlist()");
+		System.out.println("PurchaseController prlist()");
 		// 처리작업
 
 		// 검색어 설정
@@ -153,7 +153,7 @@ public class PurchaseController {
 	
 	@RequestMapping(value = "/purchase/bslist", method = RequestMethod.GET)
 	public String bslist(HttpServletRequest request, PageDTO pageDTO, Model model) {
-		System.out.println("ConsumptionController bslist()");
+		System.out.println("PurchaseController bslist()");
 		// 처리작업
 
 		// 검색어 설정
@@ -201,7 +201,7 @@ public class PurchaseController {
 	
 	@RequestMapping(value = "/purchase/emlist", method = RequestMethod.GET)
 	public String emlist(HttpServletRequest request, PageDTO pageDTO, Model model) {
-		System.out.println("ConsumptionController emlist()");
+		System.out.println("PurchaseController emlist()");
 		// 처리작업
 
 		// 검색어 설정
@@ -252,7 +252,7 @@ public class PurchaseController {
 	
 	@RequestMapping(value = "/purchase/insert", method = RequestMethod.GET)
 	public String insert(Model model) {
-		System.out.println("ConsumptionController insert()");
+		System.out.println("PurchaseController insert()");
 		// 처리작업
 		
 		return "purchase/Insert";
@@ -260,7 +260,7 @@ public class PurchaseController {
 	
 	@RequestMapping(value = "/purchase/insertPro", method = RequestMethod.POST)
 	public String insertPro(PurchaseDTO purchaseDTO) {
-		System.out.println("ConsumptionController insertPro()");
+		System.out.println("PurchaseController insertPro()");
 		// 처리작업
 		
 		// 발주코드 자동생성(PCHyyMMdd01) 및 저장 
@@ -326,7 +326,7 @@ public class PurchaseController {
 	
 	@RequestMapping(value = "/purchase/update", method = RequestMethod.GET)
 	public String update(HttpServletRequest request, Model model) {
-		System.out.println("ConsumptionController update()");
+		System.out.println("PurchaseController update()");
 		// 처리작업
 		
 		String purchase_cd = request.getParameter("purchase_cd");
@@ -340,7 +340,7 @@ public class PurchaseController {
 	
 	@RequestMapping(value = "/purchase/updatePro", method = RequestMethod.POST)
 	public String updatePro(PurchaseDTO purchaseDTO) {
-		System.out.println("ConsumptionController updatePro()");
+		System.out.println("PurchaseController updatePro()");
 		// 처리작업
 		
 		// String -> date 변환
@@ -357,7 +357,7 @@ public class PurchaseController {
 	@ResponseBody
 	@RequestMapping(value = "/purchase/delete", method = RequestMethod.POST)
 	public String delete(HttpServletRequest request, PurchaseDTO purchaseDTO) {
-		System.out.println("ConsumptionController delete()");
+		System.out.println("PurchaseController delete()");
 		// 처리작업
 		String response = "delete";
 		
@@ -384,12 +384,11 @@ public class PurchaseController {
 	
 	@RequestMapping(value = "/purchase/listB", method = RequestMethod.GET)
 	public String listB(HttpServletRequest request, PageDTO pageDTO, Model model) {
-		System.out.println("ConsumptionController list()");
+		System.out.println("PurchaseController list()");
 
 		String cd = request.getParameter("cd");
 		
 		pageDTO.setCd(cd);
-		System.out.println("발주리스트코드!!!!" + pageDTO.getCd());
 		
 		// 검색어 처리작업
 		if (pageDTO.getSearch() != null && pageDTO.getSearch().equals("")) {

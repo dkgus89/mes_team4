@@ -23,7 +23,7 @@ public class PurchaseDAOImpl implements PurchaseDAO{
 	
 	@Override
 	public List<Map<String, Object>> getPrList(PageDTO pageDTO) {
-		System.out.println("ConsumptionDAOImpl getPrList()");
+		System.out.println("PurchaseDAOImpl getPrList()");
 		
 		if (pageDTO.getProduct_dv().equals("cp")) {
 			return sqlSession.selectList(namespace+".getCpList", pageDTO);
@@ -38,7 +38,7 @@ public class PurchaseDAOImpl implements PurchaseDAO{
 	
 	@Override
 	public int getPrCount(PageDTO pageDTO) {
-		System.out.println("ConsumptionDAOImpl getPrCount()");
+		System.out.println("PurchaseDAOImpl getPrCount()");
 		
 		if (pageDTO.getProduct_dv().equals("cp")) {
 			return sqlSession.selectOne(namespace+".getCpCount", pageDTO);
@@ -53,49 +53,49 @@ public class PurchaseDAOImpl implements PurchaseDAO{
 	
 	@Override
 	public List<Map<String, Object>> getBsList(PageDTO pageDTO) {
-		System.out.println("ConsumptionDAOImpl getBsList()");
+		System.out.println("PurchaseDAOImpl getBsList()");
 		
 		return sqlSession.selectList(namespace+".getBsList", pageDTO);
 	}   
 	
 	@Override
 	public int getBsCount(PageDTO pageDTO) {
-		System.out.println("ConsumptionDAOImpl getBsCount()");
+		System.out.println("PurchaseDAOImpl getBsCount()");
 		
 		return sqlSession.selectOne(namespace+".getBsCount", pageDTO);
 	} 
 	
 	@Override
 	public List<Map<String, Object>> getEmList(PageDTO pageDTO) {
-		System.out.println("ConsumptionDAOImpl getEmList()");
+		System.out.println("PurchaseDAOImpl getEmList()");
 		
 		return sqlSession.selectList(namespace+".getEmList", pageDTO);
 	}   
 	
 	@Override
 	public int getEmCount(PageDTO pageDTO) {
-		System.out.println("ConsumptionDAOImpl getEmCount()");
+		System.out.println("PurchaseDAOImpl getEmCount()");
 		
 		return sqlSession.selectOne(namespace+".getEmCount", pageDTO);
 	} 
 	
 	@Override
 	public void insertPurchase(PurchaseDTO purchaseDTO) {
-		System.out.println("ConsumptionDAOImpl insertPurchase()");
+		System.out.println("PurchaseDAOImpl insertPurchase()");
 		
 		sqlSession.insert(namespace+".insertPurchase", purchaseDTO);
 	}
 	
 	@Override
 	public String getPurchase_cd() {
-		System.out.println("ConsumptionDAOImpl getPurchase_cd()");
+		System.out.println("PurchaseDAOImpl getPurchase_cd()");
 		
 		return sqlSession.selectOne(namespace+".getPurchase_cd");
 	}
 	
 	@Override
 	public List<PurchaseDTO> getPurchaseList(PageDTO pageDTO) {
-		System.out.println("ConsumptionDAOImpl getCprConsmptList()");
+		System.out.println("PurchaseDAOImpl getCprConsmptList()");
 		
 		return sqlSession.selectList(namespace+".getPurchaseList", pageDTO);
 	}
@@ -110,28 +110,28 @@ public class PurchaseDAOImpl implements PurchaseDAO{
 	
 	@Override
 	public int getPurchaseCount(PageDTO pageDTO) {
-		System.out.println("ConsumptionDAOImpl getCprConsmptCount()");
+		System.out.println("PurchaseDAOImpl getCprConsmptCount()");
 		
 		return sqlSession.selectOne(namespace+".getPurchaseCount", pageDTO);
 	}
 	
 	@Override
 	public PurchaseDTO getPurchaseDTO(String purchase_cd) {
-		System.out.println("ConsumptionDAOImpl getPurchaseDTO()");
+		System.out.println("PurchaseDAOImpl getPurchaseDTO()");
 		
 		return sqlSession.selectOne(namespace+".getPurchaseDTO", purchase_cd);
 	}
 	
 	@Override
 	public void deletePurchase(String[] checkedValue) {
-		System.out.println("ConsumptionDAOImpl deletePurchase()");
+		System.out.println("PurchaseDAOImpl deletePurchase()");
 		
 		sqlSession.delete(namespace+".deletePurchase", Map.of("checkedValue" ,checkedValue));
 	}
 	
 	@Override
 	public void updatePurchase(PurchaseDTO purchaseDTO) {
-		System.out.println("ConsumptionDAOImpl updatePurchase()");
+		System.out.println("PurchaseDAOImpl updatePurchase()");
 		
 		sqlSession.update(namespace+".updatePurchase", purchaseDTO);
 	}

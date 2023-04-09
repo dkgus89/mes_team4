@@ -21,7 +21,7 @@ public class PurchaseServiceImpl implements PurchaseService{
 	
 	@Override
 	public List<Map<String, Object>> getPrList(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getPrList()");
+		System.out.println("PurchaseServiceImpl getPrList()");
 		
 		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize();
 		int endRow = startRow + pageDTO.getPageSize()-1;
@@ -34,14 +34,14 @@ public class PurchaseServiceImpl implements PurchaseService{
 	
 	@Override
 	public int getPrCount(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getPrCount()");
+		System.out.println("PurchaseServiceImpl getPrCount()");
 		
 		return purchaseDAO.getPrCount(pageDTO);
 	}
 	
 	@Override
 	public List<Map<String, Object>> getBsList(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getBsList()");
+		System.out.println("PurchaseServiceImpl getBsList()");
 		
 		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize();
 		int endRow = startRow + pageDTO.getPageSize()-1;
@@ -54,14 +54,14 @@ public class PurchaseServiceImpl implements PurchaseService{
 	
 	@Override
 	public int getBsCount(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getBsCount()");
+		System.out.println("PurchaseServiceImpl getBsCount()");
 		
 		return purchaseDAO.getBsCount(pageDTO);
 	}
 	
 	@Override
 	public List<Map<String, Object>> getEmList(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getEmList()");
+		System.out.println("PurchaseServiceImpl getEmList()");
 		
 		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize();
 		int endRow = startRow + pageDTO.getPageSize()-1;
@@ -74,28 +74,28 @@ public class PurchaseServiceImpl implements PurchaseService{
 	
 	@Override
 	public int getEmCount(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getEmCount()");
+		System.out.println("PurchaseServiceImpl getEmCount()");
 		
 		return purchaseDAO.getEmCount(pageDTO);
 	}
 	
 	@Override
 	public void insertPurchase(PurchaseDTO purchaseDTO) {
-		System.out.println("ConsumptionServiceImpl insertPurchase()");
+		System.out.println("PurchaseServiceImpl insertPurchase()");
 		
 		purchaseDAO.insertPurchase(purchaseDTO);
 	}
 	
 	@Override
 	public String getPurchase_cd() {
-		System.out.println("ConsumptionServiceImpl getPurchase_cd()");
+		System.out.println("PurchaseServiceImpl getPurchase_cd()");
 		
 		return purchaseDAO.getPurchase_cd();
 	}
 	
 	@Override
 	public List<PurchaseDTO> getPurchaseList(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getCprConsmptList()");
+		System.out.println("PurchaseServiceImpl getCprConsmptList()");
 		
 		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize();
 		int endRow = startRow + pageDTO.getPageSize()-1;
@@ -108,7 +108,7 @@ public class PurchaseServiceImpl implements PurchaseService{
 	
 	@Override
 	public List<Map<String, Object>> getPurchaseMapList(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getPurchaseMapList()");
+		System.out.println("PurchaseServiceImpl getPurchaseMapList()");
 		
 		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize();
 		int endRow = startRow + pageDTO.getPageSize()-1;
@@ -121,28 +121,28 @@ public class PurchaseServiceImpl implements PurchaseService{
 	
 	@Override
 	public int getPurchaseCount(PageDTO pageDTO) {
-		System.out.println("ConsumptionServiceImpl getCprConsmptCount()");
+		System.out.println("PurchaseServiceImpl getCprConsmptCount()");
 		
 		return purchaseDAO.getPurchaseCount(pageDTO);
 	}
 	
 	@Override
 	public PurchaseDTO getPurchaseDTO(String purchase_cd) {
-		System.out.println("ConsumptionServiceImpl getPurchaseDTO()");
+		System.out.println("PurchaseServiceImpl getPurchaseDTO()");
 		
 		return purchaseDAO.getPurchaseDTO(purchase_cd);
 	}
 	
 	@Override
 	public void deletePurchase(String[] checkedValue) {
-		System.out.println("ConsumptionServiceImpl deletePurchase()");
+		System.out.println("PurchaseServiceImpl deletePurchase()");
 		
 		purchaseDAO.deletePurchase(checkedValue);
 	}
 	
 	@Override
 	public void updatePurchase(PurchaseDTO purchaseDTO) {
-		System.out.println("ConsumptionServiceImpl purchaseDTO()");
+		System.out.println("PurchaseServiceImpl purchaseDTO()");
 		
 		purchaseDAO.updatePurchase(purchaseDTO);
 	}
