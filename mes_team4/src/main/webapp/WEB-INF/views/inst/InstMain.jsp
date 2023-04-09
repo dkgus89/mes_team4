@@ -113,7 +113,7 @@ function changefin(){
 
 
 	
-	<div id="contents">
+	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
 	<h2> 작업지시현황 </h2><br>
@@ -158,7 +158,7 @@ function changefin(){
 	<form name="instlist">
 		<input type="hidden" value="">
 		
-		<table id="vendortable" class=" table table-striped" style="width:1000px">
+		<table id="vendortable" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.8rem">
 					<th style="text-align: center;"><input type="checkbox" name="allcheck" onClick='allCheck()'></th>

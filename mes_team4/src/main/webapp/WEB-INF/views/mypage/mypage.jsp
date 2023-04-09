@@ -57,7 +57,7 @@ $(function(){
 </script>
 <!-- 자바스크립트 입력 끝-->
 	
-	<div id="contents">
+	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
 	<h2>마이페이지</h2><br>

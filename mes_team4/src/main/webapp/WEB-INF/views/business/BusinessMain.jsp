@@ -78,7 +78,7 @@
 </script>
 <!-- 자바스크립트 입력 끝-->
 
-	<div id="contents">
+	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
 	<h2>거래처 관리</h2>
@@ -101,7 +101,7 @@
  
 	<form method="post" name="myform">
 <!-- <input type="hidden" value="">	 -->	
-	<table id="vendortable" class=" table table-striped" style="width:1000px;">
+	<table id="vendortable" class=" table table-striped">
 		<thead>
 			<tr style="text-align: center; font-size: 0.9rem">
 			<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>

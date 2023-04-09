@@ -72,7 +72,7 @@ function deleteValue(){
 
 
 	
-	<div id="contents">
+	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
 	<h2>품목정보관리</h2><br>
@@ -88,7 +88,7 @@ function deleteValue(){
 	 
 	<form name="productList">
 		<input type="hidden" value="">
-		<table id="vendortable" class=" table table-striped" style="width:1100px;">
+		<table id="vendortable" class=" table table-striped">
 		
 			<thead>
 				<tr style="text-align:center; font-size: 0.9rem">
@@ -155,8 +155,9 @@ function deleteValue(){
 </c:if>
 </div>
 <!-- 본문HTML 입력 끝-->
-	
+	</div>
 </div>
+
 
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="../main/Footer.jsp" />

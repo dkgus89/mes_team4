@@ -72,7 +72,7 @@ function deleteValue(){
 
 
 	
-	<div id="contents">
+	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
 	<h2> 입고관리 </h2><br>

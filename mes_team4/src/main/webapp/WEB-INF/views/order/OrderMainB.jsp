@@ -68,7 +68,7 @@
 
 
 	
-	<div id="contents">
+	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
 	<h2 onclick="location.href='${pageContext.request.contextPath}/order/ordermain'">완제품 수주현황</h2>
@@ -94,7 +94,7 @@
  </h4>
 	<form method="post" name="myform">
 <!-- 		<input type="hidden" value="">	 -->
-	<table id="vendortable" class=" table table-striped" style="width:1000px;">
+	<table id="vendortable" class=" table table-striped">
 		<thead>
 			<tr style="text-align: center; font-size: 0.9rem">
 			<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>

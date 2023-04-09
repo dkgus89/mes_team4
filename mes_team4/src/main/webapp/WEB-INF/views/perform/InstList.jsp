@@ -56,7 +56,7 @@ function input1(instruction_code,line_cd,product_cd_name,instruction_qt,instruct
 </head>
 <body>
 
-	<div id="contents">
+	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
 	<h2 class="inserttitle">작업지시현황 </h2><br>
@@ -69,7 +69,7 @@ function input1(instruction_code,line_cd,product_cd_name,instruction_qt,instruct
 	<form name="instlist" method="get">
 		<input type="hidden" id="bfinstruction_code" value="${bfinstruction_code}">		
 		
-		<table id="vendortable" class="table table-striped"  style="width:1300px;">
+		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem;">
 					<th style="width:150px;">작업지시코드</th>

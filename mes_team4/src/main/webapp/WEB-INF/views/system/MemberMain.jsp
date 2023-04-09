@@ -27,7 +27,7 @@ function memberdelete(a) {
 </script>
 <!-- 자바스크립트 입력 끝-->
 
-	<div id="contents">
+	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
 	<h2>사용자관리</h2>

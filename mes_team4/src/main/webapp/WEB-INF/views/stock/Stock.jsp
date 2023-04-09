@@ -41,7 +41,7 @@ function showPopup2(cd){
 
 
 	
-	<div id="contents">
+	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
 	<h2> 재고현황 </h2><br>

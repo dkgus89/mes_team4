@@ -58,7 +58,7 @@ function allCheck(){
 
 
 	
-	<div id="contents">
+	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
 	<h2> 생산실적 </h2><br>
@@ -111,7 +111,7 @@ function allCheck(){
 	<form name="performlist">
 		<input type="hidden" value="">
 		
-		<table id="vendortable" class=" table table-striped" style="width:1000px">
+		<table id="vendortable" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.8rem">
 					<th style="text-align: center;"><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
@@ -183,6 +183,7 @@ function allCheck(){
 	
 <!-- 본문HTML 입력 끝-->
 	</div>
+</div>
 
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="../main/Footer.jsp" />

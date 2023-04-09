@@ -111,7 +111,7 @@
 
 
 	
-<div id="contents">
+<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
 	<h2>원자재 발주현황 </h2>
@@ -154,7 +154,7 @@
 	
 	<div>전체 ${pageDTO.count }건</div>
 	
-		<table id="vendortable" class=" table table-striped" style="width:1000px;">
+		<table id="vendortable" class=" table table-striped">
 			
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
