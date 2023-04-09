@@ -152,6 +152,7 @@ function deleteValue(){
 </c:if>
 </div>
 <!-- 본문HTML 입력 끝-->
+	</div>
 </div>
 
 <!-- 푸터 들어가는 곳 -->
