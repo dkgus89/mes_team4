@@ -14,115 +14,50 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-function showPopup(){
-	var link = "${pageContext.request.contextPath}/inst/orderlist";     
-	var popupWidth = 1050;
-	var popupHeight = 500;
-	var popupX = (window.screen.width/2) - (popupWidth/2);
-	var popupY= (window.screen.height/2) - (popupHeight/2);
-	
-  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
-}
-function setChildValue(order_cd,  product_cd_name, product_name, order_count, deliver_date){
-	 	
-		document.getElementById("order_cd").value = order_cd;
-		document.getElementById("product_cd_name").value = product_cd_name;
-		document.getElementById("product_name").value = product_name;
-	    document.getElementById("order_count").value = order_count;
-	    document.getElementById("deliver_date").value = deliver_date;
-}
-function sub(){
-	$(document).ready(function(){ //Jquery 시작
-		// submit 유효성 검사
-		var rt = null;
-		var fp = document.getElementById("fair_prod").value;
-		var dp = document.getElementById("defect_prod").value;
-		var qt = document.getElementById("instruction_qt").value;
-		var int_fp = Number(fp);
-		var int_dp = Number(dp);
-		var int_qt = Number(qt);
-		var result = confirm("수정사항을 등록하시겠습니까?");
-		if (result == true){   		
-			$.ajax({ //ajax 시작
-				type:"GET",
-	 			url:'${pageContext.request.contextPath}/inst/ordercheck',
-	 			async: false,
-	 			data:{'order':$('#order_cd').val()},
-	 			success:function(result){
-	 				 if(result!=0) {
-	 		              alert("이전에 이미 선택되었던 수주입니다.");
-	 		              rt=1;
-	 		          }
-	 			}
-	 		}); //ajax 끝
-			if(rt==1){
-				return false;
-			}
-			if($('#order_cd').val()==""){
-				alert("수주번호를 선택하세요");
-				$('#order_cd').focus();
-				return false;
-			}
-			if($('#line_cd').val()==""){
-				alert("라인코드를 입력하세요");
-				$('#line_cd').focus();
-				return false;
-			}
-			if($('#product_cd_name').val()==""){
-				alert("품목코드를 입력하세요");
-				$('#product_cd_name').focus();
-				return false;
-			}
-			if($('#perform_date').val()==""){
-				alert("실적일자를 입력하세요");
-				$('#perform_date').focus();
-				return false;
-			}
-			if($('#fair_prod').val()==""){
-				alert("양품 수량을 입력하세요");
-				$('#fair_prod').focus();
-				return false;
-			}
-			if($('#defect_prod').val()==""){
-				alert("불량품 수량을 입력하세요");
-				$('#defect_prod').focus();
-				return false;
-			}
-			if(int_fp > int_qt){
-				alert("양품 수량이 지시수량을 초과했습니다.");
-				$('#fair_prod').focus();
-				return false;
-			}
-			if(int_dp > int_qt){
-				alert("불량품 수량이 지시수량을 초과했습니다.");
-				$('#defect_prod').focus();
-				return false;
-			}
-			if((int_fp + int_dp) > int_qt){
-				alert("총 생산량이 지시수량을 초과했습니다.");
-				return false;
-			}
-			// 유효성 검사 통과시 submit
-			window.opener.name = "parentPage";
-			document.PerformUpdate.target="parentPage";
-			document.PerformUpdate.action="${pageContext.request.contextPath}/perform/performupdatepro";
-			document.PerformUpdate.submit();
-			self.close();
-		} else {
-			return false;
-		}
-	}); //Jquery 끝
-}
-//초기화 기능
-function rst(){
-	// 초기화 유효성 검사
-	var result = confirm("초기화 하시겠습니까?");
-	if (result == true){    
-		document.PerformUpdate.reset();
-	} else {
+$(document).ready(function(){
+//	alert("준비");
+//submit 버튼을 클릭했을때 폼태그 전송되어지면 이벤트 onsubmit()
+// id="join" 폼태그 표시 => 전송
+  
+$('#update').submit(function(){
+
+	if($('#instruction_qt').val()==""){
+		alert("지시수량를 입력하세요");
+		$('#instruction_qt').focus();
 		return false;
 	}
-}
+  else{
+	  setTimeout(function(){
+	  opener.parent.location.reload();
+	  window.close();
+	  },100);
+  }
+  
+  
+});//
+});
+
+			// 유효성 검사 통과시 submit
+// 			window.opener.name = "parentPage";
+// 			document.PerformUpdate.target="parentPage";
+// 			document.PerformUpdate.action="${pageContext.request.contextPath}/perform/performupdatepro";
+// 			document.PerformUpdate.submit();
+// 			self.close();
+// 		} else {
+// 			return false;
+// 		}
+// 	}); //Jquery 끝
+// }
+//초기화 기능
+// function rst(){
+// 	// 초기화 유효성 검사
+// 	var result = confirm("초기화 하시겠습니까?");
+// 	if (result == true){    
+// 		document.PerformUpdate.reset();
+// 	} else {
+// 		return false;
+// 	}
+// }
 </script>
 
 
@@ -134,40 +69,36 @@ function rst(){
 
 	<h2 class="inserttitle">작업지시 수정</h2><br>
 <!-- 	<div class="wrap2"> -->
-	<button class="button2" onclick="sub()">등록</button>
-	<button class="button2" onclick="rst()">초기화</button>	 	
+	<button class="button2" form="update" onclick="submit">수정</button>
+	<button class="button2" onclick="window.close()">창닫기</button>	 	
 <!-- 	<button class="button2" onclick="showPopup();" style="width:200px">수주현황</button> -->
 <!-- 	 </div><br> -->
 	 <br><br>
 	 
 	 
-	<form name="instUpdate" method="post">
+	<form action="${pageContext.request.contextPath }/inst/instupdatepro" name="update" id="update" method="post">
 <%-- 		<input type="hidden" name="perform_cd" value="${perform.perform_cd}"> --%>
 <!-- 		<input type="hidden" id="instruction_qt" value=""> -->
-		
+		<input type="hidden" name="instruction_code" class="instruction_code" value="${instructionDTO.instruction_code}">
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 <!-- 					<th>실적코드</th> -->
-					<th>수주코드</th>
-					<th>품목코드</th>				
+					<th>라인코드</th>
+					<th>지시일자</th>	
+					<th>지시수량</th>			
 				</tr>
 			</thead>
 			
 			<tbody>
 				<tr>
-					
-<!-- 					<td><select name="instruction_code"  id="inst"> -->
-<%-- 							<option value="${perform.instruction_code}" selected>${perform.instruction_code}</option> --%>
-<%-- 								<c:forEach var="dto" items="${instMap}"> --%>
-<%-- 									<c:if test="${dto.instruction_code != perform.instruction_code}">											 --%>
-<%-- 									<option value="${dto.instruction_code}">${dto.instruction_code}</option>	 --%>
-<%-- 									</c:if>						 --%>
-<%-- 								</c:forEach> --%>
-<!--       					</select></td> -->
-<%-- 					<td><input type="text" name="instruction_code" id="instruction_code" value="${perform.instruction_code}"></td> --%>
-    				<td><input type="text" name="order_cd" id="order_cd" value="${instruction.order_cd}"></td>
-    				<td><input type="text" name="product_cd_name" id="product_cd_name" value="${instruction.product_cd_name}"></td>			
+					<td><select name="line_cd" id="line_cd">
+    					<option value="FL001" ${instructionDTO.line_cd eq "FL001" ? 'selected':''}>1라인</option>
+    					<option value="FL002" ${instructionDTO.line_cd eq "FL002" ? 'selected':''}>2라인</option>
+    					<option value="FL003" ${instructionDTO.line_cd eq "FL003" ? 'selected':''}>3라인</option>
+					</select></td>
+    				<td><input type="date" name="instruction_date" id="instruction_date" value="${instructionDTO.instruction_date}"></td>
+    				<td><input type="text" name="instruction_qt" id="instruction_qt" value="${instructionDTO.instruction_qt}"></td>			
 				</tr>
 								
 			</tbody>

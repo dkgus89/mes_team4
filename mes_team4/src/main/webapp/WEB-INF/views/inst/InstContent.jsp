@@ -30,7 +30,7 @@
 <%-- 	 <tr><td>제품명</td><td>${instListMap.product_cd}</td></tr> --%>
 	 <tr><td>지시수량</td><td>${instructionDTO.instruction_qt}</td></tr>
 	 <tr><td>라인코드</td><td>${instructionDTO.line_cd}</td></tr>
-<%-- 	 <tr><td>납품일</td><td>${instListMap.deliver_date}</td></tr>	  --%>
+<%-- 	 <tr><td>납품일</td><td>${instructionDTO.deliver_date}</td></tr>	  --%>
 </table>
 <h4 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >원재료 소요량</h4>
 <table id="vendortable" class="table table-striped" border="1" width ="400" height="100" style="text-align: center;" align = "center">

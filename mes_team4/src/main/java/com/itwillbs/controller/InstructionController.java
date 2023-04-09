@@ -125,20 +125,10 @@ public class InstructionController {
 		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
 		System.out.println("InstructionController instupdate()");
 		String instruction_code = request.getParameter("instruction_code");
-	
+		
+		InstructionDTO instructionDTO2 = instructionService.instructioninfo(instruction_code);
 
-		//메서드 호출
-		List<Map<String, Object>> instMap
-		     =instructionService.getInstMap();
-		//model 담아서 이동
-		model.addAttribute("instMap", instMap);
-		
-		//메서드 호출
-		Map<String, Object> inst
-		     = instructionService.getInst(instruction_code);
-		
-		//model 담아서 이동
-		model.addAttribute("inst", inst);
+		model.addAttribute("instructionDTO", instructionDTO2);
 		
 		return "/inst/InstUpdate";
 	}
@@ -149,6 +139,7 @@ public class InstructionController {
 		System.out.println("InstructionController instructionupdatepro()");
 
 		instructionService.instupdatepro(instructionDTO);
+		
 		
 		// 가상주소에서 주소변경 하면서 이동
 		return "redirect:/inst/instmain";

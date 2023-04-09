@@ -49,8 +49,8 @@
     	SELECT o.order_cd, o.business_cd, o.product_cd_name, o.order_count, o.order_date, o.deliver_date, o.emp_no,c.cproduct_name, c.rproduct_cd_name, c.rproduct_name, c.consumption, c.consumption_unit
 		FROM order_management o right join consumption_management c 
 		ON o.product_cd_name = c.cproduct_cd_name
-		where o.order_cd is not null 
-<!-- 		and o.con = '생산전' -->
+		where o.order_cd is not null and o.con = '생산전'
+		group by o.order_cd
     </select>
     
 	<select id="getConsListMap" resultMap="map2">
@@ -86,7 +86,7 @@
     </select>
     
      <update id="instupdatepro">
-     	update instruction set order_cd = #{order_cd}, product_cd_name = #{product_cd_name}, instruction_qt = #{instruction_qt}, line_cd = #{line_cd}, instruction_date = #{instruction_date}, instruction_state = #{instruction_state}
+     	update instruction set instruction_qt = #{instruction_qt}, line_cd = #{line_cd}, instruction_date = #{instruction_date}
      	where instruction_code = #{instruction_code}
     </update>
     
