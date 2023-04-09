@@ -11,6 +11,11 @@
 	values(#{rel_schedule_cd}, #{wh_cd}, #{product_cd_name}, #{rel_date},#{remarks}, #{rel_count}, #{pchor_cd})
 	</insert>
 	
+	<insert id="insertrel2">
+	insert into release_schedule(rel_schedule_cd, wh_cd, product_cd_name, rel_date, rel_count,pchor_cd) 
+	values(#{rel_schedule_cd}, #{wh_cd}, #{product_cd_name}, #{rel_date}, #{rel_count}, #{pchor_cd})
+	</insert>
+	
 <!-- 	출고코드번호 -->
 	<select id="getLNum" resultType="java.lang.Integer">
 	select max(SUBSTR(rel_schedule_cd, 2)) from release_schedule where rel_schedule_cd like 'L%'

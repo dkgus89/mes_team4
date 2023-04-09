@@ -58,6 +58,10 @@ public interface InstructionService {
 
 	public List<String> getcountcons(String cdname);
 
+	public String getRel_schedule_cd();
+
+	public ConsumptionDTO getConsumption(ConsumptionDTO consumptionDTO);
+
 
 	
 

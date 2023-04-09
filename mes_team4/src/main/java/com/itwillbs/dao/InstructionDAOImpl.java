@@ -181,6 +181,20 @@ public class InstructionDAOImpl implements InstructionDAO {
 		
 		return sqlSession.selectList(namespace +".getcountcons", cdname);
 	}
+
+	@Override
+	public String getRel_schedule_cd() {
+		System.out.println("InstructionDAOImpl getRel_schedule_cd()");
+		
+		return sqlSession.selectOne(namespace +".getRel_schedule_cd");
+	}
+
+	@Override
+	public ConsumptionDTO getConsumption(ConsumptionDTO consumptionDTO) {
+		System.out.println("InstructionDAOImpl getConsumption()");
+		
+		return sqlSession.selectOne(namespace +".getConsumption", consumptionDTO);
+	}
 	
 	
 	

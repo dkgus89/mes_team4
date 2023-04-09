@@ -173,6 +173,12 @@
 		from receive_schedule
 		where product_cd_name = #{product_cd_name}
     </select>
+    
+    <select id="getConsumption" resultType="com.itwillbs.domain.ConsumptionDTO">
+       select consumption
+		from consumption_management
+		where cproduct_cd_name = #{cproduct_cd_name} and rproduct_cd_name = #{rproduct_cd_name}
+    </select>
        
 <!--     <resultMap type="map" id="map9"> -->
 <!-- 		<result column="rproduct_cd_name" property="rproduct_cd_name"/> -->
@@ -184,6 +190,12 @@
 		where cproduct_cd_name = #{cdname}
     </select>
     
+    <select id="getRel_schedule_cd" resultType="java.lang.String">
+        select *  
+		from release_schedule
+		order by rel_schedule_cd desc
+		limit 1
+    </select>
     
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
 <!-- 		select * from members  -->

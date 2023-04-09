@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -241,7 +243,7 @@ public class InstructionController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/inst/changeIng")
-	public String changeIng(HttpServletRequest request, ReleaseDTO releaseDTO) {
+	public String changeIng(HttpServletRequest request, ReleaseDTO releaseDTO, ConsumptionDTO consumptionDTO) {
 		System.out.println("InstructionController changIng()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
@@ -262,31 +264,26 @@ public class InstructionController {
 			String date=instructionService.getInstDate(instruction_code);
 			LocalDate localDate1 = LocalDate.parse(date);//	       
 	        Date date2 = java.sql.Date.valueOf(localDate1);
-			String cdname=instructionService.getInstCdname(instruction_code);
-			List<String> cons=instructionService.getcountcons(cdname);
+			String cproduct_cd_name=instructionService.getInstCdname(instruction_code);
+			List<String> cons=instructionService.getcountcons(cproduct_cd_name);
 			for(int i2=0; i2<cons.size(); i2++) {
-				String product_cd_name=cons.get(i);
-				String wh_cd=instructionService.getWh_cd(product_cd_name);
+				String rproduct_cd_name=cons.get(i2);
+				consumptionDTO.setRproduct_cd_name(rproduct_cd_name);
+				consumptionDTO.setCproduct_cd_name(cproduct_cd_name);
+				ConsumptionDTO consumdDTO=instructionService.getConsumption(consumptionDTO);
+				
+				String wh_cd=instructionService.getWh_cd(rproduct_cd_name);
 				releaseDTO.setWh_cd(wh_cd);
-				String pch=instructionService.getInstPch(product_cd_name);
-				releaseDTO.setRel_schedule_cd("L230407100");
-				releaseDTO.setRel_date(date2);
-				releaseDTO.setRel_count(count);
-				releaseDTO.setProduct_cd_name(product_cd_name);
+				String pch=instructionService.getInstPch(rproduct_cd_name);
+			    releaseDTO.setRel_date(date2);
+				releaseDTO.setRel_count(consumdDTO.getConsumption()*count);
+				releaseDTO.setProduct_cd_name(rproduct_cd_name);
 				releaseDTO.setPchor_cd(pch);
-				releaseDTO.setWh_cd(wh_cd);
 				// 출고등록 메서드 호출
-				relService.insertrel(releaseDTO);
-			}
+				relService.insertrel2(releaseDTO);
+			}	
 			
-			
-	        
-						
-			
-		}
-		
-		
-		
+		}		
 		System.out.println("jdata값!!!!!!!!!!" + jdata);
 		return jdata;
 	}

@@ -133,6 +133,31 @@ public class ReleaseServiceImpl implements ReleaseService{
 	}
 
 
+	@Override
+	public void insertrel2(ReleaseDTO releaseDTO) {
+		System.out.println("ReleaseServiceImpl insertrel2()");
+
+		LocalDate now = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
+		String today = now.format(formatter);
+			
+		if(releaseDAO.getLNum()==null) {
+			//출고품목 없음
+			releaseDTO.setRel_schedule_cd("L"+today+"100");
+		}else{
+			//출고품목 => max(num)+1
+			System.out.println("LNum 출력 : "+releaseDAO.getLNum());
+			int num = releaseDAO.getLNum()+1;
+			String str = "L"+num;
+			
+			releaseDTO.setRel_schedule_cd(str);
+		}
+		
+		
+		releaseDAO.insertrel2(releaseDTO);		
+	}
+
+
 
 
 }

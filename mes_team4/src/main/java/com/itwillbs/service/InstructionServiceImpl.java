@@ -189,6 +189,20 @@ public class InstructionServiceImpl implements InstructionService{
 		return instructionDAO.getcountcons(cdname);
 	}
 
+	@Override
+	public String getRel_schedule_cd() {
+		System.out.println("InstructionServiceImpl getRel_schedule_cd()");
+		
+		return instructionDAO.getRel_schedule_cd();
+	}
+
+	@Override
+	public ConsumptionDTO getConsumption(ConsumptionDTO consumptionDTO) {
+		System.out.println("InstructionServiceImpl getConsumption()");
+		
+		return instructionDAO.getConsumption(consumptionDTO);
+	}
+
 
 
 	

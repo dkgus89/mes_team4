@@ -114,6 +114,13 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 		return sqlSession.selectOne(namespace+".getProduct_cd_name2", rel_schedule_cd);
 	}
 
+	@Override
+	public void insertrel2(ReleaseDTO releaseDTO) {
+		System.out.println("ReleaseDAOImpl insertrel2()");
+		
+		sqlSession.insert(namespace+".insertrel2", releaseDTO);		
+	}
+
 
 
 

@@ -34,6 +34,8 @@ public interface ReleaseDAO {
 
 	public String getProduct_cd_name2(String rel_schedule_cd);
 
+	public void insertrel2(ReleaseDTO releaseDTO);
+
 
 
 
