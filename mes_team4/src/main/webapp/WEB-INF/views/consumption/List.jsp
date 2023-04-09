@@ -125,7 +125,7 @@
 	<br>
 	<br>
 	
-	<div>전체 ${pageDTO.count }건</div>
+	<div style="clear:both">전체 ${pageDTO.count }건</div>
 	
 		<table id="vendortable" class="table table-striped tbtr">
 			<thead>

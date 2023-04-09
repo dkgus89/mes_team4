@@ -157,8 +157,8 @@
 	}
 	
 	.wrap2 {
-	display: inline-block; 
-	float : right;	
+		display: inline-block; 
+		float : right;	
 	}
 
 	.button2 {
@@ -227,8 +227,8 @@
 	}
 		
 	table {
-	  border-collapse: separate;
-	  border-spacing: 0;
+	  border-collapse: collapse;
+	  border: 1px solid #c6c9cc;
 	  width : 100%; 
 	  cellspacing : 0;
 	}
@@ -236,38 +236,14 @@
 	th, td {
 	  padding: 6px 15px;
 	  text-align: center;
+	  border: 1px solid #c6c9cc;
 	}
 	
-	th {
+	th {  
 	  background: #42444e;
 	  color: #fff;
 	  text-align: center;
 	}
-	
-	td {
-	  border-right: 1px solid #c6c9cc;
-	  border-bottom: 1px solid #c6c9cc;
-	}
-	
-	td:first-child {
-     border-left: 1px solid #c6c9cc;
-   }   
-   
-/*  tr:nth-child(even) td { 
- 	  background: #eaeaed; 
- 	} 
- 	tr:first-child th:first-child {
-	  border-top-left-radius: 6px;
-	}
-	tr:first-child th:first-child{
-	  border-top-right-radius: 6px;
-	}
-	tr:last-child td:first-child {
-	  border-bottom-left-radius: 6px;
-	}
-	tr:last-child th:first-child{
-	  border-bottom-right-radius: 6px;
-	} */
 	
 /* 	페이징 추가	 */
 	
@@ -387,4 +363,21 @@
      	cursor:pointer;
 	}
 	
+	.innerWrap2 {
+		display: flex;
+		justify-content: flex-start;
+		gap: 10px;
+	}
+	
+	.inWrap1 {
+		display: flex;
+		flex-direction: column;	
+		gap: 10px;
+	}
+	
+	.inWrap2 {
+		display: flex;
+		flex-direction: column;	
+		gap: 2px;
+	}
 /* 소요량, 발주 전용 CSS	 */

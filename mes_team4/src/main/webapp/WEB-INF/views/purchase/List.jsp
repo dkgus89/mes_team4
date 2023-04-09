@@ -125,34 +125,44 @@
 	<br>
 	<br>
 	
-	<div class ="search_wrap" id="table_search">
+	<div class ="wrap2" id="table_search">
 		<form action="${pageContext.request.contextPath}/purchase/list?search=${pageDTO.search}&search_option=${pageDTO.search_option}&search_com=${pageDTO.search_com}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}&start_due_date=${pageDTO.start_due_date}&end_due_date=${pageDTO.end_due_date}" method="get">		
 			
 			<input id="search_option" name="search_option" type="hidden" value="all">
 			<input id="search_com" name="search_com" type="hidden" value="">
 			
-			발주일자 <input type="date" name="start_date" value=""> ~ <input type="date" name="end_date" value="">
+			<div class="innerWrap2">
 			
-			<select id="select-menu" class="button2">
-			<option value="all">통합검색</option>
-			<option value="bs">거래처</option>
-			<option value="rp">원자재</option>
-			<option value="em">담당자</option>			
-			</select> 
-			<input type="text" name="search" class="input_box" placeholder="품목명 또는 코드를 입력하세요." value="" size=60>
-			<input type="submit" value="search" class="button2">
+				<div class="inWrap1">
+				
+				
+				<div>발주일자&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" name="start_date" value=""> ~ <input type="date" name="end_date" value=""></div>
+				<div>납품예정일&nbsp;<input type="date" name="start_due_date" value=""> ~ <input type="date" name="end_due_date" value=""></div>
+				
+				</div>
+				
+				<div class="inWrap2">
+				
+				<div><select id="select-menu" class="button2">
+				<option value="all">통합검색</option>
+				<option value="bs">거래처</option>
+				<option value="rp">원자재</option>
+				<option value="em">담당자</option>			
+				</select>
+				<input type="text" name="search" class="input_box" placeholder="품목명 또는 코드를 입력하세요." value="" size=60>
+				<input type="submit" value="search" class="button2"></div>
+				<div>진행상황 전체&nbsp;<input type="checkbox" id="comAllCheck" name="com_sts" onclick='checkOnlyOne(this)' value=""> 완료&nbsp;<input type="checkbox" id="comCheck" name="com_sts" onclick='checkOnlyOne(this)' value="완료"> 미완료&nbsp;<input type="checkbox" id="comNotCheck" name="com_sts" onclick='checkOnlyOne(this)' value="미완료"></div>
+				
+				</div>
 			
-			<br>
-			납품예정일 <input type="date" name="start_due_date" value=""> ~ <input type="date" name="end_due_date" value="">
-			진행상황 전체<input type="checkbox" id="comAllCheck" name="com_sts" onclick='checkOnlyOne(this)' value=""> 완료<input type="checkbox" id="comCheck" name="com_sts" onclick='checkOnlyOne(this)' value="완료"> 미완료<input type="checkbox" id="comNotCheck" name="com_sts" onclick='checkOnlyOne(this)' value="미완료">
-	
+			</div>
 		</form>
 	</div>
 	
 	<br>
 	<br>
 	
-	<div>전체 ${pageDTO.count }건</div>
+	<div style="clear:both">전체 ${pageDTO.count }건</div>
 	
 		<table id="vendortable" class=" table table-striped">
 			
