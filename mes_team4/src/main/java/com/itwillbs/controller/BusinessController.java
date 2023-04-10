@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.itwillbs.dao.BusinessDAO;
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.BusinessService;
+import com.itwillbs.service.SystemService;
 
 
 @Controller
@@ -25,8 +28,18 @@ public class BusinessController {
 	@Inject
 	private BusinessDAO businessDAO;
 	
+	@Inject
+	private SystemService systemService;
+	
 	@RequestMapping(value = "/business/businessmain", method = RequestMethod.GET)
-	public String businessmain(HttpServletRequest request, Model model) {
+	public String businessmain(HttpServletRequest request, Model model,HttpSession session) {
+		
+		//비로그인 상태일 시
+		Object emp_no = session.getAttribute("emp_no");
+		if(emp_no == null) {
+			return "system/msg2";
+		} else {
+		
 		// 한 화면에 보여줄 글 개수 설정
 		int pageSize=5;
 		// 현페이지 번호 가져오기
@@ -68,8 +81,13 @@ public class BusinessController {
 		model.addAttribute("businessList", businessList);
 		model.addAttribute("pageDTO", pageDTO);
 		
+		//사원정보 관련
+		SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+		model.addAttribute("systemDTO2", systemDTO);
+		
 		// 가상주소 유지
 		return "business/BusinessMain";
+		}
 	}
 	
 	@RequestMapping(value = "/business/businessinsert", method = RequestMethod.GET)

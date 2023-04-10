@@ -28,7 +28,7 @@
    			where business_cd like CONCAT('%',#{search},'%')
    			or con like CONCAT('%',#{search},'%')
    		</if>
-    order by con desc, deliver_date asc
+    order by deliver_date asc
     limit #{startRow} , #{pageSize}
     </select>
     
@@ -136,9 +136,17 @@
     where order_cd = #{cd}
     </update>
 
-	    <update id="updateCon2">
+    <update id="updateCon2">
     update order_management
     set con = "생산중"
-    where order_cd = #{cd}
+    where order_cd = (select order_cd from instruction 
+	where instruction_code = #{cd});
+    </update>
+ 
+    <update id="updateCon3">
+    update order_management
+    set con = "생산완료"
+    where order_cd = (select order_cd from instruction 
+	where instruction_code = #{cd});
     </update>
 </mapper>

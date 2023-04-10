@@ -20,5 +20,7 @@ public interface BusinessService {
 	public BusinessDTO getBusiness(String cd);
 
 	public void updateBusiness(BusinessDTO businessDTO);
+
+	public List<BusinessDTO> getBusinessList2();
 	
 }

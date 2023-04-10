@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="../main/Header.jsp" />
@@ -74,7 +75,10 @@ function deleteValue(){
 	
 	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
-
+<c:set var = "priv" value = "${systemDTO2.emp_priv}"/>
+<c:if test = "${!empty sessionScope.emp_no}">
+      <c:choose>
+<c:when test = "${fn:contains(priv, 'E')}">
 	<h2> 입고관리 </h2><br>
 	
 		<div class="search">
@@ -85,7 +89,7 @@ function deleteValue(){
 				<option value="pchor_cd">발주/수주코드</option>
 				<option value="product_cd_name">제품코드</option>
 			</select>
-			<input type="text" name="search" class="button2" style="width:200px">
+			<input type="text" name="search" class="button2" style="width:300px">
 			<input type="submit" class="button2" value="검색">
 		</form>
 	</div>
@@ -151,9 +155,19 @@ function deleteValue(){
 <a href="${pageContext.request.contextPath}/receive/recpage?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">Next</a>
 </c:if>
 </div>
-<!-- 본문HTML 입력 끝-->
-	</div>
+  </c:when>
+   <c:otherwise>
+      <script type="text/javascript">
+      alert("권한이 없습니다.")
+      history.back();
+      </script>
+   </c:otherwise>   
+   </c:choose>
+</c:if>
+
 </div>
+<!-- 본문HTML 입력 끝-->
+
 
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="../main/Footer.jsp" />

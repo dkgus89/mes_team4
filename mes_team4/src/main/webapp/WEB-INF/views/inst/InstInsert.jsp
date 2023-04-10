@@ -17,7 +17,6 @@
 $(document).ready(function() { // j쿼리 시작
 	$("#stockCheck").on("click", function(){
 		let order_cd = document.getElementById("order_cd").value;
-		console.log(order_cd);
 		if(!order_cd) {
 			alert("수주 현황을 먼저 선택해주세요.");
 			return false;
@@ -36,10 +35,13 @@ $(document).ready(function() { // j쿼리 시작
 					
 					var rowLength = $('#stockTable tbody').find('tr').length;
 					var stockTr = $('#stockTable tbody tr');
+					
 					for(let i = 0; i < rowLength; i++) {
-						var calconsumption = stockTr.eq(i).find('td:eq(2)').text();
-						var stock_count = stockTr.eq(i).find('td:eq(3)').text();
-						if(calconsumption > stock_count) {
+						let calconsumption = stockTr.eq(i).find('td:eq(2)').text();
+						
+						let stock_count = stockTr.eq(i).find('td:eq(3)').text();
+						
+						if(calconsumption-stock_count > 0) {
 							stockTr.eq(i).find('td:eq(4)').text('재고부족').css('color', 'red');
 						} else {
 							stockTr.eq(i).find('td:eq(4)').text('재고충족').css('color', 'blue');

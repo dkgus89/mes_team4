@@ -101,6 +101,7 @@ $('#update').submit(function(){
 					<label>새 비밀번호확인</label>
 					<input type="password"  name="emp_pass2" class="emp_pass2" style="width:150px;height:30px;font-size:18px;"><br><br>
 					</div>
+					<c:if test = "${systemDTO.emp_no ne 99999}">
 					<label>부서</label><br>
 					<div>
 						<input type="radio" name="dept_cd" class="dept_cd" value="MDP001" ${systemDTO.dept_cd eq 'MDP001' ? 'checked':''}/> 1.영업부
@@ -130,10 +131,45 @@ $('#update').submit(function(){
 						<input type="checkbox" class="emp_priv" name="emp_priv" value="D" ${systemDTO.emp_priv.contains("C") ? 'checked':''}/> C.영업관리<br>
 						<input type="checkbox" class="emp_priv" name="emp_priv" value="E" ${systemDTO.emp_priv.contains("D") ? 'checked':''}/> D.생산조회<br>
 						<input type="checkbox" class="emp_priv" name="emp_priv" value="F" ${systemDTO.emp_priv.contains("E") ? 'checked':''}/> E.재고관리<br>
-
-
 					</div>
-
+				</c:if>
+				
+				<c:if test = "${systemDTO.emp_no eq 99999}" >
+					<label>부서</label><br>
+					<div>
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP001" ${systemDTO.dept_cd eq 'MDP001' ? 'checked':''} onClick="return false;"/> 1.영업부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP002" ${systemDTO.dept_cd eq 'MDP002' ? 'checked':''} onClick="return false;"/> 2.인사부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP003" ${systemDTO.dept_cd eq 'MDP003' ? 'checked':''} onClick="return false;"/> 3.생산부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP004" ${systemDTO.dept_cd eq 'MDP004' ? 'checked':''} onClick="return false;"/> 4.총무부
+						<input type="radio" name="dept_cd" class="dept_cd" value="MDP005" ${systemDTO.dept_cd eq 'MDP005' ? 'checked':''} onClick="return false;"/> 5.기획부	
+					</div><br>
+					<label>직급</label><br>
+					<div>
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD001" ${systemDTO.grade_cd eq 'MGD001' ? 'checked':''} onClick="return false;"/> 1.사원
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD002" ${systemDTO.grade_cd eq 'MGD002' ? 'checked':''} onClick="return false;"/> 2.주임
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD003" ${systemDTO.grade_cd eq 'MGD003' ? 'checked':''} onClick="return false;"/> 3.대리
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD004" ${systemDTO.grade_cd eq 'MGD004' ? 'checked':''} onClick="return false;"/> 4.과장
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD005" ${systemDTO.grade_cd eq 'MGD005' ? 'checked':''} onClick="return false;"/> 5.차장	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD006" ${systemDTO.grade_cd eq 'MGD006' ? 'checked':''} onClick="return false;"/> 6.부장<BR>	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD007" ${systemDTO.grade_cd eq 'MGD007' ? 'checked':''} onClick="return false;"/> 7.이사	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD008" ${systemDTO.grade_cd eq 'MGD008' ? 'checked':''} onClick="return false;"/> 8.상무	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD009" ${systemDTO.grade_cd eq 'MGD009' ? 'checked':''} onClick="return false;"/> 9.전무	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD010" ${systemDTO.grade_cd eq 'MGD010' ? 'checked':''} onClick="return false;"/> 10.부사장	
+						<input type="radio" name="grade_cd" class="grade_cd" value="MGD011" ${systemDTO.grade_cd eq 'MGD011' ? 'checked':''} onClick="return false;"/> 11.사장
+					</div><br>			
+					<label>권한(다수 선택가능)</label><br>
+					<div>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="A" ${systemDTO.emp_priv.contains("A") ? 'checked':''} onClick="return false;"/> A.시스템관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="B" ${systemDTO.emp_priv.contains("B") ? 'checked':''} onClick="return false;"/> B.기준정보관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="C" ${systemDTO.emp_priv.contains("C") ? 'checked':''} onClick="return false;"/> C.영업관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="D" ${systemDTO.emp_priv.contains("D") ? 'checked':''} onClick="return false;"/> D.생산조회<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="E" ${systemDTO.emp_priv.contains("E") ? 'checked':''} onClick="return false;"/> E.재고관리<br>
+					</div>
+				</c:if>
+				
+				
+				
+				
 			</fieldset>
 		
 	</form>

@@ -20,8 +20,10 @@ import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.StockDTO;
+import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.BusinessService;
 import com.itwillbs.service.ProductService;
+import com.itwillbs.service.SystemService;
 
 @Controller
 public class ProductController {
@@ -30,9 +32,16 @@ public class ProductController {
 	private BusinessService businessService;
 	@Inject
 	private ProductService productService;
+	@Inject
+	private SystemService systemService;
 	
 	@RequestMapping(value = "/product/prodpage", method = RequestMethod.GET)
-	public String prodpage(HttpServletRequest request, Model model) {
+	public String prodpage(HttpServletRequest request, Model model, HttpSession session) {
+		Object emp_no = session.getAttribute("emp_no");
+        if(emp_no == null) {
+           return "system/msg2";
+        } else {
+
 		// 검색어 가져오기
 		String search=request.getParameter("search");
 		// 검색어 옵션
@@ -80,12 +89,17 @@ public class ProductController {
 		model.addAttribute("productList", productList);
 		model.addAttribute("pageDTO",pageDTO);
 		
+		   SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+	         model.addAttribute("systemDTO2", systemDTO);
+
+		
 		return "product/ProductPage";
+	}
 	}
 	
 	@RequestMapping(value = "/product/prodinsert", method = RequestMethod.GET)
 	public String prodinsert(Model model) {
-		List<BusinessDTO> businessList = businessService.getBusinessList();
+		List<BusinessDTO> businessList = businessService.getBusinessList2();
 		List<Map<String, Object>> instMap
 			=productService.getInstMap();
 		// model에 담아서 이동

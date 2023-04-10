@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,11 +24,13 @@ import com.itwillbs.domain.PurchaseDTO;
 import com.itwillbs.domain.ReceiveDTO;
 import com.itwillbs.domain.ReleaseDTO;
 import com.itwillbs.domain.StockDTO;
+import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.domain.WHDTO;
 import com.itwillbs.service.OrderService;
 import com.itwillbs.service.PerformService;
 import com.itwillbs.service.PurchaseService;
 import com.itwillbs.service.ReceiveService;
+import com.itwillbs.service.SystemService;
 import com.itwillbs.service.WHService;
 
 @Controller
@@ -43,10 +46,17 @@ public class ReceiveController {
 	private OrderService orderService;
 	@Inject
 	private PerformService performService;
-	
+	@Inject
+	private SystemService systemService;
+
 	
 	@RequestMapping(value = "/receive/recpage", method = RequestMethod.GET)
-	public String recpage(HttpServletRequest request, Model model) {
+	public String recpage(HttpServletRequest request, Model model,HttpSession session) {
+		Object emp_no = session.getAttribute("emp_no");
+        if(emp_no == null) {
+           return "system/msg2";
+        } else {
+
 		// 검색어 가져오기
 		String search=request.getParameter("search");
 		// 검색어 옵션
@@ -90,8 +100,12 @@ public class ReceiveController {
 		pageDTO.setPageCount(pageCount);
 		model.addAttribute("receiveList", receiveList);
 		model.addAttribute("pageDTO",pageDTO);
-		
+	
+		   SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+	         model.addAttribute("systemDTO2", systemDTO);
+
 		return "receive/ReceivePage";
+        }
 	}
 	
 	@RequestMapping(value = "/receive/recinsert", method = RequestMethod.GET)

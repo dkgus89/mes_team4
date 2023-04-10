@@ -20,6 +20,57 @@
 			let search_option = $("option:selected", this).val();
 			$("#search_option").val(search_option);
 		});	
+	
+		// 발주일자 날짜 제한
+		$(document).on('change', '#stToday', function() {
+		    var stToday = $(this).val();	
+		    var edToday = $('#edToday').val();
+		    var stDueday = $('#stDueday').val();
+		    var edDueday = $('#edDueday').val();
+		    
+		    if(edToday && edToday < stToday) {
+		      alert("발주일자를 " + edToday + " 날짜 이전으로 선택해주세요.");
+		      $(this).val('');
+		    }
+		});
+		
+		$(document).on('change', '#edToday', function() {
+			var edToday = $(this).val();	
+		    var stToday = $('#stToday').val();
+		    var stDueday = $('#stDueday').val();
+		    var edDueday = $('#edDueday').val();	  
+		    
+		    if(edToday < stToday) {
+		      alert("발주일자를 " + stToday + " 날짜 이후로 선택해주세요.");
+		      $(this).val('');
+		    }
+		});
+		
+		// 납품예정일 날짜 제한
+		$(document).on('change', '#stDueday', function() {
+			var stDueday = $(this).val();	
+			var stToday = $('#stToday').val();
+		    var edToday = $('#edToday').val();
+		    var edDueday = $('#edDueday').val();
+		    
+		    if(edDueday && edDueday < stDueday) {
+			      alert("납품예정일을 " + edDueday + " 날짜 이전으로 선택해주세요.");
+			      $(this).val('');
+			}
+		});
+		
+		$(document).on('change', '#edDueday', function() {
+			var edDueday = $(this).val();	
+			var stToday = $('#stToday').val();
+		    var edToday = $('#edToday').val();
+		    var stDueday = $('#stDueday').val();
+		    
+		    if(edDueday < stDueday) {
+		      alert("납품예정일을 " + stToday + " 날짜 이후로 선택해주세요.");
+		      $(this).val('');
+		    }
+		});
+		
 	}); // j쿼리 끝
 	
 	// 발주 등록 팝업
@@ -34,7 +85,12 @@
 	}
 	
 	// 발주 수정 팝업
-	function updateFn(purchase_cd){
+	function updateFn(purchase_cd, purchase_com){
+	var purchase_com= purchase_com;
+	if(purchase_com === '완료') {
+		alert("완료된 발주는 수정할 수 없습니다.");
+		return false;
+	}
 	var link = "${pageContext.request.contextPath}/purchase/update?purchase_cd="+purchase_cd;     
 	var popupWidth = 980;
 	var popupHeight = 300;
@@ -136,8 +192,8 @@
 				<div class="inWrap1">
 				
 				
-				<div>발주일자&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" name="start_date" value=""> ~ <input type="date" name="end_date" value=""></div>
-				<div>납품예정일&nbsp;<input type="date" name="start_due_date" value=""> ~ <input type="date" name="end_due_date" value=""></div>
+				<div>발주일자&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" id="stToday" name="start_date" value=""> ~ <input type="date" id="edToday" name="end_date" value=""></div>
+				<div>납품예정일&nbsp;<input type="date" id="stDueday" name="start_due_date" value=""> ~ <input type="date" id="edDueday" name="end_due_date" value=""></div>
 				
 				</div>
 				
@@ -199,7 +255,7 @@
 		    		<td>${dto.purchase_due}</td> 
 		    		<td>${dto.emp_name}</td>
 		    		<td>${dto.purchase_com}</td>
-		    		<td><button class="button2" id="updateBtn" onclick="updateFn('${dto.purchase_cd}')">수정</button></td>
+		    		<td><button class="button2" id="updateBtn" onclick="updateFn('${dto.purchase_cd}', '${dto.purchase_com}')">수정</button></td>
 	  				</tr>
 	  				
 				</c:forEach>
