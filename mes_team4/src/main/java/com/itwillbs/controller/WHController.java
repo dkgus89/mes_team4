@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.domain.WHDTO;
+import com.itwillbs.service.SystemService;
 import com.itwillbs.service.WHService;
 
 @Controller
@@ -25,14 +27,23 @@ public class WHController {
 	@Inject
 	private WHService whService; 
 	
+	@Inject
+	private SystemService systemService;
+	
 	@RequestMapping(value = "/wh/whpage", method = RequestMethod.GET)
-	public String whpage(HttpServletRequest request, Model model) {
+	public String whpage(HttpServletRequest request, Model model,HttpSession session) {
+		
+		Object emp_no = session.getAttribute("emp_no");
+        if(emp_no == null) {
+           return "system/msg2";
+        } else {
+
+		
 		//검색어 가져오기
 		String search=request.getParameter("search");
 		String search_option=request.getParameter("search_option");
 		// 검색어 옵션
 		String select = request.getParameter("select");
-		System.out.println("select : " +select+",search : "+search+ ",search_option : "+ search_option);
 		
 				// 한 화면에 보여줄 글 개수 설정
 				int pageSize=5;
@@ -75,7 +86,12 @@ public class WHController {
 				model.addAttribute("whList", whList);
 				model.addAttribute("pageDTO", pageDTO);
 				
+				 SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+		         model.addAttribute("systemDTO2", systemDTO);
+
+				
 		return "warehouse/WhPage";
+        }
 	}
 	
 	@RequestMapping(value = "/wh/whinsert", method = RequestMethod.GET)

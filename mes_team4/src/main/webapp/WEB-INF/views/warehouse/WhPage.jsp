@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="../main/Header.jsp" />
@@ -112,6 +112,10 @@ $("#select").change(function() {
 
 	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
+<c:set var = "priv" value = "${systemDTO2.emp_priv}"/>
+<c:if test = "${!empty sessionScope.emp_no}">
+      <c:choose>
+<c:when test = "${fn:contains(priv, 'B')}">
 	<h2>창고</h2><br>
 	
 <!-- 	검색창 -->
@@ -203,7 +207,16 @@ $("#select").change(function() {
 <a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">[10페이지 다음]</a>
 </c:if>
 </div>
-	
+
+ </c:when>
+   <c:otherwise>
+      <script type="text/javascript">
+      alert("권한이 없습니다.")
+      history.back();
+      </script>
+   </c:otherwise>   
+   </c:choose>
+</c:if>	
 <!-- 본문HTML 입력 끝-->
 	</div>
 </div>

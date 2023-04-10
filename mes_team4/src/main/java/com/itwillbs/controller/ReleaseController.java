@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +21,10 @@ import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ReceiveDTO;
 import com.itwillbs.domain.ReleaseDTO;
 import com.itwillbs.domain.StockDTO;
+import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.ReceiveService;
 import com.itwillbs.service.ReleaseService;
+import com.itwillbs.service.SystemService;
 
 @Controller
 public class ReleaseController {
@@ -30,10 +33,17 @@ public class ReleaseController {
 	private ReleaseService relService; 
 	@Inject
 	private ReceiveService receiveService;
+	@Inject
+	private SystemService systemService;
 	
 	@RequestMapping(value = "/rel/relpage", method = RequestMethod.GET)
-	public String relpage(HttpServletRequest request, Model model) {
+	public String relpage(HttpServletRequest request, Model model,HttpSession session) {
 		System.out.println("ReleaseController relinsert()");
+		
+		Object emp_no = session.getAttribute("emp_no");
+        if(emp_no == null) {
+           return "system/msg2";
+        } else {
 		
 		//검색어 가져오기
 		String search=request.getParameter("search");
@@ -79,8 +89,11 @@ public class ReleaseController {
 		
 		model.addAttribute("relList", relList);
 		model.addAttribute("pageDTO", pageDTO);
+		SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+        model.addAttribute("systemDTO2", systemDTO);
 		
 		return "release/RelPage";
+        }
 	}
 	
 	@RequestMapping(value = "/rel/relinsert", method = RequestMethod.GET)
