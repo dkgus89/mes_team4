@@ -26,8 +26,10 @@ import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ReleaseDTO;
+import com.itwillbs.domain.StockDTO;
 import com.itwillbs.service.InstructionService;
 import com.itwillbs.service.OrderService;
+import com.itwillbs.service.ReceiveService;
 import com.itwillbs.service.ReleaseService;
 
 @Controller
@@ -40,6 +42,9 @@ public class InstructionController {
 
 	@Inject
 	private ReleaseService relService;
+	
+	@Inject
+	private ReceiveService receiveService;
 	
 	@RequestMapping(value = "/inst/instmain", method = RequestMethod.GET)
 	public String instmain(HttpServletRequest request, Model model) {
@@ -234,7 +239,7 @@ public class InstructionController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/inst/changeIng")
-	public String changeIng(HttpServletRequest request, ReleaseDTO releaseDTO, ConsumptionDTO consumptionDTO) {
+	public String changeIng(HttpServletRequest request, ReleaseDTO releaseDTO, ConsumptionDTO consumptionDTO, StockDTO stockDTO) {
 		System.out.println("InstructionController changIng()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
@@ -272,6 +277,14 @@ public class InstructionController {
 				releaseDTO.setPchor_cd(pch);
 				// 출고등록 메서드 호출
 				relService.insertrel2(releaseDTO);
+				
+				// 출고 수량에 따라 재고현황에 적용할 재소수량 stockDTO에 저장
+//				String product_cd_name =  releaseDTO.getProduct_cd_name();
+				int Stock_count=receiveService.getStock_count(rproduct_cd_name);
+				stockDTO.setStock_count(Stock_count-releaseDTO.getRel_count());
+				stockDTO.setProduct_cd_name(rproduct_cd_name);
+				// 재고현황에 재고수량 적용 메서드 호출
+				receiveService.updateStockcount(stockDTO);
 			}	
 			
 		}		
