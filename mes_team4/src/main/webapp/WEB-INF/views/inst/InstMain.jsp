@@ -16,7 +16,12 @@
 function showPopup(){
     window.open("${pageContext.request.contextPath}/inst/instinsert","instinsert","width=1400, height=500, top=200, left=200");
 }
-function showPopup2(cd){
+function showPopup2(cd, instruction_state){
+	var instruction_state = instruction_state;
+	if(instruction_state === '생산중' || instruction_state === '생산완료') {
+		alert("생산 중이거나 생산 완료된 작업지시는 수정할 수 없습니다.");
+		return false;
+	}
     window.open("${pageContext.request.contextPath}/inst/instupdate?instruction_code="+cd,"instupdate","width=1100, height=350, top=200, left=200");
 }
 function showPopup3(ef){
@@ -191,7 +196,7 @@ function changefin(){
     			<td style="text-align: center;">${dto.instruction_date}</td> 
     			<td style="text-align: center;">${dto.instruction_state}</td> 	
     			<td style="text-align: center;"><button class="button2" onclick="showPopup3('${dto.instruction_code}');">상세정보</button></td>		
-    			<td style="text-align: center;"><button class="button2" onclick="showPopup2('${dto.instruction_code}');">수정</button></td>
+    			<td style="text-align: center;"><button class="button2" onclick="showPopup2('${dto.instruction_code}', '${dto.instruction_state}');">수정</button></td>
     			</tr>
    			 
 				</c:forEach>	
