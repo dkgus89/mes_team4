@@ -81,7 +81,13 @@ function deleteValue(){
 <c:when test = "${fn:contains(priv, 'E')}">
 	<h2> 입고관리 </h2><br>
 	
-		<div class="search">
+	<div class="wrap2">
+	  <button class="button2" onclick="showPopup();">추가</button>
+	  <button class="button2"  onclick="deleteValue();">삭제</button>
+	 </div><br>
+	 <br>
+	
+		<div class="wrap2">
 		<form action="${pageContext.request.contextPath}/receive/recpage" method="get" >
 			<select name="select" class="button2">
 			<option value="" style="text-align:center">선택</option>
@@ -92,13 +98,10 @@ function deleteValue(){
 			<input type="text" name="search" class="button2" style="width:300px">
 			<input type="submit" class="button2" value="검색">
 		</form>
-	</div>
+	</div><br>
+	<br>
 	
-	<div class="wrap2">
-	  <button class="button2" onclick="showPopup();">추가</button>
-	  <button class="button2"  onclick="deleteValue();">삭제</button>
-	 </div><br>
-	 <br>
+	
 	 
 	 <div>전체 ${pageDTO.count }건</div>
 	 
@@ -132,7 +135,7 @@ function deleteValue(){
 					<td>${dto.product_cd_name }</td>
 					<td>${dto.rec_count}</td>
 					<td>${dto.rec_date }</td>
-					<td><input type="button" value="수정" onclick="updatePopup('${dto.rec_schedule_cd}');"></td>
+					<td><input type="button" class="button2" value="수정" onclick="updatePopup('${dto.rec_schedule_cd}');"></td>
 				</tr>
 				
 				</c:forEach>
@@ -155,6 +158,7 @@ function deleteValue(){
 <a href="${pageContext.request.contextPath}/receive/recpage?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">Next</a>
 </c:if>
 </div>
+
   </c:when>
    <c:otherwise>
       <script type="text/javascript">
@@ -165,9 +169,10 @@ function deleteValue(){
    </c:choose>
 </c:if>
 
-</div>
-<!-- 본문HTML 입력 끝-->
 
+<!-- 본문HTML 입력 끝-->
+</div>
+</div>
 
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="../main/Footer.jsp" />

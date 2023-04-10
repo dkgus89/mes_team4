@@ -122,7 +122,18 @@ function changefin(){
 <!-- 본문HTML 입력 시작-->
 
 	<h2> 작업지시현황 </h2><br>
-	<div id="table_search">
+	
+	<div class="wrap2" style="float: right;">
+		
+	  <button class="button2" onclick="showPopup();">추가</button>
+	  <button class="button2" onclick="chdelete();">삭제</button>
+	   <button class="button2" onclick="changeIng();">작업전환:생산중</button>
+	   <button class="button2" onclick="changefin();">작업전환:생산완료</button>
+	  <br>
+	 </div><br>
+	 <br>
+	
+	<div class="wrap2" id="table_search">
 			<form action="${pageContext.request.contextPath}/inst/instmain" method="get">
 				<select name="select">
 				<c:choose>						
@@ -147,17 +158,9 @@ function changefin(){
 				<input type="text" name="search" class="input_box" value="${pageDTO.search}">
 				<input type="submit" value="search" class="button2">
 			</form>
-	</div>
+	</div><br>
 	<br>
-	<div class="wrap2" style="float: left;">
-		
-	  <button class="button2" onclick="showPopup();">추가</button>
-	  <button class="button2" onclick="chdelete();">삭제</button>
-	   <button class="button2" onclick="changeIng();">작업전환:생산중</button>
-	   <button class="button2" onclick="changefin();">작업전환:생산완료</button>
-	  <br>
-	 </div><br>
-	 <br>
+	
 	 <div>전체 ${pageDTO.count }건</div>
 	 
 	<form name="instlist">
@@ -213,6 +216,7 @@ function changefin(){
 	</form>
 	
 <!-- 페이징 -->
+	<div id="pagingControl">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 <a href="${pageContext.request.contextPath}/inst/instmain?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 이전]</a>
 </c:if>
@@ -224,6 +228,7 @@ function changefin(){
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 <a href="${pageContext.request.contextPath}/inst/instmain?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 다음]</a>
 </c:if>	
+</div>	
 	
 <!-- 본문HTML 입력 끝-->
 	</div>

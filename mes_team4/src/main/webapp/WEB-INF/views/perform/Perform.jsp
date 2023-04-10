@@ -69,7 +69,15 @@ function allCheck(){
     <c:when test = "${fn:contains(priv, 'D')}">
 
 	<h2> 생산실적 </h2><br>
-	<div id="table_search">
+	
+	<div class="wrap2" style="float: right;">
+	  <button class="button2" onclick="showPopup();">추가</button>
+	  <button class="button2" onclick="chdelete();">삭제</button>
+	  <br>
+	 </div><br>
+	 <br>
+	
+	<div class="wrap2" id="table_search">
 			<form action="${pageContext.request.contextPath}/perform/perform" method="get">
 				<!-- 				검색 메뉴 선택 -->
 				<select name="select" class="button2">
@@ -103,15 +111,9 @@ function allCheck(){
 				<input type="text" name="search" class="input_box" value="${pageDTO.search}">
 				<input type="submit" value="search" class="button2">
 			</form>
-	</div>
+	</div><br>
 	<br>
-	<div class="wrap2" style="float: left;">
-		
-	  <button class="button2" onclick="showPopup();">추가</button>
-	  <button class="button2" onclick="chdelete();">삭제</button>
-	  <br>
-	 </div><br>
-	 <br>
+	
 <!-- 	 글 개수 표시 -->
 	 <div>전체 ${pageDTO.count }건</div>
 	 
@@ -176,6 +178,7 @@ function allCheck(){
 	</form>
 	
 <!-- 페이징 -->
+<div id="pagingControl">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 <a href="${pageContext.request.contextPath}/perform/perform?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 이전]</a>
 </c:if>
@@ -187,6 +190,7 @@ function allCheck(){
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 <a href="${pageContext.request.contextPath}/perform/perform?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 다음]</a>
 </c:if>	
+</div>
 
 	 </c:when>
    <c:otherwise>
@@ -199,6 +203,8 @@ function allCheck(){
 </c:if>
 <!-- 본문HTML 입력 끝-->
 	</div>
+	</div>
+	
 
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="../main/Footer.jsp" />

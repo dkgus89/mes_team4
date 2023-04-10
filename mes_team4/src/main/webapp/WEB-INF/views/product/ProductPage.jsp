@@ -74,18 +74,33 @@ function deleteValue(){
 	
 	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
-<c:set var = "priv" value = "${systemDTO2.emp_priv}"/>
-<c:if test = "${!empty sessionScope.emp_no}">
+	<c:set var = "priv" value = "${systemDTO2.emp_priv}"/>
+	<c:if test = "${!empty sessionScope.emp_no}">
       <c:choose>
     <c:when test = "${fn:contains(priv, 'B')}">
 	<h2>품목정보관리</h2><br>
-	
-
-	
+		
 	<div class="wrap2">
 	  <button class="button2" onclick="showPopup();">추가</button>
 	  <button class="button2" onclick="deleteValue();">삭제</button>
 	 </div><br>
+	 <br>
+	 
+	<div class="wrap2" id="table_search" style="text-align:right;">
+		<form action="${pageContext.request.contextPath}/product/prodpage" method="get" >
+			<select name="select" class="button2">
+			<option value="" style="text-align:center">선택</option>
+				<option value="product_dv">제품구분</option>
+				<option value="product_cd_name">제품코드</option>
+				<option value="product_name">제품명</option>
+			</select>
+			<input type="text" name="search" class="input_box" style="width:300px">
+			<input type="submit" class="button2" value="검색">
+		</form>
+	</div>
+	<br>
+	<br>
+	
 
 	 <div>전체 ${pageDTO.count }건</div>
 	 
@@ -123,7 +138,7 @@ function deleteValue(){
 					<td>${productDTO.business_name }</td>
 					<td>${productDTO.product_unit }</td>
 					<td>${productDTO.remarks }</td>
-					<td><input type="button" value="수정" onclick="updatePopup('${productDTO.product_cd_name}');"></td>
+					<td><input type="button" class="button2" value="수정" onclick="updatePopup('${productDTO.product_cd_name}');"></td>
 				</tr>
 					</c:forEach>
 			</c:if>
@@ -132,18 +147,7 @@ function deleteValue(){
 	
 	</form>
 	<br>
-		<div class="search" style="text-align:right;">
-		<form action="${pageContext.request.contextPath}/product/prodpage" method="get" >
-			<select name="select" class="button2">
-			<option value="" style="text-align:center">선택</option>
-				<option value="product_dv">제품구분</option>
-				<option value="product_cd_name">제품코드</option>
-				<option value="product_name">제품명</option>
-			</select>
-			<input type="text" name="search" class="input_box" style="width:300px">
-			<input type="submit" class="button2" value="검색">
-		</form>
-	</div>
+		
 <div id="pagingControl">		
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 <a href="${pageContext.request.contextPath}/product/prodpage?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">Prev</a>
@@ -157,6 +161,7 @@ function deleteValue(){
 <a href="${pageContext.request.contextPath}/product/prodpage?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">Next</a>
 </c:if>
 </div>
+
   </c:when>
    <c:otherwise>
       <script type="text/javascript">
@@ -168,9 +173,10 @@ function deleteValue(){
 </c:if>
 
 
-</div>
-<!-- 본문HTML 입력 끝-->
 
+<!-- 본문HTML 입력 끝-->
+</div>
+</div>
 
 
 <!-- 푸터 들어가는 곳 -->

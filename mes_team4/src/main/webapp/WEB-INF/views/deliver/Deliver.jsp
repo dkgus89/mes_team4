@@ -49,7 +49,15 @@ function allCheck(){
 <!-- 본문HTML 입력 시작-->
 
 	<h2>출하 관리 </h2><br>
-	<div id="table_search">
+	
+	<div class="wrap2">
+	  <button class="button2" onclick="DeliverInsert();">추가</button>
+<!-- 	  <button class="button2">저장</button> -->
+	  <button class="button2" onclick="DeliverDelete1()">삭제</button>
+	 </div><br>
+	 <br>
+	
+	<div class="wrap2" id="table_search">
 			<form action="${pageContext.request.contextPath}/deliver/list" method="get">
 				<!-- 				검색 메뉴 선택 -->
 				<select name="select" class="button2">
@@ -83,15 +91,11 @@ function allCheck(){
 				<input type="text" name="search" class="input_box" value="${pageDTO.search}">
 				<input type="submit" value="search" class="button2">
 			</form>
-	</div>
+	</div><br>
+	<br>
+	<br>
 	
-	<div class="wrap2">
-	  <button class="button2" onclick="DeliverInsert();">추가</button>
-<!-- 	  <button class="button2">저장</button> -->
-	  <button class="button2" onclick="DeliverDelete1()">삭제</button>
-	  
-	 </div><br>
-	 <br>
+	
 	 
 	 
 	<form name="deliverlist" >
@@ -155,6 +159,7 @@ function allCheck(){
 		
 		<div id="array"></div>
 		
+	<div id="pagingControl">
 	<c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
 	<a href="${pageContext.request.contextPath }deliver/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 이전]	</a>
 	</c:if>
@@ -168,6 +173,8 @@ function allCheck(){
 	<c:if test="${pageDTO.endPage < pageDTO.pageCount}">
 	<a href="${pageContext.request.contextPath }deliver/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">Next</a>
 	</c:if>
+	</div>
+	
 	
 	
 	

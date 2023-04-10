@@ -115,7 +115,14 @@ $("#select").change(function() {
 	<h2>창고</h2><br>
 	
 <!-- 	검색창 -->
-    <div class="search">
+	<div class="wrap2">
+	
+	  <button class="button2" onclick="insertPopup();">등록</button>
+	  <button class="button2"  onclick="deleteValue();">삭제</button>
+	 </div><br>
+	 <br>
+
+    <div class="wrap2">
     <form action="${pageContext.request.contextPath}/wh/whpage" method="get">
       
        <select id="select" name="select" onchange="itemChange()" class="button2">
@@ -136,14 +143,11 @@ $("#select").change(function() {
        <input type="submit" class="button2" value="검색" >
        
      </form>  
-    </div>
+    </div><br>
+    <br>
+    <br>
 	
-	<div class="wrap2">
 	
-	  <button class="button2" onclick="insertPopup();">등록</button>
-	  <button class="button2"  onclick="deleteValue();">삭제</button>
-	 </div><br>
-	 <br>
 	 
 	 
 	<form name="whlist">
@@ -186,7 +190,7 @@ $("#select").change(function() {
 		
 	</form>
 
-
+	<div id="pagingControl">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 <a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">[10페이지 이전]</a>
 </c:if>
@@ -198,6 +202,7 @@ $("#select").change(function() {
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 <a href="${pageContext.request.contextPath}/wh/whpage?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">[10페이지 다음]</a>
 </c:if>
+</div>
 	
 <!-- 본문HTML 입력 끝-->
 	</div>

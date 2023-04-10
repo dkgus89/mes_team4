@@ -101,7 +101,7 @@
 	<input type="text" name="search" class="input_box" placeholder="구분 또는 거래처명을 검색하세요" size=60>
 	<input type="submit" value="search" class="button2">
 	</form>
-	</div>
+	</div><br>
 	<br>
 	<br>
  
@@ -164,7 +164,7 @@
 <%-- 		<td>${businessDTO.business_name}</td> --%>
 			<td>${businessDTO.business_tel}</td>
 			<td>${businessDTO.business_ceo}</td>
-			<td><input type="button" value="수정" onclick="updatePopup('${businessDTO.business_cd}');">
+			<td><input type="button" class="button2" value="수정" onclick="updatePopup('${businessDTO.business_cd}');">
 			</td>
 			</tr>
 			</c:forEach>

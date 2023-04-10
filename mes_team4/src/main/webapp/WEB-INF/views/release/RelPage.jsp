@@ -77,8 +77,13 @@ function deleteValue(){
 <!-- 본문HTML 입력 시작-->
 	<h2>출고관리</h2><br>
 	
+	<div class="wrap2">
+	  <button class="button2" onclick="insertPopup();">등록</button>
+	  <button class="button2"  onclick="deleteValue();">삭제</button>  
+	 </div><br>
+	 <br>
 	
-    <div class="search">
+    <div class="wrap2">
     <form action="${pageContext.request.contextPath}/rel/relpage" method="get">
        <select name="select" class="button2">
        		<option value="wh_name">창고명</option>
@@ -87,16 +92,9 @@ function deleteValue(){
        <input type="text" name="search" class="button2">
        <input type="submit" class="button2" value="검색" >
      </form>  
-    </div>
+    </div><br>
+    <br>	
 
-	
-	<div class="wrap2">
-	
-	  <button class="button2" onclick="insertPopup();">등록</button>
-	  <button class="button2"  onclick="deleteValue();">삭제</button>
-	  
-	 </div><br>
-	 <br>
 	 
 	<div>전체 ${pageDTO.count }건</div>
 	<form name="rellist">
@@ -136,7 +134,7 @@ function deleteValue(){
 		
 	</form>
 
-
+<div id="pagingControl">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 <a href="${pageContext.request.contextPath}/rel/relpage?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">[10페이지 이전]</a>
 </c:if>
@@ -148,6 +146,7 @@ function deleteValue(){
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 <a href="${pageContext.request.contextPath}/rel/relpage?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">[10페이지 다음]</a>
 </c:if>
+</div>
 	
 <!-- 본문HTML 입력 끝-->
 	</div>

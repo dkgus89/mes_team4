@@ -67,7 +67,14 @@ function allCheck(){
 
 	<h2> 설비정보관리 </h2><br>
 	
-	<div id="table_search">
+	<div class="wrap2" style="float: right;">	
+<!-- 		추가, 삭제 버튼 -->
+	  <button class="button2" onclick="showPopup();">추가</button>
+	  <button class="button2" onclick="chdelete();">삭제</button>  
+	 </div><br>
+	 <br>
+	
+	<div class ="wrap2" id="table_search">
 			<form action="${pageContext.request.contextPath}/line/line" method="get">
 				<!-- 				검색 메뉴 선택 -->
 				<select name="select" class="button2">
@@ -94,13 +101,8 @@ function allCheck(){
 			</form>
 		</div>
 		<br>
-	<div class="wrap2" style="float: left;">	
-<!-- 		추가, 삭제 버튼 -->
-	  <button class="button2" onclick="showPopup();">추가</button>
-	  <button class="button2" onclick="chdelete();">삭제</button>
-	  
-	 </div><br>
-	 <br>
+		<br>
+
 <!-- 	 글 개수 표시 -->
 	 <div>전체 ${pageDTO.count }건</div>
 	 
@@ -155,6 +157,7 @@ function allCheck(){
 	</form>
 	
 <!-- 페이징 -->
+<div id="pagingControl">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 <a href="${pageContext.request.contextPath}/line/line?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 이전]</a>
 </c:if>
@@ -166,6 +169,7 @@ function allCheck(){
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 <a href="${pageContext.request.contextPath}/line/line?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 다음]</a>
 </c:if>
+</div>
 		
 		  </c:when>
    <c:otherwise>
@@ -179,6 +183,7 @@ function allCheck(){
 		
 <!-- 본문HTML 입력 끝-->
 	</div>
+</div>
 
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="../main/Footer.jsp" />

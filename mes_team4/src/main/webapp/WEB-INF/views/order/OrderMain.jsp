@@ -141,7 +141,7 @@
 			<c:otherwise> ... </c:otherwise>
 			</c:choose>
 			
-			<td><input type="button" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
+			<td><input type="button"  class="button2" value="수정" onclick="updatePopup('${orderDTO.order_cd}');"></td>
 			</tr>
 			</c:forEach>
 			</c:when>

@@ -40,7 +40,13 @@ function memberdelete(a) {
 	  <button class="button2" onclick="memberinsert()">추가</button><br>
 
 	 </div><br><br>
-
+	 <div id="table_search" style="text-align:right;">
+				<form action="${pageContext.request.contextPath}/system/membermain" method="get">
+					<input type="text" name="search" class="input_box" placeholder="사원명을 입력하세요"> 
+					<button class="button2"	type="submit" value="search">검색</button>	
+				</form>
+			</div>
+		<br>
 		<input type="hidden" value="">
 		
 		<table id="vendortable" class=" table table-striped">
@@ -79,12 +85,7 @@ function memberdelete(a) {
 		</table>
 
 		<div id="array"></div>
-	<div id="table_search" style="text-align:right;">
-				<form action="${pageContext.request.contextPath}/system/membermain" method="get">
-					<input type="text" name="search" class="input_box" placeholder="사원명을 입력하세요"> 
-					<button class="button2"	type="submit" value="search">검색</button>	
-				</form>
-			</div>
+	
 	</c:when>
 	<c:otherwise>
 		<script type="text/javascript">
@@ -98,19 +99,19 @@ function memberdelete(a) {
 
 
 
-
+	<div id="pagingControl">
 	<c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
 	<a href="${pageContext.request.contextPath }/system/membermain?pageNum=${pageDTO.startPage - pageDTO.pageBlock}&search=${pageDTO.search}">[10페이지 이전]</a>
-</c:if>
+	</c:if>
 
-<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+	<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
 	<a href="${pageContext.request.contextPath }/system/membermain?pageNum=${i}&search=${pageDTO.search}">${i}</a>
-</c:forEach>
+	</c:forEach>
 
-<c:if test="${pageDTO.endPage < pageDTO.pageCount}">
+	<c:if test="${pageDTO.endPage < pageDTO.pageCount}">
 	<a href="${pageContext.request.contextPath }/system/membermain?pageNum=${pageDTO.endPage + pageDTO.pageBlock}&search=${pageDTO.search}">[10페이지 이후]</a>
-</c:if>
-
+	</c:if>	
+	</div>
 	
 <!-- 본문HTML 입력 끝-->
 	</div>
