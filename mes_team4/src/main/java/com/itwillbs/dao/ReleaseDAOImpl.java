@@ -102,7 +102,7 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 	}
 
 	@Override
-	public ReleaseDTO getbfRel_count(ReleaseDTO releaseDTO) {
+	public int getbfRel_count(ReleaseDTO releaseDTO) {
 		System.out.println("ReleaseDAOImpl getbfRel_count()");
 		
 		return sqlSession.selectOne(namespace+".getbfRel_count", releaseDTO);

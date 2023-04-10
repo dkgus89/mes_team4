@@ -151,8 +151,8 @@ public class ReleaseController {
 		
 		releaseDTO.setRel_schedule_cd(releaseDTO.getRel_schedule_cd());
 		releaseDTO.setProduct_cd_name(product_cd_name);			
-		ReleaseDTO relDTO=relService.getbfRel_count(releaseDTO);
-		stockDTO.setStock_count((Stock_count+relDTO.getRel_count())-releaseDTO.getRel_count());
+		int bfrel=relService.getbfRel_count(releaseDTO);
+		stockDTO.setStock_count((Stock_count+bfrel)-releaseDTO.getRel_count());
 		stockDTO.setProduct_cd_name(product_cd_name);
 		// 재고현황에 재고수량 적용 메서드 호출
 		receiveService.updateStockcount(stockDTO);
@@ -174,10 +174,10 @@ public class ReleaseController {
 			String rel_schedule_cd=ajaxMsg[i];
 			String product_cd_name =relService.getProduct_cd_name2(rel_schedule_cd);
 			releaseDTO.setRel_schedule_cd(rel_schedule_cd);
-			releaseDTO.setProduct_cd_name(product_cd_name);			
-			ReleaseDTO relDTO=relService.getbfRel_count(releaseDTO);
+			releaseDTO.setProduct_cd_name(product_cd_name);
+			int bfrel=relService.getbfRel_count(releaseDTO);
 			int Stock_count=receiveService.getStock_count(product_cd_name);
-			stockDTO.setStock_count(Stock_count+relDTO.getRel_count());
+			stockDTO.setStock_count(Stock_count+bfrel);
 			stockDTO.setProduct_cd_name(product_cd_name);
 		// 재고현황에 재고수량 적용 메서드 호출
 		receiveService.updateStockcount(stockDTO);

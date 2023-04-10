@@ -28,7 +28,7 @@ public interface ReleaseService {
 
 	public void finishrel(String rel_schedule_cd);
 
-	public ReleaseDTO getbfRel_count(ReleaseDTO releaseDTO);
+	public int getbfRel_count(ReleaseDTO releaseDTO);
 
 	public String getProduct_cd_name2(String rel_schedule_cd);
 

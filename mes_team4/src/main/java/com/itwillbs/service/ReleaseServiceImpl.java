@@ -120,7 +120,7 @@ public class ReleaseServiceImpl implements ReleaseService{
 
 
 	@Override
-	public ReleaseDTO getbfRel_count(ReleaseDTO releaseDTO) {
+	public int getbfRel_count(ReleaseDTO releaseDTO) {
 		System.out.println("ReleaseServiceImpl getbfRel_count()");
 		
 		return releaseDAO.getbfRel_count(releaseDTO);
