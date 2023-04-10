@@ -118,20 +118,17 @@ $("#select").change(function() {
     <div class="search">
     <form action="${pageContext.request.contextPath}/wh/whpage" method="get">
       
-       <select id="select" name="select" onchange="itemChange()" >
+       <select id="select" name="select" onchange="itemChange()" class="button2">
 			<option value="">선택하세요</option>
 			<option value="wh_name">이름</option>
 			<option value="wh_addr">지역</option>
 			<option value="wh_dv">창고유형</option>
 		</select>
-		
-	
-<!-- 		wh_name 선택했을때 -->
-		<input type="text" id="search1" name="search" />
-		
 
+<!-- 		wh_name 선택했을때 -->
+		<input type="text" id="search1" name="search" class="button2"/>
 <!-- 		wh_addr, wh_dv선택했을때 --> 
-		<select id="search2" name="search_option" >
+		<select id="search2" name="search_option" class="button2">
 			<option value="">구분을 선택하세요</option>
 		</select>
 		
