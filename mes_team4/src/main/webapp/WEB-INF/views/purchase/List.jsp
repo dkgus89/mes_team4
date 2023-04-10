@@ -22,23 +22,51 @@
 		});	
 	
 		// 발주일자 날짜 제한
-		$(document).on('change', '#today', function() {
-			var purchase_due = $('#dueday').val();
-		    var purchase_date = $(this).val();		  
+		$(document).on('change', '#stToday', function() {
+		    var stToday = $(this).val();	
+		    var edToday = $('#edToday').val();
+		    var stDueday = $('#stDueday').val();
+		    var edDueday = $('#edDueday').val();
 		    
-		    if (purchase_due && purchase_due < purchase_date) {
-		      alert("발주일자를 " + purchase_due + " 날짜 이전으로 선택해주세요.");
+		    if(edToday && edToday < stToday) {
+		      alert("발주일자를 " + edToday + " 날짜 이전으로 선택해주세요.");
+		      $(this).val('');
+		    }
+		});
+		
+		$(document).on('change', '#edToday', function() {
+			var edToday = $(this).val();	
+		    var stToday = $('#stToday').val();
+		    var stDueday = $('#stDueday').val();
+		    var edDueday = $('#edDueday').val();	  
+		    
+		    if(edToday < stToday) {
+		      alert("발주일자를 " + stToday + " 날짜 이후로 선택해주세요.");
 		      $(this).val('');
 		    }
 		});
 		
 		// 납품예정일 날짜 제한
-		$(document).on('change', '#dueday', function() {
-			var purchase_date = $('#today').val();
-		    var purchase_due = $(this).val();
+		$(document).on('change', '#stDueday', function() {
+			var stDueday = $(this).val();	
+			var stToday = $('#stToday').val();
+		    var edToday = $('#edToday').val();
+		    var edDueday = $('#edDueday').val();
 		    
-		    if (purchase_due < purchase_date) {
-		      alert("납품예정일을 " + purchase_date + " 날짜 이후로 선택해주세요.");
+		    if(edDueday && edDueday < stDueday) {
+			      alert("납품예정일을 " + edDueday + " 날짜 이전으로 선택해주세요.");
+			      $(this).val('');
+			}
+		});
+		
+		$(document).on('change', '#edDueday', function() {
+			var edDueday = $(this).val();	
+			var stToday = $('#stToday').val();
+		    var edToday = $('#edToday').val();
+		    var stDueday = $('#stDueday').val();
+		    
+		    if(edDueday < stDueday) {
+		      alert("납품예정일을 " + stToday + " 날짜 이후로 선택해주세요.");
 		      $(this).val('');
 		    }
 		});
