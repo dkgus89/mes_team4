@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.ReleaseDAO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.ReceiveDTO;
 import com.itwillbs.domain.ReleaseDTO;
 import com.itwillbs.domain.WHDTO;
 
@@ -155,6 +156,20 @@ public class ReleaseServiceImpl implements ReleaseService{
 		
 		
 		releaseDAO.insertrel2(releaseDTO);		
+	}
+
+
+	@Override
+	public List<Map<String, Object>> getReceiveSList(PageDTO pageDTO) {
+		System.out.println("ReleaseServiceImpl getReceiveSList()");
+		
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+		int endRow = startRow+pageDTO.getPageSize()-1;
+			
+		pageDTO.setStartRow(startRow);
+		pageDTO.setEndRow(endRow);
+			
+		return releaseDAO.getReceiveSList(pageDTO);
 	}
 
 

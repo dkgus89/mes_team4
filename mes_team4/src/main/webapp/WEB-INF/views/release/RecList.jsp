@@ -16,9 +16,9 @@
 <!-- 자바스크립트 입력 시작-->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-function input1(rec_schedule_cd,wh_cd,product_cd_name, rec_date, rec_count,pchor_cd){
+function input1(rec_schedule_cd,wh_cd,product_cd_name, rec_date, rec_count,pchor_cd,stock_count){
 	
-	opener.setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_date,rec_count,pchor_cd);
+	opener.setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_date,rec_count,pchor_cd,stock_count);
 
 	window.close();
 	
@@ -48,6 +48,7 @@ function input1(rec_schedule_cd,wh_cd,product_cd_name, rec_date, rec_count,pchor
 					<th>입고창고</th>
 					<th>입고제품</th>
 					<th>입고일</th>
+					<th>현재고</th>
 					<th>입고수량</th>
 					<th>발주/수주코드</th>
 					<th>선택</th>
@@ -61,9 +62,10 @@ function input1(rec_schedule_cd,wh_cd,product_cd_name, rec_date, rec_count,pchor
 					<td>${receiveDTO.wh_cd}</td>
 					<td>${receiveDTO.product_cd_name}</td>
 					<td>${receiveDTO.rec_date}</td>
+					<td>${receiveDTO.stock_count}</td>
 					<td>${receiveDTO.rec_count}</td>
 					<td>${receiveDTO.pchor_cd}</td>
-					<td><button class="button2" onClick="input1('${receiveDTO.rec_schedule_cd}','${receiveDTO.wh_cd}','${receiveDTO.product_cd_name}','${receiveDTO.rec_date}','${receiveDTO.rec_count}','${receiveDTO.pchor_cd}');">선택</button></td>
+					<td><button class="button2" onClick="input1('${receiveDTO.rec_schedule_cd}','${receiveDTO.wh_cd}','${receiveDTO.product_cd_name}','${receiveDTO.rec_date}','${receiveDTO.rec_count}','${receiveDTO.pchor_cd}','${receiveDTO.stock_count}');">선택</button></td>
 				</tr>
 			</c:forEach>			
 			</tbody>

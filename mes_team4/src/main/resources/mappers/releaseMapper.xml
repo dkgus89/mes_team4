@@ -81,6 +81,24 @@
         limit #{startRow}, #{pageSize}   	
     </select>
     
+    <resultMap type="map" id="map3">
+		<result column="rel_schedule_cd"  property="rel_schedule_cd"/>
+		<result column="rec_date"  property="rec_date"/>
+		<result column="remarks"  property="remarks"/>
+		<result column="rec_count"  property="rec_count"/>
+		<result column="pchor_cd"  property="pchor_cd"/>
+		<result column="wh_cd"  property="wh_cd"/>
+		<result column="product_cd_name"  property="product_cd_name"/>
+		<result column="stock_count"  property="stock_count"/>
+	</resultMap>
+    
+   <select id="getReceiveSList" resultMap="map3">
+        select r.rec_schedule_cd, r.rec_date, r.rec_count, r.pchor_cd, r.wh_cd, r.product_cd_name, s.stock_count
+        from receive_schedule r join stock s
+        on r.product_cd_name=s.product_cd_name
+        order by rec_schedule_cd    	        
+    </select>
+    
 <!-- 	페이징 -->
 	<select id="getRelCount" resultType="java.lang.Integer">
         select count(*) from release_schedule as r

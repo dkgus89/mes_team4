@@ -196,7 +196,7 @@ public class ReleaseController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
 		
-		List<ReceiveDTO> receiveList=receiveService.getReceiveList(pageDTO);
+		List<Map<String, Object>> receiveList=relService.getReceiveSList(pageDTO);
 		
 //		페이징처리
 		int count = receiveService.getReceiveCount(pageDTO);

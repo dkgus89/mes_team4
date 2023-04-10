@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.ReceiveDTO;
 import com.itwillbs.domain.ReleaseDTO;
 
 @Repository
@@ -119,6 +120,14 @@ public class ReleaseDAOImpl implements ReleaseDAO {
 		System.out.println("ReleaseDAOImpl insertrel2()");
 		
 		sqlSession.insert(namespace+".insertrel2", releaseDTO);		
+	}
+
+	@Override
+	public List<Map<String, Object>> getReceiveSList(PageDTO pageDTO) {
+		System.out.println("ReleaseDAOImpl getReceiveSList()");
+		
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		return sqlSession.selectList(namespace+".getReceiveSList", pageDTO);
 	}
 
 

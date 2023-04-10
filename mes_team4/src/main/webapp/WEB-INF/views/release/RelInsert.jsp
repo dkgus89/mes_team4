@@ -26,7 +26,7 @@ function recListBtn(){
 }
 
 //입고리스트 팝업에서 선택한 값 받아오기
-function setChildValue(rec_schedule_cd,wh_cd,product_cd_name, rec_date, rec_count,pchor_cd){
+function setChildValue(rec_schedule_cd,wh_cd,product_cd_name, rec_date, rec_count,pchor_cd,stock_count){
 	
     document.getElementById("rec_schedule_cd").value = rec_schedule_cd;
     document.getElementById("wh_cd").value = wh_cd;
@@ -34,6 +34,7 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name, rec_date, rec_coun
     document.getElementById("rec_date").value = rec_date;
     document.getElementById("rec_count").value = rec_count;
     document.getElementById("pchor_cd").value = pchor_cd;
+    document.getElementById("stock_count").value = stock_count;
 }
 
 //출고 등록
@@ -48,8 +49,10 @@ function sub(){
 		// submit 유효성 검사
 		var fp = document.getElementById("rel_count").value;
 		var qt = document.getElementById("rec_count").value;
+		var st = document.getElementById("stock_count").value;
 		var int_fp = Number(fp);
 		var int_qt = Number(qt);
+		var int_st = Number(st);
 		var result = confirm("출고를 등록하시겠습니까?");
 		if (result == true){
 			if($('#rec_schedule_cd').val()==""){
@@ -92,6 +95,11 @@ function sub(){
 	    		$('.rel_date').focus();
 	    		return false;
 	    	}
+			if(int_fp > int_st){
+				alert("출고 수량이 현재고량을 초과했습니다.");
+				$('#rel_count').focus();
+				return false;
+			}
 			
 			// 유효성 검사 통과시 submit
 			window.opener.name = "parentPage";
@@ -154,6 +162,7 @@ function rst(){
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>입고일</th>
+					<th>현재고</th>
 					<th>입고수량</th>
 					<th>발주/수주코드</th>
 				</tr>
@@ -161,6 +170,7 @@ function rst(){
 			<tbody>
 				<tr>
 					<td><input type="date" name="rec_date" id="rec_date"></td>
+					<td><input type="text" name="stock_count" id="stock_count"></td>
 					<td><input type="text" name="rec_count" id="rec_count"></td>
 					<td><input type="text" name="pchor_cd" id="pchor_cd"></td>
 
