@@ -14,8 +14,8 @@
 	
 	<update id="updateStockcount">
 		update stock
-		set stock_count=(#{stock_count})
-		where product_cd_name=(#{product_cd_name})
+		set stock_count=#{stock_count}
+		where product_cd_name=#{product_cd_name}
 	</update>
 	
 	<select id="getStock_count" resultType="java.lang.Integer">
@@ -135,10 +135,10 @@
     
 <!-- 		재고 현황 관련 -->
 		
-		<select id="getbfRec_count" resultType="java.lang.Integer">
+		<select id="getbfRec_count" resultType="com.itwillbs.domain.ReceiveDTO">
 			select rec_count
 			from receive_schedule
-			where product_cd_name = #{product_cd_name}
+			where product_cd_name = #{product_cd_name} and rec_schedule_cd = #{rec_schedule_cd}
 		</select>
 		
 		<select id="getProduct_cd_name2" resultType="java.lang.String">

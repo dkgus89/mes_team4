@@ -28,7 +28,7 @@ public interface ReceiveDAO {
 
 	public int getStock_count(String product_cd_name);
 
-	public int getbfRec_count(String product_cd_name);
+	public ReceiveDTO getbfRec_count(ReceiveDTO eceiveDTO);
 
 	public String getProduct_cd_name2(String rec_schedule_cd);
 

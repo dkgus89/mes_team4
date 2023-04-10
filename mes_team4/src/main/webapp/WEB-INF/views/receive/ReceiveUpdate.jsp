@@ -41,7 +41,7 @@ function sub(){
 	 </div><br><br>
 	 
 	<form name="receiveUpdate" method="post" action="${pageContext.request.contextPath}/receive/recupdatePro">
-		<input type="hidden" value="">
+		<input type="hidden" name="rec_schedule_cd" value="${receiveDTO.rec_schedule_cd}">
 		
 		<table id="vendortable" class="table table-striped">
 			<thead>

@@ -21,6 +21,7 @@ import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.PurchaseDTO;
 import com.itwillbs.domain.ReceiveDTO;
+import com.itwillbs.domain.ReleaseDTO;
 import com.itwillbs.domain.StockDTO;
 import com.itwillbs.domain.WHDTO;
 import com.itwillbs.service.OrderService;
@@ -331,10 +332,15 @@ public class ReceiveController {
 	public String recupdatePro(ReceiveDTO receiveDTO, StockDTO stockDTO) {
 		
 		// 입고수량 수정에 따라 재고현황에 적용할 재소수량 stockDTO에 저장
+		String rec_schedule_cd = receiveDTO.getRec_schedule_cd();
 		String product_cd_name =  receiveDTO.getProduct_cd_name();
 		int Stock_count=receiveService.getStock_count(product_cd_name);
-		int bfreccount=receiveService.getbfRec_count(product_cd_name);
-		stockDTO.setStock_count((Stock_count-bfreccount)+receiveDTO.getRec_count());
+		int reccount=receiveDTO.getRec_count();		
+		receiveDTO.setRec_schedule_cd(rec_schedule_cd);
+		receiveDTO.setProduct_cd_name(product_cd_name);			
+		ReceiveDTO recDTO=receiveService.getbfRec_count(receiveDTO);
+		int bfreccount=recDTO.getRec_count();		
+		stockDTO.setStock_count((Stock_count-bfreccount)+reccount);		
 		stockDTO.setProduct_cd_name(product_cd_name);
 		// 재고현황에 재고수량 적용 메서드 호출
 		receiveService.updateStockcount(stockDTO);
@@ -371,13 +377,22 @@ public class ReceiveController {
 				String product_cd_name =receiveService.getProduct_cd_name2(rec_schedule_cd);
 				String pchor_cd=receiveService.getPchor_cd(rec_schedule_cd);
 				if(receiveService.getRel_count(pchor_cd)>0) {
-				int sumrelcount=receiveService.getSumRelCount(pchor_cd);
-				int bfreccount=receiveService.getbfRec_count(product_cd_name);
-				int Stock_count=receiveService.getStock_count(product_cd_name);
-				stockDTO.setStock_count((Stock_count-bfreccount)+sumrelcount);
-				stockDTO.setProduct_cd_name(product_cd_name);
+					
+					int sumrelcount=receiveService.getSumRelCount(pchor_cd);
+					
+					
+					receiveDTO.setRec_schedule_cd(rec_schedule_cd);
+					receiveDTO.setProduct_cd_name(product_cd_name);			
+					ReceiveDTO recDTO=receiveService.getbfRec_count(receiveDTO);
+					int bfreccount=recDTO.getRec_count();						
+					int Stock_count=receiveService.getStock_count(product_cd_name);
+					stockDTO.setStock_count((Stock_count-bfreccount)+sumrelcount);						
+					stockDTO.setProduct_cd_name(product_cd_name);
 				}else {
-					int bfreccount=receiveService.getbfRec_count(product_cd_name);
+					receiveDTO.setRec_schedule_cd(rec_schedule_cd);
+					receiveDTO.setProduct_cd_name(product_cd_name);			
+					ReceiveDTO recDTO=receiveService.getbfRec_count(receiveDTO);
+					int bfreccount=recDTO.getRec_count();	
 					int Stock_count=receiveService.getStock_count(product_cd_name);
 					stockDTO.setStock_count(Stock_count-bfreccount);
 					stockDTO.setProduct_cd_name(product_cd_name);

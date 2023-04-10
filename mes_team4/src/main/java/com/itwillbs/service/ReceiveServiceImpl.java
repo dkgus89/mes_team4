@@ -93,10 +93,10 @@ public class ReceiveServiceImpl implements ReceiveService{
 	}
 
 	@Override
-	public int getbfRec_count(String product_cd_name) {
+	public ReceiveDTO getbfRec_count(ReceiveDTO receiveDTO) {
 		System.out.println("ReceiveServiceImpl getbfRec_count()");
 		
-		return receiveDAO.getbfRec_count(product_cd_name);
+		return receiveDAO.getbfRec_count(receiveDTO);
 	}
 
 	@Override
@@ -126,5 +126,6 @@ public class ReceiveServiceImpl implements ReceiveService{
 		
 		return receiveDAO.getRel_count(pchor_cd);
 	}
+
 
 }

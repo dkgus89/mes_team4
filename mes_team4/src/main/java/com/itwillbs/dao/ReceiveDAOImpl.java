@@ -77,10 +77,10 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 		return sqlSession.selectOne(namespace+".getStock_count",product_cd_name);
 	}
 	@Override
-	public int getbfRec_count(String product_cd_name) {
+	public ReceiveDTO getbfRec_count(ReceiveDTO receiveDTO) {
 		System.out.println("ReceiveDAOImpl getbfRec_count()");
 		
-		return sqlSession.selectOne(namespace+".getbfRec_count",product_cd_name);
+		return sqlSession.selectOne(namespace+".getbfRec_count", receiveDTO);
 	}
 	@Override
 	public String getProduct_cd_name2(String rec_schedule_cd) {
@@ -106,5 +106,4 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 		
 		return sqlSession.selectOne(namespace+".getRel_count",pchor_cd);
 	}
-
 }
