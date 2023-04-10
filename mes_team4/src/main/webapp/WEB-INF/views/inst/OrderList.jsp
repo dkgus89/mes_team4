@@ -89,10 +89,9 @@ function input1(order_cd, product_cd_name, product_name, order_count, deliver_da
 
 		<tbody>
 		<c:choose>
+		
 			<c:when test="${not empty orderListMap}">
 				<c:forEach var="dto" items="${orderListMap}" varStatus="sts">
-					<c:choose>
-						<c:when test="${sts.index eq '0'}">
 						<tr>
 							<td>${pageDTO.startRow+1 + sts.index}</td>
 							<td>${dto.order_cd}</td>
@@ -105,24 +104,6 @@ function input1(order_cd, product_cd_name, product_name, order_count, deliver_da
 							<td>${dto.emp_no}</td>
 							<td><button class="button2" onClick="input1('${dto.order_cd}','${dto.product_cd_name}','${dto.product_name}','${dto.order_count}','${dto.deliver_date}');">선택</button></td>
 						</tr>
-						</c:when>
-						<c:otherwise>
-							<c:if test="${dto[sts.index].order_cd ne dto[sts.index-1].order_cd}"> 
-							<tr>
-								<td>${pageDTO.startRow+1 + sts.index}</td>
-								<td>${dto.order_cd}</td>
-								<td>${dto.business_cd}</td>
-								<td>${dto.product_cd_name}</td>
-								<td>${dto.product_name}</td>
-								<td>${dto.order_count}</td>
-								<td>${dto.order_date}</td>
-								<td>${dto.deliver_date}</td>
-								<td>${dto.emp_no}</td>
-								<td><button class="button2" onClick="input1('${dto.order_cd}','${dto.product_cd_name}','${dto.product_name}','${dto.order_count}','${dto.deliver_date}');">선택</button></td>
-							</tr>
-							</c:if>
-						</c:otherwise>
-					</c:choose>
 					
 				</c:forEach>
 			</c:when>
@@ -131,7 +112,8 @@ function input1(order_cd, product_cd_name, product_name, order_count, deliver_da
 	            <tr>
 	            <td colspan="10" style="text-align: center;">등록된 데이터가 없습니다.</td>
 	            </tr>
-	        </c:otherwise>	
+	        </c:otherwise>
+	        	
 		</c:choose>
 		</tbody>
 			

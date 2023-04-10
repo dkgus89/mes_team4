@@ -46,16 +46,11 @@
 	</resultMap>
 
 	<select id="getOrderListMap" resultMap="map2">
-		SELECT o.order_cd, o.business_cd, o.product_cd_name, o.order_count, o.order_date, o.deliver_date, o.emp_no, c.cproduct_name, c.rproduct_cd_name, c.rproduct_name, c.consumption, c.consumption_unit
-		from consumption_management c left join (select * from order_management where con = '생산전' ) o
-		ON o.product_cd_name = c.cproduct_cd_name
-		where o.order_cd is not null 
-		order by order_cd
-    	<!-- SELECT o.order_cd, o.business_cd, o.product_cd_name, o.order_count, o.order_date, o.deliver_date, o.emp_no,c.cproduct_name, c.rproduct_cd_name, c.rproduct_name, c.consumption, c.consumption_unit
+    	SELECT o.order_cd, o.business_cd, o.product_cd_name, o.order_count, o.order_date, o.deliver_date, o.emp_no,c.cproduct_name, c.rproduct_cd_name, c.rproduct_name, c.consumption, c.consumption_unit
 		FROM order_management o right join consumption_management c 
 		ON o.product_cd_name = c.cproduct_cd_name
 		where o.order_cd is not null and o.con = '생산전'
-		group by o.order_cd -->
+		group by o.order_cd
     </select>
     
 	<select id="getConsListMap" resultMap="map2">
@@ -68,14 +63,8 @@
 	
 	<select id="getordercount" resultType="java.lang.Integer">
 		SELECT count(*)
-		from consumption_management c left join (select * from order_management where con = '생산전' ) o
-		ON o.product_cd_name = c.cproduct_cd_name
-		where o.order_cd is not null 
-		order by order_cd
-        <!-- SELECT count(*)
-		FROM order_management o right join consumption_management c 
-		ON o.product_cd_name = c.cproduct_cd_name
-		where o.order_cd is not null and o.con = '생산전' -->
+        from order_management
+		where con = '생산전';
     </select>
 
 	<resultMap type="map" id="map3">
