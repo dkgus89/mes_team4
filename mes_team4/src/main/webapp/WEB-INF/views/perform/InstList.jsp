@@ -105,7 +105,8 @@ function input1(instruction_code,line_cd,product_cd_name,instruction_qt,instruct
 	
 	</form>
 	
-	<!-- 페이징 -->
+<!-- 페이징 -->
+<div id="pagingControl">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 <a href="${pageContext.request.contextPath}/perform/instlist?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 이전]</a>
 </c:if>
@@ -117,7 +118,7 @@ function input1(instruction_code,line_cd,product_cd_name,instruction_qt,instruct
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 <a href="${pageContext.request.contextPath}/perform/instlist?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 다음]</a>
 </c:if>	
-	
+</div>
 	
 <!-- 본문HTML 입력 끝-->
 	</div>
