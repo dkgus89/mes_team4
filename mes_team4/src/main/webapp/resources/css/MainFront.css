@@ -342,6 +342,53 @@
 	  --button-bg-color: #6799FF;
 	}
 	
+	#deleteRowBtn {
+	  -webkit-appearance: none;
+	  -moz-appearance: none;
+	  appearance: none;
+	  
+	  background: var(--button-bg-color);
+	  color: var(--button-color);
+	  
+	  margin: 0;
+	  padding: 5px 8px;
+	  
+	  font-size: 15px;
+	  font-weight: bolder;
+	  text-align: center;
+	  text-decoration: none;
+	  
+	  border: 1px solid gray;
+	  border-radius: 4px;
+	  
+	  display: inline-block;
+	  width: auto;
+	  
+	  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	  
+	  cursor: pointer;
+	  
+	  transition: 0.5s;
+	  
+	}
+	
+	#addRowBtn {
+		width : 100%;
+		padding: 10px;
+		border: 1px solid #c6c9cc;
+		border-top: 0;
+		cursor: pointer;  
+		transition: 0.5s;
+		display: flex;
+    	justify-content: center;
+    	align-items: flex-start;
+    	gap: 4px;
+	}
+	
+	#addRowBtn:hover {
+		background-color: #CFCFCF;
+	}
+	
 	#List_wrap {
 		margin : 20px 20px;
 		width : 940px;

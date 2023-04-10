@@ -211,14 +211,14 @@
 							<option value="${unit}">${unit}</option>
 						</c:forEach>
 					</select> </td>
-					<td><button type="button" id="deleteRowBtn">삭제</button></td>
+					<td><button type="button" id="deleteRowBtn">✖</button></td>
 				</tr>
 			</tbody>
 		</table>
 			
 	</form>
 	
-	<button id="addRowBtn">원자재 추가</button>
+	<button id="addRowBtn"><span>원자재 추가</span><span style="font-size: 20px;">&#43;</span></button>
 	
 </div>
 	
