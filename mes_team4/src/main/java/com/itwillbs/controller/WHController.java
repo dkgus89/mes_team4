@@ -29,9 +29,11 @@ public class WHController {
 	public String whpage(HttpServletRequest request, Model model) {
 		//검색어 가져오기
 		String search=request.getParameter("search");
+		String search_option=request.getParameter("search_option");
 		// 검색어 옵션
 		String select = request.getParameter("select");
-				
+		System.out.println("select : " +select+",search : "+search+ ",search_option : "+ search_option);
+		
 				// 한 화면에 보여줄 글 개수 설정
 				int pageSize=5;
 				// 현페이지 번호 가져오기
@@ -50,6 +52,7 @@ public class WHController {
 				//검색어
 				pageDTO.setSearch(search);
 				pageDTO.setSelect(select);
+				pageDTO.setSelect(search_option);
 				
 				List<WHDTO> whList=whService.getWhList(pageDTO);
 				

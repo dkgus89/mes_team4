@@ -80,7 +80,7 @@ function deleteValue(){
 	
     <div class="search">
     <form action="${pageContext.request.contextPath}/rel/relpage" method="get">
-       <select name="search_option" class="button2">
+       <select name="select" class="button2">
        		<option value="wh_name">창고명</option>
        		<option value="product_name">출고품목명</option>
        </select>
@@ -107,7 +107,7 @@ function deleteValue(){
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
 					<th>출고코드</th>
-					<th>창고</th>
+					<th>출고창고</th>
 					<th>출고품목명</th>
 					<th>출고일자</th>
 					<th>출고수량</th>

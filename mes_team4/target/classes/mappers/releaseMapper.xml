@@ -60,7 +60,7 @@
 		<result column="remarks"  property="remarks"/>
 	</resultMap>
 	
-	<select id="getRelList" resultMap="map2">
+<select id="getRelList" resultMap="map2">
 	select r.rel_schedule_cd, w.wh_name, p.product_name, r.rel_date, r.rel_count, r.remarks
 		   from release_schedule as r
 		   left join product as p
@@ -70,26 +70,31 @@
         <if test="search != null">
         <if test="select != null">
 			<if test="select == 'wh_name'.toString()">
-				where wh_name like CONCAT('%',#{search},'%')
+				where w.wh_name like CONCAT('%',#{search},'%')
 			</if>
-			<if test="select == 'product_name_cd'.toString()">
-				where product_name like CONCAT('%',#{search},'%')
+			<if test="select == 'product_name'.toString()">
+				where p.product_name like CONCAT('%',#{search},'%')
 			</if>
         </if>
         </if>
         order by rel_schedule_cd desc 
         limit #{startRow}, #{pageSize}   	
     </select>
+    
 <!-- 	페이징 -->
 	<select id="getRelCount" resultType="java.lang.Integer">
-        select count(*) from release_schedule
+        select count(*) from release_schedule as r
+		   left join product as p
+		   on r.product_cd_name = p.product_cd_name
+		   left join warehouse as w
+		   on r.wh_cd = w.wh_cd
         <if test="search != null">
         <if test="select != null">
 			<if test="select == 'wh_name'.toString()">
-				where wh_name like CONCAT('%',#{search},'%')
+				where w.wh_name like CONCAT('%',#{search},'%')
 			</if>
 			<if test="select == 'product_name'.toString()">
-				where product_name like CONCAT('%',#{search},'%')
+				where p.product_name like CONCAT('%',#{search},'%')
 			</if>
         </if>
         </if> 
@@ -114,10 +119,10 @@
 		
 <!-- 		재고 현황 관련 -->
 		
-		<select id="getbfRel_count" resultType="com.itwillbs.domain.ReleaseDTO">
+		<select id="getbfRel_count" resultType="java.lang.Integer">
 			select rel_count
 			from release_schedule
-			where product_cd_name = #{product_cd_name} and rel_schedule_cd= #{rel_schedule_cd}
+			where product_cd_name = #{product_cd_name}
 		</select>
     
    		<select id="getProduct_cd_name2" resultType="java.lang.String">

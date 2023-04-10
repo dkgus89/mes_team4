@@ -105,6 +105,7 @@ $("#select").change(function() {
 	}) 
 });
 
+
 </script>
 <!-- 자바스크립트 입력 끝-->
 
@@ -125,11 +126,11 @@ $("#select").change(function() {
 		</select>
 		
 	
-		<!-- 		wh_name 선택했을때 -->
+<!-- 		wh_name 선택했을때 -->
 		<input type="text" id="search1" name="search" />
 		
 
-<!-- 		wh_addr, wh_dv선택했을때 -->
+<!-- 		wh_addr, wh_dv선택했을때 --> 
 		<select id="search2" name="search_option" >
 			<option value="">구분을 선택하세요</option>
 		</select>
@@ -139,7 +140,6 @@ $("#select").change(function() {
        
      </form>  
     </div>
-
 	
 	<div class="wrap2">
 	
