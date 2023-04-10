@@ -121,7 +121,7 @@
 			</fieldset>
 		
 	</form>
-<div style="margin-left: 170px">
+<div style="width:520px" align="center">
 		<button class="button2" form="insert" onclick="submit">사용자추가</button>
 	  	<button class="button2" onclick="window.close()">창닫기</button>
 	  	</div>

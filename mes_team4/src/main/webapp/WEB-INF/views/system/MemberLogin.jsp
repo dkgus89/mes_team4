@@ -49,24 +49,22 @@ setTimeout(function() {
 	
 	<form action="${pageContext.request.contextPath }/system/memberloginpro" name="login" id="login" method="post">
 		
-	<fieldset style="width:300px; height:200px; padding-left:20px; padding-right: 20px; margin: 80px auto;">
+	<fieldset style="width:300px; height:250px; padding-left:15px; margin: 0px auto;">
 	
 	<h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >로그인</h2>
 					<div>
 					<label>사원번호</label>
-					<input type="text" name="emp_no" class="emp_no" style="width:150px;height:30px;font-size:18px;" autofocus="autofocus"><br><br>
+					<input type="text" name="emp_no" class="emp_no" autofocus="autofocus" placeholder="사원번호를 입력해주세요" ><br><br>
 					</div>
 					<div>
 					<label>비밀번호</label>
-					<input type="password" name="emp_pass" class="emp_pass" style="width:150px;height:30px;font-size:18px;"><br><br>
-					</div>
+					<input type="password" name="emp_pass" class="emp_pass" placeholder="비밀번호를 입력해주세요"><br><br>
+					</div>	
+					<div align="center">
+					<button class="button2" form="login" onclick="submit">로그인</button>
+	  				</div>
 		</fieldset>
-		<div style="text-align:center">
-		
-		<button class="button2" form="login" onclick="submit">로그인</button>
-	  	</div>
-			
-		
+					
 	</form>
 		
 

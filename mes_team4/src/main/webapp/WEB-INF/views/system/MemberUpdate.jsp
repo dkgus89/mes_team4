@@ -139,7 +139,7 @@ $('#update').submit(function(){
 		
 	</form>
 
-	<div style="margin-left: 170px">
+	<div style="width:500px" align="center">
 		<button class="button2" form="update" onclick="submit">사용자수정</button>
 	  	<button class="button2" onclick="window.close()">창닫기</button>
 	  	</div>
