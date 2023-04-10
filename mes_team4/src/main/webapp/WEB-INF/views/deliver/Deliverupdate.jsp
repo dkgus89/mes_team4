@@ -65,16 +65,16 @@
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="deliver_cd" value="${deliverDTO.deliver_cd}" readonly="readonly"></td>
+					<td><input type="text" name="deliver_cd" value="${deliverDTO.deliver_cd}" readonly></td>
 <%-- 					<td><input type="text" name="business_cd" value="${deliverDTO.business_cd }"></td>					 --%>
 <%-- 					<td><input type="text" name="order_cd" value="${deliverDTO.order_cd }"></td> --%>
 <%-- 					<td><input type="text" name="product_cd_name" value="${deliverDTO.product_cd_name }"></td> --%>
-						<td><input type="text" name="business_cd" value="${deliverDTO.business_cd }"></td>
-						<td><input type="text" name="order_cd" value="${deliverDTO.order_cd }"></td>
-						<td><input type="text" name="product_cd_name" value="${deliverDTO.product_cd_name }"></td>
+						<td><input type="text" name="business_cd" value="${deliverDTO.business_cd }" readonly></td>
+						<td><input type="text" name="order_cd" value="${deliverDTO.order_cd }" readonly></td>
+						<td><input type="text" name="product_cd_name" value="${deliverDTO.product_cd_name }" readonly></td>
 						<td><input type="Date" name="deliver_date" value="${deliverDTO.deliver_date }"></td>
-						<td><input type="text" name="deliver_count" value="${deliverDTO.deliver_count }"></td>
-						<td><input type="text" name="emp_no" value="${deliverDTO.emp_no }"></td>
+						<td><input type="text" name="deliver_count" value="${deliverDTO.deliver_count }" readonly></td>
+						<td><input type="text" name="emp_no" value="${deliverDTO.emp_no }" readonly></td>
 				</tr>
 
 			</tbody>

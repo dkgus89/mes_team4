@@ -18,7 +18,7 @@ public interface DeliverDAO {
 		
 		public void updateDeliver(DeliverDTO deliverDTO);
 		
-		int getDeliverCount(PageDTO pageDTO);
+		public int getDeliverCount(PageDTO pageDTO);
 		
 		
 		public void deleteDeliver(String deliver_cd);

@@ -197,12 +197,12 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
 			<tbody>
 				<tr>
 <!-- 					<td><input type="text" name="deliver_cd" id="deliver_cd" ></td> -->
-					<td><input type="text" name="business_cd" id="business_cd"> 
-					<td><input type="text" name="product_cd_name" id="product_cd_name"> </td>
-					<td><input type="text" name="order_cd" id="order_cd"> </td>
-					<td><input type="Date" name="deliver_date" ></td>
-					<td><input type="text" name="deliver_count" id="rec_count" ></td>
-					<td><input type="text" name="emp_no" id="emp_no"></td>
+					<td><input type="text" name="business_cd" id="business_cd" readonly> 
+					<td><input type="text" name="product_cd_name" id="product_cd_name" readonly> </td>
+					<td><input type="text" name="order_cd" id="order_cd" readonly> </td>
+					<td><input type="Date" name="deliver_date"></td>
+					<td><input type="text" name="deliver_count" id="rec_count" readonly></td>
+					<td><input type="text" name="emp_no" id="emp_no" readonly></td>
 				</tr>
 
 			</tbody>
