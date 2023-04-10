@@ -72,18 +72,17 @@ public class ConsumptionController {
 			List<Integer> rowcolsTd = consumptionService.getRowcolsTd(pageDTO);
 			pageDTO.setRowcolsTd(rowcolsTd);
 			int length = rowcolsTd.size();
-			for(int i : rowcolsTd) {System.out.print(i+" ");}
 			
-			List<Integer> showTd = new ArrayList<Integer>(rowcolsTd.size());
-			showTd.add(0);
-			if (rowcolsTd.size() > 0) {
-				for(int i = 0; i < rowcolsTd.size()-1; i++) {
-					int x = rowcolsTd.get(i);
-					int y = showTd.get(i) + x;
-					showTd.add(y);
-				}
-			}
-			pageDTO.setShowTd(showTd);
+			// List<Integer> showTd = new ArrayList<Integer>(rowcolsTd.size());
+			// showTd.add(0);
+			// if (rowcolsTd.size() > 0) {
+			// 	for(int i = 0; i < rowcolsTd.size()-1; i++) {
+			// 		int x = rowcolsTd.get(i);
+			// 		int y = showTd.get(i) + x;
+			// 		showTd.add(y);
+			// 	}
+			// }
+			// pageDTO.setShowTd(showTd);
 			
 			// 2차원 리스트 저장
 			int startNum = 0;
@@ -93,7 +92,9 @@ public class ConsumptionController {
 			for(int i = 0; i < length; i++) {				
 				rprList.add(rprConsmptList.subList(startNum, endNum));
 				startNum += rowcolsTd.get(i);	
-				if(i < length-1) {endNum += rowcolsTd.get(i+1);}
+				if(i < length-1) {
+					endNum += rowcolsTd.get(i+1);
+				}
 			}
 		}
 		

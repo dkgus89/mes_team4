@@ -384,7 +384,7 @@ public class PurchaseController {
 	
 	@RequestMapping(value = "/purchase/listB", method = RequestMethod.GET)
 	public String listB(HttpServletRequest request, PageDTO pageDTO, Model model) {
-		System.out.println("PurchaseController list()");
+		System.out.println("PurchaseController listB()");
 
 		String cd = request.getParameter("cd");
 		
