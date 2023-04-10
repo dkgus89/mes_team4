@@ -136,9 +136,17 @@
     where order_cd = #{cd}
     </update>
 
-	    <update id="updateCon2">
+    <update id="updateCon2">
     update order_management
     set con = "생산중"
-    where order_cd = #{cd}
+    where order_cd = (select order_cd from instruction 
+	where instruction_code = #{cd});
+    </update>
+ 
+    <update id="updateCon3">
+    update order_management
+    set con = "생산완료"
+    where order_cd = (select order_cd from instruction 
+	where instruction_code = #{cd});
     </update>
 </mapper>
