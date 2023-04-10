@@ -26,4 +26,6 @@ public interface BusinessDAO {
 	public List<BusinessDTO> getBusinessList();
 	
 	public Integer getCon(String cd);
+
+	public List<BusinessDTO> getBusinessList2();
 }

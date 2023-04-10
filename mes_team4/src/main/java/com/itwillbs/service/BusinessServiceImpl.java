@@ -97,6 +97,12 @@ public class BusinessServiceImpl implements BusinessService{
 		businessDAO.updateBusiness(businessDTO);
 	}
 
+	@Override
+	public List<BusinessDTO> getBusinessList2() {
+		System.out.println("BusinessServiceImpl getBusinessList2()");
+		return businessDAO.getBusinessList2();
+	}
+
 	
 	
 

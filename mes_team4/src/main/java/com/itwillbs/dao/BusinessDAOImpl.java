@@ -89,4 +89,10 @@ public class BusinessDAOImpl implements BusinessDAO{
 		return sqlSession.selectOne(namespace+".getCon",cd);
 	}
 
+	@Override
+	public List<BusinessDTO> getBusinessList2() {
+		System.out.println("BusinessDAOImpl getBusinessList2()");
+		return sqlSession.selectList(namespace+".getBusinessList2");
+	}
+
 }
