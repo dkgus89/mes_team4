@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.StockDTO;
+import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.StockService;
+import com.itwillbs.service.SystemService;
 
 @Controller
 public class StockController {
@@ -22,10 +25,18 @@ public class StockController {
 	// 스프링 객체생성 방식 => 의존관계주입(DI : Dependency Injection)
 	@Inject
 	private StockService stockService;
+	@Inject
+	private SystemService systemService;
 	
 	@RequestMapping(value = "/stock/stock", method = RequestMethod.GET)
-	public String stock(HttpServletRequest request, Model model) {
+	public String stock(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("StockController stock()");
+		
+		//비로그인 상태일 시
+		Object emp_no = session.getAttribute("emp_no");
+		if(emp_no == null) {
+			return "system/msg2";
+		} else {
 		//검색어 가져오기
 		String search=request.getParameter("search");
 		String select=request.getParameter("select");
@@ -76,9 +87,14 @@ public class StockController {
 //		model.addAttribute("StockList", StockList);
 		model.addAttribute("pageDTO", pageDTO);
 		
+		//사원정보 관련
+		SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+		model.addAttribute("systemDTO2", systemDTO);
+		
 		// 주소변경 없이 이동
 		// /WEB-INF/views/stock/Stock.jsp
 		return "stock/Stock";
+		}
 	}
 	
 	@RequestMapping(value = "/stock/stockinsert", method = RequestMethod.GET)

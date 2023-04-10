@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.LineDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.InfoService;
+import com.itwillbs.service.SystemService;
 
 @Controller
 public class InfoController {
@@ -23,14 +26,21 @@ public class InfoController {
 	// 스프링 객체생성 방식 => 의존관계주입(DI : Dependency Injection)
 	@Inject
 	private InfoService infoService;
+	@Inject
+	private SystemService systemService;
 		
 		@RequestMapping(value = "/line/line", method = RequestMethod.GET)
-		public String line(HttpServletRequest request, Model model) {
+		public String line(HttpServletRequest request, Model model, HttpSession session) {
 			System.out.println("InfoController line()");
+			
+			//비로그인 상태일 시
+			Object emp_no = session.getAttribute("emp_no");
+			if(emp_no == null) {
+				return "system/msg2";
+			} else {
 			//검색어 가져오기
 			String search=request.getParameter("search");
-			String select=request.getParameter("select");
-					
+			String select=request.getParameter("select");					
 
 			
 			// 한 화면에 보여줄 글 개수 설정
@@ -75,9 +85,14 @@ public class InfoController {
 			model.addAttribute("LineList", LineList);
 			model.addAttribute("pageDTO", pageDTO);
 			
+			//사원정보 관련
+			SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+			model.addAttribute("systemDTO2", systemDTO);
+			
 			// 주소변경 없이 이동
 			// /WEB-INF/views/line/Line.jsp
 			return "line/Line";
+			}
 		}
 		
 		@RequestMapping(value = "/line/lineinsert", method = RequestMethod.GET)

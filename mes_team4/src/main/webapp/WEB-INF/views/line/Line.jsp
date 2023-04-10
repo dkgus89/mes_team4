@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="../main/Header.jsp" />
@@ -59,7 +59,14 @@ function allCheck(){
 	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
+<!-- 로그인 및 권한 확인 -->
+<c:set var = "priv" value = "${systemDTO2.emp_priv}"/>
+<c:if test = "${!empty sessionScope.emp_no}">
+      <c:choose>
+    <c:when test = "${fn:contains(priv, 'B')}">
+
 	<h2> 설비정보관리 </h2><br>
+	
 	<div id="table_search">
 			<form action="${pageContext.request.contextPath}/line/line" method="get">
 				<!-- 				검색 메뉴 선택 -->
@@ -160,9 +167,18 @@ function allCheck(){
 <a href="${pageContext.request.contextPath}/line/line?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 다음]</a>
 </c:if>
 		
+		  </c:when>
+   <c:otherwise>
+      <script type="text/javascript">
+      alert("권한이 없습니다.")
+      history.back();
+      </script>
+   </c:otherwise>   
+   </c:choose>
+</c:if>
+		
 <!-- 본문HTML 입력 끝-->
 	</div>
-</div>
 
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="../main/Footer.jsp" />

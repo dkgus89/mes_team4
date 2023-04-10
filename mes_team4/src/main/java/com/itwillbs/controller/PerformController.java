@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PerformDTO;
+import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.InstructionService;
 import com.itwillbs.service.PerformService;
+import com.itwillbs.service.SystemService;
 
 @Controller
 public class PerformController {
@@ -31,10 +34,18 @@ public class PerformController {
 		private PerformService performService;
 		@Inject
 		private InstructionService instructionService;
+		@Inject
+		private SystemService systemService;
 			
 		@RequestMapping(value = "/perform/perform", method = RequestMethod.GET)
-		public String perform(HttpServletRequest request, Model model) {
+		public String perform(HttpServletRequest request, Model model, HttpSession session) {
 			System.out.println("PerformController perform()");
+			
+			//비로그인 상태일 시
+			Object emp_no = session.getAttribute("emp_no");
+			if(emp_no == null) {
+				return "system/msg2";
+			} else {
 			//검색어 가져오기
 			String search=request.getParameter("search");
 			String select=request.getParameter("select");
@@ -83,11 +94,16 @@ public class PerformController {
 			
 			//model 담아서 이동
 			model.addAttribute("PerformMap", PerformMap);
-			model.addAttribute("pageDTO", pageDTO);			
+			model.addAttribute("pageDTO", pageDTO);	
+			
+			//사원정보 관련
+			SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+			model.addAttribute("systemDTO2", systemDTO);
 			
 			// 주소변경 없이 이동
 			// /WEB-INF/views/perform/Perform.jsp
 			return "perform/Perform";
+			}
 		}
 		
 		@RequestMapping(value = "/perform/performinsert", method = RequestMethod.GET)
