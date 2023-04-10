@@ -20,6 +20,9 @@ public class InstructionDAOImpl implements InstructionDAO {
 	private SqlSession sqlSession;
 	
 	static String namespace="com.itwillbs.mappers.instructionMapper";
+	
+	static String namespace2="com.itwillbs.mappers.OrderMapper";
+
 
 	@Override
 	public List<Map<String, Object>> getorderlist(PageDTO pageDTO) {
@@ -124,6 +127,7 @@ public class InstructionDAOImpl implements InstructionDAO {
 	public void updateCon2(String cd) {
 		System.out.println("InstructionDAOImpl updateCon2 생산중으로변경");
 		
+		sqlSession.update(namespace2+".updateCon2",cd);
 		sqlSession.update(namespace+".updateCon2",cd);
 	}
 
@@ -137,6 +141,7 @@ public class InstructionDAOImpl implements InstructionDAO {
 	@Override
 	public void updateCon3(String cd) {
 		System.out.println("InstructionDAOImpl updateCon3 생산완료로변경");
+		sqlSession.update(namespace2+".updateCon3",cd);
 		sqlSession.update(namespace+".updateCon3",cd);
 	}
 
