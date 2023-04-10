@@ -105,10 +105,10 @@ function rst(){
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="wh_cd" id="wh_cd"></td>
-					<td><input type="text" name="pchor_cd" id="pchor_cd"></td>
-					<td><input type="text" name="product_cd_name" id="product_cd_name"></td>
-					<td><input type="text" name="rec_count" id="rec_count"></td>
+					<td><input type="text" name="wh_cd" id="wh_cd" readonly></td>
+					<td><input type="text" name="pchor_cd" id="pchor_cd" readonly></td>
+					<td><input type="text" name="product_cd_name" id="product_cd_name" readonly></td>
+					<td><input type="text" name="rec_count" id="rec_count" readonly></td>
 					<td><input type="date" name="rec_date" id="rec_date" value=""></td>
 				</tr>
 
