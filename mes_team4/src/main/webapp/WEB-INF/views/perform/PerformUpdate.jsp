@@ -139,7 +139,7 @@ function rst(){
 <!-- 	<div class="wrap2"> -->
 	<button class="button2" onclick="sub()">등록</button>
 	<button class="button2" onclick="rst()">초기화</button>	 	
-	<button class="button2" onclick="showPopup();" style="width:200px">작업지시현황</button>
+	<button class="button2" onclick="showPopup();" style="width:200px">완료된 작업지시</button>
 <!-- 	 </div><br> -->
 	 <br><br>
 	 
