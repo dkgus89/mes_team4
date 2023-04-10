@@ -25,6 +25,7 @@ import com.itwillbs.domain.ReleaseDTO;
 import com.itwillbs.domain.StockDTO;
 import com.itwillbs.domain.WHDTO;
 import com.itwillbs.service.OrderService;
+import com.itwillbs.service.PerformService;
 import com.itwillbs.service.PurchaseService;
 import com.itwillbs.service.ReceiveService;
 import com.itwillbs.service.WHService;
@@ -40,6 +41,8 @@ public class ReceiveController {
 	private PurchaseService purchaseService;
 	@Inject
 	private OrderService orderService;
+	@Inject
+	private PerformService performService;
 	
 	
 	@RequestMapping(value = "/receive/recpage", method = RequestMethod.GET)
@@ -270,30 +273,75 @@ public class ReceiveController {
 		return "receive/purchase";
 	}
 	
-	@RequestMapping(value = "/receive/order", method = RequestMethod.GET)
-	public String ordermain(HttpServletRequest request, Model model) {
-		
+//	@RequestMapping(value = "/receive/order", method = RequestMethod.GET)
+//	public String ordermain(HttpServletRequest request, Model model) {
+//		
+//		int pageSize=5;
+//		String pageNum=request.getParameter("pageNum");
+//		if(pageNum==null) {
+//			pageNum="1";
+//		}
+//		// 페이지번호를 => 정수형 변경
+//		int currentPage=Integer.parseInt(pageNum);
+//		
+//		PageDTO pageDTO=new PageDTO();
+//		pageDTO.setPageSize(pageSize);
+//		pageDTO.setPageNum(pageNum);
+//		pageDTO.setCurrentPage(currentPage);
+//		
+//		//생산 전,완료 개수 구하기
+//		pageDTO.setPcount(orderService.getPCount());
+//		pageDTO.setFcount(orderService.getFCount());
+//		
+//		List<OrderDTO> orderList = orderService.getOrderList(pageDTO);
+//		
+//		//페이징 처리
+//		int count = orderService.getOrderCount();
+//		int pageBlock=10;
+//		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+//		int endPage=startPage+pageBlock-1;
+//		int pageCount=count/pageSize+(count%pageSize==0?0:1);
+//		if(endPage > pageCount){
+//			endPage = pageCount;
+//		}
+//		
+//		pageDTO.setCount(count);
+//		pageDTO.setPageBlock(pageBlock);
+//		pageDTO.setStartPage(startPage);
+//		pageDTO.setEndPage(endPage);
+//		pageDTO.setPageCount(pageCount);
+//		
+//		model.addAttribute("orderList", orderList);
+//		model.addAttribute("pageDTO", pageDTO);
+//		
+//		// 가상주소 유지
+//		return "receive/order";
+//	}
+	
+	@RequestMapping(value = "/receive/perform", method = RequestMethod.GET)
+	public String perform(HttpServletRequest request, Model model) {
+		// 한 화면에 보여줄 글 개수 설정
 		int pageSize=5;
+		// 현페이지 번호 가져오기
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null) {
+			//pageNum 없으면 1페이지 설정
 			pageNum="1";
 		}
 		// 페이지번호를 => 정수형 변경
 		int currentPage=Integer.parseInt(pageNum);
-		
+					
 		PageDTO pageDTO=new PageDTO();
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
 		
-		//생산 전,완료 개수 구하기
-		pageDTO.setPcount(orderService.getPCount());
-		pageDTO.setFcount(orderService.getFCount());
-		
-		List<OrderDTO> orderList = orderService.getOrderList(pageDTO);
+		//메서드 호출
+		List<Map<String, Object>> PerformMap
+		     =performService.getPerformMap(pageDTO);
 		
 		//페이징 처리
-		int count = orderService.getOrderCount();
+		int count = performService.getPerformCount(pageDTO);
 		int pageBlock=10;
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 		int endPage=startPage+pageBlock-1;
@@ -308,11 +356,14 @@ public class ReceiveController {
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
 		
-		model.addAttribute("orderList", orderList);
-		model.addAttribute("pageDTO", pageDTO);
 		
-		// 가상주소 유지
-		return "receive/order";
+		//model 담아서 이동
+		model.addAttribute("PerformMap", PerformMap);
+		model.addAttribute("pageDTO", pageDTO);			
+		
+		// 주소변경 없이 이동
+		// /WEB-INF/views/receive/Perform.jsp
+		return "receive/perform";
 	}
 	
 	@RequestMapping(value = "/receive/recupdate", method = RequestMethod.GET)

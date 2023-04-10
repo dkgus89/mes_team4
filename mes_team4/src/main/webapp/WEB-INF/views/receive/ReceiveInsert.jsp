@@ -55,18 +55,18 @@ function showPopup2(){
 
 // 수주현황
 function showPopup3(){
-    	var link = "${pageContext.request.contextPath}/receive/order";     
-    	var popupWidth = 800;
-    	var popupHeight = 800;
+    	var link = "${pageContext.request.contextPath}/receive/perform";     
+    	var popupWidth = 1400;
+    	var popupHeight = 300;
     	var popupX = (window.screen.width/2) - (popupWidth/2);
     	var popupY= (window.screen.height/2) - (popupHeight/2);
     	
       	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
     }
-    function setChildValue3(order_cd,product_cd_name,order_count){
+    function setChildValue3(order_cd,product_cd_name,fair_prod){
         document.getElementById("pchor_cd").value = order_cd;
         document.getElementById("product_cd_name").value = product_cd_name;
-        document.getElementById("rec_count").value = order_count;
+        document.getElementById("rec_count").value = fair_prod;
     }
     
 function rst(){
@@ -84,7 +84,7 @@ function rst(){
 	
 	<button class="button2" onclick="showPopup();" style="width:100px">창고</button>
 	<button class="button2" onclick="showPopup2();" style="width:100px">발주</button>
-	<button class="button2" onclick="showPopup3();" style="width:100px">수주</button>
+	<button class="button2" onclick="showPopup3();" style="width:100px">실적</button>
 
 	 <br>
 	 <br>

@@ -15,12 +15,11 @@
 <script type="text/javascript">
 
 function sub(){
+	window.opener.name = "parentPage";
+	document.receiveUpdate.target="parentPage";
 	document.receiveUpdate.action="${pageContext.request.contextPath}/receive/recupdatePro";
 	document.receiveUpdate.submit();
-	setTimeout(function() { 
-		opener.parent.location.reload();
-		window.close();
-		}, 200);
+	self.close();	
 	}
 	function rst(){
 	document.receiveUpdate.reset();
