@@ -35,5 +35,7 @@ public interface PerformDAO {
 	public Map<String, Object> getPerform(String perform_cd);
 
 	public Map<String, Object> getcallcdMap(String ic);
+	
+	public int getinstructioncount2(PageDTO pageDTO);
 
 }

@@ -123,5 +123,12 @@ public class PerformServiceImpl implements PerformService{
 				
 				return performDAO.getinstcheck(instruction_code);
 			}
+
+			@Override
+			public int getinstructioncount2(PageDTO pageDTO) {
+				System.out.println("PerformServiceImpl getinstructioncount2()");
+				
+				return performDAO.getinstructioncount2(pageDTO);
+			}
 									
 }
