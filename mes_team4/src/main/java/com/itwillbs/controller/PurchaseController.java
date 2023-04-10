@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +24,10 @@ import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PurchaseDTO;
+import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.ConsumptionService;
 import com.itwillbs.service.PurchaseService;
+import com.itwillbs.service.SystemService;
 import com.mysql.cj.xdevapi.JsonArray;
 
 
@@ -34,69 +37,81 @@ public class PurchaseController {
 	@Inject 
 	private PurchaseService purchaseService;
 	
+	@Inject
+	private SystemService systemService;
+	
 	@RequestMapping(value = "/purchase/list", method = RequestMethod.GET)
-	public String list(HttpServletRequest request, PageDTO pageDTO, Model model) {
+	public String list(HttpServletRequest request, PageDTO pageDTO, Model model, HttpSession session) {
 		System.out.println("PurchaseController list()");
 		// 처리작업
 		
-		// 검색어 처리작업
-		if (pageDTO.getSearch() != null && pageDTO.getSearch().equals("")) {
-			pageDTO.setSearch(null);
+		Object emp_no = session.getAttribute("emp_no");
+		if(emp_no == null) {
+			return "system/msg2";
+		} else {
+			// 검색어 처리작업
+			if (pageDTO.getSearch() != null && pageDTO.getSearch().equals("")) {
+				pageDTO.setSearch(null);
+			}
+			if (pageDTO.getSearch_com() != null && pageDTO.getSearch_com().equals("")) {
+				pageDTO.setSearch_com(null);
+			}
+			if (pageDTO.getStart_date() != null && pageDTO.getStart_date().equals("")) {
+				pageDTO.setStart_date(null);
+			}
+			if (pageDTO.getEnd_date() != null && pageDTO.getEnd_date().equals("")) {
+				pageDTO.setEnd_date(null);
+			}
+			if (pageDTO.getStart_due_date() != null && pageDTO.getStart_due_date().equals("")) {
+				pageDTO.setStart_due_date(null);
+			}
+			if (pageDTO.getEnd_due_date() != null && pageDTO.getEnd_due_date().equals("")) {
+				pageDTO.setEnd_due_date(null);
+			}
+			
+			// 한 화면에 보여줄 글의 개수
+			int pageSize = 5;
+			
+			// 현재페이지 번호 설정
+			String pageNum= request.getParameter("pageNum");
+			if(pageNum == null) {
+				pageNum = "1";
+			} 
+			int CurrentPage = Integer.parseInt(pageNum);
+			
+			pageDTO.setPageSize(pageSize);
+			pageDTO.setPageNum(pageNum);
+			pageDTO.setCurrentPage(CurrentPage);
+			
+			List<Map<String, Object>> purchaseMapList = purchaseService.getPurchaseMapList(pageDTO);
+			
+			int count = purchaseService.getPurchaseCount(pageDTO);
+			
+			// 페이징 처리
+			int pageBlock = 5;
+			int startPage = (CurrentPage-1)/pageBlock*pageBlock+1;
+			int endPage = startPage+pageBlock-1;
+			int pageCount = count/pageSize+(count%pageSize==0?0:1);
+			if(endPage > pageCount){
+			 	endPage = pageCount;
+			}
+			
+			pageDTO.setCount(count);
+			pageDTO.setPageBlock(pageBlock);
+			pageDTO.setStartPage(startPage);
+			pageDTO.setEndPage(endPage);
+			pageDTO.setPageCount(pageCount);
+			
+			// 사원정보 
+			SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+			
+			// 서버단 처리 결과 전달
+			model.addAttribute("purchaseMapList", purchaseMapList); 
+			model.addAttribute("pageDTO", pageDTO);
+			model.addAttribute("systemDTO2", systemDTO);
+			
+			return "purchase/List";
 		}
-		if (pageDTO.getSearch_com() != null && pageDTO.getSearch_com().equals("")) {
-			pageDTO.setSearch_com(null);
-		}
-		if (pageDTO.getStart_date() != null && pageDTO.getStart_date().equals("")) {
-			pageDTO.setStart_date(null);
-		}
-		if (pageDTO.getEnd_date() != null && pageDTO.getEnd_date().equals("")) {
-			pageDTO.setEnd_date(null);
-		}
-		if (pageDTO.getStart_due_date() != null && pageDTO.getStart_due_date().equals("")) {
-			pageDTO.setStart_due_date(null);
-		}
-		if (pageDTO.getEnd_due_date() != null && pageDTO.getEnd_due_date().equals("")) {
-			pageDTO.setEnd_due_date(null);
-		}
-		
-		// 한 화면에 보여줄 글의 개수
-		int pageSize = 5;
-		
-		// 현재페이지 번호 설정
-		String pageNum= request.getParameter("pageNum");
-		if(pageNum == null) {
-			pageNum = "1";
-		} 
-		int CurrentPage = Integer.parseInt(pageNum);
-		
-		pageDTO.setPageSize(pageSize);
-		pageDTO.setPageNum(pageNum);
-		pageDTO.setCurrentPage(CurrentPage);
-		
-		List<Map<String, Object>> purchaseMapList = purchaseService.getPurchaseMapList(pageDTO);
-		
-		int count = purchaseService.getPurchaseCount(pageDTO);
-		
-		// 페이징 처리
-		int pageBlock = 5;
-		int startPage = (CurrentPage-1)/pageBlock*pageBlock+1;
-		int endPage = startPage+pageBlock-1;
-		int pageCount = count/pageSize+(count%pageSize==0?0:1);
-		if(endPage > pageCount){
-		 	endPage = pageCount;
-		}
-		
-		pageDTO.setCount(count);
-		pageDTO.setPageBlock(pageBlock);
-		pageDTO.setStartPage(startPage);
-		pageDTO.setEndPage(endPage);
-		pageDTO.setPageCount(pageCount);
-		
-		// 서버단 처리 결과 전달
-		model.addAttribute("purchaseMapList", purchaseMapList); 
-		model.addAttribute("pageDTO", pageDTO);
-		
-		return "purchase/List";
 	}
 	
 	@RequestMapping(value = "/purchase/prlist", method = RequestMethod.GET)
