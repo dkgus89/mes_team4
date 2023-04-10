@@ -85,8 +85,7 @@ $('#update').submit(function(){
 				<tr style="text-align: center; font-size: 0.9rem">
 <!-- 					<th>실적코드</th> -->
 					<th>라인코드</th>
-					<th>지시일자</th>	
-					<th>지시수량</th>			
+					<th>지시일자</th>			
 				</tr>
 			</thead>
 			
@@ -97,8 +96,7 @@ $('#update').submit(function(){
     					<option value="FL002" ${instructionDTO.line_cd eq "FL002" ? 'selected':''}>2라인</option>
     					<option value="FL003" ${instructionDTO.line_cd eq "FL003" ? 'selected':''}>3라인</option>
 					</select></td>
-    				<td><input type="date" name="instruction_date" id="instruction_date" value="${instructionDTO.instruction_date}"></td>
-    				<td><input type="text" name="instruction_qt" id="instruction_qt" value="${instructionDTO.instruction_qt}"></td>			
+    				<td><input type="date" name="instruction_date" id="instruction_date" value="${instructionDTO.instruction_date}"></td>			
 				</tr>
 								
 			</tbody>
