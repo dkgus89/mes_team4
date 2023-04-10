@@ -28,7 +28,7 @@
    			where business_cd like CONCAT('%',#{search},'%')
    			or con like CONCAT('%',#{search},'%')
    		</if>
-    order by con desc, deliver_date asc
+    order by deliver_date asc
     limit #{startRow} , #{pageSize}
     </select>
     
