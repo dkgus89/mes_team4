@@ -155,6 +155,11 @@
     	from performance
     	where instruction_code = #{instruction_code}) a
     </select>
+    
+    <select id="getinstructioncount" resultType="java.lang.Integer">
+        select count(*) from instruction
+        where instruction_state = "생산완료"
+    </select>
 	    
 </mapper>
 

@@ -118,5 +118,12 @@ public class PerformDAOImpl implements PerformDAO {
 			
 			return sqlSession.selectOne(namespace+".getinstcheck", instruction_code);
 		}
+
+		@Override
+		public int getinstructioncount2(PageDTO pageDTO) {
+			System.out.println("InfoDAOImpl getinstructioncount2()");
+			
+			return sqlSession.selectOne(namespace+".getinstructioncount2", pageDTO);
+		}
 		
 }

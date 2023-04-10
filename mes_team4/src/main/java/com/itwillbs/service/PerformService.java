@@ -34,4 +34,6 @@ public interface PerformService {
 	public Map<String, Object> getcallcdMap(String ic);
 
 	public int getinstcheck(String instruction_code);
+
+	public int getinstructioncount2(PageDTO pageDTO);
 }
