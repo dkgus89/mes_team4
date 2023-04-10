@@ -61,6 +61,8 @@ function showPopup(){
 	var popupY= (window.screen.height/2) - (popupHeight/2);
 	
   	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+  	
+  	$('#stockTable tbody').html('');
 }
 function setChildValue(order_cd, product_cd_name, product_name,  order_count, deliver_date){
 	
