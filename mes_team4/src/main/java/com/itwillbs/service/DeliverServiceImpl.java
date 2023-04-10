@@ -116,6 +116,28 @@ public class DeliverServiceImpl implements DeliverService{
 	}
 
 
+
+	@Override
+	public List<Map<String, Object>> getRelList2(PageDTO pageDTO) {
+		System.out.println("DeliverServiceImpl getRelList2()");
+		// 시작하는 행번호 구하기
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+		int endRow= startRow+pageDTO.getPageSize()-1;
+				
+		pageDTO.setStartRow(startRow);
+		pageDTO.setEndRow(endRow);
+		
+		return deliverDAO.getRelList2(pageDTO);
+	}
+
+	@Override
+	public int getRelCount(PageDTO pageDTO) {
+		System.out.println("DeliverServiceImpl getRelCount()");
+		
+		return deliverDAO.getRelCount(pageDTO);
+	}
+
+
 	
 	
 	

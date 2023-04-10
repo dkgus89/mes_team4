@@ -15,11 +15,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 function DeliverUpdate(business_cd,order_cd,product_cd_name, emp_no){
-	
+
 	opener.setChildValue(business_cd,order_cd,product_cd_name, emp_no);
 
 	window.close();
-	
 }
 
 </script>
@@ -30,7 +29,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd_name, emp_no){
 <!-- 본문HTML 입력 시작-->
 
 	<h2>수주현황</h2>
-	<h4>전체 ${pageDTO.count}건 / <span style="color:red">생산전 ${pageDTO.pcount}건</span> /  <span style="color:blue">생산완료 ${pageDTO.fcount}건</span></h4>
+<%-- 	<h4>전체 ${pageDTO.count}건 / <span style="color:red">생산전 ${pageDTO.pcount}건</span> /  <span style="color:blue">생산완료 ${pageDTO.fcount}건</span></h4> --%>
 	
 <!-- 	<div class="wrap2"> -->
 <!-- 	  <button class="button2" onclick="showPopup();">추가</button> -->
@@ -54,15 +53,15 @@ function DeliverUpdate(business_cd,order_cd,product_cd_name, emp_no){
 			<th>출하예정날짜</th>
 			<th>담당자</th>
 			<th>진행상황</th>
-			<th></th>
-			<th></th>
+			<th>선택</th>
 			</tr>
 		</thead>	
 			
 			<tbody>
-		<c:choose>
-			<c:when test="${not empty orderList}">
+<%-- 		<c:choose> --%>
+<%-- 			<c:when test="${not empty orderList}"> --%>
 			<c:forEach var="orderDTO" items="${orderList}">
+<%-- 			<c:if test="${orderDTO.con eq '생산완료'}"> --%>
 			<tr>
 <%-- 			<td><input type="checkbox" id="checkbox" name="rowcheck" value="${orderDTO.order_cd}"></td> --%>
 			<td>${pageDTO.startRow+1 + sts.index}</td>
@@ -81,17 +80,31 @@ function DeliverUpdate(business_cd,order_cd,product_cd_name, emp_no){
 			<c:when test="${orderDTO.con eq '생산완료'}"><td><span style="color:blue">${orderDTO.con}</span></td></c:when>
 			<c:otherwise> ... </c:otherwise>
 			</c:choose>
-    			<td><button class="button2" onclick="DeliverUpdate('${orderDTO.business_cd}','${orderDTO.order_cd}','${orderDTO.product_cd_name}','${orderDTO.emp_no}');">선택</button></td>
+    			<td><button class="button2" onclick="DeliverUpdate('${orderDTO.business_cd}','${orderDTO.order_cd}','${orderDTO.product_cd_name}','${orderDTO.emp_no}','${orderDTO.con}');">선택</button></td>
     			
-   			 
+   			 </tr>
+<%--    			 </c:if> --%>
 				</c:forEach>
-			</c:when>
-			</c:choose>
+<%-- 			</c:when> --%>
+<%-- 			</c:choose> --%>
 			
 			</tbody>
 		</table>
 	
 	</form>
+	
+		<!-- 페이징 -->
+<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+<a href="${pageContext.request.contextPath}/deliver/deliverinstlist?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 이전]</a>
+</c:if>
+
+<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+<a href="${pageContext.request.contextPath}/deliver/deliverinstlist?pageNum=${i}&search=${pageDTO.search}&select=${pageDTO.select}">${i}</a> 
+</c:forEach>
+
+<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+<a href="${pageContext.request.contextPath}/deliver/deliverinstlist?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 다음]</a>
+</c:if>	
 	
 	
 <!-- 본문HTML 입력 끝-->

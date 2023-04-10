@@ -43,9 +43,6 @@ public class DeliverController {
 		
 		@Inject
 		private OrderService orderService;
-	
-		@Inject
-		private ReceiveService receiveService;
 		
 		@Inject
 		private ReleaseService relService;
@@ -368,7 +365,7 @@ public class DeliverController {
 		
 		@RequestMapping(value = "/deliver/deliverinstlist2", method = RequestMethod.GET)
 		public String instList(HttpServletRequest request, Model model) {
-			
+
 			// 한 화면에 보여줄 글 개수 설정
 			int pageSize=5;
 			// 현페이지 번호 가져오기
@@ -385,10 +382,10 @@ public class DeliverController {
 			pageDTO.setPageNum(pageNum);
 			pageDTO.setCurrentPage(currentPage);
 			
-			List<Map<String, Object>> relList=relService.getRelList(pageDTO);
+			List<Map<String, Object>> relList=deliverService.getRelList2(pageDTO);
 			
 			//페이징 처리
-			int count = relService.getRelCount(pageDTO);
+			int count = deliverService.getRelCount(pageDTO);
 			int pageBlock=10;
 			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 			int endPage=startPage+pageBlock-1;

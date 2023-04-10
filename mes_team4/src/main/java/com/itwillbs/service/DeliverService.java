@@ -33,6 +33,10 @@ public interface DeliverService {
 
 	public String getDeliver_cd();
 
+	public List<Map<String, Object>> getRelList2(PageDTO pageDTO);
+
+	public int getRelCount(PageDTO pageDTO);
+
 
 	
 	

@@ -105,6 +105,22 @@ public class DeliverDAOImpl implements DeliverDAO  {
 		return sqlSession.selectOne(namespace+".getDeliver_cd");
 	}
 
+	@Override
+	public List<Map<String, Object>> getRelList2(PageDTO pageDTO) {
+		System.out.println("DeliverDAOImpl getRelList2()");
+		
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		
+		return sqlSession.selectList(namespace+".getRelList2", pageDTO);
+	}
+
+	@Override
+	public int getRelCount(PageDTO pageDTO) {
+		System.out.println("DeliverDAOImpl getRelCount()");
+		
+		return sqlSession.selectOne(namespace+".getRelCount", pageDTO);
+	}
+
 	
 	
 	
