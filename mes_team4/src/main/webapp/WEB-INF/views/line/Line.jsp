@@ -59,7 +59,7 @@ function allCheck(){
 	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2> 설비관리 </h2><br>
+	<h2> 설비정보관리 </h2><br>
 	<div id="table_search">
 			<form action="${pageContext.request.contextPath}/line/line" method="get">
 				<!-- 				검색 메뉴 선택 -->
