@@ -68,8 +68,12 @@ function memberdelete(a) {
 						<td>${systemDTO.grade_cd}</td>
 						<td>${systemDTO.emp_priv}</td>
 						<td><button class="button2" onclick="memberupdate('${systemDTO.emp_no}');">수정</button></td>
+						<c:if test = "${systemDTO.emp_no ne 99999}">
 						<td><button class="button2" onclick="memberdelete('${systemDTO.emp_no}');">삭제</button></td></tr>
-
+						</c:if>
+						<c:if test = "${systemDTO.emp_no eq 99999}">
+						<td><button class="button2">불가</button></td></tr>
+						</c:if> 	
 			  	</c:forEach>
 			</tbody>
 		</table>

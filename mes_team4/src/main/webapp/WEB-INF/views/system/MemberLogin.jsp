@@ -54,11 +54,11 @@ setTimeout(function() {
 	<h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >로그인</h2>
 					<div>
 					<label>사원번호</label>
-					<input type="text" name="emp_no" class="emp_no" autofocus="autofocus" placeholder="사원번호를 입력해주세요" ><br><br>
+					<input type="text" name="emp_no" class="emp_no" autofocus="autofocus"><br><br>
 					</div>
 					<div>
 					<label>비밀번호</label>
-					<input type="password" name="emp_pass" class="emp_pass" placeholder="비밀번호를 입력해주세요"><br><br>
+					<input type="password" name="emp_pass" class="emp_pass" ><br><br>
 					</div>	
 					<div align="center">
 					<button class="button2" form="login" onclick="submit">로그인</button>
