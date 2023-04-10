@@ -164,11 +164,16 @@
 	} 
 </script>
 <!-- 자바스크립트 입력 끝-->
-
-
 	
 <div id="innerContents">
 <!-- 본문HTML 입력 시작-->
+
+<!-- 로그인 및 권한 확인 -->
+<c:set var = "priv" value = "${systemDTO2.emp_priv}"/>
+<c:if test = "${!empty sessionScope.emp_no}">
+	<c:choose>
+		<c:when test = "${fn:contains(priv, 'C')}">
+<!-- 로그인 및 권한 확인 -->
 
 	<h2>원자재 발주현황 </h2>
 	<br>
@@ -284,7 +289,19 @@
 			<a href="${pageContext.request.contextPath}/purchase/list?pageNum=${pageDTO.startPage-pageDTO.pageBlock}&search=${pageDTO.search}&search_option=${pageDTO.search_option}&search_com=${pageDTO.search_com}&start_date=${pageDTO.start_date}&end_date=${pageDTO.end_date}&start_due_date=${pageDTO.start_due_date}&end_due_date=${pageDTO.end_due_date}">Next</a>
 		</c:if>
 	</div>
-	
+
+<!-- 로그인 및 권한 확인 -->
+		</c:when>
+		<c:otherwise>
+			<script type="text/javascript">
+			alert("권한이 없습니다.")
+			history.back();
+			</script>
+		</c:otherwise>   
+   </c:choose>
+</c:if>	
+<!-- 로그인 및 권한 확인 -->
+
 <!-- 본문HTML 입력 끝-->
 	</div>
 </div>

@@ -93,11 +93,16 @@
 	
 </script>
 <!-- 자바스크립트 입력 끝-->
-
-
 	
 <div id="innerContents">
 <!-- 본문HTML 입력 시작-->
+
+<!-- 로그인 및 권한 확인 -->
+<c:set var = "priv" value = "${systemDTO2.emp_priv}"/>
+<c:if test = "${!empty sessionScope.emp_no}">
+	<c:choose>
+		<c:when test = "${fn:contains(priv, 'B')}">
+<!-- 로그인 및 권한 확인 -->
 
 	<h2>소요량 관리 </h2>
 	<br>
@@ -203,6 +208,18 @@
 		</c:if>
 	</div>
 	
+<!-- 로그인 및 권한 확인 -->
+		</c:when>
+		<c:otherwise>
+			<script type="text/javascript">
+			alert("권한이 없습니다.")
+			history.back();
+			</script>
+		</c:otherwise>   
+   </c:choose>
+</c:if>	
+<!-- 로그인 및 권한 확인 -->
+
 <!-- 본문HTML 입력 끝-->
 	</div>
 </div>

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.ConsumptionService;
+import com.itwillbs.service.SystemService;
 import com.mysql.cj.xdevapi.JsonArray;
 
 
@@ -26,100 +29,111 @@ public class ConsumptionController {
 	@Inject 
 	private ConsumptionService consumptionService;
 	
+	@Inject
+	private SystemService systemService;
+	
 	@RequestMapping(value = "/consmpt/list", method = RequestMethod.GET)
-	public String list(HttpServletRequest request, PageDTO pageDTO, Model model) {
+	public String list(HttpServletRequest request, PageDTO pageDTO, Model model, HttpSession session) {
 		System.out.println("ConsumptionController list()");
 		// 처리작업
-
-		// 검색어 설정
-		String search= request.getParameter("search");
-		pageDTO.setSearch(search);		
 		
-		// 품목구분 설정
-		String product_dv = request.getParameter("product_dv");
-		pageDTO.setProduct_dv(product_dv);
-		
-		// 한 화면에 보여줄 글의 개수
-		int pageSize = 5;
-		
-		// 현재페이지 번호 설정
-		String pageNum= request.getParameter("pageNum");
-		if(pageNum == null) {
-			pageNum = "1";
-		} 
-		int CurrentPage = Integer.parseInt(pageNum);
-		
-		pageDTO.setPageSize(pageSize);
-		pageDTO.setPageNum(pageNum);
-		pageDTO.setCurrentPage(CurrentPage);
-		
-		List<ConsumptionDTO> cprConsmptList = consumptionService.getCprConsmptList(pageDTO);
-		int count = consumptionService.getCprConsmptCount(pageDTO);
-		
-		// 완제품 페이징 처리에 따른 원자재 저장
-		List<ConsumptionDTO> rprConsmptList = null;
-		List<List<ConsumptionDTO>> rprList = null;
-		
-		if(count != 0) {
-			String[] cprCdName = new String[cprConsmptList.size()];
-			for(int i = 0; i < cprConsmptList.size(); i++) {
-				cprCdName[i] = cprConsmptList.get(i).getCproduct_cd_name();
-			}
+		Object emp_no = session.getAttribute("emp_no");
+		if(emp_no == null) {
+			return "system/msg2";
+		} else {
+			// 검색어 설정
+			String search= request.getParameter("search");
+			pageDTO.setSearch(search);		
 			
-			rprConsmptList = consumptionService.getRprConsmptList(cprCdName);
+			// 품목구분 설정
+			String product_dv = request.getParameter("product_dv");
+			pageDTO.setProduct_dv(product_dv);
 			
-			// 테이블 병합처리 변수 저장
-			List<Integer> rowcolsTd = consumptionService.getRowcolsTd(pageDTO);
-			pageDTO.setRowcolsTd(rowcolsTd);
-			int length = rowcolsTd.size();
+			// 한 화면에 보여줄 글의 개수
+			int pageSize = 5;
 			
-			// List<Integer> showTd = new ArrayList<Integer>(rowcolsTd.size());
-			// showTd.add(0);
-			// if (rowcolsTd.size() > 0) {
-			// 	for(int i = 0; i < rowcolsTd.size()-1; i++) {
-			// 		int x = rowcolsTd.get(i);
-			// 		int y = showTd.get(i) + x;
-			// 		showTd.add(y);
-			// 	}
-			// }
-			// pageDTO.setShowTd(showTd);
+			// 현재페이지 번호 설정
+			String pageNum= request.getParameter("pageNum");
+			if(pageNum == null) {
+				pageNum = "1";
+			} 
+			int CurrentPage = Integer.parseInt(pageNum);
 			
-			// 2차원 리스트 저장
-			int startNum = 0;
-			int endNum = rowcolsTd.get(0);
+			pageDTO.setPageSize(pageSize);
+			pageDTO.setPageNum(pageNum);
+			pageDTO.setCurrentPage(CurrentPage);
 			
-			rprList = new ArrayList<List<ConsumptionDTO>>(length);
-			for(int i = 0; i < length; i++) {				
-				rprList.add(rprConsmptList.subList(startNum, endNum));
-				startNum += rowcolsTd.get(i);	
-				if(i < length-1) {
-					endNum += rowcolsTd.get(i+1);
+			List<ConsumptionDTO> cprConsmptList = consumptionService.getCprConsmptList(pageDTO);
+			int count = consumptionService.getCprConsmptCount(pageDTO);
+			
+			// 완제품 페이징 처리에 따른 원자재 저장
+			List<ConsumptionDTO> rprConsmptList = null;
+			List<List<ConsumptionDTO>> rprList = null;
+			
+			if(count != 0) {
+				String[] cprCdName = new String[cprConsmptList.size()];
+				for(int i = 0; i < cprConsmptList.size(); i++) {
+					cprCdName[i] = cprConsmptList.get(i).getCproduct_cd_name();
+				}
+				
+				rprConsmptList = consumptionService.getRprConsmptList(cprCdName);
+				
+				// 테이블 병합처리 변수 저장
+				List<Integer> rowcolsTd = consumptionService.getRowcolsTd(pageDTO);
+				pageDTO.setRowcolsTd(rowcolsTd);
+				int length = rowcolsTd.size();
+				
+				// List<Integer> showTd = new ArrayList<Integer>(rowcolsTd.size());
+				// showTd.add(0);
+				// if (rowcolsTd.size() > 0) {
+				// 	for(int i = 0; i < rowcolsTd.size()-1; i++) {
+				// 		int x = rowcolsTd.get(i);
+				// 		int y = showTd.get(i) + x;
+				// 		showTd.add(y);
+				// 	}
+				// }
+				// pageDTO.setShowTd(showTd);
+				
+				// 2차원 리스트 저장
+				int startNum = 0;
+				int endNum = rowcolsTd.get(0);
+				
+				rprList = new ArrayList<List<ConsumptionDTO>>(length);
+				for(int i = 0; i < length; i++) {				
+					rprList.add(rprConsmptList.subList(startNum, endNum));
+					startNum += rowcolsTd.get(i);	
+					if(i < length-1) {
+						endNum += rowcolsTd.get(i+1);
+					}
 				}
 			}
+			
+			// 페이징 처리
+			int pageBlock = 5;
+			int startPage = (CurrentPage-1)/pageBlock*pageBlock+1;
+			int endPage = startPage+pageBlock-1;
+			int pageCount = count/pageSize+(count%pageSize==0?0:1);
+			if(endPage > pageCount){
+			 	endPage = pageCount;
+			}
+			
+			pageDTO.setCount(count);
+			pageDTO.setPageBlock(pageBlock);
+			pageDTO.setStartPage(startPage);
+			pageDTO.setEndPage(endPage);
+			pageDTO.setPageCount(pageCount);
+			
+			// 사원정보 
+			SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+			
+			// 서버단 처리 결과 전달
+			model.addAttribute("rprConsmptList", rprConsmptList); 
+			model.addAttribute("rprList",rprList);
+			model.addAttribute("pageDTO", pageDTO);
+			model.addAttribute("systemDTO2", systemDTO);
+			
+			return "consumption/List";
 		}
-		
-		// 페이징 처리
-		int pageBlock = 5;
-		int startPage = (CurrentPage-1)/pageBlock*pageBlock+1;
-		int endPage = startPage+pageBlock-1;
-		int pageCount = count/pageSize+(count%pageSize==0?0:1);
-		if(endPage > pageCount){
-		 	endPage = pageCount;
-		}
-		
-		pageDTO.setCount(count);
-		pageDTO.setPageBlock(pageBlock);
-		pageDTO.setStartPage(startPage);
-		pageDTO.setEndPage(endPage);
-		pageDTO.setPageCount(pageCount);
-		
-		
-		// 서버단 처리 결과 전달
-		model.addAttribute("rprConsmptList", rprConsmptList); 
-		model.addAttribute("rprList",rprList);
-		model.addAttribute("pageDTO", pageDTO);
-		
-		return "consumption/List";
 	}
 	
 	@RequestMapping(value = "/consmpt/insert", method = RequestMethod.GET)
