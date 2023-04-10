@@ -207,7 +207,7 @@ function rst(){
     					<option value="FL003">3라인</option>
 					</select></td>
 					<td><input type="date" name="instruction_date" id="instruction_date"></td>	
-    				<td><input type="text" name="instruction_qt" id="instruction_qt"></td>
+    				<td><input type="text" name="instruction_qt"></td>
     				<td><input type="text" name="instruction_state" id="instruction_state" value = "생산대기"></td>
 <!--     				<td><select name="instruction_state" id="instruction_state"> -->
 <!--     					<option value="">------------</option> -->
