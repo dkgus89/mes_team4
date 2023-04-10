@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%-- <%@ page session="false" %> --%>
 
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="../main/Header.jsp" />
@@ -30,6 +30,7 @@ function memberdelete(a) {
 	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
+<c:if test = "${!empty sessionScope.emp_no}">
 	<h2>사용자관리</h2>
 	<div class="wrap2">
 	
@@ -80,7 +81,13 @@ function memberdelete(a) {
 					<button class="button2"	type="submit" value="search">검색</button>	
 				</form>
 			</div>
-	
+</c:if>	
+<c:if test = "${empty sessionScope.emp_no}">
+<script type="text/javascript">
+alert("로그인이 필요합니다.")
+location.replace("${pageContext.request.contextPath}/system/memberlogin");
+</script>
+</c:if>
 <!-- 	</form> -->
 
 
@@ -95,10 +102,12 @@ function memberdelete(a) {
 <c:if test="${pageDTO.endPage < pageDTO.pageCount}">
 	<a href="${pageContext.request.contextPath }/system/membermain?pageNum=${pageDTO.endPage + pageDTO.pageBlock}&search=${pageDTO.search}">[10페이지 이후]</a>
 </c:if>
+
 	
 <!-- 본문HTML 입력 끝-->
 	</div>
 </div>
+
 
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="../main/Footer.jsp" />
