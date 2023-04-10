@@ -164,8 +164,9 @@ public class SystemController {
 	@RequestMapping(value = "/system/mypageform", method = RequestMethod.GET)
 	public String businessupdate(HttpSession session, Model model) {
 		System.out.println("SystemController mypageForm()");
-		
+		//비로그인 상태일 시
 		int emp_no = (Integer)session.getAttribute("emp_no");
+		
 		System.out.println(emp_no);
 		SystemDTO systemDTO = systemService.memberinfo(emp_no);
 		
@@ -174,6 +175,7 @@ public class SystemController {
 		
 		// 가상주소 유지
 		return "mypage/mypage";
+		
 	}
 	
 	@RequestMapping(value = "/system/mypagepro", method = RequestMethod.POST)

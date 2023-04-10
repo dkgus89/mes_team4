@@ -116,6 +116,7 @@
 	  transition-duration: 0.5s;
 	}
 	
+	
 	.menu > .list2:hover .submenu {
  	  height: 100px; /*서브메뉴 li한개의 높이 50*5*/
 	  transition-duration: 0.5s;
