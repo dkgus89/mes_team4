@@ -16,7 +16,7 @@ public interface ReceiveDAO {
 
 	public int getReceiveCount(PageDTO pageDTO);
 
-	public Integer getCNum();
+	public Integer getRECNum();
 
 	public ReceiveDTO getReceive(String rec_schedule_cd);
 

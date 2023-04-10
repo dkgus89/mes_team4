@@ -42,9 +42,9 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 		return sqlSession.selectOne(namespace+".getReceiveCount",pageDTO);
 	}
 	@Override
-	public Integer getCNum() {
+	public Integer getRECNum() {
 		
-		return sqlSession.selectOne(namespace+".getCNum");
+		return sqlSession.selectOne(namespace+".getRECNum");
 	}
 	@Override
 	public ReceiveDTO getReceive(String rec_schedule_cd) {

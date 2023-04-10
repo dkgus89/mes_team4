@@ -104,7 +104,7 @@ function deleteValue(){
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
-					<th> </th>
+					<th></th>
 					<th>입고코드</th>
 					<th>입고창고</th>
 					<th>발주/수주코드</th>

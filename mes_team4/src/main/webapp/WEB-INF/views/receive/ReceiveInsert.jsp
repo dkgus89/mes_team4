@@ -12,18 +12,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 
 // 창고현황
-function sub(){
-	window.opener.name = "parentPage";
-	document.recinsert.target="parentPage";
-	document.recinsert.action="${pageContext.request.contextPath}/receive/recinsertPro";
-	document.recinsert.submit();
-	self.close();
-	}
-	
 function showPopup(){
     	var link = "${pageContext.request.contextPath}/receive/warehouse";     
     	var popupWidth = 700;
@@ -70,8 +62,45 @@ function showPopup3(){
     }
     
 function rst(){
-    	document.recinsert.reset();
-    	}    
+	// 초기화 유효성 검사
+	var result = confirm("초기화 하시겠습니까?");
+	if (result == true){    
+		document.recinsert.reset();
+	} else {
+		return false;
+	}
+}  
+
+function sub(){
+	$(document).ready(function(){ //Jquery 시작
+		// submit 유효성 검사
+		var result = confirm("입고를 등록하시겠습니까?");
+		if (result == true){
+			if($('#wh_cd').val()==""){
+				alert("창고목록을 조회해서 선택하세요");
+				return false;
+			}
+			if($('#pchor_cd').val()==""){
+				alert("발주/실적목록을 조회해서 선택하세요");
+				return false;
+			}
+			if($('#rec_date').val()==""){
+				alert("입고일자를 선택하세요");
+				$('#rec_date').focus();
+				return false;
+			}
+			// 유효성 검사 통과시 submit
+			window.opener.name = "parentPage";
+			document.recinsert.target="parentPage";
+			document.recinsert.action="${pageContext.request.contextPath}/receive/recinsertPro";
+			document.recinsert.submit();
+			self.close();
+			
+		} else {
+			return false;
+		}	
+	}); //Jquery 끝
+}
 </script>
 
 </head>

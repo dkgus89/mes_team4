@@ -39,8 +39,8 @@
     </select>
     
     <!-- 	입고코드번호 -->
-	<select id="getCNum" resultType="java.lang.Integer">
-	select max(SUBSTR(rec_schedule_cd, 2)) from receive_schedule where rec_schedule_cd like 'C%'
+	<select id="getRECNum" resultType="java.lang.Integer">
+	select max(SUBSTR(rec_schedule_cd, 4)) from receive_schedule where rec_schedule_cd like 'REC%'
 	</select>
 	
 	<update id="updateReceive">

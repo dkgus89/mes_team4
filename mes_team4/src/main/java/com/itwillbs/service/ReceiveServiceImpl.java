@@ -1,5 +1,7 @@
 package com.itwillbs.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -20,17 +22,22 @@ public class ReceiveServiceImpl implements ReceiveService{
 	@Override
 	public void insertReceive(ReceiveDTO receiveDTO) {
 		System.out.println("insertReceive()");
-		if(receiveDAO.getCNum()==null) {
+		
+		LocalDate now = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
+		String today = now.format(formatter);
+			
+		if(receiveDAO.getRECNum()==null) {
 			//출고품목 없음
-			receiveDTO.setRec_schedule_cd("C001");
+			receiveDTO.setRec_schedule_cd("REC"+today+"100");
 		}else{
-			System.out.println("LNum 출력 : "+receiveDAO.getCNum());
-			int num = receiveDAO.getCNum()+1;
-			String str = "C00" + num;
+			//출고품목 => max(num)+1
+			System.out.println("RECNum 출력 : "+receiveDAO.getRECNum());
+			int num = receiveDAO.getRECNum()+1;
+			String str = "REC"+num;
 			
 			receiveDTO.setRec_schedule_cd(str);
 		}
-		
 		receiveDAO.insertReceive(receiveDTO);
 	}
 	
