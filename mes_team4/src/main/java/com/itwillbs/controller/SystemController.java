@@ -21,48 +21,55 @@ public class SystemController {
 	private SystemService systemService;
 	
 	@RequestMapping(value = "/system/membermain", method = RequestMethod.GET)
-	public String membermain(HttpServletRequest request, Model model) {
+	public String membermain(HttpServletRequest request, Model model, HttpSession session) {
 			System.out.println("SystemController membermain()");
-			String search =request.getParameter("search");
-//			한 화면에 보여줄 글의 개수 설정
-			int pageSize =5;
-//			현재 페이지 번호 가져오기
-			String pageNum = request.getParameter("pageNum");
-			if(pageNum == null) {
-//				pageNum이 없으면 1페이지로 설정
-				pageNum = "1";
-			} 
-			int currentPage = Integer.parseInt(pageNum);
-			
-			PageDTO pageDTO = new PageDTO();
-			pageDTO.setPageSize(pageSize);
-			pageDTO.setPageNum(pageNum);
-			pageDTO.setCurrentPage(currentPage);
-			pageDTO.setSearch(search);
-			
-			List<SystemDTO> systemList=systemService.getsystemlist(pageDTO);
-			
-//			페이징처리
-			int count = systemService.getsystemcount(pageDTO);
-			int pageBlock = 10;
-			int startPage = (currentPage-1)/pageBlock * pageBlock + 1;  
-			int endPage = startPage + pageBlock - 1;
-			int pageCount = count/pageSize + (count%pageSize==0?0:1);
-			if (endPage > pageCount){
-				endPage = pageCount;
-				}
-			
-			pageDTO.setCount(count);
-			pageDTO.setPageBlock(pageBlock);
-			pageDTO.setStartPage(startPage);
-			pageDTO.setEndPage(endPage);
-			pageDTO.setPageCount(pageCount);
-			
-			model.addAttribute("systemList", systemList);
-			model.addAttribute("pageDTO", pageDTO);
-			
-			// /WEB-INF/views/board/list.jsp
-			return "system/MemberMain";
+
+			Object emp_no = session.getAttribute("emp_no");
+			if(emp_no == null) {
+				return "system/msg2";
+			} else {
+				String search =request.getParameter("search");
+//				한 화면에 보여줄 글의 개수 설정
+				int pageSize =5;
+//				현재 페이지 번호 가져오기
+				String pageNum = request.getParameter("pageNum");
+				if(pageNum == null) {
+//					pageNum이 없으면 1페이지로 설정
+					pageNum = "1";
+				} 
+				int currentPage = Integer.parseInt(pageNum);
+				
+				PageDTO pageDTO = new PageDTO();
+				pageDTO.setPageSize(pageSize);
+				pageDTO.setPageNum(pageNum);
+				pageDTO.setCurrentPage(currentPage);
+				pageDTO.setSearch(search);
+				
+				List<SystemDTO> systemList=systemService.getsystemlist(pageDTO);
+				
+//				페이징처리
+				int count = systemService.getsystemcount(pageDTO);
+				int pageBlock = 10;
+				int startPage = (currentPage-1)/pageBlock * pageBlock + 1;  
+				int endPage = startPage + pageBlock - 1;
+				int pageCount = count/pageSize + (count%pageSize==0?0:1);
+				if (endPage > pageCount){
+					endPage = pageCount;
+					}
+				
+				pageDTO.setCount(count);
+				pageDTO.setPageBlock(pageBlock);
+				pageDTO.setStartPage(startPage);
+				pageDTO.setEndPage(endPage);
+				pageDTO.setPageCount(pageCount);
+				
+				model.addAttribute("systemList", systemList);
+				model.addAttribute("pageDTO", pageDTO);
+				SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+				model.addAttribute("systemDTO2", systemDTO);
+				System.out.println(systemDTO.getEmp_no());
+				return "system/MemberMain";
+			}
 
 	}
 	

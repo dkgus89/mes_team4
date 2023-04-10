@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%-- <%@ page session="false"%> --%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- 헤더파일들어가는 곳 -->
 <%-- <jsp:include page="../main/Header.jsp" /> --%>
@@ -110,11 +111,10 @@
 					<label>권한(다수 선택가능)</label><br>
 					<div>
 						<input type="checkbox" class="emp_priv" name="emp_priv" value="A" /> A.시스템관리<br>
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="B" /> B.사원관리<br>
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="C" /> C.기준정보관리<br>
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="D" /> D.영업관리<br>
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="E" /> E.생산조회<br>
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="F" /> F.재고관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="B" /> B.기준정보관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="C" /> C.영업관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="D" /> D.생산조회<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="E" /> E.재고관리<br>
 
 					</div>
 	

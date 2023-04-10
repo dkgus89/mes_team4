@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%-- <%@ page session="false" %> --%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="../main/Header.jsp" />
@@ -29,17 +30,16 @@ function memberdelete(a) {
 
 	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
-
+<c:set var = "priv" value = "${systemDTO2.emp_priv}"/>
 <c:if test = "${!empty sessionScope.emp_no}">
+	<c:choose>
+		<c:when test = "${fn:contains(priv, 'A')}">
 	<h2>사용자관리</h2>
 	<div class="wrap2">
 	
 	  <button class="button2" onclick="memberinsert()">추가</button><br>
 
 	 </div><br><br>
-	
-	 
-	 
 
 		<input type="hidden" value="">
 		
@@ -81,14 +81,18 @@ function memberdelete(a) {
 					<button class="button2"	type="submit" value="search">검색</button>	
 				</form>
 			</div>
-</c:if>	
-<c:if test = "${empty sessionScope.emp_no}">
-<script type="text/javascript">
-alert("로그인이 필요합니다.")
-location.replace("${pageContext.request.contextPath}/system/memberlogin");
-</script>
+	</c:when>
+	<c:otherwise>
+		<script type="text/javascript">
+		alert("권한이 없습니다.")
+		history.back();
+		</script>
+	</c:otherwise>	
+	</c:choose>
 </c:if>
-<!-- 	</form> -->
+
+
+
 
 
 	<c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
