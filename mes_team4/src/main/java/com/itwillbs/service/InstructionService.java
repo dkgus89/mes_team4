@@ -61,6 +61,8 @@ public interface InstructionService {
 	public String getRel_schedule_cd();
 
 	public ConsumptionDTO getConsumption(ConsumptionDTO consumptionDTO);
+	
+	public List<Map<String, Object>> getStockCheck(String order_cd);
 
 
 	

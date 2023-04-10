@@ -203,7 +203,12 @@ public class InstructionServiceImpl implements InstructionService{
 		return instructionDAO.getConsumption(consumptionDTO);
 	}
 
+	@Override
+	public List<Map<String, Object>> getStockCheck(String order_cd) {
+		System.out.println("InstructionServiceImpl getStockCheck()");
 
+		return instructionDAO.getStockCheck(order_cd);
+	}
 
 	
 	

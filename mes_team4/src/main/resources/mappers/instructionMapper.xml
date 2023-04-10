@@ -46,11 +46,16 @@
 	</resultMap>
 
 	<select id="getOrderListMap" resultMap="map2">
-    	SELECT o.order_cd, o.business_cd, o.product_cd_name, o.order_count, o.order_date, o.deliver_date, o.emp_no,c.cproduct_name, c.rproduct_cd_name, c.rproduct_name, c.consumption, c.consumption_unit
+		SELECT o.order_cd, o.business_cd, o.product_cd_name, o.order_count, o.order_date, o.deliver_date, o.emp_no, c.cproduct_name, c.rproduct_cd_name, c.rproduct_name, c.consumption, c.consumption_unit
+		from consumption_management c left join (select * from order_management where con = '생산전' ) o
+		ON o.product_cd_name = c.cproduct_cd_name
+		where o.order_cd is not null 
+		order by order_cd
+    	<!-- SELECT o.order_cd, o.business_cd, o.product_cd_name, o.order_count, o.order_date, o.deliver_date, o.emp_no,c.cproduct_name, c.rproduct_cd_name, c.rproduct_name, c.consumption, c.consumption_unit
 		FROM order_management o right join consumption_management c 
 		ON o.product_cd_name = c.cproduct_cd_name
 		where o.order_cd is not null and o.con = '생산전'
-		group by o.order_cd
+		group by o.order_cd -->
     </select>
     
 	<select id="getConsListMap" resultMap="map2">
@@ -58,16 +63,44 @@
 		from consumption_management c join instruction i
 		on c.cproduct_cd_name = i.product_cd_name
 		where i.instruction_code = #{instruction_code}
-<!-- 		and o.con = '생산전' -->
+		<!--and o.con = '생산전' -->
     </select>
 	
 	<select id="getordercount" resultType="java.lang.Integer">
-        SELECT count(*)
+		SELECT count(*)
+		from consumption_management c left join (select * from order_management where con = '생산전' ) o
+		ON o.product_cd_name = c.cproduct_cd_name
+		where o.order_cd is not null 
+		order by order_cd
+        <!-- SELECT count(*)
 		FROM order_management o right join consumption_management c 
 		ON o.product_cd_name = c.cproduct_cd_name
-		where o.order_cd is not null and o.con = '생산전'
+		where o.order_cd is not null and o.con = '생산전' -->
     </select>
 
+	<resultMap type="map" id="map3">
+		<!-- column="DB의 열이름" property="해당 DB열에 대해 저장할 변수이름"-->
+		<result column="order_cd" property="order_cd"/>
+		<result column="product_cd_name" property="cproduct_cd_name"/>
+		<result column="cproduct_name" property="cproduct_name"/>
+		<result column="rproduct_cd_name" property="rproduct_cd_name"/>
+		<result column="rproduct_name" property="rproduct_name"/>
+		<result column="order_count" property="order_count"/>
+		<result column="consumption" property="consumption"/>
+		<result column="calconsumption" property="calconsumption"/>
+		<result column="stock_count" property="stock_count"/>
+		<result column="consumption_unit" property="consumption_unit"/>
+	</resultMap>
+
+	<select id="getStockCheck" resultMap="map3">
+		SELECT o.order_cd, o.product_cd_name, c.cproduct_name, c.rproduct_cd_name, c.rproduct_name,  o.order_count, c.consumption, c.consumption*o.order_count as calconsumption, s.stock_count, c.consumption_unit
+		from consumption_management c left join (select * from order_management where con = '생산전' ) o
+		ON o.product_cd_name = c.cproduct_cd_name 
+		join stock s
+		on c.rproduct_cd_name = s.product_cd_name
+		where o.order_cd is not null and order_cd = #{order_cd}
+    </select>
+	
     <select id="orderinfo" resultType="com.itwillbs.domain.OrderDTO">
         select *
         from order_management

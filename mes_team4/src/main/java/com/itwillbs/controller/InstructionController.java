@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.OrderDTO;
@@ -31,6 +32,10 @@ import com.itwillbs.service.InstructionService;
 import com.itwillbs.service.OrderService;
 import com.itwillbs.service.ReceiveService;
 import com.itwillbs.service.ReleaseService;
+import com.mysql.cj.xdevapi.JsonArray;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 public class InstructionController {
@@ -326,6 +331,32 @@ public class InstructionController {
 	model.addAttribute("consListMap", consListMap);
 	model.addAttribute("instructionDTO", instructionDTO2);
 		return "/inst/InstContent";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/inst/stockCheck", method = RequestMethod.GET)
+	public JSONArray stockCheck(HttpServletRequest request) {
+		// request 파라미터 
+		String order_cd = request.getParameter("order_cd");
+		System.out.println(order_cd);
+		
+		// 메서드 호출
+		List<Map<String, Object>> stockCheckList = instructionService.getStockCheck(order_cd);
+			
+		// List<MapString, Object>> -> JSONArray 변환
+		 JSONArray jsonArr = new JSONArray();
+		 for (Map<String, Object> map : stockCheckList) {
+		        JSONObject json = new JSONObject();
+		        for (Map.Entry<String, Object> entry : map.entrySet()) {
+		            String key = entry.getKey();
+		            Object value = entry.getValue();
+		            json.put(key, value);
+		        }
+		        jsonArr.add(json);
+		}
+		System.out.println("변환입니다."+jsonArr);    	
+		
+		return jsonArr;
 	}
 
 }

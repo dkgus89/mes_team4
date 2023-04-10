@@ -196,6 +196,12 @@ public class InstructionDAOImpl implements InstructionDAO {
 		return sqlSession.selectOne(namespace +".getConsumption", consumptionDTO);
 	}
 	
+	@Override
+	public List<Map<String, Object>> getStockCheck(String order_cd) {
+		System.out.println("InstructionDAOImpl getStockCheck()");
+		
+		return sqlSession.selectList(namespace +".getStockCheck", order_cd);
+	}
 	
 	
 	
