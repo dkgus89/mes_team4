@@ -28,9 +28,9 @@ function input1(rec_schedule_cd,wh_cd,product_cd_name, rec_date, rec_count,pchor
 <!-- 자바스크립트 입력 끝-->
 
 
-	<div id="innerContents">
+<div id="contents">	
 <!-- 본문HTML 입력 시작-->
-	<h2>입고목록</h2><br>
+	<h2 class="updatetitle">입고목록</h2><br>
 	
 	
     <div class="search">

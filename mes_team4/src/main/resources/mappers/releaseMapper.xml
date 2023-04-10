@@ -32,20 +32,24 @@
 		<result column="rel_date"  property="rel_date"/>
 		<result column="rel_count"  property="rel_count"/>
 		<result column="remarks"  property="remarks"/>
+		<result column="stock_count"  property="stock_count"/>
 	</resultMap>
 
 	<select id="getrec" resultMap="map1">
         select l.rel_schedule_cd, c.rec_schedule_cd, c.wh_cd, c.pchor_cd, c.rec_count,
-        		c.product_cd_name, l.rel_date, l.rel_count, l.remarks
-		from release_schedule l join receive_schedule c
+        		c.product_cd_name, l.rel_date, l.rel_count, l.remarks, s.stock_count
+		from release_schedule as l 
+		left join receive_schedule as c
 		on l.wh_cd = c.wh_cd
+		left join stock as s
+		on l.product_cd_name = s.product_cd_name
         where rel_schedule_cd = #{rel_schedule_cd}
     </select>
 	
 	 <update id="updaterel">
 	 	update release_schedule set wh_cd = #{wh_cd}, product_cd_name = #{product_cd_name}, 
 	 								pchor_cd = #{pchor_cd}, rel_date = #{rel_date}, remarks = #{remarks},
-	 	                            rel_count = #{rel_count}
+	 	                            rel_count = #{rel_count},stock_count = #{stock_count}
 	 	where rel_schedule_cd = #{rel_schedule_cd}                     
     </update>
     

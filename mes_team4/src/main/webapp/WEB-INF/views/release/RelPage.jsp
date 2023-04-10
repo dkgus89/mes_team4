@@ -50,7 +50,7 @@ function deleteValue(){
 		var chk = confirm("정말 삭제하시겠습니까?");
 		if(chk){
 		$.ajax({
-			url :'${pageContext.request.contextPath}//rel/reldelete', 		//전송url
+			url :'${pageContext.request.contextPath}/rel/reldelete', 		//전송url
 			type : 'GET',	// post방식 ,,나는 겟하니까 돌아간다!!...
 			traditional : true,
 			data : {
@@ -89,6 +89,7 @@ function deleteValue(){
     <div class="wrap2">
     <form action="${pageContext.request.contextPath}/rel/relpage" method="get">
        <select name="select" class="button2">
+       		<option value="">선택하세요</option>
        		<option value="wh_name">창고명</option>
        		<option value="product_name">출고품목명</option>
        </select>
@@ -107,6 +108,7 @@ function deleteValue(){
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
+					<th></th>
 					<th>출고코드</th>
 					<th>출고창고</th>
 					<th>출고품목명</th>
@@ -118,9 +120,11 @@ function deleteValue(){
 			</thead>
 			
 			<tbody>
+			<c:if test="${pageDTO.count != 0 }">
 			<c:forEach var="dto" items="${relList }">
 				<tr>
 					<td><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.rel_schedule_cd }"></td>
+					<td>${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
 					<td>${dto.rel_schedule_cd}</td>
 					<td>${dto.wh_name}</td>
 					<td>${dto.product_name}</td>
@@ -132,6 +136,7 @@ function deleteValue(){
 					</td>
 				</tr>
 			</c:forEach>
+			</c:if>
 			</tbody>
 		</table>
 		

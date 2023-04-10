@@ -86,7 +86,7 @@ function sub(){
 				return false;
 			}
 			if(int_fp > int_qt){
-				alert("출고 수량이 입고 수량을 초과했습니다.");
+				alert("출고 수량이 재고 수량을 초과했습니다.");
 				$('#rel_count').focus();
 				return false;
 			}

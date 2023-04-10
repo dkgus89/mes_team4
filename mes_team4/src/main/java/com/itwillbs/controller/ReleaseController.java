@@ -163,8 +163,8 @@ public class ReleaseController {
 	}
 	
 	@RequestMapping(value = "/rel/reldelete", method = RequestMethod.GET)
-	public String reldelete(HttpServletRequest request, StockDTO stockDTO, ReleaseDTO releaseDTO) {
-		System.out.println("ReleaseController reldelete()");
+	public String deleterel(HttpServletRequest request, StockDTO stockDTO, ReleaseDTO releaseDTO) {
+		System.out.println("ReleaseController deleterel()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
 		int size = ajaxMsg.length;		

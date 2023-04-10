@@ -105,8 +105,6 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
 					<th>입고코드</th>
 					<th>입고창고</th>
 					<th>입고제품</th>
-					<th>입고수량</th>
-					<th>발주/수주코드</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -114,6 +112,19 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
 					<td><input type="text" name="rec_schedule_cd" id="rec_schedule_cd" value="${rec.rec_schedule_cd}" readonly></td>
 					<td><input type="text" name="wh_cd" id="wh_cd" value="${rec.wh_cd}" readonly></td>
 					<td><input type="text" name="product_cd_name" id="product_cd_name" value="${rec.product_cd_name}" readonly></td>
+				</tr>
+			</tbody>
+			
+			<thead>
+				<tr style="text-align: center; font-size: 0.9rem">
+					<th>현재고</th>
+					<th>입고수량</th>
+					<th>발주/수주코드</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input type="text" name="stock_count" id="stock_count" value="${rec.stock_count}" readonly></td>
 					<td><input type="text" name="rec_count" id="rec_count" value="${rec.rec_count}" readonly></td>
 					<td><input type="text" name="pchor_cd" id="pchor_cd" value="${rec.pchor_cd}" readonly></td>
 
