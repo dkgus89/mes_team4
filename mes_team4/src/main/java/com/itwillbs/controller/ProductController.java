@@ -86,6 +86,9 @@ public class ProductController {
 	@RequestMapping(value = "/product/prodinsert", method = RequestMethod.GET)
 	public String prodinsert(Model model) {
 		List<BusinessDTO> businessList = businessService.getBusinessList();
+		for(BusinessDTO dto : businessList) {
+			System.out.println(dto);
+		}
 		List<Map<String, Object>> instMap
 			=productService.getInstMap();
 		// model에 담아서 이동
