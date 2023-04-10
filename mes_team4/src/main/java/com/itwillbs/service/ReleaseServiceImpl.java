@@ -118,10 +118,10 @@ public class ReleaseServiceImpl implements ReleaseService{
 
 
 	@Override
-	public int getbfRel_count(String product_cd_name) {
+	public ReleaseDTO getbfRel_count(ReleaseDTO releaseDTO) {
 		System.out.println("ReleaseServiceImpl getbfRel_count()");
 		
-		return releaseDAO.getbfRel_count(product_cd_name);
+		return releaseDAO.getbfRel_count(releaseDTO);
 	}
 
 
@@ -156,8 +156,6 @@ public class ReleaseServiceImpl implements ReleaseService{
 		
 		releaseDAO.insertrel2(releaseDTO);		
 	}
-
-
 
 
 }

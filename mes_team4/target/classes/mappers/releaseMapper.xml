@@ -114,10 +114,10 @@
 		
 <!-- 		재고 현황 관련 -->
 		
-		<select id="getbfRel_count" resultType="java.lang.Integer">
+		<select id="getbfRel_count" resultType="com.itwillbs.domain.ReleaseDTO">
 			select rel_count
 			from release_schedule
-			where product_cd_name = #{product_cd_name}
+			where product_cd_name = #{product_cd_name} and rel_schedule_cd= #{rel_schedule_cd}
 		</select>
     
    		<select id="getProduct_cd_name2" resultType="java.lang.String">

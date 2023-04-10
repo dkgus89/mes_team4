@@ -135,8 +135,11 @@ public class ReleaseController {
 		// 출고수량 수정에 따라 재고현황에 적용할 재소수량 stockDTO에 저장
 		String product_cd_name =  releaseDTO.getProduct_cd_name();
 		int Stock_count=receiveService.getStock_count(product_cd_name);
-		int bfrelcount=relService.getbfRel_count(product_cd_name);
-		stockDTO.setStock_count((Stock_count+bfrelcount)-releaseDTO.getRel_count());
+		
+		releaseDTO.setRel_schedule_cd(releaseDTO.getRel_schedule_cd());
+		releaseDTO.setProduct_cd_name(product_cd_name);			
+		ReleaseDTO relDTO=relService.getbfRel_count(releaseDTO);
+		stockDTO.setStock_count((Stock_count+relDTO.getRel_count())-releaseDTO.getRel_count());
 		stockDTO.setProduct_cd_name(product_cd_name);
 		// 재고현황에 재고수량 적용 메서드 호출
 		receiveService.updateStockcount(stockDTO);
@@ -147,26 +150,29 @@ public class ReleaseController {
 	}
 	
 	@RequestMapping(value = "/rel/reldelete", method = RequestMethod.GET)
-	public String reldelete(HttpServletRequest request, StockDTO stockDTO) {
+	public String reldelete(HttpServletRequest request, StockDTO stockDTO, ReleaseDTO releaseDTO) {
 		System.out.println("ReleaseController reldelete()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
-		int size = ajaxMsg.length;
-		for(int i=0; i<size; i++) {
-			relService.deleterel(ajaxMsg[i]);
-		}
+		int size = ajaxMsg.length;		
 		
 		for(int i=0; i<size; i++) {
 		// 삭제시 재고현황에 적용할 재소수량 stockDTO에 저장
 			String rel_schedule_cd=ajaxMsg[i];
 			String product_cd_name =relService.getProduct_cd_name2(rel_schedule_cd);
-			int bfrelcount=relService.getbfRel_count(product_cd_name);
+			releaseDTO.setRel_schedule_cd(rel_schedule_cd);
+			releaseDTO.setProduct_cd_name(product_cd_name);			
+			ReleaseDTO relDTO=relService.getbfRel_count(releaseDTO);
 			int Stock_count=receiveService.getStock_count(product_cd_name);
-			stockDTO.setStock_count(Stock_count+bfrelcount);
+			stockDTO.setStock_count(Stock_count+relDTO.getRel_count());
 			stockDTO.setProduct_cd_name(product_cd_name);
 		// 재고현황에 재고수량 적용 메서드 호출
 		receiveService.updateStockcount(stockDTO);
 		}		
+		
+		for(int i=0; i<size; i++) {
+			relService.deleterel(ajaxMsg[i]);
+		}
 		
 		return "redirect:/rel/relpage";
 	}
