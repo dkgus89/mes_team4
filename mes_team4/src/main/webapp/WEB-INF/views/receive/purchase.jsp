@@ -20,40 +20,40 @@
 <script>
 function input1(purchase_cd,rproduct_cd_name,purchase_count){
 
-// 	$(document).ready(function(){ //Jquery 시작
-// 	// 선택 유효성 검사		
-// 		var rt = null;
-// 		var bfpur = opener.document.getElementById("purchase_cd").value;
-// 		if(purchase_cd == bfpur){
-// 			alert("현재 선택되어 있는 작업지시 입니다.");
-// 			return false;
-// 		}
-// 		$.ajax({ //ajax 시작
-// 			type:"GET",
-//  			url:'${pageContext.request.contextPath}/receive/purcheck',
-//  			async: false,
-//  			data:{'pur':purchase_cd},
-//  			success:function(result){
-//  				 if(result!=0) {
-//  		              alert("이전에 이미 실적등록이 된 작업지시입니다.");
-//  		              rt=1;
-//  		          }
-//  			}
-//  		}); //ajax 끝
-// 		if(rt==1){
-// 			return false;		
-// 		} 		
-// 		else{
-// 	     	  // 유효성 검사 통과시 선택 진행
-// 			  var result = confirm("이 행을 선택 하시겠습니까?");
-// 			  if (result == true){
+	$(document).ready(function(){ //Jquery 시작
+	// 선택 유효성 검사		
+		var rt = null;
+		var bfpur = opener.document.getElementById("purchase_cd").value;
+		if(purchase_cd == bfpur){
+			alert("현재 선택되어 있는 작업지시 입니다.");
+			return false;
+		}
+		$.ajax({ //ajax 시작
+			type:"GET",
+ 			url:'${pageContext.request.contextPath}/receive/purcheck',
+ 			async: false,
+ 			data:{'pur':purchase_cd},
+ 			success:function(result){
+ 				 if(result!=0) {
+ 		              alert("이전에 이미 실적등록이 된 작업지시입니다.");
+ 		              rt=1;
+ 		          }
+ 			}
+ 		}); //ajax 끝
+		if(rt==1){
+			return false;		
+		} 		
+		else{
+	     	  // 유효성 검사 통과시 선택 진행
+			  var result = confirm("이 행을 선택 하시겠습니까?");
+			  if (result == true){
 					opener.setChildValue2(purchase_cd,rproduct_cd_name,purchase_count);
 					window.close();
-// 			  } else {
-// 			  return false;
-// 			  }
-// 		}
-// 	}); //Jquery 끝
+			  } else {
+			  return false;
+			  }
+		}
+	}); //Jquery 끝
 
 
 }
