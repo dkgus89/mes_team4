@@ -122,7 +122,7 @@
 			return false;
 		}
 		if(true) {
-			for(let i = 1; i < rpListBtn_check; i++ ) {
+			for(let i = 0; i < rpListBtn_check; i++ ) {
 				var consumption_check = document.getElementsByName("consumption_arr")[i].value.length;
 				if(consumption_check < 1) {
 			    	alert("소요량을 입력해주세요.");
@@ -131,7 +131,7 @@
 			}
 		}
 		if(true) {
-			for(let i = 1; i < rpListBtn_check; i++ ) {
+			for(let i = 0; i < rpListBtn_check; i++ ) {
 				var consumption_unit_check = document.getElementsByName("consumption_unit_arr")[i].value.length;
 				if(consumption_unit_check < 1) {
 			    	alert("단위를 선택해주세요.");
