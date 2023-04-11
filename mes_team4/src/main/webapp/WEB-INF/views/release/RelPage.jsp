@@ -108,7 +108,7 @@ function deleteValue(){
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
-					<th></th>
+					<th>번호</th>
 					<th>출고코드</th>
 					<th>출고창고</th>
 					<th>출고품목명</th>
@@ -121,7 +121,7 @@ function deleteValue(){
 			
 			<tbody>
 			<c:if test="${pageDTO.count != 0 }">
-			<c:forEach var="dto" items="${relList }">
+			<c:forEach var="dto" items="${relList }" varStatus="status">
 				<tr>
 					<td><input type="checkbox" id="checkbox" name="rowcheck" value="${dto.rel_schedule_cd }"></td>
 					<td>${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>

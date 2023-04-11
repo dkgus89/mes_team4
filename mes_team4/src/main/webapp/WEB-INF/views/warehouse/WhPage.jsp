@@ -89,21 +89,21 @@ function itemChange(){
 		}
 	}
 	
-$(function(){
-    //직접입력 인풋박스 기존에는 숨어있다가
-$("#search1").hide();
+// $(function(){
+//     //직접입력 인풋박스 기존에는 숨어있다가
+// $("#search1").hide();
 
-$("#select").change(function() {
-              //직접입력을 누를 때 나타남
-		if($("#select").val() == "wh_name") {
-			$("#search1").show();
-			$("#search2").hide();
-		}  else {
-			$("#search1").hide();
-			$("#search2").show();
-		}
-	}) 
-});
+// $("#select").change(function() {
+//               //직접입력을 누를 때 나타남
+// 		if($("#select").val() == "wh_name") {
+// 			$("#search1").show();
+// 			$("#search2").hide();
+// 		}  else {
+// 			$("#search1").hide();
+// 			$("#search2").show();
+// 		}
+// 	}) 
+// });
 
 
 </script>
@@ -131,41 +131,27 @@ $("#select").change(function() {
       
        <select id="select" name="select" onchange="itemChange()" class="button2">
 			<option value="">선택하세요</option>
-			<c:set var="name" value="wh_name" />
-				<c:if test="${name eq 'wh_name'}">
- 					<option value="wh_name">이름</option>
-				</c:if>
-			
-			<c:set var="addr" value="wh_addr" />
-				<c:if test="${name eq 'wh_name'}">
- 					<option value="wh_addr">지역</option>
-				</c:if>
-				
-			<c:set var="dv" value="wh_dv" />
-				<c:if test="${name eq 'wh_name'}">
- 					<option value="wh_dv">창고유형</option>
-				</c:if>
-				
-<!-- 			<option value="wh_name">이름</option> -->
-<!-- 			<option value="wh_addr">지역</option> -->
-<!-- 			<option value="wh_dv">창고유형</option> -->
+			<option value="wh_name">이름</option>
+			<option value="wh_addr">지역</option>
+			<option value="wh_dv">창고유형</option>
 		</select>
 
-<c:choose>
-			<c:when test="${name eq 'wh_name'}">
-			<!-- 		wh_name 선택했을때 -->
-			<input type="text" id="search1" name="search" class="button2"/> 
-			</c:when>
-			<c:otherwise>
-			<!-- 		wh_addr, wh_dv선택했을때 --> 
-			<select id="search2" name="search_option" class="button2">
-				<option value="">구분을 선택하세요</option>
-			</select>
-			</c:otherwise>
-</c:choose>
+<%-- <c:choose> --%>
+<%-- 			<c:when test="${pageDTO.select == 'wh_name'.toString()'}"> --%>
+<!-- 			<!-- 		wh_name 선택했을때 --> 
+<!-- 			<input type="text" id="search1" name="search" class="button2"/>  -->
+<%-- 			</c:when> --%>
+			
+<%-- 			<c:otherwise> --%>
+<!-- 			<!-- 		wh_addr, wh_dv선택했을때 -->  
+<!-- 			<select id="search2" name="search_option" class="button2"> -->
+<!-- 				<option value="">구분을 선택하세요</option> -->
+<!-- 			</select> -->
+<%-- 			</c:otherwise> --%>
+<%-- </c:choose> --%>
 
 <!-- 		wh_name 선택했을때 -->
-<!-- 		<input type="text" id="search1" name="search" class="button2"/> -->
+		<input type="text" id="search1" name="search" class="button2"/>
 <!-- 		wh_addr, wh_dv선택했을때 --> 
 <!-- 		<select id="search2" name="search_option" class="button2"> -->
 <!-- 			<option value="">구분을 선택하세요</option> -->
@@ -189,6 +175,7 @@ $("#select").change(function() {
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
+					<th>번호</th>
 					<th>창고코드</th>
 					<th>창고명</th>
 					<th>창고유형</th>
@@ -201,9 +188,11 @@ $("#select").change(function() {
 			</thead>
 			
 			<tbody>
-			<c:forEach var="whDTO" items="${whList }">
+			<c:if test="${pageDTO.count != 0 }">
+			<c:forEach var="whDTO" items="${whList }" varStatus="status">
 				<tr>
 					<td><input type="checkbox" id="checkbox" name="rowcheck" value="${whDTO.wh_cd }"></td>
+					<td>${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
 					<td>${whDTO.wh_cd}</td>
 					<td>${whDTO.wh_name}</td>
 					<td>${whDTO.wh_dv}</td>
@@ -215,7 +204,8 @@ $("#select").change(function() {
 					<button class="button2" onclick="updatePopup('${whDTO.wh_cd}');">수정</button>
 					</td>
 				</tr>
-			</c:forEach>			
+			</c:forEach>
+			</c:if>			
 			</tbody>
 
 		</table>
