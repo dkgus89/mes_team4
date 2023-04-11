@@ -87,7 +87,7 @@ function deleteValue(){
 	 </div><br>
 	 <br>
 	
-		<div class="wrap2">
+		<div class="wrap2" id="table_search">
 		<form action="${pageContext.request.contextPath}/receive/recpage" method="get" >
 			<select name="select" class="button2">
 			<option value="" style="text-align:center">선택</option>
@@ -95,7 +95,7 @@ function deleteValue(){
 				<option value="pchor_cd">발주/수주코드</option>
 				<option value="product_cd_name">제품코드</option>
 			</select>
-			<input type="text" name="search" class="button2" style="width:300px">
+			<input type="text" name="search" class="input_box" style="width:300px">
 			<input type="submit" class="button2" value="검색">
 		</form>
 	</div><br>

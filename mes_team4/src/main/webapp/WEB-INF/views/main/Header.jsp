@@ -39,7 +39,7 @@
 		  <c:if test="${empty sessionScope.emp_no}">
 		  <button class="button" onclick="location.href='${pageContext.request.contextPath}/system/memberlogin'">로그인 </button>
 		  	  </div>
-		  <b><span style="color : red;"> </span>접속필요</b>
+		  <b><span style="color : red;"> 접속필요</span></b>
 	
 		  </c:if>
 		<c:if test="${!empty sessionScope.emp_no}">

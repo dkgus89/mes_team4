@@ -27,14 +27,14 @@ public class ReceiveServiceImpl implements ReceiveService{
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
 		String today = now.format(formatter);
 			
-		if(receiveDAO.getRECNum()==null) {
+		if(receiveDAO.getRECNum(today)==null) {
 			//출고품목 없음
-			receiveDTO.setRec_schedule_cd("REC"+today+"100");
+			receiveDTO.setRec_schedule_cd("REC"+today+"01");
 		}else{
 			//출고품목 => max(num)+1
-			System.out.println("RECNum 출력 : "+receiveDAO.getRECNum());
-			int num = receiveDAO.getRECNum()+1;
-			String str = "REC"+num;
+		    int num = receiveDAO.getRECNum(today) + 1;
+		    String new_num = String.format("%02d", num);
+		    String str = "REC" + today + new_num;
 			
 			receiveDTO.setRec_schedule_cd(str);
 		}

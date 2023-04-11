@@ -57,8 +57,7 @@ public class ReceiveController {
            return "system/msg2";
         } else {
 
-		// 검색어 가져오기
-		String search=request.getParameter("search");
+    	String search=request.getParameter("search");
 		// 검색어 옵션
 		String select=request.getParameter("select");
 		String pageNum=request.getParameter("pageNum");
