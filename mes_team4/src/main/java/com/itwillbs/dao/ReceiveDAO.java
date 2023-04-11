@@ -40,4 +40,6 @@ public interface ReceiveDAO {
 
 	public int getpurcheck(String purchase_cd);
 
+	public int getperformcheck(String order_cd);
+
 }

@@ -112,4 +112,10 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 		
 		return sqlSession.selectOne(namespace+".getpurcheck", purchase_cd);
 	}
+	@Override
+	public int getperformcheck(String order_cd) {
+		System.out.println("ReceiveDAOImpl getperformcheck()");
+		
+		return sqlSession.selectOne(namespace+".getperformcheck", order_cd);
+	}
 }

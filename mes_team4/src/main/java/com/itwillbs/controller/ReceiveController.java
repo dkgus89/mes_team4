@@ -289,7 +289,7 @@ public class ReceiveController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/receive/purcheck", method = RequestMethod.GET)
-	public String instcheck(HttpServletRequest request, Model model) {
+	public String purcheck(HttpServletRequest request, Model model) {
 		// request 파라미터 
 		String purchase_cd=request.getParameter("pur");
 		String result=null;
@@ -305,51 +305,6 @@ public class ReceiveController {
 		// result 값 리턴
 		return result;
 	}
-	
-//	@RequestMapping(value = "/receive/order", method = RequestMethod.GET)
-//	public String ordermain(HttpServletRequest request, Model model) {
-//		
-//		int pageSize=5;
-//		String pageNum=request.getParameter("pageNum");
-//		if(pageNum==null) {
-//			pageNum="1";
-//		}
-//		// 페이지번호를 => 정수형 변경
-//		int currentPage=Integer.parseInt(pageNum);
-//		
-//		PageDTO pageDTO=new PageDTO();
-//		pageDTO.setPageSize(pageSize);
-//		pageDTO.setPageNum(pageNum);
-//		pageDTO.setCurrentPage(currentPage);
-//		
-//		//생산 전,완료 개수 구하기
-//		pageDTO.setPcount(orderService.getPCount());
-//		pageDTO.setFcount(orderService.getFCount());
-//		
-//		List<OrderDTO> orderList = orderService.getOrderList(pageDTO);
-//		
-//		//페이징 처리
-//		int count = orderService.getOrderCount();
-//		int pageBlock=10;
-//		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
-//		int endPage=startPage+pageBlock-1;
-//		int pageCount=count/pageSize+(count%pageSize==0?0:1);
-//		if(endPage > pageCount){
-//			endPage = pageCount;
-//		}
-//		
-//		pageDTO.setCount(count);
-//		pageDTO.setPageBlock(pageBlock);
-//		pageDTO.setStartPage(startPage);
-//		pageDTO.setEndPage(endPage);
-//		pageDTO.setPageCount(pageCount);
-//		
-//		model.addAttribute("orderList", orderList);
-//		model.addAttribute("pageDTO", pageDTO);
-//		
-//		// 가상주소 유지
-//		return "receive/order";
-//	}
 	
 	@RequestMapping(value = "/receive/perform", method = RequestMethod.GET)
 	public String perform(HttpServletRequest request, Model model) {
@@ -397,6 +352,25 @@ public class ReceiveController {
 		// 주소변경 없이 이동
 		// /WEB-INF/views/receive/Perform.jsp
 		return "receive/perform";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/receive/performcheck", method = RequestMethod.GET)
+	public String performcheck(HttpServletRequest request, Model model) {
+		// request 파라미터 
+		String order_cd=request.getParameter("perform");
+		String result=null;
+		// 메서드 호출
+		int performcheck
+	     =receiveService.getperformcheck(order_cd);
+		// if문으로 result에 저장 할 값 설정
+		if(performcheck==0) {
+			result="0";
+		}else {
+			result="1";
+		}			
+		// result 값 리턴
+		return result;
 	}
 	
 	@RequestMapping(value = "/receive/recupdate", method = RequestMethod.GET)

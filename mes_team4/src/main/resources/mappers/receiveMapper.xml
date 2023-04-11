@@ -112,8 +112,15 @@
 	<select id="getpurcheck" resultType="java.lang.Integer">
     	select count(*)
     	from(select *
-    	from release_schedule
-    	where purchase_cd = #{purchase_cd}) a
+    	from receive_schedule
+    	where pchor_cd = #{purchase_cd}) a
+    </select>
+    
+   <select id="getperformcheck" resultType="java.lang.Integer">
+    	select count(*)
+    	from(select *
+    	from receive_schedule
+    	where pchor_cd = #{order_cd}) a
     </select>
     
     
