@@ -6,7 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MEDI-FAC</title>
+
+<!-- 파비콘 들어가는곳 -->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/static/favicon.ico">
+<!-- 파비콘 들어가는곳 -->
 
 <link href="${pageContext.request.contextPath}/resources/css/MainFront.css" rel="stylesheet" type="text/css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +29,7 @@ function input1(rec_schedule_cd,wh_cd,product_cd_name, rec_date, rec_count,pchor
 }
 
 </script>
+</head>
 <!-- 자바스크립트 입력 끝-->
 
 

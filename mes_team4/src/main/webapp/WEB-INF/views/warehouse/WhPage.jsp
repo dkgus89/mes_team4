@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<head>
+<title>MEDI-FAC</title>
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="../main/Header.jsp" />
 <!-- 헤더파일들어가는 곳 -->
@@ -108,7 +109,7 @@ function itemChange(){
 
 </script>
 <!-- 자바스크립트 입력 끝-->
-
+</head>
 
 	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->

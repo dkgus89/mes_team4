@@ -4,7 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>MEDI-FAC</title>
+<!-- 파비콘 들어가는곳 -->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/static/favicon.ico">
+<!-- 파비콘 들어가는곳 -->
 <% 
 	 
 	String inputYn = request.getParameter("inputYn"); 
