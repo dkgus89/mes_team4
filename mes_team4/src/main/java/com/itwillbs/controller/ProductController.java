@@ -213,6 +213,7 @@ public class ProductController {
 			result="1";
 		}			
 		// result 값 리턴
+		System.out.println(result);
 		return result;
 	}
 	
