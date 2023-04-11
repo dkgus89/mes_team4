@@ -18,7 +18,7 @@ function showPopup() {
 	window.open("prodinsert","추가팝업","width=1300, height=300, top=200, left=200");
 }
 function updatePopup(cd) {
-	 window.open("${pageContext.request.contextPath}/product/produpdate?product_cd_name="+cd,"produpdate","width=1450, height=300, top=200, left=200");
+	 window.open("${pageContext.request.contextPath}/product/produpdate?product_cd_name="+cd,"produpdate","width=1250, height=250, top=200, left=200");
 }
 
 //체크
@@ -78,7 +78,7 @@ function deleteValue(){
 	<c:if test = "${!empty sessionScope.emp_no}">
       <c:choose>
     <c:when test = "${fn:contains(priv, 'B')}">
-	<h2>품목정보관리</h2><br>
+	<h2 onclick="location.href='${pageContext.request.contextPath}/product/prodpage'">품목정보관리</h2><br>
 		
 	<div class="wrap2">
 	  <button class="button2" onclick="showPopup();">추가</button>
@@ -112,12 +112,12 @@ function deleteValue(){
 				<tr style="text-align:center; font-size: 0.9rem">
 					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
 					<th></th>
-					<th>품목코드</th>
 					<th>품목구분</th>
-					<th>제품코드</th>
+					<th>품목코드</th>
 					<th>제품명</th>
-					<th>거래처코드</th>
+					<th>제품코드</th>
 					<th>거래처명</th>
+					<th>거래처코드</th>
 					<th>단위</th>
 					<th>적요</th>
 					<th></th>
@@ -130,12 +130,12 @@ function deleteValue(){
 				<tr style="text-align:center; font-size: 0.9rem">
 					<td><input type="checkbox" id="checkbox" name="rowcheck" value="${productDTO.product_cd_name}"></td>
 					<td>${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
-					<td>${productDTO.product_cd }</td>
 					<td>${productDTO.product_dv }</td>
-					<td>${productDTO.product_cd_name }</td>
+					<td>${productDTO.product_cd }</td>
 					<td>${productDTO.product_name }</td>
-					<td>${productDTO.business_cd }</td>
+					<td>${productDTO.product_cd_name }</td>
 					<td>${productDTO.business_name }</td>
+					<td>${productDTO.business_cd }</td>
 					<td>${productDTO.product_unit }</td>
 					<td>${productDTO.remarks }</td>
 					<td><input type="button" class="button2" value="수정" onclick="updatePopup('${productDTO.product_cd_name}');"></td>

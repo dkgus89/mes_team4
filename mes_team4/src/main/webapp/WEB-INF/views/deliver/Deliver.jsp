@@ -11,35 +11,51 @@
 <!-- 본문적용 CSS들어가는 곳 -->
 
 <!-- 본문적용 CSS들어가는 곳 -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <!-- 자바스크립트 입력 시작-->
 <script>
 
 function DeliverInsert(){
-    window.open("${pageContext.request.contextPath}/deliver/insert","출하 등록","width=1200, height=300, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/deliver/insert","출하 등록","width=1300, height=300, top=200, left=200");
 }
 
 function DeliverUpdate(deliver_cd){
 //     window.open("${pageContext.request.contextPath}/deliver/update?deliver_cd=deliver_cd","출하 수정","width=1200, height=300, top=200, left=200");
-    window.open("${pageContext.request.contextPath}/deliver/update?deliver_cd="+deliver_cd,"출하 수정","width=1200, height=300, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/deliver/update?deliver_cd="+deliver_cd,"출하 수정","width=1480, height=300, top=200, left=200");
 //     "&business_cd="+business_cd+"&product_cd_name="+product_cd_name,
 }
 
+//삭제 처리
 function DeliverDelete1() {
+	//삭제 유효성 검사
+	var a = $('input:checkbox[name=rowcheck]:checked').length;
+	if(a==0){
+		alert("체크된 값이 없습니다.");
+		return false;
+	}
+	var result = confirm("삭제하시겠습니까?");
+	if(result == true){
 	document.deliverlist.action="${pageContext.request.contextPath}/deliver/deliverdelete";
 	document.deliverlist.submit();
+		
+	}else {
+		return false;
+	}
 }
 
+//페이지 전체 체크
 function allCheck(){
-	var ac = document.myform.allcheck;
-	var rc = document.myform.rowcheck;
+	var ac = document.deliverlist.allcheck;
+	var rc = document.deliverlist.rowcheck;
 	if(ac.checked == true){
 		for(i=0; i<rc.length; i++){
 			rc[i].checked=true;}
 	}else {
 		for(i=0;i<rc.length;i++){
 			rc[i].checked=false;}
-	} }
+	} 
+}
 
 </script>
 <!-- 자바스크립트 입력 끝-->
@@ -57,7 +73,7 @@ function allCheck(){
     <c:when test = "${fn:contains(priv, 'C')}">
 
 
-	<h2>출하 관리 </h2><br>
+	<h2  onclick="location.href='${pageContext.request.contextPath}/deliver/list'">출하 관리 </h2><br>
 	
 	<div class="wrap2">
 	  <button class="button2" onclick="DeliverInsert();">추가</button>
@@ -164,6 +180,7 @@ function allCheck(){
 			
 			</tbody>
 		</table>
+			</form>
 <!-- 		<button type="button" id="test">테스트</button> -->
 		
 		<div id="array"></div>
@@ -198,7 +215,7 @@ function allCheck(){
 	
 	
 	
-	</form>
+
 	
 	
 <!-- 본문HTML 입력 끝-->

@@ -34,7 +34,7 @@ function memberdelete(a) {
 <c:if test = "${!empty sessionScope.emp_no}">
 	<c:choose>
 		<c:when test = "${fn:contains(priv, 'A')}">
-	<h2>사용자관리</h2>
+	<h2 onclick="location.href='${pageContext.request.contextPath}/system/membermain'">사용자관리</h2>
 	<div class="wrap2">
 	
 	  <button class="button2" onclick="memberinsert()">추가</button><br>

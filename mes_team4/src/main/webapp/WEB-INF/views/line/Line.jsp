@@ -65,7 +65,7 @@ function allCheck(){
       <c:choose>
     <c:when test = "${fn:contains(priv, 'B')}">
 
-	<h2> 설비정보관리 </h2><br>
+	<h2 onclick="location.href='${pageContext.request.contextPath}/line/line'"> 설비정보관리 </h2><br>
 	
 	<div class="wrap2" style="float: right;">	
 <!-- 		추가, 삭제 버튼 -->

@@ -66,13 +66,14 @@ function rst(){
 	}
 }
 
-function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd){
+function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd,stock_count){
 	
     document.getElementById("rec_schedule_cd").value = rec_schedule_cd;
     document.getElementById("wh_cd").value = wh_cd;
     document.getElementById("product_cd_name").value = product_cd_name;
     document.getElementById("rec_count").value = rec_count;
     document.getElementById("pchor_cd").value = pchor_cd;
+    document.getElementById("stock_count").value = stock_count;
  
 
 }
@@ -82,7 +83,7 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd)
 </head>
 <body>
 
-<div id="contents">	
+<div id="List_wrap">	
 <!-- 본문HTML 입력 시작-->
 <h2 class="updatetitle">자재출고 수정</h2><br>
 	

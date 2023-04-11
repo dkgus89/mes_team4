@@ -14,11 +14,11 @@
 <script>
 
 	function insertPopup(){
-    	window.open("${pageContext.request.contextPath}/rel/relinsert","창고등록팝업","width=1000, height=500, top=200, left=200");
+    	window.open("${pageContext.request.contextPath}/rel/relinsert","창고등록팝업","width=1050, height=500, top=200, left=200");
 	}
 
 	function updatePopup(cd){
-    	window.open("${pageContext.request.contextPath}/rel/relupdate?rel_schedule_cd="+cd,"수정","width=1000, height=500, top=200, left=200");
+    	window.open("${pageContext.request.contextPath}/rel/relupdate?rel_schedule_cd="+cd,"수정","width=1100, height=450, top=200, left=200");
 	}
 
 // 	체크
@@ -78,7 +78,7 @@ function deleteValue(){
 <c:if test = "${!empty sessionScope.emp_no}">
       <c:choose>
 <c:when test = "${fn:contains(priv, 'E')}">
-	<h2>출고관리</h2><br>
+	<h2  onclick="location.href='${pageContext.request.contextPath}/rel/relpage'">출고관리</h2><br>
 	
 	<div class="wrap2">
 	  <button class="button2" onclick="insertPopup();">등록</button>

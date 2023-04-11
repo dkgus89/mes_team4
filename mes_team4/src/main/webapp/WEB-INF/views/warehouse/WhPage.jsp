@@ -15,11 +15,11 @@
 <script>
 
 	function insertPopup(){
-    	window.open("whinsert","창고등록팝업","width=1200, height=500, top=200, left=200");
+    	window.open("whinsert","창고등록팝업","width=1300, height=250, top=200, left=200");
 	}
 
 	function updatePopup(cd){
-    	window.open("${pageContext.request.contextPath}/wh/whupdate?wh_cd="+cd,"수정","width=1300, height=500, top=200, left=200");
+    	window.open("${pageContext.request.contextPath}/wh/whupdate?wh_cd="+cd,"수정","width=1350, height=250, top=200, left=200");
 	}
 	
 	
@@ -116,7 +116,7 @@ $("#select").change(function() {
 <c:if test = "${!empty sessionScope.emp_no}">
       <c:choose>
 <c:when test = "${fn:contains(priv, 'B')}">
-	<h2>창고</h2><br>
+	<h2 onclick="location.href='${pageContext.request.contextPath}/wh/whpage'">창고</h2><br>
 	
 <!-- 	검색창 -->
 	<div class="wrap2">
@@ -131,17 +131,45 @@ $("#select").change(function() {
       
        <select id="select" name="select" onchange="itemChange()" class="button2">
 			<option value="">선택하세요</option>
-			<option value="wh_name">이름</option>
-			<option value="wh_addr">지역</option>
-			<option value="wh_dv">창고유형</option>
+			<c:set var="name" value="wh_name" />
+				<c:if test="${name eq 'wh_name'}">
+ 					<option value="wh_name">이름</option>
+				</c:if>
+			
+			<c:set var="addr" value="wh_addr" />
+				<c:if test="${name eq 'wh_name'}">
+ 					<option value="wh_addr">지역</option>
+				</c:if>
+				
+			<c:set var="dv" value="wh_dv" />
+				<c:if test="${name eq 'wh_name'}">
+ 					<option value="wh_dv">창고유형</option>
+				</c:if>
+				
+<!-- 			<option value="wh_name">이름</option> -->
+<!-- 			<option value="wh_addr">지역</option> -->
+<!-- 			<option value="wh_dv">창고유형</option> -->
 		</select>
 
+<c:choose>
+			<c:when test="${name eq 'wh_name'}">
+			<!-- 		wh_name 선택했을때 -->
+			<input type="text" id="search1" name="search" class="button2"/> 
+			</c:when>
+			<c:otherwise>
+			<!-- 		wh_addr, wh_dv선택했을때 --> 
+			<select id="search2" name="search_option" class="button2">
+				<option value="">구분을 선택하세요</option>
+			</select>
+			</c:otherwise>
+</c:choose>
+
 <!-- 		wh_name 선택했을때 -->
-		<input type="text" id="search1" name="search" class="button2"/>
+<!-- 		<input type="text" id="search1" name="search" class="button2"/> -->
 <!-- 		wh_addr, wh_dv선택했을때 --> 
-		<select id="search2" name="search_option" class="button2">
-			<option value="">구분을 선택하세요</option>
-		</select>
+<!-- 		<select id="search2" name="search_option" class="button2"> -->
+<!-- 			<option value="">구분을 선택하세요</option> -->
+<!-- 		</select> -->
 		
 <!-- 	   검색버튼 -->
        <input type="submit" class="button2" value="검색" >

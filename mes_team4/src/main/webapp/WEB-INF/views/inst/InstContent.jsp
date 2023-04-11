@@ -17,8 +17,8 @@
 </head>
 <body>
 
-<div id="contents">
-<div class="wrap2">
+<div id="List_wrap">
+<!-- <div class="wrap2"> -->
 <fieldset style="width:520px; height:600px; padding-left:20px; padding-right: 20px;">
 <h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >작업지시서</h2>
 	 <table border="1" width ="400" height="300" style="text-align: center;" align = "center"> 
@@ -65,7 +65,7 @@
 			
 	</table>
 	</fieldset>
-</div>
+<!-- </div> -->
 </div>
 
-<jsp:include page="../main/Footer.jsp" />
+<%-- <jsp:include page="../main/Footer.jsp" /> --%>

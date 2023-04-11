@@ -52,7 +52,7 @@ function rst(){
 </head>
 <body>
 
-	<div id="contents">
+	<div id="List_wrap">
 <!-- 본문HTML 입력 시작-->
 
 	<h2 class="inserttitle">재고실사 </h2><br>

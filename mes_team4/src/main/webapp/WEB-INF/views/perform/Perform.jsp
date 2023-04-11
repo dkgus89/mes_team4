@@ -68,7 +68,7 @@ function allCheck(){
       <c:choose>
     <c:when test = "${fn:contains(priv, 'D')}">
 
-	<h2> 생산실적현황 </h2><br>
+	<h2  onclick="location.href='${pageContext.request.contextPath}/perform/perform'"> 생산실적현황 </h2><br>
 	
 	<div class="wrap2" style="float: right;">
 	  <button class="button2" onclick="showPopup();">추가</button>

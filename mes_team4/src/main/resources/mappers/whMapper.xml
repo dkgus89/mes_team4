@@ -35,11 +35,11 @@
         	</if>
         	
         	<if test="select == 'wh_dv'.toString()">
-        		where wh_dv  = like CONCAT('%',#{search_option},'%')
+        		where wh_dv like CONCAT('%',#{search_option},'%')
         	</if>
         	
         	<if test="select == 'wh_addr'.toString()">
-        		where wh_addr = like CONCAT('%',#{search_option},'%')
+        		where wh_addr like CONCAT('%',#{search_option},'%')
         	</if>
         	
         </if>

@@ -97,7 +97,7 @@ function rst(){
 </head>
 <body>
 
-<div id="contents">	
+<div id="List_wrap">	
 <!-- 본문HTML 입력 시작-->
 <h2 class="inserttitle">창고 등록</h2><br>
 
@@ -105,13 +105,10 @@ function rst(){
 	  <button class="button2" onclick="sub()">등록</button>
 	  <button class="button2" onclick="rst()">초기화</button>
 	  <button class="button2" onclick="window.close();">닫기</button>
-	 </div>
+	 </div><br>
 	 <br>
 	
 	<form id="move" action="${pageContext.request.contextPath}/wh/whinsertPro" name="insertwh" method="post" >
-	
-	
-	
 		<input type="hidden" value="">
 		
 		<table id="vendortable" class="table table-striped" style="width:1000px;">

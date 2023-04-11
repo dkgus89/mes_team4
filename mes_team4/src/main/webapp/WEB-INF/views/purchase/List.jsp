@@ -175,7 +175,7 @@
 		<c:when test = "${fn:contains(priv, 'C')}">
 <!-- 로그인 및 권한 확인 -->
 
-	<h2>원자재 발주현황 </h2>
+	<h2  onclick="location.href='${pageContext.request.contextPath}/purchase/list'">원자재 발주현황 </h2>
 	<br>
 	
 	<div class="wrap2">

@@ -11,34 +11,59 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 
 function sub(){
-	document.productUpdate.action="${pageContext.request.contextPath}/product/produpdatePro";
-	document.productUpdate.submit();
-	setTimeout(function() { 
-		opener.parent.location.reload();
-		window.close();
-		}, 200);
+	$(document).ready(function(){
+		// submit 유효성 검사
+		var result = confirm("수정사항을 등록하시겠습니까?");
+		if (result == true){   			
+// 			if($('#wh_name').val()==""){
+// 				alert("창고이름을 입력하세요");
+// 				$('#wh_name').focus();
+// 				return false;
+// 			}
+// 			if($('#wh_tel').val()==""){
+// 				alert("창고연락처를 입력하세요");
+// 				$('#wh_tel').focus();
+// 				return false;
+// 			}
+			window.opener.name = "parentPage";
+			document.productUpdate.target="parentPage";
+			document.productUpdate.action="${pageContext.request.contextPath}/product/produpdatePro";
+			document.productUpdate.submit();
+			self.close();
+		} else {
+			return false;
+		}
+	});
+}
+	
+function rst(){
+	// 초기화 유효성 검사
+	var result = confirm("초기화 하시겠습니까?");
+	if (result == true){    
+		document.productUpdate.reset();
+	} else {
+		return false;
 	}
-	function rst(){
-	document.productUpdate.reset();
-	}
+}
 
 </script>
 
 </head>
 <body>
 
-	<div id="contents">
+	<div id="List_wrap">
 <!-- 본문HTML 입력 시작-->
 
 	<h2 class="inserttitle"> 품목정보수정 </h2><br>
-<!-- 	<div class="wrap2"> -->
-<!-- 	<button class="button2" onclick="sub()">완료</button>
-	<button class="button2" onclick="rst()">초기화</button>	   -->
-<!-- 	 </div><br> -->
+	<div class="wrap2">
+	<button class="button2" onclick="sub()">완료</button>
+	<button class="button2" onclick="rst()">초기화</button>	
+	 </div><br>
+	 <br>
 	 
 	<form name="productUpdate" method="post">
 		<input type="hidden" value="">
@@ -57,13 +82,26 @@ function sub(){
 			
 			<tbody>
 				<tr>
+				
+					<c:if test="${productDTO.product_dv=='완제품'}">
 					<td>
-					<select  name="product_dv">
-						<option value="">선택해주세요</option>
-						<option value="완제품">완제품</option>
-						<option value="원자재">원자재</option>
+					<select name="product_dv">
+							<option value="완제품" selected>완제품</option>
+							<option value="원자재">원자재</option>
+						
 					</select>
 					</td>
+					</c:if>
+					<c:if test="${productDTO.product_dv=='원자재'}">
+					<td>
+					<select name="product_dv">
+							<option value="완제품" >완제품</option>
+							<option value="원자재" selected>원자재</option>
+					</select>
+					</td>
+					</c:if>
+				
+
 					<td >${productDTO.product_cd_name }</td>
 					<td><input type="text" name="product_name" value="${productDTO.product_name }" ></td>
 					<td><input type="text" name="business_cd" value="${productDTO.business_cd }" ></td>
@@ -76,8 +114,7 @@ function sub(){
 	
 	</form>
 	<br>
-	<button class="button2" onclick="sub()">완료</button>
-	<button class="button2" onclick="rst()">초기화</button>		
+		
 <!-- 본문HTML 입력 끝-->
 	</div>
 </body>
