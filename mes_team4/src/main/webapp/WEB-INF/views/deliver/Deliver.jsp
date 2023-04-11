@@ -25,14 +25,28 @@ function DeliverUpdate(deliver_cd){
 //     "&business_cd="+business_cd+"&product_cd_name="+product_cd_name,
 }
 
+//삭제 처리
 function DeliverDelete1() {
+	//삭제 유효성 검사
+	var a = $('input:checkbox[name=rowcheck]:checked').length;
+	if(a==0){
+		alert("체크된 값이 없습니다.");
+		return false;
+	}
+	var result = confirm("삭제하시겠습니까?");
+	if(result == true){
 	document.deliverlist.action="${pageContext.request.contextPath}/deliver/deliverdelete";
 	document.deliverlist.submit();
+		
+	}else {
+		return false;
+	}
 }
 
+//페이지 전체 체크
 function allCheck(){
-	var ac = document.myform.allcheck;
-	var rc = document.myform.rowcheck;
+	var ac = document.deliverlist.allcheck;
+	var rc = document.deliverlist.rowcheck;
 	if(ac.checked == true){
 		for(i=0; i<rc.length; i++){
 			rc[i].checked=true;}
