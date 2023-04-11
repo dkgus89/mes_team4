@@ -15,10 +15,10 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 function showPopup() {
-	window.open("recinsert","입고팝업","width=1200, height=300, top=200, left=200");
+	window.open("recinsert","입고팝업","width=1100, height=300, top=200, left=200");
 }
 function updatePopup(cd) {
-	 window.open("${pageContext.request.contextPath}/receive/recupdate?rec_schedule_cd="+cd,"recupdate","width=1400, height=300, top=200, left=200");
+	 window.open("${pageContext.request.contextPath}/receive/recupdate?rec_schedule_cd="+cd,"recupdate","width=1100, height=300, top=200, left=200");
 }
 
 //	체크
@@ -79,7 +79,7 @@ function deleteValue(){
 <c:if test = "${!empty sessionScope.emp_no}">
       <c:choose>
 <c:when test = "${fn:contains(priv, 'E')}">
-	<h2> 입고관리 </h2><br>
+	<h2  onclick="location.href='${pageContext.request.contextPath}/receive/recpage'"> 입고관리 </h2><br>
 	
 	<div class="wrap2">
 	  <button class="button2" onclick="showPopup();">추가</button>

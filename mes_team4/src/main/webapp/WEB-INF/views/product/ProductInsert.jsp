@@ -15,7 +15,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script  type="text/javascript">
 
-	
+			
 function rst(){
 	// 초기화 유효성 검사
 	var result = confirm("초기화 하시겠습니까?");
@@ -98,11 +98,16 @@ function sub(){
 </head>
 <body>
 	
-	<div id="contents">
+	<div id="List_wrap">
 <!-- 본문HTML 입력 시작-->
 
-	<h2>품목정보등록</h2><br>
+	<h2 class="inserttitle">품목정보등록</h2><br>
 	 <br>
+	 <div class="wrap2">
+	<button class="button2" onclick="sub()">등록</button>
+	<button class="button2" onclick="rst()">초기화</button>	  
+	</div><br> 
+	<br> 
 <form action="${pageContext.request.contextPath}/product/prodinsertPro" name="prodinsert" method="post" >
 
 		<input type="hidden" value="">
@@ -163,10 +168,7 @@ function sub(){
 
 	</form>
  <br>
-<!-- <div class="wrap2"> -->
-	<button class="button2" onclick="sub()">등록</button>
-	<button class="button2" onclick="rst()">초기화</button>	  
-<!-- </div><br>  -->	
+	
 	
 <!-- 본문HTML 입력 끝-->
 	</div>

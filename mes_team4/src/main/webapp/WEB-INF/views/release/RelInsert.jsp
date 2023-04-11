@@ -127,7 +127,7 @@ function rst(){
 </head>
 <body>
 
-<div id="contents">	
+<div id="List_wrap">	
 <!-- 본문HTML 입력 시작-->
 <h2 class="inserttitle">자재출고 등록</h2><br>
 	
@@ -135,10 +135,11 @@ function rst(){
 	  <button class="button2" onclick="rst()">초기화</button>
 	  <button class="button2" onclick="sub()">등록</button>
 	  <button class="button2" onclick="window.close();">닫기</button>
-	 </div>
+	 </div><br>
 	 <br>
-	 
+	 <div class="wrap2">
 	<button class="button2" onclick="recListBtn();" style="width:200px">입고목록</button>
+	</div><br>
 	<br>
 
 	<form action="${pageContext.request.contextPath}/rel/relinsertPro" name="insertrel" method="post" >
@@ -148,14 +149,14 @@ function rst(){
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>입고코드</th>
 					<th>입고창고</th>
-					<th>입고제품</th>
+					<th colspan="2">입고제품</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td><input type="text" name="rec_schedule_cd" id="rec_schedule_cd"></td>
 					<td><input type="text" name="wh_cd" id="wh_cd"></td>
-					<td><input type="text" name="product_cd_name" id="product_cd_name"></td>
+					<td colspan="2"><input type="text" name="product_cd_name" id="product_cd_name"></td>
 				</tr>
 			</tbody>	
 			
@@ -181,14 +182,14 @@ function rst(){
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>출고일자</th>
 					<th>출고수량</th>
-					<th>적요</th>
+					<th colspan="2">적요</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td><input type="date" name="rel_date" id="today" class="rel_date"></td>
 					<td><input type="text" name="rel_count" id="rel_count"  placeholder="숫자만 입력하세요"></td>
-					<td><input type="text"  class="remarks" name="remarks" size=40></td>
+					<td colspan="2"><input type="text"  class="remarks" name="remarks" size=40></td>
 				</tr>
 			</tbody>				
 		</table>

@@ -64,16 +64,16 @@ $('#update').submit(function(){
 </head>
 <body>
 
-	<div id="contents">
+	<div id="List_wrap">
 <!-- 본문HTML 입력 시작-->
 
 	<h2 class="inserttitle">작업지시 수정</h2><br>
-<!-- 	<div class="wrap2"> -->
+	<div class="wrap2">
 	<button class="button2" form="update" onclick="submit">수정</button>
 	<button class="button2" onclick="window.close()">창닫기</button>	 	
 <!-- 	<button class="button2" onclick="showPopup();" style="width:200px">수주현황</button> -->
-<!-- 	 </div><br> -->
-	 <br><br>
+	 </div><br>
+	 <br>
 	 
 	 
 	<form action="${pageContext.request.contextPath }/inst/instupdatepro" name="update" id="update" method="post">

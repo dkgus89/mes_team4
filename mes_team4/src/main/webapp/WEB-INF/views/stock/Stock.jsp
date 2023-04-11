@@ -49,7 +49,7 @@ function showPopup2(cd){
       <c:choose>
     <c:when test = "${fn:contains(priv, 'E')}">
 
-	<h2> 재고현황 </h2><br>
+	<h2  onclick="location.href='${pageContext.request.contextPath}/stock/stock'"> 재고현황 </h2><br>
 	<div class="wrap2" id="table_search">
 		<form action="${pageContext.request.contextPath}/stock/stock" method="get">
 				<select name="select" class="button2">

@@ -58,7 +58,7 @@ function input1(order_cd, product_cd_name, product_name, order_count, deliver_da
 </head>
 <body>
 
-	<div id="contents">
+	<div id="List_wrap">
 <!-- 본문HTML 입력 시작-->
 
 	<h2 class="inserttitle">수주현황</h2><br>

@@ -30,7 +30,7 @@ function sub(){
 </head>
 <body>
 
-	<div id="contents">
+	<div id="List_wrap">
 <!-- 본문HTML 입력 시작-->
 
 	<h2> ${receiveDTO.rec_schedule_cd } 입고 수정</h2><br>

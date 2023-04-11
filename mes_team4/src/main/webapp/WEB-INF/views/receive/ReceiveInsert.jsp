@@ -106,15 +106,16 @@ function sub(){
 </head>
 <body>
 
-	<div id="contents">
+	<div id="List_wrap">
 <!-- 본문HTML 입력 시작-->
 
 	<h2 class="inserttitle">입고등록 </h2><br>
-	
+	<div class="wrap2">
 	<button class="button2" onclick="showPopup();" style="width:100px">창고</button>
 	<button class="button2" onclick="showPopup2();" style="width:100px">발주</button>
 	<button class="button2" onclick="showPopup3();" style="width:100px">실적</button>
-
+	</div>
+	
 	 <br>
 	 <br>
 	 
@@ -146,9 +147,10 @@ function sub(){
 	
 	</form>
 	<br>
+	<div class="wrap2">
 	<button class="button2" onclick="sub()">등록</button>
 	<button class="button2" onclick="rst()">초기화</button>
-	
+	</div>
 <!-- 본문HTML 입력 끝-->
 	</div>
 	

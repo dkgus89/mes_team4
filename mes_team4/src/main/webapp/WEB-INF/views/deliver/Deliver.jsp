@@ -16,12 +16,12 @@
 <script>
 
 function DeliverInsert(){
-    window.open("${pageContext.request.contextPath}/deliver/insert","출하 등록","width=1200, height=300, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/deliver/insert","출하 등록","width=1300, height=300, top=200, left=200");
 }
 
 function DeliverUpdate(deliver_cd){
 //     window.open("${pageContext.request.contextPath}/deliver/update?deliver_cd=deliver_cd","출하 수정","width=1200, height=300, top=200, left=200");
-    window.open("${pageContext.request.contextPath}/deliver/update?deliver_cd="+deliver_cd,"출하 수정","width=1200, height=300, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/deliver/update?deliver_cd="+deliver_cd,"출하 수정","width=1480, height=300, top=200, left=200");
 //     "&business_cd="+business_cd+"&product_cd_name="+product_cd_name,
 }
 
@@ -57,7 +57,7 @@ function allCheck(){
     <c:when test = "${fn:contains(priv, 'C')}">
 
 
-	<h2>출하 관리 </h2><br>
+	<h2  onclick="location.href='${pageContext.request.contextPath}/deliver/list'">출하 관리 </h2><br>
 	
 	<div class="wrap2">
 	  <button class="button2" onclick="DeliverInsert();">추가</button>

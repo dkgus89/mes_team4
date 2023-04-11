@@ -104,7 +104,7 @@
 		<c:when test = "${fn:contains(priv, 'B')}">
 <!-- 로그인 및 권한 확인 -->
 
-	<h2>소요량 관리 </h2>
+	<h2 onclick="location.href='${pageContext.request.contextPath}/consmpt/list'">소요량 관리 </h2>
 	<br>
 	
 	<div class="wrap2">

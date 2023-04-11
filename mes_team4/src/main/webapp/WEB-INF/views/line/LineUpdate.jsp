@@ -56,16 +56,15 @@ function rst(){
 </head>
 <body>
 
-	<div id="contents">
+	<div id="List_wrap">
 <!-- 본문HTML 입력 시작-->
 
 	<h2 class="inserttitle">생산설비 수정 </h2><br>
-<!-- 	<div class="wrap2"> -->
+	<div class="wrap2">
 	<button class="button2" onclick="sub()">등록</button>
 	<button class="button2" onclick="rst()">초기화</button>	  
-<!-- 	 </div><br> -->
-	 <br><br>
-	 
+	 </div><br>
+	 <br>
 	 
 	<form name="LineUpdate" method="post">
 		<input type="hidden" name="line_cd" id="line_cd" value="${LineDTO.line_cd}">

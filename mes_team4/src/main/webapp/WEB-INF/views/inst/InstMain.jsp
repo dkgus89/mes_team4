@@ -14,7 +14,7 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 function showPopup(){
-    window.open("${pageContext.request.contextPath}/inst/instinsert","instinsert","width=1400, height=500, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/inst/instinsert","instinsert","width=1100, height=500, top=200, left=200");
 }
 function showPopup2(cd, instruction_state){
 	var instruction_state = instruction_state;
@@ -22,10 +22,10 @@ function showPopup2(cd, instruction_state){
 		alert("생산 중이거나 생산 완료된 작업지시는 수정할 수 없습니다.");
 		return false;
 	}
-    window.open("${pageContext.request.contextPath}/inst/instupdate?instruction_code="+cd,"instupdate","width=1100, height=350, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/inst/instupdate?instruction_code="+cd,"instupdate","width=1000, height=300, top=200, left=200");
 }
 function showPopup3(ef){
-    window.open("${pageContext.request.contextPath}/inst/instcontent?instruction_code="+ef,"instcontent","width=1200, height=800, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/inst/instcontent?instruction_code="+ef,"instcontent","width=700, height=670, top=200, left=200");
 }
 
 function chdelete(){
@@ -121,7 +121,7 @@ function changefin(){
 	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
 
-	<h2> 작업지시현황 </h2><br>
+	<h2  onclick="location.href='${pageContext.request.contextPath}/inst/instmain'"> 작업지시현황 </h2><br>
 	
 	<div class="wrap2" style="float: right;">
 		

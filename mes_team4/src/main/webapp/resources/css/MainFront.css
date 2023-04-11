@@ -176,6 +176,13 @@
 		display: inline-block; 
 		float : right;	
 	}
+	
+	.wrap3 {
+		display: flex;
+		justify-content: flex-end;
+		text-align: center;
+		margin-bottom: 10px;
+	}
 
 	.button2 {
 	  min-width: 100px;

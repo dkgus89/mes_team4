@@ -55,14 +55,14 @@ function rst(){
 </head>
 <body>
 
-<div id="contents">	
+<div id="List_wrap">	
 <!-- 본문HTML 입력 시작-->
 <h2 class="updatetitle">창고 수정</h2><br>
 
 	<div class="wrap2">
 	  <button class="button2" onclick="sub()">수정</button>
 	  <button class="button2" onclick="rst()">초기화</button>
-	 </div>
+	 </div><br>
 	 <br>
 	
 	<form id="move" action="${pageContext.request.contextPath}/wh/whupdatePro" name="updatewh" method="post" >

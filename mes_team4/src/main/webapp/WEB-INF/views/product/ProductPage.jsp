@@ -18,7 +18,7 @@ function showPopup() {
 	window.open("prodinsert","추가팝업","width=1300, height=300, top=200, left=200");
 }
 function updatePopup(cd) {
-	 window.open("${pageContext.request.contextPath}/product/produpdate?product_cd_name="+cd,"produpdate","width=1450, height=300, top=200, left=200");
+	 window.open("${pageContext.request.contextPath}/product/produpdate?product_cd_name="+cd,"produpdate","width=1250, height=250, top=200, left=200");
 }
 
 //체크
@@ -78,7 +78,7 @@ function deleteValue(){
 	<c:if test = "${!empty sessionScope.emp_no}">
       <c:choose>
     <c:when test = "${fn:contains(priv, 'B')}">
-	<h2>품목정보관리</h2><br>
+	<h2 onclick="location.href='${pageContext.request.contextPath}/product/prodpage'">품목정보관리</h2><br>
 		
 	<div class="wrap2">
 	  <button class="button2" onclick="showPopup();">추가</button>

@@ -83,7 +83,7 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd,
 </head>
 <body>
 
-<div id="contents">	
+<div id="List_wrap">	
 <!-- 본문HTML 입력 시작-->
 <h2 class="updatetitle">자재출고 수정</h2><br>
 	

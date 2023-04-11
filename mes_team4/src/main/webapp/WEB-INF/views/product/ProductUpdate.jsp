@@ -55,14 +55,15 @@ function rst(){
 </head>
 <body>
 
-	<div id="contents">
+	<div id="List_wrap">
 <!-- 본문HTML 입력 시작-->
 
 	<h2 class="inserttitle"> 품목정보수정 </h2><br>
-<!-- 	<div class="wrap2"> -->
-<!-- 	<button class="button2" onclick="sub()">완료</button>
-	<button class="button2" onclick="rst()">초기화</button>	   -->
-<!-- 	 </div><br> -->
+	<div class="wrap2">
+	<button class="button2" onclick="sub()">완료</button>
+	<button class="button2" onclick="rst()">초기화</button>	
+	 </div><br>
+	 <br>
 	 
 	<form name="productUpdate" method="post">
 		<input type="hidden" value="">
@@ -113,8 +114,7 @@ function rst(){
 	
 	</form>
 	<br>
-	<button class="button2" onclick="sub()">완료</button>
-	<button class="button2" onclick="rst()">초기화</button>		
+		
 <!-- 본문HTML 입력 끝-->
 	</div>
 </body>

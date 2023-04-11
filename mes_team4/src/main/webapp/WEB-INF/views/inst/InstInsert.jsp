@@ -149,19 +149,19 @@ function rst(){
 </head>
 <body>
 
-	<div id="contents">
+	<div id="List_wrap">
 <!-- 본문HTML 입력 시작-->
 
 	<h2 class="inserttitle">작업지시 추가</h2><br>
-<!-- 	<div class="wrap2"> -->
+	<div class="wrap2">
 <!-- 	<button class="button2" id="aj">ajax</button> -->
 	<button class="button2" id="sub" onclick="sub()">등록</button>
 	<button class="button2" onclick="rst()">초기화</button>
 	<button class="button2" onclick="showPopup();" style="width:200px">수주현황</button>
 	<button class="button2" id="stockCheck" style="width:200px">재고현황</button>
 	
-<!-- 	 </div><br> -->
-	 <br><br>
+	 </div><br>
+	 <br>
 	 
 	 
 	<form action="${pageContext.request.contextPath}/inst/instinsertpro" name="insert" id="II" method="post">

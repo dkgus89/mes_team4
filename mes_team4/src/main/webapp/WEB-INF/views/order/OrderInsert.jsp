@@ -71,7 +71,7 @@
 
 </head>
 <body>
-	<div id="contents">
+	<div id="List_wrap">
 <!-- 본문HTML 입력 시작-->
 
 	<h2 class="inserttitle">주문등록</h2><br>

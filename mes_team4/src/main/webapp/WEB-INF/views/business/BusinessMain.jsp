@@ -17,10 +17,10 @@
 <!-- 자바스크립트 입력 시작-->
 <script>
 	function showPopup(){
-	    window.open("businessinsert","거래처팝업","width=1050, height=400, top=200, left=200");
+	    window.open("businessinsert","거래처팝업","width=1050, height=300, top=200, left=200");
 	}
 	function updatePopup(business_cd){
-	    window.open("businessupdate?cd="+business_cd,"거래처수정팝업","width=1050, height=400, top=200, left=200");
+	    window.open("businessupdate?cd="+business_cd,"거래처수정팝업","width=1050, height=300, top=200, left=200");
 	}
 	
 	function allCheck(){
@@ -87,7 +87,7 @@
       <c:choose>
     <c:when test = "${fn:contains(priv, 'C')}">
 
-	<h2>거래처 관리</h2>
+	<h2 onclick="location.href='${pageContext.request.contextPath}/business/businessmain'">거래처 관리</h2>
 	<h4>* 거래처명 클릭시 상세정보 확인가능</h4>
 	<h4>* 코드 클릭시 해당 거래처 수주현황</h4>
 	<div class="wrap2">

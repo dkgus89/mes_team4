@@ -89,7 +89,7 @@
 </head>
 <body>
 
-	<div id="contents">
+	<div id="List_wrap">
 <!-- 본문HTML 입력 시작-->
 
 	<h2 class="inserttitle">거래처 정보 수정하기</h2><br>
