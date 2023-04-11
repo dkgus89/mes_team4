@@ -47,7 +47,7 @@ function DeliverUpdate(rel_count,product_dv,rel_date){
 				
 			else{
 		     	  // 유효성 검사 통과시 선택 진행
-				  var result = confirm("이 행을 선택 하시겠습니까?");
+				  var result = confirm("이 값을 선택하시겠습니까?");
 				  if (result == true){
 						opener.setChildValue2(rel_count,product_dv,rel_date);
 

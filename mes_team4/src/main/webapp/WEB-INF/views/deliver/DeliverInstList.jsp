@@ -36,7 +36,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd_name, emp_no){
 	 			data:{'inst':order_cd},
 	 			success:function(result){
 	 				 if(result!=0) {
-	 		              alert("이미 등록된 출하입니다.");
+	 		              alert("이미 등록된 출하 목록 입니다.");
 	 		              rt=1;
 	 		          }
 	 			}
@@ -46,7 +46,7 @@ function DeliverUpdate(business_cd,order_cd,product_cd_name, emp_no){
 			} 		
 			else{
 		     	  // 유효성 검사 통과시 선택 진행
-				  var result = confirm("이 행을 선택 하시겠습니까?");
+				  var result = confirm("이 값을 선택하시겠습니까?");
 				  if (result == true){
 						opener.setChildValue(business_cd,order_cd,product_cd_name, emp_no);
 					  window.close();
