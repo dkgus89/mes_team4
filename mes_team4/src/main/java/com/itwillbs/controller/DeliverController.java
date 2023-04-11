@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.xml.crypto.dsig.keyinfo.PGPData;
 
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ import com.itwillbs.service.DeliverService;
 import com.itwillbs.service.OrderService;
 import com.itwillbs.service.ReceiveService;
 import com.itwillbs.service.ReleaseService;
+import com.itwillbs.service.SystemService;
 
 
 
@@ -46,6 +48,12 @@ public class DeliverController {
 		
 		@Inject
 		private ReleaseService relService;
+		
+		@Inject
+		private SystemService systemService;
+
+		
+		
 
 //		//가상주소???!!!???? 영업관리=> 출하등록 화면에서 " 출하등록 및 리스트가 되어야하는곳..."
 //		@RequestMapping(value = "/deliver/deliver", method = RequestMethod.GET)
@@ -63,12 +71,19 @@ public class DeliverController {
 	
 			
 		@RequestMapping(value = "/deliver/list", method = RequestMethod.GET)
-		public String list(HttpServletRequest request, Model model) {
+		public String list(HttpServletRequest request, Model model, HttpSession session) {
 			System.out.println("리스트"+"/deliver/list");
 
 			//검색어 가져오기
 			String search=request.getParameter("search");
 			String select=request.getParameter("select");
+			
+			//비로그인시
+			Object emp_no = session.getAttribute("emp_no");
+	         if(emp_no == null) {
+	            return "system/msg2";
+	         } else {
+
 			
 				// 한 화면에 보여줄 글 개수 설정
 				int pageSize = 5;
@@ -116,10 +131,15 @@ public class DeliverController {
 			model.addAttribute("pageDTO",pageDTO);
 //			System.out.println(deliverList.get(0).getDeliver_cd());
 			
+			//사원정보
+			SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+	         model.addAttribute("systemDTO2", systemDTO);
+
+			
 			// 주소변경없이 이동
 			return "deliver/Deliver";
 		}
-
+		}
 
 
 	/*		GET 방식은 클라이언트의 데이터를 URL 뒤 붙여 쿼리 스트링을 통해 전송, 전송하는 데이터 길이는 제한적

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="../main/Header.jsp" />
@@ -47,6 +48,14 @@ function allCheck(){
 	
 	<div id="innerContents">
 <!-- 본문HTML 입력 시작-->
+
+<!-- 로그인 권한설정 -->
+
+<c:set var = "priv" value = "${systemDTO2.emp_priv}"/>
+<c:if test = "${!empty sessionScope.emp_no}">
+      <c:choose>
+    <c:when test = "${fn:contains(priv, 'C')}">
+
 
 	<h2>출하 관리 </h2><br>
 	
@@ -175,6 +184,16 @@ function allCheck(){
 	</c:if>
 	</div>
 	
+	</c:when>
+	
+   <c:otherwise>
+      <script type="text/javascript">
+      alert("권한이 없습니다.")
+      history.back();
+      </script>
+   </c:otherwise>   
+   </c:choose>
+</c:if>
 	
 	
 	
