@@ -34,6 +34,9 @@
 		  <button class="button" onclick="location.href='${pageContext.request.contextPath}/home'">홈</button>
 		  <c:if test="${empty sessionScope.emp_no}">
 		  <button class="button" onclick="location.href='${pageContext.request.contextPath}/system/memberlogin'">로그인 </button>
+		  	  </div>
+		  <b><span style="color : red;"> </span>접속필요</b>
+	
 		  </c:if>
 		<c:if test="${!empty sessionScope.emp_no}">
 			<button class="button" onclick="location.href='${pageContext.request.contextPath}/system/mypageform'">마이페이지</button>
