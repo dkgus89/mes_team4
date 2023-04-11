@@ -62,9 +62,11 @@
 	
 	
 	.main {
-		margin : 70px auto;
-		text-align: center;
+		margin : auto;
+/* 		text-align: center; */
+		align-content: center;
 		color : #787878;	
+		float : inherit;
 	}
 	
 	.footertext {

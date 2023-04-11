@@ -43,8 +43,11 @@
 		</c:if>		
 	</div>
 
-	<div id="header">		
-		<h1 class="main" onclick="location.href='${pageContext.request.contextPath}/home';">의약품 생산 MES<img src="${pageContext.request.contextPath}/resources/image/robot.png"></h1>
+	<div id="header">	
+	<div style="text-align : center;">	
+		<img  src="${pageContext.request.contextPath}/resources/image/logo2.png"
+								onclick="location.href='${pageContext.request.contextPath}/home';">
+<%-- 		<h1 class="main" >의약품 생산 MES</h1> --%>
 	</div> 	
 </div>
 
