@@ -175,7 +175,9 @@ public class ReleaseController {
 			String product_cd_name =relService.getProduct_cd_name2(rel_schedule_cd);
 			releaseDTO.setRel_schedule_cd(rel_schedule_cd);
 			releaseDTO.setProduct_cd_name(product_cd_name);
+			System.out.println("1");
 			int bfrel=relService.getbfRel_count(releaseDTO);
+			System.out.println("2");
 			int Stock_count=receiveService.getStock_count(product_cd_name);
 			stockDTO.setStock_count(Stock_count+bfrel);
 			stockDTO.setProduct_cd_name(product_cd_name);
