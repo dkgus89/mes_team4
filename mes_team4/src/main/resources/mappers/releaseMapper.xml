@@ -49,7 +49,7 @@
 	 <update id="updaterel">
 	 	update release_schedule set wh_cd = #{wh_cd}, product_cd_name = #{product_cd_name}, 
 	 								pchor_cd = #{pchor_cd}, rel_date = #{rel_date}, remarks = #{remarks},
-	 	                            rel_count = #{rel_count}, stock_count = #{stock_count}
+	 	                            rel_count = #{rel_count}
 	 	where rel_schedule_cd = #{rel_schedule_cd}                     
     </update>
     
