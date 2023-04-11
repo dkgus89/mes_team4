@@ -141,23 +141,15 @@ function changefin(){
 	
 	<div class="wrap2" id="table_search">
 			<form action="${pageContext.request.contextPath}/inst/instmain" method="get">
-				<select name="select">
+				<select name="select" class="button2">
 				<c:choose>						
-						<c:when test="${pageDTO.select == 'instruction_code'.toString()}">
-							<option value="instruction_code" selected>작업지시코드</option>
-							<option value="line_cd">라인코드</option>
-							<option value="product_cd_name">제품코드</option>
-						</c:when>
 						<c:when test="${pageDTO.select == 'line_cd'.toString()}">
 							<option value="instruction_code">작업지시코드</option>
 							<option value="line_cd" selected>라인코드</option>
-							<option value="product_cd_name">제품코드</option>
 						</c:when>
-
 						<c:otherwise>
-							<option value="instruction_code">작업지시코드</option>
+							<option value="instruction_code" selected>작업지시코드</option>
 							<option value="line_cd">라인코드</option>
-							<option value="product_cd_name" selected>제품코드</option>
 						</c:otherwise>
 				</c:choose>
       			</select>
@@ -220,20 +212,9 @@ function changefin(){
 		</table>		
 		<div id="array"></div>	
 	</form>
-</c:when>
-   <c:otherwise>
-      <script type="text/javascript">
-      alert("권한이 없습니다.")
-      history.back();
-      </script>
-   </c:otherwise>   
-   </c:choose>
-</c:if>
 
-
-	
 <!-- 페이징 -->
-	<div id="pagingControl">
+<div id="pagingControl">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 <a href="${pageContext.request.contextPath}/inst/instmain?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 이전]</a>
 </c:if>
@@ -245,12 +226,21 @@ function changefin(){
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 <a href="${pageContext.request.contextPath}/inst/instmain?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 다음]</a>
 </c:if>	
-</div>	
-	
+</div>
+
 <!-- 본문HTML 입력 끝-->
 	</div>
 </div>
 
+</c:when>
+   <c:otherwise>
+      <script type="text/javascript">
+      alert("권한이 없습니다.")
+      history.back();
+      </script>
+   </c:otherwise>   
+   </c:choose>
+</c:if>
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="../main/Footer.jsp" />
 <!-- 푸터 들어가는 곳 -->
