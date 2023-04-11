@@ -148,5 +148,12 @@ public class ReceiveServiceImpl implements ReceiveService{
 		return receiveDAO.getperformcheck(order_cd);
 	}
 
+	@Override
+	public String dvcheck(String product_cd_name) {
+		System.out.println("ReceiveServiceImpl dvcheck()");
+		
+		return receiveDAO.dvcheck(product_cd_name);
+	}
+
 
 }

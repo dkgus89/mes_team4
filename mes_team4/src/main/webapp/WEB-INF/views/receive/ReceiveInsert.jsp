@@ -21,6 +21,12 @@
 
 // 창고현황
 function showPopup(){
+	if($('#product_cd_name').val()==""){
+		alert("발주리스트나 실적리스트에서 불러올 행을 먼저 선택하세요.");
+		$('#product_cd_name').focus();
+		return false;
+	}
+	
     	var link = "${pageContext.request.contextPath}/receive/warehouse";     
     	var popupWidth = 700;
     	var popupHeight = 800;
@@ -115,9 +121,9 @@ function sub(){
 
 	<h2 class="inserttitle">입고등록 </h2><br>
 	<div class="wrap2">
-	<button class="button2" onclick="showPopup();" style="width:100px">창고</button>
 	<button class="button2" onclick="showPopup2();" style="width:100px">발주</button>
 	<button class="button2" onclick="showPopup3();" style="width:100px">실적</button>
+	<button class="button2" onclick="showPopup();" style="width:100px">창고</button>
 	</div>
 	
 	 <br>

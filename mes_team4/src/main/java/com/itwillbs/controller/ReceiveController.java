@@ -373,6 +373,22 @@ public class ReceiveController {
 		return result;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/receive/dvcheck", method = RequestMethod.GET, produces = "application/text; charset=utf8")
+	public String instcheck(HttpServletRequest request, Model model) {
+		// request 파라미터 
+		String product_cd_name=request.getParameter("product_cd_name");
+		String result=null;
+		
+		// 메서드 호출
+		String dvcheck
+	     =receiveService.dvcheck(product_cd_name);
+		// result에 저장
+		result=dvcheck;
+		// result 값 리턴
+		return result;
+	}
+	
 	@RequestMapping(value = "/receive/recupdate", method = RequestMethod.GET)
 	public String recupdate(HttpServletRequest request, Model model) {
 		System.out.println("ReceiveController recupdate()");

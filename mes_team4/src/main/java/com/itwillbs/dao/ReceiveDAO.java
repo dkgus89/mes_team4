@@ -42,4 +42,6 @@ public interface ReceiveDAO {
 
 	public int getperformcheck(String order_cd);
 
+	public String dvcheck(String product_cd_name);
+
 }

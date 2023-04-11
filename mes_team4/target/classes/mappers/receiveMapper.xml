@@ -123,6 +123,12 @@
     	where pchor_cd = #{order_cd}) a
     </select>
     
+    <select id="dvcheck" resultType="java.lang.String">
+		select product_dv
+        from product
+        where product_cd_name = #{product_cd_name}
+	</select>
+    
     
 </mapper>
 

@@ -39,4 +39,6 @@ public interface ReceiveService {
 	public int getpurcheck(String purchase_cd);
 
 	public int getperformcheck(String order_cd);
+
+	public String dvcheck(String product_cd_name);
 }

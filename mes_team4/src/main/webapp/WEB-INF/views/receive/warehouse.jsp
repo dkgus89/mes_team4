@@ -19,9 +19,47 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 
-function input1(wh_cd){
-	opener.setChildValue(wh_cd);
-	window.close();
+function input1(wh_cd,wh_dv){
+	
+	
+	
+	$(document).ready(function(){ //Jquery 시작
+		var rt=null;
+		var product_cd_name = opener.document.getElementById("product_cd_name").value;
+		$.ajax({ //ajax 시작
+			type:"GET",
+ 			url:'${pageContext.request.contextPath}/receive/dvcheck',
+ 			async: false,
+ 			data:{'product_cd_name':product_cd_name},
+ 			success:function(result){
+ 				 if(result=="완제품") {
+ 					 if(result!=wh_dv){
+ 						 alert("완제품 창고를 선택해주세요.")
+ 						 rt=1;
+ 					 }
+ 		          }else if(result=="원자재"){
+ 		        	  if(result!=wh_dv){
+ 		        		 alert("원자재 창고를 선택해주세요.")
+ 						 rt=1;
+ 		        	  }
+ 		          }
+ 			}
+ 		}); //ajax 끝
+ 		if(rt==1){
+			return false;
+		}
+		
+	     	  // 유효성 검사 통과시 선택 진행
+			  var result = confirm("이 행을 선택 하시겠습니까?");
+			  if (result == true){
+				  opener.setChildValue(wh_cd);
+					window.close();
+			  } else {
+			  return false;
+			  }
+// 		}
+		
+	}); //Jquery 끝
 }
 
 </script>
@@ -59,7 +97,7 @@ function input1(wh_cd){
 					<td>${whDTO.wh_dv}</td>
 					<td>${whDTO.wh_addr}</td>
 					<td>
-					<button class="button2" onClick="input1('${whDTO.wh_cd}');">선택</button>
+					<button class="button2" onClick="input1('${whDTO.wh_cd}','${whDTO.wh_dv}');">선택</button>
 					</td>
 				</tr>
 			</c:forEach>			
