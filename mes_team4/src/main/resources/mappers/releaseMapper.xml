@@ -144,7 +144,7 @@
 		<select id="getbfRel_count" resultType="java.lang.Integer">
 			select rel_count
 			from release_schedule
-			where product_cd_name = #{product_cd_name}
+			where rel_schedule_cd = #{rel_schedule_cd}
 		</select>
     
    		<select id="getProduct_cd_name2" resultType="java.lang.String">
