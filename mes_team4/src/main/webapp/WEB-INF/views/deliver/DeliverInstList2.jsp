@@ -4,7 +4,11 @@
 <%@ page session="false" %>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MEDI-FAC</title>
+
+<!-- 파비콘 들어가는곳 -->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/static/favicon.ico">
+<!-- 파비콘 들어가는곳 -->
 
 <link href="${pageContext.request.contextPath}/resources/css/MainFront.css" rel="stylesheet" type="text/css">
 <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -4,7 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>member/insertForm.jsp</title>
+<title>MEDI-FAC</title>
+
+<!-- 파비콘 들어가는곳 -->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/static/favicon.ico">
+<!-- 파비콘 들어가는곳 -->
 </head>
 <body>
 <!--  http://localhost:8080/myweb/member/insert -->
