@@ -20,7 +20,12 @@
 		limit 1
     </select>
 	
-	
+	<select id="getinstcheck" resultType="java.lang.Integer">
+    	select count(*)
+    	from(select order_cd
+    	from shipment_management
+    	where order_cd = #{order_cd}) a
+    </select>
 	
 	<select id="getDeliverList" resultType="com.itwillbs.domain.DeliverDTO">
     	select * from shipment_management

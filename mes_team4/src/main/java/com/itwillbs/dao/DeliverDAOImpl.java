@@ -121,6 +121,12 @@ public class DeliverDAOImpl implements DeliverDAO  {
 		return sqlSession.selectOne(namespace+".getRelCount", pageDTO);
 	}
 
+	@Override
+	public int getinstcheck(String order_cd) {
+		System.out.println("DeliverDAOImpl getinstcheck()");
+		return sqlSession.selectOne(namespace+".getinstcheck", order_cd);
+	}
+
 	
 	
 	

@@ -16,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-function DeliverUpdate(rel_count,product_dv){
+function DeliverUpdate(rel_count,product_dv,rel_date){
 	
 	
 	$(document).ready(function(){ //Jquery 시작
@@ -49,7 +49,7 @@ function DeliverUpdate(rel_count,product_dv){
 		     	  // 유효성 검사 통과시 선택 진행
 				  var result = confirm("이 행을 선택 하시겠습니까?");
 				  if (result == true){
-						opener.setChildValue2(rel_count);
+						opener.setChildValue2(rel_count,product_dv,rel_date);
 
 						window.close();
 				  } else {
@@ -94,6 +94,7 @@ function DeliverUpdate(rel_count,product_dv){
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>출고코드</th>
 					<th>출고창고</th>
+					<<th>발주/수주코드</th>
 					<th>출고품목명</th>
 					<th>품목구분</th>
 					<th>출고일자</th>
@@ -109,13 +110,14 @@ function DeliverUpdate(rel_count,product_dv){
 				<tr>					
 					<td>${dto.rel_schedule_cd}</td>
 					<td>${dto.wh_name}</td>
+					<td>${dto.pchor_cd}</td>
 					<td>${dto.product_name}</td>
 					<td><input type="hidden" name="product_dv" id="product_dv" value="${dto.product_dv}">${dto.product_dv}</td>
-					<td>${dto.rel_date}</td>
+					<td><input type="hidden" name="rel_date" id="rel_date" value="${dto.rel_date}">${dto.rel_date}</td>
 					<td>${dto.rel_count }</td>
 					<td>${dto.remarks}</td>
 					<td>
-					<button class="button2" onclick="DeliverUpdate('${dto.rel_count}','${dto.product_dv}');">선택</button>
+					<button class="button2" onclick="DeliverUpdate('${dto.rel_count}','${dto.product_dv}','${dto.rel_date}');">선택</button>
 					</td>					
 				</tr>
 			</c:forEach>

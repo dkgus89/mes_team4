@@ -19,8 +19,43 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 function DeliverUpdate(business_cd,order_cd,product_cd_name, emp_no){
+	
+	
+	$(document).ready(function(){ //Jquery 시작
+		// 선택 유효성 검사		
+			var rt = null;
+// 			var bfinst = opener.document.getElementById("instruction_code").value;
+// 			if(instruction_code == bfinst){
+// 				alert("현재 선택되어 있는 작업지시 입니다.");
+// 				return false;
+// 			}
+			$.ajax({ //ajax 시작
+				type:"GET",
+	 			url:'${pageContext.request.contextPath}/deliver/ordercheck',
+	 			async: false,
+	 			data:{'inst':order_cd},
+	 			success:function(result){
+	 				 if(result!=0) {
+	 		              alert("이미 등록된 출하입니다.");
+	 		              rt=1;
+	 		          }
+	 			}
+	 		}); //ajax 끝
+			if(rt==1){
+				return false;		
+			} 		
+			else{
+		     	  // 유효성 검사 통과시 선택 진행
+				  var result = confirm("이 행을 선택 하시겠습니까?");
+				  if (result == true){
+						opener.setChildValue(business_cd,order_cd,product_cd_name, emp_no);
+					  window.close();
+				  } else {
+				  return false;
+				  }
+			}
+		}); //Jquery 끝
 
-	opener.setChildValue(business_cd,order_cd,product_cd_name, emp_no);
 
 	window.close();
 }

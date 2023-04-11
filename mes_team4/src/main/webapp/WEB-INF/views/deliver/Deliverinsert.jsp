@@ -42,11 +42,40 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
 
 //수주거 받아온거 등록??
  function fun1(){
+	
+	 $(document).ready(function(){ //Jquery 시작	
+		 
+		 
+		 var result = confirm("출하를 등록하시겠습니까?");
+		 var rel_date=document.getElementById("rel_date").value;
+			if (result == true){
+//	 			
+				if($('#deliver_date').val()==""){
+					alert("출하일자 입력하세요.");
+					$('#deliver_date').focus();
+					return false;
+				}
+				if($('#deliver_date').val() < rel_date){
+					alert("출하일자가 출고일자보다 이전입니다.");
+					$('#deliver_date').focus();
+					return false;
+				}
+				// 유효성 검사 통과시 submit
+		 
          window.opener.name ="parentPage";
          document.DeliverInsert.target="parentPage";
          document.DeliverInsert.action="${pageContext.request.contextPath}/deliver/insertPro";
          document.DeliverInsert.submit();
          self.close();
+				
+			} else {
+				return false;
+			}
+		 
+		 
+         
+         
+		}); //Jquery 끝
       }
       
       
@@ -66,9 +95,10 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
       
       
 //출고량 받아오기
- function setChildValue2(rec_count){
+ function setChildValue2(rec_count,product_dv,rel_date){
 
     document.getElementById("rec_count").value=rec_count;
+    document.getElementById("rel_date").value=rel_date;
     
  }
 
@@ -179,7 +209,7 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
     
     
    <form action="${pageContext.request.contextPath}/deliver/insertPro" method="post"  name="DeliverInsert">
-      <input type="hidden" value="">
+      <input type="hidden" name="rel_date" id="rel_date">
       
       <table id="vendortable" class="table table-striped">
          <thead>
@@ -204,7 +234,7 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
                <td><input type="text" name="business_cd" id="business_cd" readonly> 
                <td><input type="text" name="product_cd_name" id="product_cd_name" readonly> </td>
                <td><input type="text" name="order_cd" id="order_cd" readonly> </td>
-               <td><input type="Date" name="deliver_date"></td>
+               <td><input type="Date" name="deliver_date" id="deliver_date"></td>
                <td><input type="text" name="deliver_count" id="rec_count" readonly></td>
                <td><input type="text" name="emp_no" id="emp_no" readonly></td>
             </tr>

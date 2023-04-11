@@ -37,6 +37,8 @@ public interface DeliverService {
 
 	public int getRelCount(PageDTO pageDTO);
 
+	public int getinstcheck(String order_cd);
+
 
 	
 	

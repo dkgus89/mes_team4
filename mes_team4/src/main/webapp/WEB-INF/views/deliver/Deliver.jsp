@@ -44,6 +44,20 @@ function DeliverDelete1() {
 	}
 }
 
+// //페이지 전체 체크
+// function allCheck(){
+// 	var ac = document.deliverlist.allcheck;
+// 	var rc = document.deliverlist.rowcheck;
+// 	if(ac.checked == true){
+// 		for(i=0; i<rc.length; i++){
+// 			rc[i].checked=true;}
+// 	}else {
+// 		for(i=0;i<rc.length;i++){
+// 			rc[i].checked=false;}
+// 	} 
+// }
+
+
 //페이지 전체 체크
 function allCheck(){
 	var ac = document.deliverlist.allcheck;
@@ -51,9 +65,11 @@ function allCheck(){
 	if(ac.checked == true){
 		for(i=0; i<rc.length; i++){
 			rc[i].checked=true;}
+		rc.checked=true;
 	}else {
 		for(i=0;i<rc.length;i++){
 			rc[i].checked=false;}
+		rc.checked=false;
 	} 
 }
 
@@ -129,7 +145,7 @@ function allCheck(){
 		<table id="vendortable" class=" table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.8rem">
-					<th><input type="checkbox" name="allcheck" onClick="allcheck()"></th>
+					<th><input type="checkbox" name="allcheck" onClick="allCheck()"></th>
 					<th>번호</th>
 <!-- 					//<th>선택</th> -->
 					<th>출하코드</th>

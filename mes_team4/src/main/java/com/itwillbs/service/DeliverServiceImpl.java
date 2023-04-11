@@ -138,6 +138,14 @@ public class DeliverServiceImpl implements DeliverService{
 	}
 
 
+
+	@Override
+	public int getinstcheck(String order_cd) {
+		System.out.println("DeliverServiceImpl getinstcheck()");
+		return deliverDAO.getinstcheck(order_cd);
+	}
+
+
 	
 	
 	
