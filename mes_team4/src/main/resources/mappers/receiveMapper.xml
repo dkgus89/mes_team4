@@ -26,7 +26,22 @@
 	
 	<select id="getReceiveList" resultType="com.itwillbs.domain.ReceiveDTO">
         select * from receive_schedule
-        order by rec_schedule_cd    	
+        <if test="search != null">
+        <if test="select != null">
+			<if test="select == 'rec_schedule_cd'.toString()">
+				where rec_schedule_cd like CONCAT('%',#{search},'%')
+			</if>
+			<if test="select == 'pchor_cd'.toString()">
+				where pchor_cd like CONCAT('%',#{search},'%')
+			</if>
+			<if test="select == 'product_cd_name'.toString()">
+				where product_cd_name like CONCAT('%',#{search},'%')
+			</if>
+        </if>
+        </if>
+                order by rec_schedule_cd  
+        limit #{startRow}, #{pageSize}  
+  	
     </select>
 	
 	<select id="getReceiveCount" resultType="java.lang.Integer">
@@ -40,7 +55,8 @@
     
     <!-- 	입고코드번호 -->
 	<select id="getRECNum" resultType="java.lang.Integer">
-	select max(SUBSTR(rec_schedule_cd, 4)) from receive_schedule where rec_schedule_cd like 'REC%'
+	select max(SUBSTR(rec_schedule_cd, 11)) from receive_schedule  
+	where SUBSTR(rec_schedule_cd,4,6) = #{today}	
 	</select>
 	
 	<update id="updateReceive">
