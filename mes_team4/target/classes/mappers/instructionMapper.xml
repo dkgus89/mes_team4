@@ -83,11 +83,11 @@
 
 	<select id="getStockCheck" resultMap="map3">
 		SELECT o.order_cd, o.product_cd_name, c.cproduct_name, c.rproduct_cd_name, c.rproduct_name,  o.order_count, c.consumption, c.consumption*o.order_count as calconsumption, s.stock_count, c.consumption_unit
-		from consumption_management c left join (select * from order_management where con = '생산전' ) o
-		ON o.product_cd_name = c.cproduct_cd_name 
-		join stock s
+		from consumption_management c left join (select * from order_management where order_cd = #{order_cd}) o
+		ON o.product_cd_name = c.cproduct_cd_name
+		left join stock s
 		on c.rproduct_cd_name = s.product_cd_name
-		where o.order_cd is not null and order_cd = #{order_cd}
+		where o.order_cd is not null;
     </select>
 	
     <select id="orderinfo" resultType="com.itwillbs.domain.OrderDTO">

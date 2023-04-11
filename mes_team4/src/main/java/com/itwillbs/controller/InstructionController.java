@@ -342,7 +342,15 @@ public class InstructionController {
 		
 		// 메서드 호출
 		List<Map<String, Object>> stockCheckList = instructionService.getStockCheck(order_cd);
-			
+		
+		// DB stock_count null -> 0 저장
+		for (Map<String, Object> stockCheckMap : stockCheckList) {
+		    Object stock_count = stockCheckMap.get("stock_count");
+		    if(stock_count == null) {
+		    	 stockCheckMap.put("stock_count", 0);
+		    }
+		}
+		
 		// List<MapString, Object>> -> JSONArray 변환
 		 JSONArray jsonArr = new JSONArray();
 		 for (Map<String, Object> map : stockCheckList) {
