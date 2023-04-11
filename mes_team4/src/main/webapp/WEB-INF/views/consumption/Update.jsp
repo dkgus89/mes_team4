@@ -17,7 +17,7 @@
 <!-- js파일 들어가는 곳 -->
 
 <!-- 본문적용 CSS들어가는 곳 -->
-<link href="${pageContext.request.contextPath}/resources/css/MainFront.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/Consumpt.css" rel="stylesheet" type="text/css">
 <!-- 본문적용 CSS들어가는 곳 -->
 
 <!-- 자바스크립트 입력 시작-->
@@ -82,9 +82,9 @@
 			var product_dv = 'rp';
 			
 			var link = '${pageContext.request.contextPath}/consmpt/prlist?trIndex='+trIndex+'&product_dv='+product_dv;     
-			var popupWidth = 500;
+			var popupWidth = 540;
 			var popupHeight = 700;
-			var popupX = (window.screen.width/2) - (popupWidth/2) + 800;
+			var popupX = (window.screen.width/2) - (popupWidth/2);
 			var popupY= (window.screen.height/2) - (popupHeight/2);
 			
 		  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
