@@ -23,7 +23,7 @@ function input1(purchase_cd,rproduct_cd_name,purchase_count){
 	$(document).ready(function(){ //Jquery 시작
 	// 선택 유효성 검사		
 		var rt = null;
-		var bfpur = opener.document.getElementById("purchase_cd").value;
+		var bfpur = opener.document.getElementById("pchor_cd").value;
 		if(purchase_cd == bfpur){
 			alert("현재 선택되어 있는 작업지시 입니다.");
 			return false;
