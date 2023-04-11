@@ -141,23 +141,15 @@ function changefin(){
 	
 	<div class="wrap2" id="table_search">
 			<form action="${pageContext.request.contextPath}/inst/instmain" method="get">
-				<select name="select">
+				<select name="select" class="button2">
 				<c:choose>						
-						<c:when test="${pageDTO.select == 'instruction_code'.toString()}">
-							<option value="instruction_code" selected>작업지시코드</option>
-							<option value="line_cd">라인코드</option>
-							<option value="product_cd_name">제품코드</option>
-						</c:when>
 						<c:when test="${pageDTO.select == 'line_cd'.toString()}">
 							<option value="instruction_code">작업지시코드</option>
 							<option value="line_cd" selected>라인코드</option>
-							<option value="product_cd_name">제품코드</option>
 						</c:when>
-
 						<c:otherwise>
-							<option value="instruction_code">작업지시코드</option>
+							<option value="instruction_code" selected>작업지시코드</option>
 							<option value="line_cd">라인코드</option>
-							<option value="product_cd_name" selected>제품코드</option>
 						</c:otherwise>
 				</c:choose>
       			</select>
@@ -220,18 +212,7 @@ function changefin(){
 		</table>		
 		<div id="array"></div>	
 	</form>
-</c:when>
-   <c:otherwise>
-      <script type="text/javascript">
-      alert("권한이 없습니다.")
-      history.back();
-      </script>
-   </c:otherwise>   
-   </c:choose>
-</c:if>
 
-
-	
 <!-- 페이징 -->
 	<div id="pagingControl">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
@@ -251,6 +232,15 @@ function changefin(){
 	</div>
 </div>
 
+</c:when>
+   <c:otherwise>
+      <script type="text/javascript">
+      alert("권한이 없습니다.")
+      history.back();
+      </script>
+   </c:otherwise>   
+   </c:choose>
+</c:if>
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="../main/Footer.jsp" />
 <!-- 푸터 들어가는 곳 -->

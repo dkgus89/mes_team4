@@ -67,6 +67,7 @@ public class InstructionController {
 	            return "system/msg2";
 	         } else {
 			String search =request.getParameter("search");
+			String select =request.getParameter("select");
 //			한 화면에 보여줄 글의 개수 설정
 			int pageSize =5;
 //			현재 페이지 번호 가져오기
@@ -82,6 +83,7 @@ public class InstructionController {
 			pageDTO.setPageNum(pageNum);
 			pageDTO.setCurrentPage(currentPage);
 			pageDTO.setSearch(search);
+			pageDTO.setSelect(select);
 			
 			List<InstructionDTO> instructionList=instructionService.instructionlist(pageDTO);
 			
@@ -101,15 +103,14 @@ public class InstructionController {
 			pageDTO.setEndPage(endPage);
 			pageDTO.setPageCount(pageCount);
 			
-		SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
-		   model.addAttribute("systemDTO2", systemDTO);
+			SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+		    model.addAttribute("systemDTO2", systemDTO);
 
-			
 			model.addAttribute("instructionList", instructionList);
 			model.addAttribute("pageDTO", pageDTO);
 			
-			return "inst/InstMain";}
-
+			return "inst/InstMain";
+			}
 	}
 	
 	@RequestMapping(value = "/inst/instinsert", method = RequestMethod.GET)
