@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.BusinessDTO;
 import com.itwillbs.domain.PageDTO;
@@ -195,6 +196,24 @@ public class ProductController {
 		productService.updateProduct(productDTO);
 		// 주소변경 하면서 이동
 		return "redirect:/product/prodpage";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/product/prodcheck", method = RequestMethod.GET)
+	public String prodcheck(HttpServletRequest request, Model model) {
+		// request 파라미터 
+		String product_cd_name=request.getParameter("prod");
+		String result=null;
+		// 메서드 호출
+		int prodcheck=productService.getprodcheck(product_cd_name);
+		// if문으로 result에 저장 할 값 설정
+		if(prodcheck==0) {
+			result="0";
+		}else {
+			result="1";
+		}			
+		// result 값 리턴
+		return result;
 	}
 	
 }

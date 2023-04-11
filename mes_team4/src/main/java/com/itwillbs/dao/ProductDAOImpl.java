@@ -130,6 +130,15 @@ public class ProductDAOImpl implements ProductDAO{
 		return sqlSession.selectOne(namespace+".getMMNum");
 	}
 
+	@Override
+	public int getprodcheck(String product_cd_name) {
+		System.out.println("productDAOImpl getprodcheck()");
+		
+		return sqlSession.selectOne(namespace+".getprodcheck",product_cd_name);
+	}
+
+
+
 
 
 }

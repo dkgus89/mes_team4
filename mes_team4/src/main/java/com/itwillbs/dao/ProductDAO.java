@@ -43,6 +43,9 @@ public interface ProductDAO {
 
 	public Integer getMMNum();
 
+	public int getprodcheck(String product_cd_name);
+
+
 
 
 }

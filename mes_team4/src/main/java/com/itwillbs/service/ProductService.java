@@ -40,5 +40,7 @@ public interface ProductService {
 
 	public void insertStock(StockDTO stockDTO);
 
+	public int getprodcheck(String product_cd_name);
+
 	
 }

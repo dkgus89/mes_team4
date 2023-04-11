@@ -131,17 +131,45 @@ $("#select").change(function() {
       
        <select id="select" name="select" onchange="itemChange()" class="button2">
 			<option value="">선택하세요</option>
-			<option value="wh_name">이름</option>
-			<option value="wh_addr">지역</option>
-			<option value="wh_dv">창고유형</option>
+			<c:set var="name" value="wh_name" />
+				<c:if test="${name eq 'wh_name'}">
+ 					<option value="wh_name">이름</option>
+				</c:if>
+			
+			<c:set var="addr" value="wh_addr" />
+				<c:if test="${name eq 'wh_name'}">
+ 					<option value="wh_addr">지역</option>
+				</c:if>
+				
+			<c:set var="dv" value="wh_dv" />
+				<c:if test="${name eq 'wh_name'}">
+ 					<option value="wh_dv">창고유형</option>
+				</c:if>
+				
+<!-- 			<option value="wh_name">이름</option> -->
+<!-- 			<option value="wh_addr">지역</option> -->
+<!-- 			<option value="wh_dv">창고유형</option> -->
 		</select>
 
+<c:choose>
+			<c:when test="${name eq 'wh_name'}">
+			<!-- 		wh_name 선택했을때 -->
+			<input type="text" id="search1" name="search" class="button2"/> 
+			</c:when>
+			<c:otherwise>
+			<!-- 		wh_addr, wh_dv선택했을때 --> 
+			<select id="search2" name="search_option" class="button2">
+				<option value="">구분을 선택하세요</option>
+			</select>
+			</c:otherwise>
+</c:choose>
+
 <!-- 		wh_name 선택했을때 -->
-		<input type="text" id="search1" name="search" class="button2"/>
+<!-- 		<input type="text" id="search1" name="search" class="button2"/> -->
 <!-- 		wh_addr, wh_dv선택했을때 --> 
-		<select id="search2" name="search_option" class="button2">
-			<option value="">구분을 선택하세요</option>
-		</select>
+<!-- 		<select id="search2" name="search_option" class="button2"> -->
+<!-- 			<option value="">구분을 선택하세요</option> -->
+<!-- 		</select> -->
 		
 <!-- 	   검색버튼 -->
        <input type="submit" class="button2" value="검색" >
