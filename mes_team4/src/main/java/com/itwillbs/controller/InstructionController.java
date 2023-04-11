@@ -63,9 +63,10 @@ public class InstructionController {
 			System.out.println("InstructionController instmain()");
 			
 			Object emp_no = session.getAttribute("emp_no");
-	         if(emp_no == null) {
+	        if(emp_no == null) {
 	            return "system/msg2";
-	         } else {
+	        } else {
+	        	
 			String search =request.getParameter("search");
 			String select =request.getParameter("select");
 //			한 화면에 보여줄 글의 개수 설정

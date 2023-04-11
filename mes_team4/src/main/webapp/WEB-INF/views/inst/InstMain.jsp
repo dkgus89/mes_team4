@@ -214,7 +214,7 @@ function changefin(){
 	</form>
 
 <!-- 페이징 -->
-	<div id="pagingControl">
+<div id="pagingControl">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 <a href="${pageContext.request.contextPath}/inst/instmain?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 이전]</a>
 </c:if>
@@ -226,8 +226,8 @@ function changefin(){
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 <a href="${pageContext.request.contextPath}/inst/instmain?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 다음]</a>
 </c:if>	
-</div>	
-	
+</div>
+
 <!-- 본문HTML 입력 끝-->
 	</div>
 </div>
