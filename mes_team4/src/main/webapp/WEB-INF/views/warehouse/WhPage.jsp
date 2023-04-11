@@ -110,7 +110,6 @@ function deleteValue(){
 	
 	
 	 
-	 
 	<form name="whlist">
 <!-- 		<input type="hidden" value=""> -->
 		

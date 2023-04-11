@@ -113,6 +113,7 @@ function deleteValue(){
 					<th>번호</th>
 					<th>출고코드</th>
 					<th>출고창고</th>
+					<th>발주/수주코드</th>
 					<th>출고품목명</th>
 					<th>출고일자</th>
 					<th>출고수량</th>
@@ -129,6 +130,7 @@ function deleteValue(){
 					<td>${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
 					<td>${dto.rel_schedule_cd}</td>
 					<td>${dto.wh_name}</td>
+					<td>${dto.pchor_cd }</td>
 					<td>${dto.product_name}</td>
 					<td>${dto.rel_date}</td>
 					<td>${dto.rel_count }</td>
