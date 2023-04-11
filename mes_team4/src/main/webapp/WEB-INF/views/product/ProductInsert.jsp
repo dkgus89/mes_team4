@@ -31,23 +31,24 @@ function sub(){
 		// submit 유효성 검사
 		var rt = null;
 		var result = confirm("품목정보를 등록하시겠습니까?");
-// 		if (result == true){ 
-// 			$.ajax({ //ajax 시작
-// 				type:"GET",
-// 	 			url:'${pageContext.request.contextPath}/product/prodcheck',
-// 	 			async: false,
-// 	 			data:{'prod':$('#product_cd_name').val()},
-// 	 			success:function(result){
-// 	 				 if(result!=0) {
-// 	 		              alert("이미 존재하는 제품코드입니다.");
-// 	 		             $('#product_cd_name').focus();
-// 	 		              rt=1;
-// 	 		          }
-// 	 			}
-// 	 		}); //ajax 끝
-// 			if(rt==1){
-// 				return false;
-// 			}
+		if (result == true){ 
+			$.ajax({ //ajax 시작
+				type:"GET",
+	 			url:'${pageContext.request.contextPath}/product/prodcheck',
+	 			async: false,
+	 			data:{'prod':$('#product_cd_name').val()},
+	 			success:function(result){
+	 				 if(result!=0) {
+	 		              alert("이미 존재하는 제품코드입니다.");
+	 		             $('#product_cd_name').focus();
+	 		              rt=1;
+	 		          }
+	 			}
+	 		}); //ajax 끝
+		}
+			if(rt==1){
+				return false;
+			}
 		if (result == true){
 			if($('#product_dv').val()==""){
 				alert("품목구분을 선택하세요");
