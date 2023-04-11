@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
@@ -284,6 +285,25 @@ public class ReceiveController {
 		model.addAttribute("pageDTO", pageDTO);
 		
 		return "receive/purchase";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/receive/purcheck", method = RequestMethod.GET)
+	public String instcheck(HttpServletRequest request, Model model) {
+		// request 파라미터 
+		String purchase_cd=request.getParameter("pur");
+		String result=null;
+		// 메서드 호출
+		int purcheck
+	     =receiveService.getpurcheck(purchase_cd);
+		// if문으로 result에 저장 할 값 설정
+		if(purcheck==0) {
+			result="0";
+		}else {
+			result="1";
+		}			
+		// result 값 리턴
+		return result;
 	}
 	
 //	@RequestMapping(value = "/receive/order", method = RequestMethod.GET)

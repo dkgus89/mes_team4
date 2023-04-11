@@ -134,5 +134,12 @@ public class ReceiveServiceImpl implements ReceiveService{
 		return receiveDAO.getRel_count(pchor_cd);
 	}
 
+	@Override
+	public int getpurcheck(String purchase_cd) {
+		System.out.println("ReceiveServiceImpl getpurcheck()");
+		
+		return receiveDAO.getpurcheck(purchase_cd);
+	}
+
 
 }

@@ -38,4 +38,6 @@ public interface ReceiveDAO {
 
 	public int getRel_count(String pchor_cd);
 
+	public int getpurcheck(String purchase_cd);
+
 }

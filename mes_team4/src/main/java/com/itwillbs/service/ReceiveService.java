@@ -35,4 +35,6 @@ public interface ReceiveService {
 	public int getSumRelCount(String pchor_cd);
 
 	public int getRel_count(String pchor_cd);
+
+	public int getpurcheck(String purchase_cd);
 }

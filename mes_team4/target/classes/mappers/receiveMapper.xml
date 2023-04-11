@@ -108,6 +108,14 @@
 			from release_schedule
 			where pchor_cd = #{pchor_cd}) a
 		</select>
+		
+	<select id="getpurcheck" resultType="java.lang.Integer">
+    	select count(*)
+    	from(select *
+    	from release_schedule
+    	where purchase_cd = #{purchase_cd}) a
+    </select>
+    
     
 </mapper>
 

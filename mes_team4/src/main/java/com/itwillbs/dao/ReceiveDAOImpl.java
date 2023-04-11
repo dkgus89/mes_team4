@@ -106,4 +106,10 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 		
 		return sqlSession.selectOne(namespace+".getRel_count",pchor_cd);
 	}
+	@Override
+	public int getpurcheck(String purchase_cd) {
+		System.out.println("ReceiveDAOImpl getpurcheck()");
+		
+		return sqlSession.selectOne(namespace+".getpurcheck", purchase_cd);
+	}
 }
