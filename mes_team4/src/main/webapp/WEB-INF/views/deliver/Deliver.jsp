@@ -11,7 +11,8 @@
 <!-- 본문적용 CSS들어가는 곳 -->
 
 <!-- 본문적용 CSS들어가는 곳 -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <!-- 자바스크립트 입력 시작-->
 <script>
 
@@ -53,7 +54,8 @@ function allCheck(){
 	}else {
 		for(i=0;i<rc.length;i++){
 			rc[i].checked=false;}
-	} }
+	} 
+}
 
 </script>
 <!-- 자바스크립트 입력 끝-->
@@ -178,6 +180,7 @@ function allCheck(){
 			
 			</tbody>
 		</table>
+			</form>
 <!-- 		<button type="button" id="test">테스트</button> -->
 		
 		<div id="array"></div>
@@ -212,7 +215,7 @@ function allCheck(){
 	
 	
 	
-	</form>
+
 	
 	
 <!-- 본문HTML 입력 끝-->
