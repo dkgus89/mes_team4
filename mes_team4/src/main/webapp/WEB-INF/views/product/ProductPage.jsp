@@ -112,12 +112,12 @@ function deleteValue(){
 				<tr style="text-align:center; font-size: 0.9rem">
 					<th><input type="checkbox" name="allcheck" onClick='allCheck()'></th>
 					<th></th>
-					<th>품목코드</th>
 					<th>품목구분</th>
-					<th>제품코드</th>
+					<th>품목코드</th>
 					<th>제품명</th>
-					<th>거래처코드</th>
+					<th>제품코드</th>
 					<th>거래처명</th>
+					<th>거래처코드</th>
 					<th>단위</th>
 					<th>적요</th>
 					<th></th>
@@ -130,12 +130,12 @@ function deleteValue(){
 				<tr style="text-align:center; font-size: 0.9rem">
 					<td><input type="checkbox" id="checkbox" name="rowcheck" value="${productDTO.product_cd_name}"></td>
 					<td>${status.count + ((pageDTO.pageNum-1)*pageDTO.pageSize)}</td>
-					<td>${productDTO.product_cd }</td>
 					<td>${productDTO.product_dv }</td>
-					<td>${productDTO.product_cd_name }</td>
+					<td>${productDTO.product_cd }</td>
 					<td>${productDTO.product_name }</td>
-					<td>${productDTO.business_cd }</td>
+					<td>${productDTO.product_cd_name }</td>
 					<td>${productDTO.business_name }</td>
+					<td>${productDTO.business_cd }</td>
 					<td>${productDTO.product_unit }</td>
 					<td>${productDTO.remarks }</td>
 					<td><input type="button" class="button2" value="수정" onclick="updatePopup('${productDTO.product_cd_name}');"></td>
