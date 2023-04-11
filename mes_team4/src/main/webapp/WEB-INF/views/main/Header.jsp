@@ -16,6 +16,10 @@
 <link href="${pageContext.request.contextPath}/resources/css/MainFront.css" rel="stylesheet" type="text/css">
 <!-- 본문적용 CSS들어가는 곳 -->
 
+<!-- 파비콘 들어가는곳 -->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/static/favicon.ico">
+<!-- 파비콘 들어가는곳 -->
+
 <!-- 자바스크립트 입력 시작-->
 <script>
 </script>
