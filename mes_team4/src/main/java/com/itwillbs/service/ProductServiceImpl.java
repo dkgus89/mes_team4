@@ -137,6 +137,13 @@ public class ProductServiceImpl implements ProductService{
 		productDAO.insertStock(stockDTO);
 	}
 
+	@Override
+	public int getprodcheck(String product_cd_name) {
+		System.out.println("ProductServiceImpl getprodcheck()");
+		
+		return productDAO.getprodcheck(product_cd_name);
+	}
+
 
 
 }

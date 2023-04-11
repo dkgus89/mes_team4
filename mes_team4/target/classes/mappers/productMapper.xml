@@ -128,6 +128,13 @@
 	select max(SUBSTR(product_cd, 3)) from product where product_cd like 'MM%'
 	</select>
 	
+	<select id="getprodcheck" resultType="java.lang.Integer">
+    	select count(*)
+    	from(select product_cd_name
+    		 from product
+    		 where product_cd_name = #{product_cd_name}) a
+    </select>
+	
 </mapper>
 
 

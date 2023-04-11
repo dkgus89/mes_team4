@@ -12,19 +12,87 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<script  type="text/javascript">
 
-<script>
-function sub(){
-	window.opener.name = "parentPage";
-	document.prodinsert.target="parentPage";
-	document.prodinsert.action="${pageContext.request.contextPath}/product/prodinsertPro";
-	document.prodinsert.submit();
-	self.close();
-}
 	
 function rst(){
-	document.prodinsert.reset();
+	// 초기화 유효성 검사
+	var result = confirm("초기화 하시겠습니까?");
+	if (result == true){    
+		document.prodinsert.reset();
+	} else {
+		return false;
 	}
+}  
+
+function sub(){
+	$(document).ready(function(){ //Jquery 시작
+		// submit 유효성 검사
+		var rt = null;
+		var result = confirm("품목정보를 등록하시겠습니까?");
+// 		if (result == true){ 
+// 			$.ajax({ //ajax 시작
+// 				type:"GET",
+// 	 			url:'${pageContext.request.contextPath}/product/prodcheck',
+// 	 			async: false,
+// 	 			data:{'prod':$('#product_cd_name').val()},
+// 	 			success:function(result){
+// 	 				 if(result!=0) {
+// 	 		              alert("이미 존재하는 제품코드입니다.");
+// 	 		             $('#product_cd_name').focus();
+// 	 		              rt=1;
+// 	 		          }
+// 	 			}
+// 	 		}); //ajax 끝
+// 			if(rt==1){
+// 				return false;
+// 			}
+		if (result == true){
+			if($('#product_dv').val()==""){
+				alert("품목구분을 선택하세요");
+				$('#product_dv').focus();
+				return false;
+			}
+			if($('#product_type_cd').val()==""){
+				alert("품목타입을 선택하세요");
+				$('#product_type_cd').focus();
+				return false;
+			}
+			if($('#product_cd_name').val()==""){
+				alert("제품코드를 입력하세요");
+				$('#product_cd_name').focus();
+				return false;
+			}
+			if($('#product_name').val()==""){
+				alert("제품명을 입력하세요");
+				$('#product_name').focus();
+				return false;
+			}
+			if($('#select1').val()==""){
+				alert("거래처를 선택하세요");
+				$('#select1').focus();
+				return false;
+			}
+			if($('#product_unit').val()==""){
+				alert("단위를 선택하세요");
+				$('#product_unit').focus();
+				return false;
+			}
+			
+			// 유효성 검사 통과시 submit
+			window.opener.name = "parentPage";
+			document.prodinsert.target="parentPage";
+			document.prodinsert.action="${pageContext.request.contextPath}/product/prodinsertPro";
+			document.prodinsert.submit();
+			self.close();
+			
+		} else {
+			return false;
+		}	
+	}); //Jquery 끝
+}
+
 </script>
 
 </head>
@@ -55,7 +123,7 @@ function rst(){
 			<tbody>
 				<tr>
 					<td>
-					<select  name="product_dv">
+					<select  name="product_dv" id="product_dv">
 						<option value="">선택해주세요</option>
 						<option value="완제품">완제품</option>
 						<option value="원자재">원자재</option>
@@ -63,7 +131,7 @@ function rst(){
 					</td>
 					
 					<td>
-					<select  name="product_type_cd">
+					<select  name="product_type_cd" id="product_type_cd">
 						<option value="">선택해주세요</option>
 						<option value="1">1 완제품</option>
 						<option value="2">2 주원료</option>
@@ -72,8 +140,8 @@ function rst(){
 					</select>
 					</td>
 					
-					<td><input type="text" name="product_cd_name"></td>
-					<td><input type="text" name="product_name"></td>
+					<td><input type="text" name="product_cd_name" id="product_cd_name"></td>
+					<td><input type="text" name="product_name" id="product_name"></td>
 
 					<td>
 					<select id="select1"  name="business_cd">
@@ -83,7 +151,7 @@ function rst(){
 					</c:forEach>
 					</select>
 					</td>
-					<td><select  name="product_unit">
+					<td><select  name="product_unit" id="product_unit">
 						<option value="">선택해주세요</option>
 						<option value="EA">EA</option>
 						<option value="kg">kg</option>
