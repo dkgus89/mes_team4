@@ -41,14 +41,13 @@ public class WHController {
 		
 		//검색어 가져오기
 		String search=request.getParameter("search");
-		String search_option=request.getParameter("search_option");
 		// 검색어 옵션
 		String select = request.getParameter("select");
+		String pageNum=request.getParameter("pageNum");
 		
 				// 한 화면에 보여줄 글 개수 설정
 				int pageSize=5;
 				// 현페이지 번호 가져오기
-				String pageNum=request.getParameter("pageNum");
 				if(pageNum==null) {
 					//pageNum 없으면 1페이지 설정
 					pageNum="1";
@@ -63,7 +62,6 @@ public class WHController {
 				//검색어
 				pageDTO.setSearch(search);
 				pageDTO.setSelect(select);
-				pageDTO.setSelect(search_option);
 				
 				List<WHDTO> whList=whService.getWhList(pageDTO);
 				

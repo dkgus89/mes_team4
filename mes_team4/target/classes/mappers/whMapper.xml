@@ -27,49 +27,63 @@
 	<select id="getWhList" resultType="com.itwillbs.domain.WHDTO">
         select * from warehouse
         <if test="search != null">
-        where wh_name like CONCAT('%',#{search},'%')
         <if test="select != null">
-        <if test="search_option != null">
         	<if test="select == 'wh_name'.toString()">
-        		where wh_name like CONCAT('%',#{search},'%')
+        	where wh_name like CONCAT('%',#{search},'%')
         	</if>
-        	
-        	<if test="select == 'wh_dv'.toString()">
-        		where wh_dv like CONCAT('%',#{search_option},'%')
-        	</if>
-        	
         	<if test="select == 'wh_addr'.toString()">
-        		where wh_addr like CONCAT('%',#{search_option},'%')
+        	where wh_addr like CONCAT('%',#{search},'%')
         	</if>
-        	
+        	<if test="select == 'wh_dv'.toString()">
+        	where wh_dv like CONCAT('%',#{search},'%')
+        	</if>
         </if>
         </if>
-        </if>
-		
+<!--         <if test="search != null"> -->
+<!--         <if test="select != null"> -->
+<!-- 			<if test="select == 'wh_name'.toString()"> -->
+<!-- 				where wh_name like CONCAT('%',#{search},'%') -->
+<!-- 			</if> -->
+<!-- 			<if test="select == 'wh_addr'.toString()"> -->
+<!-- 				where wh_addr like CONCAT('%',#{search},'%') -->
+<!-- 			</if> -->
+<!-- 			<if test="select == 'wh_dv'.toString()"> -->
+<!-- 				where wh_dv like CONCAT('%',#{search},'%') -->
+<!-- 			</if> -->
+<!--         </if> -->
+<!--         </if> -->
+		order by wh_cd  
+        limit #{startRow}, #{pageSize} 
     </select>
 	
 	<select id="getWhCount" resultType="java.lang.Integer">
         select count(*) from warehouse
-        <if test="search != null">
-        where wh_name like CONCAT('%',#{search},'%')
+         <if test="search != null">
         <if test="select != null">
-        <if test="search_option != null">
         	<if test="select == 'wh_name'.toString()">
-        		where wh_name like CONCAT('%',#{search},'%')
+        	where wh_name like CONCAT('%',#{search},'%')
         	</if>
-        	
-        	<if test="select == 'wh_dv'.toString()">
-        		where wh_dv  = like CONCAT('%',#{search_option},'%')
-        	</if>
-        	
         	<if test="select == 'wh_addr'.toString()">
-        		where wh_addr = like CONCAT('%',#{search_option},'%')
+        	where wh_addr like CONCAT('%',#{search},'%')
         	</if>
-        	
+        	<if test="select == 'wh_dv'.toString()">
+        	where wh_dv like CONCAT('%',#{search},'%')
+        	</if>
         </if>
         </if>
-        </if> 
-
+<!--         <if test="search != null"> -->
+<!--         <if test="select != null"> -->
+<!-- 			<if test="select == 'wh_name'.toString()"> -->
+<!-- 				where wh_name like CONCAT('%',#{search},'%') -->
+<!-- 			</if> -->
+<!-- 			<if test="select == 'wh_addr'.toString()"> -->
+<!-- 				where wh_addr like CONCAT('%',#{search},'%') -->
+<!-- 			</if> -->
+<!-- 			<if test="select == 'wh_dv'.toString()"> -->
+<!-- 				where wh_dv like CONCAT('%',#{search},'%') -->
+<!-- 			</if> -->
+<!--         </if> -->
+<!--         </if> -->
     </select>
 	
     <delete id="deletewh">

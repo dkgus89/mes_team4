@@ -69,44 +69,6 @@ function deleteValue(){
 		alert("삭제 취소되었습니다.");}
 	}
 }
-
-function itemChange(){
-	var search2a = ["서울", "부산", "대구","인천", "광주", "대전","울산", "강원", "경기", "경남", "경북", "전남","전북", "제주", "충남", "충북"];
-	var search2b = ["원자재","완제품"];
-	
-	$('#search2').empty();
-	$('#search2').append("<option value=''>선택하세요</option>");
-	
-	var str = $('#select').val();
-	if(str=="wh_addr"){    		
- 		for(i=0; i<search2a.length; i++){
-
-			$('#search2').append("<option value='"+search2a[i]+"'>"+search2a[i]+"</option>");
- 		}
-		}else if(str=="wh_dv"){
-		for(i=0; i<search2b.length; i++){
-			$('#search2').append("<option value='"+search2b[i]+"'>"+search2b[i]+"</option>");
- 			}
-		}
-	}
-	
-// $(function(){
-//     //직접입력 인풋박스 기존에는 숨어있다가
-// $("#search1").hide();
-
-// $("#select").change(function() {
-//               //직접입력을 누를 때 나타남
-// 		if($("#select").val() == "wh_name") {
-// 			$("#search1").show();
-// 			$("#search2").hide();
-// 		}  else {
-// 			$("#search1").hide();
-// 			$("#search2").show();
-// 		}
-// 	}) 
-// });
-
-
 </script>
 <!-- 자바스크립트 입력 끝-->
 </head>
@@ -130,34 +92,14 @@ function itemChange(){
     <div class="wrap2">
     <form action="${pageContext.request.contextPath}/wh/whpage" method="get">
       
-       <select id="select" name="select" onchange="itemChange()" class="button2">
+       <select id="select" name="select" class="button2">
 			<option value="">선택하세요</option>
 			<option value="wh_name">이름</option>
 			<option value="wh_addr">지역</option>
 			<option value="wh_dv">창고유형</option>
 		</select>
-
-<%-- <c:choose> --%>
-<%-- 			<c:when test="${pageDTO.select == 'wh_name'.toString()'}"> --%>
-<!-- 			<!-- 		wh_name 선택했을때 --> 
-<!-- 			<input type="text" id="search1" name="search" class="button2"/>  -->
-<%-- 			</c:when> --%>
-			
-<%-- 			<c:otherwise> --%>
-<!-- 			<!-- 		wh_addr, wh_dv선택했을때 -->  
-<!-- 			<select id="search2" name="search_option" class="button2"> -->
-<!-- 				<option value="">구분을 선택하세요</option> -->
-<!-- 			</select> -->
-<%-- 			</c:otherwise> --%>
-<%-- </c:choose> --%>
-
-<!-- 		wh_name 선택했을때 -->
-		<input type="text" id="search1" name="search" class="button2"/>
-<!-- 		wh_addr, wh_dv선택했을때 --> 
-<!-- 		<select id="search2" name="search_option" class="button2"> -->
-<!-- 			<option value="">구분을 선택하세요</option> -->
-<!-- 		</select> -->
 		
+		<input type="text" name="search" class="button2"/>
 <!-- 	   검색버튼 -->
        <input type="submit" class="button2" value="검색" >
        
