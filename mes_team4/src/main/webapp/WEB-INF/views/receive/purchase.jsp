@@ -25,7 +25,7 @@ function input1(purchase_cd,rproduct_cd_name,purchase_count){
 		var rt = null;
 		var bfpur = opener.document.getElementById("pchor_cd").value;
 		if(purchase_cd == bfpur){
-			alert("현재 선택되어 있는 작업지시 입니다.");
+			alert("현재 선택되어 있는 발주입니다.");
 			return false;
 		}
 		$.ajax({ //ajax 시작
@@ -35,7 +35,7 @@ function input1(purchase_cd,rproduct_cd_name,purchase_count){
  			data:{'pur':purchase_cd},
  			success:function(result){
  				 if(result!=0) {
- 		              alert("이전에 이미 실적등록이 된 작업지시입니다.");
+ 		              alert("이미 등록된 발주입니다.");
  		              rt=1;
  		          }
  			}

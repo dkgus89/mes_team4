@@ -141,5 +141,12 @@ public class ReceiveServiceImpl implements ReceiveService{
 		return receiveDAO.getpurcheck(purchase_cd);
 	}
 
+	@Override
+	public int getperformcheck(String order_cd) {
+		System.out.println("ReceiveServiceImpl getperformcheck()");
+		
+		return receiveDAO.getperformcheck(order_cd);
+	}
+
 
 }
