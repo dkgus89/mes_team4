@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%-- <%@ page session="false" %> --%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
 <title>MEDI-FAC</title>
@@ -117,7 +118,10 @@ function changefin(){
 	
 </script>
 <!-- 자바스크립트 입력 끝-->
-
+<c:set var = "priv" value = "${systemDTO2.emp_priv}"/>
+<c:if test = "${!empty sessionScope.emp_no}">
+      <c:choose>
+    <c:when test = "${fn:contains(priv, 'D')}">
 
 	
 	<div id="innerContents">
@@ -216,6 +220,17 @@ function changefin(){
 		</table>		
 		<div id="array"></div>	
 	</form>
+</c:when>
+   <c:otherwise>
+      <script type="text/javascript">
+      alert("권한이 없습니다.")
+      history.back();
+      </script>
+   </c:otherwise>   
+   </c:choose>
+</c:if>
+
+
 	
 <!-- 페이징 -->
 	<div id="pagingControl">

@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.swing.text.DateFormatter;
 
 import org.apache.commons.collections.bag.SynchronizedSortedBag;
@@ -28,10 +29,12 @@ import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ReleaseDTO;
 import com.itwillbs.domain.StockDTO;
+import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.InstructionService;
 import com.itwillbs.service.OrderService;
 import com.itwillbs.service.ReceiveService;
 import com.itwillbs.service.ReleaseService;
+import com.itwillbs.service.SystemService;
 import com.mysql.cj.xdevapi.JsonArray;
 
 import net.sf.json.JSONArray;
@@ -51,9 +54,18 @@ public class InstructionController {
 	@Inject
 	private ReceiveService receiveService;
 	
+	@Inject
+	private SystemService systemService;
+
+	
 	@RequestMapping(value = "/inst/instmain", method = RequestMethod.GET)
-	public String instmain(HttpServletRequest request, Model model) {
+	public String instmain(HttpServletRequest request, Model model,HttpSession session) {
 			System.out.println("InstructionController instmain()");
+			
+			Object emp_no = session.getAttribute("emp_no");
+	         if(emp_no == null) {
+	            return "system/msg2";
+	         } else {
 			String search =request.getParameter("search");
 //			한 화면에 보여줄 글의 개수 설정
 			int pageSize =5;
@@ -89,12 +101,14 @@ public class InstructionController {
 			pageDTO.setEndPage(endPage);
 			pageDTO.setPageCount(pageCount);
 			
-			
+		SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+		   model.addAttribute("systemDTO2", systemDTO);
+
 			
 			model.addAttribute("instructionList", instructionList);
 			model.addAttribute("pageDTO", pageDTO);
 			
-			return "inst/InstMain";
+			return "inst/InstMain";}
 
 	}
 	
