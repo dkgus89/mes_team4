@@ -43,7 +43,7 @@
 		on l.wh_cd = c.wh_cd
 		left join stock as s
 		on l.product_cd_name = s.product_cd_name
-        where rel_schedule_cd = #{rel_schedule_cd}
+        where rel_schedule_cd = #{rel_schedule_cd} and c.product_cd_name = #{product_cd_name}
     </select>
 	
 	 <update id="updaterel">
@@ -58,6 +58,7 @@
 		<result column="rel_schedule_cd"  property="rel_schedule_cd"/>
 		<result column="business_name"  property="business_name"/>
 		<result column="emp_name"  property="emp_name"/>
+		<result column="product_cd_name"  property="product_cd_name"/>
 		<result column="product_name"  property="product_name"/>
 		<result column="rel_date"  property="rel_date"/>
 		<result column="rel_count"  property="rel_count"/>
@@ -65,7 +66,7 @@
 	</resultMap>
 	
 <select id="getRelList" resultMap="map2">
-	select r.rel_schedule_cd, w.wh_name, p.product_name, r.rel_date, r.rel_count, r.remarks
+	select r.rel_schedule_cd, w.wh_name, p.product_name, r.rel_date, r.rel_count, r.remarks, r.product_cd_name
 		   from release_schedule as r
 		   left join product as p
 		   on r.product_cd_name = p.product_cd_name

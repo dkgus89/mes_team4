@@ -27,7 +27,7 @@ public interface ReleaseDAO {
 
 	public String getRel_cd();
 
-	public Map<String, Object> getrec(String rel_schedule_cd);
+	public Map<String, Object> getrec(ReleaseDTO releaseDTO);
 
 	public void finishrel(String rel_schedule_cd);
 

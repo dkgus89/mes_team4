@@ -127,12 +127,16 @@ public class ReleaseController {
 	}
 
 	@RequestMapping(value = "/rel/relupdate", method = RequestMethod.GET)
-	public String relupdate(HttpServletRequest request, Model model) {
+	public String relupdate(HttpServletRequest request, Model model, ReleaseDTO releaseDTO) {
 		System.out.println("ReleaseController relupdate()");
 		
 		String rel_schedule_cd=request.getParameter("rel_schedule_cd");
+		String product_cd_name=request.getParameter("product_cd_name");
+		releaseDTO.setRel_schedule_cd(rel_schedule_cd);
+		releaseDTO.setProduct_cd_name(product_cd_name);
 		
-		Map<String, Object> rec=relService.getrec(rel_schedule_cd);
+		
+		Map<String, Object> rec=relService.getrec(releaseDTO);
 		
 		
 		model.addAttribute("rec", rec);

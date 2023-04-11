@@ -104,9 +104,9 @@ public class ReleaseServiceImpl implements ReleaseService{
 
 
 	@Override
-	public Map<String, Object> getrec(String rel_schedule_cd) {
+	public Map<String, Object> getrec(ReleaseDTO releaseDTO) {
 		System.out.println("ReleaseServiceImpl getrec()");
-		return releaseDAO.getrec(rel_schedule_cd);
+		return releaseDAO.getrec(releaseDTO);
 	}
 
 

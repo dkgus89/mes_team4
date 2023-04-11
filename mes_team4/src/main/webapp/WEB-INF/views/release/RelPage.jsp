@@ -19,8 +19,8 @@
     	window.open("${pageContext.request.contextPath}/rel/relinsert","창고등록팝업","width=1050, height=500, top=200, left=200");
 	}
 
-	function updatePopup(cd){
-    	window.open("${pageContext.request.contextPath}/rel/relupdate?rel_schedule_cd="+cd,"수정","width=1100, height=450, top=200, left=200");
+	function updatePopup(cd,cd2){
+    	window.open("${pageContext.request.contextPath}/rel/relupdate?rel_schedule_cd="+cd+"&product_cd_name="+cd2,"수정","width=1100, height=450, top=200, left=200");
 	}
 
 // 	체크
@@ -104,7 +104,7 @@ function deleteValue(){
 	 
 	<div>전체 ${pageDTO.count }건</div>
 	<form name="rellist">
-<!-- 		<input type="hidden" value=""> -->
+<!-- 		<input type="hidden" name="" id="" value=""> -->
 		
 		<table id="vendortable" class=" table table-striped">
 			<thead>
@@ -134,7 +134,7 @@ function deleteValue(){
 					<td>${dto.rel_count }</td>
 					<td>${dto.remarks}</td>
 					<td>
-					<button class="button2" onclick="updatePopup('${dto.rel_schedule_cd}');">수정</button>
+					<button class="button2" onclick="updatePopup('${dto.rel_schedule_cd}','${dto.product_cd_name}');">수정</button>
 					</td>
 				</tr>
 			</c:forEach>
