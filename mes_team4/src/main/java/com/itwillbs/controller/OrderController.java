@@ -113,8 +113,13 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/order/ordermainB", method = RequestMethod.GET)
-	public String ordermainB(HttpServletRequest request, Model model) {
-				
+	public String ordermainB(HttpServletRequest request, Model model,HttpSession session) {
+		//비로그인 상태일 시
+		Object emp_no = session.getAttribute("emp_no");
+		if(emp_no == null) {
+			return "system/msg2";
+		} else {	
+		
 		// 한 화면에 보여줄 글 개수 설정
 		int pageSize=5;
 		
@@ -163,8 +168,13 @@ public class OrderController {
 		model.addAttribute("orderList", orderList);
 		model.addAttribute("pageDTO", pageDTO);
 		
+		//사원정보 관련
+				SystemDTO systemDTO = systemService.memberinfo((int)emp_no);
+				model.addAttribute("systemDTO2", systemDTO);
+		
 		// 가상주소 유지
 		return "order/OrderMainB";
+		}
 	}
 	
 	@RequestMapping(value = "/order/orderinsert", method = RequestMethod.GET)
