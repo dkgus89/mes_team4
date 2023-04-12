@@ -30,6 +30,8 @@ $('#update').submit(function(){
 // 		$('#instruction_qt').focus();
 // 		return false;
 // 	}
+
+
   else{
 	  setTimeout(function(){
 	  opener.parent.location.reload();
@@ -81,9 +83,10 @@ $('#update').submit(function(){
 	 
 	 
 	<form action="${pageContext.request.contextPath }/inst/instupdatepro" name="update" id="update" method="post">
-<%-- 		<input type="hidden" name="perform_cd" value="${perform.perform_cd}"> --%>
-<!-- 		<input type="hidden" id="instruction_qt" value=""> -->
-		<input type="hidden" name="instruction_code" class="instruction_code" value="${instructionDTO.instruction_code}">
+
+		<input type="hidden" name="instruction_code" class="instruction_code" value="${instInfoMap.instruction_code}">
+		<input type="hidden" name="deliver_date" class="deliver_date" value="${instInfoMap.deliver_date}">
+		<input type="hidden" name="order_date" class="order_date" value="${instInfoMap.order_date}">
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
@@ -96,14 +99,12 @@ $('#update').submit(function(){
 			<tbody>
 				<tr>
 					<td><select name="line_cd" id="line_cd">
-    					<option value="FL001" ${instructionDTO.line_cd eq "FL001" ? 'selected':''}>1라인</option>
-    					<option value="FL002" ${instructionDTO.line_cd eq "FL002" ? 'selected':''}>2라인</option>
-    					<option value="FL003" ${instructionDTO.line_cd eq "FL003" ? 'selected':''}>3라인</option>
+    					<option value="FL001" ${instInfoMap.line_cd eq "FL001" ? 'selected':''}>1라인</option>
+    					<option value="FL002" ${instInfoMap.line_cd eq "FL002" ? 'selected':''}>2라인</option>
+    					<option value="FL003" ${instInfoMap.line_cd eq "FL003" ? 'selected':''}>3라인</option>
 					</select></td>
-					<td><input type="date" name="instruction_date" id="instruction_date" value="${instructionDTO.instruction_date}">
-					<script>
-					document.getElementById("instruction_date").readOnly = true;
-					</script>
+					<td><input type="date" name="instruction_date" id="instruction_date" value="${instInfoMap.instruction_date}">
+					
 					</td>
 				</tr>
 								

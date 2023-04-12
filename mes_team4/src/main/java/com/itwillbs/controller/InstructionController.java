@@ -191,10 +191,12 @@ public class InstructionController {
 		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
 		System.out.println("InstructionController instupdate()");
 		String instruction_code = request.getParameter("instruction_code");
-		
-		InstructionDTO instructionDTO2 = instructionService.instructioninfo(instruction_code);
+		System.out.println(instruction_code);
+	
+		Map<String, Object> instInfoMap
+	     = instructionService.getInstInfoMap(instruction_code);
 
-		model.addAttribute("instructionDTO", instructionDTO2);
+		model.addAttribute("instInfoMap", instInfoMap);		
 		
 		return "/inst/InstUpdate";
 	}
