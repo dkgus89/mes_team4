@@ -37,8 +37,10 @@ function memberdelete(a) {
 		<c:when test = "${fn:contains(priv, 'A')}">
 	<h2 onclick="location.href='${pageContext.request.contextPath}/system/membermain'">사용자관리</h2>
 	<div class="wrap2">
-	
-	  <button class="button2" onclick="memberinsert()">추가</button><br>
+		<c:if test = "${systemDTO2.emp_no eq 99999}">
+			 <button class="button2" onclick="memberinsert()">추가</button><br>
+		</c:if>
+	  
 
 	 </div><br><br>
 	 <div id="table_search" style="text-align:right;">

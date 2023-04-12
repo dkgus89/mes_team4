@@ -86,11 +86,11 @@
 					</div>
 					<div>
 					<label>비밀번호</label>
-					<input type="password" name="emp_pass" class="emp_pass" style="width:150px;height:30px;font-size:18px;"><br><br>
+					<input type="password" name="emp_pass" class="emp_pass" value=12345 style="width:150px;height:30px;font-size:18px;"><br><br>
 					</div>
 					<div>
 					<label>비밀번호확인</label>
-					<input type="password" name="emp_pass2" class="emp_pass2" style="width:150px;height:30px;font-size:18px;"><br><br>
+					<input type="password" name="emp_pass2" class="emp_pass2" value=12345 style="width:150px;height:30px;font-size:18px;"><br><br>
 					</div>
 					<label>부서</label><br>
 					<div>
