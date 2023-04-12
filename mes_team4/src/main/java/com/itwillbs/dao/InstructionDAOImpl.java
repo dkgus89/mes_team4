@@ -207,6 +207,13 @@ public class InstructionDAOImpl implements InstructionDAO {
 		
 		return sqlSession.selectList(namespace +".getStockCheck", order_cd);
 	}
+
+	@Override
+	public Map<String, Object> getInstInfoMap(String instruction_code) {
+		System.out.println("InstructionDAOImpl getInstInfoMap()");
+		
+		return sqlSession.selectOne(namespace +".getInstInfoMap", instruction_code);
+	}
 	
 	
 	

@@ -26,16 +26,20 @@
 <!-- <div class="wrap2"> -->
 <fieldset style="width:520px; height:600px; padding-left:20px; padding-right: 20px;">
 <h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >작업지시서</h2>
-	 <table border="1" width ="400" height="300" style="text-align: center;" align = "center"> 
-	 <tr><td>작업지시코드</td><td>${instructionDTO.instruction_code}</td></tr>
- 	 <tr><td>작업지시일</td><td>${instructionDTO.instruction_date}</td></tr>
- 	 <tr><td>수주코드</td><td>${instructionDTO.order_cd}</td></tr>
-<%-- 	 <tr><td>수주처</td><td>${instListMap.business_name}</td></tr> --%>
-	 <tr><td>제품코드</td><td>${instructionDTO.product_cd_name}</td></tr>
-<%-- 	 <tr><td>제품명</td><td>${instListMap.product_cd}</td></tr> --%>
-	 <tr><td>지시수량</td><td>${instructionDTO.instruction_qt}</td></tr>
-	 <tr><td>라인코드</td><td>${instructionDTO.line_cd}</td></tr>
-<%-- 	 <tr><td>납품일</td><td>${instructionDTO.deliver_date}</td></tr>	  --%>
+	 <table border="1" width ="400" height="500" style="text-align: center;" align = "center"> 
+	 <tr><td>작업지시코드</td><td>${instInfoMap.instruction_code}</td></tr>
+ 	 <tr><td>작업지시일</td><td>${instInfoMap.instruction_date}</td></tr>
+ 	 <tr><td>수주코드</td><td>${instInfoMap.order_cd}</td></tr>
+	 <tr><td>수주처</td><td>${instInfoMap.business_name}</td></tr>
+	 <tr><td>제품코드</td><td>${instInfoMap.product_cd_name}</td></tr>
+	 <tr><td>제품명</td><td>${instInfoMap.product_name}</td></tr>
+	 <tr><td>수주수량</td><td>${instInfoMap.order_count}</td></tr>
+	 <tr><td>지시수량</td><td>${instInfoMap.instruction_qt}</td></tr>
+	 <tr><td>라인코드</td><td>${instInfoMap.line_cd}</td></tr>
+	 <tr><td>수주일</td><td>${instInfoMap.order_date}</td></tr>
+	 <tr><td>작업지시일</td><td>${instInfoMap.instruction_date}</td></tr>
+	 <tr><td>납품일</td><td>${instInfoMap.deliver_date}</td></tr>	 
+
 </table>
 <h4 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >원재료 소요량</h4>
 <table id="vendortable" class="table table-striped" border="1" width ="400" height="100" style="text-align: center;" align = "center">

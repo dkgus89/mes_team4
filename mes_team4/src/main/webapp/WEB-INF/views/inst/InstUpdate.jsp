@@ -25,11 +25,11 @@ $(document).ready(function(){
   
 $('#update').submit(function(){
 
-	if($('#instruction_qt').val()==""){
-		alert("지시수량를 입력하세요");
-		$('#instruction_qt').focus();
-		return false;
-	}
+// 	if($('#instruction_qt').val()==""){
+// 		alert("지시수량를 입력하세요");
+// 		$('#instruction_qt').focus();
+// 		return false;
+// 	}
   else{
 	  setTimeout(function(){
 	  opener.parent.location.reload();
@@ -100,7 +100,11 @@ $('#update').submit(function(){
     					<option value="FL002" ${instructionDTO.line_cd eq "FL002" ? 'selected':''}>2라인</option>
     					<option value="FL003" ${instructionDTO.line_cd eq "FL003" ? 'selected':''}>3라인</option>
 					</select></td>
-    				<td><input type="date" name="instruction_date" id="instruction_date" value="${instructionDTO.instruction_date}"></td>			
+					<td><input type="date" name="instruction_date" id="instruction_date" value="${instructionDTO.instruction_date}">
+					<script>
+					document.getElementById("instruction_date").readOnly = true;
+					</script>
+					</td>
 				</tr>
 								
 			</tbody>

@@ -28,7 +28,7 @@ function showPopup2(cd, instruction_state){
     window.open("${pageContext.request.contextPath}/inst/instupdate?instruction_code="+cd,"instupdate","width=1000, height=300, top=200, left=200");
 }
 function showPopup3(ef){
-    window.open("${pageContext.request.contextPath}/inst/instcontent?instruction_code="+ef,"instcontent","width=700, height=670, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/inst/instcontent?instruction_code="+ef,"instcontent","width=700, height=850, top=200, left=200");
 }
 function showPopup4(instruction_code,line_cd,product_cd_name,order_cd){
     window.open("${pageContext.request.contextPath}/inst/instinsert2?instruction_code="+instruction_code+"&line_cd="+line_cd+"&product_cd_name="+product_cd_name+"&order_cd="+order_cd,"instinsert2","width=1100, height=500, top=200, left=200");

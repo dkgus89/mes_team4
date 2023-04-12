@@ -224,6 +224,35 @@
 		limit 1
     </select>
     
+    <resultMap type="map" id="map4">
+		<result column="line_cd" property="line_cd"/>
+		<result column="product_cd_name" property="product_cd_name"/>
+		<result column="instruction_date" property="instruction_date"/>
+		<result column="instruction_qt" property="instruction_qt"/>
+		<result column="order_cd" property="order_cd"/>
+		<result column="emp_no" property="emp_no"/>
+		<result column="order_date" property="order_date"/>
+		<result column="deliver_date" property="deliver_date"/>
+		<result column="order_count" property="order_count"/>
+		<result column="business_name" property="business_name"/>	
+		<result column="product_name" property="product_name"/>
+	</resultMap>
+
+    <select id="getInstInfoMap" resultMap="map4">
+		select i.instruction_code, i.line_cd, i.product_cd_name, i.instruction_date, i.instruction_qt, o.order_cd, o.emp_no, o.order_date, o.deliver_date, o.order_count, b.business_name, p.product_name
+		from order_management o join instruction i
+		on o.order_cd = i.order_cd
+		join business b
+		on o.business_cd = b.business_cd
+        join product p
+        on o.product_cd_name = p.product_cd_name
+		where i.instruction_code = #{instruction_code}
+    </select>
+
+    
+    
+    
+    
 <!-- 	<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> -->
 <!-- 		select * from members  -->
 <!-- 		where id = #{id} and pass = #{pass}  -->

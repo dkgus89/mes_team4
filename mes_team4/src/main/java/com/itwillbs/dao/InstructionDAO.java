@@ -63,6 +63,8 @@ public interface InstructionDAO {
 	
 	public List<Map<String, Object>> getStockCheck(String order_cd);
 
+	public Map<String, Object> getInstInfoMap(String instruction_code);
+
 	
 
 

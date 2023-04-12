@@ -382,10 +382,11 @@ public class InstructionController {
 		List<Map<String, Object>> consListMap
 	     = instructionService.getConsListMap(instruction_code);
 		
-		InstructionDTO instructionDTO2 = instructionService.instructioninfo(instruction_code);
+		Map<String, Object> instInfoMap
+	     = instructionService.getInstInfoMap(instruction_code);
 	//model 담아서 이동
 	model.addAttribute("consListMap", consListMap);
-	model.addAttribute("instructionDTO", instructionDTO2);
+	model.addAttribute("instInfoMap", instInfoMap);
 		return "/inst/InstContent";
 	}
 	

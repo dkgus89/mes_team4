@@ -210,6 +210,13 @@ public class InstructionServiceImpl implements InstructionService{
 		return instructionDAO.getStockCheck(order_cd);
 	}
 
+	@Override
+	public Map<String, Object> getInstInfoMap(String instruction_code) {
+		System.out.println("InstructionServiceImpl getInstInfoMap()");
+
+		return instructionDAO.getInstInfoMap(instruction_code);
+	}
+
 	
 	
 	
