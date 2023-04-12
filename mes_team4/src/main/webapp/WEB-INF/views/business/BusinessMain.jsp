@@ -85,7 +85,7 @@
 <c:set var = "priv" value = "${systemDTO2.emp_priv}"/>
 <c:if test = "${!empty sessionScope.emp_no}">
       <c:choose>
-    <c:when test = "${fn:contains(priv, 'C')}">
+    <c:when test = "${fn:contains(priv, 'B')}">
 
 	<h2 onclick="location.href='${pageContext.request.contextPath}/business/businessmain'">거래처 관리</h2>
 	<h4>* 거래처명 클릭시 상세정보 확인가능</h4>

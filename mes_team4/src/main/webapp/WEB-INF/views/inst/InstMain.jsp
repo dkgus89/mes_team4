@@ -35,6 +35,11 @@ function showPopup4(instruction_code,line_cd,product_cd_name,order_cd){
 }
 
 function chdelete(){
+	var instruction_state=document.getElementById("instruction_state").value;
+	if(instruction_state == '생산중' || instruction_state == '생산완료') {
+		alert("생산 중이거나 생산 완료된 작업지시는 삭제 할 수 없습니다.");
+		return false;
+	}
 	// 삭제 유효성 검사
 	var result = confirm("삭제하시겠습니까?");
 	if (result == true){    
@@ -199,7 +204,7 @@ function changefin(){
     			<td style="text-align: center;">${dto.instruction_qt}</td>
     			<td style="text-align: center;">${dto.line_cd}</td>
     			<td style="text-align: center;">${dto.instruction_date}</td> 
-    			<td style="text-align: center;">${dto.instruction_state}</td> 	
+    			<td style="text-align: center;"><input type="hidden" name="instruction_state" id="instruction_state" value="${dto.instruction_state}">${dto.instruction_state}</td> 	
     			<td style="text-align: center;"><button class="button2" onclick="showPopup3('${dto.instruction_code}');">상세정보</button></td>	
     			<td style="text-align: center;"><button class="button2" onclick="showPopup4('${dto.instruction_code}','${dto.line_cd}','${dto.product_cd_name}','${dto.order_cd}');">추가생산</button></td>
     			<td style="text-align: center;"><button class="button2" onclick="showPopup2('${dto.instruction_code}','${dto.instruction_state}');">수정</button></td>
