@@ -55,7 +55,7 @@
 				$('.emp_pass2').focus();
 				return false;
 			}
-			if ($('.emp_priv').val() == "") {
+			if ($('input:checkbox[name="emp_priv"]:checked').length == 0) {
 				alert("권한을 선택해주세요");
 				$('.emp_priv').focus();
 				return false;
@@ -86,11 +86,11 @@
 					</div>
 					<div>
 					<label>비밀번호</label>
-					<input type="password" name="emp_pass" class="emp_pass" value=12345 style="width:150px;height:30px;font-size:18px;"><br><br>
+					<input type="password" name="emp_pass" class="emp_pass" value=12345 style="width:150px;height:30px;font-size:18px;" readonly><br><br>
 					</div>
 					<div>
 					<label>비밀번호확인</label>
-					<input type="password" name="emp_pass2" class="emp_pass2" value=12345 style="width:150px;height:30px;font-size:18px;"><br><br>
+					<input type="password" name="emp_pass2" class="emp_pass2" value=12345 style="width:150px;height:30px;font-size:18px;" readonly><br><br>
 					</div>
 					<label>부서</label><br>
 					<div>
@@ -121,7 +121,6 @@
 						<input type="checkbox" class="emp_priv" name="emp_priv" value="C" /> C.영업관리<br>
 						<input type="checkbox" class="emp_priv" name="emp_priv" value="D" /> D.생산조회<br>
 						<input type="checkbox" class="emp_priv" name="emp_priv" value="E" /> E.재고관리<br>
-
 					</div>
 	
 			</fieldset>
