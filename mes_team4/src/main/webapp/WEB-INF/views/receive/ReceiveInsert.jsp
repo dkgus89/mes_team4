@@ -41,6 +41,15 @@ function showPopup(){
 
 // 발주현황
 function showPopup2(){
+	if($('#wh_cd').val()!=""){
+		var result = confirm("창고가 이미 선택되어 있습니다. 초기화하고 다시 진행하시겠습니까?");
+		  if (result == true){
+			  document.recinsert.reset();
+			  return false;
+		  } else {
+		  return false;
+		  }
+	}
     	var link = "${pageContext.request.contextPath}/receive/purchase";     
     	var popupWidth = 800;
     	var popupHeight = 800;
@@ -57,6 +66,15 @@ function showPopup2(){
 
 // 수주현황
 function showPopup3(){
+	if($('#wh_cd').val()!=""){
+		var result = confirm("창고가 이미 선택되어 있습니다. 초기화하고 다시 진행하시겠습니까?");
+		  if (result == true){
+			  document.recinsert.reset();
+			  return false;
+		  } else {
+		  return false;
+		  }		
+	}
     	var link = "${pageContext.request.contextPath}/receive/perform";     
     	var popupWidth = 1400;
     	var popupHeight = 300;
