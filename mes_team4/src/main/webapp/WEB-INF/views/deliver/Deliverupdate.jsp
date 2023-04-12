@@ -16,41 +16,35 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-
-<script type="text/javascript">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<script>
 	function sub() {
-// 		 $(document).ready(function(){ //Jquery 시작	
+		 $(document).ready(function(){ //Jquery 시작	
 			 
 			 
-// 			 var result = confirm("출하를 등록하시겠습니까?");
-// 			 var rel_date=document.getElementById("rel_date").value;
-// 				if (result == true){
-// //		 			
-// 					if($('#deliver_date').val()==""){
-// 						alert("출하일자 입력하세요.");
-// 						$('#deliver_date').focus();
-// 						return false;
-// 					}
-// 					if($('#deliver_date').val() < rel_date){
-// 						alert("출하일자가 출고일자보다 이전입니다.");
-// 						$('#deliver_date').focus();
-// 						return false;
-// 					}
-// 					// 유효성 검사 통과시 submit
-		
-		
-	//	document.DeliverUpdate.action=""
-		document.DeliverUpdate.submit();
-// 		setTimeout(function() { 
-// 			opener.parent.location.reload();
-// 			window.close();
-// 			}, 100);
-// 	}
-// 		 else{
-// 			 return false;
-// 			 }
-// 		}) //Jquery 시작	
-		 }
+			 var result = confirm("출하를 등록하시겠습니까?");
+			 if (result == true){
+				var rel_date=document.getElementById("rel_date").value;
+			 	var deliver_date=document.getElementById("deliver_date").value;
+			 		if($('#deliver_date').val()==""){
+						alert("출하일자 입력하세요.");
+						$('#deliver_date').focus();
+						return false;
+					}
+					if(deliver_date < rel_date){
+						alert("출하일자가 출고일자 이전입니다.");
+						return false;
+			 		}
+				// 유효성 검사 통과시 submit
+				window.opener.name = "parentPage";
+				document.DeliverUpdate.target="parentPage";
+				document.DeliverUpdate.submit();
+				self.close();
+			} else {
+				return false;
+			}
+		}) //Jquery 시작	
+	}
 
 </script>
 
@@ -100,8 +94,8 @@
 						<td><input type="text" name="business_cd" value="${deliverDTO.business_cd }" readonly></td>
 						<td><input type="text" name="order_cd" value="${deliverDTO.order_cd }" readonly></td>
 						<td><input type="text" name="product_cd_name" value="${deliverDTO.product_cd_name }" readonly></td>
-						<td><input type="Date" name="rel_date" value="${releaseDTO.rel_date}"></td>
-						<td><input type="Date" name="deliver_date" value="${deliverDTO.deliver_date }"></td>
+						<td><input type="Date" name="rel_date" id="rel_date" value="${releaseDTO.rel_date}" readonly></td>
+						<td><input type="Date" name="deliver_date" id="deliver_date" value="${deliverDTO.deliver_date }"></td>
 						<td><input type="text" name="deliver_count" value="${deliverDTO.deliver_count }" readonly></td>
 						<td><input type="text" name="emp_no" value="${deliverDTO.emp_no }" readonly></td>
 				</tr>

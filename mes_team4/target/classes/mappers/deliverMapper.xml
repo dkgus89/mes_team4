@@ -57,11 +57,9 @@
     </select>
     
     
-     <select id="getreldat" resultType="com.itwillbs.domain.ReleaseDTO">
-   
-    select rel_date  from release_schedule
-	where pchor_cd= #{order_cd} 
-
+     <select id="getreldat" resultType="com.itwillbs.domain.ReleaseDTO">   
+    select rel_date from release_schedule
+	where pchor_cd = #{order_cd}
     </select>
     
 	
