@@ -395,6 +395,9 @@ public class InstructionController {
 		// request 파라미터 
 		String order_cd = request.getParameter("order_cd");
 		System.out.println(order_cd);
+		String instruction_qt_st = request.getParameter("instruction_qt");
+		int instruction_qt = Integer.parseInt(instruction_qt_st);
+		System.out.println(instruction_qt);
 		
 		// 메서드 호출
 		List<Map<String, Object>> stockCheckList = instructionService.getStockCheck(order_cd);
@@ -405,6 +408,14 @@ public class InstructionController {
 		    if(stock_count == null) {
 		    	 stockCheckMap.put("stock_count", 0);
 		    }
+		}
+		
+		// 지시 수량에 따른 원자재 소요량 계산
+		for (Map<String, Object> stockCheckMap : stockCheckList) {
+		    Object consumption = stockCheckMap.get("consumption");
+		    Integer consumption_int = (Integer)consumption;
+		    consumption_int = consumption_int*instruction_qt;
+		    stockCheckMap.put("consumption", consumption_int);
 		}
 		
 		// List<MapString, Object>> -> JSONArray 변환

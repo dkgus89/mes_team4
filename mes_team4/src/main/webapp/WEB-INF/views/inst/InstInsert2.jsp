@@ -21,8 +21,10 @@
 $(document).ready(function() { // j쿼리 시작
 	$("#stockCheck").on("click", function(){
 		let order_cd = document.getElementById("order_cd").value;
-		if(!order_cd) {
-			alert("수주 현황을 먼저 선택해주세요.");
+		
+		let instruction_qt = document.getElementById("instruction_qt").value;
+		if(!instruction_qt) {
+			alert("지시 수량을 입력해주세요.");
 			return false;
 		}
 		
@@ -31,10 +33,10 @@ $(document).ready(function() { // j쿼리 시작
 		$.ajax({ // ajex start
 			url:'${pageContext.request.contextPath }/inst/stockCheck',
 			type : 'GET',
-			data: {"order_cd":order_cd },
+			data: {"order_cd":order_cd, "instruction_qt":instruction_qt},
 			success:function(jsonArr){
 					$.each(jsonArr,function(index,dto){
-						$('#stockTable tbody').append('<tr><td>'+dto.rproduct_cd_name+'</a></td><td>'+dto.rproduct_name+'</td><td>'+dto.calconsumption+'</td><td>'+dto.stock_count+'</td><td></td></tr>');
+						$('#stockTable tbody').append('<tr><td>'+dto.rproduct_cd_name+'</a></td><td>'+dto.rproduct_name+'</td><td>'+dto.consumption+'</td><td>'+dto.stock_count+'</td><td></td></tr>');
 					});
 					
 					var rowLength = $('#stockTable tbody').find('tr').length;
@@ -205,7 +207,7 @@ function rst(){
 				<tr style="text-align: center; font-size: 0.9rem">
 					
 					<td><input type="date" name="instruction_date" id="instruction_date"></td>	
-    				<td><input type="text" name="instruction_qt"></td>
+    				<td><input type="text" name="instruction_qt" id="instruction_qt"></td>
     				<td><input type="text" name="instruction_state" id="instruction_state" value = "생산대기" readonly></td>
 <!--     				<td><select name="instruction_state" id="instruction_state"> -->
 <!--     					<option value="">------------</option> -->
@@ -225,7 +227,7 @@ function rst(){
 				<tr style="text-align: center; font-size: 0.9rem">
 					<th>원자재코드</th>
 					<th>품목명</th>
-					<th>소요량</th>
+					<th>총 소요량</th>
 					<th>재고수량</th>
 					<th>비고</th>
 				</tr>
