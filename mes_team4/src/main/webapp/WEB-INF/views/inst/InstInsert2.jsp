@@ -171,6 +171,7 @@ function rst(){
 	 
 	<form action="${pageContext.request.contextPath}/inst/instinsertpro2" name="insert" id="II" method="post">
 <!-- 		<input type="hidden" id="instruction_qt" value=""> -->
+			<input type="hidden" id="instruction_code" name="instruction_code" value="${instructionDTO.instruction_code}">
 		
 		<table id="vendortable" class="table table-striped">
 			<thead>
