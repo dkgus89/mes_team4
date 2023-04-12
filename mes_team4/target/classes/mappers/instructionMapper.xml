@@ -108,7 +108,7 @@
     </select>
     
      <update id="instupdatepro">
-     	update instruction set instruction_qt = #{instruction_qt}, line_cd = #{line_cd}, instruction_date = #{instruction_date}
+     	update instruction set line_cd = #{line_cd}, instruction_date = #{instruction_date}
      	where instruction_code = #{instruction_code}
     </update>
     

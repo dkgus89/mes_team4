@@ -64,6 +64,7 @@ $('#update').submit(function(){
 // 		return false;
 // 	}
 // }
+
 </script>
 
 
@@ -85,8 +86,8 @@ $('#update').submit(function(){
 	<form action="${pageContext.request.contextPath }/inst/instupdatepro" name="update" id="update" method="post">
 
 		<input type="hidden" name="instruction_code" class="instruction_code" value="${instInfoMap.instruction_code}">
-		<input type="hidden" name="deliver_date" class="deliver_date" value="${instInfoMap.deliver_date}">
-		<input type="hidden" name="order_date" class="order_date" value="${instInfoMap.order_date}">
+		<input type="hidden" name="deliver_date" id="deliver_date" value="${instInfoMap.deliver_date}">
+		<input type="hidden" name="order_date" id="order_date" value="${instInfoMap.order_date}">
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
