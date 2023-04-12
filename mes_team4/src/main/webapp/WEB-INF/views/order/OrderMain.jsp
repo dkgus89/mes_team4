@@ -26,9 +26,11 @@
 		if(ac.checked == true){
 			for(i=0; i<rc.length; i++){
 				rc[i].checked=true;}
+			rc.checked=true;
 		}else {
 			for(i=0;i<rc.length;i++){
 				rc[i].checked=false;}
+			rc.checked=false;
 		} }
 	
 	function deleteValue(){
