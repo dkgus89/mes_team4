@@ -202,7 +202,7 @@ function changefin(){
     			<td style="text-align: center;">${dto.instruction_state}</td> 	
     			<td style="text-align: center;"><button class="button2" onclick="showPopup3('${dto.instruction_code}');">상세정보</button></td>	
     			<td style="text-align: center;"><button class="button2" onclick="showPopup4('${dto.instruction_code}','${dto.line_cd}','${dto.product_cd_name}','${dto.order_cd}');">추가생산</button></td>
-    			<td style="text-align: center;"><button class="button2" onclick="showPopup2('${dto.instruction_code}', '${dto.instruction_state}');">수정</button></td>
+    			<td style="text-align: center;"><button class="button2" onclick="showPopup2('${dto.instruction_code}','${dto.instruction_state}');">수정</button></td>
     			</tr>
    			 
 				</c:forEach>	
