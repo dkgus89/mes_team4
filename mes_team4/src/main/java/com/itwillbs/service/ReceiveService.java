@@ -3,6 +3,8 @@ package com.itwillbs.service;
 import java.util.List;
 
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.PerformDTO;
+import com.itwillbs.domain.PurchaseDTO;
 import com.itwillbs.domain.ReceiveDTO;
 import com.itwillbs.domain.StockDTO;
 
@@ -41,4 +43,10 @@ public interface ReceiveService {
 	public int getperformcheck(String order_cd);
 
 	public String dvcheck(String product_cd_name);
+
+	public String getInst(String pchor_cd);
+
+	public PerformDTO getPerform_date(String inst);
+
+	public PurchaseDTO getPurchase_date(String pchor_cd);
 }

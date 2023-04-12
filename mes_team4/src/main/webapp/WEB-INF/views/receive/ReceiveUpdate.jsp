@@ -20,6 +20,19 @@
 <script type="text/javascript">
 
 function sub(){
+	var nowrec=document.getElementById("rec_date").value;
+	var purchase_date=document.getElementById("purchase_date").value;
+	var perform_date=document.getElementById("perform_date").value;
+	alert("발주일자="+purchase_date);
+	alert("실적일자="+perform_date);
+	if(nowrec < purchase_date){
+		alert("발주일자 이전은 선택 할 수 없습니다");
+		return false;
+	}
+	if(nowrec < perform_date){
+		alert("실적일자 이전은 선택 할 수 없습니다");
+		return false;
+	}
 	window.opener.name = "parentPage";
 	document.receiveUpdate.target="parentPage";
 	document.receiveUpdate.action="${pageContext.request.contextPath}/receive/recupdatePro";
@@ -46,7 +59,9 @@ function sub(){
 	 
 	<form name="receiveUpdate" method="post" action="${pageContext.request.contextPath}/receive/recupdatePro">
 		<input type="hidden" name="rec_schedule_cd" value="${receiveDTO.rec_schedule_cd}">
-		
+		<input type="hidden" name="purchase_date" id="purchase_date" value="${purchaseDTO.purchase_date}" readonly>
+		<input type="hidden" name="perform_date" id="perform_date" value="${performDTO.perform_date}" readonly>
+				
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
@@ -64,11 +79,49 @@ function sub(){
 					<td><input type="text" name="pchor_cd" value="${receiveDTO.pchor_cd }" readonly></td>
 					<td><input type="text" name="product_cd_name" value="${receiveDTO.product_cd_name }" readonly></td>
 					<td><input type="text" name="rec_count" value="${receiveDTO.rec_count }" readonly></td>
-					<td><input type="date" name="rec_date" value="${receiveDTO.rec_date }"></td>
+					<td><input type="date" name="rec_date" id="rec_date" value="${receiveDTO.rec_date }"></td>
 				</tr>
 
 			</tbody>
 		</table>
+		<br>
+		<c:if test="${ empty  purchaseDTO.purchase_date}">
+		<c:if test="${ !empty  performDTO.perform_date}">
+		<table id="vendortable" class="table table-striped">
+			<thead>
+				<tr style="text-align: center; font-size: 0.9rem">	
+					<th>실적일자</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>					
+					<td><input type="date" name="perform_date" id="perform_date" value="${performDTO.perform_date}" readonly></td>
+				</tr>
+
+			</tbody>
+		</table>
+		</c:if>
+		</c:if>
+		
+		<c:if test="${ empty  performDTO.perform_date}">
+		<c:if test="${ !empty  purchaseDTO.purchase_date}">
+		<table id="vendortable" class="table table-striped">
+			<thead>
+				<tr style="text-align: center; font-size: 0.9rem">	
+					<th>발주일자</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>					
+					<td><input type="date" name="purchase_date" id="purchase_date" value="${purchaseDTO.purchase_date}" readonly></td>
+				</tr>
+
+			</tbody>
+		</table>
+		</c:if>
+		</c:if>
 	
 	</form>
 	<br>

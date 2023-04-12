@@ -3,6 +3,8 @@ package com.itwillbs.dao;
 import java.util.List;
 
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.PerformDTO;
+import com.itwillbs.domain.PurchaseDTO;
 import com.itwillbs.domain.ReceiveDTO;
 import com.itwillbs.domain.StockDTO;
 
@@ -43,5 +45,11 @@ public interface ReceiveDAO {
 	public int getperformcheck(String order_cd);
 
 	public String dvcheck(String product_cd_name);
+
+	public PerformDTO getPerform_date(String inst);
+
+	public String getInst(String pchor_cd);
+
+	public PurchaseDTO getPurchase_date(String pchor_cd);
 
 }

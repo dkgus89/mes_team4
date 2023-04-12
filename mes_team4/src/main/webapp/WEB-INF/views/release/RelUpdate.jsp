@@ -32,6 +32,15 @@ function recListBtn(){
 function sub(){
 	$(document).ready(function(){
 		// submit 유효성 검사
+		var nowrel=document.getElementById("rel_date").value;		
+		var rec=document.getElementById("rec_date").value;	
+		alert("출고일="+nowrel);
+		alert("입고일="+rec);
+		if(nowrel < rec){
+			alert("입고일자 이전은 선택 할 수 없습니다");
+			return false;
+		}
+		
 		var result = confirm("수정사항을 등록하시겠습니까?");
 		if (result == true){   			
 			if($('#rec_schedule_cd').val()==""){
@@ -103,6 +112,7 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd,
 	<form id="move" action="${pageContext.request.contextPath}/rel/relupdatePro" name="updaterel" method="post" >
 	
 	<input type="hidden" name="rel_schedule_cd" value="${rec.rel_schedule_cd }" >
+<%-- 	<input type="hidden" id="rec_date" value="${rec.rec_date}" > --%>
 	
 		<table id="vendortable" class="table table-striped" style="width:1000px;">		
 			<thead>
@@ -149,7 +159,18 @@ function setChildValue(rec_schedule_cd,wh_cd,product_cd_name,rec_count,pchor_cd,
 					<td><input type="text" name="rel_count" id="rel_count" value="${rec.rel_count }"></td>
 					<td><input type="text"  class="remarks" id="remarks" name="remarks" size=40  value="${rec.remarks }"></td>
 				</tr>
-			</tbody>				
+			</tbody>	
+			
+			<thead>
+				<tr style="text-align: center; font-size: 0.9rem">
+					<th>입고일자</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input type="date" name="rec_date" id="rec_date" value="${rec.rec_date }" readonly></td>
+				</tr>
+			</tbody>			
 		</table>
 	</form>
 <!-- 본문HTML 입력 끝-->

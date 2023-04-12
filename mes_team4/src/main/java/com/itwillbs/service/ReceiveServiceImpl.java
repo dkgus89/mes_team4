@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.ReceiveDAO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.PerformDTO;
+import com.itwillbs.domain.PurchaseDTO;
 import com.itwillbs.domain.ReceiveDTO;
 import com.itwillbs.domain.StockDTO;
 
@@ -153,6 +155,27 @@ public class ReceiveServiceImpl implements ReceiveService{
 		System.out.println("ReceiveServiceImpl dvcheck()");
 		
 		return receiveDAO.dvcheck(product_cd_name);
+	}
+
+	@Override
+	public PerformDTO getPerform_date(String inst) {
+		System.out.println("ReceiveServiceImpl getPerform_date()");
+		
+		return receiveDAO.getPerform_date(inst);
+	}
+
+	@Override
+	public String getInst(String pchor_cd) {
+		System.out.println("ReceiveServiceImpl getInst()");
+		
+		return receiveDAO.getInst(pchor_cd);
+	}
+
+	@Override
+	public PurchaseDTO getPurchase_date(String pchor_cd) {
+		System.out.println("ReceiveServiceImpl getPurchase_date()");
+		
+		return receiveDAO.getPurchase_date(pchor_cd);
 	}
 
 

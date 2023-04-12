@@ -58,10 +58,11 @@ function showPopup2(){
     	
       	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
     }
-    function setChildValue2(purchase_cd,rproduct_cd_name,purchase_count){
+    function setChildValue2(purchase_cd,rproduct_cd_name,purchase_count,purchase_date){
         document.getElementById("pchor_cd").value = purchase_cd;
         document.getElementById("product_cd_name").value = rproduct_cd_name;
         document.getElementById("rec_count").value = purchase_count;
+        document.getElementById("purchase_date").value = purchase_date;
     }
 
 // 수주현황
@@ -83,10 +84,11 @@ function showPopup3(){
     	
       	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
     }
-    function setChildValue3(order_cd,product_cd_name,fair_prod){
+    function setChildValue3(order_cd,product_cd_name,fair_prod,perform_date){
         document.getElementById("pchor_cd").value = order_cd;
         document.getElementById("product_cd_name").value = product_cd_name;
         document.getElementById("rec_count").value = fair_prod;
+        document.getElementById("perform_date").value = perform_date;
     }
     
 function rst(){
@@ -101,6 +103,8 @@ function rst(){
 
 function sub(){
 	$(document).ready(function(){ //Jquery 시작
+		var purchase_date=document.getElementById("purchase_date").value;
+		var perform_date=document.getElementById("perform_date").value;
 		// submit 유효성 검사
 		var result = confirm("입고를 등록하시겠습니까?");
 		if (result == true){
@@ -114,6 +118,16 @@ function sub(){
 			}
 			if($('#rec_date').val()==""){
 				alert("입고일자를 선택하세요");
+				$('#rec_date').focus();
+				return false;
+			}
+			if($('#rec_date').val() < purchase_date){
+				alert("입고일자가 발주일자 이전입니다");
+				$('#rec_date').focus();
+				return false;
+			}
+			if($('#rec_date').val() < perform_date){
+				alert("입고일자가 실적일자 이전입니다");
 				$('#rec_date').focus();
 				return false;
 			}
@@ -148,7 +162,8 @@ function sub(){
 	 <br>
 	 
 	 <form action="${pageContext.request.contextPath}/receive/recinsertPro" name="recinsert" method="post" >
-		<input type="hidden" value="">
+		<input type="hidden" id="purchase_date">
+		<input type="hidden" id="perform_date">
 		
 		<table id="vendortable" class="table table-striped">
 			<thead>

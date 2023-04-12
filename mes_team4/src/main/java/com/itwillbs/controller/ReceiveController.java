@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.PerformDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.PurchaseDTO;
 import com.itwillbs.domain.ReceiveDTO;
@@ -394,9 +396,18 @@ public class ReceiveController {
 		System.out.println("ReceiveController recupdate()");
 		
 		String rec_schedule_cd =request.getParameter("rec_schedule_cd");
+		String pchor_cd =request.getParameter("pchor_cd");
+		
 		
 		ReceiveDTO receiveDTO=receiveService.getReceive(rec_schedule_cd );
+		String inst=receiveService.getInst(pchor_cd);
+		System.out.println(inst);
+		PerformDTO performDTO=receiveService.getPerform_date(inst);
+		PurchaseDTO purchaseDTO=receiveService.getPurchase_date(pchor_cd);
+		
 		System.out.println(rec_schedule_cd );
+		model.addAttribute("performDTO", performDTO);
+		model.addAttribute("purchaseDTO", purchaseDTO);
 		model.addAttribute("receiveDTO", receiveDTO);
 		// 주소변경 없이 이동
 		return "receive/ReceiveUpdate";

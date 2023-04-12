@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.PerformDTO;
+import com.itwillbs.domain.PurchaseDTO;
 import com.itwillbs.domain.ReceiveDTO;
 import com.itwillbs.domain.StockDTO;
 
@@ -123,5 +125,23 @@ public class ReceiveDAOImpl implements ReceiveDAO{
 		System.out.println("ReceiveDAOImpl dvcheck()");
 		
 		return sqlSession.selectOne(namespace+".dvcheck", product_cd_name);
+	}
+	@Override
+	public PerformDTO getPerform_date(String inst) {
+		System.out.println("ReceiveDAOImpl getPerform_date()");
+		
+		return sqlSession.selectOne(namespace+".getPerform_date", inst);
+	}
+	@Override
+	public String getInst(String inst) {
+		System.out.println("ReceiveDAOImpl getInst()");
+		
+		return sqlSession.selectOne(namespace+".getInst", inst);
+	}
+	@Override
+	public PurchaseDTO getPurchase_date(String pchor_cd) {
+		System.out.println("ReceiveDAOImpl getPurchase_date()");
+		
+		return sqlSession.selectOne(namespace+".getPurchase_date", pchor_cd);
 	}
 }

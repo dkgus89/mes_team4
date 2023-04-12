@@ -17,8 +17,8 @@
 function showPopup() {
 	window.open("recinsert","입고팝업","width=1100, height=300, top=200, left=200");
 }
-function updatePopup(cd) {
-	 window.open("${pageContext.request.contextPath}/receive/recupdate?rec_schedule_cd="+cd,"recupdate","width=1100, height=300, top=200, left=200");
+function updatePopup(cd,cd2) {
+	 window.open("${pageContext.request.contextPath}/receive/recupdate?rec_schedule_cd="+cd+"&pchor_cd="+cd2,"recupdate","width=1100, height=350, top=200, left=200");
 }
 
 //	체크
@@ -137,7 +137,7 @@ function deleteValue(){
 					<td>${dto.product_cd_name }</td>
 					<td>${dto.rec_count}</td>
 					<td>${dto.rec_date }</td>
-					<td><input type="button" class="button2" value="수정" onclick="updatePopup('${dto.rec_schedule_cd}');"></td>
+					<td><input type="button" class="button2" value="수정" onclick="updatePopup('${dto.rec_schedule_cd}','${dto.pchor_cd }');"></td>
 				</tr>
 				
 				</c:forEach>

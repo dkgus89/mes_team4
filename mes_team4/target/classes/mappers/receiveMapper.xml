@@ -69,12 +69,27 @@
         select * from receive_schedule
         where rec_schedule_cd = #{rec_schedule_cd}
     </select>
-
+    
+    <select id="getPerform_date" resultType="com.itwillbs.domain.PerformDTO">
+        select perform_date from performance
+        where instruction_code = #{inst}
+    </select>
+    
+    <select id="getPurchase_date" resultType="com.itwillbs.domain.PurchaseDTO">
+        select purchase_date from purchase_management
+        where purchase_cd = #{pchor_cd}
+    </select>
     
     <delete id="deleteReceive">
     	delete from receive_schedule
     	where rec_schedule_cd = #{rec_schedule_cd}
     </delete>
+    
+    <select id="getInst" resultType="java.lang.String">
+			select instruction_code
+			from instruction
+			where order_cd = #{pchor_cd}
+	</select>
     
 <!-- 		재고 현황 관련 -->
 		

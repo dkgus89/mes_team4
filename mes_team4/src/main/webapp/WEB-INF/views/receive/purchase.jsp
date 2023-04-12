@@ -18,7 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-function input1(purchase_cd,rproduct_cd_name,purchase_count){
+function input1(purchase_cd,rproduct_cd_name,purchase_count,purchase_date){
 
 	$(document).ready(function(){ //Jquery 시작
 	// 선택 유효성 검사		
@@ -47,7 +47,7 @@ function input1(purchase_cd,rproduct_cd_name,purchase_count){
 	     	  // 유효성 검사 통과시 선택 진행
 			  var result = confirm("이 행을 선택 하시겠습니까?");
 			  if (result == true){
-					opener.setChildValue2(purchase_cd,rproduct_cd_name,purchase_count);
+					opener.setChildValue2(purchase_cd,rproduct_cd_name,purchase_count,purchase_date);
 					window.close();
 			  } else {
 			  return false;
@@ -97,7 +97,7 @@ function input1(purchase_cd,rproduct_cd_name,purchase_count){
 		    		<td>${dto.purchase_date}</td>
 		    		<td>${dto.purchase_due}</td> 
 					<td>
-					<button class="button2" onClick="input1('${dto.purchase_cd}','${dto.rproduct_cd_name}','${dto.purchase_count}');">선택</button>
+					<button class="button2" onClick="input1('${dto.purchase_cd}','${dto.rproduct_cd_name}','${dto.purchase_count}','${dto.purchase_date}');">선택</button>
 					</td>
 				</tr>
 			</c:forEach>			

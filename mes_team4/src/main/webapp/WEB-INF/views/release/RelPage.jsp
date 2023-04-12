@@ -20,7 +20,7 @@
 	}
 
 	function updatePopup(cd,cd2){
-    	window.open("${pageContext.request.contextPath}/rel/relupdate?rel_schedule_cd="+cd+"&product_cd_name="+cd2,"수정","width=1100, height=450, top=200, left=200");
+    	window.open("${pageContext.request.contextPath}/rel/relupdate?rel_schedule_cd="+cd+"&product_cd_name="+cd2,"수정","width=1100, height=500, top=200, left=200");
 	}
 
 // 	체크

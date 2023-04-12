@@ -19,7 +19,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 
-function input1(order_cd,product_cd_name,fair_prod){
+function input1(order_cd,product_cd_name,fair_prod,perform_date){
 	
 	$(document).ready(function(){ //Jquery 시작
 	// 선택 유효성 검사		
@@ -48,7 +48,7 @@ function input1(order_cd,product_cd_name,fair_prod){
 	     	  // 유효성 검사 통과시 선택 진행
 			  var result = confirm("이 행을 선택 하시겠습니까?");
 			  if (result == true){
-					opener.setChildValue3(order_cd,product_cd_name,fair_prod);
+					opener.setChildValue3(order_cd,product_cd_name,fair_prod,perform_date);
 					window.close();
 			  } else {
 			  return false;
@@ -111,7 +111,7 @@ function input1(order_cd,product_cd_name,fair_prod){
     				<td style="text-align: center;">${dto.defect_prod}</td>
     				<td style="text-align: center;">${dto.defect_remarks}</td>
     				<td style="text-align: center;">${dto.remarks}</td>
-    				<td style="text-align: center;"><button class="button2" onclick="input1('${dto.order_cd}','${dto.product_cd_name}','${dto.fair_prod}');">선택</button></td>
+    				<td style="text-align: center;"><button class="button2" onclick="input1('${dto.order_cd}','${dto.product_cd_name}','${dto.fair_prod}','${dto.perform_date}');">선택</button></td>
     			</tr>
    			 
 				</c:forEach>			
