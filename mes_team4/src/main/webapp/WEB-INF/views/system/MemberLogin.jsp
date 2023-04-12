@@ -54,28 +54,28 @@ setTimeout(function() {
 	
 	<form action="${pageContext.request.contextPath }/system/memberloginpro" name="login" id="login" method="post">
 		
-	<fieldset style="width:300px; height:250px; padding-left:15px; margin: 0px auto;">
+	<fieldset style="width:300px; height:250px; margin: 0px auto;">
 	
 	<h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >로그인</h2>
-					<div>
-					<label>사원번호</label>
-					<input type="text" name="emp_no" class="emp_no" autofocus="autofocus"><br><br>
+					<div class="login_wrap">
+						<div class="login_id">
+						<span>사원번호</span> <input type="text" name="emp_no" class="emp_no" autofocus="autofocus">
+						</div>
+						<div class="login_pass">
+						<span>비밀번호</span> <input type="password" name="emp_pass" class="emp_pass" >
+						</div>	
 					</div>
-					<div>
-					<label>비밀번호</label>
-					<input type="password" name="emp_pass" class="emp_pass" ><br><br>
-					</div>	
 					<div align="center">
 					<button class="button2" form="login" onclick="submit">로그인</button>
 	  				</div>
-		</fieldset>
+	</fieldset>
 					
 	</form>
 		
 
 	<!-- 본문HTML 입력 끝-->
+	</div>
 </div>
-
 
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="../main/Footer.jsp" />

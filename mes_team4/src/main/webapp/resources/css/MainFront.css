@@ -277,10 +277,29 @@
 		min-width: 100px;
  	  font-family: 'Gowun Dodum', sans-serif;
 	  font-size: 14px;
-	  text-transform: uppercase;
 	  letter-spacing: 2.5px;
 	  font-weight: 500;
 	  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+	}
+	
+	.login_wrap {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 10px;
+		margin: 30px auto;
+	}
+	
+	.login_id {
+		display: flex;
+		justify-content: center;
+		gap: 10px;
+	}
+	
+	.login_pass {
+		display: flex;
+		justify-content: center;
+		gap: 10px;
 	}
 	
 /* 	페이징 추가	 */
@@ -310,6 +329,11 @@
      }
      
     input[type="text"]:not([name="search"]) {
+		padding: 5px;
+		text-align: center;
+	}
+	
+	input[type="password"] {
 		padding: 5px;
 		text-align: center;
 	}
