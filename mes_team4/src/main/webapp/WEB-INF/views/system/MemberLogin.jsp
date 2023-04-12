@@ -59,10 +59,10 @@ setTimeout(function() {
 	<h2 style= "margin-top: 30px; margin-bottom: 15px; text-align: center" >로그인</h2>
 					<div class="login_wrap">
 						<div class="login_id">
-						<span>사원번호</span> <input type="text" name="emp_no" class="emp_no" autofocus="autofocus">
+						<span style="width:58px;">사원번호</span> <input type="text" name="emp_no" class="emp_no" autofocus="autofocus">
 						</div>
 						<div class="login_pass">
-						<span>비밀번호</span> <input type="password" name="emp_pass" class="emp_pass" >
+						<span style="width:58px;">비밀번호</span> <input type="password" name="emp_pass" class="emp_pass" >
 						</div>	
 					</div>
 					<div align="center">

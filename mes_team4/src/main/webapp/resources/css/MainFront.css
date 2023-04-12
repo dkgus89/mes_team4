@@ -328,14 +328,19 @@
         cursor:pointer;
      }
      
-    input[type="text"]:not([name="search"]) {
+    input[type="text"]:not([name="search"],[name="emp_no"]) {
 		padding: 5px;
 		text-align: center;
 	}
 	
+	input[name="emp_no"] {
+		padding: 5px;
+		text-align: left;
+	}
+	
 	input[type="password"] {
 		padding: 5px;
-		text-align: center;
+		text-align: left;
 	}
 	
 	input[type="date"] {
