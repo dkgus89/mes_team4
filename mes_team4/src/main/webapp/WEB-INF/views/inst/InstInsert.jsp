@@ -74,12 +74,13 @@ function showPopup(){
   	
   	$('#stockTable tbody').html('');
 }
-function setChildValue(order_cd, product_cd_name, product_name,  order_count, deliver_date){
+function setChildValue(order_cd, product_cd_name, product_name,  order_count, order_date, deliver_date){
 	
     document.getElementById("order_cd").value = order_cd;
     document.getElementById("product_cd_name").value = product_cd_name;
     document.getElementById("product_name").value = product_name;
     document.getElementById("order_count").value = order_count;
+    document.getElementById("order_date").value = order_date;
     document.getElementById("deliver_date").value = deliver_date;
 
    
@@ -154,6 +155,22 @@ function rst(){
 	}
 }
 
+// 지시일자 제한
+$(document).on('change', '#instruction_date', function() {
+   var order_date = $('#order_date').val();
+   var inst_date = $(this).val();
+   var deliver_date = $('#deliver_date').val(); 
+    
+    if (order_date > inst_date) {
+      alert("지시일자를 " + order_date + " (수주일자) 이후로 선택해주세요.");    
+      $(this).val('');
+    }
+    if (deliver_date < inst_date) {
+        alert("지시일자를 " + deliver_date + " (출하예정일) 이전으로 선택해주세요.");    
+        $(this).val('');
+      }
+});
+
 </script>
 
 </head>
@@ -176,7 +193,7 @@ function rst(){
 	 
 	<form action="${pageContext.request.contextPath}/inst/instinsertpro" name="insert" id="II" method="post">
 <!-- 		<input type="hidden" id="instruction_qt" value=""> -->
-		
+		<input type="hidden" id="order_date" name="order_date">
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">					
@@ -184,6 +201,7 @@ function rst(){
 					<th>품목코드</th>
 					<th>제품명</th>
 					<th>수주량</th>
+<!-- 					<th>수주일자</th> -->
 					<th>출하예정일</th>
 				</tr>
 			</thead>
@@ -194,6 +212,7 @@ function rst(){
 					<td><input type="text" name="product_cd_name" id="product_cd_name"></td>	
 					<td><input type="text" name="product_name" id="product_name"></td>
 					<td><input type="text" name="order_count" id="order_count"></td>
+					
 					<td><input type="date" name="deliver_date" id="deliver_date"></td>	
     			</tr>
 
