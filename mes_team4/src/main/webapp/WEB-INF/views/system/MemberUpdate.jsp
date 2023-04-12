@@ -66,10 +66,11 @@ $('#update').submit(function(){
 		return false;
     }
     
-  if($('.emp_priv').val()==""){
-    	alert("권한을 체크하세요");
+  if ($('input:checkbox[name="emp_priv"]:checked').length == 0) {
+		alert("권한을 선택해주세요");
+		$('.emp_priv').focus();
 		return false;
-    } 
+	} 
   else{
 	  setTimeout(function(){
 	  opener.parent.location.reload();
