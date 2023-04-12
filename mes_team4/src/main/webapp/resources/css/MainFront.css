@@ -274,6 +274,10 @@
 	  text-align: center;
 	}
 	
+	 input[name="search"] {
+		padding: 5px;
+	}
+	
 /* 	페이징 추가	 */
 	
 	#pagingControl {
