@@ -115,16 +115,16 @@ function sub(){
 // 				return false;
 // 			}
 			
-// 			if($('#line_cd').val()==""){
-// 				alert("작업라인을 선택하세요");
-// 				$('#line_cd').focus();
-// 				return false;
-// 			}
-// 			if($('#instruction_date').val()==""){
-// 				alert("작업지시일자를 입력하세요");
-// 				$('#instruction_date').focus();
-// 				return false;
-// 			}
+			if($('#line_cd').val()==""){
+				alert("작업라인을 선택하세요");
+				$('#line_cd').focus();
+				return false;
+			}
+			if($('#instruction_date').val()==""){
+				alert("작업지시일자를 입력하세요");
+				$('#instruction_date').focus();
+				return false;
+			}
 // 			if($('#instruction_qt').val()==""){
 // 				alert("지시수량을 입력하세요");
 // 				$('#instruction_qt').focus();
@@ -160,7 +160,7 @@ $(document).on('change', '#instruction_date', function() {
    var order_date = $('#order_date').val();
    var inst_date = $(this).val();
    var deliver_date = $('#deliver_date').val(); 
-    
+
     if (order_date > inst_date) {
       alert("지시일자를 " + order_date + " (수주일자) 이후로 선택해주세요.");    
       $(this).val('');
@@ -170,6 +170,16 @@ $(document).on('change', '#instruction_date', function() {
         $(this).val('');
       }
 });
+
+$(document).on('change', '#instruction_qt', function() {
+	   var order_count = $('#order_count').val();
+	   var inst_qt = $(this).val();
+
+	    if (order_count > inst_qt) {
+	      alert("지시수량을 " + order_count + " (수주수량) 이상으로 설정해주세요.");    
+	      $(this).val('');
+	    }
+	});
 
 </script>
 
@@ -240,7 +250,7 @@ $(document).on('change', '#instruction_date', function() {
     					<option value="FL003">3라인</option>
 					</select></td>
 					<td><input type="date" name="instruction_date" id="instruction_date"></td>	
-    				<td><input type="text" name="instruction_qt" id="instruction_qt"></td>
+    				<td><input type="text" name="instruction_qt" id="instruction_qt" placeholder="정수로 입력해주세요"></td>
     				<td><input type="text" name="instruction_state" id="instruction_state" value = "생산대기"></td>
 <!--     				<td><select name="instruction_state" id="instruction_state"> -->
 <!--     					<option value="">------------</option> -->
