@@ -150,7 +150,7 @@
 				<option value="em">담당자</option>			
 				</select>
 				<input type="text" name="search" class="input_box" placeholder="품목명 또는 코드를 입력하세요." value="" size=60>
-				<input type="submit" value="search" class="button2"></div>
+				<input type="submit" value="검색" class="button2"></div>
 				<div>진행상황 전체&nbsp;<input type="checkbox" id="comAllCheck" name="com_sts" onclick='checkOnlyOne(this)' value=""> 완료&nbsp;<input type="checkbox" id="comCheck" name="com_sts" onclick='checkOnlyOne(this)' value="완료"> 미완료&nbsp;<input type="checkbox" id="comNotCheck" name="com_sts" onclick='checkOnlyOne(this)' value="미완료"></div>
 				
 				</div>

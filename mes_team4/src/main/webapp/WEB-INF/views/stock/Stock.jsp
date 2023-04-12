@@ -64,18 +64,18 @@ function showPopup2(cd){
 						</c:otherwise>
 				</c:choose>			
       			</select>
-				<input type="text" name="search" class="input_box" value="${pageDTO.search}">
-				<input type="submit" value="search" class="button2">
+				<input type="text" name="search" class="input_box" value="${pageDTO.search}" placeholder="검색어를 입력하세요.">
+				<input type="submit" value="검색" class="button2">
 		</form>
 	</div>
 	<br>	
 	
-	<div class="wrap2" style="float: left;">
+<!-- 	<div class="wrap2" style="float: left;"> -->
 	
 <!-- 	  <button class="button2" onclick="showPopup();">추가</button> -->
 <!-- 	  <button class="button2"  onclick="chdelete();">삭제</button> -->
 	  
-	 </div><br>
+<!-- 	 </div><br> -->
 	 <br>
 <!-- 	 리스트 갯수 표시 -->
 	 <div>전체 ${pageDTO.count }건</div>

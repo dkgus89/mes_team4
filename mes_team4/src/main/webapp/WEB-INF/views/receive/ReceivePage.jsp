@@ -97,7 +97,7 @@ function deleteValue(){
 				<option value="pchor_cd">발주/수주코드</option>
 				<option value="product_cd_name">제품코드</option>
 			</select>
-			<input type="text" name="search" class="input_box" style="width:300px">
+			<input type="text" name="search" class="input_box" style="width:300px" placeholder="검색어를 입력하세요.">
 			<input type="submit" class="button2" value="검색">
 		</form>
 	</div><br>

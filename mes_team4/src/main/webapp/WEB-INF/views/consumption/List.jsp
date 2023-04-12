@@ -123,7 +123,7 @@
 			<option value="rp">원자재</option>
 			</select> 
 			<input type="text" name="search" class="input_box" placeholder="품목명 또는 코드를 입력하세요." value="" size=60>
-			<input type="submit" value="search" class="button2">
+			<input type="submit" value="검색" class="button2">
 		</form>
 	</div>
 	

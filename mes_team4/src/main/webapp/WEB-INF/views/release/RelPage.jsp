@@ -90,14 +90,14 @@ function deleteValue(){
 	 </div><br>
 	 <br>
 	
-    <div class="wrap2">
+    <div class="wrap2" id="table_search">
     <form action="${pageContext.request.contextPath}/rel/relpage" method="get">
        <select name="select" class="button2">
        		<option value="">선택하세요</option>
        		<option value="wh_name">창고명</option>
        		<option value="product_name">출고품목명</option>
        </select>
-       <input type="text" name="search" class="button2">
+       <input type="text" name="search" class="input_box" placeholder="검색어를 입력하세요.">
        <input type="submit" class="button2" value="검색" >
      </form>  
     </div><br>

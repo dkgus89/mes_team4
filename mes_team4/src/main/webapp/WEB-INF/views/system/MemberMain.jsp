@@ -45,7 +45,7 @@ function memberdelete(a) {
 	 </div><br><br>
 	 <div id="table_search" style="text-align:right;">
 				<form action="${pageContext.request.contextPath}/system/membermain" method="get">
-					<input type="text" name="search" class="input_box" placeholder="사원명을 입력하세요"> 
+					<input type="text" name="search" class="input_box" placeholder="사원명을 입력하세요."> 
 					<button class="button2"	type="submit" value="search">검색</button>	
 				</form>
 			</div>

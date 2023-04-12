@@ -89,7 +89,7 @@ function deleteValue(){
 	 </div><br>
 	 <br>
 
-    <div class="wrap2">
+    <div class="wrap2" id="table_search">
     <form action="${pageContext.request.contextPath}/wh/whpage" method="get">
       
        <select id="select" name="select" class="button2">
@@ -99,7 +99,7 @@ function deleteValue(){
 			<option value="wh_dv">창고유형</option>
 		</select>
 		
-		<input type="text" name="search" class="button2"/>
+		<input type="text" name="search" class="input_box" placeholder="검색어를 입력하세요."/>
 <!-- 	   검색버튼 -->
        <input type="submit" class="button2" value="검색" >
        
