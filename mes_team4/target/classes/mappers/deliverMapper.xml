@@ -126,6 +126,7 @@
 		   on r.product_cd_name = p.product_cd_name
 		   left join warehouse as w
 		   on r.wh_cd = w.wh_cd
+		   where p.product_dv='완제품'
         order by rel_schedule_cd desc 
         limit #{startRow}, #{pageSize}   	
     </select>
@@ -146,6 +147,7 @@
 			</if>
         </if>
         </if> 
+         where p.product_dv='완제품'
     </select>
 	
 	

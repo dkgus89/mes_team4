@@ -159,6 +159,26 @@ public class OrderServiceImpl implements OrderService{
 		return orderDAO.getWCount(pageDTO);
 	}
 
+	@Override
+	public List<OrderDTO> getOrderList2(PageDTO pageDTO) {
+		System.out.println("OrderServiceImpl getOrderList2()");
+		//시작하는 행번호 구하기
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+		int endRow = startRow+pageDTO.getPageSize()-1;
+		
+		pageDTO.setStartRow(startRow);
+		pageDTO.setEndRow(endRow);
+				
+		return orderDAO.getOrderList2(pageDTO);
+	}
+
+	@Override
+	public int getOrderCount2() {
+		System.out.println("OrderServiceImpl getOrderCount2()");
+		
+		return orderDAO.getOrderCount2();
+	}
+
 
 
 }

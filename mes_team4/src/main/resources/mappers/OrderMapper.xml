@@ -22,12 +22,32 @@
    		</if>
     </select>
     
+    <select id="getOrderCount2" resultType="java.lang.Integer">
+    select count(*) from order_management
+    	<if test="search != null">
+   			where product_cd_name like CONCAT('%',#{search},'%')
+   			or con like CONCAT('%',#{search},'%')
+   		</if>
+   		where con='생산완료'
+    </select>
+    
     <select id="getOrderList" resultType="com.itwillbs.domain.OrderDTO">
     select * from order_management
     	<if test="search != null">
    			where business_cd like CONCAT('%',#{search},'%')
    			or con like CONCAT('%',#{search},'%')
    		</if>
+    order by deliver_date asc
+    limit #{startRow} , #{pageSize}
+    </select>
+    
+    <select id="getOrderList2" resultType="com.itwillbs.domain.OrderDTO">
+    select * from order_management
+    	<if test="search != null">
+   			where business_cd like CONCAT('%',#{search},'%')
+   			or con like CONCAT('%',#{search},'%')
+   		</if>
+   		where con='생산완료'
     order by deliver_date asc
     limit #{startRow} , #{pageSize}
     </select>

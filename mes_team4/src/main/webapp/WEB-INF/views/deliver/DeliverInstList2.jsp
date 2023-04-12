@@ -23,23 +23,7 @@ function DeliverUpdate(rel_count,product_dv,rel_date){
 		// 선택 유효성 검사		
 		var order_cd=opener.document.getElementById("order_cd").value;
 		var pchor_cd=document.getElementById("pchor_cd").value;
-// 		var product_dv=document.getElementById("product_dv").value;
-// 		var com="완제품";
-// 		alert(com);
-// 		alert(product_dv);
-// 		if(product_dv equal com){
-// 			alert("완제품만 선택 할 수 있습니다.");
-// 			return false;
-// 		}
-// 		if($('#instruction_code').val()==""){
-// 			alert("작업지시코드를 선택하세요");
-// 			$('#instruction_code').focus();
-// 			return false;
-// 		}
-// 		if(product_dv != com){
-// 			alert("완제품만 선택 할 수 있습니다.");
-// 			return false;
-// 		}
+
 			if(order_cd != pchor_cd){
 				alert("선택되어 있는 수주코드의 출고품이 아닙니다.");
 				return false;
