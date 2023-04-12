@@ -42,6 +42,10 @@ public interface OrderService {
 	public int getbfOr_count(String order_cd);
 	
 	public void updateCon(String cd);
+
+	public List<OrderDTO> getOrderList2(PageDTO pageDTO);
+
+	public int getOrderCount2();
 	
 
 }

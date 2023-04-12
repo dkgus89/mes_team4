@@ -355,10 +355,10 @@ public class DeliverController {
 			pageDTO.setPageNum(pageNum);
 			pageDTO.setCurrentPage(currentPage);
 			
-			List<OrderDTO> orderList = orderService.getOrderList(pageDTO);		
+			List<OrderDTO> orderList = orderService.getOrderList2(pageDTO);		
 			
 //			페이징처리
-			int count = orderService.getOrderCount();
+			int count = orderService.getOrderCount2();
 			int pageBlock = 10;
 			int startPage = (currentPage-1)/pageBlock * pageBlock + 1;  
 			int endPage = startPage + pageBlock - 1;

@@ -157,6 +157,22 @@ public class OrderDAOImpl implements OrderDAO{
 		return sqlSession.selectOne(namespace+".getWCount",pageDTO);
 	}
 
+	@Override
+	public List<OrderDTO> getOrderList2(PageDTO pageDTO) {
+		System.out.println("OrderDAOImpl getOrderList2()");
+		
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+	
+		return sqlSession.selectList(namespace+".getOrderList2",pageDTO);
+	}
+
+	@Override
+	public int getOrderCount2() {
+		System.out.println("OrderDAOImpl getOrderCount2()");
+		
+		return sqlSession.selectOne(namespace+".getOrderCount2");
+	}
+
 	
 
 }
