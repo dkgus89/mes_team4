@@ -30,6 +30,9 @@ function showPopup2(cd, instruction_state){
 function showPopup3(ef){
     window.open("${pageContext.request.contextPath}/inst/instcontent?instruction_code="+ef,"instcontent","width=700, height=670, top=200, left=200");
 }
+function showPopup4(instruction_code,line_cd,product_cd_name,order_cd){
+    window.open("${pageContext.request.contextPath}/inst/instinsert2?instruction_code="+instruction_code+"&line_cd="+line_cd+"&product_cd_name="+product_cd_name+"&order_cd="+order_cd,"instinsert2","width=1100, height=500, top=200, left=200");
+}
 
 function chdelete(){
 	// 삭제 유효성 검사
@@ -177,6 +180,7 @@ function changefin(){
 					<th style="text-align: center;">생산지시일자</th>
 					<th style="text-align: center;">작업지시상태</th>
 					<th style="text-align: center;">상세확인</th>
+					<th style="text-align: center;">추가생산</th>
 					<th style="text-align: center;">수정</th>
 				</tr>
 			</thead>
@@ -196,7 +200,8 @@ function changefin(){
     			<td style="text-align: center;">${dto.line_cd}</td>
     			<td style="text-align: center;">${dto.instruction_date}</td> 
     			<td style="text-align: center;">${dto.instruction_state}</td> 	
-    			<td style="text-align: center;"><button class="button2" onclick="showPopup3('${dto.instruction_code}');">상세정보</button></td>		
+    			<td style="text-align: center;"><button class="button2" onclick="showPopup3('${dto.instruction_code}');">상세정보</button></td>	
+    			<td style="text-align: center;"><button class="button2" onclick="showPopup4('${dto.instruction_code}','${dto.line_cd}','${dto.product_cd_name}','${dto.order_cd}');">추가생산</button></td>
     			<td style="text-align: center;"><button class="button2" onclick="showPopup2('${dto.instruction_code}', '${dto.instruction_state}');">수정</button></td>
     			</tr>
    			 

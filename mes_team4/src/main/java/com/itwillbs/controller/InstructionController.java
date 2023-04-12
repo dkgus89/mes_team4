@@ -124,6 +124,46 @@ public class InstructionController {
 		return "inst/InstInsert";
 	}
 	
+	@RequestMapping(value = "/inst/instinsert2", method = RequestMethod.GET)
+	public String instructioninsert2(HttpServletRequest request, Model model, InstructionDTO instructionDTO) {
+		//리퀘스트 받아오기
+		String instruction_code = request.getParameter("instruction_code");
+		String line_cd = request.getParameter("line_cd");
+		String product_cd_name = request.getParameter("product_cd_name");
+		String order_cd = request.getParameter("order_cd");
+		//DTO에 저장
+		instructionDTO.setInstruction_code(instruction_code);
+		instructionDTO.setLine_cd(line_cd);
+		instructionDTO.setProduct_cd_name(product_cd_name);
+		instructionDTO.setOrder_cd(order_cd);
+		
+		//model 담아서 이동
+		model.addAttribute("instructionDTO", instructionDTO);
+		
+		return "inst/InstInsert2";
+	}
+	
+	@RequestMapping(value = "/inst/instinsertpro2", method = RequestMethod.POST)
+	public String instinsertpro2(InstructionDTO instructionDTO) {
+		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
+		System.out.println("InstructionController instinsertpro2()");
+		String inst=instructionDTO.getInstruction_code();
+		String inst2=instructionDTO.getInstruction_code();
+		inst=inst.substring(11);
+		inst2=inst2.substring(0,11);
+		int tpc=Integer.parseInt(inst);
+		tpc=tpc+10;
+		inst=String.valueOf(tpc);
+		inst=inst2.concat(inst);
+		instructionDTO.setInstruction_code(inst);
+		// MemberService memberService = new MemberServiceImpl();
+		instructionService.instinsertpro(instructionDTO);
+		orderService.updateCon(instructionDTO.getOrder_cd());
+		
+		// 가상주소에서 주소변경 하면서 이동
+		return "redirect:/inst/instmain";
+	}
+	
 	@RequestMapping(value = "/inst/instinsertpro", method = RequestMethod.POST)
 	public String instinsertpro(InstructionDTO instructionDTO) {
 		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
