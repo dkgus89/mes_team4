@@ -25,6 +25,7 @@ import com.itwillbs.domain.InstructionDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ReceiveDTO;
+import com.itwillbs.domain.ReleaseDTO;
 import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.DeliverService;
 import com.itwillbs.service.OrderService;
@@ -259,15 +260,17 @@ public class DeliverController {
 		public String update(HttpServletRequest request, Model model) {
 			System.out.println("업데이트"+"/deliver/update");
 			String deliver_cd =  request.getParameter("deliver_cd");
+			String order_cd =  request.getParameter("order_cd");
 			
-			
+			ReleaseDTO releaseDTO = deliverService.getreldat(order_cd);
 			DeliverDTO deliverDTO= new DeliverDTO();
 			deliverDTO.setDeliver_cd(deliver_cd);
 			System.out.println(deliverDTO.getDeliver_cd());
 			deliverDTO=deliverService.getDeliver(deliverDTO);
 		
 			model.addAttribute("deliverDTO", deliverDTO);
-			
+			model.addAttribute("releaseDTO", releaseDTO);
+					
 			
 			
 			// 거래처코드 갖고오기 메소드 호출

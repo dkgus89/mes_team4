@@ -19,15 +19,38 @@
 
 <script type="text/javascript">
 	function sub() {
+// 		 $(document).ready(function(){ //Jquery 시작	
+			 
+			 
+// 			 var result = confirm("출하를 등록하시겠습니까?");
+// 			 var rel_date=document.getElementById("rel_date").value;
+// 				if (result == true){
+// //		 			
+// 					if($('#deliver_date').val()==""){
+// 						alert("출하일자 입력하세요.");
+// 						$('#deliver_date').focus();
+// 						return false;
+// 					}
+// 					if($('#deliver_date').val() < rel_date){
+// 						alert("출하일자가 출고일자보다 이전입니다.");
+// 						$('#deliver_date').focus();
+// 						return false;
+// 					}
+// 					// 유효성 검사 통과시 submit
 		
 		
 	//	document.DeliverUpdate.action=""
 		document.DeliverUpdate.submit();
-		setTimeout(function() { 
-			opener.parent.location.reload();
-			window.close();
-			}, 100);
-	}
+// 		setTimeout(function() { 
+// 			opener.parent.location.reload();
+// 			window.close();
+// 			}, 100);
+// 	}
+// 		 else{
+// 			 return false;
+// 			 }
+// 		}) //Jquery 시작	
+		 }
 
 </script>
 
@@ -56,6 +79,7 @@
 					<th>거래처코드</th>
 					<th>수주코드</th>
 					<th>품목코드</th>
+					<th>출고일자</th>
 					<th>출하일자</th>
 					<th>출하량</th>
 					<th>출하담당자</th>
@@ -76,6 +100,7 @@
 						<td><input type="text" name="business_cd" value="${deliverDTO.business_cd }" readonly></td>
 						<td><input type="text" name="order_cd" value="${deliverDTO.order_cd }" readonly></td>
 						<td><input type="text" name="product_cd_name" value="${deliverDTO.product_cd_name }" readonly></td>
+						<td><input type="Date" name="rel_date" value="${releaseDTO.rel_date}"></td>
 						<td><input type="Date" name="deliver_date" value="${deliverDTO.deliver_date }"></td>
 						<td><input type="text" name="deliver_count" value="${deliverDTO.deliver_count }" readonly></td>
 						<td><input type="text" name="emp_no" value="${deliverDTO.emp_no }" readonly></td>

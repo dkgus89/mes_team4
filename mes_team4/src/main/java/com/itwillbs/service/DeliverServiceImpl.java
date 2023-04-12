@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.DeliverDAO;
 import com.itwillbs.domain.DeliverDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.ReleaseDTO;
 
 @Service
 public class DeliverServiceImpl implements DeliverService{
@@ -143,6 +144,16 @@ public class DeliverServiceImpl implements DeliverService{
 	public int getinstcheck(String order_cd) {
 		System.out.println("DeliverServiceImpl getinstcheck()");
 		return deliverDAO.getinstcheck(order_cd);
+	}
+
+
+
+	@Override
+	public ReleaseDTO getreldat(String order_cd) {
+		System.out.println("DeliverServiceImpl getreldat()");
+		
+
+		return deliverDAO.getreldat(order_cd);
 	}
 
 

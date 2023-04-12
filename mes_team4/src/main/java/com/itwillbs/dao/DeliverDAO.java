@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.itwillbs.domain.DeliverDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.ReleaseDTO;
 
 public interface DeliverDAO {
 	
@@ -43,6 +44,9 @@ public interface DeliverDAO {
 
 		
 		public int getinstcheck(String order_cd);
+
+
+		public ReleaseDTO getreldat(String order_cd);
 
 
 

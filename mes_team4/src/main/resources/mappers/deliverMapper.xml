@@ -55,6 +55,15 @@
 <!--     and business_cd=#{business_cd} and product_cd_name =#{product_cd_name} -->
     
     </select>
+    
+    
+     <select id="getreldat" resultType="com.itwillbs.domain.ReleaseDTO">
+   
+    select rel_date  from release_schedule
+	where pchor_cd= #{order_cd} 
+
+    </select>
+    
 	
     <update id="updateDeliver">
     	update shipment_management

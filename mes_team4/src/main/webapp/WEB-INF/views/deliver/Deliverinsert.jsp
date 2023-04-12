@@ -201,7 +201,7 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
    <h2 class="inserttitle">출하 등록 페이지 </h2><br>
    <div class="wrap2">
      <button class="button2" onclick="fun1()">등록</button>
-     <button class="button2">초기화</button>
+<!--      <button class="button2">초기화</button> -->
      <button class="button2" onclick="showPopup()" style="width:220px">수주등록현황</button>
      <button class="button2" onclick="showPopup2()" style="width:220px">출고량불러오기</button>
     </div><br>

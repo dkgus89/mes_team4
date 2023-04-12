@@ -6,6 +6,7 @@ import java.util.Map;
 import com.itwillbs.domain.DeliverDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ReceiveDTO;
+import com.itwillbs.domain.ReleaseDTO;
 import com.itwillbs.domain.SystemDTO;
 
 public interface DeliverService {
@@ -38,6 +39,8 @@ public interface DeliverService {
 	public int getRelCount(PageDTO pageDTO);
 
 	public int getinstcheck(String order_cd);
+
+	public ReleaseDTO getreldat(String order_cd);
 
 
 	

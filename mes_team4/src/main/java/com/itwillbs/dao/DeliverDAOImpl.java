@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.DeliverDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.ReleaseDTO;
 
 
 
@@ -125,6 +126,12 @@ public class DeliverDAOImpl implements DeliverDAO  {
 	public int getinstcheck(String order_cd) {
 		System.out.println("DeliverDAOImpl getinstcheck()");
 		return sqlSession.selectOne(namespace+".getinstcheck", order_cd);
+	}
+
+	@Override
+	public ReleaseDTO getreldat(String order_cd) {
+		System.out.println("DeliverDAOImpl getreldat()");
+		return sqlSession.selectOne(namespace+".getreldat", order_cd);
 	}
 
 	

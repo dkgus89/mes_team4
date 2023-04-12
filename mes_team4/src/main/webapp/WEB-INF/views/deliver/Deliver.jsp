@@ -189,7 +189,7 @@ function allCheck(){
     			<td>${DeliverDTO.deliver_count}</td>
     			<td>${DeliverDTO.emp_no}</td>
     			
-    			<td><button class="button2" onclick="DeliverUpdate('${DeliverDTO.deliver_cd}','${DeliverDTO.business_cd}','${DeliverDTO.product_cd_name}');">수정</button></td>
+    			<td><button class="button2" onclick="DeliverUpdate('${DeliverDTO.deliver_cd}','${DeliverDTO.business_cd}','${DeliverDTO.product_cd_name}','${DeliverDTO.order_cd}');">수정</button></td>
     			
    			 
 				</c:forEach>
