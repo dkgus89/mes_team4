@@ -119,11 +119,11 @@ function sub(){
 // 				$('#instruction_date').focus();
 // 				return false;
 // 			}
-// 			if($('#instruction_qt').val()==""){
-// 				alert("지시수량을 입력하세요");
-// 				$('#instruction_qt').focus();
-// 				return false;
-// 			}
+			if($('#instruction_qt').val()==""){
+				alert("지시수량을 입력하세요");
+				$('#instruction_qt').focus();
+				return false;
+			}
 // 			if($('#instruction_state').val()==""){
 // 				alert("지시상태를 선택하세요");
 // 				$('#instruction_state').focus();
@@ -207,7 +207,12 @@ function rst(){
 			<tbody>
 				<tr style="text-align: center; font-size: 0.9rem">
 					
-					<td><input type="date" name="instruction_date" id="instruction_date"></td>	
+					<td><input type="date" name="instruction_date" id="instruction_date">
+					<script>
+					document.getElementById('instruction_date').valueAsDate = new Date();
+					document.getElementById("instruction_date").readOnly = true;
+					</script>
+					</td>	
     				<td><input type="text" name="instruction_qt" id="instruction_qt"></td>
     				<td><input type="text" name="instruction_state" id="instruction_state" value = "생산대기" readonly></td>
 <!--     				<td><select name="instruction_state" id="instruction_state"> -->
