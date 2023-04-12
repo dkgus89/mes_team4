@@ -18,30 +18,47 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
-$(document).ready(function(){
+// $(document).ready(function(){
 //	alert("준비");
 //submit 버튼을 클릭했을때 폼태그 전송되어지면 이벤트 onsubmit()
 // id="join" 폼태그 표시 => 전송
-  
-$('#update').submit(function(){
+function sub(){  
 
-// 	if($('#instruction_qt').val()==""){
+	var deliver_date = document.getElementById("deliver_date").value;
+	var order_date = document.getElementById("order_date").value;
+	var instruction_date = document.getElementById("instruction_date").value;
+	if(instruction_date < order_date){
+		alert("지시일자를 " + order_date + " (수주일자) 이후로 선택해주세요.");
+		return false;
+	}
+	if(instruction_date > deliver_date){
+		alert("지시일자를 " + deliver_date + " (출하예정일) 이전으로 선택해주세요.");
+		return false;
+	}
+	// 유효성 검사 통과시 submit
+		window.opener.name = "parentPage";
+		document.update.target="parentPage";
+		document.update.action="${pageContext.request.contextPath }/inst/instupdatepro";
+		document.update.submit();
+		self.close();
+}
+		// 	if($('#instruction_qt').val()==""){
 // 		alert("지시수량를 입력하세요");
 // 		$('#instruction_qt').focus();
 // 		return false;
 // 	}
 
 
-  else{
-	  setTimeout(function(){
-	  opener.parent.location.reload();
-	  window.close();
-	  },100);
-  }
+//   else{
+// 	  setTimeout(function(){
+// 	  opener.parent.location.reload();
+// 	  window.close();
+// 	  },100);
+//   }
   
   
-});//
-});
+// });//
+// });
 
 			// 유효성 검사 통과시 submit
 // 			window.opener.name = "parentPage";
@@ -76,14 +93,14 @@ $('#update').submit(function(){
 
 	<h2 class="inserttitle">작업지시 수정</h2><br>
 	<div class="wrap2">
-	<button class="button2" form="update" onclick="submit">수정</button>
+	<button class="button2" onclick="sub();">수정</button>
 	<button class="button2" onclick="window.close()">창닫기</button>	 	
 <!-- 	<button class="button2" onclick="showPopup();" style="width:200px">수주현황</button> -->
 	 </div><br>
 	 <br>
 	 
 	 
-	<form action="${pageContext.request.contextPath }/inst/instupdatepro" name="update" id="update" method="post">
+	<form name="update" id="update" method="post">
 
 		<input type="hidden" name="instruction_code" class="instruction_code" value="${instInfoMap.instruction_code}">
 		<input type="hidden" name="deliver_date" id="deliver_date" value="${instInfoMap.deliver_date}">
