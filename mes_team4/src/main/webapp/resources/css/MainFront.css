@@ -243,12 +243,6 @@
 	margin : 100px;
 	}
 	
-	#table_search .input_box{
-	height: 30px; width: 300px;
-	border-radius:10px;
-	border: 1px solid #333
-	padding:5px;
-	}
 	
 	body {
 	  color: #666;
@@ -275,7 +269,18 @@
 	}
 	
 	 input[name="search"] {
+	 	height: 40px; 
+		width: 300px;
+		border-radius: 8px;
+		border: 1px solid #333;
 		padding: 5px;
+		min-width: 100px;
+ 	  font-family: 'Gowun Dodum', sans-serif;
+	  font-size: 14px;
+	  text-transform: uppercase;
+	  letter-spacing: 2.5px;
+	  font-weight: 500;
+	  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 	}
 	
 /* 	페이징 추가	 */
@@ -303,10 +308,6 @@
        	background-color: lightgray;
         cursor:pointer;
      }
-    
-    input[name="search"] {
-		padding: 5px;
-	}
      
     input[type="text"]:not([name="search"]) {
 		padding: 5px;
