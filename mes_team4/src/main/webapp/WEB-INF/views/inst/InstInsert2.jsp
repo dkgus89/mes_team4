@@ -160,7 +160,7 @@ function rst(){
 <!-- 	<button class="button2" id="aj">ajax</button> -->
 	<button class="button2" id="sub" onclick="sub()">등록</button>
 	<button class="button2" onclick="rst()">초기화</button>
-	<button class="button2" onclick="showPopup();" style="width:200px">수주현황</button>
+<!-- 	<button class="button2" onclick="showPopup();" style="width:200px">수주현황</button> -->
 	<button class="button2" id="stockCheck" style="width:200px">재고현황</button>
 	
 	 </div><br>
