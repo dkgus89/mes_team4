@@ -1,6 +1,7 @@
 package com.itwillbs.dao;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -106,6 +107,19 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 		System.out.println("ConsumptionDAOImpl updateConsmpt()");
 		
 		sqlSession.insert(namespace+".updateConsmpt", Map.of("consmptArray" ,consmptArray));
+	}
+	
+	@Override
+	public void updateConsmptName(String column_cd, String column_name, String product_cd_name, String product_name) {
+		System.out.println("ConsumptionDAOImpl updateConsmptName()");
+	
+		Map<String, String> nameMap = new HashMap<>();
+	    nameMap.put("column_cd", column_cd);
+	    nameMap.put("column_name", column_name);
+	    nameMap.put("product_cd_name", product_cd_name);
+	    nameMap.put("product_name", product_name);
+		
+		sqlSession.update(namespace+".updateConsmptName", nameMap);
 	}
 	
 }// class

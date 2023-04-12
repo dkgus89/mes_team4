@@ -23,6 +23,7 @@ import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.StockDTO;
 import com.itwillbs.domain.SystemDTO;
 import com.itwillbs.service.BusinessService;
+import com.itwillbs.service.ConsumptionService;
 import com.itwillbs.service.ProductService;
 import com.itwillbs.service.SystemService;
 
@@ -35,6 +36,8 @@ public class ProductController {
 	private ProductService productService;
 	@Inject
 	private SystemService systemService;
+	@Inject
+	private ConsumptionService consumptionService;
 	
 	@RequestMapping(value = "/product/prodpage", method = RequestMethod.GET)
 	public String prodpage(HttpServletRequest request, Model model, HttpSession session) {
@@ -186,6 +189,7 @@ public class ProductController {
 		String product_cd_name=request.getParameter("product_cd_name");
 //		System.out.println("세션 product_cd_name :" + product_cd_name);
 		ProductDTO productDTO=productService.getProduct(product_cd_name);
+		
 		model.addAttribute("productDTO", productDTO);
 		// 주소변경 없이 이동
 		return "product/ProductUpdate";
@@ -193,7 +197,29 @@ public class ProductController {
 	
 	@RequestMapping(value = "/product/produpdatePro", method = RequestMethod.POST)
 	public String produpdatePro(ProductDTO productDTO) {
+		
 		productService.updateProduct(productDTO);
+		
+		// 소요량 품목명 변경
+		String product_dv = productDTO.getProduct_dv();
+		
+		String column_cd = "";
+		String column_name = "";
+		String product_cd_name = productDTO.getProduct_cd_name();
+		String product_name = productDTO.getProduct_name();
+		System.out.println("CD이름 "+product_cd_name);
+		System.out.println("이름 "+product_name);
+		
+		if(product_dv.equals("완제품")) {
+			column_cd = "cproduct_cd_name";
+			column_name = "cproduct_name";
+		} else {
+			column_cd = "rproduct_cd_name";
+			column_name = "rproduct_name";
+		}
+		
+		consumptionService.updateConsmptName(column_cd, column_name, product_cd_name, product_name);
+		
 		// 주소변경 하면서 이동
 		return "redirect:/product/prodpage";
 	}

@@ -99,4 +99,11 @@ public class ConsumptionServiceImpl implements ConsumptionService{
 		consumptionDAO.updateConsmpt(consmptArray);
 	}
 	
+	@Override
+	public void updateConsmptName(String column_cd, String column_name, String product_cd_name, String product_name) {
+		System.out.println("ConsumptionServiceImpl updateConsmptName()");
+		
+		consumptionDAO.updateConsmptName(column_cd, column_name, product_cd_name, product_name);
+	}
+	
 }// class

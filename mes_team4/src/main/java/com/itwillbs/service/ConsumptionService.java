@@ -27,4 +27,6 @@ public interface ConsumptionService {
 	public void deleteConsmpt(String[] checkedValue);
 	
 	public void updateConsmpt(ConsumptionDTO[] consmptArray);
+	
+	public void updateConsmptName(String column_cd, String column_name, String product_cd_name, String product_name);
 }// class

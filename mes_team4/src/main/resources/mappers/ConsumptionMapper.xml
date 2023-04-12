@@ -89,6 +89,12 @@
 	  </foreach>
 	</insert>
 	
+	<update id="updateConsmptName" parameterType="map">
+	  update consumption_management 
+	  set ${column_name} = #{product_name}
+	  where ${column_cd} = #{product_cd_name}
+	</update>
+	
 	<select id="checkCprCdName" resultType="com.itwillbs.domain.ConsumptionDTO">
 		select *
 		from consumption_management
@@ -173,6 +179,3 @@
 	</delete>
 	
 </mapper>
-
-
-
