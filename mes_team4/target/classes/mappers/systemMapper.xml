@@ -19,7 +19,8 @@
 	 <select id="getsystemlist" resultType="com.itwillbs.domain.SystemDTO">
     	select * from employees
     	<if test="search != null">
-    	where emp_name like CONCAT('%',#{search},'%')
+    	
+
     	</if>
     	order by emp_no
     	limit #{startRow},#{pageSize}	

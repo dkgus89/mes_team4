@@ -120,7 +120,12 @@
  	 <select id="instructionlist" resultType="com.itwillbs.domain.InstructionDTO">
     	select * from instruction
     	<if test="search != null">
-    	where order_cd like CONCAT('%',#{search},'%')
+    		<if test="select == 'line_cd'.toString()">
+        	where line_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="select == 'instruction_code'.toString()">
+        	where instruction_code like CONCAT('%',#{search},'%')
+        	</if>
     	</if>
     	limit #{startRow},#{pageSize}	
     </select>
