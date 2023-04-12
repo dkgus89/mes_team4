@@ -106,7 +106,7 @@ function rst(){
 					</c:if>
 				
 
-					<td >${productDTO.product_cd_name }</td>
+					<td><input type="hidden" name="product_cd_name" value="${productDTO.product_cd_name }" >${productDTO.product_cd_name }</td>
 					<td><input type="text" name="product_name" value="${productDTO.product_name }" ></td>
 					<td><input type="text" name="business_cd" value="${productDTO.business_cd }" ></td>
 					<td><input type="text" name="product_unit" value="${productDTO.product_unit }"></td>
