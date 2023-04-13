@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.InstructionDTO;
+import com.itwillbs.domain.LineDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 
@@ -218,7 +219,34 @@ public class InstructionDAOImpl implements InstructionDAO {
 		
 		return sqlSession.selectOne(namespace +".getInstInfoMap", instruction_code);
 	}
+
+	@Override
+	public List<LineDTO> getLine_cd() {
+		System.out.println("InstructionDAOImpl getLine_cd()");
+		
+		return sqlSession.selectList(namespace +".getLine_cd");
+	}
+
+	@Override
+	public void setlineState(String line_cd) {
+		System.out.println("InstructionDAOImpl setlineState()");
+		
+		sqlSession.update(namespace +".setlineState", line_cd);
+	}
+
+	@Override
+	public String getLine_cdInst(String instruction_code) {
+		System.out.println("InstructionDAOImpl getLine_cdInst()");
+		
+		return sqlSession.selectOne(namespace +".getLine_cdInst", instruction_code);
+	}
 	
+	@Override
+	public void setlineState2(String line_cd) {
+		System.out.println("InstructionDAOImpl setlineState2()");
+		
+		sqlSession.update(namespace +".setlineState2", line_cd);
+	}
 	
 	
 }

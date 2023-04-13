@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.InstructionDTO;
+import com.itwillbs.domain.LineDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 
@@ -65,6 +66,14 @@ public interface InstructionService {
 	public List<Map<String, Object>> getStockCheck(String order_cd);
 
 	public Map<String, Object> getInstInfoMap(String instruction_code);
+
+	public List<LineDTO> getLine_cd();
+
+	public void setlineState(String line_cd);
+
+	public String getLine_cdInst(String instruction_code);
+
+	public void setlineState2(String line_cd);
 
 
 	

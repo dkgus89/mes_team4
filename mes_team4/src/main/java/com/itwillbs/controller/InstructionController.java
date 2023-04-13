@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.InstructionDTO;
+import com.itwillbs.domain.LineDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ReleaseDTO;
@@ -119,8 +120,12 @@ public class InstructionController {
 		// web.xml 에서 한글설정을 한번만 하면 모든 곳에서 한글처리
 		List<Map<String, Object>> instMap
 	     = instructionService.getInstMap();
-	//model 담아서 이동
-	model.addAttribute("instMap", instMap);
+		
+		List<LineDTO> lineDTO=instructionService.getLine_cd();
+		
+		//model 담아서 이동
+		model.addAttribute("lineDTO", lineDTO);
+		model.addAttribute("instMap", instMap);
 		return "inst/InstInsert";
 	}
 	
@@ -319,6 +324,13 @@ public class InstructionController {
 		
 		for(int i=0; i<size; i++) {
 			String instruction_code=ajaxMsg[i];
+			String line_cd=instructionService.getLine_cdInst(instruction_code);
+			instructionService.setlineState(line_cd);
+		}
+		
+		
+		for(int i=0; i<size; i++) {
+			String instruction_code=ajaxMsg[i];
 			int count=instructionService.getInstCount(instruction_code);
 			String date=instructionService.getInstDate(instruction_code);
 			LocalDate localDate1 = LocalDate.parse(date);//	       
@@ -364,8 +376,13 @@ public class InstructionController {
 		String jdata = "0";
 		
 		System.out.println("배열0번지출력"+ajaxMsg[0]);
-		
 		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+			String instruction_code=ajaxMsg[i];
+			String line_cd=instructionService.getLine_cdInst(instruction_code);
+			instructionService.setlineState2(line_cd);
+		}
+		
 		for(int i=0; i<size; i++) {
 				instructionService.updateCon3(ajaxMsg[i]);
 //				orderService.updateCon(ajaxMsg[i]);

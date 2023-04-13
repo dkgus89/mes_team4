@@ -234,7 +234,7 @@ $(document).on('change', '#instruction_qt', function() {
 		<table id="vendortable" class="table table-striped">
 			<thead>
 				<tr style="text-align: center; font-size: 0.9rem">
-					<th>라인코드</th>
+					<th>라인선택</th>
 					<th>지시일자</th>
 					<th>지시수량</th>
 					<th>지시상태</th>
@@ -244,10 +244,10 @@ $(document).on('change', '#instruction_qt', function() {
 			<tbody>
 				<tr style="text-align: center; font-size: 0.9rem">
 					<td><select name="line_cd" id="line_cd">
-    					<option value="">--------</option>
-    					<option value="FL001">1라인</option>
-    					<option value="FL002">2라인</option>
-    					<option value="FL003">3라인</option>
+    					<option value="">라인목록</option>
+    					<c:forEach var="dto" items="${lineDTO}">
+    					<option value="${dto.line_cd}">${dto.line_name}</option>
+    					</c:forEach>
 					</select></td>
 					<td><input type="date" name="instruction_date" id="instruction_date"></td>	
     				<td><input type="text" name="instruction_qt" id="instruction_qt" placeholder="정수로 입력해주세요"></td>

@@ -152,6 +152,19 @@
     	select order_cd, product_cd_name from instruction
     	where instruction_code = #{instruction_code}
     </select>
+    
+    <select id="getLine_cd" resultType="com.itwillbs.domain.LineDTO">
+    	select line_cd, line_name
+    	from line
+    	where line_status = 2 or line_status = 1
+    </select>
+    
+    
+    <select id="getLine_cdInst" resultType="java.lang.String">
+    	select line_cd
+    	from instruction
+    	where instruction_code = #{instruction_code}
+    </select>
 
 	<select id="getordercheck" resultType="java.lang.Integer">
     	select count(*)
@@ -164,6 +177,18 @@
     update instruction
     set instruction_state = "생산중"
     where instruction_code = #{cd}
+    </update>
+    
+     <update id="setlineState">
+    update line
+    set line_status = 1
+    where line_cd = #{line_cd}
+    </update>
+    
+    <update id="setlineState2">
+    update line
+    set line_status = 2
+    where line_cd = #{line_cd}
     </update>
     
     <update id="updateCon3">

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.InstructionDAO;
 import com.itwillbs.domain.ConsumptionDTO;
 import com.itwillbs.domain.InstructionDTO;
+import com.itwillbs.domain.LineDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 
@@ -224,7 +225,33 @@ public class InstructionServiceImpl implements InstructionService{
 		return instructionDAO.getInstInfoMap(instruction_code);
 	}
 
+	@Override
+	public List<LineDTO> getLine_cd() {
+		System.out.println("InstructionServiceImpl getLine_cd()");
 	
+		return instructionDAO.getLine_cd();
+	}
+
+	@Override
+	public void setlineState(String line_cd) {
+		System.out.println("InstructionServiceImpl setlineState()");
+		
+		instructionDAO.setlineState(line_cd);
+	}
+
+	@Override
+	public String getLine_cdInst(String instruction_code) {
+		System.out.println("InstructionServiceImpl getLine_cdInst()");
+		
+		return instructionDAO.getLine_cdInst(instruction_code);
+	}
+	
+	@Override
+	public void setlineState2(String line_cd) {
+		System.out.println("InstructionServiceImpl setlineState2()");
+		
+		instructionDAO.setlineState2(line_cd);
+	}
 	
 	
 
