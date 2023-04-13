@@ -68,7 +68,7 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no,order_count,d
 		  		}); //ajax 끝		 				
 				
 				if($('#deliver_date').val() < reldate){
-					alert("출하일자가 출고일자보다 이전입니다.");
+					alert("출하일자가"+ reldate +"(출고일자)보다 이전입니다.");
 					$('#deliver_date').focus();
 					return false;
 				}
