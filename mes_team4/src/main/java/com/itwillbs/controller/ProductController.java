@@ -53,7 +53,7 @@ public class ProductController {
 		
 		String pageNum=request.getParameter("pageNum");
 		// 한 화면에 보여질 글의 개수 설정
-		int pageSize=10;
+		int pageSize=5;
 		// 현재 페이지번호 가져오기
 		if(pageNum==null) {
 			// pageNum없으면 1페이지로 설정
