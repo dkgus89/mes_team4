@@ -78,7 +78,7 @@
     	}
     
     function goSubmit(cd){
-//     	window.opener.name="paretPage";
+    	window.opener.name="parentPage";
     	document.insertform.target="parentPage";
     	document.insertform.action="${pageContext.request.contextPath}/business/businessupdatepro?cd="+cd;
     	document.insertform.submit();

@@ -103,8 +103,7 @@
 	</form>
 	</div><br>
 	<br>
-	<br>
- 
+ 	<h4>전체 ${pageDTO.count}건</h4>
 	<form method="post" name="myform">
 <!-- <input type="hidden" value="">	 -->	
 	<table id="vendortable" class=" table table-striped">
