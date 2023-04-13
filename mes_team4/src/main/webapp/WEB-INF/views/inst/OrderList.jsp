@@ -126,6 +126,20 @@ function input1(order_cd, product_cd_name, product_name, order_count, order_date
 	
 	</form>
 	
+		<div id="pagingControl">
+	<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+	<a href="${pageContext.request.contextPath}/inst/orderlist?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
+	</c:if>
+	
+	<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+	<a href="${pageContext.request.contextPath}/inst/orderlist?pageNum=${i}">${i}</a> 
+	</c:forEach>
+	
+	<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+	<a href="${pageContext.request.contextPath}/inst/orderlist?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
+	</c:if>
+	</div>
+	
 	
 <!-- 본문HTML 입력 끝-->
 	</div>

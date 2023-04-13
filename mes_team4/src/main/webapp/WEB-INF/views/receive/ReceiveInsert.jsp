@@ -41,6 +41,8 @@ function showPopup(){
 
 // 발주현황
 function showPopup2(){
+	document.getElementById("perform_date").value = null;
+	document.getElementById("purchase_date").value = null;
 	if($('#wh_cd').val()!=""){
 		var result = confirm("창고가 이미 선택되어 있습니다. 초기화하고 다시 진행하시겠습니까?");
 		  if (result == true){
@@ -67,10 +69,14 @@ function showPopup2(){
 
 // 수주현황
 function showPopup3(){
+	document.getElementById("perform_date").value = null;
+	document.getElementById("purchase_date").value = null;
 	if($('#wh_cd').val()!=""){
 		var result = confirm("창고가 이미 선택되어 있습니다. 초기화하고 다시 진행하시겠습니까?");
 		  if (result == true){
-			  document.recinsert.reset();
+			  document.getElementById("perform_date").value = null;
+			  document.getElementById("purchase_date").value = null;
+			  document.recinsert.reset();			  
 			  return false;
 		  } else {
 		  return false;
@@ -95,6 +101,8 @@ function rst(){
 	// 초기화 유효성 검사
 	var result = confirm("초기화 하시겠습니까?");
 	if (result == true){    
+		document.getElementById("perform_date").value = null;
+		document.getElementById("purchase_date").value = null;
 		document.recinsert.reset();
 	} else {
 		return false;
@@ -102,11 +110,11 @@ function rst(){
 }  
 
 function sub(){
-	$(document).ready(function(){ //Jquery 시작
-		var purchase_date=document.getElementById("purchase_date").value;
-		var perform_date=document.getElementById("perform_date").value;
+	$(document).ready(function(){ //Jquery 시작		
 		// submit 유효성 검사
 		var result = confirm("입고를 등록하시겠습니까?");
+		var purchase_date=document.getElementById("purchase_date").value;
+		var perform_date=document.getElementById("perform_date").value;
 		if (result == true){
 			if($('#wh_cd').val()==""){
 				alert("창고목록을 조회해서 선택하세요");
@@ -121,15 +129,19 @@ function sub(){
 				$('#rec_date').focus();
 				return false;
 			}
+			if(purchase_date!=null){
 			if($('#rec_date').val() < purchase_date){
-				alert("입고일자가 발주일자 이전입니다");
+				alert("입고일자가 " + purchase_date + "(발주일자) 이전입니다");				
 				$('#rec_date').focus();
 				return false;
 			}
+			}
+			if(perform_date!=null){
 			if($('#rec_date').val() < perform_date){
-				alert("입고일자가 실적일자 이전입니다");
+				alert("입고일자가 " + perform_date + "(실적일자) 이전입니다");
 				$('#rec_date').focus();
 				return false;
+			}
 			}
 			// 유효성 검사 통과시 submit
 			window.opener.name = "parentPage";

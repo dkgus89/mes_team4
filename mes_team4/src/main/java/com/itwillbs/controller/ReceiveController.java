@@ -394,19 +394,14 @@ public class ReceiveController {
 	@RequestMapping(value = "/receive/recupdate", method = RequestMethod.GET)
 	public String recupdate(HttpServletRequest request, Model model) {
 		System.out.println("ReceiveController recupdate()");
-		System.out.println("출력1");
 		String rec_schedule_cd =request.getParameter("rec_schedule_cd");
 		String pchor_cd =request.getParameter("pchor_cd");
 		
 		
 		ReceiveDTO receiveDTO=receiveService.getReceive(rec_schedule_cd );
-		System.out.println("출력2");
 		String inst=receiveService.getInst(pchor_cd);
-		System.out.println("출력3");
 		PerformDTO performDTO=receiveService.getPerform_date(inst);
-		System.out.println("출력4");
 		PurchaseDTO purchaseDTO=receiveService.getPurchase_date(pchor_cd);
-		System.out.println("출력5");
 		model.addAttribute("performDTO", performDTO);
 		model.addAttribute("purchaseDTO", purchaseDTO);
 		model.addAttribute("receiveDTO", receiveDTO);

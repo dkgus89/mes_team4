@@ -89,6 +89,8 @@
 			select instruction_code
 			from instruction
 			where order_cd = #{pchor_cd}
+			order by instruction_code asc
+            limit 1
 	</select>
     
 <!-- 		재고 현황 관련 -->

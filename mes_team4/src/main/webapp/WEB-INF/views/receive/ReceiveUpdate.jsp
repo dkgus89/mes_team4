@@ -26,15 +26,18 @@ $(document).ready(function(){ //Jquery 시작
 			var nowrec=document.getElementById("rec_date").value;
 			var purchase_date=document.getElementById("purchase_date").value;
 			var perform_date=document.getElementById("perform_date").value;
-			if(nowrec < purchase_date){
-				alert("발주일자 이전은 선택 할 수 없습니다");
-				return false;
+			if(purchase_date!=null){
+				if(nowrec < purchase_date){
+					alert("입고일자가 " + purchase_date + "(발주일자) 이전입니다");
+					return false;
+				}
 			}
-			if(nowrec < perform_date){
-				alert("실적일자 이전은 선택 할 수 없습니다");
-				return false;
+			if(perform_date!=null){
+				if(nowrec < perform_date){
+					alert("입고일자가 " + perform_date + "(실적일자) 이전입니다");
+					return false;
+				}
 			}
-	
 			window.opener.name = "parentPage";
 			document.receiveUpdate.target="parentPage";
 			document.receiveUpdate.action="${pageContext.request.contextPath}/receive/recupdatePro";
@@ -87,7 +90,7 @@ function rst(){
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="wh_cd" value="${receiveDTO.wh_cd}" readonly></td>
+					<td><input type="text" name="wh_cd" value="${receiveDTO.wh_cd}"></td>
 					<td><input type="text" name="pchor_cd" value="${receiveDTO.pchor_cd }" readonly></td>
 					<td><input type="text" name="product_cd_name" value="${receiveDTO.product_cd_name }" readonly></td>
 					<td><input type="text" name="rec_count" value="${receiveDTO.rec_count }" readonly></td>

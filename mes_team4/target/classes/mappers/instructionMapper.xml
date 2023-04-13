@@ -51,6 +51,7 @@
 		ON o.product_cd_name = c.cproduct_cd_name
 		where o.order_cd is not null and o.con = '생산전'
 		group by o.order_cd
+		limit #{startRow},#{pageSize}
     </select>
     
 	<select id="getConsListMap" resultMap="map2">

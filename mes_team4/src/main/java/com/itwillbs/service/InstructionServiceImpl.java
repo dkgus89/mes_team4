@@ -116,6 +116,13 @@ public class InstructionServiceImpl implements InstructionService{
 	public List<Map<String, Object>> getOrderListMap(PageDTO pageDTO) {
 		System.out.println("InstructionServiceImpl getOrderListMap()");
 		
+
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+		int endRow = startRow + pageDTO.getPageSize()-1;
+		
+		pageDTO.setStartRow(startRow);  
+		pageDTO.setEndRow(endRow);
+		
 		return instructionDAO.getOrderListMap(pageDTO);
 	}
 

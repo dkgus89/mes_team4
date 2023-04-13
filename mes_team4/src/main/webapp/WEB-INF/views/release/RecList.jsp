@@ -38,12 +38,12 @@ function input1(rec_schedule_cd,wh_cd,product_cd_name, rec_date, rec_count,pchor
 	<h2 class="updatetitle">입고목록</h2><br>
 	
 	
-    <div class="search">
-    <form action="${pageContext.request.contextPath}/rel/reclist" method="get">
-       <input type="text" name="search" class="button2">
-       <input type="submit" class="button2" value="검색" >
-     </form>  
-    </div>
+<!--     <div class="search"> -->
+<%--     <form action="${pageContext.request.contextPath}/rel/reclist" method="get"> --%>
+<!--        <input type="text" name="search" class="button2"> -->
+<!--        <input type="submit" class="button2" value="검색" > -->
+<!--      </form>   -->
+<!--     </div> -->
 	 
 	<form name="receivelist">		
 		<table id="vendortable" class=" table table-striped">
@@ -79,7 +79,8 @@ function input1(rec_schedule_cd,wh_cd,product_cd_name, rec_date, rec_count,pchor
 		
 	</form>
 
-
+<!-- 페이징 -->
+<div id="pagingControl">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 <a href="${pageContext.request.contextPath}/rel/reclist?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">[10페이지 이전]</a>
 </c:if>
@@ -91,6 +92,7 @@ function input1(rec_schedule_cd,wh_cd,product_cd_name, rec_date, rec_count,pchor
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 <a href="${pageContext.request.contextPath}/rel/reclist?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">[10페이지 다음]</a>
 </c:if>
+</div>
 	
 <!-- 본문HTML 입력 끝-->
 </div>

@@ -121,6 +121,21 @@ function input1(order_cd,product_cd_name,fair_prod,perform_date){
 		
 	</form>
 	
+	<!-- 페이징 -->
+<div id="pagingControl">
+<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+<a href="${pageContext.request.contextPath}/receive/perform?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 이전]</a>
+</c:if>
+
+<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+<a href="${pageContext.request.contextPath}/receive/perform?pageNum=${i}&search=${pageDTO.search}&select=${pageDTO.select}">${i}</a> 
+</c:forEach>
+
+<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+<a href="${pageContext.request.contextPath}/receive/perform?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}&select=${pageDTO.select}">[10페이지 다음]</a>
+</c:if>	
+</div>
+	
 <!-- 본문HTML 입력 끝-->
 	</div>
 </body>

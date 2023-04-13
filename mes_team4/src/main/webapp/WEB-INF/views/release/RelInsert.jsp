@@ -57,7 +57,6 @@ function sub(){
 		var int_fp = Number(fp);
 		var int_qt = Number(qt);
 		var int_st = Number(st);
-		alert(int_qt);
 		var result = confirm("출고를 등록하시겠습니까?");
 		if (result == true){
 			if($('#rec_schedule_cd').val()==""){

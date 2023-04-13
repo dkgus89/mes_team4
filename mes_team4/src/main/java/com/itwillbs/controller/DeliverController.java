@@ -263,8 +263,7 @@ public class DeliverController {
 			String deliver_cd =  request.getParameter("deliver_cd");
 			String order_cd =  request.getParameter("order_cd");
 			System.out.println("order_cd="+order_cd);
-			ReleaseDTO releaseDTO = deliverService.getreldat(order_cd);			
-			System.out.println("출력2");
+			ReleaseDTO releaseDTO = deliverService.getreldat(order_cd);	
 			System.out.println("출고일="+releaseDTO);
 			DeliverDTO deliverDTO= new DeliverDTO();
 			deliverDTO.setDeliver_cd(deliver_cd);

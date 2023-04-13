@@ -113,6 +113,10 @@ public class InstructionDAOImpl implements InstructionDAO {
 	public List<Map<String, Object>> getOrderListMap(PageDTO pageDTO) {
 		System.out.println("InstructionDAOImpl getOrderListMap()");
 		
+		// limit #{startRow -1} , #{pageSize} 
+		//        1-1, 10 => 1~10
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		
 		return sqlSession.selectList(namespace +".getOrderListMap", pageDTO);
 	}
 
