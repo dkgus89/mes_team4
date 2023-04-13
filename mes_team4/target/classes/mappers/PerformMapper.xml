@@ -190,6 +190,7 @@
         	</if>
         </if>
         </if>
+        group by order_cd
         order by perform_date desc
         limit #{startRow} , #{pageSize}
     </select>
