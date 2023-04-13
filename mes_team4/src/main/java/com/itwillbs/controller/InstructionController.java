@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -366,6 +367,40 @@ public class InstructionController {
 		System.out.println("jdata값!!!!!!!!!!" + jdata);
 		return jdata;
 	}
+	
+//	@ResponseBody
+//	@RequestMapping(value = "/inst/changeIng2")
+//	public String changeIng2(HttpServletRequest request, ReleaseDTO releaseDTO, ConsumptionDTO consumptionDTO, StockDTO stockDTO) {
+//		System.out.println("InstructionController changIng2()");
+//		
+//		String[] ajaxMsg = request.getParameterValues("valueArr");
+//		String jdata = "0";
+//		String[] linecheck=null; 
+//		
+//		int size = ajaxMsg.length;
+//		for(int i=0; i<size; i++) {
+//			String instruction_code=ajaxMsg[i];
+//			System.out.println();
+//				String line_cd=instructionService.getLine_cdInst(instruction_code);
+//				linecheck[i]=line_cd;
+//				System.out.println("선택한라인"+linecheck[i]);
+//				
+//			}
+//		for (int i = 0; i < linecheck.length; i++) {
+//            for (int j = 0; j < i; j++) {
+//                if (linecheck[i].equals(linecheck[j])) {  // 중복 검사
+//                	System.out.println("중복확인");
+//                    jdata="1";
+//                }
+//            }
+//        }
+//		
+//		
+//			
+//			
+//				
+//		return jdata;
+//	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/inst/changefin")

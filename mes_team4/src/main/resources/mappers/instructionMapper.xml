@@ -128,6 +128,7 @@
         	where instruction_code like CONCAT('%',#{search},'%')
         	</if>
     	</if>
+    	 order by instruction_state
     	limit #{startRow},#{pageSize}	
     </select>
 	

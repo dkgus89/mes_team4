@@ -15,6 +15,7 @@
 <!-- 본문적용 CSS들어가는 곳 -->
 
 <!-- 자바스크립트 입력 시작-->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 function showPopup(){
     window.open("${pageContext.request.contextPath}/inst/instinsert","instinsert","width=1100, height=500, top=200, left=200");
@@ -75,8 +76,20 @@ function changeIng(){
 	if(valueArr.length==0){
 		alert("작업현황 변경할 번호를 선택하여주세요");
 	} else {
-		var chk = confirm("작업현황 : \n생산대기 -> 생산중으로 변경하시겠습니까?");
+		var chk = confirm("작업현황 : \n생산대기 -> 생산중으로 변경하시겠습니까?");			
 		if(chk){
+// 			$.ajax({
+// 				url :'${pageContext.request.contextPath}/inst/changeIng2', 		//전송url
+// 				type : 'POST',	// post방식
+// 				traditional : true,
+// 				data : { valueArr : valueArr // 보내고자하는 data 변수설정	
+// 					},
+// 				success : function(jdata){
+// 					if(jdata == '1'){
+// 						alert("중복 선택된 라인이 있습니다");
+// 						location.replace("${pageContext.request.contextPath}/inst/instmain")}
+// 					}
+// 				});
 		$.ajax({
 			url :'${pageContext.request.contextPath}/inst/changeIng', 		//전송url
 			type : 'POST',	// post방식
