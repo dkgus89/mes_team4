@@ -133,10 +133,10 @@ $('#update').submit(function(){
 					<label>권한(다수 선택가능)</label><br>
 					<div>
 						<input type="checkbox" class="emp_priv" name="emp_priv" value="A" ${systemDTO.emp_priv.contains("A") ? 'checked':''}/> A.시스템관리<br>
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="C" ${systemDTO.emp_priv.contains("B") ? 'checked':''}/> B.기준정보관리<br>
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="D" ${systemDTO.emp_priv.contains("C") ? 'checked':''}/> C.영업관리<br>
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="E" ${systemDTO.emp_priv.contains("D") ? 'checked':''}/> D.생산조회<br>
-						<input type="checkbox" class="emp_priv" name="emp_priv" value="F" ${systemDTO.emp_priv.contains("E") ? 'checked':''}/> E.재고관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="B" ${systemDTO.emp_priv.contains("B") ? 'checked':''}/> B.기준정보관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="C" ${systemDTO.emp_priv.contains("C") ? 'checked':''}/> C.영업관리<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="D" ${systemDTO.emp_priv.contains("D") ? 'checked':''}/> D.생산조회<br>
+						<input type="checkbox" class="emp_priv" name="emp_priv" value="E" ${systemDTO.emp_priv.contains("E") ? 'checked':''}/> E.재고관리<br>
 					</div>
 				</c:if>
 				
