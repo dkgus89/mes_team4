@@ -73,10 +73,6 @@
 					<th>거래처코드</th>
 					<th>수주코드</th>
 					<th>품목코드</th>
-					<th>출고일자</th>
-					<th>출하일자</th>
-					<th>출하량</th>
-					<th>출하담당자</th>
 					
 					
 				</tr>
@@ -93,7 +89,34 @@
 <%-- 					<td><input type="text" name="product_cd_name" value="${deliverDTO.product_cd_name }"></td> --%>
 						<td><input type="text" name="business_cd" value="${deliverDTO.business_cd }" readonly></td>
 						<td><input type="text" name="order_cd" value="${deliverDTO.order_cd }" readonly></td>
-						<td><input type="text" name="product_cd_name" value="${deliverDTO.product_cd_name }" readonly></td>
+						<td><input type="text" name="product_cd_name" value="${deliverDTO.product_cd_name }" readonly></td>						
+				</tr>
+
+			</tbody>
+			
+			
+			
+		</table>
+		
+		<br>
+		
+		<table id="vendortable" class="table table-striped">
+			<thead>
+				<tr style="text-align: center; font-size: 0.9rem">
+					<th>출고일자</th>
+					<th>출하일자</th>
+					<th>출하량</th>
+					<th>출하담당자</th>
+					
+					
+				</tr>
+			</thead>
+					
+					
+					
+			
+			<tbody>
+				<tr>				
 						<td><input type="Date" name="rel_date" id="rel_date" value="${releaseDTO.rel_date}" readonly></td>
 						<td><input type="Date" name="deliver_date" id="deliver_date" value="${deliverDTO.deliver_date }"></td>
 						<td><input type="text" name="deliver_count" value="${deliverDTO.deliver_count }" readonly></td>
@@ -105,10 +128,6 @@
 			
 			
 		</table>
-		
-		<br>
-		
-		
 <!-- 		<table id="vendortable" class="table table-striped"> -->
 <!-- 			<thead> -->
 <!-- 				<tr style="text-align: center; font-size: 0.9rem"> -->

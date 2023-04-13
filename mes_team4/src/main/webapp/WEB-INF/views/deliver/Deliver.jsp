@@ -22,7 +22,7 @@ function DeliverInsert(){
 
 function DeliverUpdate(deliver_cd,business_cd,product_cd_name,order_cd){
 //     window.open("${pageContext.request.contextPath}/deliver/update?deliver_cd=deliver_cd","출하 수정","width=1200, height=300, top=200, left=200");
-    window.open("${pageContext.request.contextPath}/deliver/update?deliver_cd="+deliver_cd+"&order_cd="+order_cd,"출하 수정","width=1480, height=300, top=200, left=200");
+    window.open("${pageContext.request.contextPath}/deliver/update?deliver_cd="+deliver_cd+"&order_cd="+order_cd,"출하 수정","width=1000, height=350, top=200, left=200");
 //     "&business_cd="+business_cd+"&product_cd_name="+product_cd_name,
 }
 
