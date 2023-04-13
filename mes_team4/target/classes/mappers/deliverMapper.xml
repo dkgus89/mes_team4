@@ -60,6 +60,8 @@
      <select id="getreldat" resultType="com.itwillbs.domain.ReleaseDTO">   
     select rel_date from release_schedule
 	where pchor_cd = #{order_cd}
+    order by rel_date desc
+    limit 1;
     </select>
     
 	

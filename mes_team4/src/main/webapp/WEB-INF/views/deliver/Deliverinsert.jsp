@@ -32,12 +32,14 @@ function showPopup(){
    }
 
 //수주현황 받아오기
-function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
+function setChildValue(business_cd,order_cd,product_cd_name,emp_no,order_count,deliver_date){
 
    document.getElementById("business_cd").value=business_cd;
    document.getElementById("order_cd").value=order_cd;
    document.getElementById("product_cd_name").value=product_cd_name;
    document.getElementById("emp_no").value=emp_no;
+   document.getElementById("deliver_count").value=order_count;
+   document.getElementById("deliver_date").value=deliver_date;
 }
 
 //수주거 받아온거 등록??
@@ -45,9 +47,9 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
 	
 	 $(document).ready(function(){ //Jquery 시작	
 		 
-		 
+		 var order_cd=document.getElementById("order_cd").value;
+	 	 var reldate=null;
 		 var result = confirm("출하를 등록하시겠습니까?");
-		 var rel_date=document.getElementById("rel_date").value;
 			if (result == true){
 //	 			
 				if($('#deliver_date').val()==""){
@@ -55,7 +57,17 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
 					$('#deliver_date').focus();
 					return false;
 				}
-				if($('#deliver_date').val() < rel_date){
+				$.ajax({ //ajax 시작
+		 			type:"GET",
+		  			url:'${pageContext.request.contextPath}/deliver/reldate',
+		  			async: false,
+		  			data:{'order_cd':order_cd},
+		  			success:function(result){
+		  				 reldate=result;		  				 
+		  			}
+		  		}); //ajax 끝		 				
+				
+				if($('#deliver_date').val() < reldate){
 					alert("출하일자가 출고일자보다 이전입니다.");
 					$('#deliver_date').focus();
 					return false;
@@ -82,34 +94,34 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
       
       
 //출고량현황 팝업창
- function showPopup2(){
-    var link = "${pageContext.request.contextPath}/deliver/deliverinstlist2";     
-//     var link = "${pageContext.request.contextPath}/rel/relpage";
-    var popupWidth = 1050;
-    var popupHeight = 500;
-    var popupX = (window.screen.width/2) - (popupWidth/2);
-    var popupY= (window.screen.height/2) - (popupHeight/2);
+//  function showPopup2(){
+//     var link = "${pageContext.request.contextPath}/deliver/deliverinstlist2";     
+// //     var link = "${pageContext.request.contextPath}/rel/relpage";
+//     var popupWidth = 1050;
+//     var popupHeight = 500;
+//     var popupX = (window.screen.width/2) - (popupWidth/2);
+//     var popupY= (window.screen.height/2) - (popupHeight/2);
     
-      window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
-    }      
+//       window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+//     }      
       
       
 //출고량 받아오기
- function setChildValue2(rec_count,product_dv,rel_date){
+//  function setChildValue2(rec_count,product_dv,rel_date){
 
-    document.getElementById("rec_count").value=rec_count;
-    document.getElementById("rel_date").value=rel_date;
+//     document.getElementById("rec_count").value=rec_count;
+//     document.getElementById("rel_date").value=rel_date;
     
- }
+//  }
 
  //출고량 받아온거 등록??
-  function fun2(){
-          window.opener.name ="parentPage";
-          document.DeliverInsert.target="parentPage";
-          document.DeliverInsert.action="${pageContext.request.contextPath}/deliver/insertPro";
-          document.DeliverInsert.submit();
-          self.close();
-       }      
+//   function fun2(){
+//           window.opener.name ="parentPage";
+//           document.DeliverInsert.target="parentPage";
+//           document.DeliverInsert.action="${pageContext.request.contextPath}/deliver/insertPro";
+//           document.DeliverInsert.submit();
+//           self.close();
+//        }      
       
       
       
@@ -203,7 +215,7 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
      <button class="button2" onclick="fun1()">등록</button>
 <!--      <button class="button2">초기화</button> -->
      <button class="button2" onclick="showPopup()" style="width:220px">수주등록현황</button>
-     <button class="button2" onclick="showPopup2()" style="width:220px">출고량불러오기</button>
+<!--      <button class="button2" onclick="showPopup2()" style="width:220px">출고량불러오기</button> -->
     </div><br>
     <br>
     
@@ -235,7 +247,7 @@ function setChildValue(business_cd,order_cd,product_cd_name,emp_no){
                <td><input type="text" name="product_cd_name" id="product_cd_name" readonly> </td>
                <td><input type="text" name="order_cd" id="order_cd" readonly> </td>
                <td><input type="Date" name="deliver_date" id="deliver_date"></td>
-               <td><input type="text" name="deliver_count" id="rec_count" readonly></td>
+               <td><input type="text" name="deliver_count" id="deliver_count" readonly></td>
                <td><input type="text" name="emp_no" id="emp_no" readonly></td>
             </tr>
 

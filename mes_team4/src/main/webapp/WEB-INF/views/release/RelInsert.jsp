@@ -57,6 +57,7 @@ function sub(){
 		var int_fp = Number(fp);
 		var int_qt = Number(qt);
 		var int_st = Number(st);
+		alert(int_qt);
 		var result = confirm("출고를 등록하시겠습니까?");
 		if (result == true){
 			if($('#rec_schedule_cd').val()==""){
@@ -89,8 +90,13 @@ function sub(){
 				$('#rel_count').focus();
 				return false;
 			}
-			if(int_fp > int_qt){
+			if(int_fp > int_st){
 				alert("출고 수량이 재고 수량을 초과했습니다.");
+				$('#rel_count').focus();
+				return false;
+			}
+			if(int_fp > int_qt){
+				alert("출고 수량이 입고 수량을 초과했습니다.");
 				$('#rel_count').focus();
 				return false;
 			}

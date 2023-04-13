@@ -2,6 +2,7 @@ package com.itwillbs.controller;
 
 
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -450,6 +451,20 @@ public class DeliverController {
 				result="1";
 			}			
 					
+			// result 값 리턴
+			return result;
+		}
+		
+		@ResponseBody
+		@RequestMapping(value = "/deliver/reldate", method = RequestMethod.GET)
+		public Date reldate(HttpServletRequest request, Model model) {
+			// request 파라미터 
+			String order_cd=request.getParameter("order_cd");
+			Date result=null;
+			// 메서드 호출
+			ReleaseDTO releaseDTO
+		     =deliverService.getreldat(order_cd);
+			result=releaseDTO.getRel_date();
 			// result 값 리턴
 			return result;
 		}
