@@ -23,8 +23,14 @@ function memberupdate(a) {
 	var win = window.open("${pageContext.request.contextPath }/system/memberupdate?emp_no=" + a, "_blank", "width=600, height=700, top=200, left=200");
 }
 function memberdelete(a) {
+	 if (confirm("정말 삭제하시겠습니까?"))
 	location.href = '${pageContext.request.contextPath }/system/memberdelete?emp_no=' + a; 
-}
+	 } 
+
+
+
+
+
 
 </script>
 <!-- 자바스크립트 입력 끝-->
