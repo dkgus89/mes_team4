@@ -38,4 +38,8 @@ public interface PerformDAO {
 	
 	public int getinstructioncount2(PageDTO pageDTO);
 
+	public List<Map<String, Object>> getPerformMap3(PageDTO pageDTO);
+
+	public int getPerformCount3(PageDTO pageDTO);
+
 }

@@ -125,5 +125,22 @@ public class PerformDAOImpl implements PerformDAO {
 			
 			return sqlSession.selectOne(namespace+".getinstructioncount2", pageDTO);
 		}
+
+		@Override
+		public List<Map<String, Object>> getPerformMap3(PageDTO pageDTO) {
+			System.out.println("InfoDAOImpl getPerformMap3()");
+			// limit #{startRow -1} , #{pageSize} 
+			//        1-1, 10 => 1~10
+			pageDTO.setStartRow(pageDTO.getStartRow()-1);
+			
+			return sqlSession.selectList(namespace+".getPerformMap3", pageDTO);
+		}
+
+		@Override
+		public int getPerformCount3(PageDTO pageDTO) {
+			System.out.println("PerformDAOImpl getPerformCount3()");
+			
+			return sqlSession.selectOne(namespace+".getPerformCount3", pageDTO);
+		}
 		
 }

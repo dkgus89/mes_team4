@@ -16,32 +16,44 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-
-<script type="text/javascript">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<script>
 
 function sub(){
-	var nowrec=document.getElementById("rec_date").value;
-	var purchase_date=document.getElementById("purchase_date").value;
-	var perform_date=document.getElementById("perform_date").value;
-	alert("발주일자="+purchase_date);
-	alert("실적일자="+perform_date);
-	if(nowrec < purchase_date){
-		alert("발주일자 이전은 선택 할 수 없습니다");
+$(document).ready(function(){ //Jquery 시작	
+	var result = confirm("수정사항을 등록하시겠습니까?");
+		if (result == true){
+			var nowrec=document.getElementById("rec_date").value;
+			var purchase_date=document.getElementById("purchase_date").value;
+			var perform_date=document.getElementById("perform_date").value;
+			if(nowrec < purchase_date){
+				alert("발주일자 이전은 선택 할 수 없습니다");
+				return false;
+			}
+			if(nowrec < perform_date){
+				alert("실적일자 이전은 선택 할 수 없습니다");
+				return false;
+			}
+	
+			window.opener.name = "parentPage";
+			document.receiveUpdate.target="parentPage";
+			document.receiveUpdate.action="${pageContext.request.contextPath}/receive/recupdatePro";
+			document.receiveUpdate.submit();
+			self.close();	
+		} else {
+			return false;
+		}	
+}); //Jquery 끝
+}
+function rst(){
+	// 초기화 유효성 검사
+	var result = confirm("초기화 하시겠습니까?");
+	if (result == true){    
+		document.receiveUpdate.reset();
+	} else {
 		return false;
-	}
-	if(nowrec < perform_date){
-		alert("실적일자 이전은 선택 할 수 없습니다");
-		return false;
-	}
-	window.opener.name = "parentPage";
-	document.receiveUpdate.target="parentPage";
-	document.receiveUpdate.action="${pageContext.request.contextPath}/receive/recupdatePro";
-	document.receiveUpdate.submit();
-	self.close();	
-	}
-	function rst(){
-	document.receiveUpdate.reset();
-	}
+	}	
+}
 
 </script>
 
@@ -75,7 +87,7 @@ function sub(){
 			
 			<tbody>
 				<tr>
-					<td><input type="text" name="wh_cd" value="${receiveDTO.wh_cd}"></td>
+					<td><input type="text" name="wh_cd" value="${receiveDTO.wh_cd}" readonly></td>
 					<td><input type="text" name="pchor_cd" value="${receiveDTO.pchor_cd }" readonly></td>
 					<td><input type="text" name="product_cd_name" value="${receiveDTO.product_cd_name }" readonly></td>
 					<td><input type="text" name="rec_count" value="${receiveDTO.rec_count }" readonly></td>
@@ -84,44 +96,44 @@ function sub(){
 
 			</tbody>
 		</table>
-		<br>
-		<c:if test="${ empty  purchaseDTO.purchase_date}">
-		<c:if test="${ !empty  performDTO.perform_date}">
-		<table id="vendortable" class="table table-striped">
-			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">	
-					<th>실적일자</th>
-				</tr>
-			</thead>
+<!-- 		<br> -->
+<%-- 		<c:if test="${ empty  purchaseDTO.purchase_date}"> --%>
+<%-- 		<c:if test="${ !empty  performDTO.perform_date}"> --%>
+<!-- 		<table id="vendortable" class="table table-striped"> -->
+<!-- 			<thead> -->
+<!-- 				<tr style="text-align: center; font-size: 0.9rem">	 -->
+<!-- 					<th>실적일자</th> -->
+<!-- 				</tr> -->
+<!-- 			</thead> -->
 			
-			<tbody>
-				<tr>					
-					<td><input type="date" name="perform_date" id="perform_date" value="${performDTO.perform_date}" readonly></td>
-				</tr>
+<!-- 			<tbody> -->
+<!-- 				<tr>					 -->
+<%-- 					<td><input type="date" name="perform_date" id="perform_date" value="${performDTO.perform_date}" readonly></td> --%>
+<!-- 				</tr> -->
 
-			</tbody>
-		</table>
-		</c:if>
-		</c:if>
+<!-- 			</tbody> -->
+<!-- 		</table> -->
+<%-- 		</c:if> --%>
+<%-- 		</c:if> --%>
 		
-		<c:if test="${ empty  performDTO.perform_date}">
-		<c:if test="${ !empty  purchaseDTO.purchase_date}">
-		<table id="vendortable" class="table table-striped">
-			<thead>
-				<tr style="text-align: center; font-size: 0.9rem">	
-					<th>발주일자</th>
-				</tr>
-			</thead>
+<%-- 		<c:if test="${ empty  performDTO.perform_date}"> --%>
+<%-- 		<c:if test="${ !empty  purchaseDTO.purchase_date}"> --%>
+<!-- 		<table id="vendortable" class="table table-striped"> -->
+<!-- 			<thead> -->
+<!-- 				<tr style="text-align: center; font-size: 0.9rem">	 -->
+<!-- 					<th>발주일자</th> -->
+<!-- 				</tr> -->
+<!-- 			</thead> -->
 			
-			<tbody>
-				<tr>					
-					<td><input type="date" name="purchase_date" id="purchase_date" value="${purchaseDTO.purchase_date}" readonly></td>
-				</tr>
+<!-- 			<tbody> -->
+<!-- 				<tr>					 -->
+<%-- 					<td><input type="date" name="purchase_date" id="purchase_date" value="${purchaseDTO.purchase_date}" readonly></td> --%>
+<!-- 				</tr> -->
 
-			</tbody>
-		</table>
-		</c:if>
-		</c:if>
+<!-- 			</tbody> -->
+<!-- 		</table> -->
+<%-- 		</c:if> --%>
+<%-- 		</c:if> --%>
 	
 	</form>
 	<br>

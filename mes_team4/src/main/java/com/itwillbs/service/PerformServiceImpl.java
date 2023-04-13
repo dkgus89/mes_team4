@@ -130,5 +130,25 @@ public class PerformServiceImpl implements PerformService{
 				
 				return performDAO.getinstructioncount2(pageDTO);
 			}
+
+			@Override
+			public List<Map<String, Object>> getPerformMap3(PageDTO pageDTO) {
+				System.out.println("PerformServiceImpl getPerformMap3()");
+				//시작하는 행번호 구하기
+				int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+				int endRow = startRow+pageDTO.getPageSize()-1;
+				
+				pageDTO.setStartRow(startRow);
+				pageDTO.setEndRow(endRow);				
+				
+				return performDAO.getPerformMap3(pageDTO);
+			}
+
+			@Override
+			public int getPerformCount3(PageDTO pageDTO) {
+				System.out.println("PerformServiceImpl getPerformCount3()");
+				
+				return performDAO.getPerformCount3(pageDTO);
+			}
 									
 }

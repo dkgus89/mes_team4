@@ -43,6 +43,33 @@
         </if>) a
     </select>
     
+    <select id="getPerformCount3" resultType="java.lang.Integer">
+        select count(*)
+        from(select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd_name, d.product_name, p.perform_date, sum(instruction_qt) as instruction_qt, sum(fair_prod) as fair_prod, sum(defect_prod) as defect_prod, p.defect_remarks, p.remarks, o.order_cd
+		from performance p join line l
+							 on p.line_cd=l.line_cd
+						   join instruction o
+							 on p.instruction_code=o.instruction_code
+				   		   join product d
+                    		 on p.product_cd_name=d.product_cd_name
+        <if test="search != null">
+        <if test="select != null">
+        	<if test="select == 'perform_cd'.toString()">
+        	where perform_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="select == 'instruction_code'.toString()">
+        	where p.instruction_code like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="select == 'line_cd'.toString()">
+        	where p.line_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="select == 'product_cd_name'.toString()">
+        	where p.product_cd_name like CONCAT('%',#{search},'%')
+        	</if>
+        </if>
+        </if>) a
+    </select>
+    
     <select id="getPerformCount2" resultType="java.lang.Integer">
         select count(*)
         from(select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd_name, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks
@@ -108,10 +135,39 @@
 		<result column="defect_prod" property="defect_prod"/>
 		<result column="defect_remarks" property="defect_remarks"/>
 		<result column="remarks" property="remarks"/>
+		<result column="order_cd" property="order_cd"/>
     </resultMap>
     
     <select id="getPerformMap" resultMap="map2">
     	select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd_name, d.product_name, p.perform_date, o.instruction_qt, p.fair_prod, p.defect_prod, p.defect_remarks, p.remarks, o.order_cd
+		from performance p join line l
+							 on p.line_cd=l.line_cd
+						   join instruction o
+							 on p.instruction_code=o.instruction_code
+				   		   join product d
+                    		 on p.product_cd_name=d.product_cd_name
+        <if test="search != null">
+    	<if test="select != null">
+    		<if test="select == 'perform_cd'.toString()">
+        	where perform_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="select == 'instruction_code'.toString()">
+        	where p.instruction_code like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="select == 'line_cd'.toString()">
+        	where p.line_cd like CONCAT('%',#{search},'%')
+        	</if>
+        	<if test="select == 'product_cd_name'.toString()">
+        	where p.product_cd_name like CONCAT('%',#{search},'%')
+        	</if>
+        </if>
+        </if>
+        order by perform_date desc
+        limit #{startRow} , #{pageSize}
+    </select>
+    
+    <select id="getPerformMap3" resultMap="map2">
+    	select p.perform_cd, p.instruction_code, p.line_cd, l.line_name, p.product_cd_name, d.product_name, p.perform_date, sum(instruction_qt) as instruction_qt, sum(fair_prod) as fair_prod, sum(defect_prod) as defect_prod, p.defect_remarks, p.remarks, o.order_cd
 		from performance p join line l
 							 on p.line_cd=l.line_cd
 						   join instruction o
