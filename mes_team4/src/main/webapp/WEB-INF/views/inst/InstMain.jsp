@@ -66,6 +66,7 @@ function allCheck(){
 }
 	
 function changeIng(){
+	var rt=null;
 	var url = "/inst/changeIng"; // controller로 보내고자 하는 url
 	var valueArr = new Array();
 	var orderList = $("input[name='rowcheck']");
@@ -87,6 +88,7 @@ function changeIng(){
 					if(jdata == '1'){
 						alert("중복 선택된 라인이 있습니다");
 						location.replace("${pageContext.request.contextPath}/inst/instmain");
+						rt=1;
 					} else {
 						alert("값 안넘어옴");
 					}
@@ -95,6 +97,9 @@ function changeIng(){
 						alert("에러");
 				}
 			});
+			if(rt==1){
+				return false;		
+			} 
 
 		$.ajax({
 			url :'${pageContext.request.contextPath}/inst/changeIng', 		//전송url
