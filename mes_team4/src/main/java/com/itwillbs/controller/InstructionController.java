@@ -375,22 +375,27 @@ public class InstructionController {
 		System.out.println("InstructionController changIng2()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
-		String jdata = "0";
-		String[] linecheck = new String[5];
-		
 		int size = ajaxMsg.length;
-		for(int i=0; i<size; i++) {
-				String instruction_code=ajaxMsg[i];
-			String line_cd=instructionService.getLine_cdInst(instruction_code);
-			linecheck[i]=line_cd;		
-		}
+		String[] linecheck = new String[size];
 		
-		List<String> linecheck2 = Arrays.asList(linecheck);
-        if(linecheck2.size() != linecheck2.stream().distinct().count()){
-            System.out.println("중복된 요소가 있습니다!");
-            jdata = "1";
-        }
-					
+		String jdata = "0";
+		
+		if (ajaxMsg.length > 1 ) {
+			for(int i=0; i<size; i++) {
+				String instruction_code = ajaxMsg[i];
+				String line_cd = instructionService.getLine_cdInst(instruction_code);
+				linecheck[i]=line_cd;	
+			}
+			
+			List<String> linecheck2 = Arrays.asList(linecheck);
+	        if(linecheck2.size() != linecheck2.stream().distinct().count()){
+	        	System.out.println("원래 사이즈"+linecheck2.size());
+	        	System.out.println("중복제거 사이즈"+linecheck2.stream().distinct().count());
+	            System.out.println("중복된 요소가 있습니다!");
+	            jdata = "1";
+	        }
+		}
+				
 		return jdata;
 	}
 	

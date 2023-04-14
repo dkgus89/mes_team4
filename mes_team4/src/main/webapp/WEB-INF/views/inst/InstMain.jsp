@@ -69,6 +69,7 @@ function changeIng(){
 	var url = "/inst/changeIng"; // controller로 보내고자 하는 url
 	var valueArr = new Array();
 	var orderList = $("input[name='rowcheck']");
+	let check = "then";
 	for(var i=0; i<orderList.length; i++){
 		if(orderList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
 			valueArr.push(orderList[i].value);	}
@@ -85,29 +86,29 @@ function changeIng(){
 				data : { valueArr : valueArr },
 				success : function(jdata){
 					if(jdata == '1'){
-						alert("중복 선택된 라인이 있습니다");
+						alert("중복 선택된 라인이 있습니다.");
 						location.replace("${pageContext.request.contextPath}/inst/instmain");
+						return false;
 					} else {
-						alert("값 안넘어옴");
+						$.ajax({
+							url :'${pageContext.request.contextPath}/inst/changeIng', 		//전송url
+							type : 'POST',	// post방식
+							traditional : true,
+							data : { valueArr : valueArr // 보내고자하는 data 변수설정	
+								},
+							success : function(jdata){
+								if(jdata == '1'){
+									alert("변경하였습니다.");
+									location.replace("${pageContext.request.contextPath}/inst/instmain")};
+								}
+						});
 					}
 				},
 				error : function (jqXHR, textStatus, errorThrown){
-						alert("에러");
+						alert("응답 시간초과");
 				}
 			});
 
-		$.ajax({
-			url :'${pageContext.request.contextPath}/inst/changeIng', 		//전송url
-			type : 'POST',	// post방식
-			traditional : true,
-			data : { valueArr : valueArr // 보내고자하는 data 변수설정	
-				},
-			success : function(jdata){
-				if(jdata == '1'){
-					alert("변경하였습니다");
-					location.replace("${pageContext.request.contextPath}/inst/instmain")}
-				}
-			});
 		}else {
 			alert("변경 취소되었습니다.");}
  		}
