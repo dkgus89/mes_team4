@@ -63,7 +63,7 @@ public class BusinessController {
 		List<BusinessDTO> businessList = businessService.getBusinessList(pageDTO);
 		
 		//페이징 처리
-		int count = businessService.getBusinessCount();
+		int count = businessService.getBusinessCount(pageDTO);
 		int pageBlock=10;
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 		int endPage=startPage+pageBlock-1;

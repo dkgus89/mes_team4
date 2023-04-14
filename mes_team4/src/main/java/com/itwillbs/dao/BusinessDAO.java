@@ -13,7 +13,7 @@ public interface BusinessDAO {
 	
 	public Integer getPNum();
 	
-	public int getBusinessCount();
+	public int getBusinessCount(PageDTO pageDTO);
 	
 	public  List<BusinessDTO> getBusinessList(PageDTO pageDTO);
 

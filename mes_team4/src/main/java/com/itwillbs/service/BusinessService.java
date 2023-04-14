@@ -9,7 +9,7 @@ public interface BusinessService {
 
 	public void insertBusiness(BusinessDTO businessDTO);
 	
-	public int getBusinessCount();
+	public int getBusinessCount(PageDTO pageDTO);
 	
 	public  List<BusinessDTO> getBusinessList(PageDTO pageDTO);
 

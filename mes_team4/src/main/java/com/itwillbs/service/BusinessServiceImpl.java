@@ -51,10 +51,10 @@ public class BusinessServiceImpl implements BusinessService{
 	}
 
 	@Override
-	public int getBusinessCount() {
+	public int getBusinessCount(PageDTO pageDTO) {
 		System.out.println("BusinessServiceImpl getBusinessCount()");
 		
-		return businessDAO.getBusinessCount();
+		return businessDAO.getBusinessCount(pageDTO);
 	}
 
 	@Override

@@ -39,10 +39,10 @@ public class BusinessDAOImpl implements BusinessDAO{
 	}
 
 	@Override
-	public int getBusinessCount() {
+	public int getBusinessCount(PageDTO pageDTO) {
 		System.out.println("businessDAOImpl getcount()");
 		
-		return sqlSession.selectOne(namespace+".getBusinessCount");
+		return sqlSession.selectOne(namespace+".getBusinessCount",pageDTO);
 	}
 
 	@Override
