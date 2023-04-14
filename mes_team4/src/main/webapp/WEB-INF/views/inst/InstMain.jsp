@@ -78,18 +78,18 @@ function changeIng(){
 	} else {
 		var chk = confirm("작업현황 : \n생산대기 -> 생산중으로 변경하시겠습니까?");			
 		if(chk){
-// 			$.ajax({
-// 				url :'${pageContext.request.contextPath}/inst/changeIng2', 		//전송url
-// 				type : 'POST',	// post방식
-// 				traditional : true,
-// 				data : { valueArr : valueArr // 보내고자하는 data 변수설정	
-// 					},
-// 				success : function(jdata){
-// 					if(jdata == '1'){
-// 						alert("중복 선택된 라인이 있습니다");
-// 						location.replace("${pageContext.request.contextPath}/inst/instmain")}
-// 					}
-// 				});
+			$.ajax({
+				url :'${pageContext.request.contextPath}/inst/changeIng2', 		//전송url
+				type : 'POST',	// post방식
+				traditional : true,
+				data : { valueArr : valueArr // 보내고자하는 data 변수설정	
+					},
+				success : function(jdata){
+					if(jdata == '1'){
+						alert("중복 선택된 라인이 있습니다");
+						location.replace("${pageContext.request.contextPath}/inst/instmain")}
+					}
+				});
 		$.ajax({
 			url :'${pageContext.request.contextPath}/inst/changeIng', 		//전송url
 			type : 'POST',	// post방식
