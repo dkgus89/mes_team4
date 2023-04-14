@@ -34,7 +34,6 @@ function showPopup3(ef){
 function showPopup4(instruction_code,line_cd,product_cd_name,order_cd){
     window.open("${pageContext.request.contextPath}/inst/instinsert2?instruction_code="+instruction_code+"&line_cd="+line_cd+"&product_cd_name="+product_cd_name+"&order_cd="+order_cd,"instinsert2","width=1100, height=500, top=200, left=200");
 }
-
 function chdelete(){
 	var instruction_state=document.getElementById("instruction_state").value;
 	if(instruction_state == '생산중' || instruction_state == '생산완료') {
@@ -66,10 +65,10 @@ function allCheck(){
 }
 	
 function changeIng(){
+	var rt=null;
 	var url = "/inst/changeIng"; // controller로 보내고자 하는 url
 	var valueArr = new Array();
 	var orderList = $("input[name='rowcheck']");
-	let check = "then";
 	for(var i=0; i<orderList.length; i++){
 		if(orderList[i].checked){ //선택되어 있으면 배열에 값을 저장함 
 			valueArr.push(orderList[i].value);	}
@@ -86,29 +85,32 @@ function changeIng(){
 				data : { valueArr : valueArr },
 				success : function(jdata){
 					if(jdata == '1'){
-						alert("중복 선택된 라인이 있습니다.");
+						alert("중복 선택된 라인이 있습니다");
 						location.replace("${pageContext.request.contextPath}/inst/instmain");
-						return false;
+						rt=1;
 					} else {
-						$.ajax({
-							url :'${pageContext.request.contextPath}/inst/changeIng', 		//전송url
-							type : 'POST',	// post방식
-							traditional : true,
-							data : { valueArr : valueArr // 보내고자하는 data 변수설정	
-								},
-							success : function(jdata){
-								if(jdata == '1'){
-									alert("변경하였습니다.");
-									location.replace("${pageContext.request.contextPath}/inst/instmain")};
-								}
-						});
+						alert("값 안넘어옴");
 					}
 				},
 				error : function (jqXHR, textStatus, errorThrown){
-						alert("응답 시간초과");
+						alert("에러");
 				}
 			});
-
+			if(rt==1){
+				return false;		
+			} 
+		$.ajax({
+			url :'${pageContext.request.contextPath}/inst/changeIng', 		//전송url
+			type : 'POST',	// post방식
+			traditional : true,
+			data : { valueArr : valueArr // 보내고자하는 data 변수설정	
+				},
+			success : function(jdata){
+				if(jdata == '1'){
+					alert("변경하였습니다");
+					location.replace("${pageContext.request.contextPath}/inst/instmain")}
+				}
+			});
 		}else {
 			alert("변경 취소되었습니다.");}
  		}
