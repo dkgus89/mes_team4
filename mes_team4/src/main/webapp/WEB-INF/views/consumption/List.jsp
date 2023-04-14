@@ -152,7 +152,7 @@
 			</thead>
 			
 			<c:choose>
-			<c:when test="${not empty rprConsmptList}">
+			<c:when test="${not empty rprList}">
 			
 			<c:set var="count" value="-1"></c:set>
 			

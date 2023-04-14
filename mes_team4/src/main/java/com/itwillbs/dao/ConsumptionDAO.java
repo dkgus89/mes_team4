@@ -22,7 +22,7 @@ public interface ConsumptionDAO {
 	
 	public List<ConsumptionDTO> getRprConsmptList(String[] cprCdName);
 	
-	public List<Integer> getRowcolsTd(PageDTO pageDTO);
+	public List<Integer> getRowcolsTd(String[] cprCdName);
 	
 	public void deleteConsmpt(String[] checkedValue);
 	

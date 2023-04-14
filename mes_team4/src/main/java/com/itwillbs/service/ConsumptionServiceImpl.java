@@ -79,10 +79,10 @@ public class ConsumptionServiceImpl implements ConsumptionService{
 	}
 	
 	@Override
-	public List<Integer> getRowcolsTd(PageDTO pageDTO) {
+	public List<Integer> getRowcolsTd(String[] cprCdName) {
 		System.out.println("ConsumptionServiceImpl getRowcolsTd()");
 		
-		return consumptionDAO.getRowcolsTd(pageDTO);
+		return consumptionDAO.getRowcolsTd(cprCdName);
 	}
 	
 	@Override

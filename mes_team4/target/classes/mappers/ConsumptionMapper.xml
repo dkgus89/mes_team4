@@ -156,18 +156,17 @@
 	
 	<resultMap id="ListInteger" type="java.lang.Integer" />
 	
-	<select id="getRowcolsTd" resultMap="ListInteger">
+	<select id="getRowcolsTd" parameterType="map" resultType="java.lang.Integer">
 		SELECT count(*)
+		from (
+		select *  
 		from consumption_management
-		<where>
-            <choose>
-                <when test='search != null and product_dv.equals("cp")'>
-                    and (cproduct_cd_name like CONCAT('%',#{search},'%') or cproduct_name like CONCAT('%',#{search},'%'))
-                </when>
-            </choose>
-        </where>
+		where cproduct_cd_name in 
+        <foreach item="name" collection="cprCdNameList" index="index" open="(" separator="," close=")">
+        	#{name}
+        </foreach>
+		) as sub
 		group by cproduct_cd_name
-		limit #{startRow},#{pageSize}
 	</select>
 	
 	<delete id="deleteConsmpt" parameterType="map">

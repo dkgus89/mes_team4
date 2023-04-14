@@ -79,7 +79,7 @@ public class ConsumptionController {
 				rprConsmptList = consumptionService.getRprConsmptList(cprCdName);
 				
 				// 테이블 병합처리 변수 저장
-				List<Integer> rowcolsTd = consumptionService.getRowcolsTd(pageDTO);
+				List<Integer> rowcolsTd = consumptionService.getRowcolsTd(cprCdName);
 				pageDTO.setRowcolsTd(rowcolsTd);
 				int length = rowcolsTd.size();
 				
@@ -97,6 +97,7 @@ public class ConsumptionController {
 				// 2차원 리스트 저장
 				int startNum = 0;
 				int endNum = rowcolsTd.get(0);
+				System.out.println("check "+endNum);
 				
 				rprList = new ArrayList<List<ConsumptionDTO>>(length);
 				for(int i = 0; i < length; i++) {				
@@ -107,6 +108,7 @@ public class ConsumptionController {
 					}
 				}
 			}
+			System.out.println("check");
 			
 			// 페이징 처리
 			int pageBlock = 5;

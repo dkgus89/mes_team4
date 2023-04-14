@@ -85,14 +85,16 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 		
 		List<String> cprCdNameList = Arrays.asList(cprCdName);
 		
-		return sqlSession.selectList(namespace+".getRprConsmptList", Map.of("cprCdNameList" ,cprCdNameList));
+		return sqlSession.selectList(namespace+".getRprConsmptList", Map.of("cprCdNameList", cprCdNameList));
 	}
 	
 	@Override
-	public List<Integer> getRowcolsTd(PageDTO pageDTO) {
+	public List<Integer> getRowcolsTd(String[] cprCdName) {
 		System.out.println("ConsumptionDAOImpl getRowcolsTd()");
 		
-		return sqlSession.selectList(namespace+".getRowcolsTd", pageDTO);
+		List<String> cprCdNameList = Arrays.asList(cprCdName);
+		
+		return sqlSession.selectList(namespace+".getRowcolsTd", Map.of("cprCdNameList", cprCdNameList));
 	}
 	
 	@Override
