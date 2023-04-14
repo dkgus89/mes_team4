@@ -89,11 +89,7 @@ function changeIng(){
 					if(jdata == '1'){
 						alert("중복 선택된 라인이 있습니다.");
 						location.replace("${pageContext.request.contextPath}/inst/instmain");
-<<<<<<< HEAD
 						return false;
-=======
-						rt=1;
->>>>>>> branch 'develop' of https://github.com/MEMOZ00/mes_team4.git
 					} else {
 						$.ajax({
 							url :'${pageContext.request.contextPath}/inst/changeIng', 		//전송url
