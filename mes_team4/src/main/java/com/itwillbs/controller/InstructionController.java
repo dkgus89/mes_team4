@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -369,32 +370,27 @@ public class InstructionController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/inst/changeIng2")
+	@RequestMapping(value = "/inst/changeIng2", method = RequestMethod.POST)
 	public String changeIng2(HttpServletRequest request, ReleaseDTO releaseDTO, ConsumptionDTO consumptionDTO, StockDTO stockDTO) {
 		System.out.println("InstructionController changIng2()");
 		
 		String[] ajaxMsg = request.getParameterValues("valueArr");
 		String jdata = "0";
-		String[] linecheck=new String[5];
+		String[] linecheck = new String[5];
 		
 		int size = ajaxMsg.length;
 		for(int i=0; i<size; i++) {
-			String instruction_code=ajaxMsg[i];
+				String instruction_code=ajaxMsg[i];
 			String line_cd=instructionService.getLine_cdInst(instruction_code);
-			linecheck[i]=line_cd;
-				
-			}
-		for (int i = 0; i < linecheck.length; i++) {
-            for (int j = 0; j < i; j++) {
-                if (linecheck[i].equals(linecheck[j])) {  // 중복 검사
-                	System.out.println("중복확인");
-                	jdata = "1";
-                	System.out.println("jdata= " + jdata);
-                }
-            }
+			linecheck[i]=line_cd;		
+		}
+		
+		List<String> linecheck2 = Arrays.asList(linecheck);
+        if(linecheck2.size() != linecheck2.stream().distinct().count()){
+            System.out.println("중복된 요소가 있습니다!");
+            jdata = "1";
         }
-				
-				
+					
 		return jdata;
 	}
 	
