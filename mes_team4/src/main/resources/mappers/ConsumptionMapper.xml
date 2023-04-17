@@ -60,7 +60,7 @@
 		</if> -->
 	</select>
 	
-	<insert id="insertConsmpt" parameterType="map">
+	<insert id="insertConsmpt" parameterType="java.util.Map">
 	  insert into consumption_management (cproduct_cd_name, cproduct_name, rproduct_cd_name, rproduct_name, consumption, consumption_unit, insert_date)
 	  values
 	  <foreach item="consmpt" index="index" collection="consmptArray" separator=",">
@@ -74,7 +74,7 @@
 	  </foreach>
 	</insert>
 	
-	<insert id="updateConsmpt" parameterType="map">
+	<insert id="updateConsmpt" parameterType="java.util.Map">
 	  insert into consumption_management (cproduct_cd_name, cproduct_name, rproduct_cd_name, rproduct_name, consumption, consumption_unit, insert_date, update_date)
 	  values
 	  <foreach item="consmpt" index="index" collection="consmptArray" separator=",">
@@ -89,7 +89,7 @@
 	  </foreach>
 	</insert>
 	
-	<update id="updateConsmptName" parameterType="map">
+	<update id="updateConsmptName" parameterType="java.util.Map">
 	  update consumption_management 
 	  set ${column_name} = #{product_name}
 	  where ${column_cd} = #{product_cd_name}
@@ -144,7 +144,7 @@
 		) as sub
 	</select>
 	
-	<select id="getRprConsmptList" parameterType="map" resultType="com.itwillbs.domain.ConsumptionDTO">
+	<select id="getRprConsmptList" parameterType="java.util.Map" resultType="com.itwillbs.domain.ConsumptionDTO">
 		select *  
 		from consumption_management
 		where cproduct_cd_name in 
@@ -156,7 +156,7 @@
 	
 	<resultMap id="ListInteger" type="java.lang.Integer" />
 	
-	<select id="getRowcolsTd" parameterType="map" resultType="java.lang.Integer">
+	<select id="getRowcolsTd" parameterType="java.util.Map" resultType="java.lang.Integer">
 		SELECT count(*)
 		from (
 		select *  
@@ -169,7 +169,7 @@
 		group by cproduct_cd_name
 	</select>
 	
-	<delete id="deleteConsmpt" parameterType="map">
+	<delete id="deleteConsmpt" parameterType="java.util.Map">
 	  delete from consumption_management
 	  where cproduct_cd_name in 
       <foreach item="name" collection="checkedValue" index="index" open="(" separator="," close=")">

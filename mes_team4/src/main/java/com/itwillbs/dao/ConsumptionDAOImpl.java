@@ -1,6 +1,7 @@
 package com.itwillbs.dao;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,12 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 	public void insertConsmpt(ConsumptionDTO[] consmptArray) {
 		System.out.println("ConsumptionDAOImpl insertConsmpt()");
 		
-		sqlSession.insert(namespace+".insertConsmpt", Map.of("consmptArray" ,consmptArray));
+		Map<String, Object> map = new HashMap<>();
+		map.put("consmptArray", consmptArray);
+		
+		sqlSession.insert(namespace + ".insertConsmpt", map);
+		
+		//sqlSession.insert(namespace+".insertConsmpt", Map.of("consmptArray" ,consmptArray));
 	}
 	
 	@Override
@@ -85,7 +91,12 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 		
 		List<String> cprCdNameList = Arrays.asList(cprCdName);
 		
-		return sqlSession.selectList(namespace+".getRprConsmptList", Map.of("cprCdNameList", cprCdNameList));
+		Map<String, Object> map = new HashMap<>();
+		map.put("cprCdNameList", cprCdNameList);
+		
+		return sqlSession.selectList(namespace + ".getRprConsmptList", map);
+		
+		//return sqlSession.selectList(namespace+".getRprConsmptList", Map.of("cprCdNameList", cprCdNameList));
 	}
 	
 	@Override
@@ -94,21 +105,36 @@ public class ConsumptionDAOImpl implements ConsumptionDAO{
 		
 		List<String> cprCdNameList = Arrays.asList(cprCdName);
 		
-		return sqlSession.selectList(namespace+".getRowcolsTd", Map.of("cprCdNameList", cprCdNameList));
+		Map<String, Object> map = new HashMap<>();
+		map.put("cprCdNameList", cprCdNameList);
+		
+		return sqlSession.selectList(namespace + ".getRowcolsTd", map);
+
+		//return sqlSession.selectList(namespace+".getRowcolsTd", Map.of("cprCdNameList", cprCdNameList));
 	}
 	
 	@Override
 	public void deleteConsmpt(String[] checkedValue) {
 		System.out.println("ConsumptionDAOImpl deleteConsmpt()");
 		
-		sqlSession.delete(namespace+".deleteConsmpt", Map.of("checkedValue" ,checkedValue));
+		Map<String, Object> map = new HashMap<>();
+		map.put("checkedValue", checkedValue);
+		
+		sqlSession.delete(namespace + ".deleteConsmpt", map);
+		
+		//sqlSession.delete(namespace+".deleteConsmpt", Map.of("checkedValue" ,checkedValue));
 	}
 	
 	@Override
 	public void updateConsmpt(ConsumptionDTO[] consmptArray) {
 		System.out.println("ConsumptionDAOImpl updateConsmpt()");
 		
-		sqlSession.insert(namespace+".updateConsmpt", Map.of("consmptArray" ,consmptArray));
+		Map<String, Object> map = new HashMap<>();
+		map.put("consmptArray", consmptArray);
+		
+		sqlSession.insert(namespace + ".updateConsmpt", map);
+	
+		//sqlSession.insert(namespace+".updateConsmpt", Map.of("consmptArray" ,consmptArray));
 	}
 	
 	@Override
