@@ -1,9 +1,9 @@
 # MEDI-FAC 의약품 MES 사이트
 ### 호스팅 사이트 : http://itwillbs21.cafe24.com/mesteam4/home
 #### 1. 개발도구 : Eclipse, Github  
-#### 2. 개발언어 : Java(OpenJDK version 11.0.2), MySQL(version 8.0.17), JavaScript
-#### 3. 라이브러리 : jQuery(version 3.6.4), JSTL(version 1.2)
-#### 4. 프레임워크 : Spring(version 4.3.8.RELEASE)
+#### 2. 개발언어 : Java(OpenJDK 11.0.2), MySQL(8.0.17), JavaScript
+#### 3. 라이브러리 : jQuery(3.6.4), JSTL(1.2)
+#### 4. 프레임워크 : Spring(4.3.8.RELEASE), MyBatis(3.4.1)
 #### 5. 웹 애플리케이션도구 : JSP(MVC model2)
 #### 6. 웹 호스팅 : cafe24
 
