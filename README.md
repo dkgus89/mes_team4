@@ -35,22 +35,21 @@
 
 #### 발주 페이지 
 1. Model 
-    - 중고거래 DAO [MarketDAO.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/db/MarketDAO.java)  
-    - 중고거래 DTO [MarketDTO.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/db/MarketDTO.java)  
-    - 중고거래 글상세 [MarketContent.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketContent.java)   
-    - 중고거래 리스트(기본) [MarketList.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketList.java)  
-    - 중고거래 리스트(최신/조회/인기) [MarketSortList.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketSortList.java)   
-    - 중고거래 글수정 [MarketUpdateForm.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketUpdateForm.java), [MarketUpdatePro.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketUpdatePro.java)  
-    - 중고거래 글작성 [MarketWritePro.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketWritePro.java) 
-    - 중고거래 글삭제 [MarketDeletePro.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketDeletePro.java)
-    - 중고거래 찜하기 [MarketWishPro.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketWishPro.java)
+    - 발주 DAO [PurchaseDAO.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/dao/PurchaseDAO.java)  
+    - 발주 DAOImpl [PurchaseDAOImpl.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/dao/PurchaseDAOImpl.java)
+    - 발주 Service [PurchaseService.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/PurchaseService.java)  
+    - 발주 ServiceImpl [PurchaseServiceImpl.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/PurchaseServiceImpl.java)
+    - 발주 DTO [PurchaseDTO.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/domain/PurchaseDTO.java)  
+    - 페이징 DTO [PageDTO.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/domain/PageDTO.java)  
     
 2. View  
-    - 중고거래 글상세 페이지 [MarketContent.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/market/MarketContent.jsp)   
-    - 중고거래 리스트(기본) [MarketList.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/market/MarketList.jsp)  
-    - 중고거래 리스트(최신/조회/인기) [MarketSortList.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/market/MarketSortList.jsp)   
-    - 중고거래 글수정 페이지 [MarketUpdateForm.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/market/MarketUpdateForm.jsp)
-    - 중고거래 글작성 페이지 [MarketWriteForm.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/market/MarketWriteForm.jsp)  
+    - 발주 리스트 [purchase/List.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/purchase/List.jsp)   
+    - 발주 추가 팝업 [purchase/Insert.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/purchase/Insert.jsp)  
+    - 발주 수정 팝업 [purchase/Update.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/purchase/Update.jsp)   
+    - 발주 품목 리스트 [purchase/PrList.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/purchase/PrList.jsp)
+    - 발주 거래처 리스트 [purchase/BsList.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/purchase/BsList.jsp)  
+    - 발주 사원 리스트 [purchase/EmList.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/purchase/EmList.jsp)
+    - 발주 팝업 닫기 [purchase/Close.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/purchase/Close.jsp)
 
 3. Controller  
-    - 컨트롤러 [MarketFrontController.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketFrontController.java)
+    - 컨트롤러 [PurchaseController.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/controller/PurchaseController.java)
