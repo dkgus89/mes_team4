@@ -11,7 +11,7 @@
 
 #### 개발 기간 : 3월 8일 ~ 4월 14일
 #### 역할 : 깃허브 관리, PPT
-#### 개발 페이지 : 소요량 페이지, 발주 페이지, 원자재 재고비교 
+#### 개발 페이지 : 소요량 페이지, 발주 페이지, 작업지시 페이지-원자재 재고비교 
 
 ### <상세 코드>
 #### 소요량 페이지  
@@ -53,5 +53,16 @@
 
 3. Controller  
     - 컨트롤러 [PurchaseController.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/controller/PurchaseController.java)
-    
-https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/inst/InstInsert.jsp#L37-L61
+
+#### 작업지시 페이지-원자재 재고비교 
+1. Model  
+    - 재고비교 DAOImpl [PurchaseDAOImpl.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/dao/PurchaseDAOImpl.java) 
+    - 재고비교 ServiceImpl [PurchaseServiceImpl.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/PurchaseServiceImpl.java) 
+   
+2. View   
+    - 작업지시 추가 팝업-재고비교 [inst/InstInsert.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/inst/InstInsert.jsp#L21-L65)  
+    - 작업지시 수정 팝업-재고비교 [purchase/Insert.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/purchase/Insert.jsp)  
+
+
+3. Controller  
+    - 컨트롤러 [PurchaseController.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/controller/PurchaseController.java)
