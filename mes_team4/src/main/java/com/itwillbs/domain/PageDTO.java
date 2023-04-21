@@ -17,6 +17,10 @@ public class PageDTO {
 	private String start_due_date; // 시작일
 	private String end_due_date; // 마감일
 	
+	// 테이블 병합처리 멤버변수
+	private List<Integer> rowcolsTd; // td의 rowcols 수 
+	private List<Integer> showTd; // td를 나타낼 위치
+	
 	// 페이징처리 계산 멤버변수
 	private String pageNum; // 현재 화면의 페이지번호 String
 	private int CurrentPage; // 현재 화면의 페이지번호 int(형변환)
@@ -26,9 +30,13 @@ public class PageDTO {
 	private int endPage; // 페이징 끝 번호
 	private int count; // 게시판의 모든 행 개수
 	
+	// 생산상태 카운트 멤버변수 
 	private int pcount; // 생산전 개수
 	private int wcount; // 생산대기 개수
 	private int icount; // 생산중 개수
+	private int fcount; // 생산완료 개수
+	private String cd;
+	
 	public int getWcount() {
 		return wcount;
 	}
@@ -41,14 +49,6 @@ public class PageDTO {
 	public void setIcount(int icount) {
 		this.icount = icount;
 	}
-	private int fcount; // 생산완료 개수
-	
-	// 테이블 병합처리 멤버변수
-	private List<Integer> rowcolsTd; // td의 rowcols 수 
-	private List<Integer> showTd; // td를 나타낼 위치
-	
-	private String cd;
-	
 	
 	public String getCd() {
 		return cd;
