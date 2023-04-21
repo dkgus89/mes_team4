@@ -19,7 +19,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script>
 $(document).ready(function() { // j쿼리 시작
-	// 원자재 
+	// 원자재 재고비교
 	$("#stockCheck").on("click", function(){
 		let order_cd = document.getElementById("order_cd").value;
 		if(!order_cd) {
