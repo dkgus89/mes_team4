@@ -56,13 +56,12 @@
 
 #### 작업지시 페이지-원자재 재고비교 
 1. Model  
-    - 재고비교 DAOImpl [PurchaseDAOImpl.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/dao/PurchaseDAOImpl.java) 
-    - 재고비교 ServiceImpl [PurchaseServiceImpl.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/PurchaseServiceImpl.java) 
+    - 재고비교 DAOImpl [InstructionDAOImpl.java(L209-L214)](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/dao/InstructionDAOImpl.java#L209-L214) 
+    - 재고비교 ServiceImpl [InstructionServiceImpl.java(L214-L219)](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/InstructionServiceImpl.java#L214-L219) 
    
 2. View   
-    - 작업지시 추가 팝업-재고비교 [inst/InstInsert.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/inst/InstInsert.jsp#L21-L65#L269-L283)  
-    - 작업지시 수정 팝업-재고비교 [purchase/Insert.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/purchase/Insert.jsp)  
-
+    - 작업지시-재고비교(ajex) [inst/InstInsert.jsp(L21-L65)](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/inst/InstInsert.jsp#L21-L65) 
+    - 작업지시-재고비교(table) [purchase/Insert.jsp(L269-L283)](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/inst/InstInsert.jsp#L269-L283)  
 
 3. Controller  
-    - 컨트롤러 [PurchaseController.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/controller/PurchaseController.java)
+    - 컨트롤러 [InstructionController.java(L444-L487)](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/controller/InstructionController.java#L444-L487)
