@@ -56,8 +56,8 @@
 
 #### 작업지시 페이지-원자재 재고비교 
 1. Model  
-    - 재고비교 DAOImpl [InstructionDAOImpl.java(L209-L214)](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/dao/InstructionDAOImpl.java#L209-L214) 
-    - 재고비교 ServiceImpl [InstructionServiceImpl.java(L214-L219)](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/InstructionServiceImpl.java#L214-L219) 
+    - 작업지시-재고비교 DAOImpl [InstructionDAOImpl.java(L209-L214)](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/dao/InstructionDAOImpl.java#L209-L214) 
+    - 작업지시-재고비교 ServiceImpl [InstructionServiceImpl.java(L214-L219)](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/InstructionServiceImpl.java#L214-L219) 
    
 2. View   
     - 작업지시-재고비교(ajex) [inst/InstInsert.jsp(L21-L65)](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/inst/InstInsert.jsp#L21-L65) 
