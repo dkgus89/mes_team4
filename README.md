@@ -60,7 +60,7 @@
     - 재고비교 ServiceImpl [PurchaseServiceImpl.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/PurchaseServiceImpl.java) 
    
 2. View   
-    - 작업지시 추가 팝업-재고비교 [inst/InstInsert.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/inst/InstInsert.jsp#L21-L65)  
+    - 작업지시 추가 팝업-재고비교 [inst/InstInsert.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/inst/InstInsert.jsp#L21-L65#L269-L283)  
     - 작업지시 수정 팝업-재고비교 [purchase/Insert.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/purchase/Insert.jsp)  
 
 
