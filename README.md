@@ -54,4 +54,4 @@
 3. Controller  
     - 컨트롤러 [PurchaseController.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/controller/PurchaseController.java)
     
- https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/inst/InstInsert.jsp?plain=1
+https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/inst/InstInsert.jsp#L37-L61
