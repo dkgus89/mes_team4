@@ -16,15 +16,22 @@
 ### <상세 코드>
 #### 소요량 페이지  
 1. Model 
-    - 메인 리스트 [MainPro.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/main/action/MainPro.java)  
+    - 소요량 DAO [ConsumptionDAO.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/dao/ConsumptionDAO.java)  
+    - 소요량 DAOImpl [ConsumptionDAOImpl.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/dao/ConsumptionDAOImpl.java)
+    - 소요량 Service [ConsumptionService.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/ConsumptionService.java)  
+    - 소요량 ServiceImpl [ConsumptionServiceImpl.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/ConsumptionServiceImpl.java)
+    - 소요량 DTO [ConsumptionDTO.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/domain/ConsumptionDTO.java)  
+    - 페이징 DTO [PageDTO.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/domain/PageDTO.java)  
 
 2. View    
-    - 메인 [Main.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/main/main.jsp)  
-    - 헤더 [Header.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/inc/header.jsp)  
-    - 푸터 [Footer.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/inc/footer.jsp)  
+    - 소요량 리스트 [consumption/List.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/consumption/List.jsp)  
+    - 소요량 추가 팝업 [consumption/Insert.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/consumption/Insert.jsp)  
+    - 소요량 수정 팝업 [consumption/Update.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/consumption/Update.jsp)  
+    - 소요량 품목 리스트 [consumption/PrList.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/consumption/PrList.jsp)  
+    - 소요량 팝업 닫기 [consumption/Close.jsp](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/consumption/Close.jsp)  
 
 3. Controller  
-    - 컨트롤러 [MainFrontController.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/main/action/MainFrontController.java)  
+    - 컨트롤러 [ConsumptionController.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/controller/ConsumptionController.java)  
 
 #### 발주 페이지 
 1. Model 
