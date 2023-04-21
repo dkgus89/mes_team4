@@ -20,6 +20,7 @@
     - 소요량 DAOImpl [ConsumptionDAOImpl.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/dao/ConsumptionDAOImpl.java)
     - 소요량 Service [ConsumptionService.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/ConsumptionService.java)  
     - 소요량 ServiceImpl [ConsumptionServiceImpl.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/ConsumptionServiceImpl.java)
+    - 소요량 Mapper [ConsumptionMapper.xml](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/resources/mappers/ConsumptionMapper.xml)
     - 소요량 DTO [ConsumptionDTO.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/domain/ConsumptionDTO.java)  
     - 페이징 DTO [PageDTO.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/domain/PageDTO.java)  
 
@@ -39,6 +40,7 @@
     - 발주 DAOImpl [PurchaseDAOImpl.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/dao/PurchaseDAOImpl.java)
     - 발주 Service [PurchaseService.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/PurchaseService.java)  
     - 발주 ServiceImpl [PurchaseServiceImpl.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/PurchaseServiceImpl.java)
+    - 발주 Mapper [PurchaseMapper.xml](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/resources/mappers/PurchaseMapper.xml)
     - 발주 DTO [PurchaseDTO.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/domain/PurchaseDTO.java)  
     - 페이징 DTO [PageDTO.java](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/domain/PageDTO.java)  
     
@@ -58,6 +60,7 @@
 1. Model  
     - 작업지시-재고비교 DAOImpl [InstructionDAOImpl.java(L209-L214)](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/dao/InstructionDAOImpl.java#L209-L214) 
     - 작업지시-재고비교 ServiceImpl [InstructionServiceImpl.java(L214-L219)](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/java/com/itwillbs/service/InstructionServiceImpl.java#L214-L219) 
+    - 작업지시-재고비교 Mapper [instructionMapper.xml(L71-L92)](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/resources/mappers/instructionMapper.xml#L71-L92)
    
 2. View   
     - 작업지시-재고비교(ajex) [inst/InstInsert.jsp(L21-L65)](https://github.com/MEMOZ00/mes_team4/blob/cafe24/mes_team4/src/main/webapp/WEB-INF/views/inst/InstInsert.jsp#L21-L65) 
